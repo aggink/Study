@@ -1,0 +1,38 @@
+name: "Branch Name Check"
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Check branch name
+        run: |
+          # Определяем имя ветки в зависимости от типа события
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            BRANCH_NAME="$GITHUB_HEAD_REF"
+          else
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          fi
+          
+          echo "🔍 Checking branch name: $BRANCH_NAME"
+
+          # Очищенная регулярка для Bash
+          PATTERN="^tasks/[a-zA-Z0-9][a-zA-Z0-9-]*/[0-9]+/[a-zA-Z0-9_-]+$"
+
+          if [[ ! "$BRANCH_NAME" =~ $PATTERN ]]; then
+            echo "❌ Branch name does not match required pattern: tasks/{группа}/{номер}/{название}"
+            exit 1
+          else
+            echo "✅ Branch name is valid."
+          fi
