@@ -19,10 +19,10 @@ jobs:
       - name: Check branch name
         run: |
           BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
-          PATTERN="^tasks\/[a-zA-Z0-9_-]+\/[0-9]+\/[a-zA-Z0-9_-]+$"
+          PATTERN="^tasks\/[a-zA-Z0-9][a-zA-Z0-9-]*\/[0-9]+\/[a-zA-Z0-9_-]+$"
           if [[ ! "$BRANCH_NAME" =~ $PATTERN ]]; then
-            echo "Branch name does not match the required pattern: tasks/{имя группы}/{порядковый номер}/{название ветки}"
+            echo "❌ Branch name does not match required pattern: tasks/{имя группы}/{порядковый номер}/{название ветки}"
             exit 1
           else
-            echo "Branch name is valid."
+            echo "✅ Branch name is valid."
           fi
