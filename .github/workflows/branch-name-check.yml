@@ -18,8 +18,13 @@ jobs:
       
       - name: Check branch name
         run: |
-          # Получаем имя ветки без refs/heads/
-          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          # Определяем имя ветки в зависимости от типа события
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            BRANCH_NAME="$GITHUB_HEAD_REF"
+          else
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          fi
+          
           echo "🔍 Checking branch name: $BRANCH_NAME"
 
           # Очищенная регулярка для Bash
