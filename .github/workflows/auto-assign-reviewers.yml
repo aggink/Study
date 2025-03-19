@@ -1,0 +1,17 @@
+name: Auto Assign Reviewers
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  assign-reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Assign reviewers
+        uses: kentaro-m/auto-assign-action@v1
+        with:
+          reviewers: 'aggink'  # Укажите сюда нужных ревьюеров
