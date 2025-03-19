@@ -27,6 +27,12 @@ jobs:
           
           echo "🔍 Checking branch name: $BRANCH_NAME"
 
+          # Разрешаем ветку master без проверки
+          if [[ "$BRANCH_NAME" == "master" ]]; then
+            echo "✅ Branch 'master' is always allowed."
+            exit 0
+          fi
+
           # Очищенная регулярка для Bash
           PATTERN="^tasks/[a-zA-Z0-9][a-zA-Z0-9-]*/[0-9]+/[a-zA-Z0-9_-]+$"
 
