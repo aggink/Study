@@ -1,0 +1,47 @@
+name: .NET Code Formatting
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize  # Этот тип срабатывает, когда PR обновляется или изменяется
+      - reopened  # Этот тип срабатывает, если PR был переоткрыт
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Checkout репозитория
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Шаг 2: Проверка установленных версий .NET
+      - name: Check available .NET versions
+        run: apt list --installed | grep dotnet
+
+      # Шаг 3: Установка последней доступной версии .NET (8.0.x)
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'  # Устанавливает последнюю доступную 8.0 версию
+
+      # Шаг 4: Установка .NET 8.0 SDK вручную (если не установлено)
+      - name: Install .NET 8.0 SDK manually (если не установлено)
+        run: |
+          # Загрузка и установка .NET 8.0 SDK вручную, если он не был установлен
+          wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+          chmod +x dotnet-install.sh
+          ./dotnet-install.sh --channel 8.0
+
+      # Шаг 5: Проверка, требует ли код форматирования (если нет изменений, выход с ошибкой)
+      - name: Verify .NET code formatting (check if changes are needed)
+        run: |
+          echo "Verifying .NET code formatting..."
+          dotnet format Study.sln --verify-no-changes  # Проверка, требует ли код форматирования
+
+      # Шаг 6: Если форматирование нужно, применяем его
+      - name: Apply .NET code formatting on solution
+        run: |
+          echo "Applying .NET code formatting on solution..."
+          dotnet format Study.sln  # Применяем форматирование ко всем проектам в решении
