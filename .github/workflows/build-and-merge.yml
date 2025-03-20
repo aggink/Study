@@ -3,7 +3,7 @@ name: Build and Run Tests
 on:
   pull_request:
     branches:
-      - '**'  # Этот workflow сработает при открытии или обновлении любого PR
+      - '**'  # Срабатывает при открытии или обновлении любого PR
     types:
       - opened
       - synchronize
@@ -12,14 +12,20 @@ on:
     branches:
       - master  # Всегда собирать ветку master
   workflow_run:
-    workflows: [".NET Code Formatting"]  # Ожидаем завершения .NET Code Formatting
+    workflows: [".NET Code Formatting"]  # Зависит от завершения .NET Code Formatting
     types:
-      - completed  # Сработает, когда предыдущий workflow завершится
+      - completed  # Сработает, когда .NET Code Formatting завершится
 
 jobs:
+  checkout:
+    runs-on: ubuntu-22.04  # Убираем дублирование
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
   build:
-    runs-on: ubuntu-22.04
-    needs: formatting  # Устанавливаем зависимость от .NET Code Formatting
+    runs-on: ubuntu-22.04  # Убираем дублирование
+    needs: checkout  # Устанавливаем зависимость от job "checkout"
 
     steps:
       - name: Checkout repository

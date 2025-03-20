@@ -9,13 +9,19 @@ on:
   workflow_run:
     workflows: ["Branch Name Check"]  # Ожидаем завершения Branch Name Check
     types:
-      - completed  # Сработает, когда предыдущий workflow завершится
+      - completed  # Сработает, когда Branch Name Check завершится
 
 jobs:
-  formatting:
-    runs-on: ubuntu-22.04
-    needs: check-branch-name  # Устанавливаем зависимость от Branch Name Check
+  checkout:
+    runs-on: ubuntu-22.04  # Указываем только один раз
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
+  formatting:
+    runs-on: ubuntu-22.04  # Убираем дублирование
+    needs: checkout  # Устанавливаем зависимость от job "checkout"
+    
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
