@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true  # Запускаем только если PR был смержен
     runs-on: ubuntu-latest
 
     steps:
@@ -18,13 +17,17 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.14' # Укажите вашу версию .NET
+          dotnet-version: '8.0.14'  # Укажите вашу версию .NET
+
+      - name: Проверка, был ли PR смержен
+        if: github.event.pull_request.merged == true
+        run: echo "✅ PR был смержен! Запускаем билд..."
 
       - name: 🛠 Start: Restore dependencies
         run: echo "🔹 Начинаем восстановление зависимостей..."
 
       - name: Restore dependencies
-        run: dotnet restore  # <-- был неправильный отступ
+        run: dotnet restore
 
       - name: ✅ Dependencies restored
         run: echo "✔️ Восстановление зависимостей завершено!"
