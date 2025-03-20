@@ -20,6 +20,20 @@ namespace Study.Lab1.UnitTests.Assistant.Task2
         }
 
         [Test]
+        public void FormatDate_ShouldReturnCorrectDateFormat2()
+        {
+            // Arrange
+            var formatter = new EuropeanDateFormatter();
+            var testDate = new DateTime(2025, 3, 21);
+
+            // Act
+            var result = formatter.FormatDate(testDate);
+
+            // Assert
+            Assert.That(result, Is.EqualTo("21.03.2025"));
+        }
+
+        [Test]
         public void FormatTime_ShouldReturnCorrectTimeFormat()
         {
             // Arrange
