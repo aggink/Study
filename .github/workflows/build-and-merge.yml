@@ -3,8 +3,11 @@ name: Build and Auto Merge
 on:
   pull_request:
     branches:
-      - master
-    types: [closed]  # Trigger on PR close (merge)
+      - '**'
+    types: [opened, synchronize, reopened]  # Запуск при каждом обновлении PR
+  push:
+    branches:
+      - master  # Всегда собирать ветку master
 
 jobs:
   build:
@@ -27,10 +30,6 @@ jobs:
           wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
           chmod +x dotnet-install.sh
           ./dotnet-install.sh --channel 8.0
-
-      - name: Check if PR was merged
-        if: ${{ github.event.pull_request.merged == true }}
-        run: echo "✅ PR was merged! Starting the build..."
 
       - name: Start restoring dependencies
         run: echo "🔹 Starting to restore dependencies..."
