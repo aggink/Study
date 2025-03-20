@@ -31,7 +31,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'  # Устанавливает последнюю доступную 8.0 версию
+          dotnet-version: '8.0.x'
 
       - name: Install .NET 8.0 SDK manually (если не установлено)
         run: |
