@@ -8,16 +8,25 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # Используем конкретную версию Ubuntu
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Check available .NET versions
+        run: apt list --installed | grep dotnet
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.14'  # Specify your .NET version
+          dotnet-version: '8.0.x'  # Устанавливает последнюю доступную 8.0 версию
+
+      - name: Install .NET 8.0 SDK manually (если не установлено)
+        run: |
+          wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+          chmod +x dotnet-install.sh
+          ./dotnet-install.sh --channel 8.0
 
       - name: Check if PR was merged
         if: ${{ github.event.pull_request.merged == true }}
