@@ -37,11 +37,11 @@ jobs:
       # Шаг 5: Выполнение форматирования кода с использованием .NET форматтера
       - name: Run .NET code formatting
         run: |
-          echo "Running .NET code formatting..."
-          dotnet format --check  # Проверка, чтобы увидеть, нужно ли применять форматирование
-          
+          echo "Running .NET code formatting on solution..."
+          dotnet format Study.sln --check  # Указываем путь к решению
+
       # Шаг 6: Если форматирование нужно, применяем его
       - name: Apply .NET code formatting
         run: |
-          echo "Applying .NET code formatting..."
-          dotnet format  # Применяем форматирование к коду
+          echo "Applying .NET code formatting on solution..."
+          dotnet format Study.sln  # Применяем форматирование ко всем проектам в решении
