@@ -16,7 +16,7 @@ namespace Study.Lab1.Logic.Assistant
             var americanFormatter = new AmericanDateFormatter();
 
             var formattedDate = americanFormatter.FormatDate(currentDateTime);
-            Console.WriteLine($"Date: {formattedDate}");
+            Console.WriteLine($"Dae: {formattedDate}");
 
             var formattedTime = americanFormatter.FormatTime(currentDateTime);
             Console.WriteLine($"Time: {formattedTime}");
