@@ -1,0 +1,50 @@
+name: Build and Auto Merge
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]  # Запуск при закрытии (мерже) PR
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true  # Запускаем только если PR был смержен
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.14' # Укажите вашу версию .NET
+
+      - name: 🛠 Start: Restore dependencies
+        run: echo "🔹 Начинаем восстановление зависимостей..."
+
+      - name: Restore dependencies
+      run: dotnet restore
+      
+      - name: ✅ Dependencies restored
+      run: echo "✔️ Восстановление зависимостей завершено!"
+      
+      
+      - name: 🏗 Start: Build project
+      run: echo "🔹 Начинаем сборку проекта..."
+      
+      - name: Build project
+      run: dotnet build --configuration Release --no-restore
+      
+      - name: ✅ Build completed
+      run: echo "✔️ Сборка проекта успешно завершена!"
+      
+      
+      - name: 🧪 Start: Run tests
+      run: echo "🔹 Запускаем тесты..."
+      
+      - name: Run tests
+      run: dotnet test --configuration Release --no-build --verbosity normal
+      
+      - name: ✅ Tests completed
+      run: echo "✔️ Тесты успешно пройдены!"
