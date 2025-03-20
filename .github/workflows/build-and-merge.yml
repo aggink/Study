@@ -23,29 +23,29 @@ jobs:
         if: github.event.pull_request.merged == true
         run: echo "✅ PR был смержен! Запускаем билд..."
 
-      - name: 🛠 Start: Restore dependencies
+      - name: Start: Restore dependencies  # Убрали эмодзи
         run: echo "🔹 Начинаем восстановление зависимостей..."
 
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: ✅ Dependencies restored
+      - name: Dependencies restored  # Убрали эмодзи
         run: echo "✔️ Восстановление зависимостей завершено!"
 
-      - name: 🏗 Start: Build project
+      - name: Start: Build project  # Убрали эмодзи
         run: echo "🔹 Начинаем сборку проекта..."
 
       - name: Build project
         run: dotnet build --configuration Release --no-restore
 
-      - name: ✅ Build completed
+      - name: Build completed  # Убрали эмодзи
         run: echo "✔️ Сборка проекта успешно завершена!"
 
-      - name: 🧪 Start: Run tests
+      - name: Start: Run tests  # Убрали эмодзи
         run: echo "🔹 Запускаем тесты..."
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build --verbosity normal
 
-      - name: ✅ Tests completed
+      - name: Tests completed  # Убрали эмодзи
         run: echo "✔️ Тесты успешно пройдены!"
