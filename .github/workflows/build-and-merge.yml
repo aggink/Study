@@ -1,17 +1,25 @@
-name: Build and Auto Merge
+name: Build and Run Tests
 
 on:
   pull_request:
     branches:
-      - '**'
-    types: [opened, synchronize, reopened]  # Запуск при каждом обновлении PR
+      - '**'  # Этот workflow сработает при открытии или обновлении любого PR
+    types:
+      - opened
+      - synchronize
+      - reopened
   push:
     branches:
       - master  # Всегда собирать ветку master
+  workflow_run:
+    workflows: [".NET Code Formatting"]  # Ожидаем завершения .NET Code Formatting
+    types:
+      - completed  # Сработает, когда предыдущий workflow завершится
 
 jobs:
   build:
-    runs-on: ubuntu-22.04  # Используем конкретную версию Ubuntu
+    runs-on: ubuntu-22.04
+    needs: formatting  # Устанавливаем зависимость от .NET Code Formatting
 
     steps:
       - name: Checkout repository

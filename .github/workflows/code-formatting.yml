@@ -6,10 +6,15 @@ on:
       - opened
       - synchronize  # Этот тип срабатывает, когда PR обновляется или изменяется
       - reopened  # Этот тип срабатывает, если PR был переоткрыт
-
+  workflow_run:
+    workflows: ["Branch Name Check"]  # Ожидаем завершения Branch Name Check
+    types:
+      - completed  # Сработает, когда предыдущий workflow завершится
+    
 jobs:
   formatting:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    needs: check-branch-name  # Устанавливаем зависимость от Branch Name Check
 
     steps:
       # Шаг 1: Checkout репозитория
