@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - master
-    types: [closed]  # Запуск при закрытии (мерже) PR
+    types: [closed]  # Trigger on PR close (merge)
 
 jobs:
   build:
@@ -17,35 +17,35 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.14'  # Укажите вашу версию .NET
+          dotnet-version: '8.0.14'  # Specify your .NET version
 
-      - name: Проверка, был ли PR смержен
-        if: github.event.pull_request.merged == true
-        run: echo "✅ PR был смержен! Запускаем билд..."
+      - name: Check if PR was merged
+        if: ${{ github.event.pull_request.merged == true }}
+        run: echo "✅ PR was merged! Starting the build..."
 
-      - name: Start: Restore dependencies  # Убрали эмодзи
-        run: echo "🔹 Начинаем восстановление зависимостей..."
+      - name: Start restoring dependencies
+        run: echo "🔹 Starting to restore dependencies..."
 
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Dependencies restored  # Убрали эмодзи
-        run: echo "✔️ Восстановление зависимостей завершено!"
+      - name: Dependencies restored
+        run: echo "✔️ Dependencies restored successfully!"
 
-      - name: Start: Build project  # Убрали эмодзи
-        run: echo "🔹 Начинаем сборку проекта..."
+      - name: Start building the project
+        run: echo "🔹 Starting to build the project..."
 
       - name: Build project
         run: dotnet build --configuration Release --no-restore
 
-      - name: Build completed  # Убрали эмодзи
-        run: echo "✔️ Сборка проекта успешно завершена!"
+      - name: Build completed
+        run: echo "✔️ Project build completed successfully!"
 
-      - name: Start: Run tests  # Убрали эмодзи
-        run: echo "🔹 Запускаем тесты..."
+      - name: Start running tests
+        run: echo "🔹 Starting to run tests..."
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build --verbosity normal
 
-      - name: Tests completed  # Убрали эмодзи
-        run: echo "✔️ Тесты успешно пройдены!"
+      - name: Tests completed
+        run: echo "✔️ Tests completed successfully!"
