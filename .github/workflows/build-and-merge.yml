@@ -24,27 +24,25 @@ jobs:
         run: echo "🔹 Начинаем восстановление зависимостей..."
 
       - name: Restore dependencies
-      run: dotnet restore
-      
+        run: dotnet restore  # <-- был неправильный отступ
+
       - name: ✅ Dependencies restored
-      run: echo "✔️ Восстановление зависимостей завершено!"
-      
-      
+        run: echo "✔️ Восстановление зависимостей завершено!"
+
       - name: 🏗 Start: Build project
-      run: echo "🔹 Начинаем сборку проекта..."
-      
+        run: echo "🔹 Начинаем сборку проекта..."
+
       - name: Build project
-      run: dotnet build --configuration Release --no-restore
-      
+        run: dotnet build --configuration Release --no-restore
+
       - name: ✅ Build completed
-      run: echo "✔️ Сборка проекта успешно завершена!"
-      
-      
+        run: echo "✔️ Сборка проекта успешно завершена!"
+
       - name: 🧪 Start: Run tests
-      run: echo "🔹 Запускаем тесты..."
-      
+        run: echo "🔹 Запускаем тесты..."
+
       - name: Run tests
-      run: dotnet test --configuration Release --no-build --verbosity normal
-      
+        run: dotnet test --configuration Release --no-build --verbosity normal
+
       - name: ✅ Tests completed
-      run: echo "✔️ Тесты успешно пройдены!"
+        run: echo "✔️ Тесты успешно пройдены!"
