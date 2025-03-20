@@ -34,14 +34,14 @@ jobs:
           chmod +x dotnet-install.sh
           ./dotnet-install.sh --channel 8.0
 
-      # Шаг 5: Выполнение форматирования кода с использованием .NET форматтера
-      - name: Run .NET code formatting
+      # Шаг 5: Проверка, требует ли код форматирования (если нет изменений, выход с ошибкой)
+      - name: Verify .NET code formatting (check if changes are needed)
         run: |
-          echo "Running .NET code formatting on solution..."
-          dotnet format Study.sln --check  # Указываем путь к решению
+          echo "Verifying .NET code formatting..."
+          dotnet format Study.sln --verify-no-changes  # Проверка, требует ли код форматирования
 
       # Шаг 6: Если форматирование нужно, применяем его
-      - name: Apply .NET code formatting
+      - name: Apply .NET code formatting on solution
         run: |
           echo "Applying .NET code formatting on solution..."
           dotnet format Study.sln  # Применяем форматирование ко всем проектам в решении
