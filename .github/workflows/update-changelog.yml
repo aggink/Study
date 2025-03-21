@@ -55,7 +55,7 @@ jobs:
           echo "Commits found in range:"
           echo "$COMMITS"
 
-          # Если нет коммитов, завершить экшен с ошибкой
+          # Если нет коммитов, просто завершаем работу без ошибки
           if [ -z "$COMMITS" ]; then
             echo "No commits found in this PR."
             exit 0
@@ -67,7 +67,7 @@ jobs:
           echo "Filtered commits:"
           echo "$FILTERED_COMMITS"
 
-          # Если после фильтрации список пуст - завершить с ошибкой
+          # Если после фильтрации список пуст - просто завершаем работу без ошибки
           if [ -z "$FILTERED_COMMITS" ]; then
             echo "All commits contain [Private], skipping CHANGELOG update."
             exit 0
