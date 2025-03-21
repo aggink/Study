@@ -12,9 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Шаг 1: Checkout репозитория
+      # Шаг 1: Checkout репозитория с полным историей
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Загружает всю историю репозитория
 
       # Шаг 2: Проверка установленных версий .NET
       - name: Check available .NET versions
