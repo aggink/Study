@@ -39,8 +39,23 @@ jobs:
           AUTHOR="${{ github.actor }}"
           PR_NUMBER="${{ github.event.pull_request.number }}"
           PR_TITLE="${{ github.event.pull_request.title }}"
-          
-          echo "PR #${PR_NUMBER} - Title: ${PR_TITLE}"
+
+          echo "Processing PR #${PR_NUMBER} - Title: ${PR_TITLE}"
+
+          # Проверяем, содержит ли заголовок [Private]
+          if echo "$PR_TITLE" | grep -iq "\[Private\]"; then
+            echo "PR #${PR_NUMBER} is marked as [Private]. Checking if it needs to be removed from CHANGELOG."
+            if grep -q "#${PR_NUMBER}" CHANGELOG.md; then
+              echo "Removing existing entry for PR #${PR_NUMBER}."
+              sed -i "/#${PR_NUMBER}/d" CHANGELOG.md
+              git add CHANGELOG.md
+              git commit -m "Remove private PR #${PR_NUMBER} from CHANGELOG" || echo "No changes to commit"
+              git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }} || echo "No changes to push"
+            else
+              echo "Private PR #${PR_NUMBER} is not in CHANGELOG, skipping."
+            fi
+            exit 0
+          fi
 
           # Формируем новую запись в соответствии с вашим шаблоном
           NEW_ENTRY="* $DATE #${PR_NUMBER} ${PR_TITLE} от @${AUTHOR}"
