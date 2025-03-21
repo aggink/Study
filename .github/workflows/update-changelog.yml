@@ -32,9 +32,11 @@ jobs:
             echo "CHANGELOG.md not found. Creating a new one."
             touch CHANGELOG.md
             git add CHANGELOG.md
-            git commit -m "Initialize CHANGELOG.md" || echo "No initial commit needed"
+            git commit -m "Initialize CHANGELOG.md"
             git push origin master || echo "No changes to push"
-        continue-on-error: true  # Игнорируем ошибку, если файл уже существует
+          else
+            echo "CHANGELOG.md already exists, skipping creation."
+          fi
 
       - name: Extract PR commits and filter
         id: pr_commits
