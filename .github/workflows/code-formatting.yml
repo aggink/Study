@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Шаг 1: Checkout репозитория с полным историей
+      # Шаг 1: Checkout репозитория с полной историей
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
@@ -43,8 +43,9 @@ jobs:
           git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
           echo "Changed files:"
           cat changed_files.txt
-          # Set output using environment file method
-          echo "changed_files=$(cat changed_files.txt)" >> $GITHUB_ENV
+          # Отфильтровываем только .csproj, .sln, .cs и .resx файлы
+          changed_files=$(grep -E '\.cs$|\.csproj$|\.sln$|\.resx$' changed_files.txt)
+          echo "changed_files=${changed_files}" >> $GITHUB_ENV
 
       # Шаг 6: Проверка, требует ли код форматирования в изменённых файлах
       - name: Verify .NET code formatting for changed files
