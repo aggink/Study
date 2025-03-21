@@ -1,9 +1,8 @@
-﻿using Study.Lab2.Logic.Assistant;
-using Study.Lab2.Logic.Interfaces;
+﻿using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.Assistant;
 using System.Diagnostics;
 
-namespace Study.Lab2.Logic
+namespace Study.Lab2.Logic.Assistant
 {
     public class AssistantService : IRunService
     {
