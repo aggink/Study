@@ -41,16 +41,26 @@ jobs:
           git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
           echo "Changed files:"
           cat changed_files.txt
-          echo "::set-output name=files::$(cat changed_files.txt)"
+          # Set output using environment file method
+          echo "changed_files=$(cat changed_files.txt)" >> $GITHUB_ENV
 
       # Шаг 6: Проверка, требует ли код форматирования в изменённых файлах
       - name: Verify .NET code formatting for changed files
         run: |
           echo "Verifying .NET code formatting for changed files..."
-          dotnet format $(cat changed_files.txt) --verify-no-changes
+          dotnet format ${{ env.changed_files }} --verify-no-changes
+        continue-on-error: true  # В случае отсутствия изменений не завершать весь процесс
 
-      # Шаг 7: Если форматирование нужно, применяем его
+      # Шаг 7: Завершаем работу, если форматирование не требуется
+      - name: Check if formatting is needed
+        if: ${{ steps.changed-files.outcome == 'success' }}
+        run: |
+          echo "No formatting needed. Exiting the action early."
+          exit 0
+
+      # Шаг 8: Если форматирование нужно, применяем его
       - name: Apply .NET code formatting on changed files
+        if: ${{ steps.changed-files.outcome != 'success' }}
         run: |
           echo "Applying .NET code formatting on changed files..."
-          dotnet format $(cat changed_files.txt)
+          dotnet format ${{ env.changed_files }}
