@@ -33,7 +33,7 @@ jobs:
             touch CHANGELOG.md
             git add CHANGELOG.md
             git commit -m "Initialize CHANGELOG.md"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master
+            git push https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master
           else
             echo "CHANGELOG.md already exists, skipping creation."
           fi
