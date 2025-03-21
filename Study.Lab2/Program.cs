@@ -1,4 +1,4 @@
-﻿using Study.Lab2.Logic;
+﻿using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.Interfaces;
 
 public static class Program
