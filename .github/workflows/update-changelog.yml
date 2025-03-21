@@ -1,7 +1,8 @@
 name: Update Changelog
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - master
 
@@ -20,14 +21,20 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
 
+      - name: Switch to master branch
+        run: |
+          git checkout master  # Если у вас main, замените на main
+          git pull origin master  # Обновляем локальную копию
+
       - name: Extract PR commits and filter
         id: pr_commits
         run: |
           DATE=$(date +'%Y-%m-%d')
-          AUTHOR="${{ github.event.pull_request.user.login }}"
-
+          AUTHOR="${{ github.actor }}"
+          
           # Получаем список всех коммитов в PR
-          COMMITS=$(git log --pretty=format:"%h %s (Автор: %an)" ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          COMMITS=$(git log --pretty=format:"%h %s (Автор: %an)" $BASE_SHA..HEAD)
           
           # Фильтруем коммиты с [Private]
           FILTERED_COMMITS=$(echo "$COMMITS" | grep -v '\[Private\]')
@@ -39,7 +46,7 @@ jobs:
           fi
 
           # Формируем строку для CHANGELOG
-          echo "" >> CHANGELOG.md  # Добавляем пустую строку перед новой записью
+          echo "" >> CHANGELOG.md
           echo "$DATE - PR #${{ github.event.pull_request.number }} от @${AUTHOR}" >> CHANGELOG.md
           echo "$FILTERED_COMMITS" >> CHANGELOG.md
 
@@ -47,4 +54,4 @@ jobs:
         run: |
           git add CHANGELOG.md
           git commit -m "Update CHANGELOG with latest PR commits"
-          git push
+          git push origin master  # Указываем явную ветку
