@@ -29,7 +29,7 @@ jobs:
       - name: Extract PR commits and filter
         id: pr_commits
         run: |
-          set -e  # Завершение скрипта при ошибке
+          set -e  # Прерывание скрипта при критических ошибках
           
           DATE=$(date +'%Y-%m-%d')
           AUTHOR="${{ github.actor }}"
@@ -55,6 +55,12 @@ jobs:
           if [ -z "$FILTERED_COMMITS" ]; then
             echo "All commits contain [Private], skipping CHANGELOG update."
             exit 0
+          fi
+
+          # Проверяем, существует ли CHANGELOG.md, если нет — создаем
+          if [ ! -f CHANGELOG.md ]; then
+            echo "CHANGELOG.md not found. Creating a new one."
+            touch CHANGELOG.md
           fi
 
           # Формируем строку для CHANGELOG
