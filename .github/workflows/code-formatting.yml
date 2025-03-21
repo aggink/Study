@@ -45,6 +45,8 @@ jobs:
           cat changed_files.txt
           # Отфильтровываем только .csproj, .sln, .cs и .resx файлы
           changed_files=$(grep -E '\.cs$|\.csproj$|\.sln$|\.resx$' changed_files.txt)
+          # Убираем любые файлы, которые не соответствуют нужным расширениям
+          changed_files=$(echo "$changed_files" | grep -E '\.cs$|\.csproj$|\.sln$|\.resx$')
           echo "changed_files=${changed_files}" >> $GITHUB_ENV
 
       # Шаг 6: Проверка, требует ли код форматирования в изменённых файлах
