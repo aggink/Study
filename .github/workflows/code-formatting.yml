@@ -45,7 +45,7 @@ jobs:
           cat changed_files.txt
           # Отфильтровываем только .csproj, .sln, .cs и .resx файлы
           changed_files=$(grep -E '\.cs$|\.csproj$|\.sln$|\.resx$' changed_files.txt)
-          # Убираем любые файлы, которые не соответствуют нужным расширениям
+          # Убираем все строки, которые не содержат нужные расширения
           changed_files=$(echo "$changed_files" | grep -E '\.cs$|\.csproj$|\.sln$|\.resx$' || true)
           # Проверяем, если переменная пустая, то завершаем процесс
           if [ -z "$changed_files" ]; then
