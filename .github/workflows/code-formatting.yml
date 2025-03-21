@@ -4,17 +4,19 @@ on:
   pull_request:
     types:
       - opened
-      - synchronize  # Этот тип срабатывает, когда PR обновляется или изменяется
-      - reopened  # Этот тип срабатывает, если PR был переоткрыт
+      - synchronize
+      - reopened
 
 jobs:
   formatting:
     runs-on: ubuntu-latest
 
     steps:
-      # Шаг 1: Checkout репозитория
+      # Шаг 1: Checkout репозитория с полной историей
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Загружает всю историю репозитория
 
       # Шаг 2: Проверка установленных версий .NET
       - name: Check available .NET versions
@@ -34,14 +36,32 @@ jobs:
           chmod +x dotnet-install.sh
           ./dotnet-install.sh --channel 8.0
 
-      # Шаг 5: Проверка, требует ли код форматирования (если нет изменений, выход с ошибкой)
-      - name: Verify .NET code formatting (check if changes are needed)
+      # Шаг 5: Получаем список изменённых файлов
+      - name: Get changed files
+        id: changed-files
         run: |
-          echo "Verifying .NET code formatting..."
-          dotnet format Study.sln --verify-no-changes  # Проверка, требует ли код форматирования
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > changed_files.txt
+          echo "Changed files:"
+          cat changed_files.txt
+          # Отфильтровываем только .csproj, .sln, .cs и .resx файлы
+          changed_files=$(grep -E '\.cs$|\.csproj$|\.sln$|\.resx$' changed_files.txt)
+          # Убираем все строки, которые не содержат нужные расширения
+          changed_files=$(echo "$changed_files" | grep -E '\.cs$|\.csproj$|\.sln$|\.resx$' || true)
+          # Проверяем, если переменная пустая, то завершаем процесс
+          if [ -z "$changed_files" ]; then
+            echo "No relevant changes found. Exiting the action."
+            exit 0
+          fi
+          echo "changed_files=${changed_files}" >> $GITHUB_ENV
 
-      # Шаг 6: Если форматирование нужно, применяем его
-      - name: Apply .NET code formatting on solution
+      # Шаг 6: Проверка, требует ли код форматирования в изменённых файлах
+      - name: Verify .NET code formatting for changed files
         run: |
-          echo "Applying .NET code formatting on solution..."
-          dotnet format Study.sln  # Применяем форматирование ко всем проектам в решении
+          echo "Verifying .NET code formatting for changed files..."
+          dotnet format ${{ env.changed_files }} --verify-no-changes
+
+      # Шаг 7: Если форматирование нужно, применяем его
+      - name: Apply .NET code formatting on changed files
+        run: |
+          echo "Applying .NET code formatting on changed files..."
+          dotnet format ${{ env.changed_files }}
