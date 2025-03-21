@@ -29,29 +29,43 @@ jobs:
       - name: Extract PR commits and filter
         id: pr_commits
         run: |
+          set -e  # Завершение скрипта при ошибке
+          
           DATE=$(date +'%Y-%m-%d')
           AUTHOR="${{ github.actor }}"
           
-          # Получаем список всех коммитов в PR
+          # Получаем SHA базовой ветки
           BASE_SHA="${{ github.event.pull_request.base.sha }}"
-          COMMITS=$(git log --pretty=format:"%h %s (Автор: %an)" $BASE_SHA..HEAD)
-          
-          # Фильтруем коммиты с [Private]
-          FILTERED_COMMITS=$(echo "$COMMITS" | grep -v '\[Private\]')
+          echo "Base SHA: $BASE_SHA"
+          echo "Current HEAD: $(git rev-parse HEAD)"
 
-          # Если после фильтрации список пуст - пропускаем обновление CHANGELOG
+          # Получаем список всех коммитов в PR
+          COMMITS=$(git log --pretty=format:"%h %s (Автор: %an)" $BASE_SHA..HEAD || true)
+          
+          echo "Commits found in range:"
+          echo "$COMMITS"
+
+          # Фильтруем коммиты с [Private]
+          FILTERED_COMMITS=$(echo "$COMMITS" | grep -v '\[Private\]' || true)
+
+          echo "Filtered commits:"
+          echo "$FILTERED_COMMITS"
+
+          # Если после фильтрации список пуст - просто завершаем работу без ошибки
           if [ -z "$FILTERED_COMMITS" ]; then
-            echo "All commits contain [Private], skip updating CHANGELOG."
+            echo "All commits contain [Private], skipping CHANGELOG update."
             exit 0
           fi
 
           # Формируем строку для CHANGELOG
-          echo "" >> CHANGELOG.md
-          echo "$DATE - PR #${{ github.event.pull_request.number }} от @${AUTHOR}" >> CHANGELOG.md
-          echo "$FILTERED_COMMITS" >> CHANGELOG.md
+          {
+            echo ""
+            echo "$DATE - PR #${{ github.event.pull_request.number }} от @${AUTHOR}"
+            echo "$FILTERED_COMMITS"
+          } >> CHANGELOG.md
 
       - name: Commit and push changes
         run: |
           git add CHANGELOG.md
-          git commit -m "Update CHANGELOG with latest PR commits"
-          git push origin master  # Указываем явную ветку
+          git commit -m "Update CHANGELOG with latest PR commits" || echo "No changes to commit"
+          git push origin master || echo "No changes to push"
