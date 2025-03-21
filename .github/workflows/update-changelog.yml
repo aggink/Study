@@ -21,11 +21,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
 
-      - name: Switch to master branch
-        run: |
-          git checkout master
-          git pull origin master
-
       - name: Ensure CHANGELOG.md exists
         run: |
           if [ ! -f CHANGELOG.md ]; then
@@ -37,11 +32,6 @@ jobs:
           else
             echo "CHANGELOG.md already exists, skipping creation."
           fi
-
-      - name: Pull latest changes before pushing
-        run: |
-          git fetch origin
-          git rebase origin/tasks/tech/1/fix-changelog-5  # Используем rebase, чтобы подтянуть изменения из удалённой ветки
 
       - name: Extract PR commits and filter
         id: pr_commits
