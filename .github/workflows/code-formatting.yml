@@ -46,16 +46,17 @@ jobs:
           # Отфильтровываем только .csproj, .sln, .cs и .resx файлы
           changed_files=$(grep -E '\.cs$|\.csproj$|\.sln$|\.resx$' changed_files.txt)
           # Убираем любые файлы, которые не соответствуют нужным расширениям
-          changed_files=$(echo "$changed_files" | grep -E '\.cs$|\.csproj$|\.sln$|\.resx$')
+          changed_files=$(echo "$changed_files" | grep -E '\.cs$|\.csproj$|\.sln$|\.resx$' || true)
+          # Проверяем, если переменная пустая, то завершаем процесс
+          if [ -z "$changed_files" ]; then
+            echo "No relevant changes found. Exiting the action."
+            exit 0
+          fi
           echo "changed_files=${changed_files}" >> $GITHUB_ENV
 
       # Шаг 6: Проверка, требует ли код форматирования в изменённых файлах
       - name: Verify .NET code formatting for changed files
         run: |
-          if [ -z "${{ env.changed_files }}" ]; then
-            echo "No relevant changes found. Exiting the action."
-            exit 0  # Если изменений нет, завершаем процесс
-          fi
           echo "Verifying .NET code formatting for changed files..."
           dotnet format ${{ env.changed_files }} --verify-no-changes
 
