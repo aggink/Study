@@ -1,0 +1,49 @@
+name: Update Changelog
+
+on:
+  push:
+    branches:
+      - master  # Запуск при пуше в master
+
+jobs:
+  update_changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Загружаем всю историю коммитов
+
+      - name: Extract PR title from commit message
+        id: get_pr_title
+        run: |
+          PR_TITLE=$(git log -1 --pretty=%s)
+          echo "Extracted PR Title: $PR_TITLE"
+          echo "PR_TITLE=$PR_TITLE" >> $GITHUB_ENV
+
+      - name: Check if PR is Private
+        id: check_private
+        run: |
+          if [[ "$PR_TITLE" == *"[Private]"* ]]; then
+            echo "Private PR detected, skipping changelog update."
+            echo "SKIP_CHANGELOG=true" >> $GITHUB_ENV
+          else
+            echo "SKIP_CHANGELOG=false" >> $GITHUB_ENV
+          fi
+
+      - name: Update CHANGELOG.md
+        if: env.SKIP_CHANGELOG == 'false'  # Пропускаем шаг, если PR был Private
+        run: |
+          DATE=$(date +"%Y-%m-%d")
+          echo -e "\n$DATE | $PR_TITLE\n" >> CHANGELOG.md
+          echo "Updated CHANGELOG with: $PR_TITLE"
+
+      - name: Commit and push changes
+        if: env.SKIP_CHANGELOG == 'false'  # Пропускаем коммит, если PR был Private
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add CHANGELOG.md
+          git commit -m "Update CHANGELOG: $PR_TITLE"
+          git push
