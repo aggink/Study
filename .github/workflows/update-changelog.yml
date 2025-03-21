@@ -84,4 +84,4 @@ jobs:
         run: |
           git add CHANGELOG.md
           git commit -m "Update CHANGELOG with latest PR commits" || (echo "No changes to commit" && exit 1)
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master || (echo "No changes to push" && exit 1)
+          git push https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master || (echo "No changes to push" && exit 1)
