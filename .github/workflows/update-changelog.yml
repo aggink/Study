@@ -2,9 +2,9 @@ name: Update Changelog
 
 on:
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, edited]  # Срабатывает при открытии, синхронизации и изменении PR
     branches:
-      - master
+      - master  # Только для PR в ветку master
 
 jobs:
   update-changelog:
