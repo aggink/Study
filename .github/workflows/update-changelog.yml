@@ -2,9 +2,9 @@ name: Update Changelog
 
 on:
   pull_request:
-    types: [closed]
+    types: [opened, synchronize, edited]  # Срабатывает при открытии, синхронизации и изменении PR
     branches:
-      - master
+      - master  # Только для PR в ветку master
 
 jobs:
   update-changelog:
@@ -21,11 +21,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
 
-      - name: Switch to master branch
-        run: |
-          git checkout master
-          git pull origin master
-
       - name: Ensure CHANGELOG.md exists
         run: |
           if [ ! -f CHANGELOG.md ]; then
@@ -33,7 +28,7 @@ jobs:
             touch CHANGELOG.md
             git add CHANGELOG.md
             git commit -m "Initialize CHANGELOG.md"
-            git push https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }}
           else
             echo "CHANGELOG.md already exists, skipping creation."
           fi
@@ -43,45 +38,27 @@ jobs:
         run: |
           DATE=$(date +'%Y-%m-%d')
           AUTHOR="${{ github.actor }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
           
-          # Получаем SHA базовой ветки
-          BASE_SHA="${{ github.event.pull_request.base.sha }}"
-          echo "Base SHA: $BASE_SHA"
-          echo "Current HEAD: $(git rev-parse HEAD)"
+          echo "PR #${PR_NUMBER} - Title: ${PR_TITLE}"
 
-          # Получаем список всех коммитов в PR
-          COMMITS=$(git log --pretty=format:"%h %s (Автор: %an)" $BASE_SHA..HEAD || echo "")
-          
-          echo "Commits found in range:"
-          echo "$COMMITS"
+          # Создаем строку записи для добавления в CHANGELOG.md
+          NEW_ENTRY="### $DATE - PR #${PR_NUMBER} от @${AUTHOR}: ${PR_TITLE}"
 
-          # Если нет коммитов, просто завершаем работу без ошибки
-          if [ -z "$COMMITS" ]; then
-            echo "No commits found in this PR."
-            exit 0
+          # Проверяем, если запись с данным PR номером уже существует, обновляем ее
+          if grep -q "PR #${PR_NUMBER}" CHANGELOG.md; then
+            echo "Updating existing entry for PR #${PR_NUMBER}."
+            # Удаляем старую запись и добавляем новую
+            sed -i '/PR #'"${PR_NUMBER}"'/,/^$/d' CHANGELOG.md
+            echo -e "$NEW_ENTRY" >> CHANGELOG.md
+          else
+            echo "Adding new entry for PR #${PR_NUMBER}."
+            echo -e "$NEW_ENTRY" >> CHANGELOG.md
           fi
-
-          # Фильтруем коммиты с [Private]
-          FILTERED_COMMITS=$(echo "$COMMITS" | grep -v '\[Private\]' || echo "")
-
-          echo "Filtered commits:"
-          echo "$FILTERED_COMMITS"
-
-          # Если после фильтрации список пуст - просто завершаем работу без ошибки
-          if [ -z "$FILTERED_COMMITS" ]; then
-            echo "All commits contain [Private], skipping CHANGELOG update."
-            exit 0
-          fi
-
-          # Добавляем изменения в CHANGELOG.md
-          {
-            echo ""
-            echo "$DATE - PR #${{ github.event.pull_request.number }} от @${AUTHOR}"
-            echo "$FILTERED_COMMITS"
-          } >> CHANGELOG.md
 
       - name: Commit and push changes
         run: |
           git add CHANGELOG.md
-          git commit -m "Update CHANGELOG with latest PR commits" || (echo "No changes to commit" && exit 1)
-          git push https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master || (echo "No changes to push" && exit 1)
+          git commit -m "Update CHANGELOG with latest PR commit" || (echo "No changes to commit" && exit 1)
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }} || (echo "No changes to push" && exit 1)
