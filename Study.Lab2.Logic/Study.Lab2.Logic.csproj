@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\build.settings.props" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\Study.Lab2.Logic.Interfaces\Study.Lab2.Logic.Interfaces.csproj" />
+  </ItemGroup>
+
+</Project>
