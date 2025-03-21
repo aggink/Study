@@ -1,3 +1,5 @@
-# Пример CODEOWNERS файла
 # Назначаем пользователей для всего кода
 * @aggink
+
+# Исключение для CHANGELOG.md
+!CHANGELOG.md
