@@ -26,21 +26,9 @@ jobs:
           git checkout master  # Если у вас main, замените на main
           git pull origin master  # Обновляем локальную копию
 
-      - name: Ensure CHANGELOG.md exists
-        run: |
-          if [ ! -f CHANGELOG.md ]; then
-            echo "CHANGELOG.md not found. Creating a new one."
-            touch CHANGELOG.md
-            git add CHANGELOG.md
-            git commit -m "Initialize CHANGELOG.md" || echo "No initial commit needed"
-            git push origin master || echo "No changes to push"
-          fi
-
       - name: Extract PR commits and filter
         id: pr_commits
         run: |
-          set -e  # Прерывание скрипта при критических ошибках
-          
           DATE=$(date +'%Y-%m-%d')
           AUTHOR="${{ github.actor }}"
           
@@ -54,6 +42,12 @@ jobs:
           
           echo "Commits found in range:"
           echo "$COMMITS"
+
+          # Если нет коммитов, завершить экшен
+          if [ -z "$COMMITS" ]; then
+            echo "No commits found in this PR, skipping CHANGELOG update."
+            exit 0
+          fi
 
           # Фильтруем коммиты с [Private]
           FILTERED_COMMITS=$(echo "$COMMITS" | grep -v '\[Private\]' || true)
@@ -78,4 +72,4 @@ jobs:
         run: |
           git add CHANGELOG.md
           git commit -m "Update CHANGELOG with latest PR commits" || echo "No changes to commit"
-          git push origin master || echo "No changes to push"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master || echo "No changes to push"
