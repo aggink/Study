@@ -21,11 +21,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
 
-      - name: Switch to master branch
-        run: |
-          git checkout master
-          git pull origin master
-
       - name: Ensure CHANGELOG.md exists
         run: |
           if [ ! -f CHANGELOG.md ]; then
@@ -33,7 +28,7 @@ jobs:
             touch CHANGELOG.md
             git add CHANGELOG.md
             git commit -m "Initialize CHANGELOG.md"
-            git push https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.head_ref }}
           else
             echo "CHANGELOG.md already exists, skipping creation."
           fi
@@ -83,5 +78,7 @@ jobs:
       - name: Commit and push changes
         run: |
           git add CHANGELOG.md
+          git commit -m "Update CHANGELOG with latest PR commits" || (echo "No changes to commit" && exit 1)
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.head_ref }} || (echo "No changes to push" && exit 1)
           git commit -m "Update CHANGELOG with latest PR commits" || (echo "No changes to commit" && exit 1)
           git push https://x-access-token:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master || (echo "No changes to push" && exit 1)
