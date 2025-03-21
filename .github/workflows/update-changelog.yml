@@ -50,7 +50,7 @@ jobs:
           if grep -q "PR #${PR_NUMBER}" CHANGELOG.md; then
             echo "Updating existing entry for PR #${PR_NUMBER}."
             # Удаляем старую запись и добавляем новую
-            sed -i "/PR #${PR_NUMBER}/,/^$/d" CHANGELOG.md
+            sed -i '/PR #'"${PR_NUMBER}"'/,/^$/d' CHANGELOG.md
             echo -e "$NEW_ENTRY" >> CHANGELOG.md
           else
             echo "Adding new entry for PR #${PR_NUMBER}."
