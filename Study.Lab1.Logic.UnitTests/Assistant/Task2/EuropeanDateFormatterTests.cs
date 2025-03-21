@@ -1,6 +1,6 @@
 ﻿using Study.Lab1.Logic.Assistant.Task2;
 
-namespace Study.Lab1.UnitTests.Assistant.Task2
+namespace Study.Lab1.Logic.UnitTests.Assistant.Task2
 {
     [TestFixture]
     public class EuropeanDateFormatterTests
