@@ -1,9 +1,8 @@
 name: Update Changelog
 
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    types: [closed]  # Запускаем workflow, когда PR закрыт (merged)
 
 jobs:
   update-changelog:
@@ -24,10 +23,11 @@ jobs:
         id: pr_commits
         run: |
           DATE=$(date +'%Y-%m-%d')
-          AUTHOR="${{ github.event.pull_request.user.login }}"
-
+          AUTHOR="${{ github.actor }}"
+          
           # Получаем список всех коммитов в PR
-          COMMITS=$(git log --pretty=format:"%h %s (Автор: %an)" ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          COMMITS=$(git log --pretty=format:"%h %s (Автор: %an)" $BASE_SHA..HEAD)
           
           # Фильтруем коммиты с [Private]
           FILTERED_COMMITS=$(echo "$COMMITS" | grep -v '\[Private\]')
@@ -39,7 +39,7 @@ jobs:
           fi
 
           # Формируем строку для CHANGELOG
-          echo "" >> CHANGELOG.md  # Добавляем пустую строку перед новой записью
+          echo "" >> CHANGELOG.md
           echo "$DATE - PR #${{ github.event.pull_request.number }} от @${AUTHOR}" >> CHANGELOG.md
           echo "$FILTERED_COMMITS" >> CHANGELOG.md
 
