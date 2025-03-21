@@ -26,6 +26,16 @@ jobs:
           git checkout master  # Если у вас main, замените на main
           git pull origin master  # Обновляем локальную копию
 
+      - name: Ensure CHANGELOG.md exists
+        run: |
+          if [ ! -f CHANGELOG.md ]; then
+            echo "CHANGELOG.md not found. Creating a new one."
+            touch CHANGELOG.md
+            git add CHANGELOG.md
+            git commit -m "Initialize CHANGELOG.md" || echo "No initial commit needed"
+            git push origin master || echo "No changes to push"
+        continue-on-error: true  # Игнорируем ошибку, если файл уже существует
+
       - name: Extract PR commits and filter
         id: pr_commits
         run: |
