@@ -1,6 +1,6 @@
 ﻿namespace Study.Lab2.Logic.Interfaces
 {
-    public interface IRunService
+    public interface IRunService : IDisposable
     {
         /// <summary>
         /// Запуск выполнения задания

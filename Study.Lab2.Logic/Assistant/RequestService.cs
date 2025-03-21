@@ -4,32 +4,42 @@ namespace Study.Lab2.Logic.Assistant
 {
     public class RequestService : IRequestService
     {
+        private readonly HttpClient _httpClient;
+
+        public RequestService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
         public string FetchData(string url)
         {
-            using var httpClient = new HttpClient();
-
-            var request = new HttpRequestMessage(HttpMethod.Get, url);
-
-            var response = httpClient.Send(request);
+            var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
             }
 
-            return response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            using (var stream = response.Content.ReadAsStream())
+            using (var reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
+            }
         }
 
         public async Task<string> FetchDataAsync(string url)
         {
-            using var httpClient = new HttpClient();
-
-            var response = await httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync(url);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
             }
 
             return await response.Content.ReadAsStringAsync();
+        }
+
+        public void Dispose()
+        {
+            _httpClient.Dispose();
         }
     }
 }

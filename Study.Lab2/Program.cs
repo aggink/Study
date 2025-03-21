@@ -22,7 +22,7 @@ public static class Program
         Console.WriteLine("========================================\n");
         Console.ResetColor();
 
-        var service = GetRunLabService(GROUP_NAME, PERSON_NUMBER);
+        using var service = GetRunLabService(GROUP_NAME, PERSON_NUMBER);
 
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine("Синхронное выполнение (без async/await)\n");

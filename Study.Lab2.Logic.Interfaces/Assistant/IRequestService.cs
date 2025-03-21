@@ -1,6 +1,6 @@
 ﻿namespace Study.Lab2.Logic.Interfaces.Assistant
 {
-    public interface IRequestService
+    public interface IRequestService : IDisposable
     {
         /// <summary>
         /// Отправить запрос к сервису

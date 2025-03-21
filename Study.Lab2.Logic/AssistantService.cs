@@ -11,7 +11,7 @@ namespace Study.Lab2.Logic
 
         public AssistantService()
         {
-            _requestService = new RequestService();
+            _requestService = new RequestService(new HttpClient());
         }
 
         private readonly string[] Urls = new string[]
@@ -108,6 +108,11 @@ namespace Study.Lab2.Logic
                 Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} мс");
                 Console.ResetColor();
             }
+        }
+
+        public void Dispose()
+        {
+            _requestService.Dispose();
         }
     }
 }
