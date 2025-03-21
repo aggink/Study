@@ -48,6 +48,7 @@ jobs:
             if grep -q "#${PR_NUMBER}" CHANGELOG.md; then
               echo "Removing existing entry for PR #${PR_NUMBER}."
               sed -i "/#${PR_NUMBER}/d" CHANGELOG.md
+              sed -i '/^$/d' CHANGELOG.md  # Удаление пустых строк
               git add CHANGELOG.md
               git commit -m "Remove private PR #${PR_NUMBER} from CHANGELOG" || echo "No changes to commit"
               git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }} || echo "No changes to push"
@@ -64,6 +65,7 @@ jobs:
           if grep -q "#${PR_NUMBER}" CHANGELOG.md; then
             echo "Updating existing entry for PR #${PR_NUMBER}."
             sed -i "/#${PR_NUMBER}/d" CHANGELOG.md
+            sed -i '/^$/d' CHANGELOG.md  # Удаление пустых строк
           fi
           
           # Добавляем новую запись в начало файла
