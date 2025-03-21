@@ -23,8 +23,8 @@ jobs:
 
       - name: Switch to master branch
         run: |
-          git checkout master  # Если у вас main, замените на main
-          git pull origin master  # Обновляем локальную копию
+          git checkout master
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master || echo "No changes to push"
 
       - name: Ensure CHANGELOG.md exists
         run: |
@@ -33,7 +33,7 @@ jobs:
             touch CHANGELOG.md
             git add CHANGELOG.md
             git commit -m "Initialize CHANGELOG.md"
-            git push origin master || echo "No changes to push"
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git master || echo "No changes to push"
           else
             echo "CHANGELOG.md already exists, skipping creation."
           fi
