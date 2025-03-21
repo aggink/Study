@@ -55,6 +55,7 @@ jobs:
           else
             echo "Adding new entry for PR #${PR_NUMBER}."
             echo -e "$NEW_ENTRY" >> CHANGELOG.md
+          fi
 
       - name: Commit and push changes
         run: |
