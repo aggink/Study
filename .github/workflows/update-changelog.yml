@@ -57,8 +57,8 @@ jobs:
 
           # Если нет коммитов, завершить экшен с ошибкой
           if [ -z "$COMMITS" ]; then
-            echo "No commits found in this PR. Exiting with error."
-            exit 1
+            echo "No commits found in this PR."
+            exit 0
           fi
 
           # Фильтруем коммиты с [Private]
@@ -70,7 +70,7 @@ jobs:
           # Если после фильтрации список пуст - завершить с ошибкой
           if [ -z "$FILTERED_COMMITS" ]; then
             echo "All commits contain [Private], skipping CHANGELOG update."
-            exit 1
+            exit 0
           fi
 
           # Добавляем изменения в CHANGELOG.md
