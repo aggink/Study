@@ -46,6 +46,8 @@ namespace Study.Lab2.Tests
         [Test]
         public async Task FetchDataAsync_Success_ReturnsResponse()
         {
+            using var cancellationTokenSource = new CancellationTokenSource();
+
             // Arrange
             var expectedResponse = "{\"message\": \"Success\"}";
             var requestUrl = "https://example.com/api/test";
@@ -54,7 +56,7 @@ namespace Study.Lab2.Tests
             SetupHttpResponse(requestUrl, expectedResponse, HttpStatusCode.OK);
 
             // Act
-            var result = await _requestService.FetchDataAsync(requestUrl);
+            var result = await _requestService.FetchDataAsync(requestUrl, cancellationTokenSource.Token);
 
             // Assert
             Assert.That(result, Is.EqualTo(expectedResponse));
@@ -83,6 +85,8 @@ namespace Study.Lab2.Tests
         [Test]
         public void FetchDataAsync_Failure_ThrowsException()
         {
+            using var cancellationTokenSource = new CancellationTokenSource();
+
             // Arrange
             var requestUrl = "https://example.com/api/fail";
 
@@ -90,7 +94,7 @@ namespace Study.Lab2.Tests
             SetupHttpResponse(requestUrl, "Not Found", HttpStatusCode.NotFound);
 
             // Act & Assert
-            var exception = Assert.ThrowsAsync<Exception>(async () => await _requestService.FetchDataAsync(requestUrl));
+            var exception = Assert.ThrowsAsync<Exception>(async () => await _requestService.FetchDataAsync(requestUrl, cancellationTokenSource.Token));
             StringAssert.Contains("Ошибка: NotFound", exception.Message);
         }
 
