@@ -1,4 +1,4 @@
-name: Build and Auto Merge
+name: Build & Test
 
 on:
   pull_request:
