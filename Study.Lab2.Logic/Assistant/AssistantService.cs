@@ -64,7 +64,7 @@ namespace Study.Lab2.Logic.Assistant
             }
         }
 
-        public async Task RunTaskAsync()
+        public async Task RunTaskAsync(CancellationToken cancellationToken)
         {
             Console.WriteLine("\nВыполняется асинхронный запрос...\n");
             var stopwatch = Stopwatch.StartNew();
@@ -79,7 +79,7 @@ namespace Study.Lab2.Logic.Assistant
                     Console.WriteLine($"Запрос {i + 1}: {Urls[i]}");
                     Console.ResetColor();
 
-                    tasks[i] = _requestService.FetchDataAsync(Urls[i]);
+                    tasks[i] = _requestService.FetchDataAsync(Urls[i], cancellationToken);
                 }
 
                 var responses = await Task.WhenAll(tasks);
