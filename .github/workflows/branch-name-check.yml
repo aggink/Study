@@ -28,8 +28,8 @@ jobs:
           echo "🔍 Checking branch name: $BRANCH_NAME"
 
           # Разрешаем ветку master без проверки
-          if [[ "$BRANCH_NAME" == "master" ]]; then
-            echo "✅ Branch 'master' is always allowed."
+          if [[ "$BRANCH_NAME" == "master" || "$BRANCH_NAME" == "master-base" ]]; then
+            echo "✅ Branch '$BRANCH_NAME' is always allowed."
             exit 0
           fi
 
