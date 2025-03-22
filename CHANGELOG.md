@@ -1,3 +1,4 @@
+* 2025-03-22 #47 Tasks/tech/1/merge branch master into master base от @aggink
 * 2025-03-22 #44 [Fix] Исправлена опечатка при описании задания на Л/Р №3 от @aggink
 * 2025-03-22 #43 [Feature] Добавлено задание на Л/Р № 3 от @aggink
 * 2025-03-22 #39 [Feature] Добавлено задание на Л/Р №2 от @aggink
