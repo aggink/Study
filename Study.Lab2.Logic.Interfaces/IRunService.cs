@@ -10,6 +10,7 @@
         /// <summary>
         /// Запуск выполнения задания
         /// </summary>
-        Task RunTaskAsync();
+        /// <param name="cancellationToken">Токен отмены</param>
+        Task RunTaskAsync(CancellationToken cancellationToken = default);
     }
 }

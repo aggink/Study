@@ -13,7 +13,8 @@
         /// Отправить запрос к сервису
         /// </summary>
         /// <param name="url">Веб-адрес</param>
+        /// <param name="cancellationToken">Токен отмены</param>
         /// <returns>Ответ от сервиса</returns>
-        Task<string> FetchDataAsync(string url);
+        Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default);
     }
 }

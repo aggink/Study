@@ -26,15 +26,15 @@ namespace Study.Lab2.Logic.Assistant
             }
         }
 
-        public async Task<string> FetchDataAsync(string url)
+        public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken)
         {
-            var response = await _httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync(url, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
             }
 
-            return await response.Content.ReadAsStringAsync();
+            return await response.Content.ReadAsStringAsync(cancellationToken);
         }
 
         public void Dispose()
