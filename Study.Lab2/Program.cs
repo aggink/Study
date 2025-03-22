@@ -29,10 +29,12 @@ public static class Program
         Console.ResetColor();
         service.RunTask();
 
+        using var cancellationTokenSource = new CancellationTokenSource();
+
         Console.ForegroundColor = ConsoleColor.Magenta;
         Console.WriteLine("\nАсинхронное выполнение (с async/await)\n");
         Console.ResetColor();
-        await service.RunTaskAsync();
+        await service.RunTaskAsync(cancellationTokenSource.Token);
 
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("\nВыполнение завершено. Нажмите любую клавишу для выхода...");
