@@ -7,7 +7,8 @@ on:
     types: [opened, synchronize, reopened]  # Запуск при каждом обновлении PR
   push:
     branches:
-      - master  # Всегда собирать ветку master
+      - master
+      - master-base
 
 jobs:
   build:

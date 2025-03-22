@@ -4,7 +4,8 @@ on:
   pull_request:
     types: [opened, synchronize, edited]  # Срабатывает при открытии, синхронизации и изменении PR
     branches:
-      - master  # Только для PR в ветку master
+      - master
+      - master-base
 
 jobs:
   update-changelog:
