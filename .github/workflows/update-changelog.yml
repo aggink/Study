@@ -15,6 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 0  # Загружаем полную историю коммитов
 
       - name: Set up Git
