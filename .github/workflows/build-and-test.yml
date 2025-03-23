@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - master
-      - master-ифыу
+      - master-base
     types: [closed]
 
 jobs:
