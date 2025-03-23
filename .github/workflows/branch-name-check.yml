@@ -1,10 +1,6 @@
 name: "Branch Name Check"
 
 on:
-  push:
-    branches-ignore:
-      - master
-      - master-base
   pull_request:
     branches:
       - '*'
