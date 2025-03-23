@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - '*'
+    branches-ignore:
+      - master
+      - master-base
   pull_request:
     branches:
       - '*'
+    branches-ignore:
+      - master
+      - master-base
 
 jobs:
   check-branch-name:
