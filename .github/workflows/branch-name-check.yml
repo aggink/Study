@@ -1,9 +1,6 @@
 name: "Branch Name Check"
 
 on:
-  push:
-    branches:
-      - '*'
   pull_request:
     branches:
       - '*'

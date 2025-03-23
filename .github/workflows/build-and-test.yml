@@ -1,10 +1,6 @@
 name: Build & Test
 
 on:
-  pull_request:
-    branches:
-      - '**'
-    types: [opened, synchronize, reopened]  # Запуск при каждом обновлении PR
   push:
     branches:
       - master
