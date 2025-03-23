@@ -29,7 +29,7 @@ jobs:
             touch CHANGELOG.md
             git add CHANGELOG.md
             git commit -m "Initialize CHANGELOG.md"
-            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }}
+            git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }} --no-ff
           else
             echo "CHANGELOG.md already exists, skipping creation."
           fi
@@ -52,7 +52,7 @@ jobs:
               sed -i '/^$/d' CHANGELOG.md  # Удаление пустых строк
               git add CHANGELOG.md
               git commit -m "Remove private PR #${PR_NUMBER} from CHANGELOG" || echo "No changes to commit"
-              git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }} || echo "No changes to push"
+              git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }} --no-ff || echo "No changes to push"
             else
               echo "Private PR #${PR_NUMBER} is not in CHANGELOG, skipping."
             fi
@@ -74,7 +74,6 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git pull --rebase origin ${{ github.head_ref }}  # Сначала выполняем rebase перед пушем
           git add CHANGELOG.md
           git commit -m "Update CHANGELOG with latest PR commit" || echo "No changes to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }} || echo "No changes to push"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:refs/heads/${{ github.head_ref }} --no-ff || echo "No changes to push"
