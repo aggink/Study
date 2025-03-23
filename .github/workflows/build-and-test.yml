@@ -1,11 +1,10 @@
 name: Build & Test
 
 on:
-  pull_request:
+  push:
     branches:
       - master
       - master-base
-    types: [closed]
 
 jobs:
   build:
