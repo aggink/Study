@@ -1,22 +1,23 @@
 ﻿using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.xynthh;
 
 public static class Program
 {
     /// <summary>
-    /// Номер выполняемой задачи
+    ///     Номер выполняемой задачи
     /// </summary>
-    private const int RUN_TASK_NUMBER = 2;
+    private const int RUN_TASK_NUMBER = 1;
 
     /// <summary>
-    /// Название группы
+    ///     Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
-    /// Порядковый номер
+    ///     Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 15;
 
     public static void Main()
     {
@@ -39,7 +40,7 @@ public static class Program
     }
 
     /// <summary>
-    /// Получить сервис для выполнения задач
+    ///     Получить сервис для выполнения задач
     /// </summary>
     /// <param name="group">Название группы</param>
     /// <param name="number">Порядковый номер</param>
@@ -50,6 +51,8 @@ public static class Program
         {
             case ("assistant", 1):
                 return new AssistantService();
+            case ("idb-23-02", 15):
+                return new XynthhService();
             default:
                 throw new NotSupportedException();
         }
