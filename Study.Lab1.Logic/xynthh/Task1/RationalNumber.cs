@@ -1,18 +1,23 @@
-using Study.Lab1.Logic.Interfaces.xynthh;
+using Study.Lab1.Logic.Interfaces.xynthh.Task1;
 
 namespace Study.Lab1.Logic.xynthh.Task1;
 
 public class RationalNumber : IRationalNumber
 {
-    // Конструктор
+    public int Numerator { get; }
+
+    public int Denominator { get; }
+
     public RationalNumber(int numerator, int denominator)
     {
-        if (denominator == 0) throw new DivideByZeroException("Знаменатель не может быть равен нулю");
-
-        if (denominator < 0)
+        switch (denominator)
         {
-            numerator = -numerator;
-            denominator = -denominator;
+            case 0:
+                throw new DivideByZeroException("Знаменатель не может быть равен нулю");
+            case < 0:
+                numerator = -numerator;
+                denominator = -denominator;
+                break;
         }
 
         // Сокращение дроби
@@ -21,35 +26,8 @@ public class RationalNumber : IRationalNumber
         Denominator = denominator / gcd;
     }
 
-    // Переменные
-    public int Numerator { get; }
+    #region Operators
 
-    public int Denominator { get; }
-
-    // Методы
-    public override string ToString()
-    {
-        if (Denominator == 1) return $"{Numerator}";
-
-        return $"{Numerator}/{Denominator}";
-    }
-
-    private static int Gcd(int a, int b)
-    {
-        a = Math.Abs(a);
-        b = Math.Abs(b);
-
-        while (b != 0)
-        {
-            var temp = b;
-            b = a % b;
-            a = temp;
-        }
-
-        return a;
-    }
-
-    // Операторы
     public static RationalNumber operator +(RationalNumber a, RationalNumber b)
     {
         var numerator = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
@@ -121,8 +99,17 @@ public class RationalNumber : IRationalNumber
         return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
     }
 
+    #endregion
+
+    #region Methods
+
+    public override string ToString()
+    {
+        return Denominator == 1 ? $"{Numerator}" : $"{Numerator}/{Denominator}";
+    }
+
     /// <summary>
-    ///     Функция равенства (без этого не работает)
+    /// Функция равенства (без этого не работает)
     /// </summary>
     /// <param name="obj"></param>
     /// <returns></returns>
@@ -134,11 +121,34 @@ public class RationalNumber : IRationalNumber
     }
 
     /// <summary>
-    ///     Какой-то хешкод:)
+    /// Какой-то хешкод:)
     /// </summary>
     /// <returns></returns>
     public override int GetHashCode()
     {
         return HashCode.Combine(Numerator, Denominator);
     }
+
+    /// <summary>
+    /// Вычисляет НОД для двух чисел.
+    /// </summary>
+    /// <param name="a">Первое число</param>
+    /// <param name="b">Второе число</param>
+    /// <returns>НОД от a и b</returns>
+    private static int Gcd(int a, int b)
+    {
+        a = Math.Abs(a);
+        b = Math.Abs(b);
+
+        while (b != 0)
+        {
+            var temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        return a;
+    }
+
+    #endregion
 }
