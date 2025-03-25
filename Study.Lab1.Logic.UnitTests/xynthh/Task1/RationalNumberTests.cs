@@ -126,4 +126,104 @@ public class RationalNumberTests
         Assert.That(number.Numerator, Is.EqualTo(-1));
         Assert.That(number.Denominator, Is.EqualTo(2));
     }
+
+    [Test]
+    public void RationalNumber_GreaterThan_ReturnsTrue_WhenLeftIsGreater()
+    {
+        var a = new RationalNumber(3, 4);
+        var b = new RationalNumber(1, 2);
+
+        var result = a > b;
+
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    public void RationalNumber_GreaterThan_ReturnsFalse_WhenLeftIsLess()
+    {
+        var a = new RationalNumber(1, 3);
+        var b = new RationalNumber(1, 2);
+
+        var result = a > b;
+
+        Assert.That(result, Is.False);
+    }
+
+    [Test]
+    public void RationalNumber_LessThan_ReturnsTrue_WhenLeftIsLess()
+    {
+        var a = new RationalNumber(1, 3);
+        var b = new RationalNumber(1, 2);
+
+        var result = a < b;
+
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    public void RationalNumber_LessThan_ReturnsFalse_WhenLeftIsGreater()
+    {
+        var a = new RationalNumber(3, 4);
+        var b = new RationalNumber(1, 2);
+
+        var result = a < b;
+
+        Assert.That(result, Is.False);
+    }
+
+    [Test]
+    public void RationalNumber_GreaterThanOrEqual_ReturnsTrue_WhenLeftIsGreater()
+    {
+        var a = new RationalNumber(3, 4);
+        var b = new RationalNumber(1, 2);
+
+        var result = a >= b;
+
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    public void RationalNumber_GreaterThanOrEqual_ReturnsTrue_WhenEqual()
+    {
+        var a = new RationalNumber(1, 2);
+        var b = new RationalNumber(2, 4);
+
+        var result = a >= b;
+
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    public void RationalNumber_LessThanOrEqual_ReturnsTrue_WhenLeftIsLess()
+    {
+        var a = new RationalNumber(1, 3);
+        var b = new RationalNumber(1, 2);
+
+        var result = a <= b;
+
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    public void RationalNumber_LessThanOrEqual_ReturnsTrue_WhenEqual()
+    {
+        var a = new RationalNumber(1, 2);
+        var b = new RationalNumber(2, 4);
+
+        var result = a <= b;
+
+        Assert.That(result, Is.True);
+    }
+
+    [Test]
+    public void RationalNumber_ComparisonOperators_WorkWithNegativeNumbers()
+    {
+        var a = new RationalNumber(-1, 2);
+        var b = new RationalNumber(1, 4);
+
+        Assert.That(a < b, Is.True);
+        Assert.That(a <= b, Is.True);
+        Assert.That(a > b, Is.False);
+        Assert.That(a >= b, Is.False);
+    }
 }
