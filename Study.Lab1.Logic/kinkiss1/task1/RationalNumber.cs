@@ -1,7 +1,7 @@
 ﻿using Study.Lab1.Logic.Interfaces.kinkiss1.task1;
 namespace Study.Lab1.Logic.kinkiss1.task1;
 
-public class RationalNumber: RationalNum
+public class RationalNumber: IRationalNum
 {
     public int Numerator { get; }
     public int Denominator { get; }
