@@ -1,6 +1,8 @@
 ﻿using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.kinkiss1;
+using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.xynthh;
 
 public static class Program
@@ -54,6 +56,10 @@ public static class Program
                 return new AssistantService();
             case ("idb-23-02", 15):
                 return new XynthhService();
+            case ("idb-23-02", 6):
+                return new Kinkiss1Service();
+            case ("idb-23-02", 17):
+                return new kattyService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
             default:
