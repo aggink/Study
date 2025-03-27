@@ -1,5 +1,6 @@
 ﻿using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.xynthh;
 
 public static class Program
@@ -53,6 +54,8 @@ public static class Program
                 return new AssistantService();
             case ("idb-23-02", 15):
                 return new XynthhService();
+            case ("idb-23-02", 17):
+                return new kattyService();
             default:
                 throw new NotSupportedException();
         }

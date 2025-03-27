@@ -2,4 +2,8 @@
 
   <Import Project="..\build.settings.props" />
 
+  <ItemGroup>
+    <Folder Include="katty\" />
+  </ItemGroup>
+
 </Project>
