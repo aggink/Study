@@ -3,7 +3,12 @@
   <Import Project="..\build.settings.props" />
 
   <ItemGroup>
-    <Folder Include="kinkiss1\task3\" />
+    <Compile Remove="kinkiss1\task3\**" />
+    <EmbeddedResource Remove="kinkiss1\task3\**" />
+    <None Remove="kinkiss1\task3\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="kinkiss1\task2\" />
   </ItemGroup>
 

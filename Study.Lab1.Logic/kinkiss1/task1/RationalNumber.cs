@@ -1,11 +1,13 @@
 ﻿using Study.Lab1.Logic.Interfaces.kinkiss1.task1;
 namespace Study.Lab1.Logic.kinkiss1.task1;
 
-public class RationalNumber: IRationalNum
+public class RationalNumber : IRationalNum
 {
     public int Numerator { get; }
+
     public int Denominator { get; }
-    public RationalNumber (int numerator, int denominator)
+
+    public RationalNumber(int numerator, int denominator)
     {
         if (denominator == 0)
         {
@@ -21,8 +23,8 @@ public class RationalNumber: IRationalNum
         Numerator = numerator / nod;
         Denominator = denominator / nod;
     }
-   
-    
+
+
     #region Перегрузка операторов
 
     public static RationalNumber operator /(RationalNumber a, RationalNumber b)
@@ -89,22 +91,16 @@ public class RationalNumber: IRationalNum
     #endregion
 
     #region Методы
-   
-    
     /// <summary>
     /// Переопределение метода ToString
     /// </summary>
     /// <returns></returns>
     public override string ToString()
     {
-        if (Denominator == 1) 
+        if (Denominator == 1)
             return $"{Numerator}";
-
         return $"{Numerator}/{Denominator}";
-
     }
-
-
 
     /// <summary>
     /// Переопределение метода Equals
@@ -121,7 +117,6 @@ public class RationalNumber: IRationalNum
         return false;
     }
 
-
     /// <summary>
     /// Переопределение метода GetHashCode
     /// </summary>
@@ -131,26 +126,25 @@ public class RationalNumber: IRationalNum
         return HashCode.Combine(Numerator, Denominator);
     }
 
-
     /// <summary>
     /// Вычисляет НОД для двух чисел
     /// </summary>
     /// <param name="one"></param>
     /// <param name="two"></param>
     /// <returns></returns>
-    private static int NOD (int one, int two)
+    private static int NOD(int one, int two)
     {
-     one=Math.Abs(one);
-     two = Math.Abs(two);
+        one = Math.Abs(one);
+        two = Math.Abs(two);
 
-     while (two != 0)
-     { 
-         var t = two;
-         two = one % two;
-         one = t;
-     }
+        while (two != 0)
+        {
+            var t = two;
+            two = one % two;
+            one = t;
+        }
 
-     return one;
+        return one;
     }
     #endregion
 }

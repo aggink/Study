@@ -58,8 +58,6 @@ public class Kinkiss1Service : IRunService
                       $"c <= b : {E <= B}\n" +
                       $"d >= b : {D >= B}\n"
             );
-
-
     }
 
     public void RunTask2()
