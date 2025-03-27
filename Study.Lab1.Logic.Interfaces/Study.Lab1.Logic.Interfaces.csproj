@@ -12,4 +12,8 @@
     <Folder Include="kinkiss1\task2\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="katty\" />
+  </ItemGroup>
+
 </Project>
