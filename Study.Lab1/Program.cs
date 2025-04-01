@@ -3,7 +3,6 @@ using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.Selestz;
 
 public static class Program
 {
@@ -60,8 +59,6 @@ public static class Program
                 return new Kinkiss1Service();
             case ("idb-23-02", 17):
                 return new kattyService();
-            case ("idb-23-02", 23):
-                return new SelestzService();
             default:
                 throw new NotSupportedException();
         }
