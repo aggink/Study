@@ -1,8 +1,5 @@
-﻿using System.Text;
-using Study.Lab1.Logic.Interfaces;
-//using Study.Lab1.Logic.Interfaces.lsokol14l.task2;
+﻿using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.lsokol14l.task1;
-//using Study.Lab1.Logic.lsokol14l.task2;
 
 namespace Study.Lab1.Logic.lsokol14l;
 

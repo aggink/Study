@@ -7,20 +7,29 @@ public class RationalNumber : IRationalNumber
     public int Numerator { get; }
 
     public int Denominator { get; }
-    // конструктор с 1 параметром
+
+    /// <summary>
+    /// Конструктор с 1 параметром
+    /// </summary>
+    /// <param name="numerator">Числитель</param>
     public RationalNumber(int numerator)
     {
         Numerator = numerator;
         Denominator = 1;
     }
-    // конструктор с 2 параметрами
+
+    /// <summary>
+    /// Конструктор с 2 параметрами
+    /// </summary>
+    /// <param name="numerator">Числитель</param>
+    /// <param name="denominator">Знаменатель</param>
     public RationalNumber(int numerator, int denominator)
     {
         // если значенатель < 0 нам нужно нормалиховать дробь(перекинуть знак в числитель)
         // либо убрать знак если они оба отрицательные
         if (denominator < 0) { numerator *= -1; denominator *= -1; }
-       
-        if(denominator==0)
+
+        if (denominator == 0)
             throw new DivideByZeroException("Знаменатель не может быть равен нулю");
 
         Numerator = numerator;
