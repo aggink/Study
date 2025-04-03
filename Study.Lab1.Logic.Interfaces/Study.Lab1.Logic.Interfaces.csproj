@@ -4,6 +4,7 @@
 
   <ItemGroup>
     <Folder Include="kinkiss1\task2\" />
+    <Folder Include="lsokol14l\task2\" />
   </ItemGroup>
 
   <ItemGroup>

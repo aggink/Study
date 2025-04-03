@@ -226,6 +226,7 @@ public class RationalNumberTests
         Assert.That(a > b, Is.False);
         Assert.That(a >= b, Is.False);
     }
+
     [Test]
     public void Constructor_ValidInput_ShouldInitializeCorrectly()
     {
