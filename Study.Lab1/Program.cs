@@ -3,23 +3,24 @@ using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.lsokol14l;
 
 public static class Program
 {
     /// <summary>
     /// Номер выполняемой задачи
     /// </summary>
-    private const int RUN_TASK_NUMBER = 2;
+    private const int RUN_TASK_NUMBER = 1;
 
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 19;
 
     public static void Main()
     {
@@ -59,6 +60,8 @@ public static class Program
                 return new Kinkiss1Service();
             case ("idb-23-02", 17):
                 return new kattyService();
+            case ("idb-23-02", 19):
+                return new lsokol14lService();
             default:
                 throw new NotSupportedException();
         }
