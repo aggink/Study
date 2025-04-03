@@ -40,7 +40,6 @@ public class Task1Tests
         Assert.AreEqual(new RationalNumber(8, 3), result);
     }
 
-
     [Test]
     public void Operator_Multiplication_ShouldReturnCorrectResult()
     {
@@ -72,7 +71,6 @@ public class Task1Tests
         var rationalNumber = new RationalNumber(2, 3);
         Assert.AreEqual("2/3", rationalNumber.ToString());
     }
-
 
     [Test]
     public void Equals_ShouldReturnTrueForEqualRationalNumbers()
@@ -121,5 +119,4 @@ public class Task1Tests
         var rationalNumber = new RationalNumber(52, 13);
         Assert.AreEqual("4", rationalNumber.ToString());
     }
-
 }

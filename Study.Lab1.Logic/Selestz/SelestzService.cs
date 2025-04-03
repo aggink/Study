@@ -1,8 +1,8 @@
 ﻿using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Selestz.Task1;
 
-
 namespace Study.Lab1.Logic.Selestz;
+
 public class SelestzService : IRunService
 {
     public void RunTask1()
@@ -34,7 +34,6 @@ public class SelestzService : IRunService
                       $"d<=b: {d <= b}\n" +
                       $"d>=a: {d >= a}\n"
         );
-
 
     }
 

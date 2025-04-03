@@ -2,8 +2,8 @@
 {
     public interface IRatNums
     {
-        public int Numerator { get; }
+        int Numerator { get; }
 
-        public int Denominator { get; }
+        int Denominator { get; }
     }
 }

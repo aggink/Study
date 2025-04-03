@@ -1,8 +1,6 @@
-﻿
-using Study.Lab1.Logic.Interfaces.Selestz.Task1;
+﻿using Study.Lab1.Logic.Interfaces.Selestz.Task1;
+
 namespace Study.Lab1.Logic.Selestz.Task1;
-
-
 
 public class RationalNumber : IRatNums
 {
@@ -15,16 +13,17 @@ public class RationalNumber : IRatNums
         {
             throw new DivideByZeroException("Знаменатель не может быть равен нулю");
         }
+
         if (denominator < 0)
         {
             numerator = -numerator;
             denominator = -denominator;
         }
+
         int NOD = Math.Abs(NodFunction(numerator, denominator));
         Numerator = numerator / NOD;
         Denominator = denominator / NOD;
     }
-
 
     #region Перегрузки
 
@@ -41,6 +40,7 @@ public class RationalNumber : IRatNums
         int denominator = num1.Denominator * num2.Denominator;
         return new RationalNumber(numerator, denominator);
     }
+
     public static RationalNumber operator -(RationalNumber num1, RationalNumber num2)
     {
         int numerator = num1.Numerator * num2.Denominator - num2.Numerator * num1.Denominator;
@@ -100,6 +100,7 @@ public class RationalNumber : IRatNums
     {
         if (Denominator == 1)
             return $"{Numerator}";
+
         return $"{Numerator}/{Denominator}";
     }
 
@@ -112,6 +113,7 @@ public class RationalNumber : IRatNums
     {
         if (Number is RationalNumber number)
             return this == number;
+
         return false;
     }
 
@@ -145,6 +147,5 @@ public class RationalNumber : IRatNums
         return FirstNumber;
     }
     #endregion
-
 }
 
