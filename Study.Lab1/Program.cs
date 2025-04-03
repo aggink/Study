@@ -2,17 +2,17 @@
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
+using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.lsokol14l;
 
 public static class Program
 {
     /// <summary>
     /// Номер выполняемой задачи
     /// </summary>
-    private const int RUN_TASK_NUMBER = 1;
+    private const int RUN_TASK_NUMBER = 2;
 
     /// <summary>
     /// Название группы
