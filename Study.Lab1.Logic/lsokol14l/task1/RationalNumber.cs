@@ -90,6 +90,7 @@ public class RationalNumber : IRationalNumber
     {
         if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
             return true;
+
         if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
             return false;
 
