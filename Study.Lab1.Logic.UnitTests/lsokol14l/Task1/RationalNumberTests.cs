@@ -1,4 +1,4 @@
-﻿using Study.Lab1.Logic.lsokol14l.task1;
+﻿using Study.Lab1.Logic.lsokol14l.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.lsokol14l.Task1;
 

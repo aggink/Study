@@ -1,5 +1,5 @@
 ﻿using Study.Lab1.Logic.Interfaces;
-using Study.Lab1.Logic.lsokol14l.task1;
+using Study.Lab1.Logic.lsokol14l.Task1;
 
 namespace Study.Lab1.Logic.lsokol14l;
 

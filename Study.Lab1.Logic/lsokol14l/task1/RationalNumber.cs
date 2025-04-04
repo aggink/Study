@@ -1,6 +1,6 @@
-﻿using Study.Lab1.Logic.Interfaces.lsokol14l.task1;
+﻿using Study.Lab1.Logic.Interfaces.lsokol14l.Task1;
 
-namespace Study.Lab1.Logic.lsokol14l.task1;
+namespace Study.Lab1.Logic.lsokol14l.Task1;
 
 public class RationalNumber : IRationalNumber
 {
