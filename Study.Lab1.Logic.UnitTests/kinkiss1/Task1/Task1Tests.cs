@@ -9,8 +9,8 @@ public class Task1Tests
     public void Constructor_ValidInput_ShouldInitializeCorrectly()
     {
         var rationalNumber = new RationalNumber(4, 6);
-        Assert.AreEqual(2, rationalNumber.Numerator);
-        Assert.AreEqual(3, rationalNumber.Denominator);
+        Assert.That(rationalNumber.Numerator, Is.EqualTo(2));
+        Assert.That(rationalNumber.Denominator, Is.EqualTo(3));
     }
 
     [Test]
@@ -25,7 +25,7 @@ public class Task1Tests
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
         var result = a + b;
-        Assert.AreEqual(new RationalNumber(5, 6), result);
+        Assert.That(result, Is.EqualTo(new RationalNumber(5, 6)));
     }
 
     [Test]
@@ -34,7 +34,7 @@ public class Task1Tests
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
         var result = a - b;
-        Assert.AreEqual(new RationalNumber(1, 6), result);
+        Assert.That(result, Is.EqualTo(new RationalNumber(1, 6)));
     }
 
     [Test]
@@ -43,7 +43,7 @@ public class Task1Tests
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
         var result = a * b;
-        Assert.AreEqual(new RationalNumber(1, 6), result);
+        Assert.That(result, Is.EqualTo(new RationalNumber(1, 6)));
     }
 
     [Test]
@@ -52,7 +52,7 @@ public class Task1Tests
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
         var result = a / b;
-        Assert.AreEqual(new RationalNumber(3, 2), result);
+        Assert.That(result, Is.EqualTo(new RationalNumber(3, 2)));
     }
 
     [Test]
@@ -60,7 +60,7 @@ public class Task1Tests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
-        Assert.IsTrue(a == b);
+        Assert.That(a == b, Is.True);
     }
 
     [Test]
@@ -68,14 +68,14 @@ public class Task1Tests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
-        Assert.IsTrue(a != b);
+        Assert.That(a != b, Is.True);
     }
 
     [Test]
     public void ToString_ShouldReturnCorrectStringRepresentation()
     {
         var rationalNumber = new RationalNumber(1, 2);
-        Assert.AreEqual("1/2", rationalNumber.ToString());
+        Assert.That(rationalNumber.ToString(), Is.EqualTo("1/2"));
     }
 
     [Test]
@@ -83,7 +83,7 @@ public class Task1Tests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
-        Assert.IsTrue(a.Equals(b));
+        Assert.That(a.Equals(b), Is.True);
     }
 
     [Test]
@@ -91,6 +91,6 @@ public class Task1Tests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
-        Assert.AreEqual(a.GetHashCode(), b.GetHashCode());
+        Assert.That(a.GetHashCode(), Is.EqualTo(b.GetHashCode()));
     }
 }
