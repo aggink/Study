@@ -4,15 +4,15 @@ using Study.Lab1.Logic.lsokol14l.Task2;
 namespace Study.Lab1.Logic.UnitTests.lsokol14l.Task2;
 
 [TestFixture]
-public class EuropeanDateTimeFormatterTests
+public class AmericanDateTimeFormatterTests
 {
     [Test]
-    public void FormatDateTime_ReturnsCorrectEuropeanFormat()
+    public void FormatDateTime_ReturnsCorrectAmericanFormat()
     {
         // Arrange
-        var formatter = new EuropeanDateFormatter();
+        var formatter = new AmericanDateFormatter();
         var now = DateTime.Now;
-        var expected = now.ToString("MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+        var expected = now.ToString("d", CultureInfo.GetCultureInfo("en-US")) + " " + now.ToString("T", CultureInfo.GetCultureInfo("en-US"));
 
         // Act
         var result = formatter.FormatDate(now) + " " + formatter.FormatTime(now);
@@ -22,17 +22,17 @@ public class EuropeanDateTimeFormatterTests
     }
 
     [Test]
-    public void FormatDateTime_ReturnsStringWithEuropeanDateSeparator()
+    public void FormatDateTime_ReturnsStringWithAmericanDateSeparator()
     {
         var now = DateTime.Now;
         // Arrange
-        var formatter = new EuropeanDateFormatter();
+        var formatter = new AmericanDateFormatter();
 
         // Act
         var result = formatter.FormatDate(now) + formatter.FormatTime(now);
 
         // Assert
-        Assert.That(result, Does.Contain("/"));
+        Assert.That(result, Does.Contain("/")); // Американский формат использует слэши как разделители даты
     }
 
     [Test]
@@ -40,7 +40,7 @@ public class EuropeanDateTimeFormatterTests
     {
         var now = DateTime.Now;
         // Arrange
-        var formatter = new EuropeanDateFormatter();
+        var formatter = new AmericanDateFormatter();
 
         // Act
         var result = formatter.FormatDate(now) + formatter.FormatTime(now);
@@ -54,7 +54,7 @@ public class EuropeanDateTimeFormatterTests
     {
         var now = DateTime.Now;
         // Arrange
-        var formatter = new EuropeanDateFormatter();
+        var formatter = new AmericanDateFormatter();
         var decoratedFormatter = new AddBracketsDecorator(formatter);
 
         // Act
@@ -69,7 +69,7 @@ public class EuropeanDateTimeFormatterTests
     public void FormatDateTime_WithPrefixDecorator_ReturnsStringWithPrefix()
     {
         // Arrange
-        var formatter = new EuropeanDateFormatter();
+        var formatter = new AmericanDateFormatter();
         var prefix = "Current time: ";
         var decoratedFormatter = new AddPrefixDecorator(formatter, prefix);
 
@@ -87,7 +87,7 @@ public class EuropeanDateTimeFormatterTests
     {
         var now = DateTime.Now;
         // Arrange
-        var formatter = new EuropeanDateFormatter();
+        var formatter = new AmericanDateFormatter();
         var postfix = " (EST)";
         var decoratedFormatter = new AddPostfixDecorator(formatter, postfix);
 
@@ -102,7 +102,7 @@ public class EuropeanDateTimeFormatterTests
     public void FormatDateTime_WithMultipleDecorators_AppliesDecorationsInCorrectOrder()
     {
         // Arrange
-        var formatter = new EuropeanDateFormatter();
+        var formatter = new AmericanDateFormatter();
         var prefix = "Time: ";
         var postfix = " (USA)";
 

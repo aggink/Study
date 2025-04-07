@@ -6,12 +6,8 @@ namespace Study.Lab1.Logic.lsokol14l.Task2
     public class AddPostfixDecorator : DateTimeDecoratorBase
     {
         private readonly string _postfix;
-        /// <summary>
-        ///     
-        /// </summary>
-        /// <param name="wrappedFormatter">Принимает в себя ссылку на обьект реализующий 
-        ///     интерфейс IDatetimeFormatter
-        /// </param>
+
+        /// <param name="wrappedFormatter">Принимает в себя ссылку на обьект реализующий интерфейс IDatetimeFormatter</param>
         public AddPostfixDecorator(IDateFormatter wrappedFormatter, string postfix) : base(wrappedFormatter)
         {
             _postfix = postfix;
@@ -25,6 +21,7 @@ namespace Study.Lab1.Logic.lsokol14l.Task2
 
             return sb.ToString();
         }
+
         public override string FormatTime(DateTime time)
         {
             var sb = new StringBuilder();

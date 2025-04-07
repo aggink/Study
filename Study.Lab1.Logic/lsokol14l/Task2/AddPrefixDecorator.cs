@@ -6,12 +6,8 @@ namespace Study.Lab1.Logic.lsokol14l.Task2
     public class AddPrefixDecorator : DateTimeDecoratorBase
     {
         private readonly string _prefix;
-        /// <summary>
-        ///     
-        /// </summary>
-        /// <param name="wrappedFormatter">Принимает в себя ссылку на обьект реализующий 
-        ///     интерфейс IDatetimeFormatter
-        /// </param>
+
+        /// <param name="wrappedFormatter">Принимает в себя ссылку на обьект реализующий интерфейс IDatetimeFormatter</param>
         public AddPrefixDecorator(IDateFormatter wrappedFormatter, string prefix) : base(wrappedFormatter)
         {
             _prefix = prefix;
@@ -25,6 +21,7 @@ namespace Study.Lab1.Logic.lsokol14l.Task2
 
             return sb.ToString();
         }
+
         public override string FormatTime(DateTime time)
         {
             var sb = new StringBuilder();

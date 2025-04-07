@@ -5,12 +5,8 @@ namespace Study.Lab1.Logic.lsokol14l.Task2
 {
     public class AddBracketsDecorator : DateTimeDecoratorBase
     {
-        /// <summary>
-        ///     
-        /// </summary>
-        /// <param name="wrappedFormatter">Принимает в себя ссылку на обьект реализующий 
-        ///     интерфейс IDatetimeFormatter
-        /// </param>
+
+        /// <param name="wrappedFormatter">Принимает в себя ссылку на обьект реализующий интерфейс IDatetimeFormatter</param>
         public AddBracketsDecorator(IDateFormatter wrappedFormatter) : base(wrappedFormatter)
         {
         }
@@ -24,6 +20,7 @@ namespace Study.Lab1.Logic.lsokol14l.Task2
             // формирует строку на основе данных в обьекте sb
             return sb.ToString();
         }
+
         public override string FormatTime(DateTime time)
         {
             var sb = new StringBuilder();

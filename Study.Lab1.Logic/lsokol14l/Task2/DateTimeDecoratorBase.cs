@@ -9,7 +9,6 @@ namespace Study.Lab1.Logic.lsokol14l.Task2;
 /// Декоратор — это структурный паттерн проектирования,
 /// который позволяет динамически добавлять поведение объектам, оборачивая их в другой объект.
 /// </summary>
-
 public abstract class DateTimeDecoratorBase : IDateFormatter
 {
     /// <summary>
