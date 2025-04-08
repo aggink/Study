@@ -26,7 +26,8 @@ public class TreeNode<T>(T value) : ITreeNode<T>
     {
         var sb = new StringBuilder();
 
-        foreach (var child in Children) AppendNodeValue(sb, child, 1);
+        foreach (var child in Children)
+            AppendNodeValue(sb, child, 1);
 
         return sb.ToString();
     }
@@ -41,7 +42,8 @@ public class TreeNode<T>(T value) : ITreeNode<T>
     private void AppendNodeValue(StringBuilder sb, ITreeNode<T> node, int level)
     {
         sb.AppendLine($"{new string(' ', level * 2)}- {node.Value}");
-        foreach (var child in node.Children) AppendNodeValue(sb, child, level + 1);
+        foreach (var child in node.Children)
+            AppendNodeValue(sb, child, level + 1);
     }
 
     #endregion
