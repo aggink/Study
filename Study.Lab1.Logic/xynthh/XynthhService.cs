@@ -1,8 +1,10 @@
 using System.Text;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Interfaces.xynthh.Task2;
+using Study.Lab1.Logic.Interfaces.xynthh.Task3;
 using Study.Lab1.Logic.xynthh.Task1;
 using Study.Lab1.Logic.xynthh.Task2;
+using Study.Lab1.Logic.xynthh.Task3;
 
 namespace Study.Lab1.Logic.xynthh;
 
@@ -67,6 +69,31 @@ public class XynthhService : IRunService
 
     public void RunTask3()
     {
-        throw new NotImplementedException();
+        {
+            var root1 = new TreeNode<string>("Root");
+            var child1 = new TreeNode<string>("Child 1");
+            var child2 = new TreeNode<string>("Child 2");
+            var grandChild1 = new TreeNode<string>("Grandchild 1");
+            var grandGrandChild1 = new TreeNode<string>("Grandchild 2");
+            grandChild1.Add(grandGrandChild1);
+            child1.Add(grandChild1);
+            root1.Add(child1);
+            root1.Add(child2);
+            Console.WriteLine("Потомки корня <string>:");
+            Console.WriteLine(root1.GetAllChildrenValues());
+
+
+            var root2 = new TreeNode<int>(0);
+            var child3 = new TreeNode<int>(1);
+            var child4 = new TreeNode<int>(2);
+            var grandChild2 = new TreeNode<int>(123);
+            var grandGrandChild2 = new TreeNode<int>(456);
+            grandChild2.Add(grandGrandChild2);
+            child3.Add(grandChild2);
+            root2.Add(child3);
+            root2.Add(child4);
+            Console.WriteLine("Потомки корня <int>:");
+            Console.WriteLine(root2.GetAllChildrenValues());
+        }
     }
 }
