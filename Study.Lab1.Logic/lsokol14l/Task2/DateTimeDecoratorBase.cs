@@ -2,7 +2,6 @@
 
 namespace Study.Lab1.Logic.lsokol14l.Task2;
 
-
 /// <summary>
 /// Класс DateTimeDecoratorBase является абстрактным базовым классом для декораторов,
 /// которые реализуют интерфейс IDateFormatter.

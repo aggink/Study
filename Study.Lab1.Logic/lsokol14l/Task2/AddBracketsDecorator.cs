@@ -5,7 +5,6 @@ namespace Study.Lab1.Logic.lsokol14l.Task2
 {
     public class AddBracketsDecorator : DateTimeDecoratorBase
     {
-
         /// <param name="wrappedFormatter">Принимает в себя ссылку на обьект реализующий интерфейс IDatetimeFormatter</param>
         public AddBracketsDecorator(IDateFormatter wrappedFormatter) : base(wrappedFormatter)
         {
