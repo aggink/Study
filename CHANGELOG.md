@@ -1,3 +1,4 @@
+* 2025-04-08 #90 [Feature] Пример работы с xlsx-файлом используя установленный Microsoft Excel от @aggink
 * 2025-04-04 #83 [Feature] Реализовал интерфейс RationalNumber, покрыл тестами от @lsokol14l
 * 2025-04-04 #87 [Fix] Были изменены названия с task на Task от @kinkiss1
 * 2025-04-03 #82 [Feature] Добавлен интерфейс IRationalN, класс RationalNumbers и тесты от @PresvyatoyKabachok
