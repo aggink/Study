@@ -6,6 +6,7 @@ using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.Cherryy;
 
 public static class Program
 {
@@ -68,6 +69,8 @@ public static class Program
                 return new SelestzService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
+            case ("idb-23-02", 24):
+                return new CherryyService();
             default:
                 throw new NotSupportedException();
         }
