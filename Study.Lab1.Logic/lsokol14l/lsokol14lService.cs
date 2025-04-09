@@ -1,5 +1,7 @@
 ﻿using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.Interfaces.lsokol14l.Task2;
 using Study.Lab1.Logic.lsokol14l.Task1;
+using Study.Lab1.Logic.lsokol14l.Task2;
 
 namespace Study.Lab1.Logic.lsokol14l;
 
@@ -42,8 +44,33 @@ public class lsokol14lService : IRunService
 
     public void RunTask2()
     {
-        throw new NotImplementedException();
+        var dateTime = DateTime.Now;
+
+        IDateFormatter americanFormatter = new AmericanDateFormatter();
+        IDateFormatter europeanFormatter = new EuropeanDateFormatter();
+
+        var formattedAmericanDate = americanFormatter.FormatDate(dateTime);
+        var formattedAmericanTime = americanFormatter.FormatTime(dateTime);
+
+        Console.WriteLine($"formattedAmericanDate - {formattedAmericanDate}, formattedAmericanTime - {formattedAmericanTime}");
+
+        var formattedEuropeanDate = europeanFormatter.FormatDate(dateTime);
+        var formattedEuropeanTime = europeanFormatter.FormatTime(dateTime);
+
+        Console.WriteLine($"formattedEuropeanDate - {formattedEuropeanDate}, foramattedEuropeanTime - {formattedEuropeanTime}");
+
+        americanFormatter = new AddBracketsDecorator(americanFormatter);
+        americanFormatter = new AddPrefixDecorator(americanFormatter, "**** ");
+        americanFormatter = new AddPostfixDecorator(americanFormatter, " ****");
+
+        europeanFormatter = new AddBracketsDecorator(europeanFormatter);
+        europeanFormatter = new AddPrefixDecorator(europeanFormatter, "#### ");
+        europeanFormatter = new AddPostfixDecorator(europeanFormatter, " ####");
+
+        Console.WriteLine($"American date and time: \n{americanFormatter.FormatDate(dateTime)}\n{americanFormatter.FormatTime(dateTime)}");
+        Console.WriteLine($"European date and time: \n{europeanFormatter.FormatDate(dateTime)}\n{europeanFormatter.FormatTime(dateTime)}");
     }
+
 
     public void RunTask3()
     {
