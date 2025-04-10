@@ -1,10 +1,5 @@
-﻿using Study.Lab1.Logic.brnvika.firstTask;
+﻿using Study.Lab1.Logic.brnvika.Task1;
 using Study.Lab1.Logic.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Study.Lab1.Logic.brnvika
 {
@@ -41,7 +36,6 @@ namespace Study.Lab1.Logic.brnvika
             Console.WriteLine("num2 >= num6 - {0}", (num2 >= num6).ToString());
             Console.WriteLine("num2 < num3 - {0}", (num2 < num3).ToString());
             Console.WriteLine("num2 <= num6 - {0}", (num2 <= num6).ToString());
-
         }
 
         public void RunTask2()
