@@ -3,7 +3,7 @@
   <Import Project="..\build.settings.props" />
 
   <ItemGroup>
-    <Folder Include="kinkiss1\task2\" />
+    <Folder Include="kinkiss1\Task2\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
   <Import Project="..\build.settings.props" />
 	
   <ItemGroup>
@@ -7,7 +11,7 @@
   </ItemGroup>
 	
   <ItemGroup>
-    <Folder Include="kinkiss1\task2\" />
+    <Folder Include="kinkiss1\Task2\" />
   </ItemGroup>
 
 </Project>
