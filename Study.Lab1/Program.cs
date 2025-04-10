@@ -2,6 +2,10 @@
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.katty;
+using Study.Lab1.Logic.kinkiss1;
+using Study.Lab1.Logic.lsokol14l;
+using Study.Lab1.Logic.PresvyatoyKabachok;
+using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
 
 public static class Program
@@ -59,6 +63,12 @@ public static class Program
                 return new Kinkiss1Service();
             case ("idb-23-02", 17):
                 return new kattyService();
+            case ("idb-23-02", 19):
+                return new lsokol14lService();
+            case ("idb-23-02", 23):
+                return new SelestzService();
+            case ("idb-23-02", 10):
+                return new PresvyatoyKabachokService();
             default:
                 throw new NotSupportedException();
         }
