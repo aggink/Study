@@ -1,5 +1,5 @@
-﻿using System.Globalization;
-using Study.Lab1.Logic.lsokol14l.Task2;
+﻿using Study.Lab1.Logic.lsokol14l.Task2;
+using System.Globalization;
 
 namespace Study.Lab1.Logic.UnitTests.lsokol14l.Task2;
 
