@@ -7,22 +7,28 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
 
+using Study.Lab1.Logic.eldarovskiy;
+
+
 public static class Program
 {
     /// <summary>
     /// Номер выполняемой задачи
     /// </summary>
-    private const int RUN_TASK_NUMBER = 2;
+    //private const int RUN_TASK_NUMBER = 2;
+    private const int RUN_TASK_NUMBER = 1;
 
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    //private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    //private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 2;
 
     public static void Main()
     {
@@ -68,6 +74,8 @@ public static class Program
                 return new SelestzService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
+            case ("idb-23-02", 2):
+                return new EldarovskiyService();
             default:
                 throw new NotSupportedException();
         }
