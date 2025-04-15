@@ -1,7 +1,7 @@
 ﻿using System;
-using Study.Lab1.Logic.Interfaces.eldarovskiy.task1;
+using Study.Lab1.Logic.Interfaces.eldarovskiy.Task1;
 
-namespace Study.Lab1.Logic.eldarovskiy.task1
+namespace Study.Lab1.Logic.eldarovskiy.Task1
 {
     public class RationalNumber : IRationalNum
     {

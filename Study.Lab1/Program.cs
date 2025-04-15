@@ -1,4 +1,5 @@
 ﻿using Study.Lab1.Logic.Assistant;
+using Study.Lab1.Logic.eldarovskiy;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
@@ -7,28 +8,23 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
 
-using Study.Lab1.Logic.eldarovskiy;
-
 
 public static class Program
 {
     /// <summary>
     /// Номер выполняемой задачи
     /// </summary>
-    //private const int RUN_TASK_NUMBER = 2;
-    private const int RUN_TASK_NUMBER = 1;
+    private const int RUN_TASK_NUMBER = 2;
 
     /// <summary>
     /// Название группы
     /// </summary>
-    //private const string GROUP_NAME = "assistant";
-    private const string GROUP_NAME = "idb-23-02";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    //private const int PERSON_NUMBER = 1;
-    private const int PERSON_NUMBER = 2;
+    private const int PERSON_NUMBER = 1;
 
     public static void Main()
     {

@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
-using Study.Lab1.Logic.eldarovskiy.task1;
+using Study.Lab1.Logic.eldarovskiy.Task1;
 
-namespace Study.Lab1.Logic.UnitTests.eldarovskiy.task1
+namespace Study.Lab1.Logic.UnitTests.eldarovskiy.Task1
 {
     [TestFixture]
     public class RationalNumberTests

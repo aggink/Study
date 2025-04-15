@@ -1,6 +1,6 @@
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.eldarovskiy;
-using Study.Lab1.Logic.eldarovskiy.task1;
+using Study.Lab1.Logic.eldarovskiy.Task1;
 
 namespace Study.Lab1.Logic.eldarovskiy;
 

@@ -1,4 +1,4 @@
-﻿namespace Study.Lab1.Logic.Interfaces.eldarovskiy.task1;
+﻿namespace Study.Lab1.Logic.Interfaces.eldarovskiy.Task1;
 
 public interface IRationalNum
 {
