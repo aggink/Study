@@ -1,4 +1,5 @@
 ﻿using Study.Lab1.Logic.Assistant;
+using Study.Lab1.Logic.eldarovskiy;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
@@ -68,6 +69,8 @@ public static class Program
                 return new SelestzService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
+            case ("idb-23-02", 2):
+                return new EldarovskiyService();
             default:
                 throw new NotSupportedException();
         }
