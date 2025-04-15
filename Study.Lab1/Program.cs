@@ -8,7 +8,6 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
 
-
 public static class Program
 {
     /// <summary>
