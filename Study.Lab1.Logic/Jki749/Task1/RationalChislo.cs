@@ -26,7 +26,7 @@ class RationalChislo : IRationalChislo
         return $"{Numerator}/{Denominator}";
     }
 
-    int NOD(int a, int b)
+    private int NOD(int a, int b)
     {
         while (b != 0)
         {
@@ -36,7 +36,8 @@ class RationalChislo : IRationalChislo
         }
         return a;
     }
-    void Reduce()
+
+    private void Reduce()
     {
         int nod = NOD(Math.Abs(Numerator), Math.Abs(Denominator));
         Numerator /= nod;
