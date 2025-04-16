@@ -16,9 +16,7 @@ public class RationalNumber : IRationalNumber
         }
         if (Denominator == 0)
         {
-            {
-                throw new DivideByZeroException("Знаменатель не может быть равен нулю");
-            }
+            throw new DivideByZeroException("Знаменатель не может быть равен нулю");
         }
 
         var Nod = Math.Abs(NOD(Numerator, Denominator));
