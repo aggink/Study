@@ -1,5 +1,5 @@
-using System.Text;
 using Study.Lab1.Logic.Interfaces.xynthh.Task3;
+using System.Text;
 
 namespace Study.Lab1.Logic.xynthh.Task3;
 
