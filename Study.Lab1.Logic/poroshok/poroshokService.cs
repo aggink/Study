@@ -19,4 +19,3 @@ namespace Study.Lab1.Logic.poroshok
 
         }
     }
-}
