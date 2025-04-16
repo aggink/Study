@@ -1,4 +1,5 @@
 ﻿using Study.Lab1.Logic.Assistant;
+using Study.Lab1.Logic.crocodile17;
 using Study.Lab1.Logic.eldarovskiy;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.katty;
@@ -71,6 +72,8 @@ public static class Program
                 return new PresvyatoyKabachokService();
             case ("idb-23-02", 2):
                 return new EldarovskiyService();
+            case ("idb-23-03", 19):
+                return new crocodile17Service();
             default:
                 throw new NotSupportedException();
         }
