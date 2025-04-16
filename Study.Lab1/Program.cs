@@ -1,4 +1,5 @@
-﻿using Study.Lab1.Logic.Assistant;
+﻿using Study.Lab1.Logic.alexmark1612;
+using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.eldarovskiy;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.katty;
@@ -13,17 +14,17 @@ public static class Program
     /// <summary>
     /// Номер выполняемой задачи
     /// </summary>
-    private const int RUN_TASK_NUMBER = 2;
+    private const int RUN_TASK_NUMBER = 1;
 
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-03";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 13;
 
     public static void Main()
     {
@@ -71,6 +72,8 @@ public static class Program
                 return new PresvyatoyKabachokService();
             case ("idb-23-02", 2):
                 return new EldarovskiyService();
+            case ("idb-23-03", 13):
+                return new alexmark1612Service();
             default:
                 throw new NotSupportedException();
         }
