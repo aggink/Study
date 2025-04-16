@@ -3,11 +3,16 @@ using Study.Lab1.Logic.Interfaces.xynthh.Task3;
 
 namespace Study.Lab1.Logic.xynthh.Task3;
 
-public class TreeNode<T>(T value) : ITreeNode<T>
+public class TreeNode<T> : ITreeNode<T>
 {
+    public TreeNode(T value)
+    {
+        Value = value;
+    }
+
     #region Properties
 
-    public T Value { get; set; } = value;
+    public T Value { get; set; }
 
     public IReadOnlyList<ITreeNode<T>> Children => _children.AsReadOnly();
 
