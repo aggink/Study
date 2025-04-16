@@ -1,6 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\build.settings.props" />
+
+  <ItemGroup>
+    <Compile Remove="alexmark1612\Task2\**" />
+    <Compile Remove="alexmark1612\Task3\**" />
+    <EmbeddedResource Remove="alexmark1612\Task2\**" />
+    <EmbeddedResource Remove="alexmark1612\Task3\**" />
+    <None Remove="alexmark1612\Task2\**" />
+    <None Remove="alexmark1612\Task3\**" />
+  </ItemGroup>
 	
   <ItemGroup>
     <ProjectReference Include="..\Study.Lab1.Logic.Interfaces\Study.Lab1.Logic.Interfaces.csproj" />
