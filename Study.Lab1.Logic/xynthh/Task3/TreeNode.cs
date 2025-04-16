@@ -1,4 +1,3 @@
-using Study.Lab1.Logic.Interfaces.xynthh.Task3;
 using System.Text;
 
 namespace Study.Lab1.Logic.xynthh.Task3;
@@ -7,7 +6,7 @@ public class TreeNode<T> : ITreeNode<T>
 {
     public TreeNode(T value)
     {
-        this.Value = value;
+        Value = value;
     }
 
     #region Properties
