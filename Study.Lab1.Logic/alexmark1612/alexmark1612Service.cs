@@ -6,6 +6,7 @@ namespace Study.Lab1.Logic.alexmark1612
     {
         public void RunTask1()
         {
+            //
             throw new NotImplementedException();
         }
 
