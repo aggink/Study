@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lab3.Storage.Models.Students
+namespace Lab3.Storage.Models.University
 {
     /// <summary>
     /// Связь таблиц предметы - группы

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Lab3.Storage.Models.Students
+namespace Lab3.Storage.Models.University
 {
     /// <summary>
     /// Студент
@@ -46,6 +46,11 @@ namespace Lab3.Storage.Models.Students
         /// Пол
         /// </summary>
         public SexType Sex { get; set; }
+
+        /// <summary>
+        /// Возраст
+        /// </summary>
+        public int Age { get; set; }
 
         /// <summary>
         /// Группа

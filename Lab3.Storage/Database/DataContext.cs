@@ -1,4 +1,4 @@
-﻿using Lab3.Storage.Models.Students;
+﻿using Lab3.Storage.Models.University;
 using Microsoft.EntityFrameworkCore;
 
 namespace Lab3.Storage.Database
