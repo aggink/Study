@@ -1,5 +1,5 @@
 ﻿using Lab3.Storage.Constants;
-using Lab3.Storage.Enums;
+using Lab3.Storage.Enums.University;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,19 +27,19 @@ namespace Lab3.Storage.Models.University
         /// <summary>
         /// Фамилия
         /// </summary>
-        [Required, MaxLength(ModelLengthConstants.Student.SurName)]
+        [Required, MaxLength(ModelConstants.Student.SurName)]
         public string SurName { get; set; }
 
         /// <summary>
         /// Имя
         /// </summary>
-        [Required, MaxLength(ModelLengthConstants.Student.Name)]
+        [Required, MaxLength(ModelConstants.Student.Name)]
         public string Name { get; set; }
 
         /// <summary>
         /// Отчество
         /// </summary>
-        [Required, MaxLength(ModelLengthConstants.Student.PatronymicName)]
+        [Required, MaxLength(ModelConstants.Student.PatronymicName)]
         public string PatronymicName { get; set; }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Lab3.Storage.Models.University
         /// <summary>
         /// Возраст
         /// </summary>
-        [Range(ModelLengthConstants.Student.AgeMin, ModelLengthConstants.Student.AgeMax)]
+        [Range(ModelConstants.Student.AgeMin, ModelConstants.Student.AgeMax)]
         public int Age { get; set; }
 
         /// <summary>

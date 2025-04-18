@@ -1,4 +1,4 @@
-﻿namespace Lab3.Storage.Enums
+﻿namespace Lab3.Storage.Enums.University
 {
     public enum SexType : int
     {

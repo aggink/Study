@@ -1,4 +1,4 @@
-﻿using Lab3.Storage.Enums;
+﻿using Lab3.Storage.Enums.University;
 
 namespace Lab3.Web.Features.University.Students.DtoModels
 {

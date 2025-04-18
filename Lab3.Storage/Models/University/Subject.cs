@@ -18,7 +18,7 @@ namespace Lab3.Storage.Models.University
         /// <summary>
         /// Название предмета
         /// </summary>
-        [Required, MaxLength(ModelLengthConstants.Subject.Name)]
+        [Required, MaxLength(ModelConstants.Subject.Name)]
         public string Name { get; set; }
 
         /// <summary>

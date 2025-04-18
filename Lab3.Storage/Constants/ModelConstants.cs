@@ -1,6 +1,6 @@
 ﻿namespace Lab3.Storage.Constants
 {
-    public static class ModelLengthConstants
+    public static class ModelConstants
     {
         public static class Student
         {

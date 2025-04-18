@@ -18,7 +18,7 @@ namespace Lab3.Storage.Models.University
         /// <summary>
         /// Наименование группы
         /// </summary>
-        [Required, MaxLength(ModelLengthConstants.Group.Name)]
+        [Required, MaxLength(ModelConstants.Group.Name)]
         public string Name { get; set; }
 
         /// <summary>

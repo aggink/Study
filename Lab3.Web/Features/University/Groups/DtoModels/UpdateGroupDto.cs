@@ -14,7 +14,7 @@ namespace Lab3.Web.Features.University.Groups.DtoModels
         /// <summary>
         /// Наименование группы
         /// </summary>
-        [Required, MaxLength(ModelLengthConstants.Group.Name)]
+        [Required, MaxLength(ModelConstants.Group.Name)]
         public string Name { get; set; }
     }
 }
