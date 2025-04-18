@@ -1,0 +1,44 @@
+﻿using Lab3.Storage.Constants;
+using Lab3.Storage.Enums;
+using System.ComponentModel.DataAnnotations;
+
+namespace Lab3.Web.Features.University.Students.DtoModels
+{
+    public sealed record CreateStudentDto
+    {
+        /// <summary>
+        /// Идентификатор группы
+        /// </summary>
+        [Required]
+        public Guid IsnGroup { get; init; }
+
+        /// <summary>
+        /// Фамилия
+        /// </summary>
+        [Required, MaxLength(ModelLengthConstants.Student.SurName)]
+        public string SurName { get; init; }
+
+        /// <summary>
+        /// Имя
+        /// </summary>
+        [Required, MaxLength(ModelLengthConstants.Student.Name)]
+        public string Name { get; init; }
+
+        /// <summary>
+        /// Отчество
+        /// </summary>
+        [Required, MaxLength(ModelLengthConstants.Student.PatronymicName)]
+        public string PatronymicName { get; init; }
+
+        /// <summary>
+        /// Пол
+        /// </summary>
+        public SexType Sex { get; init; }
+
+        /// <summary>
+        /// Возраст
+        /// </summary>
+        [Range(ModelLengthConstants.Student.AgeMin, ModelLengthConstants.Student.AgeMax)]
+        public int Age { get; init; }
+    }
+}

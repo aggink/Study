@@ -1,5 +1,6 @@
 ﻿using Lab3.Logic.Interfaces.Services.University;
 using Lab3.Storage.Database;
+using Lab3.Storage.Models.University;
 using Lab3.Web.Features.University.Groups.DtoModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

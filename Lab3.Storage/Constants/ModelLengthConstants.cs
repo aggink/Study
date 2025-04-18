@@ -9,6 +9,10 @@
             public const int Name = 100;
 
             public const int PatronymicName = 100;
+
+            public const int AgeMin = 1;
+
+            public const int AgeMax = 100;
         }
 
         public static class Group

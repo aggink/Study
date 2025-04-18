@@ -1,6 +1,9 @@
 ﻿using Lab3.Web.Features.University.Groups.Commands;
 using Lab3.Web.Features.University.Groups.DtoModels;
 using Lab3.Web.Features.University.Groups.Queries;
+using Lab3.Web.Features.University.Students.Commands;
+using Lab3.Web.Features.University.Students.DtoModels;
+using Lab3.Web.Features.University.Students.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +20,8 @@ namespace Lab3.Web.Controllers
         {
             _mediator = mediator;
         }
+
+        #region Group
 
         /// <summary>
         /// Создание группы
@@ -63,10 +68,68 @@ namespace Lab3.Web.Controllers
         /// <param name="cancellationToken">Токен отмены</param>
         /// <returns>Список групп</returns>
         [HttpGet(nameof(GetListGroups), Name = nameof(GetListGroups))]
-        public async Task<ActionResult<GroupDto[]>> GetListGroups(GetListGroupsQuery query, CancellationToken cancellationToken)
+        public async Task<ActionResult<GroupDto[]>> GetListGroups([FromQuery] GetListGroupsQuery query, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(query, cancellationToken);
             return Ok(result);
         }
+
+        #endregion
+
+        #region Student
+
+        /// <summary>
+        /// Создание студента
+        /// </summary>
+        /// <param name="command">Dto запроса</param>
+        /// <param name="cancellationToken">Токен отмены</param>
+        /// <returns>Идентификатор студента</returns>
+        [HttpPost(nameof(CreateStudent), Name = nameof(CreateStudent))]
+        public async Task<ActionResult<Guid>> CreateStudent(CreateStudentCommand command, CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Редактирование студента
+        /// </summary>
+        /// <param name="command">Dto запроса</param>
+        /// <param name="cancellationToken">Токен отмены</param>
+        /// <returns>Идентификатор студента</returns>
+        [HttpPost(nameof(UpdateStudent), Name = nameof(UpdateStudent))]
+        public async Task<ActionResult<Guid>> UpdateStudent(UpdateStudentCommand command, CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Удаление студента
+        /// </summary>
+        /// <param name="command">Dto запроса</param>
+        /// <param name="cancellationToken">Токен отмены</param>
+        /// <returns>Идентификатор студента</returns>
+        [HttpPost(nameof(DeleteStudent), Name = nameof(DeleteStudent))]
+        public async Task<ActionResult<Guid>> DeleteStudent(DeleteStudentCommand command, CancellationToken cancellationToken)
+        {
+            await _mediator.Send(command, cancellationToken);
+            return Ok();
+        }
+
+        /// <summary>
+        /// Получение списка студентов
+        /// </summary>
+        /// <param name="query">Dto запроса</param>
+        /// <param name="cancellationToken">Токен отмены</param>
+        /// <returns>Список студентов</returns>
+        [HttpGet(nameof(GetListStudents), Name = nameof(GetListStudents))]
+        public async Task<ActionResult<StudentItemDto[]>> GetListStudents([FromQuery] GetListStudentsQuery query, CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(query, cancellationToken);
+            return Ok(result);
+        }
+
+        #endregion
     }
 }
