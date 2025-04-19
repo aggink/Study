@@ -1,50 +1,49 @@
 ﻿using CoreLib.Common.Extensions;
-using Lab3.Logic.Interfaces.Services.University;
-using Lab3.Storage.Database;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Logic.Interfaces.Services.University;
+using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
-namespace Lab3.Web.Features.University.Groups.Commands
+namespace Study.Lab3.Web.Features.University.Groups.Commands;
+
+/// <summary>
+/// Удаление группы
+/// </summary>
+public sealed class DeleteGroupCommand : IRequest
 {
     /// <summary>
-    /// Удаление группы
+    /// Идентификатор группы
     /// </summary>
-    public sealed class DeleteGroupCommand : IRequest
+    [Required]
+    [FromQuery]
+    public Guid IsnGroup { get; init; }
+}
+
+public sealed class DeleteGroupCommandHandler : IRequestHandler<DeleteGroupCommand>
+{
+    private readonly DataContext _dataContext;
+    private readonly IGroupService _groupService;
+
+    public DeleteGroupCommandHandler(
+        DataContext dataContext,
+        IGroupService groupService)
     {
-        /// <summary>
-        /// Идентификатор группы
-        /// </summary>
-        [Required]
-        [FromQuery]
-        public Guid IsnGroup { get; init; }
+        _dataContext = dataContext;
+        _groupService = groupService;
     }
 
-    public sealed class DeleteGroupCommandHandler : IRequestHandler<DeleteGroupCommand>
+    public async Task Handle(DeleteGroupCommand request, CancellationToken cancellationToken)
     {
-        private readonly DataContext _dataContext;
-        private readonly IGroupService _groupService;
+        var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.IsnGroup, cancellationToken)
+            ?? throw new BusinessLogicException($"Группа с идентификатором \"{request.IsnGroup}\" не найдена");
 
-        public DeleteGroupCommandHandler(
-            DataContext dataContext,
-            IGroupService groupService)
-        {
-            _dataContext = dataContext;
-            _groupService = groupService;
-        }
+        await _groupService.CanDeleteAsync(_dataContext, group, cancellationToken);
 
-        public async Task Handle(DeleteGroupCommand request, CancellationToken cancellationToken)
-        {
-            var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.IsnGroup, cancellationToken)
-                ?? throw new BusinessLogicException($"Группа с идентификатором \"{request.IsnGroup}\" не найдена");
+        _dataContext.Groups.Remove(group);
 
-            await _groupService.CanDeleteAsync(_dataContext, group, cancellationToken);
-
-            _dataContext.Groups.Remove(group);
-
-            await _dataContext.SaveChangesAsync(cancellationToken);
-            return;
-        }
+        await _dataContext.SaveChangesAsync(cancellationToken);
+        return;
     }
 }

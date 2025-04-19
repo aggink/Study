@@ -1,56 +1,61 @@
 ﻿using CoreLib.Common.Extensions;
-using Lab3.Web.Middlewares.DtoModels;
+using Study.Lab3.Web.Middlewares.DtoModels;
 using System.Net;
 
-namespace Lab3.Web.Middlewares
+namespace Study.Lab3.Web.Middlewares;
+
+public sealed class ExceptionMiddleware
 {
-    public sealed class ExceptionMiddleware
+    private readonly RequestDelegate _next;
+    private readonly ILogger<ExceptionMiddleware> _logger;
+
+    public ExceptionMiddleware(
+        RequestDelegate next,
+        ILogger<ExceptionMiddleware> logger)
     {
-        private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionMiddleware> _logger;
+        _next = next;
+        _logger = logger;
+    }
 
-        public ExceptionMiddleware(
-            RequestDelegate next,
-            ILogger<ExceptionMiddleware> logger)
+    public async Task InvokeAsync(HttpContext context)
+    {
+        try
         {
-            _next = next;
-            _logger = logger;
+            await _next(context);
         }
-
-        public async Task InvokeAsync(HttpContext context)
+        catch (Exception ex)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (Exception ex)
-            {
-                var error = GetErrorResponse(context, ex);
+            var error = GetErrorResponse(context, ex);
 
-                context.Response.StatusCode = (int)error.StatusCode;
-                await context.Response.WriteAsJsonAsync(error.Response);
-            }
+            context.Response.StatusCode = (int)error.StatusCode;
+            await context.Response.WriteAsJsonAsync(error.Response);
         }
+    }
 
-        private (ErrorResponseDto Response, HttpStatusCode StatusCode) GetErrorResponse(HttpContext content, Exception ex)
+    /// <summary>
+    /// Получение описание ошибки для передачи пользователю
+    /// </summary>
+    /// <param name="content">Http-контекст</param>
+    /// <param name="ex">Ошибка</param>
+    /// <returns>Описание ошибки для передачи пользователю</returns>
+    private (ErrorResponseDto Response, HttpStatusCode StatusCode) GetErrorResponse(HttpContext content, Exception ex)
+    {
+        switch (ex)
         {
-            switch (ex)
-            {
-                case BusinessLogicException businessException:
-                    return (new ErrorResponseDto
-                    {
-                        Code = businessException.HResult.ToString(),
-                        Message = businessException.Message
-                    }, HttpStatusCode.BadRequest);
-                default:
-                    _logger.LogError(ex, "Произошла ошибка при выполнении запроса. Описание запроса: {Request}", content.Request);
+            case BusinessLogicException businessException:
+                return (new ErrorResponseDto
+                {
+                    Code = businessException.HResult.ToString(),
+                    Message = businessException.Message
+                }, HttpStatusCode.BadRequest);
+            default:
+                _logger.LogError(ex, "Произошла ошибка при выполнении запроса. Описание запроса: {Request}", content.Request);
 
-                    return (new ErrorResponseDto
-                    {
-                        Code = ex.HResult.ToString(),
-                        Message = "Что-то пошло не так..."
-                    }, HttpStatusCode.InternalServerError);
-            }
+                return (new ErrorResponseDto
+                {
+                    Code = ex.HResult.ToString(),
+                    Message = "Что-то пошло не так..."
+                }, HttpStatusCode.InternalServerError);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Lab3.Storage.PostgreSQL.Migrations
+namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />
     public partial class AddColumnAgeInStudent : Migration

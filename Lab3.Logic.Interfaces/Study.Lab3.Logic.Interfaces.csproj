@@ -3,7 +3,7 @@
 	<Import Project="..\build.settings.props" />
 
   <ItemGroup>
-    <ProjectReference Include="..\Lab3.Storage.PostgreSQL\Lab3.Storage.PostgreSQL.csproj" />
+    <ProjectReference Include="..\Lab3.Storage.PostgreSQL\Study.Lab3.Storage.PostgreSQL.csproj" />
   </ItemGroup>
 
 </Project>

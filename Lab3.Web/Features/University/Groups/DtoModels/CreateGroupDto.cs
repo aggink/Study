@@ -1,14 +1,13 @@
-﻿using Lab3.Storage.Constants;
+﻿using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Lab3.Web.Features.University.Groups.DtoModels
+namespace Study.Lab3.Web.Features.University.Groups.DtoModels;
+
+public sealed record CreateGroupDto
 {
-    public sealed record CreateGroupDto
-    {
-        /// <summary>
-        /// Наименование группы
-        /// </summary>
-        [Required, MaxLength(ModelConstants.Group.Name)]
-        public string Name { get; init; }
-    }
+    /// <summary>
+    /// Наименование группы
+    /// </summary>
+    [Required, MaxLength(ModelConstants.Group.Name)]
+    public string Name { get; init; }
 }

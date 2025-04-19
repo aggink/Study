@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Lab3.Storage.PostgreSQL.Migrations
+namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />
     public partial class InitDatabase : Migration

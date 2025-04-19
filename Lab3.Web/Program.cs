@@ -1,5 +1,5 @@
-using Lab3.Web.Extensions;
-using Lab3.Web.Middlewares;
+using Study.Lab3.Web.Extensions;
+using Study.Lab3.Web.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 

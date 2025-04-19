@@ -1,57 +1,55 @@
 ﻿using CoreLib.Common.Extensions;
-using Lab3.Storage.Database;
-using Lab3.Storage.Models.University;
-using Lab3.Web.Features.University.Students.DtoModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Database;
+using Study.Lab3.Web.Features.University.Students.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Lab3.Web.Features.University.Students.Commands
+namespace Study.Lab3.Web.Features.University.Students.Commands;
+
+/// <summary>
+/// Создание студента
+/// </summary>
+public sealed class CreateStudentCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Создание студента
+    /// Данные студента
     /// </summary>
-    public sealed class CreateStudentCommand : IRequest<Guid>
+    [Required]
+    [FromBody]
+    public CreateStudentDto Student { get; init; }
+}
+
+public sealed class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, Guid>
+{
+    private readonly DataContext _dataContext;
+
+    public CreateStudentCommandHandler(DataContext dataContext)
     {
-        /// <summary>
-        /// Данные студента
-        /// </summary>
-        [Required]
-        [FromBody]
-        public CreateStudentDto Student { get; init; }
+        _dataContext = dataContext;
     }
 
-    public sealed class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, Guid>
+    public async Task<Guid> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
     {
-        private readonly DataContext _dataContext;
+        var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.Student.IsnGroup)
+           ?? throw new BusinessLogicException($"Группы с идентификатором \"{request.Student.IsnGroup}\" не существует");
 
-        public CreateStudentCommandHandler(DataContext dataContext)
+        var student = new Student
         {
-            _dataContext = dataContext;
-        }
+            IsnStudent = Guid.NewGuid(),
+            IsnGroup = request.Student.IsnGroup,
+            SurName = request.Student.SurName,
+            Name = request.Student.Name,
+            PatronymicName = request.Student.PatronymicName,
+            Sex = request.Student.Sex,
+            Age = request.Student.Age,
+            Group = group
+        };
 
-        public async Task<Guid> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
-        {
-            var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.Student.IsnGroup)
-               ?? throw new BusinessLogicException($"Группы с идентификатором \"{request.Student.IsnGroup}\" не существует");
+        await _dataContext.Students.AddAsync(student);
+        await _dataContext.SaveChangesAsync(cancellationToken);
 
-            var student = new Student
-            {
-                IsnStudent = Guid.NewGuid(),
-                IsnGroup = request.Student.IsnGroup,
-                SurName = request.Student.SurName,
-                Name = request.Student.Name,
-                PatronymicName = request.Student.PatronymicName,
-                Sex = request.Student.Sex,
-                Age = request.Student.Age,
-                Group = group
-            };
-
-            await _dataContext.Students.AddAsync(student);
-            await _dataContext.SaveChangesAsync(cancellationToken);
-
-            return student.IsnStudent;
-        }
+        return student.IsnStudent;
     }
 }

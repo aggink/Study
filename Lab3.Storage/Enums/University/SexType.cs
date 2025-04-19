@@ -1,11 +1,22 @@
-﻿namespace Lab3.Storage.Enums.University
+﻿namespace Study.Lab3.Storage.Enums.University;
+
+/// <summary>
+/// Пол
+/// </summary>
+public enum SexType : int
 {
-    public enum SexType : int
-    {
-        Unknown = 0,
+    /// <summary>
+    /// Неизвестно
+    /// </summary>
+    Unknown = 0,
 
-        Male = 1,
+    /// <summary>
+    /// Мужской
+    /// </summary>
+    Male = 1,
 
-        Female = 2,
-    }
+    /// <summary>
+    /// Женский
+    /// </summary>
+    Female = 2,
 }

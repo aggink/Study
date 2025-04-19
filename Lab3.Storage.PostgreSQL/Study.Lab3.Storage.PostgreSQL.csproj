@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Lab3.Storage\Lab3.Storage.csproj" />
+	  <ProjectReference Include="..\Lab3.Storage\Study.Lab3.Storage.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

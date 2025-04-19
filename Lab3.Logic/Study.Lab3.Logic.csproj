@@ -3,7 +3,7 @@
 	<Import Project="..\build.settings.props" />
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Lab3.Logic.Interfaces\Lab3.Logic.Interfaces.csproj" />
+	  <ProjectReference Include="..\Lab3.Logic.Interfaces\Study.Lab3.Logic.Interfaces.csproj" />
 	</ItemGroup>
 
 </Project>

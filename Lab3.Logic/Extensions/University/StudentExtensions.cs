@@ -1,22 +1,24 @@
-﻿using Lab3.Storage.Models.University;
+﻿using Study.Lab3.Storage.Models.University;
 
-namespace Lab3.Logic.Extensions.University
+namespace Study.Lab3.Logic.Extensions.University;
+
+/// <summary>
+/// Расширения для модели <see cref="Student"/>
+/// </summary>
+public static class StudentExtensions
 {
-    public static class StudentExtensions
+    /// <summary>
+    /// Получить ФИО студента
+    /// </summary>
+    /// <param name="student">Студент</param>
+    /// <returns>ФИО студента</returns>
+    public static string GetFio(this Student student)
     {
-        /// <summary>
-        /// Получить ФИО студента
-        /// </summary>
-        /// <param name="student">Студент</param>
-        /// <returns>ФИО студента</returns>
-        public static string GetFio(this Student student)
+        return string.Join(" ", (new string[]
         {
-            return string.Join(" ", (new string[]
-            {
-                student.SurName,
-                student.Name,
-                student.PatronymicName
-            }).Where(x => !string.IsNullOrEmpty(x)));
-        }
+            student.SurName,
+            student.Name,
+            student.PatronymicName
+        }).Where(x => !string.IsNullOrEmpty(x)));
     }
 }
