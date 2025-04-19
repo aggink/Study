@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+using Study.Lab3.Storage.Models.University;
 using Study.Lab3.Web.Features.University.Students.DtoModels;
 using System.ComponentModel.DataAnnotations;
 

@@ -9,7 +9,7 @@ using Study.Lab3.Storage.Database;
 
 #nullable disable
 
-namespace Lab3.Storage.PostgreSQL.Migrations
+namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20250418175728_AddColumnAgeInStudent")]
