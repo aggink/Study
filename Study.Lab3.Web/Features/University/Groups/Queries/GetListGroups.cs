@@ -8,12 +8,12 @@ namespace Study.Lab3.Web.Features.University.Groups.Queries;
 /// <summary>
 /// Получение списка групп
 /// </summary>
-public sealed class GetListGroupsQuery : IRequest<GroupDto[]>
+public sealed class GetListGroupsQuery : IRequest<GroupItemDto[]>
 {
 
 }
 
-public sealed class GetListGroupsQueryHandler : IRequestHandler<GetListGroupsQuery, GroupDto[]>
+public sealed class GetListGroupsQueryHandler : IRequestHandler<GetListGroupsQuery, GroupItemDto[]>
 {
     private readonly DataContext _dataContext;
 
@@ -22,11 +22,11 @@ public sealed class GetListGroupsQueryHandler : IRequestHandler<GetListGroupsQue
         _dataContext = dataContext;
     }
 
-    public async Task<GroupDto[]> Handle(GetListGroupsQuery request, CancellationToken cancellationToken)
+    public async Task<GroupItemDto[]> Handle(GetListGroupsQuery request, CancellationToken cancellationToken)
     {
         return await _dataContext.Groups
             .AsNoTracking()
-            .Select(x => new GroupDto
+            .Select(x => new GroupItemDto
             {
                 IsnGroup = x.IsnGroup,
                 Name = x.Name

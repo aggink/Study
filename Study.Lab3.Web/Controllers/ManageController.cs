@@ -68,7 +68,20 @@ public class ManageController : Controller
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Список групп</returns>
     [HttpGet(nameof(GetListGroups), Name = nameof(GetListGroups))]
-    public async Task<ActionResult<GroupDto[]>> GetListGroups([FromQuery] GetListGroupsQuery query, CancellationToken cancellationToken)
+    public async Task<ActionResult<GroupItemDto[]>> GetListGroups([FromQuery] GetListGroupsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение данных группы
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Данные группы</returns>
+    [HttpGet(nameof(GetGroupByIsn), Name = nameof(GetGroupByIsn))]
+    public async Task<ActionResult<GroupDto>> GetGroupByIsn(GetGroupByIsnQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
@@ -125,6 +138,19 @@ public class ManageController : Controller
     /// <returns>Список студентов</returns>
     [HttpGet(nameof(GetListStudents), Name = nameof(GetListStudents))]
     public async Task<ActionResult<StudentItemDto[]>> GetListStudents([FromQuery] GetListStudentsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение данных студента
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Данные студента</returns>
+    [HttpGet(nameof(GetStudentByIsn), Name = nameof(GetStudentByIsn))]
+    public async Task<ActionResult<StudentDto>> GetStudentByIsn(GetStudentByIsnQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);

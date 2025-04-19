@@ -1,6 +1,6 @@
 ﻿namespace Study.Lab3.Web.Features.University.Groups.DtoModels;
 
-public sealed record GroupDto
+public class GroupItemDto
 {
     /// <summary>
     /// Идентификатор группы
