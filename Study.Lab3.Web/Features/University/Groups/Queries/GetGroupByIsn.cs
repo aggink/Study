@@ -35,7 +35,7 @@ public sealed class GetGroupByIsnQueryHandler : IRequestHandler<GetGroupByIsnQue
         var group = await _dataContext.Groups
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnGroup == request.IsnGroup, cancellationToken)
-                ?? throw new BusinessLogicException($"Группа с идентификатором \"{request.IsnGroup}\" не найдена");
+                ?? throw new BusinessLogicException($"Группы с идентификатором \"{request.IsnGroup}\" не существует");
 
         return new GroupDto
         {

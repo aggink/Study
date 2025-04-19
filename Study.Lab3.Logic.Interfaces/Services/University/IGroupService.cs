@@ -11,7 +11,10 @@ public interface IGroupService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="group">Группа</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task CreateOrUpdateGroupValidateAsync(DataContext dataContext, Group group, CancellationToken cancellationToken);
+    Task CreateOrUpdateGroupValidateAndThrowAsync(
+        DataContext dataContext,
+        Group group,
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Проверка возможности удаления группы
@@ -19,5 +22,8 @@ public interface IGroupService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="group">Группа</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task CanDeleteAsync(DataContext dataContext, Group group, CancellationToken cancellationToken);
+    Task CanDeleteAndThrowAsync(
+        DataContext dataContext,
+        Group group,
+        CancellationToken cancellationToken = default);
 }

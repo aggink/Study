@@ -38,11 +38,12 @@ public sealed class UpdateGroupCommandHandler : IRequestHandler<UpdateGroupComma
     public async Task<Guid> Handle(UpdateGroupCommand request, CancellationToken cancellationToken)
     {
         var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.Group.IsnGroup, cancellationToken)
-            ?? throw new BusinessLogicException($"Группа с идентификатором \"{request.Group.IsnGroup}\" не найдена");
+            ?? throw new BusinessLogicException($"Группы с идентификатором \"{request.Group.IsnGroup}\" не существует");
 
         group.Name = request.Group.Name;
 
-        await _groupService.CreateOrUpdateGroupValidateAsync(_dataContext, group, cancellationToken);
+        await _groupService.CreateOrUpdateGroupValidateAndThrowAsync(
+            _dataContext, group, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
         return group.IsnGroup;

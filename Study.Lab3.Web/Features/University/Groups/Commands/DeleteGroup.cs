@@ -37,9 +37,10 @@ public sealed class DeleteGroupCommandHandler : IRequestHandler<DeleteGroupComma
     public async Task Handle(DeleteGroupCommand request, CancellationToken cancellationToken)
     {
         var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.IsnGroup, cancellationToken)
-            ?? throw new BusinessLogicException($"Группа с идентификатором \"{request.IsnGroup}\" не найдена");
+            ?? throw new BusinessLogicException($"Группы с идентификатором \"{request.IsnGroup}\" не существует");
 
-        await _groupService.CanDeleteAsync(_dataContext, group, cancellationToken);
+        await _groupService.CanDeleteAndThrowAsync(
+            _dataContext, group, cancellationToken);
 
         _dataContext.Groups.Remove(group);
 

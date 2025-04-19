@@ -24,4 +24,9 @@ public class DataContext : DbContext
     /// Предметы
     /// </summary>
     public virtual DbSet<Subject> Subjects { get; set; }
+
+    /// <summary>
+    /// Связь предметов и групп
+    /// </summary>
+    public virtual DbSet<SubjectGroup> SubjectsGroups { get; set; }
 }

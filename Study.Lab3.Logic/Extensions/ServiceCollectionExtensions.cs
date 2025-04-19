@@ -16,5 +16,6 @@ public static class ServiceCollectionExtensions
     public static void AddLogicServiceCollection(this IServiceCollection services)
     {
         services.AddSingleton<IGroupService, GroupService>();
+        services.AddSingleton<ISubjectService, SubjectService>();
     }
 }

@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Study.Lab3.Logic\Study.Lab3.Logic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\University\Subjects\" />
-  </ItemGroup>
-
 </Project>
