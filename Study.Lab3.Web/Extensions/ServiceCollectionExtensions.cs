@@ -16,11 +16,6 @@ public static class ServiceCollectionExtensions
     /// <param name="services">Коллекция сервисов</param>
     public static void AddServiceCollection(this IServiceCollection services)
     {
-        services.AddMediatR(cfg =>
-        {
-            cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-        });
-
         services.AddLogicServiceCollection();
     }
 

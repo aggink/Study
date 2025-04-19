@@ -35,6 +35,7 @@ public class GetListStudentsQueryHandler : IRequestHandler<GetListStudentsQuery,
                 Sex = x.Sex,
                 Age = x.Age
             })
+            .OrderBy(x => x.Fio)
             .ToArrayAsync(cancellationToken);
     }
 }

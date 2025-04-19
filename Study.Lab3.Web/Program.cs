@@ -1,3 +1,4 @@
+using Serilog;
 using Study.Lab3.Web.Extensions;
 using Study.Lab3.Web.Middlewares;
 
@@ -6,6 +7,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+});
+
+builder.Host.UseSerilog((context, Configuration) =>
+   Configuration.ReadFrom.Configuration(context.Configuration));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

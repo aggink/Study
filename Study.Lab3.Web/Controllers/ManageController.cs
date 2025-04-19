@@ -89,6 +89,19 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    /// <summary>
+    /// Получение список групп с предметами
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список групп с предметами</returns>
+    [HttpGet(nameof(GetListGroupsWithSubjects), Name = nameof(GetListGroupsWithSubjects))]
+    public async Task<ActionResult<GroupWithSubjectItemDto[]>> GetListGroupsWithSubjects([FromQuery] GetListGroupsWithSubjectsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
     #endregion
 
     #region Student

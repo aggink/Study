@@ -1,6 +1,6 @@
 ﻿namespace Study.Lab3.Web.Features.University.Subjects.DtoModels;
 
-public class SubjectItem
+public class SubjectItemDto
 {
     /// <summary>
     /// Идентификатор предмета

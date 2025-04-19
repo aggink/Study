@@ -14,13 +14,13 @@ public class SubjectGroup
     /// <summary>
     /// Идентификатор предмета
     /// </summary>
-    [ForeignKey(nameof(Group)), Required]
+    [ForeignKey(nameof(Subject)), Required]
     public Guid IsnSubject { get; set; }
 
     /// <summary>
     /// Идентификатор группы
     /// </summary>
-    [ForeignKey(nameof(Subject)), Required]
+    [ForeignKey(nameof(Group)), Required]
     public Guid IsnGroup { get; set; }
 
     /// <summary>

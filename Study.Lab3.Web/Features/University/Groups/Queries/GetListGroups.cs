@@ -31,6 +31,7 @@ public sealed class GetListGroupsQueryHandler : IRequestHandler<GetListGroupsQue
                 IsnGroup = x.IsnGroup,
                 Name = x.Name
             })
+            .OrderBy(x => x.Name)
             .ToArrayAsync(cancellationToken);
     }
 }
