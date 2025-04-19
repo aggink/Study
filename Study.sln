@@ -46,7 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLib", "CoreLib\CoreLib.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab3", "Lab3", "{F0861847-890B-4BFD-9C09-21D47C823165}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study.Lab3.Web", "Lab3.Web\Study.Lab3.Web.csproj", "{7716C77C-FE93-4936-9D28-74D21A9E9F7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study.Lab3.Web", "Study.Lab3.Web\Study.Lab3.Web.csproj", "{7716C77C-FE93-4936-9D28-74D21A9E9F7C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study.Lab3.Storage", "Study.Lab3.Storage\Study.Lab3.Storage.csproj", "{B9732EBC-A3AA-43B7-860F-52EC26FED417}"
 EndProject
