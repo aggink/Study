@@ -22,7 +22,6 @@ builder.Host.UseSerilog((context, Configuration) =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    // Подключение XML-документации по summary
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Study", Version = "v1" });
 
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
