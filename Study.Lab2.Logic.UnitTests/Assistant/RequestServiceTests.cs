@@ -3,7 +3,7 @@ using Moq.Protected;
 using Study.Lab2.Logic.Assistant;
 using System.Net;
 
-namespace Study.Lab2.Tests
+namespace Study.Lab2.Logic.UnitTests.Assistant
 {
     [TestFixture]
     public class RequestServiceTests
