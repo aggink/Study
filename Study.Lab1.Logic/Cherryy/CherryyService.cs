@@ -1,6 +1,7 @@
-﻿using Study.Lab1.Logic.Interfaces;
-using Study.Lab1.Logic.Interfaces.Cherryy.Task2;
+﻿using Study.Lab1.Logic.Cherryy.Task2;
+using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Interfaces.Cherryy.Task1;
+using Study.Lab1.Logic.Interfaces.Cherryy.Task2;
 
 namespace Study.Lab1.Logic.Cherryy
 {
@@ -38,7 +39,19 @@ namespace Study.Lab1.Logic.Cherryy
         }
         public void RunTask2()
         {
-            throw new NotImplementedException();
+            var date = DateTime.Now;
+
+            var americanFormat = new AmericanDateTimeFormatter();
+            Console.WriteLine(americanFormat.FormatDateTime(date));
+
+            var europeanFormat = new EuropeanDateTimeFormatter();
+            Console.WriteLine(europeanFormat.FormatDateTime(date));
+
+            var americanDecorator = new AmericanDateFormatterDecorator(americanFormat);
+            Console.WriteLine(americanDecorator.FormatDateTime(date));
+
+            var europeanDecorator = new EuropeanDateFormatterDecorator(europeanFormat);
+            Console.WriteLine(europeanDecorator.FormatDateTime(date));
         }
 
         public void RunTask3()
