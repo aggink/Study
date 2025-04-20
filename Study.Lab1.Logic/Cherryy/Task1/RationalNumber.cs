@@ -1,6 +1,4 @@
-﻿using Study.Lab1.Logic.Interfaces.Cherryy.Task1;
-
-namespace Study.Lab1.Logic.Interfaces.Cherryy.Task1;
+﻿namespace Study.Lab1.Logic.Interfaces.Cherryy.Task1;
 
 public class RationalNumber : IRationalNum
 {
@@ -11,7 +9,7 @@ public class RationalNumber : IRationalNum
     public RationalNumber(int numerator, int denominator)
     {
         if (denominator == 0)
-            throw new ArgumentException("Знаменатель не может быть нулём.");
+            throw new ArgumentException("Знаменатель не может быть нулём.", nameof(denominator));
 
         if (denominator < 0)
         {
@@ -19,8 +17,8 @@ public class RationalNumber : IRationalNum
             denominator = -denominator;
         }
 
-
         int gcd = GreatestCommonDivisor(Math.Abs(numerator), Math.Abs(denominator));
+
         Numerator = numerator / gcd;
         Denominator = denominator / gcd;
     }
@@ -51,6 +49,7 @@ public class RationalNumber : IRationalNum
     {
         if (b.Numerator == 0)
             throw new DivideByZeroException("Невозможно разделить на ноль.");
+
         int numerator = a.Numerator * b.Denominator;
         int denominator = a.Denominator * b.Numerator;
         return new RationalNumber(numerator, denominator);
@@ -99,6 +98,7 @@ public class RationalNumber : IRationalNum
         {
             return this == other;
         }
+
         return false;
     }
 
@@ -115,6 +115,7 @@ public class RationalNumber : IRationalNum
             b = a % b;
             a = temp;
         }
+
         return a;
     }
 
@@ -122,6 +123,7 @@ public class RationalNumber : IRationalNum
     {
         if (Denominator == 1)
             return Numerator.ToString();
+
         return $"{Numerator}/{Denominator}";
     }
     #endregion

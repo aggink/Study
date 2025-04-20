@@ -37,6 +37,7 @@ namespace Study.Lab1.Logic.Cherryy
                           $"d>=b: {d >= b}\n"
             );
         }
+
         public void RunTask2()
         {
             var date = DateTime.Now;
