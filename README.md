@@ -777,6 +777,10 @@ Study.Lab2.Logic.Interfaces
 - [MediatR - Wiki](https://github.com/jbogard/MediatR/wiki)
 - [CQRS and MediatR in ASP.NET Core - Building Scalable Systems](https://codewithmukesh.com/blog/cqrs-and-mediatr-in-aspnet-core/)
 
+### 5️⃣ Docker
+
+- [Docker Compose](https://docs.docker.com/compose/)
+
 <h2 id="лаб-3-задачи-студентов">📑 Задачи студентов</h2>
 
 ### 🎯 Цель:
