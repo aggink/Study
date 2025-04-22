@@ -5,9 +5,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Study.Lab1.Logic.Interfaces\Study.Lab1.Logic.Interfaces.csproj" />
   </ItemGroup>
-	
-  <ItemGroup>
-    <Folder Include="kinkiss1\Task2\" />
-  </ItemGroup>
 
 </Project>

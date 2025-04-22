@@ -1,4 +1,5 @@
 ﻿using Study.Lab1.Logic.Assistant;
+using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
@@ -17,12 +18,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 4;
 
     public static void Main()
     {
@@ -68,6 +69,8 @@ public static class Program
                 return new SelestzService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
+            case ("idb-23-02", 4):
+                return new brnvikaService();
             default:
                 throw new NotSupportedException();
         }
