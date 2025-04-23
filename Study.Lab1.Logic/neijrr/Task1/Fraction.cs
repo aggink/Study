@@ -2,15 +2,15 @@ using Study.Lab1.Logic.Interfaces.neijrr.Task1;
 namespace Study.Lab1.Logic.neijrr
 {
     /// <summary>
-    /// Дробное число
+    /// Дробное число, хранящееся в виде числителя и знаменателя
     /// </summary>
-    public class Fraction : IRationalNumber
+    public class Fraction : IRationalNumber, IComparable
     {
         private int _numerator;
         public int Numerator
         {
             get { return _numerator; }
-            set { _numerator = value; _simplify(); }
+            set { _numerator = value; Simplify(); }
         }
         private int _denominator;
         public int Denominator
@@ -19,7 +19,7 @@ namespace Study.Lab1.Logic.neijrr
             set
             {
                 if (value == 0) { throw new DivideByZeroException(); }
-                _denominator = value; _simplify();
+                _denominator = value; Simplify();
             }
         }
 
@@ -28,18 +28,24 @@ namespace Study.Lab1.Logic.neijrr
             if (denominator == 0) { throw new DivideByZeroException(); }
             _numerator = numerator;
             _denominator = denominator;
-            _simplify();
+            Simplify();
         }
 
-        private void _simplify()
+        /// <summary>
+        /// Упростить дробь, перенеся знак минус из знаменателя
+        /// и сократив числитель и знаменатель на их наибольший общий делитель
+        /// </summary>
+        private void Simplify()
         {
+            // Перенос знака
             if (_denominator < 0)
             {
                 _numerator = -_numerator;
                 _denominator = -_denominator;
             }
 
-            int gcd = MathHelper.GCD(_numerator, _denominator); // Наибольший общий делитель числителя и знаменателя
+            // Наибольший общий делитель числителя и знаменателя
+            int gcd = MathHelper.GCD(_numerator, _denominator);
             if (gcd > 1)    // Дробь можно сократить
             {
                 _numerator /= gcd;
@@ -52,7 +58,7 @@ namespace Study.Lab1.Logic.neijrr
             // Если делитель равен 1 (целое число), вывести только знаменатель
             if (_denominator == 1) { return _numerator.ToString(); }
             // Иначе вывести дробь
-            return $"{_numerator.ToString()}/{_denominator.ToString()}";
+            return $"{_numerator}/{_denominator}";
         }
 
         #region MathOperators
@@ -128,16 +134,18 @@ namespace Study.Lab1.Logic.neijrr
 
         public override bool Equals(object obj)
         {
-            if (obj == null || !(obj is Fraction))
-            {
-                return false;
-            }
+            if (obj == null || obj is not Fraction) return false;
             return this == (Fraction)obj;
         }
 
-        public override int GetHashCode()
+        public override int GetHashCode() => (_numerator, _denominator).GetHashCode();
+
+        public int CompareTo(object obj)
         {
-            throw new NotImplementedException();
+            if (obj == null || obj is not Fraction) throw new ArgumentException(
+                $"Передан объект типа {obj.GetType()}, ожидался объект типа Fraction"
+            );
+            return (_numerator * ((Fraction)obj)._denominator).CompareTo(((Fraction)obj)._numerator * _denominator);
         }
 
         #endregion CompOperators
