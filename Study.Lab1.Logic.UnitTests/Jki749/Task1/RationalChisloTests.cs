@@ -1,7 +1,6 @@
 ﻿using Study.Lab1.Logic.Jki749.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.Jki749.Task1
-
 {
     [TestFixture]
     public class RationalChisloTests
