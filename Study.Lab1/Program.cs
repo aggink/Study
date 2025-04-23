@@ -9,6 +9,7 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.Cherryy;
+using Study.Lab1.Logic.neijrr;
 
 public static class Program
 {
@@ -77,6 +78,8 @@ public static class Program
                 return new EldarovskiyService();
             case ("idb-23-03", 22):
                 return new Jki749Service();
+            case ("idb-23-03", 6):
+                return new neijrrService();
             default:
                 throw new NotSupportedException();
         }
