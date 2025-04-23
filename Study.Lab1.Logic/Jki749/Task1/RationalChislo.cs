@@ -2,7 +2,7 @@
 
 namespace Study.Lab1.Logic.Jki749.Task1;
 
-class RationalChislo : IRationalChislo
+public class RationalChislo : IRationalChislo
 {
     public int Numerator { get; private set; }
     public int Denominator { get; private set; }
@@ -11,6 +11,13 @@ class RationalChislo : IRationalChislo
     {
         Numerator = numerator;
         Denominator = denominator;
+
+        if (Denominator < 0 && Numerator < 0)
+        {
+            Numerator *= -1;
+            Denominator *= -1;
+
+        }
 
         if (Denominator == 0)
         {
@@ -22,6 +29,9 @@ class RationalChislo : IRationalChislo
     {
         if (Denominator == 1)
             return $"{Numerator}";
+
+        if (Denominator == 0)
+            return $"Знаменатель не должен быть нулем";
 
         return $"{Numerator}/{Denominator}";
     }
@@ -57,9 +67,59 @@ class RationalChislo : IRationalChislo
         return new RationalChislo(a.Numerator * b.Numerator, a.Denominator * b.Denominator);
     }
 
+    public static RationalChislo operator /(RationalChislo a, RationalChislo b)
+    {
+
+        return new RationalChislo(a.Numerator * b.Denominator, a.Denominator * b.Numerator);
+    }
+
     public static RationalChislo operator +(RationalChislo a, RationalChislo b)
     {
 
         return new RationalChislo(a.Numerator * b.Denominator + b.Numerator * a.Denominator, a.Denominator * b.Denominator);
     }
+
+    public static RationalChislo operator -(RationalChislo a, RationalChislo b)
+    {
+
+        return new RationalChislo(a.Numerator * b.Denominator - b.Numerator * a.Denominator, a.Denominator * b.Denominator);
+    }
+
+
+    public static bool operator ==(RationalChislo a, RationalChislo b)
+    {
+        if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            return true;
+
+        if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+            return false;
+
+        return a.Numerator * b.Denominator == b.Numerator * a.Denominator;
+    }
+
+    public static bool operator !=(RationalChislo a, RationalChislo b)
+    {
+        return !(a == b);
+    }
+
+    public static bool operator >(RationalChislo a, RationalChislo b)
+    {
+        return a.Numerator * b.Denominator > b.Numerator * a.Denominator;
+    }
+
+    public static bool operator <(RationalChislo a, RationalChislo b)
+    {
+        return a.Numerator * b.Denominator < b.Numerator * a.Denominator;
+    }
+
+    public static bool operator >=(RationalChislo a, RationalChislo b)
+    {
+        return a.Numerator * b.Denominator >= b.Numerator * a.Denominator;
+    }
+
+    public static bool operator <=(RationalChislo a, RationalChislo b)
+    {
+        return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
+    }
+
 }
