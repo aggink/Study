@@ -6,221 +6,88 @@ namespace Study.Lab1.Logic.UnitTests.neijrr.Task1
     public class Task1Tests
     {
         [Test]
-        public void Constructor_RegularCheck()
+        public void Constructor()
         {
-            var frac = new Fraction(4, 6);
-            Assert.That(frac.Numerator == 2);
-            Assert.That(frac.Denominator == 3);
+            var a = new Fraction(4, 6);
+            var b = new Fraction(1, -2);
+            Assert.Multiple(() =>
+            {
+                Assert.That(a.Numerator, Is.EqualTo(2), "Ошибка в числителе при упрощении дроби");
+                Assert.That(a.Denominator, Is.EqualTo(3), "Ошибка в знаменателе при упрощении дроби");
+                Assert.That(b.Numerator, Is.EqualTo(-1), "Ошибка в числителе при переносе знака");
+                Assert.That(b.Denominator, Is.EqualTo(2), "Ошибка в знаменателе при переносе знака");
+                Assert.Throws<DivideByZeroException>(() => new Fraction(1, 0), "Допущено деление на 0");
+            });
         }
 
         [Test]
-        public void Constructor_DivByZeroCheck()
-        {
-            Assert.Throws<DivideByZeroException>(() => new Fraction(1, 0));
-        }
-
-        [Test]
-        public void Operator_Addition_SameDenominator()
+        public void Math_Operators()
         {
             var a = new Fraction(1, 5);
             var b = new Fraction(2, 5);
-            var result = a + b;
-            Assert.That(result, Is.EqualTo(new Fraction(3, 5)));
+            var c = new Fraction(2, 3);
+            var r1 = a + b;    // 3/5
+            var r2 = a + c;    // 13/15
+            var r3 = b - a;    // 1/5
+            var r4 = c - a;    // 7/15
+            var r5 = b * c;    // 4/15
+            var r6 = c / a;    // 10/3
+            var r7 = b / a;    // 2
+            var r8 = -b;       // -2/5
+            Assert.Multiple(() =>
+            {
+                Assert.That(r1, Is.EqualTo(new Fraction(3, 5)), "Ошибка в сложении дробей с одинаковым делителем");
+                Assert.That(r2, Is.EqualTo(new Fraction(13, 15)), "Ошибка в сложении дробей с разными делителями");
+                Assert.That(r3, Is.EqualTo(new Fraction(1, 5)), "Ошибка в вычитании дробей с одинаковым делителем");
+                Assert.That(r4, Is.EqualTo(new Fraction(7, 15)), "Ошибка в вычитании дробей с разными делителями");
+                Assert.That(r5, Is.EqualTo(new Fraction(4, 15)), "Ошибка в умножении дробей");
+                Assert.That(r6, Is.EqualTo(new Fraction(10, 3)), "Ошибка в делении дробей");
+                Assert.That(r7, Is.EqualTo(new Fraction(2, 1)), "Ошибка в сокращении при делении дробей");
+                Assert.That(r8, Is.EqualTo(new Fraction(-2, 5)), "Ошибка при унарном отрицании");
+            });
         }
 
         [Test]
-        public void Operator_Addition_DifferentDenominator()
+        public void Comparison_Operators()
         {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(1, 3);
-            var result = a + b;
-            Assert.That(result, Is.EqualTo(new Fraction(5, 6)));
-        }
-
-        [Test]
-        public void Operator_Subtraction_SameDenominator()
-        {
-            var a = new Fraction(4, 5);
+            var a = new Fraction(1, 5);
             var b = new Fraction(2, 5);
-            var result = a - b;
-            Assert.That(result, Is.EqualTo(new Fraction(2, 5)));
+            var c = new Fraction(3, 5);
+            var d = new Fraction(2, 5);
+            Assert.Multiple(() =>
+            {
+                Assert.That(b, Is.EqualTo(d), "Ошибка при сравнении: a == b -> False при a == b");
+                Assert.That(a, Is.Not.EqualTo(b), "Ошибка при сравнении: a != b -> True при a != b");
+
+                Assert.That(a, Is.LessThan(b), "Ошибка при сравнении: a < b -> False при a < b");
+                Assert.That(b, Is.Not.LessThan(d), "Ошибка при сравнении: a < b -> True при a == b");
+                Assert.That(c, Is.Not.LessThan(b), "Ошибка при сравнении: a < b -> True при a > b");
+
+                Assert.That(a, Is.LessThanOrEqualTo(b), "Ошибка при сравнении: a <= b -> False при a < b");
+                Assert.That(b, Is.LessThanOrEqualTo(d), "Ошибка при сравнении: a <= b -> False при a == b");
+                Assert.That(b, Is.Not.LessThanOrEqualTo(c), "Ошибка при сравнении: a <= b -> True при a > b");
+
+                Assert.That(b, Is.GreaterThan(a), "Ошибка при сравнении: a > b -> False при a > b");
+                Assert.That(b, Is.Not.GreaterThan(d), "Ошибка при сравнении: a > b -> True при a == b");
+                Assert.That(a, Is.Not.GreaterThan(b), "Ошибка при сравнении: a > b -> True при a < b");
+
+                Assert.That(b, Is.GreaterThanOrEqualTo(a), "Ошибка при сравнении: a >= b -> False при a > b");
+                Assert.That(b, Is.GreaterThanOrEqualTo(d), "Ошибка при сравнении: a >= b -> False при a == b");
+                Assert.That(a, Is.Not.GreaterThanOrEqualTo(b), "Ошибка при сравнении: a >= b -> True при a < b");
+
+            });
         }
 
         [Test]
-        public void Operator_Subtraction_DifferentDenominator()
+        public void ToString_Func()
         {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(1, 3);
-            var result = a - b;
-            Assert.That(result, Is.EqualTo(new Fraction(1, 6)));
-        }
-
-        [Test]
-        public void Operator_Negation()
-        {
-            var frac = new Fraction(2, 5);
-            var neg = -frac;
-            Assert.That(neg, Is.EqualTo(new Fraction(-2, 5)));
-        }
-
-        [Test]
-        public void Operator_Multiplication()
-        {
-            var a = new Fraction(2, 5);
-            var b = new Fraction(3, 7);
-            var result = a * b;
-            Assert.That(result, Is.EqualTo(new Fraction(6, 35)));
-        }
-
-        [Test]
-        public void Operator_Division()
-        {
-            var a = new Fraction(4, 15);
-            var b = new Fraction(2, 3);
-            var result = a / b;
-            Assert.That(result, Is.EqualTo(new Fraction(2, 5)));
-        }
-
-        [Test]
-        public void Operator_Equality_True()
-        {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(2, 4);
-            Assert.That(a == b);
-        }
-
-        [Test]
-        public void Operator_Equality_False()
-        {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(1, 4);
-            Assert.That(!(a == b));
-        }
-
-        [Test]
-        public void Operator_Inequality_True()
-        {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(1, 4);
-            Assert.That(a != b);
-        }
-
-        [Test]
-        public void Operator_Inequality_False()
-        {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(2, 4);
-            Assert.That(!(a != b));
-        }
-
-        [Test]
-        public void Operator_Less_True()
-        {
-            var a = new Fraction(2, 5);
-            var b = new Fraction(3, 5);
-            Assert.That(a < b);
-        }
-
-        [Test]
-        public void Operator_Less_False()
-        {
-            var a = new Fraction(3, 2);
-            var b = new Fraction(2, 4);
-            Assert.That(!(a < b));
-        }
-
-        [Test]
-        public void Operator_Less_Equal()
-        {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(2, 4);
-            Assert.That(!(a < b));
-        }
-
-        [Test]
-        public void Operator_LessOrEq_True()
-        {
-            var a = new Fraction(2, 5);
-            var b = new Fraction(3, 5);
-            Assert.That(a <= b);
-        }
-
-        [Test]
-        public void Operator_LessOrEq_False()
-        {
-            var a = new Fraction(3, 2);
-            var b = new Fraction(2, 4);
-            Assert.That(!(a <= b));
-        }
-
-        [Test]
-        public void Operator_LessOrEq_Equal()
-        {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(2, 4);
-            Assert.That(a <= b);
-        }
-
-        [Test]
-        public void Operator_Greater_True()
-        {
-            var a = new Fraction(3, 5);
-            var b = new Fraction(2, 5);
-            Assert.That(a > b);
-        }
-
-        [Test]
-        public void Operator_Greater_False()
-        {
-            var a = new Fraction(2, 4);
-            var b = new Fraction(3, 5);
-            Assert.That(!(a > b));
-        }
-
-        [Test]
-        public void Operator_Greater_Equal()
-        {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(2, 4);
-            Assert.That(!(a > b));
-        }
-
-        [Test]
-        public void Operator_GreaterOrEq_True()
-        {
-            var a = new Fraction(3, 5);
-            var b = new Fraction(2, 5);
-            Assert.That(a >= b);
-        }
-
-        [Test]
-        public void Operator_GreaterOrEq_False()
-        {
-            var a = new Fraction(2, 4);
-            var b = new Fraction(3, 5);
-            Assert.That(!(a >= b));
-        }
-
-        [Test]
-        public void Operator_GreaterOrEq_Equal()
-        {
-            var a = new Fraction(1, 2);
-            var b = new Fraction(2, 4);
-            Assert.That(a >= b);
-        }
-
-        [Test]
-        public void ToString_Regular()
-        {
-            var frac = new Fraction(2, 3);
-            Assert.That(frac.ToString() == "2/3");
-        }
-
-        [Test]
-        public void ToString_Denominator_One()
-        {
-            var frac = new Fraction(3, 1);
-            Assert.That(frac.ToString() == "3");
+            var a = new Fraction(2, 3);
+            var b = new Fraction(3, 1);
+            Assert.Multiple(() =>
+            {
+                Assert.That(a.ToString(), Is.EqualTo("2/3"), "Не работает перевод в строку");
+                Assert.That(b.ToString(), Is.EqualTo("3"), "Не работает упрощённая запись дроби");
+            });
         }
 
     }
