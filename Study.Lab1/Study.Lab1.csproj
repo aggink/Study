@@ -4,9 +4,6 @@
 
   <PropertyGroup>
   	<OutputType>Exe</OutputType>
-  	<AnalysisLevel>none</AnalysisLevel>
-  	<EnableNETAnalyzers>False</EnableNETAnalyzers>
-  	<EnforceCodeStyleInBuild>False</EnforceCodeStyleInBuild>
   </PropertyGroup>
 	
   <ItemGroup>
