@@ -12,7 +12,9 @@ namespace Study.Lab1.Logic.neijrr
 
         public Fraction(int numerator, int denominator)
         {
-            if (denominator == 0) { throw new DivideByZeroException(); }
+            if (denominator == 0)
+                throw new DivideByZeroException("Делитель не может быть равен нулю");
+
             _numerator = numerator;
             _denominator = denominator;
             Simplify();
@@ -34,7 +36,8 @@ namespace Study.Lab1.Logic.neijrr
             set
             {
                 if (value == 0)
-                    throw new DivideByZeroException();
+                    throw new DivideByZeroException("Делитель не может быть равен нулю");
+
                 _denominator = value;
                 Simplify();
             }
@@ -46,6 +49,7 @@ namespace Study.Lab1.Logic.neijrr
             // Если делитель равен 1 (целое число), вывести только знаменатель
             if (_denominator == 1)
                 return _numerator.ToString();
+
             // Иначе вывести дробь
             return $"{_numerator}/{_denominator}";
         }
@@ -123,7 +127,9 @@ namespace Study.Lab1.Logic.neijrr
 
         public override bool Equals(object obj)
         {
-            if (obj == null || obj is not Fraction) return false;
+            if (obj == null || obj is not Fraction)
+                return false;
+
             return this == (Fraction)obj;
         }
 
@@ -134,6 +140,7 @@ namespace Study.Lab1.Logic.neijrr
             if (obj == null || obj is not Fraction) throw new ArgumentException(
                 $"Передан объект типа {obj.GetType()}, ожидался объект типа Fraction"
             );
+
             return (_numerator * ((Fraction)obj)._denominator).CompareTo(((Fraction)obj)._numerator * _denominator);
         }
 
@@ -153,7 +160,7 @@ namespace Study.Lab1.Logic.neijrr
             }
 
             // Наибольший общий делитель числителя и знаменателя
-            int gcd = MathHelper.GCD(_numerator, _denominator);
+            int gcd = neijrrService.GCD(_numerator, _denominator);
             if (gcd > 1)    // Дробь можно сократить
             {
                 _numerator /= gcd;
