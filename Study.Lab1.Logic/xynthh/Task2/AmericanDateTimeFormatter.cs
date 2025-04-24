@@ -1,6 +1,6 @@
+using Study.Lab1.Logic.Interfaces.xynthh.Task2;
 using System.Globalization;
 using System.Text;
-using Study.Lab1.Logic.Interfaces.xynthh.Task2;
 
 namespace Study.Lab1.Logic.xynthh.Task2;
 
