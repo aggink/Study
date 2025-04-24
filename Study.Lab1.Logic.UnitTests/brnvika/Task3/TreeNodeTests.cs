@@ -1,5 +1,6 @@
-﻿namespace Study.Lab1.Logic.UnitTests.brnvika.Task3;
-using Study.Lab1.Logic.brnvika.Task3;
+﻿using Study.Lab1.Logic.brnvika.Task3;
+
+namespace Study.Lab1.Logic.UnitTests.brnvika.Task3;
 
 [TestFixture]
 public class TreeNodeTests
