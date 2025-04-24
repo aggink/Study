@@ -1,5 +1,6 @@
 ﻿using Study.Lab1.Logic.Interfaces.brnvika.Task2;
 using System.Text;
+
 namespace Study.Lab1.Logic.brnvika.Task2;
 
 public class AddNewSeparator : BaseDateDecorator
@@ -14,9 +15,11 @@ public class AddNewSeparator : BaseDateDecorator
     public override string FormatDate(DateTime date)
     {
         var DecorateDate = new StringBuilder();
-        string StringDate = _dateFormatter.FormatDate(date);
+        var StringDate = _dateFormatter.FormatDate(date);
+
         int CountNum = 0;
         int fl = 0;
+
         for (int i = 0; i < StringDate.Length; i++)
         {
             IsNumber(StringDate[i], ref CountNum);
@@ -29,16 +32,18 @@ public class AddNewSeparator : BaseDateDecorator
                 i++;
             }
         }
+
         return DecorateDate.ToString();
-        throw new NotImplementedException();
     }
 
     public override string FormatTime(DateTime date)
     {
         var DecorateTime = new StringBuilder();
         string StringDate = _dateFormatter.FormatTime(date);
+
         int CountNum = 0;
         int fl = 0;
+
         for (int i = 0; i < StringDate.Length; i++)
         {
             IsNumber(StringDate[i], ref CountNum);
@@ -51,13 +56,14 @@ public class AddNewSeparator : BaseDateDecorator
                 i++;
             }
         }
+
         return DecorateTime.ToString();
-        throw new NotImplementedException();
     }
 
     private void IsNumber(char c, ref int count)
     {
-        string numbers = "0123456789";
+        var numbers = "0123456789";
+
         for (int i = 0; i < 10; i++)
         {
             if (c == numbers[i])

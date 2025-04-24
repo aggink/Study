@@ -1,6 +1,5 @@
 ﻿using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
-using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.eldarovskiy;
 using Study.Lab1.Logic.Interfaces;
@@ -79,8 +78,6 @@ public static class Program
                 return new EldarovskiyService();
             case ("idb-23-03", 22):
                 return new Jki749Service();
-            case ("idb-23-02", 4):
-                return new brnvikaService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
             default:

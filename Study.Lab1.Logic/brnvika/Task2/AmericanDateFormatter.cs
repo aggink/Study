@@ -6,11 +6,11 @@ public class AmericanDateFormatter : IDateFormatter
 {
     public string FormatDate(DateTime date)
     {
-        return date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+        return date.ToString("d", new CultureInfo("en-US"));
     }
 
     public string FormatTime(DateTime time)
     {
-        return time.ToString("hh:mm tt", CultureInfo.InvariantCulture);
+        return time.ToString("T", new CultureInfo("en-US"));
     }
 }

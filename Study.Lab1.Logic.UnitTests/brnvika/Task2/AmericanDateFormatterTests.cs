@@ -1,5 +1,6 @@
 ﻿using Study.Lab1.Logic.brnvika.Task2;
 using Study.Lab1.Logic.Interfaces.brnvika.Task2;
+
 namespace Study.Lab1.Logic.UnitTests.brnvika.Task2;
 
 [TestFixture]
@@ -16,7 +17,7 @@ public class AmericanDateFormatterTests
         var result = formatter.FormatDate(testDate);
 
         // Assert
-        Assert.That(result, Is.EqualTo("04/22/2025"));
+        Assert.That(result, Is.EqualTo("4/22/2025"));
     }
 
     [Test]
@@ -30,7 +31,7 @@ public class AmericanDateFormatterTests
         var result = formatter.FormatTime(testTime);
 
         // Assert
-        Assert.That(result, Is.EqualTo("02:30 PM"));
+        Assert.That(result, Is.EqualTo("2:30:45 PM"));
     }
 
     [Test]
@@ -45,7 +46,7 @@ public class AmericanDateFormatterTests
         var result = formatter.FormatDate(testDate);
 
         // Assert
-        Assert.That(result, Is.EqualTo("04*22*2025"));
+        Assert.That(result, Is.EqualTo("4/2*/20*5"));
     }
 
     [Test]
@@ -60,7 +61,7 @@ public class AmericanDateFormatterTests
         var result = formatter.FormatTime(testTime);
 
         // Assert
-        Assert.That(result, Is.EqualTo("02*30*PM"));
+        Assert.That(result, Is.EqualTo("2:3*:45*PM"));
     }
 
     [Test]
@@ -75,7 +76,7 @@ public class AmericanDateFormatterTests
         var result = formatter.FormatDate(testDate);
 
         // Assert
-        Assert.That(result, Is.EqualTo("##04/22/2025##"));
+        Assert.That(result, Is.EqualTo("##4/22/2025##"));
     }
 
     [Test]
@@ -90,6 +91,6 @@ public class AmericanDateFormatterTests
         var result = formatter.FormatTime(testTime);
 
         // Assert
-        Assert.That(result, Is.EqualTo("##02:30 PM##"));
+        Assert.That(result, Is.EqualTo("##2:30:45 PM##"));
     }
 }

@@ -44,8 +44,11 @@ namespace Study.Lab1.Logic.brnvika
         {
             var currentDateTime = DateTime.Now;
             IDateFormatter DateTimeFormatter = new AmericanDateFormatter();
+
             bool fl = true;
+
             Console.WriteLine("Программа по работе с форматом даты и времени\n0) Взять текущую дату и время\n1) Изменить разделитель\n2) Обособить символами с обоих сторон\n3) Перевести в европейский стиль\n4) Перевести в американский стиль\n5) Вывести дату и время\n6) Завершить работу программы\n");
+
             while (fl)
             {
                 Console.WriteLine("Введите номер инструкции: ");
