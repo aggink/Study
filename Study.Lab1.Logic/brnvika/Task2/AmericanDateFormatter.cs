@@ -1,6 +1,7 @@
-﻿namespace Study.Lab1.Logic.brnvika.Task2;
-using Study.Lab1.Logic.Interfaces.brnvika.Task2;
+﻿using Study.Lab1.Logic.Interfaces.brnvika.Task2;
 using System.Globalization;
+
+namespace Study.Lab1.Logic.brnvika.Task2;
 
 public class AmericanDateFormatter : IDateFormatter
 {
