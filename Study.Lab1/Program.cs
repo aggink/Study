@@ -11,6 +11,7 @@ using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.gegemonTV;
 
 public static class Program
 {
@@ -22,12 +23,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-03";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 15;
 
     public static void Main()
     {
@@ -81,6 +82,8 @@ public static class Program
                 return new Jki749Service();
             case ("idb-23-02", 4):
                 return new brnvikaService();
+            case ("idb-23-03", 15):
+                return new gegemonTVService();
             default:
                 throw new NotSupportedException();
         }
