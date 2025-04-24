@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Study.Lab1.Logic.UnitTests.kinkiss1.Task2;
 
-public class EuropeanTests
+public class EuropeanDateFormatTests
 {
     [Test]
     public void FormatDateTime_ReturnsNonEmptyString()

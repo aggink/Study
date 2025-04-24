@@ -11,7 +11,7 @@ namespace Study.Lab1.Logic.kinkiss1.Task2
         public string FormatDateTime()
         {
             var us = new StringBuilder();
-            us.Append(DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt", _culture)); // Добавлено время
+            us.Append(DateTime.Now.ToString("g", _culture)); // Добавлено время
             return us.ToString();
         }
     }

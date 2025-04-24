@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Study.Lab1.Logic.UnitTests.kinkiss1.Task2;
 
-public class AmericanTests
+public class AmericanDateFormatTests
 {
     [Test]
     public void FormatDateTime_ReturnsNonEmptyString()
@@ -56,5 +56,4 @@ public class AmericanTests
         // Assert
         Assert.That(result, Does.Not.Match(@".*\s(AM|PM)$")); // Проверяем, что не используется AM/PM
     }
-
 }
