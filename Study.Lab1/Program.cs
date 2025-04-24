@@ -2,6 +2,7 @@
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.eldarovskiy;
+using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
