@@ -1,4 +1,5 @@
 using Study.Lab1.Logic.Interfaces.neijrr.Task1;
+
 namespace Study.Lab1.Logic.neijrr
 {
     /// <summary>
@@ -7,21 +8,7 @@ namespace Study.Lab1.Logic.neijrr
     public class Fraction : IRationalNumber, IComparable
     {
         private int _numerator;
-        public int Numerator
-        {
-            get { return _numerator; }
-            set { _numerator = value; Simplify(); }
-        }
         private int _denominator;
-        public int Denominator
-        {
-            get { return _denominator; }
-            set
-            {
-                if (value == 0) { throw new DivideByZeroException(); }
-                _denominator = value; Simplify();
-            }
-        }
 
         public Fraction(int numerator, int denominator)
         {
@@ -31,32 +18,34 @@ namespace Study.Lab1.Logic.neijrr
             Simplify();
         }
 
-        /// <summary>
-        /// Упростить дробь, перенеся знак минус из знаменателя
-        /// и сократив числитель и знаменатель на их наибольший общий делитель
-        /// </summary>
-        private void Simplify()
+        public int Numerator
         {
-            // Перенос знака
-            if (_denominator < 0)
+            get { return _numerator; }
+            set
             {
-                _numerator = -_numerator;
-                _denominator = -_denominator;
-            }
-
-            // Наибольший общий делитель числителя и знаменателя
-            int gcd = MathHelper.GCD(_numerator, _denominator);
-            if (gcd > 1)    // Дробь можно сократить
-            {
-                _numerator /= gcd;
-                _denominator /= gcd;
+                _numerator = value;
+                Simplify();
             }
         }
+
+        public int Denominator
+        {
+            get { return _denominator; }
+            set
+            {
+                if (value == 0)
+                    throw new DivideByZeroException();
+                _denominator = value;
+                Simplify();
+            }
+        }
+
 
         public override string ToString()
         {
             // Если делитель равен 1 (целое число), вывести только знаменатель
-            if (_denominator == 1) { return _numerator.ToString(); }
+            if (_denominator == 1)
+                return _numerator.ToString();
             // Иначе вывести дробь
             return $"{_numerator}/{_denominator}";
         }
@@ -150,5 +139,26 @@ namespace Study.Lab1.Logic.neijrr
 
         #endregion CompOperators
 
+        /// <summary>
+        /// Упрощает дробь, перенеся знак минус из знаменателя
+        /// и сократив числитель и знаменатель на их наибольший общий делитель
+        /// </summary>
+        private void Simplify()
+        {
+            // Перенос знака
+            if (_denominator < 0)
+            {
+                _numerator = -_numerator;
+                _denominator = -_denominator;
+            }
+
+            // Наибольший общий делитель числителя и знаменателя
+            int gcd = MathHelper.GCD(_numerator, _denominator);
+            if (gcd > 1)    // Дробь можно сократить
+            {
+                _numerator /= gcd;
+                _denominator /= gcd;
+            }
+        }
     }
 }
