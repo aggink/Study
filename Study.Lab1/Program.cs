@@ -14,17 +14,17 @@ public static class Program
     /// <summary>
     /// Номер выполняемой задачи
     /// </summary>
-    private const int RUN_TASK_NUMBER = 1;
+    private const int RUN_TASK_NUMBER = 2;
 
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "idb-23-03";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 17;
+    private const int PERSON_NUMBER = 1;
 
     public static void Main()
     {
