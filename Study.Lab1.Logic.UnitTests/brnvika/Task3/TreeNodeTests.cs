@@ -1,4 +1,5 @@
 ﻿using Study.Lab1.Logic.brnvika.Task3;
+using System.Text;
 
 namespace Study.Lab1.Logic.UnitTests.brnvika.Task3;
 
@@ -31,6 +32,15 @@ public class TreeNodeTests
 
         var result = parent1.GetAllChildrenValues();
 
-        Assert.That(result, Is.EqualTo("  -> Child 1\r\n    -> Grandchild 1\r\n      -> GrandGrandchild 1.1\r\n      -> GrandGrandchild 1.2\r\n  -> Child 2\r\n    -> Grandchild 2\r\n      -> GrandGrandchild 2.1\r\n"));
+        var sb = new StringBuilder();
+        sb.AppendLine("  -> Child 1");
+        sb.AppendLine("    -> Grandchild 1");
+        sb.AppendLine("      -> GrandGrandchild 1.1");
+        sb.AppendLine("      -> GrandGrandchild 1.2");
+        sb.AppendLine("  -> Child 2");
+        sb.AppendLine("    -> Grandchild 2");
+        sb.AppendLine("      -> GrandGrandchild 2.1");
+
+        Assert.That(result.ToString(), Is.EqualTo(sb.ToString()));
     }
 }

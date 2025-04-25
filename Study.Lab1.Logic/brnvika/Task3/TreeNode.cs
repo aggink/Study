@@ -15,14 +15,14 @@ public class TreeNode<T>(T value) : ITreeNode<T>
         _children.Add(child);
     }
 
-    public string GetAllChildrenValues()
+    public StringBuilder GetAllChildrenValues()
     {
         var result = new StringBuilder();
 
         foreach (var child in Children)
             AppendNodeValue(result, child, 1);
 
-        return result.ToString();
+        return result;
     }
 
     private void AppendNodeValue(StringBuilder sb, ITreeNode<T> node, int level)
