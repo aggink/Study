@@ -7,12 +7,12 @@ public class poroshokService : IRunService
 {
     public void RunTask1()
     {
-        var A = new RationalNumber(1, 2);
-        var B = new RationalNumber(3, 4);
+        var A = new RationalNumber(1, 4);
+        var B = new RationalNumber(3, 8);
         var C = new RationalNumber(5, 3);
-        var D = new RationalNumber(-8, 2);
+        var D = new RationalNumber(-8, 9);
         var E = new RationalNumber(-12, -3);
-        var F = new RationalNumber(0, 1);
+        var F = new RationalNumber(1, 1);
 
         var summary = A + B;
         var summary2 = B + C;

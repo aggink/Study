@@ -5,7 +5,9 @@ namespace Study.Lab1.Logic.poroshok.Task1;
 public class RationalNumber : IRationalNumber
 {
     public int Numerator { get; }
+
     public int Denominator { get; }
+
     public RationalNumber(int Numerator, int Denominator)
     {
 
@@ -14,6 +16,7 @@ public class RationalNumber : IRationalNumber
             Numerator = -Numerator;
             Denominator = -Denominator;
         }
+
         if (Denominator == 0)
         {
             throw new DivideByZeroException("Знаменатель не может быть равен нулю");
@@ -25,6 +28,7 @@ public class RationalNumber : IRationalNumber
     }
 
     #region overloads
+
     public static RationalNumber operator /(RationalNumber a, RationalNumber b)
     {
         int numerator = a.Numerator * b.Denominator;
@@ -86,9 +90,11 @@ public class RationalNumber : IRationalNumber
     {
         return a.Numerator * b.Denominator >= b.Numerator * a.Denominator;
     }
+
     #endregion
 
     #region Methods
+
     public override bool Equals(object other)
     {
         if (other is RationalNumber)
@@ -96,8 +102,10 @@ public class RationalNumber : IRationalNumber
             var number = (RationalNumber)other;
             return this == number;
         }
+
         return false;
     }
+
     public override int GetHashCode()
     {
         return HashCode.Combine(Numerator, Denominator);
@@ -110,6 +118,7 @@ public class RationalNumber : IRationalNumber
         {
             return $"{Numerator} / {Denominator}";
         }
+
         return $"{Numerator}";
     }
 
