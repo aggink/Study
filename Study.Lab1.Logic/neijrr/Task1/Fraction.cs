@@ -66,7 +66,10 @@ namespace Study.Lab1.Logic.neijrr
 
         public static Fraction operator -(Fraction obj1, Fraction obj2)
         {
-            return obj1 + (-obj2);
+            return new Fraction(
+                obj1._numerator * obj2._denominator - obj2._numerator * obj1._denominator,
+                obj1._denominator * obj2._denominator
+            );
         }
 
         public static Fraction operator *(Fraction obj1, Fraction obj2)
