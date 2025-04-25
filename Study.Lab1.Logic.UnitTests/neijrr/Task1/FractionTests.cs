@@ -61,28 +61,27 @@ namespace Study.Lab1.Logic.UnitTests.neijrr.Task1
         {
             var a = new Fraction(1, 5);
             var b = new Fraction(2, 5);
-            var c = new Fraction(3, 5);
-            var d = new Fraction(2, 5);
+            var c = new Fraction(2, 5);
 
             Assert.Multiple(() =>
             {
-                Assert.That(b, Is.EqualTo(d), "Ошибка при сравнении: a == b -> False при a == b");
+                Assert.That(b, Is.EqualTo(c), "Ошибка при сравнении: a == b -> False при a == b");
                 Assert.That(a, Is.Not.EqualTo(b), "Ошибка при сравнении: a != b -> True при a != b");
 
                 Assert.That(a, Is.LessThan(b), "Ошибка при сравнении: a < b -> False при a < b");
-                Assert.That(b, Is.Not.LessThan(d), "Ошибка при сравнении: a < b -> True при a == b");
-                Assert.That(c, Is.Not.LessThan(b), "Ошибка при сравнении: a < b -> True при a > b");
+                Assert.That(b, Is.Not.LessThan(c), "Ошибка при сравнении: a < b -> True при a == b");
+                Assert.That(b, Is.Not.LessThan(a), "Ошибка при сравнении: a < b -> True при a > b");
 
                 Assert.That(a, Is.LessThanOrEqualTo(b), "Ошибка при сравнении: a <= b -> False при a < b");
-                Assert.That(b, Is.LessThanOrEqualTo(d), "Ошибка при сравнении: a <= b -> False при a == b");
-                Assert.That(b, Is.Not.LessThanOrEqualTo(c), "Ошибка при сравнении: a <= b -> True при a > b");
+                Assert.That(b, Is.LessThanOrEqualTo(c), "Ошибка при сравнении: a <= b -> False при a == b");
+                Assert.That(b, Is.Not.LessThanOrEqualTo(a), "Ошибка при сравнении: a <= b -> True при a > b");
 
                 Assert.That(b, Is.GreaterThan(a), "Ошибка при сравнении: a > b -> False при a > b");
-                Assert.That(b, Is.Not.GreaterThan(d), "Ошибка при сравнении: a > b -> True при a == b");
+                Assert.That(b, Is.Not.GreaterThan(c), "Ошибка при сравнении: a > b -> True при a == b");
                 Assert.That(a, Is.Not.GreaterThan(b), "Ошибка при сравнении: a > b -> True при a < b");
 
                 Assert.That(b, Is.GreaterThanOrEqualTo(a), "Ошибка при сравнении: a >= b -> False при a > b");
-                Assert.That(b, Is.GreaterThanOrEqualTo(d), "Ошибка при сравнении: a >= b -> False при a == b");
+                Assert.That(b, Is.GreaterThanOrEqualTo(c), "Ошибка при сравнении: a >= b -> False при a == b");
                 Assert.That(a, Is.Not.GreaterThanOrEqualTo(b), "Ошибка при сравнении: a >= b -> True при a < b");
 
             });
