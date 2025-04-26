@@ -1,6 +1,4 @@
-using Study.Lab1.Logic.Assistant.Task2;
 using Study.Lab1.Logic.Interfaces;
-using Study.Lab1.Logic.kinkiss1.Task2;
 using Study.Lab1.Logic.neijrr.Task2;
 
 namespace Study.Lab1.Logic.neijrr
