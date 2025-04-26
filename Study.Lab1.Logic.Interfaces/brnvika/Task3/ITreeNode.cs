@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Study.Lab1.Logic.Interfaces.brnvika.Task3;
+﻿namespace Study.Lab1.Logic.Interfaces.brnvika.Task3;
 
 public interface ITreeNode<T>
 {
@@ -24,5 +22,5 @@ public interface ITreeNode<T>
     /// Вывод всех дочерних узлов в виде строки
     /// </summary>
     /// <returns>Строка с дочерними узлами</returns>
-    StringBuilder GetAllChildrenValues();
+    string GetAllChildrenValues();
 }

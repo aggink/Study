@@ -41,6 +41,6 @@ public class TreeNodeTests
         sb.AppendLine("    -> Grandchild 2");
         sb.AppendLine("      -> GrandGrandchild 2.1");
 
-        Assert.That(result.ToString(), Is.EqualTo(sb.ToString()));
+        Assert.That(result, Is.EqualTo(sb.ToString()));
     }
 }

@@ -114,7 +114,7 @@ public class brnvikaService : IRunService
         parent1.Add(child12);
 
         Console.WriteLine("Дерево <string>:");
-        Console.WriteLine(parent1.GetAllChildrenValues().ToString());
+        Console.WriteLine(parent1.GetAllChildrenValues());
 
 
         var parent2 = new TreeNode<int>(1);
@@ -139,6 +139,6 @@ public class brnvikaService : IRunService
         parent2.Add(child23);
 
         Console.WriteLine("Дерево <int>:");
-        Console.WriteLine(parent2.GetAllChildrenValues().ToString());
+        Console.WriteLine(parent2.GetAllChildrenValues());
     }
 }
