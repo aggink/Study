@@ -7,6 +7,7 @@ using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.lsokol14l;
+using Study.Lab1.Logic.poroshok;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
@@ -84,6 +85,8 @@ public static class Program
                 return new neijrrService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
+            case ("idb-23-03", 17):
+                return new poroshokService();
             default:
                 throw new NotSupportedException();
         }
