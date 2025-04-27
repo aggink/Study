@@ -2,7 +2,7 @@
 
 public interface IRationalNumber
 {
-    public int Numerator { get; }
+    int Numerator { get; }
 
-    public int Denominator { get; }
+    int Denominator { get; }
 }

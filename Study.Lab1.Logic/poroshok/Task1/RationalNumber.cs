@@ -8,44 +8,55 @@ public class RationalNumber : IRationalNumber
 
     public int Denominator { get; }
 
-    public RationalNumber(int Numerator, int Denominator)
+    public RationalNumber(int numerator, int denominator)
     {
 
-        if (Denominator < 0)
-        {
-            Numerator = -Numerator;
-            Denominator = -Denominator;
-        }
-
-        if (Denominator == 0)
+        if (denominator == 0)
         {
             throw new DivideByZeroException("Знаменатель не может быть равен нулю");
         }
 
-        var Nod = Math.Abs(NOD(Numerator, Denominator));
-        Numerator = Numerator / Nod;
-        Denominator = Denominator / Nod;
+        if (denominator < 0)
+        {
+            numerator = -numerator;
+            denominator = -denominator;
+        }
+
+        var Nod = Math.Abs(NOD(numerator, denominator));
+        Numerator = numerator / Nod;
+        Denominator = denominator / Nod;
     }
 
     #region overloads
 
-    public static RationalNumber operator /(RationalNumber a, RationalNumber b)
+    public static RationalNumber operator +(RationalNumber a, RationalNumber b)
     {
-        int numerator = a.Numerator * b.Denominator;
-        int denominator = a.Denominator * b.Numerator;
+        var numerator = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
+        var denominator = a.Denominator * b.Denominator;
+        return new RationalNumber(numerator, denominator);
+    }
+
+    public static RationalNumber operator -(RationalNumber a, RationalNumber b)
+    {
+        var numerator = a.Numerator * b.Denominator - b.Numerator * a.Denominator;
+        var denominator = a.Denominator * b.Denominator;
         return new RationalNumber(numerator, denominator);
     }
 
     public static RationalNumber operator *(RationalNumber a, RationalNumber b)
     {
-        int numerator = a.Numerator * b.Numerator;
-        int denominator = a.Denominator * b.Denominator;
+        var numerator = a.Numerator * b.Numerator;
+        var denominator = a.Denominator * b.Denominator;
         return new RationalNumber(numerator, denominator);
     }
-    public static RationalNumber operator -(RationalNumber a, RationalNumber b)
+
+    public static RationalNumber operator /(RationalNumber a, RationalNumber b)
     {
-        int numerator = a.Numerator * b.Denominator - b.Numerator * a.Denominator;
-        int denominator = a.Denominator * b.Denominator;
+        if (b.Numerator == 0)
+            throw new DivideByZeroException("Деление на ноль");
+
+        var numerator = a.Numerator * b.Denominator;
+        var denominator = a.Denominator * b.Numerator;
         return new RationalNumber(numerator, denominator);
     }
 
@@ -54,16 +65,14 @@ public class RationalNumber : IRationalNumber
         return new RationalNumber(-a.Numerator, a.Denominator);
     }
 
-    public static RationalNumber operator +(RationalNumber a, RationalNumber b)
-    {
-        int numerator = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
-        int denominator = a.Denominator * b.Denominator;
-        return new RationalNumber(numerator, denominator);
-    }
-
     public static bool operator ==(RationalNumber a, RationalNumber b)
     {
-        return a.Numerator == b.Numerator && a.Denominator == b.Denominator;
+        if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            return true;
+        if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+            return false;
+
+        return a.Numerator * b.Denominator == b.Numerator * a.Denominator;
     }
 
     public static bool operator !=(RationalNumber a, RationalNumber b)
@@ -71,24 +80,24 @@ public class RationalNumber : IRationalNumber
         return !(a == b);
     }
 
-    public static bool operator <(RationalNumber a, RationalNumber b)
-    {
-        return a.Numerator * b.Denominator < b.Numerator * a.Denominator;
-    }
-
     public static bool operator >(RationalNumber a, RationalNumber b)
     {
         return a.Numerator * b.Denominator > b.Numerator * a.Denominator;
     }
 
-    public static bool operator <=(RationalNumber a, RationalNumber b)
+    public static bool operator <(RationalNumber a, RationalNumber b)
     {
-        return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
+        return a.Numerator * b.Denominator < b.Numerator * a.Denominator;
     }
 
     public static bool operator >=(RationalNumber a, RationalNumber b)
     {
         return a.Numerator * b.Denominator >= b.Numerator * a.Denominator;
+    }
+
+    public static bool operator <=(RationalNumber a, RationalNumber b)
+    {
+        return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
     }
 
     #endregion
@@ -114,12 +123,10 @@ public class RationalNumber : IRationalNumber
 
     public override string ToString()
     {
-        if (Denominator != 1)
-        {
-            return $"{Numerator} / {Denominator}";
-        }
+        if (Denominator == 1)
+            return $"{Numerator}";
 
-        return $"{Numerator}";
+        return $"{Numerator}/{Denominator}";
     }
 
     private static int NOD(int num, int dem)
