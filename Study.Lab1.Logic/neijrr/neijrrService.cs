@@ -1,4 +1,5 @@
 using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.neijrr.Task1;
 using Study.Lab1.Logic.neijrr.Task2;
 using Study.Lab1.Logic.neijrr.Task3;
 

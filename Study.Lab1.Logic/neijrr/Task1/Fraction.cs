@@ -1,6 +1,6 @@
 using Study.Lab1.Logic.Interfaces.neijrr.Task1;
 
-namespace Study.Lab1.Logic.neijrr
+namespace Study.Lab1.Logic.neijrr.Task1
 {
     /// <summary>
     /// Дробное число, хранящееся в виде числителя и знаменателя
