@@ -14,14 +14,14 @@ namespace Study.Lab1.Logic.UnitTests.neijrr.Task2
             var formatter = new EuropeanDateTimeFormatter();
 
             // Действие
-            var current_time = formatter.DateTime();
-            var epoch_time = formatter.DateTime(DateTime.UnixEpoch);
+            var currentTime = formatter.DateTime();
+            var epochTime = formatter.DateTime(DateTime.UnixEpoch);
 
             // Проверка
             Assert.Multiple(() =>
             {
-                Assert.That(current_time, Is.EqualTo(DateTime.Now.ToString(culture)), "Неверные дата и/или время для текущего времени");
-                Assert.That(epoch_time, Is.EqualTo(DateTime.UnixEpoch.ToString(culture)), "Неверные дата и/или время для указанного времени");
+                Assert.That(currentTime, Is.EqualTo(DateTime.Now.ToString(culture)), "Неверные дата и/или время для текущего времени");
+                Assert.That(epochTime, Is.EqualTo(DateTime.UnixEpoch.ToString(culture)), "Неверные дата и/или время для указанного времени");
             });
         }
 
@@ -37,7 +37,7 @@ namespace Study.Lab1.Logic.UnitTests.neijrr.Task2
             var datetime = formatter.DateTime();
             var date = formatter.Date();
             var time = formatter.Time();
-            var short_time = formatter.Time(includeSeconds: false);
+            var shortTime = formatter.Time(includeSeconds: false);
 
             // Проверка
             // - Пустая строка
@@ -46,7 +46,7 @@ namespace Study.Lab1.Logic.UnitTests.neijrr.Task2
                 Assert.That(datetime, Is.Not.Empty, "DateTime вернул пустую строку");
                 Assert.That(date, Is.Not.Empty, "Date вернул пустую строку");
                 Assert.That(time, Is.Not.Empty, "Time вернул пустую строку");
-                Assert.That(short_time, Is.Not.Empty, "Time без секунд вернул пустую строку");
+                Assert.That(shortTime, Is.Not.Empty, "Time без секунд вернул пустую строку");
             });
             // - Правильность формата
             Assert.Multiple(() =>
