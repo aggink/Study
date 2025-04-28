@@ -18,6 +18,7 @@ using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.chirique_online;
 
 
 public static class Program
@@ -30,12 +31,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 12;
 
     public static void Main()
     {
@@ -105,6 +106,8 @@ public static class Program
                 return new IvanZService();
             case ("idb-23-03", 12):
                 return new alkeiviService();
+            case ("idb-23-02", 12):
+                return new chirique_onlineService();
             default:
                 throw new NotSupportedException();
         }
