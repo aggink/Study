@@ -1,4 +1,4 @@
-using Study.Lab1.Logic.neijrr;
+using Study.Lab1.Logic.neijrr.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.neijrr.Task1
 {
