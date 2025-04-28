@@ -52,7 +52,7 @@ namespace Study.Lab1.Logic.UnitTests.neijrr.Task2
             Assert.Multiple(() =>
             {
                 Assert.That(datetime, Does.Match(@"\d{1,2}/\d{2}/\d{4} \d{1,2}:\d{2}:\d{2} (AM)|(PM)"), "Несоответствует формат DateTime");
-                Assert.That(date, Does.Match(@"\d{1,2}\.\d{2}\.\d{4}"), "Несоответствует формат Date");
+                Assert.That(date, Does.Match(@"\d{1,2}/\d{2}/\d{4}"), "Несоответствует формат Date");
                 Assert.That(time, Does.Match(@"\d{1,2}:\d{2}:\d{2}"), "Несоответствует формат Time");
                 Assert.That(time, Does.Match(@"\d{1,2}:\d{2}"), "Несоответствует формат Time без секунд");
             });

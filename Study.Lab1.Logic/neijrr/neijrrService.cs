@@ -41,11 +41,11 @@ namespace Study.Lab1.Logic.neijrr
 
             Console.WriteLine("Европейский формат:");
             Console.WriteLine(euDateFormatter.Date());
-            Console.WriteLine(euTimeFormatter.Date());
+            Console.WriteLine(euTimeFormatter.Time());
 
             Console.WriteLine("Американский формат:");
             Console.WriteLine(amDateFormatter.Date());
-            Console.WriteLine(amTimeFormatter.Date());
+            Console.WriteLine(amTimeFormatter.Time());
 
             Console.WriteLine("Unix epoch:");
             Console.WriteLine($"Европейский формат: {euFormatter.DateTime(DateTime.UnixEpoch)}");
