@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-
 using Study.Lab1.Logic.gegemonTV.Task1;
 using Study.Lab1.Logic.Interfaces.gegemonTV.Task1;
 
