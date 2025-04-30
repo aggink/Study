@@ -27,7 +27,7 @@ namespace Study.Lab1.Logic.UnitTests.gegemonTV.Task1
             var r1 = new RationalNumber(2, 3);
             var r2 = new RationalNumber(1, 5);
             var sum = r1 + r2;
-            var expected = new RationalNumber(11, 15);
+            var expected = new RationalNumber(13, 15);
             Assert.That(sum, Is.EqualTo(expected), "Операция сложения произведена неверно!");
         }
 
