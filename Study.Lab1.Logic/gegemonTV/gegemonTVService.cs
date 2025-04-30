@@ -1,5 +1,4 @@
 ﻿using Study.Lab1.Logic.Interfaces;
-
 using Study.Lab1.Logic.gegemonTV.Task1;
 using Study.Lab1.Logic.Interfaces.gegemonTV.Task1;
 
@@ -7,7 +6,6 @@ namespace Study.Lab1.Logic.gegemonTV
 {
     public class gegemonTVService : IRunService
     {
-
         public void RunTask1()
         {
             var r1 = new RationalNumber(1, 2);

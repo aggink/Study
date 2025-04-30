@@ -1,8 +1,8 @@
 ﻿using System;
-
 using Study.Lab1.Logic.Interfaces.gegemonTV.Task1;
 
-namespace Study.Lab1.Logic.gegemonTV.Task1 {
+namespace Study.Lab1.Logic.gegemonTV.Task1 
+{
     public class RationalNumber : IRationalNumber
     {
         public long Numerator { get; }
@@ -10,13 +10,20 @@ namespace Study.Lab1.Logic.gegemonTV.Task1 {
 
         public RationalNumber(long numerator, long denomenator)
         {
-            if (denomenator == 0) throw new DivideByZeroException("[ERROR]: Denomenator is equal to 0!");
+            if (denomenator == 0) 
+                throw new DivideByZeroException("[ERROR]: Denomenator is equal to 0!");
+
             if (numerator < 0 && denomenator < 0)
             {
                 numerator = -numerator;
                 denomenator = -denomenator;
             }
-            else if (denomenator < 0) (numerator, denomenator) = (denomenator, numerator);
+            else if (denomenator < 0)
+            {
+                long temp = numerator;
+                numerator = denomenator;
+                denomenator = temp;
+            }
 
             long gcd = GCD((ulong)Math.Abs(numerator), (ulong)Math.Abs(denomenator));
 
@@ -25,7 +32,6 @@ namespace Study.Lab1.Logic.gegemonTV.Task1 {
         }
 
         #region Operators Overloading
-        #region Math Operations
         public static RationalNumber operator +(RationalNumber a, RationalNumber b)
         {
             long numerator = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
@@ -61,9 +67,8 @@ namespace Study.Lab1.Logic.gegemonTV.Task1 {
             long denominator = a.Denominator * b.Numerator;
             return new RationalNumber(numerator, denominator);
         }
-        #endregion
+        
 
-        #region Boolean Operations
         public static bool operator ==(RationalNumber a, RationalNumber b)
         {
             return a.Numerator == b.Numerator && a.Denominator == b.Denominator;
@@ -94,10 +99,8 @@ namespace Study.Lab1.Logic.gegemonTV.Task1 {
             return a.Numerator * b.Denominator >= b.Numerator * a.Denominator;
         }
         #endregion
-        #endregion
 
         #region Methods
-        #region Custom Methods
         private static long GCD(ulong a, ulong b)
         {
             while (a != 0 && b != 0)
@@ -109,9 +112,7 @@ namespace Study.Lab1.Logic.gegemonTV.Task1 {
             }
             return (long) (a | b);
         }
-        #endregion
 
-        #region Override Methods
         public override bool Equals(object obj)
         {
             if (obj is RationalNumber other)
@@ -134,7 +135,6 @@ namespace Study.Lab1.Logic.gegemonTV.Task1 {
 
             return $"{Numerator}/{Denominator}";
         }
-        #endregion
         #endregion
     }
 }
