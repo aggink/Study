@@ -1,8 +1,7 @@
-﻿using Study.Lab1.Logic.Assistant;
+using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.eldarovskiy;
-using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
@@ -11,6 +10,8 @@ using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.Cherryy;
+using Study.Lab1.Logic.neijrr;
 using Study.Lab1.Logic.gegemonTV;
 
 public static class Program
@@ -80,6 +81,8 @@ public static class Program
                 return new EldarovskiyService();
             case ("idb-23-03", 22):
                 return new Jki749Service();
+            case ("idb-23-03", 6):
+                return new neijrrService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
             case ("idb-23-03", 15):
