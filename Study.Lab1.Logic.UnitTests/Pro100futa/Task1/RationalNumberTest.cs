@@ -2,70 +2,69 @@
 
 namespace Study.Lab1.Logic.UnitTests.Pro100futa.Task1;
 
-
 [TestFixture]
 internal class RationalNumberTest
 {
-    [Test]
-    public void Constructor_ValidInput_ShouldInitializeCorrectly()
-    {
-        var A = new RationalNumber(3, 6);
-        Assert.AreEqual(new RationalNumber(1,2),A);
-    }
+	[Test]
+	public void Constructor_ValidInput_ShouldInitializeCorrectly()
+	{
+		var A = new RationalNumber(3, 6);
+		Assert.AreEqual(new RationalNumber(1, 2), A);
+	}
 
-    [Test]
-    public void Operator_Addition_ShouldReturnCorrectResult()
-    {
-        var A = new RationalNumber(2, 9);
-        var B = new RationalNumber(3, 11);
-        var C = new RationalNumber(49, 99);
-        var result = A + B;
-        Assert.AreEqual(C, result);
-    }
+	[Test]
+	public void Operator_Addition_ShouldReturnCorrectResult()
+	{
+		var A = new RationalNumber(2, 9);
+		var B = new RationalNumber(3, 11);
+		var C = new RationalNumber(49, 99);
+		var result = A + B;
+		Assert.AreEqual(C, result);
+	}
 
-    [Test]
-    public void Operator_Subtraction_ShouldReturnCorrectResult()
-    {
-        var A = new RationalNumber(2, 9);
-        var B = new RationalNumber(3, 11);
+	[Test]
+	public void Operator_Subtraction_ShouldReturnCorrectResult()
+	{
+		var A = new RationalNumber(2, 9);
+		var B = new RationalNumber(3, 11);
 		var C = new RationalNumber(-5, 99);
 		var result = A - B;
 		Assert.AreEqual(C, result);
 	}
 
-    [Test]
-    public void Operator_Division_ShouldReturnCorrectResult()
-    {
-        var A = new RationalNumber(3, 9);
-        var B = new RationalNumber(3, 11);
+	[Test]
+	public void Operator_Division_ShouldReturnCorrectResult()
+	{
+		var A = new RationalNumber(3, 9);
+		var B = new RationalNumber(3, 11);
 		var C = new RationalNumber(11, 9);
 		var result = A / B;
 		Assert.AreEqual(C, result);
 	}
 
-    [Test]
-    public void Operator_Multiplication_ShouldReturnCorrectResult()
-    {
-        var A = new RationalNumber(3, 9);
-        var B = new RationalNumber(3, 11);
+	[Test]
+	public void Operator_Multiplication_ShouldReturnCorrectResult()
+	{
+		var A = new RationalNumber(3, 9);
+		var B = new RationalNumber(3, 11);
 		var C = new RationalNumber(1, 11);
 		var result = A * B;
 		Assert.AreEqual(C, result);
 	}
 
-    [Test]
-    public void Operator_Equality_ShouldReturnTrueForEqualRationalNumbers()
-    {
-        var A = new RationalNumber(3, 9);
-        var B = new RationalNumber(1, 3);
-        Assert.IsTrue(A == B);
-    }
+	[Test]
+	public void Operator_Equality_ShouldReturnTrueForEqualRationalNumbers()
+	{
+		var A = new RationalNumber(3, 9);
+		var B = new RationalNumber(1, 3);
+		Assert.IsTrue(A == B);
+	}
 
-    [Test]
-    public void Operator_Inequality_ShouldReturnTrueForDifferentRationalNumbers()
-    {
-        var A = new RationalNumber(3, 9);
-        var B = new RationalNumber(2, 3);
+	[Test]
+	public void Operator_Inequality_ShouldReturnTrueForDifferentRationalNumbers()
+	{
+		var A = new RationalNumber(3, 9);
+		var B = new RationalNumber(2, 3);
 		Assert.IsTrue(A != B);
 	}
 
