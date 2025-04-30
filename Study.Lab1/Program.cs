@@ -1,4 +1,4 @@
-using Study.Lab1.Logic.Assistant;
+﻿using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.eldarovskiy;
@@ -7,11 +7,11 @@ using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.lsokol14l;
+using Study.Lab1.Logic.neijrr;
 using Study.Lab1.Logic.PresvyatoyKabachok;
+using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.Cherryy;
-using Study.Lab1.Logic.neijrr;
 
 public static class Program
 {
@@ -84,6 +84,8 @@ public static class Program
                 return new neijrrService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
+            case ("idb-23-03", 23):
+                return new Pro100futaService();
             default:
                 throw new NotSupportedException();
         }
