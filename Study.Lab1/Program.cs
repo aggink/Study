@@ -12,6 +12,10 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.Cherryy;
+using Study.Lab1.Logic.neijrr;
+using Study.Lab1.Logic.gegemonTV;
+
 
 public static class Program
 {
@@ -28,7 +32,7 @@ public static class Program
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 0;
 
     public static void Main()
     {
@@ -84,6 +88,8 @@ public static class Program
                 return new neijrrService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
+            case ("idb-23-03", 15):
+                return new gegemonTVService();
             case ("idb-23-03", 23):
                 return new Pro100futaService();
             default:
