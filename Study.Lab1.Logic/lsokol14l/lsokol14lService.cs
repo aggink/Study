@@ -57,7 +57,7 @@ public class lsokol14lService : IRunService
         var formattedEuropeanDate = europeanFormatter.FormatDate(dateTime);
         var formattedEuropeanTime = europeanFormatter.FormatTime(dateTime);
 
-        Console.WriteLine($"formattedEuropeanDate - {formattedEuropeanDate}, foramattedEuropeanTime - {formattedEuropeanTime}");
+        Console.WriteLine($"formattedEuropeanDate - {formattedEuropeanDate}, formattedEuropeanTime - {formattedEuropeanTime}");
 
         americanFormatter = new AddBracketsDecorator(americanFormatter);
         americanFormatter = new AddPrefixDecorator(americanFormatter, "**** ");
