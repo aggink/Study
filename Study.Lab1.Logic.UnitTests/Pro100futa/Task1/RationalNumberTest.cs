@@ -1,4 +1,4 @@
-﻿using Study.Lab1.Logic.Pro100futa.Task1;
+using Study.Lab1.Logic.Pro100futa.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.Pro100futa.Task1;
 
