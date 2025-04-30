@@ -2,7 +2,7 @@
 
 namespace Study.Lab1.Logic.Pro100futa.Task1;
 
-public class RationalNumber : IRationalN
+public class RationalNumber : IRationalNumber
 {
 
     public int Numerator { get; }
@@ -20,6 +20,7 @@ public class RationalNumber : IRationalN
                 denominator = -denominator;
                 break;
         }
+
         var NewDenom = Math.Abs(NewDenomFunc(numerator, denominator));
         Numerator = numerator / NewDenom;
         Denominator = denominator / NewDenom;
@@ -131,7 +132,17 @@ public class RationalNumber : IRationalN
         return a;
     }
 
-    public override int GetHashCode()
+    public override bool Equals(object other)
+	{
+		if (other is RationalNumber)
+		{
+			var number = (RationalNumber)other;
+			return this == number;
+		}
+		return false;
+	}
+
+	public override int GetHashCode()
     {
         return HashCode.Combine(Numerator, Denominator);
     }

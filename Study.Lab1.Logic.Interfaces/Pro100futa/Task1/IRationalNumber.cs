@@ -1,6 +1,6 @@
 ﻿namespace Study.Lab1.Logic.Interfaces.Pro100futa.Task1;
 
-public interface IRationalN
+public interface IRationalNumber
 {
     int Numerator { get; }
 
