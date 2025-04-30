@@ -5,9 +5,10 @@
   <PropertyGroup>
   	<OutputType>Exe</OutputType>
   </PropertyGroup>
-	
+
   <ItemGroup>
     <ProjectReference Include="..\Study.Lab1.Logic\Study.Lab1.Logic.csproj" />
+    <ProjectReference Include="..\Study.Lab1.Logic.Interfaces\Study.Lab1.Logic.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
