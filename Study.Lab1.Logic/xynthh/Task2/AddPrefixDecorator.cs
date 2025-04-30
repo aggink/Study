@@ -1,5 +1,5 @@
-using System.Text;
 using Study.Lab1.Logic.Interfaces.xynthh.Task2;
+using System.Text;
 
 namespace Study.Lab1.Logic.xynthh.Task2;
 
@@ -18,8 +18,10 @@ public class AddPrefixDecorator : DateTimeDecoratorBase
     public override string FormatDateTime()
     {
         var sb = new StringBuilder();
+
         sb.Append(_prefix);
         sb.Append(WrappedFormatter.FormatDateTime());
+
         return sb.ToString();
     }
 }

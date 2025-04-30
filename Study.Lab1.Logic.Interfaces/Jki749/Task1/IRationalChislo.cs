@@ -2,4 +2,7 @@
 
 public interface IRationalChislo
 {
+    int Numerator { get; }
+
+    int Denominator { get; }
 }

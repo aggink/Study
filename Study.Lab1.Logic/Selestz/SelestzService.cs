@@ -34,7 +34,6 @@ public class SelestzService : IRunService
                       $"d<=b: {d <= b}\n" +
                       $"d>=a: {d >= a}\n"
         );
-
     }
 
     public void RunTask2()
@@ -46,5 +45,4 @@ public class SelestzService : IRunService
     {
         throw new NotImplementedException();
     }
-
 }
