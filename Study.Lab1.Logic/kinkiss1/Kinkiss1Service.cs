@@ -1,6 +1,6 @@
 ﻿using Study.Lab1.Logic.Interfaces;
-using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.kinkiss1.task1;
+using Study.Lab1.Logic.kinkiss1.Task2;
 
 namespace Study.Lab1.Logic.kinkiss1;
 
@@ -47,7 +47,7 @@ public class Kinkiss1Service : IRunService
                       $"a == b : {Equal}\n" +
                       $"b == c : {Equal2}\n" +
                       $"d == f : {Equal3}\n" +
-                      $"a > b : { A > B}\n" +
+                      $"a > b : {A > B}\n" +
                       $"b > c : {B > C}\n" +
                       $"c > d : {C > D}\n" +
                       $"d > e : {D > E}\n" +
@@ -62,7 +62,20 @@ public class Kinkiss1Service : IRunService
 
     public void RunTask2()
     {
-        throw new NotImplementedException();
+        // Создаем форматтеры для европейского и американского форматов
+        var europeanDateFormat = new EuropeanDateFormat();
+        var americanDateFormat = new AmericanDateFormat();
+
+        // Применяем универсальный декоратор
+        var decoratedEuropeanFormatter = new Decorator2(europeanDateFormat);
+        var decoratedAmericanFormatter = new Decorator2(americanDateFormat);
+
+        // Выводим результаты форматирования
+        Console.WriteLine("European Date Format:");
+        Console.WriteLine(decoratedEuropeanFormatter.FormatDateTime());
+
+        Console.WriteLine("\nAmerican Date Format:");
+        Console.WriteLine(decoratedAmericanFormatter.FormatDateTime());
     }
 
     public void RunTask3()

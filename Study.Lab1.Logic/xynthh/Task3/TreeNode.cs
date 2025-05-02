@@ -5,6 +5,10 @@ namespace Study.Lab1.Logic.xynthh.Task3;
 
 public class TreeNode<T> : ITreeNode<T>
 {
+    public T Value { get; set; }
+
+    private readonly List<ITreeNode<T>> _children = new();
+
     public TreeNode(T value)
     {
         Value = value;
@@ -12,11 +16,7 @@ public class TreeNode<T> : ITreeNode<T>
 
     #region Properties
 
-    public T Value { get; set; }
-
     public IReadOnlyList<ITreeNode<T>> Children => _children.AsReadOnly();
-
-    private readonly List<ITreeNode<T>> _children = new();
 
     #endregion
 
@@ -47,6 +47,7 @@ public class TreeNode<T> : ITreeNode<T>
     private void AppendNodeValue(StringBuilder sb, ITreeNode<T> node, int level)
     {
         sb.AppendLine($"{new string(' ', level * 2)}- {node.Value}");
+
         foreach (var child in node.Children)
             AppendNodeValue(sb, child, level + 1);
     }
