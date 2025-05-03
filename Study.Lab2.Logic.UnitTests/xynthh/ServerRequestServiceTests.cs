@@ -23,10 +23,10 @@ public class ServerRequestServiceTests
     public void GetJsonPlaceholderUser_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        const int userId = TestData.JsonPlaceholderTestUserId;
-        const string rawResponse = TestData.JsonPlaceholderUserResponse;
-        const string formattedResponse = TestData.JsonPlaceholderUserFormatted;
-        var expectedUrl = TestData.GetJsonPlaceholderUserUrl(userId);
+        const int userId = ApiTestData.JsonPlaceholderTestUserId;
+        const string rawResponse = ApiTestData.JsonPlaceholderUserResponse;
+        const string formattedResponse = ApiTestData.JsonPlaceholderUserFormatted;
+        var expectedUrl = ApiTestData.GetJsonPlaceholderUserUrl(userId);
 
         _mockRequestService.Setup(s => s.FetchData(expectedUrl, null))
             .Returns(rawResponse);
@@ -45,10 +45,10 @@ public class ServerRequestServiceTests
     public void GetJsonPlaceholderUser_ErrorResponse_ThrowsException()
     {
         // Arrange
-        const int userId = TestData.NonExistentUserId;
-        const string rawResponse = TestData.NotFoundErrorResponseJson;
-        const string errorMessage = TestData.NotFoundErrorMessage;
-        var expectedUrl = TestData.GetJsonPlaceholderUserUrl(userId);
+        const int userId = ApiTestData.NonExistentUserId;
+        const string rawResponse = ApiTestData.NotFoundErrorResponseJson;
+        const string errorMessage = ApiTestData.NotFoundErrorMessage;
+        var expectedUrl = ApiTestData.GetJsonPlaceholderUserUrl(userId);
 
         _mockRequestService.Setup(s => s.FetchData(expectedUrl, null))
             .Returns(rawResponse);
@@ -65,11 +65,11 @@ public class ServerRequestServiceTests
     public void GetReqResUser_UsesCorrectApiKey_ReturnsFormattedJson()
     {
         // Arrange
-        const int userId = TestData.ReqResTestUserId;
-        const string rawResponse = TestData.ReqResUserResponseRaw;
-        const string formattedResponse = TestData.ReqResUserFormatted;
-        var expectedUrl = TestData.GetReqResUserUrl(userId);
-        var expectedHeaders = TestData.ReqResHeaders;
+        const int userId = ApiTestData.ReqResTestUserId;
+        const string rawResponse = ApiTestData.ReqResUserResponseRaw;
+        const string formattedResponse = ApiTestData.ReqResUserFormatted;
+        var expectedUrl = ApiTestData.GetReqResUserUrl(userId);
+        var expectedHeaders = ApiTestData.ReqResHeaders;
 
         _mockRequestService.Setup(s => s.FetchData(expectedUrl, expectedHeaders))
             .Returns(rawResponse);
@@ -88,11 +88,11 @@ public class ServerRequestServiceTests
     public void GetReqResUser_ErrorResponse_ThrowsException()
     {
         // Arrange
-        const int userId = TestData.NonExistentUserId;
-        const string rawResponse = TestData.UserNotFoundErrorResponseJson;
-        const string errorMessage = TestData.UserNotFoundErrorMessage;
-        var expectedUrl = TestData.GetReqResUserUrl(userId);
-        var expectedHeaders = TestData.ReqResHeaders;
+        const int userId = ApiTestData.NonExistentUserId;
+        const string rawResponse = ApiTestData.UserNotFoundErrorResponseJson;
+        const string errorMessage = ApiTestData.UserNotFoundErrorMessage;
+        var expectedUrl = ApiTestData.GetReqResUserUrl(userId);
+        var expectedHeaders = ApiTestData.ReqResHeaders;
 
         _mockRequestService.Setup(s => s.FetchData(expectedUrl, expectedHeaders))
             .Returns(rawResponse);
@@ -109,10 +109,10 @@ public class ServerRequestServiceTests
     public void GetJsonPlaceholderPost_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        const int postId = TestData.JsonPlaceholderTestPostId;
-        const string rawResponse = TestData.JsonPlaceholderPostResponse;
-        const string formattedResponse = TestData.JsonPlaceholderPostFormatted;
-        var expectedUrl = TestData.GetJsonPlaceholderPostUrl(postId);
+        const int postId = ApiTestData.JsonPlaceholderTestPostId;
+        const string rawResponse = ApiTestData.JsonPlaceholderPostResponse;
+        const string formattedResponse = ApiTestData.JsonPlaceholderPostFormatted;
+        var expectedUrl = ApiTestData.GetJsonPlaceholderPostUrl(postId);
 
         _mockRequestService.Setup(s => s.FetchData(expectedUrl, null))
             .Returns(rawResponse);
@@ -131,10 +131,10 @@ public class ServerRequestServiceTests
     public async Task GetJsonPlaceholderUserAsync_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        const int userId = TestData.JsonPlaceholderTestUserId;
-        const string rawResponse = TestData.JsonPlaceholderUserResponse;
-        const string formattedResponse = TestData.JsonPlaceholderUserFormatted;
-        var expectedUrl = TestData.GetJsonPlaceholderUserUrl(userId);
+        const int userId = ApiTestData.JsonPlaceholderTestUserId;
+        const string rawResponse = ApiTestData.JsonPlaceholderUserResponse;
+        const string formattedResponse = ApiTestData.JsonPlaceholderUserFormatted;
+        var expectedUrl = ApiTestData.GetJsonPlaceholderUserUrl(userId);
 
         _mockRequestService.Setup(s => s.FetchDataAsync(
                 expectedUrl,
@@ -160,11 +160,11 @@ public class ServerRequestServiceTests
     public async Task GetReqResUserAsync_UsesCorrectApiKey_ReturnsFormattedJson()
     {
         // Arrange
-        const int userId = TestData.ReqResTestUserId;
-        const string rawResponse = TestData.ReqResUserResponseRaw;
-        const string formattedResponse = TestData.ReqResUserFormatted;
-        var expectedUrl = TestData.GetReqResUserUrl(userId);
-        var expectedHeaders = TestData.ReqResHeaders;
+        const int userId = ApiTestData.ReqResTestUserId;
+        const string rawResponse = ApiTestData.ReqResUserResponseRaw;
+        const string formattedResponse = ApiTestData.ReqResUserFormatted;
+        var expectedUrl = ApiTestData.GetReqResUserUrl(userId);
+        var expectedHeaders = ApiTestData.ReqResHeaders;
 
         _mockRequestService.Setup(s => s.FetchDataAsync(
                 expectedUrl,
@@ -190,10 +190,10 @@ public class ServerRequestServiceTests
     public async Task GetJsonPlaceholderPostAsync_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        const int postId = TestData.JsonPlaceholderTestPostId;
-        const string rawResponse = TestData.JsonPlaceholderPostResponse;
-        const string formattedResponse = TestData.JsonPlaceholderPostFormatted;
-        var expectedUrl = TestData.GetJsonPlaceholderPostUrl(postId);
+        const int postId = ApiTestData.JsonPlaceholderTestPostId;
+        const string rawResponse = ApiTestData.JsonPlaceholderPostResponse;
+        const string formattedResponse = ApiTestData.JsonPlaceholderPostFormatted;
+        var expectedUrl = ApiTestData.GetJsonPlaceholderPostUrl(postId);
 
         _mockRequestService.Setup(s => s.FetchDataAsync(
                 expectedUrl,
@@ -219,10 +219,10 @@ public class ServerRequestServiceTests
     public async Task GetJsonPlaceholderUserAsync_ErrorResponse_ThrowsException() // Пример для async ошибки
     {
         // Arrange
-        const int userId = TestData.NonExistentUserId;
-        const string rawResponse = TestData.NotFoundErrorResponseJson;
-        const string errorMessage = TestData.NotFoundErrorMessage;
-        var expectedUrl = TestData.GetJsonPlaceholderUserUrl(userId);
+        const int userId = ApiTestData.NonExistentUserId;
+        const string rawResponse = ApiTestData.NotFoundErrorResponseJson;
+        const string errorMessage = ApiTestData.NotFoundErrorMessage;
+        var expectedUrl = ApiTestData.GetJsonPlaceholderUserUrl(userId);
 
         _mockRequestService.Setup(s => s.FetchDataAsync(
                 expectedUrl,

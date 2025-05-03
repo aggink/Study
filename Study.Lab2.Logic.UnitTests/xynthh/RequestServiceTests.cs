@@ -12,18 +12,6 @@ public class RequestServiceTests
     private HttpClient               _httpClient;
     private RequestService           _requestService;
 
-    // --- Локальные константы ---
-    private const string TestUrl             = "https://example.com/api";
-    private const string TestResponseContent = "{\"name\":\"Test\"}";
-    private const string TestApiKeyHeader    = "x-api-key";
-    private const string TestApiKeyValue     = "test-key";
-
-    private static readonly Dictionary<string, string> TestHeaders = new()
-    {
-        { TestApiKeyHeader, TestApiKeyValue }
-    };
-    // --- Конец локальных констант ---
-
     [SetUp]
     public void Setup()
     {
@@ -36,32 +24,35 @@ public class RequestServiceTests
     public void FetchData_SuccessfulResponse_ReturnsContent()
     {
         // Arrange
-        SetupMockResponse(HttpStatusCode.OK, TestResponseContent);
+        SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse);
 
         // Act
-        var result = _requestService.FetchData(TestUrl);
+        var result = _requestService.FetchData(ApiTestData.RequestServiceTestUrl);
 
         // Assert
-        Assert.That(result, Is.EqualTo(TestResponseContent));
+        Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
     }
 
     [Test]
     public void FetchData_WithHeaders_SendsCorrectHeaders()
     {
         // Arrange
-        SetupMockResponse(HttpStatusCode.OK, TestResponseContent, TestHeaders);
+        SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse,
+            ApiTestData.RequestServiceTestHeaders);
 
         // Act
-        var result = _requestService.FetchData(TestUrl, TestHeaders);
+        var result =
+            _requestService.FetchData(ApiTestData.RequestServiceTestUrl, ApiTestData.RequestServiceTestHeaders);
 
         // Assert
-        Assert.That(result, Is.EqualTo(TestResponseContent));
+        Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
         _mockHttpMessageHandler.Protected().Verify(
             "SendAsync",
             Times.Once(),
             ItExpr.Is<HttpRequestMessage>(req =>
-                req.Headers.Contains(TestApiKeyHeader) &&
-                req.Headers.GetValues(TestApiKeyHeader).First() == TestApiKeyValue),
+                req.Headers.Contains(ApiTestData.ApiKeyHeader) &&
+                req.Headers.GetValues(ApiTestData.ApiKeyHeader).First() ==
+                ApiTestData.ApiKeyValueRequestService),
             ItExpr.IsAny<CancellationToken>()
         );
     }
@@ -73,7 +64,7 @@ public class RequestServiceTests
         SetupMockResponse(HttpStatusCode.InternalServerError, "Error");
 
         // Act & Assert
-        var exception = Assert.Throws<Exception>(() => _requestService.FetchData(TestUrl));
+        var exception = Assert.Throws<Exception>(() => _requestService.FetchData(ApiTestData.RequestServiceTestUrl));
         Assert.IsTrue(exception != null && exception.Message.Contains("HTTP Error"));
         Assert.IsTrue(exception.Message.Contains("InternalServerError"));
     }
@@ -83,32 +74,35 @@ public class RequestServiceTests
     public async Task FetchDataAsync_SuccessfulResponse_ReturnsContent()
     {
         // Arrange
-        SetupMockResponse(HttpStatusCode.OK, TestResponseContent);
+        SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse);
 
         // Act
-        var result = await _requestService.FetchDataAsync(TestUrl);
+        var result = await _requestService.FetchDataAsync(ApiTestData.RequestServiceTestUrl);
 
         // Assert
-        Assert.That(result, Is.EqualTo(TestResponseContent));
+        Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
     }
 
     [Test]
     public async Task FetchDataAsync_WithHeaders_SendsCorrectHeaders()
     {
         // Arrange
-        SetupMockResponse(HttpStatusCode.OK, TestResponseContent, TestHeaders);
+        SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse,
+            ApiTestData.RequestServiceTestHeaders);
 
         // Act
-        var result = await _requestService.FetchDataAsync(TestUrl, TestHeaders);
+        var result = await _requestService.FetchDataAsync(ApiTestData.RequestServiceTestUrl,
+            ApiTestData.RequestServiceTestHeaders);
 
         // Assert
-        Assert.That(result, Is.EqualTo(TestResponseContent));
+        Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
         _mockHttpMessageHandler.Protected().Verify(
             "SendAsync",
             Times.Once(),
             ItExpr.Is<HttpRequestMessage>(req =>
-                req.Headers.Contains(TestApiKeyHeader) &&
-                req.Headers.GetValues(TestApiKeyHeader).First() == TestApiKeyValue),
+                req.Headers.Contains(ApiTestData.ApiKeyHeader) &&
+                req.Headers.GetValues(ApiTestData.ApiKeyHeader).First() ==
+                ApiTestData.ApiKeyValueRequestService),
             ItExpr.IsAny<CancellationToken>()
         );
     }
@@ -121,7 +115,7 @@ public class RequestServiceTests
 
         // Act & Assert
         var exception = Assert.ThrowsAsync<Exception>(async () =>
-            await _requestService.FetchDataAsync(TestUrl));
+            await _requestService.FetchDataAsync(ApiTestData.RequestServiceTestUrl));
         Assert.IsTrue(exception != null && exception.Message.Contains("HTTP Error"));
         Assert.IsTrue(exception.Message.Contains("NotFound"));
     }
@@ -136,7 +130,7 @@ public class RequestServiceTests
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
                 ItExpr.Is<HttpRequestMessage>(req =>
-                    req.RequestUri.ToString() == TestUrl &&
+                    req.RequestUri.ToString() == ApiTestData.RequestServiceTestUrl &&
                     (expectedHeaders == null || CheckHeaders(req, expectedHeaders))),
                 ItExpr.IsAny<CancellationToken>()
             )
