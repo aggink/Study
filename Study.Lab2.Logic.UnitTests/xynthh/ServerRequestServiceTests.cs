@@ -23,11 +23,12 @@ public class ServerRequestServiceTests
     public void GetJsonPlaceholderUser_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        const int userId = 1;
-        const string rawResponse = "{\"id\":1,\"name\":\"User\"}";
-        const string formattedResponse = "{\n  \"id\": 1,\n  \"name\": \"User\"\n}";
+        const int userId = TestData.JsonPlaceholderTestUserId;
+        const string rawResponse = TestData.JsonPlaceholderUserResponse;
+        const string formattedResponse = TestData.JsonPlaceholderUserFormatted;
+        var expectedUrl = TestData.GetJsonPlaceholderUserUrl(userId);
 
-        _mockRequestService.Setup(s => s.FetchData(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>()))
+        _mockRequestService.Setup(s => s.FetchData(expectedUrl, null))
             .Returns(rawResponse);
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(false);
         _mockResponseProcessor.Setup(p => p.FormatJsonResponse(rawResponse)).Returns(formattedResponse);
@@ -37,21 +38,19 @@ public class ServerRequestServiceTests
 
         // Assert
         Assert.That(result, Is.EqualTo(formattedResponse));
-        _mockRequestService.Verify(s => s.FetchData(
-                It.Is<string>(url => url.Contains("/users/1")),
-                null),
-            Times.Once);
+        _mockRequestService.Verify(s => s.FetchData(expectedUrl, null), Times.Once);
     }
 
     [Test]
     public void GetJsonPlaceholderUser_ErrorResponse_ThrowsException()
     {
         // Arrange
-        const int userId = 1;
-        const string rawResponse = "{\"error\":\"Not found\"}";
-        const string errorMessage = "Not found";
+        const int userId = TestData.NonExistentUserId;
+        const string rawResponse = TestData.NotFoundErrorResponseJson;
+        const string errorMessage = TestData.NotFoundErrorMessage;
+        var expectedUrl = TestData.GetJsonPlaceholderUserUrl(userId);
 
-        _mockRequestService.Setup(s => s.FetchData(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>()))
+        _mockRequestService.Setup(s => s.FetchData(expectedUrl, null))
             .Returns(rawResponse);
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(true);
         _mockResponseProcessor.Setup(p => p.ExtractErrorMessage(rawResponse)).Returns(errorMessage);
@@ -59,22 +58,21 @@ public class ServerRequestServiceTests
         // Act & Assert
         var exception = Assert.Throws<Exception>(() => _serverRequestService.GetJsonPlaceholderUser(userId));
         if (exception != null) Assert.That(exception.Message, Is.EqualTo(errorMessage));
+        _mockRequestService.Verify(s => s.FetchData(expectedUrl, null), Times.Once);
     }
 
     [Test]
     public void GetReqResUser_UsesCorrectApiKey_ReturnsFormattedJson()
     {
         // Arrange
-        const int userId = 2;
-        const string rawResponse = "{\"data\":{\"id\":2,\"name\":\"Janet\"}}";
-        const string formattedResponse = "{\n  \"data\": {\n    \"id\": 2,\n    \"name\": \"Janet\"\n  }\n}";
+        const int userId = TestData.ReqResTestUserId;
+        const string rawResponse = TestData.ReqResUserResponseRaw;
+        const string formattedResponse = TestData.ReqResUserFormatted;
+        var expectedUrl = TestData.GetReqResUserUrl(userId);
+        var expectedHeaders = TestData.ReqResHeaders;
 
-        _mockRequestService.Setup(s => s.FetchData(
-            It.IsAny<string>(),
-            It.Is<Dictionary<string, string>>(d =>
-                d != null && d.ContainsKey("x-api-key") && d["x-api-key"] == "reqres-free-v1")
-        )).Returns(rawResponse);
-
+        _mockRequestService.Setup(s => s.FetchData(expectedUrl, expectedHeaders))
+            .Returns(rawResponse);
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(false);
         _mockResponseProcessor.Setup(p => p.FormatJsonResponse(rawResponse)).Returns(formattedResponse);
 
@@ -83,22 +81,20 @@ public class ServerRequestServiceTests
 
         // Assert
         Assert.That(result, Is.EqualTo(formattedResponse));
-        _mockRequestService.Verify(s => s.FetchData(
-                It.Is<string>(url => url.Contains("/users/2")),
-                It.Is<Dictionary<string, string>>(d =>
-                    d != null && d.ContainsKey("x-api-key") && d["x-api-key"] == "reqres-free-v1")),
-            Times.Once);
+        _mockRequestService.Verify(s => s.FetchData(expectedUrl, expectedHeaders), Times.Once);
     }
 
     [Test]
     public void GetReqResUser_ErrorResponse_ThrowsException()
     {
         // Arrange
-        const int userId = 999; // Несуществующий ID
-        const string rawResponse = "{\"error\":\"User not found\"}";
-        const string errorMessage = "User not found";
+        const int userId = TestData.NonExistentUserId;
+        const string rawResponse = TestData.UserNotFoundErrorResponseJson;
+        const string errorMessage = TestData.UserNotFoundErrorMessage;
+        var expectedUrl = TestData.GetReqResUserUrl(userId);
+        var expectedHeaders = TestData.ReqResHeaders;
 
-        _mockRequestService.Setup(s => s.FetchData(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>()))
+        _mockRequestService.Setup(s => s.FetchData(expectedUrl, expectedHeaders))
             .Returns(rawResponse);
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(true);
         _mockResponseProcessor.Setup(p => p.ExtractErrorMessage(rawResponse)).Returns(errorMessage);
@@ -106,17 +102,19 @@ public class ServerRequestServiceTests
         // Act & Assert
         var exception = Assert.Throws<Exception>(() => _serverRequestService.GetReqResUser(userId));
         if (exception != null) Assert.That(exception.Message, Is.EqualTo(errorMessage));
+        _mockRequestService.Verify(s => s.FetchData(expectedUrl, expectedHeaders), Times.Once);
     }
 
     [Test]
     public void GetJsonPlaceholderPost_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        const int postId = 1;
-        const string rawResponse = "{\"id\":1,\"title\":\"Post Title\",\"body\":\"Post body\"}";
-        const string formattedResponse = "{\n  \"id\": 1,\n  \"title\": \"Post Title\",\n  \"body\": \"Post body\"\n}";
+        const int postId = TestData.JsonPlaceholderTestPostId;
+        const string rawResponse = TestData.JsonPlaceholderPostResponse;
+        const string formattedResponse = TestData.JsonPlaceholderPostFormatted;
+        var expectedUrl = TestData.GetJsonPlaceholderPostUrl(postId);
 
-        _mockRequestService.Setup(s => s.FetchData(It.IsAny<string>(), It.IsAny<Dictionary<string, string>>()))
+        _mockRequestService.Setup(s => s.FetchData(expectedUrl, null))
             .Returns(rawResponse);
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(false);
         _mockResponseProcessor.Setup(p => p.FormatJsonResponse(rawResponse)).Returns(formattedResponse);
@@ -126,26 +124,23 @@ public class ServerRequestServiceTests
 
         // Assert
         Assert.That(result, Is.EqualTo(formattedResponse));
-        _mockRequestService.Verify(s => s.FetchData(
-                It.Is<string>(url => url.Contains("/posts/1")),
-                null),
-            Times.Once);
+        _mockRequestService.Verify(s => s.FetchData(expectedUrl, null), Times.Once);
     }
 
     [Test]
     public async Task GetJsonPlaceholderUserAsync_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        const int userId = 1;
-        const string rawResponse = "{\"id\":1,\"name\":\"User\"}";
-        const string formattedResponse = "{\n  \"id\": 1,\n  \"name\": \"User\"\n}";
+        const int userId = TestData.JsonPlaceholderTestUserId;
+        const string rawResponse = TestData.JsonPlaceholderUserResponse;
+        const string formattedResponse = TestData.JsonPlaceholderUserFormatted;
+        var expectedUrl = TestData.GetJsonPlaceholderUserUrl(userId);
 
         _mockRequestService.Setup(s => s.FetchDataAsync(
-                It.IsAny<string>(),
-                It.IsAny<Dictionary<string, string>>(),
+                expectedUrl,
+                null,
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(rawResponse);
-
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(false);
         _mockResponseProcessor.Setup(p => p.FormatJsonResponse(rawResponse)).Returns(formattedResponse);
 
@@ -155,7 +150,7 @@ public class ServerRequestServiceTests
         // Assert
         Assert.That(result, Is.EqualTo(formattedResponse));
         _mockRequestService.Verify(s => s.FetchDataAsync(
-                It.Is<string>(url => url.Contains("/users/1")),
+                expectedUrl,
                 null,
                 It.IsAny<CancellationToken>()),
             Times.Once);
@@ -165,17 +160,17 @@ public class ServerRequestServiceTests
     public async Task GetReqResUserAsync_UsesCorrectApiKey_ReturnsFormattedJson()
     {
         // Arrange
-        const int userId = 2;
-        const string rawResponse = "{\"data\":{\"id\":2,\"name\":\"Janet\"}}";
-        const string formattedResponse = "{\n  \"data\": {\n    \"id\": 2,\n    \"name\": \"Janet\"\n  }\n}";
+        const int userId = TestData.ReqResTestUserId;
+        const string rawResponse = TestData.ReqResUserResponseRaw;
+        const string formattedResponse = TestData.ReqResUserFormatted;
+        var expectedUrl = TestData.GetReqResUserUrl(userId);
+        var expectedHeaders = TestData.ReqResHeaders;
 
         _mockRequestService.Setup(s => s.FetchDataAsync(
-                It.IsAny<string>(),
-                It.Is<Dictionary<string, string>>(d =>
-                    d != null && d.ContainsKey("x-api-key") && d["x-api-key"] == "reqres-free-v1"),
+                expectedUrl,
+                expectedHeaders,
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(rawResponse);
-
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(false);
         _mockResponseProcessor.Setup(p => p.FormatJsonResponse(rawResponse)).Returns(formattedResponse);
 
@@ -185,9 +180,8 @@ public class ServerRequestServiceTests
         // Assert
         Assert.That(result, Is.EqualTo(formattedResponse));
         _mockRequestService.Verify(s => s.FetchDataAsync(
-                It.Is<string>(url => url.Contains("/users/2")),
-                It.Is<Dictionary<string, string>>(d =>
-                    d != null && d.ContainsKey("x-api-key") && d["x-api-key"] == "reqres-free-v1"),
+                expectedUrl,
+                expectedHeaders,
                 It.IsAny<CancellationToken>()),
             Times.Once);
     }
@@ -196,16 +190,16 @@ public class ServerRequestServiceTests
     public async Task GetJsonPlaceholderPostAsync_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        const int postId = 1;
-        const string rawResponse = "{\"id\":1,\"title\":\"Post Title\",\"body\":\"Post body\"}";
-        const string formattedResponse = "{\n  \"id\": 1,\n  \"title\": \"Post Title\",\n  \"body\": \"Post body\"\n}";
+        const int postId = TestData.JsonPlaceholderTestPostId;
+        const string rawResponse = TestData.JsonPlaceholderPostResponse;
+        const string formattedResponse = TestData.JsonPlaceholderPostFormatted;
+        var expectedUrl = TestData.GetJsonPlaceholderPostUrl(postId);
 
         _mockRequestService.Setup(s => s.FetchDataAsync(
-                It.IsAny<string>(),
-                It.IsAny<Dictionary<string, string>>(),
+                expectedUrl,
+                null,
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(rawResponse);
-
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(false);
         _mockResponseProcessor.Setup(p => p.FormatJsonResponse(rawResponse)).Returns(formattedResponse);
 
@@ -215,26 +209,26 @@ public class ServerRequestServiceTests
         // Assert
         Assert.That(result, Is.EqualTo(formattedResponse));
         _mockRequestService.Verify(s => s.FetchDataAsync(
-                It.Is<string>(url => url.Contains("/posts/1")),
+                expectedUrl,
                 null,
                 It.IsAny<CancellationToken>()),
             Times.Once);
     }
 
     [Test]
-    public Task GetJsonPlaceholderUserAsync_ErrorResponse_ThrowsException()
+    public async Task GetJsonPlaceholderUserAsync_ErrorResponse_ThrowsException() // Пример для async ошибки
     {
         // Arrange
-        const int userId = 999; // Несуществующий ID
-        const string rawResponse = "{\"error\":\"User not found\"}";
-        const string errorMessage = "User not found";
+        const int userId = TestData.NonExistentUserId;
+        const string rawResponse = TestData.NotFoundErrorResponseJson;
+        const string errorMessage = TestData.NotFoundErrorMessage;
+        var expectedUrl = TestData.GetJsonPlaceholderUserUrl(userId);
 
         _mockRequestService.Setup(s => s.FetchDataAsync(
-                It.IsAny<string>(),
-                It.IsAny<Dictionary<string, string>>(),
+                expectedUrl,
+                null,
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(rawResponse);
-
         _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(true);
         _mockResponseProcessor.Setup(p => p.ExtractErrorMessage(rawResponse)).Returns(errorMessage);
 
@@ -242,7 +236,11 @@ public class ServerRequestServiceTests
         var exception = Assert.ThrowsAsync<Exception>(async () =>
             await _serverRequestService.GetJsonPlaceholderUserAsync(userId));
         if (exception != null) Assert.That(exception.Message, Is.EqualTo(errorMessage));
-        return Task.CompletedTask;
+        _mockRequestService.Verify(s => s.FetchDataAsync(
+                expectedUrl,
+                null,
+                It.IsAny<CancellationToken>()),
+            Times.Once);
     }
 
     [TearDown]
