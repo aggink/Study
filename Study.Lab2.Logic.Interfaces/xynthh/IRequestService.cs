@@ -17,6 +17,8 @@ public interface IRequestService : IDisposable
     /// <param name="headers">HTTP заголовки</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Ответ от сервиса</returns>
-    Task<string> FetchDataAsync(string url, Dictionary<string, string> headers = null,
-        CancellationToken              cancellationToken = default);
+    Task<string> FetchDataAsync(
+        string                     url,
+        Dictionary<string, string> headers           = null,
+        CancellationToken          cancellationToken = default);
 }

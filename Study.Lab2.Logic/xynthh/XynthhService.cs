@@ -7,7 +7,6 @@ namespace Study.Lab2.Logic.xynthh;
 public class XynthhService : IRunService
 {
     private readonly IServerRequestService _serverRequestService;
-    private readonly HttpClient            _httpClient; // Поле для управления жизненным циклом HttpClient
 
     // Идентификаторы для запросов
     private const int JsonPlaceholderUserId = 1;
@@ -16,9 +15,7 @@ public class XynthhService : IRunService
 
     public XynthhService()
     {
-        // Создаем зависимости внутри конструктора
-        _httpClient = new HttpClient();
-        IRequestService requestService = new RequestService(_httpClient);
+        IRequestService requestService = new RequestService(new HttpClient());
         IResponseProcessor responseProcessor = new ResponseProcessor();
         _serverRequestService = new ServerRequestService(requestService, responseProcessor);
     }
@@ -137,8 +134,6 @@ public class XynthhService : IRunService
     {
         // Освобождаем ресурсы ServerRequestService, который в свою очередь освободит RequestService и HttpClient
         _serverRequestService?.Dispose();
-        // Явно освобождаем HttpClient, созданный в конструкторе
-        _httpClient?.Dispose();
         GC.SuppressFinalize(this);
     }
 }
