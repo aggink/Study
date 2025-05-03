@@ -37,7 +37,9 @@ public class RequestServiceTests
     public void FetchData_WithHeaders_SendsCorrectHeaders()
     {
         // Arrange
-        SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse,
+        SetupMockResponse(
+            HttpStatusCode.OK,
+            ApiTestData.RequestServiceTestResponse,
             ApiTestData.RequestServiceTestHeaders);
 
         // Act
@@ -87,11 +89,14 @@ public class RequestServiceTests
     public async Task FetchDataAsync_WithHeaders_SendsCorrectHeaders()
     {
         // Arrange
-        SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse,
+        SetupMockResponse(
+            HttpStatusCode.OK,
+            ApiTestData.RequestServiceTestResponse,
             ApiTestData.RequestServiceTestHeaders);
 
         // Act
-        var result = await _requestService.FetchDataAsync(ApiTestData.RequestServiceTestUrl,
+        var result = await _requestService.FetchDataAsync(
+            ApiTestData.RequestServiceTestUrl,
             ApiTestData.RequestServiceTestHeaders);
 
         // Assert
