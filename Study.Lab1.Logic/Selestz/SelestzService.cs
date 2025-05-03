@@ -1,5 +1,7 @@
 ﻿using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Selestz.Task1;
+using Study.Lab1.Logic.Selestz.Task2;
+using System.Text;
 
 namespace Study.Lab1.Logic.Selestz;
 
@@ -38,7 +40,29 @@ public class SelestzService : IRunService
 
     public void RunTask2()
     {
-        throw new NotImplementedException();
+        // Создаем форматтеры для европейского и американского форматов
+        var europeanDateForm = new EuropeanDateForm();
+        var americanDateForm = new AmericanDateForm();
+
+        // Применяем универсальный декоратор
+        var decoratedEuropeanForm = new Decorator23(europeanDateForm);
+        var decoratedAmericanForm = new Decorator23(americanDateForm);
+
+        var doubleDecorator = new PrefDecorator(decoratedAmericanForm);
+        var tripleDecorator = new PostDecorator(doubleDecorator);
+
+        // Выводим результаты форматирования
+        Console.WriteLine("Европейский стиль даты и времени:");
+        Console.WriteLine(decoratedEuropeanForm.FormatDateTime());
+
+        Console.WriteLine("\nАмериканский стиль даты и времени:");
+        Console.WriteLine(decoratedAmericanForm.FormatDateTime());
+
+        Console.WriteLine("\nИспользуется два декоратора:");
+        Console.WriteLine(doubleDecorator.FormatDateTime());
+
+        Console.WriteLine("\nИспользуется три декоратора:");
+        Console.WriteLine(tripleDecorator.FormatDateTime());
     }
 
     public void RunTask3()
