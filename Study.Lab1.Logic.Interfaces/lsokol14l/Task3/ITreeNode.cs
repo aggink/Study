@@ -10,7 +10,7 @@ public interface ITreeNode<T> : IEnumerable<ITreeNode<T>>
     /// <summary>
     /// Родительский узел (если есть).
     /// </summary>
-    ITreeNode<T>? Parent { get; }
+    ITreeNode<T> Parent { get; }
 
     /// <summary>
     /// Коллекция дочерних узлов (только для чтения).
@@ -50,7 +50,7 @@ public interface ITreeNode<T> : IEnumerable<ITreeNode<T>>
     /// <summary>
     /// Поиск первого узла по значению (обход в глубину, pre-order).
     /// </summary>
-    ITreeNode<T>? Find(T value);
+    ITreeNode<T> Find(T value);
 
     /// <summary>
     /// Возвращает все узлы в порядке обхода (по умолчанию pre-order).

@@ -7,7 +7,7 @@ namespace Study.Lab1.Logic.lsokol14l.Task3
     {
         public T Value { get; set; }
 
-        public TreeNode<T>? Parent { get; private set; }
+        public TreeNode<T> Parent { get; private set; }
 
         private readonly List<TreeNode<T>> _children = new();
 
@@ -69,7 +69,7 @@ namespace Study.Lab1.Logic.lsokol14l.Task3
         }
 
         // Поиск первого узла по значению (pre-order)
-        public TreeNode<T>? Find(T value)
+        public TreeNode<T> Find(T value)
         {
             if (EqualityComparer<T>.Default.Equals(Value, value))
                 return this;
