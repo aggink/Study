@@ -34,9 +34,9 @@ public class RequestService : IRequestService
     }
 
     public async Task<string> FetchDataAsync(
-        string                     url,
-        Dictionary<string, string> headers           = null,
-        CancellationToken          cancellationToken = default)
+        string url,
+        Dictionary<string, string> headers = null,
+        CancellationToken cancellationToken = default)
     {
         using (var request = new HttpRequestMessage(HttpMethod.Get, url))
         {

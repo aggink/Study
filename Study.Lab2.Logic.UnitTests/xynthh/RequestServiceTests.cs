@@ -127,8 +127,8 @@ public class RequestServiceTests
     }
 
     private void SetupMockResponse(
-        HttpStatusCode             statusCode,
-        string                     content,
+        HttpStatusCode statusCode,
+        string content,
         Dictionary<string, string> expectedHeaders = null)
     {
         _mockHttpMessageHandler
