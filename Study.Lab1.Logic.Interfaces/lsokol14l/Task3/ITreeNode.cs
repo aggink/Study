@@ -1,5 +1,5 @@
 ﻿namespace Study.Lab1.Logic.Interfaces.lsokol14l.Task3;
-#nullable enable
+
 public interface ITreeNode<T> : IEnumerable<ITreeNode<T>>
 {
     /// <summary>

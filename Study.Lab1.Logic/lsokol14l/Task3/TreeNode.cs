@@ -1,12 +1,8 @@
-﻿namespace Study.Lab1.Logic.lsokol14l.Task3
+﻿using System.Collections;
+using System.Text;
 
-#nullable enable
+namespace Study.Lab1.Logic.lsokol14l.Task3
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class TreeNode<T> : IEnumerable<TreeNode<T>>
     {
         public T Value { get; set; }
@@ -26,6 +22,7 @@
         {
             if (child == null)
                 throw new ArgumentNullException(nameof(child));
+
             child.Parent = this;
             _children.Add(child);
         }
@@ -37,6 +34,7 @@
                 child.Parent = null;
                 return true;
             }
+
             return false;
         }
 
@@ -44,6 +42,7 @@
         {
             foreach (var child in _children)
                 child.Parent = null;
+
             _children.Clear();
         }
 
@@ -58,11 +57,13 @@
             {
                 int depth = 0;
                 var current = Parent;
+
                 while (current != null)
                 {
                     depth++;
                     current = current.Parent;
                 }
+
                 return depth;
             }
         }
@@ -87,6 +88,7 @@
         public IEnumerable<TreeNode<T>> PreOrder()
         {
             yield return this;
+
             foreach (var child in _children)
             {
                 foreach (var node in child.PreOrder())
@@ -102,6 +104,7 @@
                 foreach (var node in child.PostOrder())
                     yield return node;
             }
+
             yield return this;
         }
 
@@ -134,6 +137,7 @@
             {
                 result += child.ToPrettyString(indent + "  ");
             }
+
             return result;
         }
 
@@ -155,6 +159,7 @@
             {
                 BuildString(sb, child, 1);
             }
+
             return sb.ToString();
         }
     }

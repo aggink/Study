@@ -7,7 +7,7 @@ namespace Study.Lab1.Logic.UnitTests.lsokol14l.Task3;
 public class TreeNodeTests
 {
     [Test]
-    public void Test1()
+    public void TestUsualBehavior()
     {
         var parent1 = new TreeNode<string>("Parent");
         var child11 = new TreeNode<string>("Child 1");
