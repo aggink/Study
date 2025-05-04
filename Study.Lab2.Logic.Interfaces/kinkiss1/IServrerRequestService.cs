@@ -16,7 +16,6 @@ public interface IServerRequestService : IDisposable
     /// <returns>Данные о пользователе в формате JSON</returns>
     string ReqresGetUser(int userId);
 
-
     /// <summary>
     /// Асинхронная версия получения фактов о кошках
     /// </summary>

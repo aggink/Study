@@ -92,7 +92,6 @@ public class kinkiss1Service : IRunService
             var reqResUserTask = _serverRequestService.ReqresGetUserAsync(ReqResUserId, cancellationToken);
             Console.WriteLine($"- Запрос пользователя ReqRes (ID: {ReqResUserId}) запущен.");
 
-
             var catFactsTask = _serverRequestService.CatGetFactsAsync(cancellationToken);
             var catFacts = await catFactsTask;
             Console.WriteLine("Факты о кошках:");

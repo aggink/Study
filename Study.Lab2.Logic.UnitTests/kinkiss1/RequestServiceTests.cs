@@ -71,7 +71,6 @@ public class RequestServiceTests
         Assert.IsTrue(exception.Message.Contains("InternalServerError"));
     }
 
-
     [Test]
     public async Task FetchDataAsync_SuccessfulResponse_ReturnsContent()
     {

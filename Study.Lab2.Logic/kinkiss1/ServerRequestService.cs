@@ -87,7 +87,6 @@ public class ServerRequestService : IServerRequestService
         return _rProcessor.FormatJsonAnswers(answer);
     }
 
-
     public async Task<string> ReqresGetUserAsync(int userId, CancellationToken cancellationToken = default)
     {
         var url = $"{ReqresBaseUrl}/users/{userId}";
