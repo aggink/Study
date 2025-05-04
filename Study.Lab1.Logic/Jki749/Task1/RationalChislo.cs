@@ -21,7 +21,7 @@ public class RationalChislo : IRationalChislo
 
         if (Denominator == 0)
         {
-            Console.WriteLine("Знаменатель не должен быть нулем");
+            throw new ArgumentException("Знаменатель не должен быть нулем");
         }
     }
 

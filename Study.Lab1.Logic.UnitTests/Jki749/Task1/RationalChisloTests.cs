@@ -19,11 +19,8 @@ namespace Study.Lab1.Logic.UnitTests.Jki749.Task1
         [Test]
         public void Prod2()
         {
-            var chislo1 = new RationalChislo(1, 2);
-            var chislo2 = new RationalChislo(1, 0);
-            var prod = chislo1 * chislo2;
-            var expected = "Знаменатель не должен быть нулем";
-            Assert.That(prod.ToString(), Is.EqualTo(expected.ToString()));
+            var expected = Assert.Throws<ArgumentExeption>(() => new RatoinalChislo(1, 0));
+            Assert.That(expected.Message, Is.EqualTo("Знаменатель не должен быть нулем"));
 
         }
 
