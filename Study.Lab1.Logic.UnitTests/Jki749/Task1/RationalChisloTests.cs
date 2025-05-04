@@ -19,7 +19,7 @@ public class RationalChisloTests
     [Test]
     public void Prod2()
     {
-        var expected = Assert.Throws<ArgumentExeption>(() => new RatoinalChislo(1, 0));
+        var expected = Assert.Throws<ArgumentException>(() => new RationalChislo(1, 0));
         Assert.That(expected.Message, Is.EqualTo("Знаменатель не должен быть нулем"));
 
     }
@@ -83,9 +83,9 @@ public class RationalChisloTests
     public void Del2()
     {
         var chislo1 = new RationalChislo(1, 2);
-        var chislo2 = new RationalChislo(1, 0);
+        var chislo2 = new RationalChislo(1, 9);
         var del = chislo1 / chislo2;
-        var expected = new RationalChislo(0, 2);
+        var expected = new RationalChislo(9, 2);
         Assert.That(del.ToString(), Is.EqualTo(expected.ToString()));
 
     }
