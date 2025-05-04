@@ -180,12 +180,12 @@ public class brnvikaService : IRunService
         Console.WriteLine("\nAPI Hipolabs\nHipolabs - API для поиска информации об университетах всего мира (данные на английском языке).\n");
 
         Console.WriteLine("Введите название страны: ");
-        string Country = Console.ReadLine();
+        string country = Console.ReadLine();
 
         Console.WriteLine("Введите название университета: ");
-        string University = Console.ReadLine();
+        string university = Console.ReadLine();
 
-        Urls[2] = string.Format("http://universities.hipolabs.com/search?country={0}&name={1}", Country, University);
+        Urls[2] = string.Format("http://universities.hipolabs.com/search?country={0}&name={1}", country, university);
 
         Console.ForegroundColor = ConsoleColor.Magenta;
 

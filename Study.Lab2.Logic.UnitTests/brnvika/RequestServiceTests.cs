@@ -1,7 +1,9 @@
 ﻿using Moq;
 using Moq.Protected;
 using Study.Lab2.Logic.brnvika;
+using Study.Lab2.Logic.UnitTests.brnvika.DtoModels;
 using System.Net;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.brnvika;
 
@@ -125,7 +127,7 @@ public class RequestServiceTests
 
         // Act
         var result = await _requestService.FetchDataAsync(requestUrl, cancellationTokenSource.Token);
-        result = result.Replace(System.Environment.NewLine, "");
+        result = result.Replace(System.Environment.NewLine, string.Empty);
 
         // Assert
         Assert.That(result, Is.EqualTo(expectedResponse));
@@ -191,6 +193,30 @@ public class RequestServiceTests
         StringAssert.Contains("400 - Bad Request", exception.Message);
     }
 
+    [Test]
+    public void FetchData_Test_SecondResponse()
+    {
+        var requestUrl = "https://api.nasa.gov/planetary/apod?api_key=test=2005-05-22";
+        var secondResponse = new SecondRequestDto
+        {
+            Copyright = "\nJohn Gleason \n(Celestial Images)\n",
+            date = "2005-05-22",
+            explanation = "Tomorrow's picture: wavemaker around saturn  < | Archive | Index | Search | Calendar | Glossary | Education | About APOD | >  Authors & editors: Robert Nemiroff (MTU) & Jerry Bonnell (USRA) NASA Web Site Statements, Warnings, and Disclaimers NASA Official: Jay Norris. Specific rights apply. A service of: EUD at NASA / GSFC & Michigan Tech. U.",
+            hdurl = "https://apod.nasa.gov/apod/image/0012/halebopp_gleason_big.jpg",
+            media_type = "image",
+            service_version = "v1",
+            title = "The Dust and Ion Tails of Comet Hale-Bopp",
+            url = "https://apod.nasa.gov/apod/image/0012/halebopp_gleason.jpg"
+        };
+
+        SetupHttpResponse<SecondRequestDto>(requestUrl, secondResponse, HttpStatusCode.OK);
+
+        string result = _requestService.FetchData(requestUrl);
+        var res = JsonSerializer.Deserialize<SecondRequestDto>(result);
+
+        Assert.That(res.Copyright, Is.EqualTo(secondResponse.Copyright));
+    }
+
     [TearDown]
     public void Dispose()
     {
@@ -215,6 +241,22 @@ public class RequestServiceTests
             {
                 StatusCode = statusCode,
                 Content = new StringContent(content)
+            });
+    }
+
+    private void SetupHttpResponse<T>(string url, T content, HttpStatusCode statusCode)
+        where T : class
+    {
+        _httpMessageHandlerMock
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(req => req.RequestUri.ToString() == url),
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = statusCode,
+                Content = new StringContent(JsonSerializer.Serialize(content))
             });
     }
 }
