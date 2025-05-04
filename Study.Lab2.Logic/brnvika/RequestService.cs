@@ -1,45 +1,48 @@
 ﻿using Study.Lab2.Logic.Interfaces.brnvika;
 using System.Text.Json.Nodes;
 
-namespace Study.Lab2.Logic.brnvika
+namespace Study.Lab2.Logic.brnvika;
+
+public class RequestService : IRequestService
 {
-    public class RequestService : IRequestService
+    private readonly HttpClient _httpClient;
+
+    public RequestService(HttpClient httpClient)
     {
-        private readonly HttpClient _httpClient;
+        _httpClient = httpClient;
+    }
 
-        public RequestService(HttpClient httpClient)
+    public void Dispose()
+    {
+        _httpClient.Dispose();
+    }
+
+    public string FetchData(string url)
+    {
+        var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
+
+        if (!response.IsSuccessStatusCode)
         {
-            _httpClient = httpClient;
+            throw new Exception($"{(int)response.StatusCode} - {response.ReasonPhrase}");
         }
 
-        public void Dispose()
+        var jsObj = JsonObject.Parse(response.Content.ReadAsStringAsync().Result);
+
+        return jsObj.ToString();
+    }
+
+    public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync(url, cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
         {
-            _httpClient.Dispose();
+            throw new Exception($"{(int)response.StatusCode} - {response.ReasonPhrase}");
         }
 
-        public string FetchData(string url)
-        {
-            var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"{response.StatusCode} - {response.ReasonPhrase}");
-            }
+        var result = await response.Content.ReadAsStringAsync(cancellationToken);
+        var jsObj = JsonObject.Parse(result);
 
-            var s = JsonObject.Parse(response.Content.ReadAsStringAsync().Result);
-            return s.ToString();
-        }
-
-        public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default)
-        {
-            var response = await _httpClient.GetAsync(url, cancellationToken);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"{response.StatusCode} - {response.ReasonPhrase}");
-            }
-
-            var result = await response.Content.ReadAsStringAsync(cancellationToken);
-            var s = JsonObject.Parse(result);
-            return s.ToString();
-        }
+        return jsObj.ToString();
     }
 }
