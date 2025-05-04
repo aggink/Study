@@ -19,9 +19,8 @@ public class RationalChisloTests
     [Test]
     public void Prod2()
     {
-        var expected = Assert.Throws<ArgumentExeption>(() => new RatoinalChislo(1, 0));
+        var expected = Assert.Throws<ArgumentException>(() => new RationalChislo(1, 0));
         Assert.That(expected.Message, Is.EqualTo("Знаменатель не должен быть нулем"));
-
     }
 
     [Test]
@@ -32,7 +31,6 @@ public class RationalChisloTests
         var sum = chislo1 + chislo2;
         var expected = new RationalChislo(5, 6);
         Assert.That(sum.ToString(), Is.EqualTo(expected.ToString()));
-
     }
 
     [Test]
@@ -43,7 +41,6 @@ public class RationalChisloTests
         var mm = chislo1 - chislo2;
         var expected = new RationalChislo(1, 6);
         Assert.That(mm.ToString(), Is.EqualTo(expected.ToString()));
-
     }
 
     [Test]
@@ -54,7 +51,6 @@ public class RationalChisloTests
         var mm = chislo1 - chislo2;
         var expected = new RationalChislo(-5, 6);
         Assert.That(mm.ToString(), Is.EqualTo(expected.ToString()));
-
     }
 
     [Test]
@@ -65,7 +61,6 @@ public class RationalChisloTests
         var sum = chislo1 + chislo2;
         var expected = new RationalChislo(1, 6);
         Assert.That(sum.ToString(), Is.EqualTo(expected.ToString()));
-
     }
 
     [Test]
@@ -76,7 +71,6 @@ public class RationalChisloTests
         var del = chislo1 / chislo2;
         var expected = new RationalChislo(3, 2);
         Assert.That(del.ToString(), Is.EqualTo(expected.ToString()));
-
     }
 
     [Test]
@@ -87,7 +81,6 @@ public class RationalChisloTests
         var del = chislo1 / chislo2;
         var expected = new RationalChislo(0, 2);
         Assert.That(del.ToString(), Is.EqualTo(expected.ToString()));
-
     }
 
     [Test]
