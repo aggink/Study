@@ -200,13 +200,13 @@ public class RequestServiceTests
         var secondResponse = new SecondRequestDto
         {
             Copyright = "\nJohn Gleason \n(Celestial Images)\n",
-            date = "2005-05-22",
-            explanation = "Tomorrow's picture: wavemaker around saturn  < | Archive | Index | Search | Calendar | Glossary | Education | About APOD | >  Authors & editors: Robert Nemiroff (MTU) & Jerry Bonnell (USRA) NASA Web Site Statements, Warnings, and Disclaimers NASA Official: Jay Norris. Specific rights apply. A service of: EUD at NASA / GSFC & Michigan Tech. U.",
-            hdurl = "https://apod.nasa.gov/apod/image/0012/halebopp_gleason_big.jpg",
-            media_type = "image",
-            service_version = "v1",
-            title = "The Dust and Ion Tails of Comet Hale-Bopp",
-            url = "https://apod.nasa.gov/apod/image/0012/halebopp_gleason.jpg"
+            Date = "2005-05-22",
+            Explanation = "Tomorrow's picture: wavemaker around saturn  < | Archive | Index | Search | Calendar | Glossary | Education | About APOD | >  Authors & editors: Robert Nemiroff (MTU) & Jerry Bonnell (USRA) NASA Web Site Statements, Warnings, and Disclaimers NASA Official: Jay Norris. Specific rights apply. A service of: EUD at NASA / GSFC & Michigan Tech. U.",
+            Hdurl = "https://apod.nasa.gov/apod/image/0012/halebopp_gleason_big.jpg",
+            MediaType = "image",
+            ServiceVersion = "v1",
+            Title = "The Dust and Ion Tails of Comet Hale-Bopp",
+            Url = "https://apod.nasa.gov/apod/image/0012/halebopp_gleason.jpg"
         };
 
         SetupHttpResponse<SecondRequestDto>(requestUrl, secondResponse, HttpStatusCode.OK);
@@ -215,6 +215,28 @@ public class RequestServiceTests
         var res = JsonSerializer.Deserialize<SecondRequestDto>(result);
 
         Assert.That(res.Copyright, Is.EqualTo(secondResponse.Copyright));
+    }
+
+    [Test]
+    public void FetchData_Test_ThirdResponse()
+    {
+        var requestUrl = "http://universities.hipolabs.com/search?country=Russian Federation&name=Lomonosov Moscow State University";
+        var thirdResponse = new ThirdRequestDto
+        {
+            Name = "Lomonosov Moscow State University",
+            StateProvince = null,
+            Country = "Russian Federation",
+            AlphaTwoCode = "RU",
+            WebPages = new List<string>() { "https://www.msu.ru/" },
+            Domains = new List<string>() { "msu.ru" }
+        };
+
+        SetupHttpResponse<ThirdRequestDto>(requestUrl, thirdResponse, HttpStatusCode.OK);
+
+        string result = _requestService.FetchData(requestUrl);
+        var res = JsonSerializer.Deserialize<ThirdRequestDto>(result);
+
+        Assert.That(res.Name, Is.EqualTo(thirdResponse.Name));
     }
 
     [TearDown]

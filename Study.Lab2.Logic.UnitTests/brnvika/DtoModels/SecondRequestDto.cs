@@ -7,17 +7,24 @@ public class SecondRequestDto
     [JsonPropertyName("copyright")]
     public string Copyright { get; set; }
 
-    public string date { get; set; }
+    [JsonPropertyName("date")]
+    public string Date { get; set; }
 
-    public string explanation { get; set; }
+    [JsonPropertyName("explanation")]
+    public string Explanation { get; set; }
 
-    public string hdurl { get; set; }
+    [JsonPropertyName("hdurl")]
+    public string Hdurl { get; set; }
 
-    public string media_type { get; set; }
+    [JsonPropertyName("media_type")]
+    public string MediaType { get; set; }
 
-    public string service_version { get; set; }
+    [JsonPropertyName("service_version")]
+    public string ServiceVersion { get; set; }
 
-    public string title { get; set; }
+    [JsonPropertyName("title")]
+    public string Title { get; set; }
 
-    public string url { get; set; }
+    [JsonPropertyName("url")]
+    public string Url { get; set; }
 }
