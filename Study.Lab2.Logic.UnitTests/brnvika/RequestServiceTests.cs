@@ -25,7 +25,7 @@ public class RequestServiceTests
     {
         // Arrange
         var expectedResponse = "{  \"message\": \"Success\"}";
-        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=88770810754346f699491514250305&q=Москва";
+        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=test&q=Москва";
 
         // Настройка мок-ответа
         SetupHttpResponse(requestUrl, expectedResponse, HttpStatusCode.OK);
@@ -44,7 +44,7 @@ public class RequestServiceTests
 
         // Arrange
         var expectedResponse = "{  \"message\": \"Success\"}";
-        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=88770810754346f699491514250305&q=Москва";
+        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=test&q=Москва";
 
         // Настройка мок-ответа
         SetupHttpResponse(requestUrl, expectedResponse, HttpStatusCode.OK);
@@ -62,7 +62,7 @@ public class RequestServiceTests
     {
         // Arrange
         var expectedResponse = "{  \"message\": \"Success\"}";
-        var requestUrl = "https://api.nasa.gov/planetary/apod?api_key=mIqheAgtIaufWvsTJuGyPbb27O3oCCRtFDikN3eH&date=22-05-2005";
+        var requestUrl = "https://api.nasa.gov/planetary/apod?api_key=test=22-05-2005";
 
         // Настройка мок-ответа с кодом ошибки
         SetupHttpResponse(requestUrl, expectedResponse, HttpStatusCode.OK);
@@ -81,7 +81,7 @@ public class RequestServiceTests
 
         // Arrange
         var expectedResponse = "{  \"message\": \"Success\"}";
-        var requestUrl = "https://api.nasa.gov/planetary/apod?api_key=mIqheAgtIaufWvsTJuGyPbb27O3oCCRtFDikN3eH&date=22-05-2005";
+        var requestUrl = "https://api.nasa.gov/planetary/apod?api_key=test=22-05-2005";
 
         // Настройка мок-ответа с кодом ошибки
         SetupHttpResponse(requestUrl, expectedResponse, HttpStatusCode.OK);
@@ -135,7 +135,7 @@ public class RequestServiceTests
     public void FetchData_Failure_ThrowsException()
     {
         // Arrange
-        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=88770810754346f699491514250305&q=Stankin";
+        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=test&q=Stankin";
 
         // Настройка мок-ответа с кодом ошибки
         SetupHttpResponse(requestUrl, "404 - Not Found", HttpStatusCode.NotFound);
@@ -151,7 +151,7 @@ public class RequestServiceTests
         using var cancellationTokenSource = new CancellationTokenSource();
 
         // Arrange
-        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=88770810754346f699491514250305&q=Stankin";
+        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=test&q=Stankin";
 
         // Настройка мок-ответа с кодом ошибки
         SetupHttpResponse(requestUrl, "404 - Not Found", HttpStatusCode.NotFound);
@@ -165,7 +165,7 @@ public class RequestServiceTests
     public void FetchData_BadRequest_ThrowsException()
     {
         // Arrange
-        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=88770810754346f699491514250305&q=Stankin";
+        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=test&q=Stankin";
 
         // Настройка мок-ответа с кодом ошибки
         SetupHttpResponse(requestUrl, "400 - Bad Request", HttpStatusCode.BadRequest);
@@ -181,7 +181,7 @@ public class RequestServiceTests
         using var cancellationTokenSource = new CancellationTokenSource();
 
         // Arrange
-        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=88770810754346f699491514250305&q=Stankin";
+        var requestUrl = "http://api.weatherapi.com/v1/current.json?key=test&q=Stankin";
 
         // Настройка мок-ответа с кодом ошибки
         SetupHttpResponse(requestUrl, "400 - Bad Request", HttpStatusCode.BadRequest);
