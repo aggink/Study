@@ -52,7 +52,7 @@ public class TreeNode<T>(T value) : List<ITreeNode<T>>, ITreeNode<T>
             return Value.ToString();
 
         var sb = new StringBuilder(Value.ToString());
-        sb.Append('\n');
+        sb.AppendLine();
 
         foreach (var node in this)
         {

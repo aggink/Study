@@ -15,7 +15,7 @@ public class TreeNode(object value) : List<ITreeNode>, ITreeNode
             return ToString(true);
 
         var sb = new StringBuilder(Value.ToString());
-        sb.Append('\n');
+        sb.AppendLine();
 
         foreach (var node in this)
         {
