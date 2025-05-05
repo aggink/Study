@@ -12,7 +12,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var result = a + b;
         var expected = new RationalNumber(5, 6);
-        Assert.That(result, Is.EqualTo(expected), "Операция сложения выполнена неверно");
+        Assert.That(result, Is.EqualTo(expected), "Операция сложения выполнена неверно.");
     }
 
     [Test]

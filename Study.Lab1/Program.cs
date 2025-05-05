@@ -21,7 +21,7 @@ public static class Program
     /// <summary>
     /// Номер выполняемой задачи
     /// </summary>
-    private const int RUN_TASK_NUMBER = 2;
+    private const int RUN_TASK_NUMBER = 1;
 
     /// <summary>
     /// Название группы
