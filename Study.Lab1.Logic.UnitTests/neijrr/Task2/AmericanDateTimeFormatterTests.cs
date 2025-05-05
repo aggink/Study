@@ -1,161 +1,145 @@
-using System.Globalization;
 using Study.Lab1.Logic.neijrr.Task2;
+using System.Globalization;
 
-namespace Study.Lab1.Logic.UnitTests.neijrr.Task2
+namespace Study.Lab1.Logic.UnitTests.neijrr.Task2;
+
+[TestFixture]
+public class AmericanDateTimeFormatterTests
 {
-    [TestFixture]
-    public class AmericanDateTimeFormatterTests
+    [Test]
+    public void CorrectValue()
     {
-        [Test]
-        public void CorrectValue()
+        // Условие
+        var culture = new CultureInfo("en-US");
+        var formatter = new AmericanDateTimeFormatter();
+
+        // Действие
+        var currentTime = formatter.DateTime();
+        var epochTime = formatter.DateTime(DateTime.UnixEpoch);
+
+        // Проверка
+        Assert.Multiple(() =>
         {
-            // Условие
-            var culture = new CultureInfo("en-US");
-            var formatter = new AmericanDateTimeFormatter();
+            Assert.That(currentTime, Is.EqualTo(DateTime.Now.ToString(culture)), "Неверные дата и/или время для текущего времени");
+            Assert.That(epochTime, Is.EqualTo(DateTime.UnixEpoch.ToString(culture)), "Неверные дата и/или время для указанного времени");
+        });
+    }
 
-            // Действие
-            var currentTime = formatter.DateTime();
-            var epochTime = formatter.DateTime(DateTime.UnixEpoch);
+    [Test]
+    public void CorrectFormat()
+    {
+        // Формат даты: dd/mm/yyyy HH:MM:SS tt
 
-            // Проверка
-            Assert.Multiple(() =>
-            {
-                Assert.That(currentTime, Is.EqualTo(DateTime.Now.ToString(culture)), "Неверные дата и/или время для текущего времени");
-                Assert.That(epochTime, Is.EqualTo(DateTime.UnixEpoch.ToString(culture)), "Неверные дата и/или время для указанного времени");
-            });
-        }
+        // Условие
+        var formatter = new AmericanDateTimeFormatter();
 
-        [Test]
-        public void CorrectFormat()
+        // Действие
+        var datetime = formatter.DateTime();
+        var date = formatter.Date();
+        var time = formatter.Time();
+        var shortTime = formatter.Time(includeSeconds: false);
+
+        // Проверка
+        // - Пустая строка
+        Assert.Multiple(() =>
         {
-            // Формат даты: dd/mm/yyyy HH:MM:SS tt
-
-            // Условие
-            var formatter = new AmericanDateTimeFormatter();
-
-            // Действие
-            var datetime = formatter.DateTime();
-            var date = formatter.Date();
-            var time = formatter.Time();
-            var shortTime = formatter.Time(includeSeconds: false);
-
-            // Проверка
-            // - Пустая строка
-            Assert.Multiple(() =>
-            {
-                Assert.That(datetime, Is.Not.Empty, "DateTime вернул пустую строку");
-                Assert.That(date, Is.Not.Empty, "Date вернул пустую строку");
-                Assert.That(time, Is.Not.Empty, "Time вернул пустую строку");
-                Assert.That(shortTime, Is.Not.Empty, "Time без секунд вернул пустую строку");
-            });
-            // - Правильность формата
-            Assert.Multiple(() =>
-            {
-                Assert.That(datetime, Does.Match(@"\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{2}:\d{2} (AM)|(PM)"), "Несоответствует формат DateTime");
-                Assert.That(date, Does.Match(@"\d{1,2}\.\d{1,2}\.\d{4}"), "Несоответствует формат Date");
-                Assert.That(time, Does.Match(@"\d{1,2}:\d{2}:\d{2}"), "Несоответствует формат Time");
-                Assert.That(time, Does.Match(@"\d{1,2}:\d{2}"), "Несоответствует формат Time без секунд");
-            });
-        }
-
-        [Test]
-        public void Prefix()
+            Assert.That(datetime, Is.Not.Empty, "DateTime вернул пустую строку");
+            Assert.That(date, Is.Not.Empty, "Date вернул пустую строку");
+            Assert.That(time, Is.Not.Empty, "Time вернул пустую строку");
+            Assert.That(shortTime, Is.Not.Empty, "Time без секунд вернул пустую строку");
+        });
+        // - Правильность формата
+        Assert.Multiple(() =>
         {
-            // Условие
-            var formatter = new AmericanDateTimeFormatter();
-            var prefix = "Prefix ";
-            var decoratedFormatter = new PrefixDecorator(formatter, prefix);
+            Assert.That(datetime, Does.Match(@"\d{1,2}/\d{1,2}/\d{4} \d{1,2}:\d{2}:\d{2} (AM)|(PM)"), "Несоответствует формат DateTime");
+            Assert.That(date, Does.Match(@"\d{1,2}\.\d{1,2}\.\d{4}"), "Несоответствует формат Date");
+            Assert.That(time, Does.Match(@"\d{1,2}:\d{2}:\d{2}"), "Несоответствует формат Time");
+            Assert.That(time, Does.Match(@"\d{1,2}:\d{2}"), "Несоответствует формат Time без секунд");
+        });
+    }
+      
+    [Test]
+    public void Prefix()
+    {
+        foreach (var item in results)
+            Assert.That(item.Value, Does.StartWith(prefix), $"Нет префикса в {item.Key}");
+    });
+    }
 
-            // Действие
-            Dictionary<string, string> results = [];
-            results.Add("DateTime", decoratedFormatter.DateTime());
-            results.Add("Date", decoratedFormatter.Date());
-            results.Add("Time", decoratedFormatter.Time());
-            results.Add("Time без секунд", decoratedFormatter.Time(includeSeconds: false));
+    [Test]
+    public void Suffix()
+    {
+        // Условие
+        var formatter = new AmericanDateTimeFormatter();
+        var suffix = " suffix";
+        var decoratedFormatter = new SuffixDecorator(formatter, suffix);
 
-            // Проверка
-            Assert.Multiple(() =>
-            {
-                foreach (var item in results)
-                    Assert.That(item.Value, Does.StartWith(prefix), $"Нет префикса в {item.Key}");
-            });
-        }
+        // Действие
+        Dictionary<string, string> results = [];
+        results.Add("DateTime", decoratedFormatter.DateTime());
+        results.Add("Date", decoratedFormatter.Date());
+        results.Add("Time", decoratedFormatter.Time());
+        results.Add("Time без секунд", decoratedFormatter.Time(includeSeconds: false));
 
-        [Test]
-        public void Suffix()
+        // Проверка
+        Assert.Multiple(() =>
         {
-            // Условие
-            var formatter = new AmericanDateTimeFormatter();
-            var suffix = " suffix";
-            var decoratedFormatter = new SuffixDecorator(formatter, suffix);
+            foreach (var item in results)
+                Assert.That(item.Value, Does.EndWith(suffix), $"Нет суффикса в {item.Key}");
+        });
+    }
 
-            // Действие
-            Dictionary<string, string> results = [];
-            results.Add("DateTime", decoratedFormatter.DateTime());
-            results.Add("Date", decoratedFormatter.Date());
-            results.Add("Time", decoratedFormatter.Time());
-            results.Add("Time без секунд", decoratedFormatter.Time(includeSeconds: false));
+    [Test]
+    public void MultipleDecorators()
+    {
+        // Условие
+        var formatter = new AmericanDateTimeFormatter();
+        var prefix = "[";
+        var suffix = "]";
+        // Prefix -> Suffix
+        var psFormatter = new SuffixDecorator(new PrefixDecorator(formatter, prefix), suffix);
+        // Suffix -> Prefix
+        var spFormatter = new PrefixDecorator(new SuffixDecorator(formatter, suffix), prefix);
 
-            // Проверка
-            Assert.Multiple(() =>
-            {
-                foreach (var item in results)
-                    Assert.That(item.Value, Does.EndWith(suffix), $"Нет суффикса в {item.Key}");
-            });
-        }
+        // Действие
+        Dictionary<string, string> psResults = [];
+        psResults.Add("DateTime", psFormatter.DateTime());
+        psResults.Add("Date", psFormatter.Date());
+        psResults.Add("Time", psFormatter.Time());
+        psResults.Add("Time без секунд", psFormatter.Time(includeSeconds: false));
 
-        [Test]
-        public void MultipleDecorators()
+        Dictionary<string, string> spResults = [];
+        spResults.Add("DateTime", spFormatter.DateTime());
+        spResults.Add("Date", spFormatter.Date());
+        spResults.Add("Time", spFormatter.Time());
+        spResults.Add("Time без секунд", spFormatter.Time(includeSeconds: false));
+
+        // Проверка
+        // - Проверка декораторов
+        Assert.Multiple(() =>
         {
-            // Условие
-            var formatter = new AmericanDateTimeFormatter();
-            var prefix = "[";
-            var suffix = "]";
-            // Prefix -> Suffix
-            var psFormatter = new SuffixDecorator(new PrefixDecorator(formatter, prefix), suffix);
-            // Suffix -> Prefix
-            var spFormatter = new PrefixDecorator(new SuffixDecorator(formatter, suffix), prefix);
+            // Наличие префикса
+            foreach (var item in psResults)
+                Assert.That(item.Value, Does.StartWith(prefix), $"Нет префикса в {item.Key} (p->s)");
 
-            // Действие
-            Dictionary<string, string> psResults = [];
-            psResults.Add("DateTime", psFormatter.DateTime());
-            psResults.Add("Date", psFormatter.Date());
-            psResults.Add("Time", psFormatter.Time());
-            psResults.Add("Time без секунд", psFormatter.Time(includeSeconds: false));
+            foreach (var item in spResults)
+                Assert.That(item.Value, Does.StartWith(prefix), $"Нет префикса в {item.Key} (s->p)");
 
-            Dictionary<string, string> spResults = [];
-            spResults.Add("DateTime", spFormatter.DateTime());
-            spResults.Add("Date", spFormatter.Date());
-            spResults.Add("Time", spFormatter.Time());
-            spResults.Add("Time без секунд", spFormatter.Time(includeSeconds: false));
+            // Наличие суффикса
+            foreach (var item in psResults)
+                Assert.That(item.Value, Does.EndWith(suffix), $"Нет суффикса в {item.Key} (p->s)");
 
-            // Проверка
-            // - Проверка декораторов
-            Assert.Multiple(() =>
-            {
-                // Наличие префикса
-                foreach (var item in psResults)
-                    Assert.That(item.Value, Does.StartWith(prefix), $"Нет префикса в {item.Key} (p->s)");
-
-                foreach (var item in spResults)
-                    Assert.That(item.Value, Does.StartWith(prefix), $"Нет префикса в {item.Key} (s->p)");
-
-                // Наличие суффикса
-                foreach (var item in psResults)
-                    Assert.That(item.Value, Does.EndWith(suffix), $"Нет суффикса в {item.Key} (p->s)");
-
-                foreach (var item in spResults)
-                    Assert.That(item.Value, Does.EndWith(suffix), $"Нет суффикса в {item.Key} (s->p)");
-            });
-            // - Проверка независимости от порядка
-            Assert.Multiple(() =>
-            {
-                foreach (var item in psResults)
-                    Assert.That(
-                        item.Value, Is.EqualTo(spResults[item.Key]),
-                        $"Не совпадает результат p->s и s->p для {item.Key}"
-                    );
-            });
-        }
+            foreach (var item in spResults)
+                Assert.That(item.Value, Does.EndWith(suffix), $"Нет суффикса в {item.Key} (s->p)");
+        });
+        // - Проверка независимости от порядка
+        Assert.Multiple(() =>
+        {
+            foreach (var item in psResults)
+                Assert.That(
+                    item.Value, Is.EqualTo(spResults[item.Key]),
+                    $"Не совпадает результат p->s и s->p для {item.Key}"
+                );
+        });
     }
 }

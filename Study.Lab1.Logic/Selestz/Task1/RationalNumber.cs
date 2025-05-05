@@ -2,7 +2,7 @@
 
 namespace Study.Lab1.Logic.Selestz.Task1;
 
-public class RationalNumber : IRatNums
+public class RationalNumber : IRationalNumber
 {
     public int Numerator { get; }
     public int Denominator { get; }
@@ -21,6 +21,7 @@ public class RationalNumber : IRatNums
         }
 
         int NOD = Math.Abs(NodFunction(numerator, denominator));
+
         Numerator = numerator / NOD;
         Denominator = denominator / NOD;
     }

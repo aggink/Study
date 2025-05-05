@@ -1,6 +1,7 @@
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.neijrr.Task1;
 using Study.Lab1.Logic.neijrr.Task2;
+using Study.Lab1.Logic.neijrr.Task3;
 
 namespace Study.Lab1.Logic.neijrr
 {
@@ -41,11 +42,11 @@ namespace Study.Lab1.Logic.neijrr
 
             Console.WriteLine("Европейский формат:");
             Console.WriteLine(euDateFormatter.Date());
-            Console.WriteLine(euTimeFormatter.Date());
+            Console.WriteLine(euTimeFormatter.Time());
 
             Console.WriteLine("Американский формат:");
             Console.WriteLine(amDateFormatter.Date());
-            Console.WriteLine(amTimeFormatter.Date());
+            Console.WriteLine(amTimeFormatter.Time());
 
             Console.WriteLine("Unix epoch:");
             Console.WriteLine($"Европейский формат: {euFormatter.DateTime(DateTime.UnixEpoch)}");
@@ -54,7 +55,35 @@ namespace Study.Lab1.Logic.neijrr
 
         public void RunTask3()
         {
-            throw new NotImplementedException();
+            var objectTree = new TreeNode("Корень дерева")
+            {
+                new TreeNode("Это дерево может содержать узлы с значением разных типов") {
+                    new TreeNode("Этот узел вложен в дочерний узел")
+                },
+                new TreeNode(0.5),
+                new TreeNode(2)
+            };
+
+            Console.WriteLine($"Значение начала дерева: {objectTree}");
+            Console.WriteLine("1-й уровень:");
+            Console.WriteLine(objectTree.ToString(1));
+            Console.WriteLine("Полная репрезентация:");
+            Console.WriteLine(objectTree.ToString(true));
+
+            var stringTree = new TreeNode<string>("Корень дерева строк") {
+                "Дерево определённого типа",
+
+                "Эта строка будет удалена",
+
+                "поддерживает операции",
+                new TreeNode<string>("с данным типом") {
+                    "При этом в объекте хранятся"
+                }
+            };
+            stringTree.RemoveValue("Эта строка будет удалена");
+            stringTree[2].Add("только объекты типа TreeNode<T>");
+
+            Console.WriteLine(stringTree.ToString(-1)); // Всё равно что ToString(true)
         }
     }
 }

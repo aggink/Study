@@ -1,5 +1,7 @@
 ﻿using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Interfaces;
+using Study.Lab2.Logic.xynthh;
 
 public static class Program
 {
@@ -54,6 +56,10 @@ public static class Program
         {
             case ("assistant", 1):
                 return new AssistantService();
+            case ("idb-23-02", 15):
+                return new XynthhService();
+            case ("idb-23-02", 4):
+                return new brnvikaService();
             default:
                 throw new NotSupportedException();
         }
