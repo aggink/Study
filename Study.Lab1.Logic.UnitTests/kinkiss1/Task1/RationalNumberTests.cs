@@ -3,7 +3,7 @@
 namespace Study.Lab1.Logic.UnitTests.kinkiss1.task1;
 
 [TestFixture]
-public class Task1Tests
+public class RationalNumberTests
 {
     [Test]
     public void Constructor_ValidInput_ShouldInitializeCorrectly()

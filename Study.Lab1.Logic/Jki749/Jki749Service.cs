@@ -36,8 +36,6 @@ public class Jki749Service : IRunService
 
         var equality3 = ch1 <= ch3;
         Console.WriteLine($"Сравнение (ch1 <= ch3): {equality3}");
-
-
     }
 
     public void RunTask2()

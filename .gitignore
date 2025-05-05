@@ -365,3 +365,4 @@ FodyWeavers.xsd
 # Docker files
 ./pgadmin
 ./postgres-data
+/.idea

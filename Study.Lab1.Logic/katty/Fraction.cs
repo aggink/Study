@@ -1,42 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Study.Lab1.Logic.katty;
 
-namespace Study.Lab1.Logic.katty
+public class Fraction
 {
-    public class Fraction
+    /// <summary>
+    /// Числитель
+    /// </summary>
+    public int Numerator { get; init; }
+
+    /// <summary>
+    /// Знаменатель
+    /// </summary>
+    public int Denominator { get; init; }
+
+    public Fraction(int numerator, int denominator)
     {
-        /// <summary>
-        /// Числитель
-        /// </summary>
-        public int Numerator { get; init; }
+        if (denominator == 0)
+            throw new ArgumentException(nameof(denominator));
 
-        /// <summary>
-        /// Знаменатель
-        /// </summary>
-        public int Denominator { get; init; }
+        Numerator = numerator;
+        Denominator = denominator;
+    }
 
-        public Fraction(int numerator, int denominator)
-        {
-            if (denominator == 0)
-                throw new ArgumentException(nameof(denominator));
+    #region Переопределение операций
+    public static Fraction operator +(Fraction arg1, Fraction arg2)
+    {
+        return new Fraction(1, 1);
+    }
+    #endregion
 
-            Numerator = numerator;
-            Denominator = denominator;
-        }
-
-        #region Переопределение операций
-        public static Fraction operator +(Fraction arg1, Fraction arg2)
-        {
-            return new Fraction(1, 1);
-        }
-        #endregion
-
-        public override string ToString()
-        {
-            return $"{Numerator}/{Denominator}";
-        }
+    public override string ToString()
+    {
+        return $"{Numerator}/{Denominator}";
     }
 }
