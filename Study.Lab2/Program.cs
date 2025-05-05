@@ -64,6 +64,8 @@ public static class Program
                 return new brnvikaService();
             case ("idb-23-02", 23):
                 return new SelestzService();
+            case ("idb-23-02", 6):
+                return new kinkiss1Service();
             default:
                 throw new NotSupportedException();
         }
