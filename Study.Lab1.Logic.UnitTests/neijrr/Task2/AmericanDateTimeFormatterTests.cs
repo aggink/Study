@@ -57,13 +57,28 @@ public class AmericanDateTimeFormatterTests
             Assert.That(time, Does.Match(@"\d{1,2}:\d{2}"), "Несоответствует формат Time без секунд");
         });
     }
-      
+
     [Test]
     public void Prefix()
     {
-        foreach (var item in results)
-            Assert.That(item.Value, Does.StartWith(prefix), $"Нет префикса в {item.Key}");
-    });
+        // Условие
+        var formatter = new AmericanDateTimeFormatter();
+        var prefix = "Prefix ";
+        var decoratedFormatter = new PrefixDecorator(formatter, prefix);
+
+        // Действие
+        Dictionary<string, string> results = [];
+        results.Add("DateTime", decoratedFormatter.DateTime());
+        results.Add("Date", decoratedFormatter.Date());
+        results.Add("Time", decoratedFormatter.Time());
+        results.Add("Time без секунд", decoratedFormatter.Time(includeSeconds: false));
+
+        // Проверка
+        Assert.Multiple(() =>
+        {
+            foreach (var item in results)
+                Assert.That(item.Value, Does.StartWith(prefix), $"Нет префикса в {item.Key}");
+        });
     }
 
     [Test]
