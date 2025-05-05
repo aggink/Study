@@ -12,7 +12,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var result = a + b;
         var expected = new RationalNumber(5, 6);
-        Assert.That(result, Is.EqualTo(expected), "Операция сложения выполнена неверно.");
+        Assert.That(result, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ");
     }
 
     [Test]
@@ -22,7 +22,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var result = a - b;
         var expected = new RationalNumber(1, 6);
-        Assert.That(result, Is.EqualTo(expected), "Операция вычитания выполнена неверно.");
+        Assert.That(result, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -32,7 +32,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var result = a * b;
         var expected = new RationalNumber(1, 6);
-        Assert.That(result, Is.EqualTo(expected), "Операция умножения выполнена неверно.");
+        Assert.That(result, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -42,7 +42,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var result = a / b;
         var expected = new RationalNumber(3, 2);
-        Assert.That(result, Is.EqualTo(expected), "Операция деления выполнена неверно.");
+        Assert.That(result, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ РґРµР»РµРЅРёСЏ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -60,7 +60,7 @@ public class RationalNumberTests
         var a = new RationalNumber(1, 2);
         var result = -a;
         var expected = new RationalNumber(-1, 2);
-        Assert.That(result, Is.EqualTo(expected), "Операция унарного отрицания выполнена неверно.");
+        Assert.That(result, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ СѓРЅР°СЂРЅРѕРіРѕ РѕС‚СЂРёС†Р°РЅРёСЏ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -68,7 +68,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
-        Assert.IsTrue(a == b, "Операция равенства выполнена неверно.");
+        Assert.IsTrue(a == b, "РћРїРµСЂР°С†РёСЏ СЂР°РІРµРЅСЃС‚РІР° РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -76,7 +76,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
-        Assert.IsTrue(a != b, "Операция неравенства выполнена неверно.");
+        Assert.IsTrue(a != b, "РћРїРµСЂР°С†РёСЏ РЅРµСЂР°РІРµРЅСЃС‚РІР° РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -84,7 +84,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
-        Assert.IsTrue(b < a, "Операция знака меньше выполнена неверно.");
+        Assert.IsTrue(b < a, "РћРїРµСЂР°С†РёСЏ Р·РЅР°РєР° РјРµРЅСЊС€Рµ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -93,8 +93,8 @@ public class RationalNumberTests
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
         var c = new RationalNumber(1, 3);
-        Assert.IsTrue(b <= a, "Операция знака меньше или равно выполнена неверно.");
-        Assert.IsTrue(b <= c, "Операция знака меньше или равно не распознаёт одинаковые дроби.");
+        Assert.IsTrue(b <= a, "РћРїРµСЂР°С†РёСЏ Р·РЅР°РєР° РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРЅРѕ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
+        Assert.IsTrue(b <= c, "РћРїРµСЂР°С†РёСЏ Р·РЅР°РєР° РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРЅРѕ РЅРµ СЂР°СЃРїРѕР·РЅР°С‘С‚ РѕРґРёРЅР°РєРѕРІС‹Рµ РґСЂРѕР±Рё.");
     }
 
     [Test]
@@ -102,7 +102,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
-        Assert.IsTrue(a > b, "Операция знака больше выполнена неверно.");
+        Assert.IsTrue(a > b, "РћРїРµСЂР°С†РёСЏ Р·РЅР°РєР° Р±РѕР»СЊС€Рµ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -111,15 +111,15 @@ public class RationalNumberTests
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
         var c = new RationalNumber(1, 3);
-        Assert.IsTrue(a >= b, "Операция знака меньше или равно выполнена неверно.");
-        Assert.IsTrue(b >= c, "Операция знака меньше или равно не распознаёт одинаковые дроби.");
+        Assert.IsTrue(a >= b, "РћРїРµСЂР°С†РёСЏ Р·РЅР°РєР° РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРЅРѕ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
+        Assert.IsTrue(b >= c, "РћРїРµСЂР°С†РёСЏ Р·РЅР°РєР° РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРЅРѕ РЅРµ СЂР°СЃРїРѕР·РЅР°С‘С‚ РѕРґРёРЅР°РєРѕРІС‹Рµ РґСЂРѕР±Рё.");
     }
 
     [Test]
     public void CorrectToStringMethod()
     {
         var a = new RationalNumber(1, 2);
-        Assert.That(a.ToString(), Is.EqualTo("1/2"), "Метод ToString возвращает неверное значение.");
+        Assert.That(a.ToString(), Is.EqualTo("1/2"), "РњРµС‚РѕРґ ToString РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ.");
     }
 
     [Test]
@@ -127,7 +127,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
-        Assert.IsTrue(a.Equals(b), "Метод Equals возвращает неверное значение.");
+        Assert.IsTrue(a.Equals(b), "РњРµС‚РѕРґ Equals РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ.");
     }
 
     [Test]
@@ -135,6 +135,6 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
-        Assert.That(a.GetHashCode(), Is.EqualTo(b.GetHashCode()), "Метод GetHashCode возвращает неверное значение.");
+        Assert.That(a.GetHashCode(), Is.EqualTo(b.GetHashCode()), "РњРµС‚РѕРґ GetHashCode РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ.");
     }
 }
