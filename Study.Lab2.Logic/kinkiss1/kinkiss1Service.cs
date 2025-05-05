@@ -7,12 +7,6 @@ namespace Study.Lab2.Logic.kinkiss1;
 public class kinkiss1Service : IRunService
 {
     private readonly IServerRequestService _serverRequestService;
-
-    // Идентификаторы для запросов
-    private const int JsonPlaceholderUserId = 3;
-    private const int ReqResUserId = 3;
-    private const int JsonPlaceholderPostId = 3;
-
     public kinkiss1Service()
     {
         IRequestService requestService = new RequestService(new HttpClient());
@@ -27,19 +21,6 @@ public class kinkiss1Service : IRunService
 
         try
         {
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine($"Запрос пользователя Placeholder (ID: {JsonPlaceholderUserId})...");
-            Console.ResetColor();
-            var jsonPlaceholderUser = _serverRequestService.JsonGetUser(JsonPlaceholderUserId);
-            Console.WriteLine(jsonPlaceholderUser);
-            Console.WriteLine(new string('-', 50));
-
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine($"Запрос пользователя ReqRes (ID: {ReqResUserId})...");
-            Console.ResetColor();
-            var reqResUser = _serverRequestService.ReqresGetUser(ReqResUserId);
-            Console.WriteLine(reqResUser);
-            Console.WriteLine(new string('-', 50));
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"Запрос фактов о кошках...");
@@ -49,10 +30,10 @@ public class kinkiss1Service : IRunService
             Console.WriteLine(new string('-', 50));
 
             Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine($"Запрос поста Placeholder (ID: {JsonPlaceholderPostId})...");
+            Console.WriteLine($"Запрос цитаты Канье...");
             Console.ResetColor();
-            var jsonPlaceholderPost = _serverRequestService.JsonGetPost(JsonPlaceholderPostId);
-            Console.WriteLine(jsonPlaceholderPost);
+            var KanyeC = _serverRequestService.KanyeRest();
+            Console.WriteLine(KanyeC);
             Console.WriteLine(new string('-', 50));
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -85,45 +66,29 @@ public class kinkiss1Service : IRunService
             Console.WriteLine("Запуск асинхронных запросов...");
             Console.ResetColor();
 
-            var jsonPlaceholderUserTask =
-                _serverRequestService.JsonGetUserAsync(JsonPlaceholderUserId, cancellationToken);
-            Console.WriteLine($"- Запрос пользователя Placeholder (ID: {JsonPlaceholderUserId}) запущен.");
-
-            var reqResUserTask = _serverRequestService.ReqresGetUserAsync(ReqResUserId, cancellationToken);
-            Console.WriteLine($"- Запрос пользователя ReqRes (ID: {ReqResUserId}) запущен.");
-
+            // Запускаем все задачи
             var catFactsTask = _serverRequestService.CatGetFactsAsync(cancellationToken);
-            var catFacts = await catFactsTask;
-            Console.WriteLine("Факты о кошках:");
-            Console.WriteLine(catFacts);
-            Console.WriteLine(new string('-', 50));
+            Console.WriteLine("- Запрос фактов о кошках запущен.");
 
-            var jsonPlaceholderPostTask =
-                _serverRequestService.JsonGetPostAsync(JsonPlaceholderPostId, cancellationToken);
-            Console.WriteLine($"- Запрос поста Placeholder (ID: {JsonPlaceholderPostId}) запущен.");
+            var kanyeTask = _serverRequestService.KanyeRestAsync(cancellationToken);
+            Console.WriteLine("- Запрос цитаты Канье запущен.");
 
-            // Ожидаем завершения всех задач
-            await Task.WhenAll(jsonPlaceholderUserTask, reqResUserTask, jsonPlaceholderPostTask);
+            Console.WriteLine("\nОжидание завершения всех запросов...");
+
+            // Дожидаемся выполнения всех задач
+            await Task.WhenAll(catFactsTask, kanyeTask);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nВсе асинхронные ответы успешно получены!\n");
+            Console.WriteLine("\nВсе асинхронные ответы успешно получены!");
             Console.ResetColor();
 
-            // Выводим результаты
-            Console.WriteLine("Результат пользователя Placeholder:");
-            Console.WriteLine(await jsonPlaceholderUserTask);
+            // Теперь выводим результаты по очереди
+            Console.WriteLine("\nФакты о кошках:");
+            Console.WriteLine(await catFactsTask);
             Console.WriteLine(new string('-', 50));
 
-            Console.WriteLine("Факты о кошках:");
-            Console.WriteLine(catFacts);
-            Console.WriteLine(new string('-', 50));
-
-            Console.WriteLine("Результат пользователя ReqRes:");
-            Console.WriteLine(await reqResUserTask);
-            Console.WriteLine(new string('-', 50));
-
-            Console.WriteLine("Результат поста laceholder:");
-            Console.WriteLine(await jsonPlaceholderPostTask);
+            Console.WriteLine("\nЦитата Канье:");
+            Console.WriteLine(await kanyeTask);
             Console.WriteLine(new string('-', 50));
         }
         catch (OperationCanceledException)

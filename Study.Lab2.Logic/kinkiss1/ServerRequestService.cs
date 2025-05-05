@@ -6,146 +6,268 @@ namespace Study.Lab2.Logic.kinkiss1;
 
 public class ServerRequestService : IServerRequestService
 {
-    private readonly Dictionary<string, string> _Headers;
+    private readonly IRequestService _requestService;
+    private readonly IResponseProcessor _responseProcessor;
     private readonly IRequestService _rService;
-    private readonly IResponseProcessor _rProcessor;
-
-    private const string JsonBaseUrl = "https://jsonplaceholder.typicode.com";
-    private const string ReqresBaseUrl = "https://reqres.in/api";
-    private const string CatBaseUrl = "https://catfact.ninja";
-    private const string TranslateBaseUrl = "https://libretranslate.com/translate";
 
     public ServerRequestService(IRequestService requestService, IResponseProcessor responseProcessor)
     {
-        _rService = requestService;
-        _rProcessor = responseProcessor;
-
-        _Headers = new Dictionary<string, string>
-        {
-            { "x-api-key", "reqres-free-v1" }
-        };
+        _requestService = requestService;
+        _responseProcessor = responseProcessor;
     }
-
-    public string JsonGetUser(int userId)
+   
+    public string TranslateCatsSync(string jsonString)
     {
-        var url = $"{JsonBaseUrl}/users/{userId}";
-        var answer = _rService.FetchSync(url);
+        try
+        {
+            // Парсим входящий JSON
+            var jsonDocument = JsonDocument.Parse(jsonString);
+            var factText = jsonDocument.RootElement.GetProperty("fact").GetString();
 
-        if (_rProcessor.Error(answer))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(answer));
+            //// Выводим исходный текст в консоль для отладки
+            //Console.WriteLine($"Исходный текст для перевода: {factText}");
 
-        return _rProcessor.FormatJsonAnswers(answer);
+            if (string.IsNullOrEmpty(factText))
+                throw new Exception("Факт о кошке не найден в JSON");
+
+            // Формируем URL для запроса к Google Translate API
+            var encodedText = Uri.EscapeDataString(factText);
+            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
+
+            var response = _requestService.FetchData(url);
+
+            // Парсим ответ Google API
+            var jsonResponse = JsonDocument.Parse(response);
+            var translatedText = jsonResponse.RootElement[0][0][0].GetString();
+
+            //// Выводим переведенный текст в консоль для отладки
+            //Console.WriteLine($"Переведенный текст: {translatedText}");
+
+            // Создаем новый JSON с добавленным переводом с явным указанием кодировки
+            var jsonObj = new Dictionary<string, object>
+        {
+            { "fact", factText },
+            { "length", factText.Length },
+            { "перевод", translatedText }
+        };
+
+            return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Ошибка при переводе текста: {ex.Message}");
+        }
     }
-    
+
+    public string TranslateKanyeSync(string jsonString)
+    {
+        try
+        {
+            // Парсим входящий JSON
+            var jsonDocument = JsonDocument.Parse(jsonString);
+            var quoteText = jsonDocument.RootElement.GetProperty("quote").GetString();
+
+            if (string.IsNullOrEmpty(quoteText))
+                throw new Exception("Цитата Канье не найдена в JSON");
+
+            // Формируем URL для запроса к Google Translate API
+            var encodedText = Uri.EscapeDataString(quoteText);
+            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
+
+            var response = _requestService.FetchData(url);
+
+            // Парсим ответ Google API
+            var jsonResponse = JsonDocument.Parse(response);
+            var translatedText = jsonResponse.RootElement[0][0][0].GetString();
+
+            // Создаем новый JSON с добавленным переводом с явным указанием кодировки
+            var jsonObj = new Dictionary<string, object>
+        {
+            { "quote", quoteText },
+            { "перевод", translatedText }
+        };
+
+            return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Ошибка при переводе цитаты: {ex.Message}");
+        }
+    }
+
+    public async Task<string> TranslateCatsAsync(string jsonString, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            // Парсим входящий JSON
+            var jsonDocument = JsonDocument.Parse(jsonString);
+            var factText = jsonDocument.RootElement.GetProperty("fact").GetString();
+
+            if (string.IsNullOrEmpty(factText))
+                throw new Exception("Факт о кошке не найден в JSON");
+
+            // Формируем URL для запроса к Google Translate API
+            var encodedText = Uri.EscapeDataString(factText);
+            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
+
+            // Асинхронно выполняем запрос
+            var response = await _requestService.FetchDataAsync(url, cancellationToken);
+
+            // Парсим ответ Google API
+            var jsonResponse = JsonDocument.Parse(response);
+            var translatedText = jsonResponse.RootElement[0][0][0].GetString();
+
+            // Создаем новый JSON с добавленным переводом с явным указанием кодировки
+            var jsonObj = new Dictionary<string, object>
+        {
+            { "fact", factText },
+            { "length", factText.Length },
+            { "перевод", translatedText }
+        };
+
+            return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Ошибка при асинхронном переводе текста: {ex.Message}");
+        }
+    }
+
+    public async Task<string> TranslateKanyeAsync(string jsonString, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            // Парсим входящий JSON
+            var jsonDocument = JsonDocument.Parse(jsonString);
+            var quoteText = jsonDocument.RootElement.GetProperty("quote").GetString();
+
+            if (string.IsNullOrEmpty(quoteText))
+                throw new Exception("Цитата Канье не найдена в JSON");
+
+            // Формируем URL для запроса к Google Translate API
+            var encodedText = Uri.EscapeDataString(quoteText);
+            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
+
+            // Асинхронно выполняем запрос
+            var response = await _requestService.FetchDataAsync(url, cancellationToken);
+
+            // Парсим ответ Google API
+            var jsonResponse = JsonDocument.Parse(response);
+            var translatedText = jsonResponse.RootElement[0][0][0].GetString();
+
+            // Создаем новый JSON с добавленным переводом с явным указанием кодировки
+            var jsonObj = new Dictionary<string, object>
+        {
+            { "quote", quoteText },
+            { "перевод", translatedText }
+        };
+
+            return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            });
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Ошибка при асинхронном переводе цитаты: {ex.Message}");
+        }
+    }
+
+    // --- СИНХРОННЫЕ ---
+
     public string CatGetFacts()
     {
-        var url = $"{CatBaseUrl}/fact";
-        var answer = _rService.FetchSync(url);
+        var url = $"https://catfact.ninja/fact";
+        var response = _requestService.FetchData(url);
 
-        if (_rProcessor.Error(answer))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(answer));
+        // Форматируем JSON для лучшей читаемости
+        var formattedResponse = _responseProcessor.FormatJson(response);
 
-        var jsonResponse = JsonDocument.Parse(answer);
-        var factText = jsonResponse.RootElement.GetProperty("fact").GetString();
-
-        var formattedJson = JsonSerializer.Serialize(new { fact = factText }, new JsonSerializerOptions
+        // Переводим текст
+        try
         {
-            WriteIndented = true
-        });
-
-        return formattedJson;
-    }
-
-    public string ReqresGetUser(int userId)
-    {
-        var url = $"{ReqresBaseUrl}/users/{userId}";
-        var answer = _rService.FetchSync(url, _Headers);
-
-        if (_rProcessor.Error(answer))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(answer));
-
-        return _rProcessor.FormatJsonAnswers(answer);
-    }
-
-    public string JsonGetPost(int postId)
-    {
-        var url = $"{JsonBaseUrl}/posts/{postId}";
-        var answer = _rService.FetchSync(url, _Headers);
-        if (_rProcessor.Error(answer))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(answer));
-        return _rProcessor.FormatJsonAnswers(answer);
-    }
-
-    public async Task<string> JsonGetUserAsync(int userId, CancellationToken cancellationToken = default)
-    {
-        var url = $"{JsonBaseUrl}/users/{userId}";
-        var answer = await _rService.FetchAsync(url, _Headers, cancellationToken);
-
-        if (_rProcessor.Error(answer))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(answer));
-
-        return _rProcessor.FormatJsonAnswers(answer);
-    }
-
-    public async Task<string> ReqresGetUserAsync(int userId, CancellationToken cancellationToken = default)
-    {
-        var url = $"{ReqresBaseUrl}/users/{userId}";
-        var answer = await _rService.FetchAsync(url, _Headers, cancellationToken);
-        if (_rProcessor.Error(answer))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(answer));
-        return _rProcessor.FormatJsonAnswers(answer);
-    }
-
-    public async Task<string> Translate(string text)
-    {
-        var requestBody = new
+            return TranslateCatsSync(response);
+        }
+        catch (Exception ex)
         {
-            q = text,
-            source = "en",
-            target = "ru",
-            format = "text"
-        };
-
-        var jsonBody = JsonSerializer.Serialize(requestBody);
-        var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
-
-        var response = _rService.FetchSync(TranslateBaseUrl, new Dictionary<string, string>
-        {
-            { "Content-Type", "application/json" }
-        });
-
-        if (_rProcessor.Error(response))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(response));
-
-        var jsonResponse = JsonDocument.Parse(response);
-        return jsonResponse.RootElement.GetProperty("translatedText").GetString();
+            Console.WriteLine($"Ошибка при переводе: {ex.Message}");
+            return formattedResponse;
+        }
     }
+
+    public string KanyeRest()
+    {
+        var url = $"https://api.kanye.rest";
+        var response = _requestService.FetchData(url);
+
+        // Форматируем JSON для лучшей читаемости
+        var formattedResponse = _responseProcessor.FormatJson(response);
+
+        // Переводим текст
+        try
+        {
+            return TranslateKanyeSync(response);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при переводе: {ex.Message}");
+            return formattedResponse;
+        }
+    }
+
+    // --- АСИНХРОННЫЕ ---
 
     public async Task<string> CatGetFactsAsync(CancellationToken cancellationToken = default)
     {
-        var url = $"{CatBaseUrl}/fact";
-        var answer = await _rService.FetchAsync(url, _Headers, cancellationToken);
-        if (_rProcessor.Error(answer))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(answer));
+        var url = $"https://catfact.ninja/fact";
+        var response = await _requestService.FetchDataAsync(url, cancellationToken);
 
-        var jsonResponse = JsonDocument.Parse(answer);
-        var factText = jsonResponse.RootElement.GetProperty("fact").GetString();
+        // Форматируем JSON для лучшей читаемости
+        var formattedResponse = _responseProcessor.FormatJson(response);
 
-        var formattedJson = JsonSerializer.Serialize(new { fact = factText }, new JsonSerializerOptions
+        // Переводим текст асинхронно
+        try
         {
-            WriteIndented = true
-        });
-
-        return formattedJson;
+            return await TranslateCatsAsync(response, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при асинхронном переводе: {ex.Message}");
+            return formattedResponse;
+        }
     }
 
-    public async Task<string> JsonGetPostAsync(int postId, CancellationToken cancellationToken = default)
+    public async Task<string> KanyeRestAsync(CancellationToken cancellationToken = default)
     {
-        var url = $"{JsonBaseUrl}/posts/{postId}";
-        var answer = await _rService.FetchAsync(url, _Headers, cancellationToken);
-        if (_rProcessor.Error(answer))
-            throw new Exception(_rProcessor.CocnlusionErrorMessage(answer));
-        return _rProcessor.FormatJsonAnswers(answer);
+        var url = $"https://api.kanye.rest";
+        var response = await _requestService.FetchDataAsync(url, cancellationToken);
+
+        // Форматируем JSON для лучшей читаемости
+        var formattedResponse = _responseProcessor.FormatJson(response);
+
+        // Переводим текст асинхронно
+        try
+        {
+            return await TranslateKanyeAsync(response, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при асинхронном переводе: {ex.Message}");
+            return formattedResponse;
+        }
     }
 
     public void Dispose()

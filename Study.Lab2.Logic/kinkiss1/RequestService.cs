@@ -1,58 +1,66 @@
-﻿using System.Text;
-using Study.Lab2.Logic.Interfaces.kinkiss1;
+﻿using Study.Lab2.Logic.Interfaces.kinkiss1;
 
 namespace Study.Lab2.Logic.kinkiss1;
 
 public class RequestService : IRequestService
 {
-    private readonly HttpClient _client;
-    public RequestService(HttpClient client)
+    private readonly HttpClient _httpClient;
+    private bool _disposed = false;
+
+    public RequestService(HttpClient httpClient)
     {
-        _client = client;
+        _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
     }
-    public string FetchSync(string url, Dictionary<string, string> headers = null)
+
+    public string FetchData(string url)
     {
-        using (var request = new HttpRequestMessage(HttpMethod.Get, url))
+        var response = _httpClient.GetAsync(url).Result;
+
+        if (!response.IsSuccessStatusCode)
+            throw new HttpRequestException($"Ошибка запроса к {url}: {(int)response.StatusCode} {response.ReasonPhrase}");
+
+        return response.Content.ReadAsStringAsync().Result;
+    }
+
+    public string FetchData(string url, Dictionary<string, string> headers = null)
+    {
+        using (var request = new HttpRequestMessage(HttpMethod.Post, url))
         {
             if (headers != null)
-                foreach (var header in headers)
-                    request.Headers.Add(header.Key, header.Value);
-
-            var answer = _client.SendAsync(request).GetAwaiter().GetResult();
-
-            if (!answer.IsSuccessStatusCode)
-                throw new Exception($"HTTP Error: {answer.StatusCode} - {answer.ReasonPhrase}");
-
-            using (var stream = answer.Content.ReadAsStream())
-            using (var reader = new StreamReader(stream))
             {
-                return reader.ReadToEnd();
-            }
-        }
-    }
-
-public async Task<string> FetchAsync(
-        string url,
-        Dictionary<string, string> headers = null,
-        CancellationToken cancellationToken = default)
-    {
-        using (var request = new HttpRequestMessage(HttpMethod.Get, url))
-        {
-            // Добавляем заголовки, если они предоставлены
-            if (headers != null)
                 foreach (var header in headers)
+                {
                     request.Headers.Add(header.Key, header.Value);
+                }
+            }
 
-            var response = await _client.SendAsync(request, cancellationToken);
+            var response = _httpClient.SendAsync(request).Result;
 
             if (!response.IsSuccessStatusCode)
-                throw new Exception($"HTTP Error: {response.StatusCode} - {response.ReasonPhrase}");
+            {
+                throw new HttpRequestException($"Ошибка запроса: {response.StatusCode} - {response.ReasonPhrase}");
+            }
 
-            return await response.Content.ReadAsStringAsync(cancellationToken);
+            return response.Content.ReadAsStringAsync().Result;
         }
     }
+
+    public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default)
+    {
+        var response = await _httpClient.GetAsync(url, cancellationToken);
+
+        if (!response.IsSuccessStatusCode)
+            throw new HttpRequestException($"Ошибка при запросе к {url}: {(int)response.StatusCode} {response.ReasonPhrase}");
+
+        return await response.Content.ReadAsStringAsync(cancellationToken);
+    }
+
     public void Dispose()
     {
-        _client?.Dispose();
+        if (!_disposed)
+        {
+            _httpClient.Dispose();
+            _disposed = true;
+        }
     }
 }
