@@ -3,6 +3,7 @@ using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.Selestz;
+
 public static class Program
 {
     /// <summary>
