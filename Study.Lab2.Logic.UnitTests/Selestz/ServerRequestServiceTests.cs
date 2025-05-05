@@ -70,7 +70,6 @@ public class ServerRequestServiceTests
         _serverRequestService.Dispose();
     }
 
-
     private void SetupRequestMock(string response)
     {
         _requestServiceMock.Setup(x => x.FetchData(
