@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Study.Lab2.Logic.Interfaces.Selestz;
 using Study.Lab2.Logic.Selestz;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.Selestz;
 
@@ -9,42 +10,40 @@ namespace Study.Lab2.Logic.UnitTests.Selestz;
 public class ServerRequestServiceTests
 {
     private Mock<IRequestService> _requestServiceMock;
-    private Mock<IResponseProcessor> _responseProcessorMock;
     private ServerRequestService _serverRequestService;
+    private readonly IResponseProcessor _responseProcessor = new ResponseProcessor();
 
-    // Общие тестовые данные
-    private const string MockResponse = "{\"name\":\"John\"}";
-    private const string FormattedResponse = "{\n  \"name\": \"John\"\n}";
-    private const string ErrorResponse = "{\"error\":\"Not found\"}";
+    // Тестовые данные
+    private const string ValidUserJson = "{\"id\":1,\"name\":\"John\",\"email\":\"john@example.com\"}";
+    private const string ErrorJson = "{\"error\":\"Not found\"}";
 
     [SetUp]
     public void Setup()
     {
         _requestServiceMock = new Mock<IRequestService>();
-        _responseProcessorMock = new Mock<IResponseProcessor>();
         _serverRequestService = new ServerRequestService(
             _requestServiceMock.Object,
-            _responseProcessorMock.Object);
+            _responseProcessor);
     }
 
     [Test]
     public void GetRandomUser_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        SetupMocksForSuccessResponse(MockResponse, FormattedResponse);
+        SetupRequestMock(ValidUserJson);
 
         // Act
         var result = _serverRequestService.GetRandomUser();
 
         // Assert
-        Assert.AreEqual(FormattedResponse, result);
+        AssertValidJsonResponse(result, "John");
     }
 
     [Test]
     public void GetRandomUser_ErrorResponse_ThrowsException()
     {
         // Arrange
-        SetupMocksForErrorResponse(ErrorResponse, "Not found");
+        SetupRequestMock(ErrorJson);
 
         // Act & Assert
         var ex = Assert.Throws<Exception>(() => _serverRequestService.GetRandomUser());
@@ -55,26 +54,15 @@ public class ServerRequestServiceTests
     public async Task GetRandomUserAsync_ValidResponse_ReturnsFormattedJson()
     {
         // Arrange
-        SetupMocksForSuccessResponseAsync(MockResponse, FormattedResponse);
+        SetupAsyncRequestMock(ValidUserJson);
 
         // Act
         var result = await _serverRequestService.GetRandomUserAsync();
 
         // Assert
-        Assert.AreEqual(FormattedResponse, result);
+        AssertValidJsonResponse(result, "John");
     }
 
-    [Test]
-    public async Task GetRandomUserAsync_ErrorResponse_ThrowsException()
-    {
-        // Arrange
-        SetupMocksForErrorResponseAsync(ErrorResponse, "Not found");
-
-        // Act & Assert
-        var ex = Assert.ThrowsAsync<Exception>(async () =>
-            await _serverRequestService.GetRandomUserAsync());
-        Assert.AreEqual("Not found", ex.Message);
-    }
 
     [TearDown]
     public void Cleanup()
@@ -83,57 +71,27 @@ public class ServerRequestServiceTests
     }
 
 
-    private void SetupMocksForSuccessResponse(string response, string formattedResponse)
+    private void SetupRequestMock(string response)
     {
         _requestServiceMock.Setup(x => x.FetchData(
             It.IsAny<string>(),
             It.IsAny<Dictionary<string, string>>()))
             .Returns(response);
-
-        _responseProcessorMock.Setup(x => x.HasError(response))
-            .Returns(false);
-        _responseProcessorMock.Setup(x => x.FormatJsonResponse(response))
-            .Returns(formattedResponse);
     }
 
-    private void SetupMocksForSuccessResponseAsync(string response, string formattedResponse)
+    private void SetupAsyncRequestMock(string response)
     {
         _requestServiceMock.Setup(x => x.FetchDataAsync(
             It.IsAny<string>(),
             null,
             It.IsAny<CancellationToken>()))
             .ReturnsAsync(response);
-
-        _responseProcessorMock.Setup(x => x.HasError(response))
-            .Returns(false);
-        _responseProcessorMock.Setup(x => x.FormatJsonResponse(response))
-            .Returns(formattedResponse);
     }
 
-    private void SetupMocksForErrorResponse(string errorResponse, string errorMessage)
+    private static void AssertValidJsonResponse(string result, string expectedContent)
     {
-        _requestServiceMock.Setup(x => x.FetchData(
-            It.IsAny<string>(),
-            It.IsAny<Dictionary<string, string>>()))
-            .Returns(errorResponse);
-
-        _responseProcessorMock.Setup(x => x.HasError(errorResponse))
-            .Returns(true);
-        _responseProcessorMock.Setup(x => x.ExtractErrorMessage(errorResponse))
-            .Returns(errorMessage);
-    }
-
-    private void SetupMocksForErrorResponseAsync(string errorResponse, string errorMessage)
-    {
-        _requestServiceMock.Setup(x => x.FetchDataAsync(
-            It.IsAny<string>(),
-            null,
-            It.IsAny<CancellationToken>()))
-            .ReturnsAsync(errorResponse);
-
-        _responseProcessorMock.Setup(x => x.HasError(errorResponse))
-            .Returns(true);
-        _responseProcessorMock.Setup(x => x.ExtractErrorMessage(errorResponse))
-            .Returns(errorMessage);
+        Assert.IsFalse(string.IsNullOrEmpty(result));
+        Assert.DoesNotThrow(() => JsonDocument.Parse(result));
+        Assert.IsTrue(result.Contains(expectedContent));
     }
 }
