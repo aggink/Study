@@ -53,7 +53,6 @@ public class RequestServiceTests
         );
     }
 
-
     [Test]
     public async Task FetchDataAsync_SuccessfulResponse_ReturnsContent()
     {
@@ -63,8 +62,6 @@ public class RequestServiceTests
 
         Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
     }
-
- 
 
     private void SetupMockResponse(
     HttpStatusCode statusCode,
