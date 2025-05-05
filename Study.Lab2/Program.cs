@@ -1,4 +1,5 @@
 ﻿using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.kinkiss1;
@@ -58,8 +59,8 @@ public static class Program
                 return new AssistantService();
             case ("idb-23-02", 15):
                 return new XynthhService();
-            case ("idb-23-02", 6):
-                return new kinkiss1Service();
+            case ("idb-23-02", 4):
+                return new brnvikaService();
             default:
                 throw new NotSupportedException();
         }
