@@ -3,7 +3,7 @@ using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.Selestz.DtoModels;
 using System;
 using System.Text.Json;
-using Study.Lab2.Logic.UnitTests.Selestz.DtoModels;
+using Study.Lab2.Logic.UnitTests.Selestz.ApiTestModel;
 namespace Study.Lab2.Logic.UnitTests.Selestz;
 
 [TestFixture]
