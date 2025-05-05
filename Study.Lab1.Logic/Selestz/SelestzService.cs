@@ -1,6 +1,7 @@
 ﻿using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Selestz.Task1;
 using Study.Lab1.Logic.Selestz.Task2;
+using Study.Lab1.Logic.Selestz.Task3;
 using System.Text;
 
 namespace Study.Lab1.Logic.Selestz;
@@ -67,6 +68,42 @@ public class SelestzService : IRunService
 
     public void RunTask3()
     {
-        throw new NotImplementedException();
+        {
+            var rootstring = new TreeNode<string>("Root");
+
+            var child1 = new TreeNode<string>("Child 1");
+            var child2 = new TreeNode<string>("Child 2");
+
+            var grandChild1 = new TreeNode<string>("Grandchild 1");
+            var grandGrandChild1 = new TreeNode<string>("GrandGrandchild 2");
+            var grandChild11 = new TreeNode<string>("Grandchild 2");
+
+            grandChild1.Add(grandGrandChild1);
+            child1.Add(grandChild1);
+            child1.Add(grandChild11);
+            rootstring.Add(child1);
+            rootstring.Add(child2);
+
+            Console.WriteLine("Дерево со строками-значениями:");
+            Console.WriteLine(rootstring.GetTree());
+
+            var rootInt = new TreeNode<int>(0);
+
+            var child3 = new TreeNode<int>(1);
+            var child4 = new TreeNode<int>(2);
+
+            var grandChild2 = new TreeNode<int>(11);
+            var grandChild3 = new TreeNode<int>(22);
+            var grandGrandChild2 = new TreeNode<int>(111);
+
+            grandChild2.Add(grandGrandChild2);
+            child3.Add(grandChild2);
+            child4.Add(grandChild3);
+            rootInt.Add(child3);
+            rootInt.Add(child4);
+
+            Console.WriteLine("Дерево с числами-значениями:");
+            Console.WriteLine(rootInt.GetTree());
+        }
     }
 }

@@ -21,17 +21,12 @@ public class RationalChislo : IRationalChislo
 
         if (Denominator == 0)
         {
-            Console.WriteLine("Знаменатель не должен быть нулем");
+            throw new ArgumentException("Знаменатель не должен быть нулем");
         }
     }
 
     public override string ToString()
     {
-        if (Denominator == 1)
-            return $"{Numerator}";
-
-        if (Denominator == 0)
-            return $"Знаменатель не должен быть нулем";
 
         return $"{Numerator}/{Denominator}";
     }
