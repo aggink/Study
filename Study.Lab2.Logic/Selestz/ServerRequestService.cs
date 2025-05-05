@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Study.Lab2.Logic.Interfaces.Selestz;
-using Study.Lab2.Logic.Selestz.Models;
+using Study.Lab2.Logic.Selestz.DtoModels;
 
 namespace Study.Lab2.Logic.Selestz;
 

@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 using Study.Lab2.Logic.Selestz;
-using Study.Lab2.Logic.Selestz.Models;
+using Study.Lab2.Logic.Selestz.DtoModels;
 using System;
 using System.Text.Json;
-
+using Study.Lab2.Logic.UnitTests.Selestz.DtoModels;
 namespace Study.Lab2.Logic.UnitTests.Selestz;
 
 [TestFixture]
@@ -24,7 +24,7 @@ public class ResponseProcessorTests
         const string json = """{"Name":"John","Age":30}""";
 
         // Act
-        var result = _processor.FormatJsonResponse<TestModel>(json);
+        var result = _processor.FormatJsonResponse<ApiTestModel>(json);
 
         // Assert
         Assert.That(result.Name, Is.EqualTo("John"));
@@ -38,7 +38,7 @@ public class ResponseProcessorTests
         const string invalidJson = "{invalid}";
 
         // Act & Assert
-        Assert.Throws<Exception>(() => _processor.FormatJsonResponse<TestModel>(invalidJson));
+        Assert.Throws<Exception>(() => _processor.FormatJsonResponse<ApiTestModel>(invalidJson));
     }
 
     [Test]
@@ -48,7 +48,7 @@ public class ResponseProcessorTests
         const string emptyJson = "";
 
         // Act & Assert
-        Assert.Throws<ArgumentException>(() => _processor.FormatJsonResponse<TestModel>(emptyJson));
+        Assert.Throws<ArgumentException>(() => _processor.FormatJsonResponse<ApiTestModel>(emptyJson));
     }
 
     [Test]
@@ -81,9 +81,5 @@ public class ResponseProcessorTests
         Assert.AreEqual("Not found", _processor.ExtractErrorMessage(jsonWithError));
     }
 
-    private class TestModel
-    {
-        public string Name { get; set; }
-        public int Age { get; set; }
-    }
+
 }

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Study.Lab2.Logic.Interfaces.Selestz;
 using Study.Lab2.Logic.Selestz;
-using Study.Lab2.Logic.Selestz.Models;
+using Study.Lab2.Logic.Selestz.DtoModels;
 using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.Selestz;
@@ -63,7 +63,6 @@ public class ServerRequestServiceTests
         // Assert
         AssertValidJsonResponse(result, "John");
     }
-
 
     [TearDown]
     public void Cleanup()

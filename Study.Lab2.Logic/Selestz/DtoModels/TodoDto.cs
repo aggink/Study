@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Study.Lab2.Logic.Selestz.Models;
+namespace Study.Lab2.Logic.Selestz.DtoModels;
 
 public sealed record TodoDto
 {
