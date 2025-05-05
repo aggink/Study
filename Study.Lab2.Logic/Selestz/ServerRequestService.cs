@@ -1,5 +1,9 @@
-using Study.Lab2.Logic.Interfaces.Selestz;
 using System;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+using Study.Lab2.Logic.Interfaces.Selestz;
+using Study.Lab2.Logic.Selestz.Models;
 
 namespace Study.Lab2.Logic.Selestz;
 
@@ -26,7 +30,8 @@ public class ServerRequestService : IServerRequestService
         if (_responseProcessor.HasError(response))
             throw new Exception(_responseProcessor.ExtractErrorMessage(response));
 
-        return _responseProcessor.FormatJsonResponse(response);
+        var user = _responseProcessor.FormatJsonResponse<UserDto>(response);
+        return JsonSerializer.Serialize(user, new JsonSerializerOptions { WriteIndented = true });
     }
 
     public string GetRandomPost()
@@ -38,7 +43,8 @@ public class ServerRequestService : IServerRequestService
         if (_responseProcessor.HasError(response))
             throw new Exception(_responseProcessor.ExtractErrorMessage(response));
 
-        return _responseProcessor.FormatJsonResponse(response);
+        var post = _responseProcessor.FormatJsonResponse<PostDto>(response);
+        return JsonSerializer.Serialize(post, new JsonSerializerOptions { WriteIndented = true });
     }
 
     public string GetRandomTodo()
@@ -50,7 +56,8 @@ public class ServerRequestService : IServerRequestService
         if (_responseProcessor.HasError(response))
             throw new Exception(_responseProcessor.ExtractErrorMessage(response));
 
-        return _responseProcessor.FormatJsonResponse(response);
+        var todo = _responseProcessor.FormatJsonResponse<TodoDto>(response);
+        return JsonSerializer.Serialize(todo, new JsonSerializerOptions { WriteIndented = true });
     }
 
     public async Task<string> GetRandomUserAsync(CancellationToken cancellationToken = default)
@@ -62,7 +69,8 @@ public class ServerRequestService : IServerRequestService
         if (_responseProcessor.HasError(response))
             throw new Exception(_responseProcessor.ExtractErrorMessage(response));
 
-        return _responseProcessor.FormatJsonResponse(response);
+        var user = _responseProcessor.FormatJsonResponse<UserDto>(response);
+        return JsonSerializer.Serialize(user, new JsonSerializerOptions { WriteIndented = true });
     }
 
     public async Task<string> GetRandomPostAsync(CancellationToken cancellationToken = default)
@@ -74,7 +82,8 @@ public class ServerRequestService : IServerRequestService
         if (_responseProcessor.HasError(response))
             throw new Exception(_responseProcessor.ExtractErrorMessage(response));
 
-        return _responseProcessor.FormatJsonResponse(response);
+        var post = _responseProcessor.FormatJsonResponse<PostDto>(response);
+        return JsonSerializer.Serialize(post, new JsonSerializerOptions { WriteIndented = true });
     }
 
     public async Task<string> GetRandomTodoAsync(CancellationToken cancellationToken = default)
@@ -86,7 +95,8 @@ public class ServerRequestService : IServerRequestService
         if (_responseProcessor.HasError(response))
             throw new Exception(_responseProcessor.ExtractErrorMessage(response));
 
-        return _responseProcessor.FormatJsonResponse(response);
+        var todo = _responseProcessor.FormatJsonResponse<TodoDto>(response);
+        return JsonSerializer.Serialize(todo, new JsonSerializerOptions { WriteIndented = true });
     }
 
     public void Dispose()

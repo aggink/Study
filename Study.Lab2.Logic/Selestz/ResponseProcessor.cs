@@ -5,28 +5,22 @@ namespace Study.Lab2.Logic.Selestz;
 
 public class ResponseProcessor : IResponseProcessor
 {
-    public string FormatJsonResponse(string jsonResponse)
+    public T FormatJsonResponse<T>(string jsonResponse) where T : class
     {
         if (string.IsNullOrWhiteSpace(jsonResponse))
-            return "Empty response";
+            throw new ArgumentException("Empty response", nameof(jsonResponse));
+
+        if (HasError(jsonResponse))
+            throw new Exception(ExtractErrorMessage(jsonResponse));
 
         try
         {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-
-            using var doc = JsonDocument.Parse(jsonResponse);
-
-            return JsonSerializer.Serialize(doc, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
+            return JsonSerializer.Deserialize<T>(jsonResponse)
+                   ?? throw new Exception("Deserialization returned null");
         }
         catch (JsonException ex)
         {
-            return $"Invalid JSON format: {ex.Message}";
+            throw new Exception("Invalid JSON format", ex);
         }
     }
 
@@ -37,7 +31,7 @@ public class ResponseProcessor : IResponseProcessor
 
         try
         {
-            var doc = JsonDocument.Parse(response);
+            using var doc = JsonDocument.Parse(response);
             return doc.RootElement.TryGetProperty("error", out _);
         }
         catch
@@ -48,18 +42,21 @@ public class ResponseProcessor : IResponseProcessor
 
     public string ExtractErrorMessage(string response)
     {
+        if (string.IsNullOrWhiteSpace(response))
+            return "Empty response";
+
         try
         {
-            var doc = JsonDocument.Parse(response);
+            using var doc = JsonDocument.Parse(response);
             if (doc.RootElement.TryGetProperty("error", out var errorProp))
             {
                 return errorProp.GetString() ?? "Unknown error";
             }
             return "Server returned an error";
         }
-        catch
+        catch (JsonException ex)
         {
-            return "Failed to parse error response";
+            return $"Failed to parse error response: {ex.Message}";
         }
     }
 }

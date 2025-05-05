@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using Study.Lab2.Logic.Selestz;
+using Study.Lab2.Logic.Selestz.Models;
+using System;
 using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.Selestz;
@@ -16,31 +18,37 @@ public class ResponseProcessorTests
     }
 
     [Test]
-    public void FormatJsonResponse_ValidJson_ReturnsFormattedJson()
+    public void FormatJsonResponse_ValidJson_ReturnsDeserializedObject()
     {
         // Arrange
-        const string json = "{\"name\":\"John\",\"age\":30}";
+        const string json = """{"Name":"John","Age":30}""";
 
         // Act
-        var result = _processor.FormatJsonResponse(json);
+        var result = _processor.FormatJsonResponse<TestModel>(json);
 
         // Assert
-        Assert.DoesNotThrow(() => JsonDocument.Parse(result));
-        StringAssert.Contains("\"name\": \"John\"", result);
-        StringAssert.Contains("\"age\": 30", result);
+        Assert.That(result.Name, Is.EqualTo("John"));
+        Assert.That(result.Age, Is.EqualTo(30));
     }
 
     [Test]
-    public void FormatJsonResponse_InvalidJson_ReturnsErrorMessage()
+    public void FormatJsonResponse_InvalidJson_ThrowsException()
     {
         // Arrange
         const string invalidJson = "{invalid}";
 
-        // Act
-        var result = _processor.FormatJsonResponse(invalidJson);
+        // Act & Assert
+        Assert.Throws<Exception>(() => _processor.FormatJsonResponse<TestModel>(invalidJson));
+    }
 
-        // Assert
-        StringAssert.StartsWith("Invalid JSON format", result);
+    [Test]
+    public void FormatJsonResponse_EmptyResponse_ThrowsException()
+    {
+        // Arrange
+        const string emptyJson = "";
+
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => _processor.FormatJsonResponse<TestModel>(emptyJson));
     }
 
     [Test]
@@ -71,5 +79,11 @@ public class ResponseProcessorTests
 
         // Act & Assert
         Assert.AreEqual("Not found", _processor.ExtractErrorMessage(jsonWithError));
+    }
+
+    private class TestModel
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
     }
 }

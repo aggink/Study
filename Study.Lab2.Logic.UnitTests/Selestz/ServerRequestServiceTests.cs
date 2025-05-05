@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Study.Lab2.Logic.Interfaces.Selestz;
 using Study.Lab2.Logic.Selestz;
+using Study.Lab2.Logic.Selestz.Models;
 using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.Selestz;
@@ -92,5 +93,12 @@ public class ServerRequestServiceTests
         Assert.IsFalse(string.IsNullOrEmpty(result));
         Assert.DoesNotThrow(() => JsonDocument.Parse(result));
         Assert.IsTrue(result.Contains(expectedContent));
+
+        // Дополнительная проверка структуры
+        if (expectedContent == "John")
+        {
+            var user = JsonSerializer.Deserialize<UserDto>(result);
+            Assert.IsNotNull(user);
+        }
     }
 }
