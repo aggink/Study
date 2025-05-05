@@ -12,15 +12,21 @@ public class ResponseProcessor : IResponseProcessor
 
         try
         {
-            var jsonElement = JsonSerializer.Deserialize<JsonElement>(jsonResponse);
-            return JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            using var doc = JsonDocument.Parse(jsonResponse);
+
+            return JsonSerializer.Serialize(doc, new JsonSerializerOptions
             {
                 WriteIndented = true
             });
         }
-        catch (JsonException)
+        catch (JsonException ex)
         {
-            return $"Invalid JSON format: {jsonResponse}";
+            return $"Invalid JSON format: {ex.Message}";
         }
     }
 
