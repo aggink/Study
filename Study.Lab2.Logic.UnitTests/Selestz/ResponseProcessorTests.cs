@@ -3,7 +3,8 @@ using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.Selestz.DtoModels;
 using System;
 using System.Text.Json;
-using Study.Lab2.Logic.UnitTests.Selestz.ApiTestModel;
+using Study.Lab2.Logic.UnitTests.Selestz.DtoModels;
+
 namespace Study.Lab2.Logic.UnitTests.Selestz;
 
 [TestFixture]
@@ -24,7 +25,7 @@ public class ResponseProcessorTests
         const string json = """{"Name":"John","Age":30}""";
 
         // Act
-        var result = _processor.FormatJsonResponse<ApiTestModel>(json);
+        var result = _processor.FormatJsonResponse<ApiTestDto>(json);
 
         // Assert
         Assert.That(result.Name, Is.EqualTo("John"));
@@ -38,7 +39,7 @@ public class ResponseProcessorTests
         const string invalidJson = "{invalid}";
 
         // Act & Assert
-        Assert.Throws<Exception>(() => _processor.FormatJsonResponse<ApiTestModel>(invalidJson));
+        Assert.Throws<Exception>(() => _processor.FormatJsonResponse<ApiTestDto>(invalidJson));
     }
 
     [Test]
@@ -48,7 +49,7 @@ public class ResponseProcessorTests
         const string emptyJson = "";
 
         // Act & Assert
-        Assert.Throws<ArgumentException>(() => _processor.FormatJsonResponse<ApiTestModel>(emptyJson));
+        Assert.Throws<ArgumentException>(() => _processor.FormatJsonResponse<ApiTestDto>(emptyJson));
     }
 
     [Test]
