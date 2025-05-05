@@ -2,6 +2,7 @@
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.kinkiss1;
 
 public static class Program
@@ -61,6 +62,8 @@ public static class Program
                 return new XynthhService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
+            case ("idb-23-02", 23):
+                return new SelestzService();
             default:
                 throw new NotSupportedException();
         }
