@@ -9,12 +9,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "idb-23-02";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 6;
+    private const int PERSON_NUMBER = 1;
 
     public static async Task Main()
     {
@@ -61,8 +61,6 @@ public static class Program
                 return new XynthhService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
-            case ("idb-23-02", 6):
-                return new kinkiss1Service();
             default:
                 throw new NotSupportedException();
         }

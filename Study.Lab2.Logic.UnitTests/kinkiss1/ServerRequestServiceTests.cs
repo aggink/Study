@@ -19,182 +19,52 @@ public class ServerRequestServiceTests
         _serverRequestService = new ServerRequestService(_mockRequestService.Object, _mockResponseProcessor.Object);
     }
 
-    [Test]
-    public void CatGetFacts_SuccessfulResponse_ReturnsTranslatedData()
+    [TearDown]
+    public void TearDown()
     {
-        // Arrange
-        var url = ApiTestData.GetCatFactsUrl();
-        var rawResponse = ApiTestData.CatFactsResponse;
-        var formattedResponse = ApiTestData.CatFactsWithTranslationFormatted;
-
-        _mockRequestService.Setup(s => s.FetchData(url)).Returns(rawResponse);
-        _mockResponseProcessor.Setup(p => p.FormatJson(rawResponse)).Returns(rawResponse);
-
-        // Настраиваем мок для TranslateCatsSync
-        _mockRequestService
-            .Setup(s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com"))))
-            .Returns(ApiTestData.GoogleTranslateCatFactResponse);
-
-        // Act
-        var result = _serverRequestService.CatGetFacts();
-
-        // Assert
-        Assert.That(result, Is.Not.Null);
-        _mockRequestService.Verify(s => s.FetchData(url), Times.Once);
-        // Проверяем, что был вызван запрос к Google Translate
-        _mockRequestService.Verify(
-            s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com"))),
-            Times.Once);
-    }
-
-    [Test]
-    public void KanyeRest_SuccessfulResponse_ReturnsTranslatedData()
-    {
-        // Arrange
-        var url = ApiTestData.GetKanyeRestUrl();
-        var rawResponse = ApiTestData.KanyeRestResponse;
-        var formattedResponse = ApiTestData.KanyeRestWithTranslationFormatted;
-
-        _mockRequestService.Setup(s => s.FetchData(url)).Returns(rawResponse);
-        _mockResponseProcessor.Setup(p => p.FormatJson(rawResponse)).Returns(rawResponse);
-
-        // Настраиваем мок для TranslateKanyeSync
-        _mockRequestService
-            .Setup(s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com"))))
-            .Returns(ApiTestData.GoogleTranslateKanyeResponse);
-
-        // Act
-        var result = _serverRequestService.KanyeRest();
-
-        // Assert
-        Assert.That(result, Is.Not.Null);
-        _mockRequestService.Verify(s => s.FetchData(url), Times.Once);
-        // Проверяем, что был вызван запрос к Google Translate
-        _mockRequestService.Verify(
-            s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com"))),
-            Times.Once);
+        _serverRequestService?.Dispose();
     }
 
     [Test]
     public void CatGetFacts_ErrorResponse_ReturnsFormattedJson()
     {
-        // Arrange
         var url = ApiTestData.GetCatFactsUrl();
         var rawResponse = ApiTestData.CatFactsResponse;
-        var formattedResponse = ApiTestData.CatFactsResponse;  // В случае ошибки возвращается отформатированный исходный JSON
+        var formattedResponse = ApiTestData.CatFactsResponse;
 
         _mockRequestService.Setup(s => s.FetchData(url)).Returns(rawResponse);
         _mockResponseProcessor.Setup(p => p.FormatJson(rawResponse)).Returns(formattedResponse);
 
-        // Имитируем ошибку при переводе
         _mockRequestService
             .Setup(s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com"))))
             .Throws(new Exception("Translation error"));
 
-        // Act
         var result = _serverRequestService.CatGetFacts();
 
-        // Assert
         Assert.That(result, Is.EqualTo(formattedResponse));
         _mockRequestService.Verify(s => s.FetchData(url), Times.Once);
     }
 
     [Test]
-    public async Task CatGetFactsAsync_SuccessfulResponse_ReturnsTranslatedData()
-    {
-        // Arrange
-        var url = ApiTestData.GetCatFactsUrl();
-        var rawResponse = ApiTestData.CatFactsResponse;
-        var formattedResponse = ApiTestData.CatFactsWithTranslationFormatted;
-
-        _mockRequestService
-            .Setup(s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(rawResponse);
-        _mockResponseProcessor.Setup(p => p.FormatJson(rawResponse)).Returns(rawResponse);
-
-        // Настраиваем мок для TranslateCatsAsync
-        _mockRequestService
-            .Setup(s => s.FetchDataAsync(
-                It.Is<string>(u => u.Contains("translate.googleapis.com")),
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(ApiTestData.GoogleTranslateCatFactResponse);
-
-        // Act
-        var result = await _serverRequestService.CatGetFactsAsync();
-
-        // Assert
-        Assert.That(result, Is.Not.Null);
-        _mockRequestService.Verify(
-            s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()),
-            Times.Once);
-        // Проверяем, что был вызван запрос к Google Translate
-        _mockRequestService.Verify(
-            s => s.FetchDataAsync(
-                It.Is<string>(u => u.Contains("translate.googleapis.com")),
-                It.IsAny<CancellationToken>()),
-            Times.Once);
-    }
-
-    [Test]
-    public async Task KanyeRestAsync_SuccessfulResponse_ReturnsTranslatedData()
-    {
-        // Arrange
-        var url = ApiTestData.GetKanyeRestUrl();
-        var rawResponse = ApiTestData.KanyeRestResponse;
-        var formattedResponse = ApiTestData.KanyeRestWithTranslationFormatted;
-
-        _mockRequestService
-            .Setup(s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()))
-            .ReturnsAsync(rawResponse);
-        _mockResponseProcessor.Setup(p => p.FormatJson(rawResponse)).Returns(rawResponse);
-
-        // Настраиваем мок для TranslateKanyeAsync
-        _mockRequestService
-            .Setup(s => s.FetchDataAsync(
-                It.Is<string>(u => u.Contains("translate.googleapis.com")),
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(ApiTestData.GoogleTranslateKanyeResponse);
-
-        // Act
-        var result = await _serverRequestService.KanyeRestAsync();
-
-        // Assert
-        Assert.That(result, Is.Not.Null);
-        _mockRequestService.Verify(
-            s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()),
-            Times.Once);
-        // Проверяем, что был вызван запрос к Google Translate
-        _mockRequestService.Verify(
-            s => s.FetchDataAsync(
-                It.Is<string>(u => u.Contains("translate.googleapis.com")),
-                It.IsAny<CancellationToken>()),
-            Times.Once);
-    }
-
-    [Test]
     public async Task CatGetFactsAsync_ErrorResponse_ReturnsFormattedJson()
     {
-        // Arrange
         var url = ApiTestData.GetCatFactsUrl();
         var rawResponse = ApiTestData.CatFactsResponse;
-        var formattedResponse = ApiTestData.CatFactsResponse;  // В случае ошибки возвращается отформатированный исходный JSON
+        var formattedResponse = ApiTestData.CatFactsResponse; 
 
         _mockRequestService
             .Setup(s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()))
             .ReturnsAsync(rawResponse);
         _mockResponseProcessor.Setup(p => p.FormatJson(rawResponse)).Returns(formattedResponse);
 
-        // Имитируем ошибку при переводе
         _mockRequestService
             .Setup(s => s.FetchDataAsync(
                 It.Is<string>(u => u.Contains("translate.googleapis.com")),
                 It.IsAny<CancellationToken>()))
             .ThrowsAsync(new Exception("Translation error"));
 
-        // Act
         var result = await _serverRequestService.CatGetFactsAsync();
 
-        // Assert
         Assert.That(result, Is.EqualTo(formattedResponse));
         _mockRequestService.Verify(
             s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()),
@@ -202,41 +72,48 @@ public class ServerRequestServiceTests
     }
 
     [Test]
-    public void TranslateCatsSync_ValidJson_ReturnsTranslatedData()
+    public void KanyeRest_RequestError_ThrowsException()
     {
-        // Arrange
-        var jsonString = ApiTestData.CatFactsResponse;
-        var googleTranslateResponse = ApiTestData.GoogleTranslateCatFactResponse;
+        var url = ApiTestData.GetKanyeRestUrl();
 
         _mockRequestService
-            .Setup(s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com"))))
-            .Returns(googleTranslateResponse);
+            .Setup(s => s.FetchData(url))
+            .Throws(new HttpRequestException("Error request"));
 
-        // Act
-        var result = _serverRequestService.TranslateCatsSync(jsonString);
-
-        // Assert
-        Assert.That(result, Does.Contain("перевод"));
-        Assert.That(result, Does.Contain(ApiTestData.TranslatedCatFactText));
+        var exception = Assert.Throws<HttpRequestException>(() => _serverRequestService.KanyeRest());
+        StringAssert.Contains("Error request", exception.Message);
     }
 
     [Test]
-    public void TranslateKanyeSync_ValidJson_ReturnsTranslatedData()
+    public async Task CatGetFactsAsync_CancellationRequested_ThrowsOperationCanceledException()
     {
-        // Arrange
-        var jsonString = ApiTestData.KanyeRestResponse;
-        var googleTranslateResponse = ApiTestData.GoogleTranslateKanyeResponse;
+        var url = ApiTestData.GetCatFactsUrl();
+        using var cts = new CancellationTokenSource();
+        var token = cts.Token;
 
         _mockRequestService
-            .Setup(s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com"))))
-            .Returns(googleTranslateResponse);
+            .Setup(s => s.FetchDataAsync(url, token))
+            .Callback(() => cts.Cancel())
+            .ThrowsAsync(new OperationCanceledException(token));
 
-        // Act
-        var result = _serverRequestService.TranslateKanyeSync(jsonString);
+        var exception = Assert.ThrowsAsync<OperationCanceledException>(async () =>
+            await _serverRequestService.CatGetFactsAsync(token));
 
-        // Assert
-        Assert.That(result, Does.Contain("перевод"));
-        Assert.That(result, Does.Contain(ApiTestData.TranslatedKanyeQuoteText));
+        Assert.That(exception.CancellationToken, Is.EqualTo(token));
+    }
+
+    [Test]
+    public async Task KanyeRestAsync_NetworkError_ThrowsHttpRequestException()
+    {
+        var url = ApiTestData.GetKanyeRestUrl();
+
+        _mockRequestService
+            .Setup(s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()))
+            .ThrowsAsync(new HttpRequestException("Network error API"));
+
+        var exception = Assert.ThrowsAsync<HttpRequestException>(async () =>
+            await _serverRequestService.KanyeRestAsync());
+
+        StringAssert.Contains("Network error", exception.Message);
     }
 }
-

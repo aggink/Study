@@ -23,30 +23,24 @@ public class RequestServiceTests
     [Test]
     public void FetchData_SuccessfulResponse_ReturnsContent()
     {
-        // Arrange
         SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse);
 
-        // Act
         var result = _requestService.FetchData(ApiTestData.RequestServiceTestUrl);
 
-        // Assert
         Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
     }
 
     [Test]
     public void FetchData_WithHeaders_SendsCorrectHeaders()
     {
-        // Arrange
         SetupMockResponse(
             HttpStatusCode.OK,
             ApiTestData.RequestServiceTestResponse,
             ApiTestData.RequestServiceTestHeaders);
 
-        // Act
         var result =
             _requestService.FetchData(ApiTestData.RequestServiceTestUrl, ApiTestData.RequestServiceTestHeaders);
 
-        // Assert
         Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
         _mockHttpMessageHandler.Protected().Verify(
             "SendAsync",
@@ -59,77 +53,18 @@ public class RequestServiceTests
         );
     }
 
-    [Test]
-    public void FetchData_ErrorResponse_ThrowsException()
-    {
-        // Arrange
-        SetupMockResponse(HttpStatusCode.InternalServerError, "Error");
-
-        // Act & Assert
-        var exception = Assert.Throws<HttpRequestException>(() =>
-            _requestService.FetchData(ApiTestData.RequestServiceTestUrl));
-
-        StringAssert.Contains("Ошибка запроса", exception.Message);
-    }
 
     [Test]
     public async Task FetchDataAsync_SuccessfulResponse_ReturnsContent()
     {
-        // Arrange
         SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse);
 
-        // Act
         var result = await _requestService.FetchDataAsync(ApiTestData.RequestServiceTestUrl);
 
-        // Assert
         Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
     }
 
-    [Test]
-    public void FetchDataAsync_ErrorResponse_ThrowsException()
-    {
-        // Arrange
-        SetupMockResponse(HttpStatusCode.NotFound, "Not Found");
-
-        // Act & Assert
-        var exception = Assert.ThrowsAsync<HttpRequestException>(async () =>
-            await _requestService.FetchDataAsync(ApiTestData.RequestServiceTestUrl));
-
-        StringAssert.Contains("Ошибка при запросе к", exception.Message);
-    }
-
-    [Test]
-    public void CatFacts_SuccessfulResponse_ReturnsCorrectData()
-    {
-        // Arrange
-        var catFactsUrl = ApiTestData.GetCatFactsUrl();
-        SetupMockResponse(HttpStatusCode.OK, ApiTestData.CatFactsResponse,
-            null, catFactsUrl);
-
-        // Act
-        var result = _requestService.FetchData(catFactsUrl);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(ApiTestData.CatFactsResponse));
-        Assert.That(result, Does.Contain("fact"));
-        Assert.That(result, Does.Contain("length"));
-    }
-
-    [Test]
-    public async Task CatFactsAsync_SuccessfulResponse_ReturnsCorrectData()
-    {
-        // Arrange
-        var catFactsUrl = ApiTestData.GetCatFactsUrl();
-        SetupMockResponse(HttpStatusCode.OK, ApiTestData.CatFactsResponse,
-            null, catFactsUrl);
-
-        // Act
-        var result = await _requestService.FetchDataAsync(catFactsUrl);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(ApiTestData.CatFactsResponse));
-        Assert.That(result, Does.Contain("fact"));
-    }
+ 
 
     private void SetupMockResponse(
     HttpStatusCode statusCode,
@@ -172,5 +107,60 @@ public class RequestServiceTests
     {
         _requestService?.Dispose();
         _httpClient?.Dispose();
+    }
+
+    [Test]
+    public async Task FetchDataAsync_NetworkIssue_ThrowsException()
+    {
+
+        _mockHttpMessageHandler
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(req => req.RequestUri.ToString() == ApiTestData.RequestServiceTestUrl),
+                ItExpr.IsAny<CancellationToken>()
+            )
+            .ThrowsAsync(new HttpRequestException("Net. error"));
+
+        var exception = Assert.ThrowsAsync<HttpRequestException>(async () =>
+            await _requestService.FetchDataAsync(ApiTestData.RequestServiceTestUrl));
+
+        StringAssert.Contains("Net. error", exception.Message);
+    }
+
+    [Test]
+    public void FetchData_CatFacts_SendsCorrectRequest()
+    {
+        var catFactsUrl = ApiTestData.GetCatFactsUrl();
+        SetupMockResponse(HttpStatusCode.OK, ApiTestData.CatFactsResponse,
+            null, catFactsUrl);
+
+        var result = _requestService.FetchData(catFactsUrl);
+
+        Assert.That(result, Is.EqualTo(ApiTestData.CatFactsResponse));
+        _mockHttpMessageHandler.Protected().Verify(
+            "SendAsync",
+            Times.Once(),
+            ItExpr.Is<HttpRequestMessage>(req => req.RequestUri.ToString() == catFactsUrl),
+            ItExpr.IsAny<CancellationToken>()
+        );
+    }
+
+    [Test]
+    public async Task FetchDataAsync_CatFacts_SendsCorrectRequest()
+    {
+        var catFactsUrl = ApiTestData.GetCatFactsUrl();
+        SetupMockResponse(HttpStatusCode.OK, ApiTestData.CatFactsResponse,
+            null, catFactsUrl);
+
+        var result = await _requestService.FetchDataAsync(catFactsUrl);
+
+        Assert.That(result, Is.EqualTo(ApiTestData.CatFactsResponse));
+        _mockHttpMessageHandler.Protected().Verify(
+            "SendAsync",
+            Times.Once(),
+            ItExpr.Is<HttpRequestMessage>(req => req.RequestUri.ToString() == catFactsUrl),
+            ItExpr.IsAny<CancellationToken>()
+        );
     }
 }

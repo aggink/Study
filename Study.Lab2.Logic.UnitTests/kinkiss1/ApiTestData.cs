@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Collections.Generic;
+
 namespace Study.Lab2.Logic.UnitTests.kinkiss1;
 
 internal static class ApiTestData
@@ -29,25 +32,138 @@ internal static class ApiTestData
     internal const string KanyeRestBaseUrl = "https://api.kanye.rest";
     internal const string GoogleTranslateBaseUrl = "https://translate.googleapis.com/translate_a";
 
-    // JSON ответы
-    internal const string CatFactsResponse = "{\"fact\":\"Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.\",\"length\":145}";
-    internal const string KanyeRestResponse = "{\"quote\":\"Trust me... I won't stop\"}";
+    // Классы для представления данных
+    internal class CatFactResponse
+    {
+        public string Fact { get; set; }
+        public int Length { get; set; }
+    }
 
-    // Ответы от Google Translate API
-    internal const string GoogleTranslateCatFactResponse = "[[[\"\u0423 \u043A\u043E\u0448\u0435\u043A \u0435\u0441\u0442\u044C \u0438\u043D\u0434\u0438\u0432\u0438\u0434\u0443\u0430\u043B\u044C\u043D\u044B\u0435 \u043F\u0440\u0435\u0434\u043F\u043E\u0447\u0442\u0435\u043D\u0438\u044F \u0434\u043B\u044F \u0446\u0430\u0440\u0430\u043F\u0438\u043D \u043F\u043E\u0432\u0435\u0440\u0445\u043D\u043E\u0441\u0442\u0435\u0439 \u0438 \u0443\u0433\u043B\u043E\u0432. \u041D\u0435\u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u044F\u0432\u043B\u044F\u044E\u0442\u0441\u044F \u0433\u043E\u0440\u0438\u0437\u043E\u043D\u0442\u0430\u043B\u044C\u043D\u044B\u043C\u0438 \u0446\u0430\u0440\u0430\u043F\u0430\u043D\u0438\u044F\u043C\u0438, \u0432 \u0442\u043E \u0432\u0440\u0435\u043C\u044F \u043A\u0430\u043A \u0434\u0440\u0443\u0433\u0438\u0435 \u0442\u0440\u0435\u043D\u0438\u0440\u0443\u044E\u0442 \u0441\u0432\u043E\u0438 \u043A\u043E\u0433\u0442\u0438 \u0432\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u043E.\",\"Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.\",null,null,3,null,null,null,1]],null,\"en\"]";
-    internal const string GoogleTranslateKanyeResponse = "[[[\"\u041F\u043E\u0432\u0435\u0440\u044C\u0442\u0435 \u043C\u043D\u0435... \u042F \u043D\u0435 \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u044E\u0441\u044C\",\"Trust me... I won't stop\",null,null,3,null,null,null,1]],null,\"en\"]";
+    internal class CatFactTranslatedResponse : CatFactResponse
+    {
+        public string Перевод { get; set; }
+    }
+
+    internal class KanyeRestResponse
+    {
+        public string Quote { get; set; }
+    }
+
+    internal class KanyeRestTranslatedResponse : KanyeRestResponse
+    {
+        public string Перевод { get; set; }
+    }
+
+    internal class GoogleTranslateResponseItem
+    {
+        public string TranslatedText { get; set; }
+        public string OriginalText { get; set; }
+    }
+
+    internal class GoogleTranslateResponse
+    {
+        public List<List<GoogleTranslateResponseItem>> Data { get; set; }
+        public string SourceLanguage { get; set; }
+    }
+
+    // JSON ответы через сериализацию объектов
+    internal static string CatFactsResponse => GetCatFactsResponseJson();
+    internal static string KanyeQuoteResponse => GetKanyeRestResponseJson();
+    internal static string GoogleTranslateCatFactResponse => GetGoogleTranslateCatFactResponseJson();
+    internal static string GoogleTranslateKanyeResponse => GetGoogleTranslateKanyeResponseJson();
+    internal static string CatFactsWithTranslationFormatted => GetCatFactsWithTranslationFormattedJson();
+    internal static string KanyeRestWithTranslationFormatted => GetKanyeRestWithTranslationFormattedJson();
 
     // Переведенные данные
     internal const string TranslatedCatFactText = "У кошек есть индивидуальные предпочтения для царапин поверхностей и углов. Некоторые являются горизонтальными царапаниями, в то время как другие тренируют свои когти вертикально.";
     internal const string TranslatedKanyeQuoteText = "Поверьте мне... Я не остановлюсь";
 
-    // Форматированные JSON ответы с переводом
-    internal const string CatFactsWithTranslationFormatted = "{\n  \"fact\": \"Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.\",\n  \"length\": 145,\n  \"перевод\": \"У кошек есть индивидуальные предпочтения для царапин поверхностей и углов. Некоторые являются горизонтальными царапаниями, в то время как другие тренируют свои когти вертикально.\"\n}";
-    internal const string KanyeRestWithTranslationFormatted = "{\n  \"quote\": \"Trust me... I won't stop\",\n  \"перевод\": \"Поверьте мне... Я не остановлюсь\"\n}";
-
     // Ошибки
     internal const string CatFactNotFoundErrorMessage = "Факт о кошке не найден в JSON";
     internal const string KanyeQuoteNotFoundErrorMessage = "Цитата Канье не найдена в JSON";
+
+    // Методы для получения JSON-строк
+    internal static string GetCatFactsResponseJson()
+    {
+        var response = new CatFactResponse
+        {
+            Fact = "Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.",
+            Length = 145
+        };
+        return JsonSerializer.Serialize(response);
+    }
+
+    internal static string GetKanyeRestResponseJson()
+    {
+        var response = new KanyeRestResponse
+        {
+            Quote = "Trust me... I won't stop"
+        };
+        return JsonSerializer.Serialize(response);
+    }
+
+    internal static string GetCatFactsWithTranslationFormattedJson()
+    {
+        var response = new CatFactTranslatedResponse
+        {
+            Fact = "Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.",
+            Length = 145,
+            Перевод = TranslatedCatFactText
+        };
+        return JsonSerializer.Serialize(response, new JsonSerializerOptions { WriteIndented = true });
+    }
+
+    internal static string GetKanyeRestWithTranslationFormattedJson()
+    {
+        var response = new KanyeRestTranslatedResponse
+        {
+            Quote = "Trust me... I won't stop",
+            Перевод = TranslatedKanyeQuoteText
+        };
+        return JsonSerializer.Serialize(response, new JsonSerializerOptions { WriteIndented = true });
+    }
+
+    internal static string GetGoogleTranslateCatFactResponseJson()
+    {
+        // Представление формата ответа Google Translate
+        var response = new object[]
+        {
+        new object[]
+        {
+            new object[]
+            {
+                TranslatedCatFactText,
+                "Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.",
+                null, null, 3, null, null, null, 1
+            }
+        },
+        null,
+        "en"
+        };
+
+        return JsonSerializer.Serialize(response);
+    }
+
+    internal static string GetGoogleTranslateKanyeResponseJson()
+    {
+        // Представление формата ответа Google Translate
+        var response = new object[]
+        {
+        new object[]
+        {
+            new object[]
+            {
+                TranslatedKanyeQuoteText,
+                "Trust me... I won't stop",
+                null, null, 3, null, null, null, 1
+            }
+        },
+        null,
+        "en"
+        };
+
+        return JsonSerializer.Serialize(response);
+    }
 
     // Методы генерации URL
     internal static string GetCatFactsUrl()
