@@ -61,6 +61,8 @@ public static class Program
                 return new XynthhService();
             case ("idb-23-02", 4):
                 return new brnvikaService();
+            case ("idb-23-02", 6):
+                return new kinkiss1Service();
             default:
                 throw new NotSupportedException();
         }
