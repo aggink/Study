@@ -13,6 +13,7 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.freaxd;
 
 
 public static class Program
@@ -20,7 +21,7 @@ public static class Program
     /// <summary>
     /// Номер выполняемой задачи
     /// </summary>
-    private const int RUN_TASK_NUMBER = 2;
+    private const int RUN_TASK_NUMBER = 1;
 
     /// <summary>
     /// Название группы
@@ -90,6 +91,8 @@ public static class Program
                 return new gegemonTVService();
             case ("idb-23-03", 23):
                 return new Pro100futaService();
+            case ("idb-23-03", 16):
+                return new freaxdService();
             default:
                 throw new NotSupportedException();
         }
