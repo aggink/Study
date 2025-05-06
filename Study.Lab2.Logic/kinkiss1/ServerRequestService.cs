@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 using Study.Lab2.Logic.Interfaces.kinkiss1;
-using Study.Lab2.Logic.Logic.kinkiss1.DtoModels;
+using Study.Lab2.Logic.kinkiss1.DtoModels;
 
 namespace Study.Lab2.Logic.kinkiss1;
 
@@ -107,33 +107,49 @@ public class ServerRequestService : IServerRequestService
     {
         try
         {
-            // Парсим входящий JSON
-            var jsonDocument = JsonDocument.Parse(jsonString);
-            var factText = jsonDocument.RootElement.GetProperty("fact").GetString();
-
-            if (string.IsNullOrEmpty(factText))
-                throw new Exception("Факт о кошке не найден в JSON");
-
-            // Формируем URL для запроса к Google Translate API
-            var encodedText = Uri.EscapeDataString(factText);
-            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
-
-            // Асинхронно выполняем запрос
-            var response = await _requestService.FetchDataAsync(url, cancellationToken);
-
-            // Парсим ответ Google API
-            var jsonResponse = JsonDocument.Parse(response);
-            var translatedText = jsonResponse.RootElement[0][0][0].GetString();
-
-            // Создаем новый JSON с добавленным переводом с явным указанием кодировки
-            var jsonObj = new Dictionary<string, object>
+            // 1. Десериализуем входной JSON от Cat Facts API
+            var options = new JsonSerializerOptions
             {
-                { "fact", factText },
-                { "length", factText.Length },
-                { "перевод", translatedText }
+                PropertyNameCaseInsensitive = true
             };
 
-            return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
+            var catFactDto = JsonSerializer.Deserialize<CatFactResponseDto>(jsonString, options);
+
+            if (catFactDto == null || string.IsNullOrEmpty(catFactDto.Fact))
+                throw new Exception("Факт о кошке не найден в JSON");
+
+            // 2. Отправляем запрос к Google Translate API
+            var encodedText = Uri.EscapeDataString(catFactDto.Fact);
+            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
+
+            var response = await _requestService.FetchDataAsync(url, cancellationToken);
+
+            // 3. Создаем объект для хранения перевода
+            string translatedText;
+            try
+            {
+                // Пытаемся использовать наш DTO-класс
+                var translateResponse = new GoogleTranslateResponse(response);
+                translatedText = translateResponse.TranslatedText;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка при десериализации: {ex.Message}");
+                // Запасной вариант с JsonDocument
+                var jsonResponse = JsonDocument.Parse(response);
+                translatedText = jsonResponse.RootElement[0][0][0].GetString();
+            }
+
+            // 4. Создаем объект ответа и сериализуем его
+            var resultDto = new CatFactTranslatedResponseDto
+            {
+                Fact = catFactDto.Fact,
+                Length = catFactDto.Length,
+                Translate = translatedText ?? "Перевод не доступен"
+            };
+
+            // 5. Сериализуем ответ для вывода в консоль
+            return JsonSerializer.Serialize(resultDto, new JsonSerializerOptions
             {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
@@ -141,7 +157,7 @@ public class ServerRequestService : IServerRequestService
         }
         catch (Exception ex)
         {
-            throw new Exception($"Ошибка при асинхронном переводе текста: {ex.Message}");
+            throw new Exception($"Ошибка при асинхронном переводе текста: {ex.Message}", ex);
         }
     }
 
@@ -149,32 +165,24 @@ public class ServerRequestService : IServerRequestService
     {
         try
         {
-            // Парсим входящий JSON
-            var jsonDocument = JsonDocument.Parse(jsonString);
-            var quoteText = jsonDocument.RootElement.GetProperty("quote").GetString();
+            // Десериализуем входящий JSON в DTO
+            var kanyeQuoteDto = JsonSerializer.Deserialize<KanyeRestResponseDto>(jsonString);
 
-            if (string.IsNullOrEmpty(quoteText))
+            if (kanyeQuoteDto == null || string.IsNullOrEmpty(kanyeQuoteDto.Quote))
                 throw new Exception("Цитата Канье не найдена в JSON");
 
-            // Формируем URL для запроса к Google Translate API
-            var encodedText = Uri.EscapeDataString(quoteText);
-            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
+            // Используем общий метод для перевода
+            var translatedText = await TranslateTextAsync(kanyeQuoteDto.Quote, cancellationToken);
 
-            // Асинхронно выполняем запрос
-            var response = await _requestService.FetchDataAsync(url, cancellationToken);
-
-            // Парсим ответ Google API
-            var jsonResponse = JsonDocument.Parse(response);
-            var translatedText = jsonResponse.RootElement[0][0][0].GetString();
-
-            // Создаем новый JSON с добавленным переводом с явным указанием кодировки
-            var jsonObj = new Dictionary<string, object>
+            // Создаем объект для ответа
+            var responseDto = new
             {
-                { "quote", quoteText },
-                { "перевод", translatedText }
+                quote = kanyeQuoteDto.Quote,
+                перевод = translatedText
             };
 
-            return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
+            // Сериализуем для вывода в консоль
+            return JsonSerializer.Serialize(responseDto, new JsonSerializerOptions
             {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
@@ -185,6 +193,7 @@ public class ServerRequestService : IServerRequestService
             throw new Exception($"Ошибка при асинхронном переводе цитаты: {ex.Message}");
         }
     }
+
 
     // --- СИНХРОННЫЕ ---
 
@@ -271,5 +280,43 @@ public class ServerRequestService : IServerRequestService
     public void Dispose()
     {
         _rService?.Dispose();
+    }
+
+    private async Task<string> TranslateTextAsync(string sourceText, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrEmpty(sourceText))
+            throw new ArgumentException("Текст для перевода не может быть пустым", nameof(sourceText));
+
+        // Формируем URL для запроса к Google Translate API
+        var encodedText = Uri.EscapeDataString(sourceText);
+        var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
+
+        // Асинхронно выполняем запрос
+        var response = await _requestService.FetchDataAsync(url, cancellationToken);
+
+        try
+        {
+            // Пытаемся десериализовать в нашу модель
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            // Метод 1: Используем нашу специальную модель
+            var translateResponse = new GoogleTranslateResponse(response);
+            return translateResponse.TranslatedText;
+
+            // Метод 2 (альтернативный): Используем динамическую десериализацию
+            // var jsonResponse = JsonDocument.Parse(response);
+            // return jsonResponse.RootElement[0][0][0].GetString();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при десериализации ответа от Google API: {ex.Message}");
+
+            // Возвращаемся к проверенному методу с JsonDocument если десериализация не удалась
+            var jsonResponse = JsonDocument.Parse(response);
+            return jsonResponse.RootElement[0][0][0].GetString();
+        }
     }
 }

@@ -1,8 +1,16 @@
-﻿namespace Study.Lab2.Logic.Logic.kinkiss1.DtoModels
+﻿using System.Text.Json.Serialization;
+
+namespace Study.Lab2.Logic.kinkiss1.DtoModels
 {
-    public class CatFactTranslatedResponseDto : CatFactResponseDto
+    public class CatFactTranslatedResponseDto
     {
+        [JsonPropertyName("fact")]
+        public string Fact { get; set; }
+
+        [JsonPropertyName("length")]
+        public int Length { get; set; }
+
+        [JsonPropertyName("перевод")]
         public string Translate { get; set; }
     }
 }
-

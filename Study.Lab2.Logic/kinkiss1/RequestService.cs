@@ -12,39 +12,6 @@ public class RequestService : IRequestService
         _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
     }
 
-    //public string FetchData(string url)
-    //{
-    //    var response = _httpClient.GetAsync(url).Result;
-
-    //    if (!response.IsSuccessStatusCode)
-    //        throw new HttpRequestException($"Ошибка запроса к {url}: {(int)response.StatusCode} {response.ReasonPhrase}");
-
-    //    return response.Content.ReadAsStringAsync().Result;
-    //}
-
-    //public string FetchData(string url, Dictionary<string, string> headers = null)
-    //{
-    //    using (var request = new HttpRequestMessage(HttpMethod.Post, url))
-    //    {
-    //        if (headers != null)
-    //        {
-    //            foreach (var header in headers)
-    //            {
-    //                request.Headers.Add(header.Key, header.Value);
-    //            }
-    //        }
-
-    //        var response = _httpClient.SendAsync(request).Result;
-
-    //        if (!response.IsSuccessStatusCode)
-    //        {
-    //            throw new HttpRequestException($"Ошибка запроса: {response.StatusCode} - {response.ReasonPhrase}");
-    //        }
-
-    //        return response.Content.ReadAsStringAsync().Result;
-    //    }
-    //}
-
     public string FetchData(string url, Dictionary<string, string> headers = null)
     {
         // Проверяем URL на корректность
