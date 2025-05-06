@@ -14,7 +14,6 @@ using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.freaxd;
-using Study.Lab1.Logic.p0se1d0nov;
 
 
 public static class Program
@@ -27,12 +26,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "idb-23-03";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 21;
+    private const int PERSON_NUMBER = 1;
 
     public static void Main()
     {
@@ -94,8 +93,6 @@ public static class Program
                 return new Pro100futaService();
             case ("idb-23-03", 16):
                 return new freaxdService();
-            case ("idb-23-03", 21):
-                return new p0se1d0nService();
             default:
                 throw new NotSupportedException();
         }
