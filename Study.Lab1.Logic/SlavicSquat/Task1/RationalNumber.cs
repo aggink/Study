@@ -1,6 +1,6 @@
 ﻿namespace Study.Lab1.Logic.SlavicSquat.Task1
 {
-    internal class RationalNumber
+    public class RationalNumber
     {
         public int Numerator { get; private set; }
         public int Denominator { get; private set; }
