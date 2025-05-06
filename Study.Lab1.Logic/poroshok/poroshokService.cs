@@ -27,7 +27,6 @@ public class poroshokService : IRunService
         
         var Equal = A == B;
         
-
         Console.Write($"a:{A}, b:{B}, c:{C}, d:{D}, e:{E}, f:{F}\n" +
                       $"a + b = {summary}\n" +
                       $"a - b = {difference}\n" +
