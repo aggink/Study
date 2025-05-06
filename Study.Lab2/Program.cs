@@ -1,21 +1,21 @@
 ﻿using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Interfaces;
-using Study.Lab2.Logic.xynthh;
-using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.kinkiss1;
+using Study.Lab2.Logic.Selestz;
+using Study.Lab2.Logic.xynthh;
 
 public static class Program
 {
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 6;
 
     public static async Task Main()
     {
