@@ -2,7 +2,7 @@ using Study.Lab1.Logic.Interfaces.PresvyatoyKabachok.Task1;
 
 namespace Study.Lab1.Logic.PresvyatoyKabachok.Task1;
 
-public class RationalNumber : IRationalN
+public class RationalNumber : IRationalNumber
 {
     public int Numerator { get; }
 
@@ -22,6 +22,7 @@ public class RationalNumber : IRationalN
 
         // Сокращение дроби
         var NewDenom = Math.Abs(NewDenomFunc(numerator, denominator));
+
         Numerator = numerator / NewDenom;
         Denominator = denominator / NewDenom;
     }

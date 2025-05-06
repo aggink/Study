@@ -1,13 +1,20 @@
 ﻿using Study.Lab1.Logic.Assistant;
+using Study.Lab1.Logic.brnvika;
+using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.eldarovskiy;
+using Study.Lab1.Logic.gegemonTV;
 using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.lsokol14l;
+using Study.Lab1.Logic.neijrr;
 using Study.Lab1.Logic.poroshok;
 using Study.Lab1.Logic.PresvyatoyKabachok;
+using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.xynthh;
+
 
 public static class Program
 {
@@ -70,8 +77,20 @@ public static class Program
                 return new SelestzService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
+            case ("idb-23-02", 24):
+                return new CherryyService();
             case ("idb-23-02", 2):
                 return new EldarovskiyService();
+            case ("idb-23-03", 22):
+                return new Jki749Service();
+            case ("idb-23-03", 6):
+                return new neijrrService();
+            case ("idb-23-02", 4):
+                return new brnvikaService();
+            case ("idb-23-03", 15):
+                return new gegemonTVService();
+            case ("idb-23-03", 23):
+                return new Pro100futaService();
             case ("idb-23-03", 17):
                 return new poroshokService();
             default:
