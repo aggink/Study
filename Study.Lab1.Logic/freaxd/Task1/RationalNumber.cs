@@ -15,7 +15,7 @@ public class RationalNumber : IRationalNumber
             throw new DivideByZeroException("The denominator should not be zero.");
         }
 
-        // Нормализация знака при отрицательном знаменателе
+        // РќРѕСЂРјР°Р»РёР·Р°С†РёСЏ Р·РЅР°РєР° РїСЂРё РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРј Р·РЅР°РјРµРЅР°С‚РµР»Рµ
         if (denominator < 0)
         {
             Numerator = -Numerator;
@@ -28,7 +28,7 @@ public class RationalNumber : IRationalNumber
         Denominator = denominator / gcd;        
     }
 
-    // Метод вычисления наибольшого общего делителя
+    // РњРµС‚РѕРґ РІС‹С‡РёСЃР»РµРЅРёСЏ РЅР°РёР±РѕР»СЊС€РѕРіРѕ РѕР±С‰РµРіРѕ РґРµР»РёС‚РµР»СЏ
     private int GCD(int a, int b)
     {
         a = Math.Abs(a);
@@ -66,7 +66,7 @@ public class RationalNumber : IRationalNumber
     }
 
     /// <summary>
-    /// Перегрузка арифметических операторов
+    /// РџРµСЂРµРіСЂСѓР·РєР° Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРёС… РѕРїРµСЂР°С‚РѕСЂРѕРІ
     /// </summary>
     public static RationalNumber operator +(RationalNumber a, RationalNumber b)
     {
@@ -94,7 +94,7 @@ public class RationalNumber : IRationalNumber
     }
 
     /// <summary>
-    /// Перегрузка операторов сравнения
+    /// РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂРѕРІ СЃСЂР°РІРЅРµРЅРёСЏ
     /// </summary>
     public static bool operator ==(RationalNumber a, RationalNumber b)
     {
