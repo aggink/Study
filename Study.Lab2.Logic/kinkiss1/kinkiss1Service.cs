@@ -1,12 +1,13 @@
-﻿using Study.Lab2.Logic.Interfaces;
+﻿using System.Diagnostics;
+using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.kinkiss1;
-using System.Diagnostics;
 
 namespace Study.Lab2.Logic.kinkiss1;
 
 public class kinkiss1Service : IRunService
 {
     private readonly IServerRequestService _serverRequestService;
+
     public kinkiss1Service()
     {
         IRequestService requestService = new RequestService(new HttpClient());
@@ -25,6 +26,7 @@ public class kinkiss1Service : IRunService
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"Запрос фактов о кошках...");
             Console.ResetColor();
+
             var catFacts = _serverRequestService.CatGetFacts();
             Console.WriteLine(catFacts);
             Console.WriteLine(new string('-', 50));
@@ -32,6 +34,7 @@ public class kinkiss1Service : IRunService
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine($"Запрос цитаты Канье...");
             Console.ResetColor();
+
             var KanyeC = _serverRequestService.KanyeRest();
             Console.WriteLine(KanyeC);
             Console.WriteLine(new string('-', 50));

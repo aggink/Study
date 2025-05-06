@@ -12,20 +12,52 @@ public class RequestService : IRequestService
         _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
     }
 
-    public string FetchData(string url)
-    {
-        var response = _httpClient.GetAsync(url).Result;
+    //public string FetchData(string url)
+    //{
+    //    var response = _httpClient.GetAsync(url).Result;
 
-        if (!response.IsSuccessStatusCode)
-            throw new HttpRequestException($"Ошибка запроса к {url}: {(int)response.StatusCode} {response.ReasonPhrase}");
+    //    if (!response.IsSuccessStatusCode)
+    //        throw new HttpRequestException($"Ошибка запроса к {url}: {(int)response.StatusCode} {response.ReasonPhrase}");
 
-        return response.Content.ReadAsStringAsync().Result;
-    }
+    //    return response.Content.ReadAsStringAsync().Result;
+    //}
+
+    //public string FetchData(string url, Dictionary<string, string> headers = null)
+    //{
+    //    using (var request = new HttpRequestMessage(HttpMethod.Post, url))
+    //    {
+    //        if (headers != null)
+    //        {
+    //            foreach (var header in headers)
+    //            {
+    //                request.Headers.Add(header.Key, header.Value);
+    //            }
+    //        }
+
+    //        var response = _httpClient.SendAsync(request).Result;
+
+    //        if (!response.IsSuccessStatusCode)
+    //        {
+    //            throw new HttpRequestException($"Ошибка запроса: {response.StatusCode} - {response.ReasonPhrase}");
+    //        }
+
+    //        return response.Content.ReadAsStringAsync().Result;
+    //    }
+    //}
 
     public string FetchData(string url, Dictionary<string, string> headers = null)
     {
-        using (var request = new HttpRequestMessage(HttpMethod.Post, url))
+        // Проверяем URL на корректность
+        if (string.IsNullOrWhiteSpace(url))
         {
+            throw new ArgumentException("URL не может быть пустым", nameof(url));
+        }
+
+        try
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Get, url);
+
+            // Добавляем заголовки, если они заданы
             if (headers != null)
             {
                 foreach (var header in headers)
@@ -34,16 +66,27 @@ public class RequestService : IRequestService
                 }
             }
 
-            var response = _httpClient.SendAsync(request).Result;
+            // Отправляем запрос
+            using var response = _httpClient.SendAsync(request).Result;
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new HttpRequestException($"Ошибка запроса: {response.StatusCode} - {response.ReasonPhrase}");
-            }
+            // Проверяем статус ответа
+            response.EnsureSuccessStatusCode();
 
+            // Читаем содержимое ответа
             return response.Content.ReadAsStringAsync().Result;
         }
+        catch (HttpRequestException ex)
+        {
+            // Перехватываем ошибки HTTP и добавляем дополнительную информацию
+            throw new HttpRequestException($"Ошибка запроса к {url}: {ex.Message}", ex);
+        }
+        catch (Exception ex)
+        {
+            // Перехватываем прочие ошибки
+            throw new Exception($"Ошибка при выполнении запроса к {url}: {ex.Message}", ex);
+        }
     }
+
 
     public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default)
     {

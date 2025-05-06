@@ -32,17 +32,17 @@ public class ServerRequestServiceTests
         var rawResponse = ApiTestData.CatFactsResponse;
         var formattedResponse = ApiTestData.CatFactsResponse;
 
-        _mockRequestService.Setup(s => s.FetchData(url)).Returns(rawResponse);
-        _mockResponseProcessor.Setup(p => p.FormatJson(rawResponse)).Returns(formattedResponse);
+        _mockRequestService.Setup(s => s.FetchData(url, null)).Returns(rawResponse);
+        _mockResponseProcessor.Setup(p => p.FormatJson<object>(rawResponse)).Returns(formattedResponse);
 
         _mockRequestService
-            .Setup(s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com"))))
+            .Setup(s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com")), null))
             .Throws(new Exception("Translation error"));
 
         var result = _serverRequestService.CatGetFacts();
 
         Assert.That(result, Is.EqualTo(formattedResponse));
-        _mockRequestService.Verify(s => s.FetchData(url), Times.Once);
+        _mockRequestService.Verify(s => s.FetchData(url, null), Times.Once);
     }
 
     [Test]
@@ -50,12 +50,12 @@ public class ServerRequestServiceTests
     {
         var url = ApiTestData.GetCatFactsUrl();
         var rawResponse = ApiTestData.CatFactsResponse;
-        var formattedResponse = ApiTestData.CatFactsResponse; 
+        var formattedResponse = ApiTestData.CatFactsResponse;
 
         _mockRequestService
             .Setup(s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()))
             .ReturnsAsync(rawResponse);
-        _mockResponseProcessor.Setup(p => p.FormatJson(rawResponse)).Returns(formattedResponse);
+        _mockResponseProcessor.Setup(p => p.FormatJson<object>(rawResponse)).Returns(formattedResponse);
 
         _mockRequestService
             .Setup(s => s.FetchDataAsync(
@@ -77,7 +77,7 @@ public class ServerRequestServiceTests
         var url = ApiTestData.GetKanyeRestUrl();
 
         _mockRequestService
-            .Setup(s => s.FetchData(url))
+            .Setup(s => s.FetchData(url, null))
             .Throws(new HttpRequestException("Error request"));
 
         var exception = Assert.Throws<HttpRequestException>(() => _serverRequestService.KanyeRest());

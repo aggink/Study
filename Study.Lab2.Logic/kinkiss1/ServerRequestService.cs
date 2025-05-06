@@ -1,6 +1,6 @@
-﻿using Study.Lab2.Logic.Interfaces.kinkiss1;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
+using Study.Lab2.Logic.Interfaces.kinkiss1;
+using Study.Lab2.Logic.Logic.kinkiss1.DtoModels;
 
 namespace Study.Lab2.Logic.kinkiss1;
 
@@ -15,7 +15,7 @@ public class ServerRequestService : IServerRequestService
         _requestService = requestService;
         _responseProcessor = responseProcessor;
     }
-   
+
     public string TranslateCatsSync(string jsonString)
     {
         try
@@ -34,7 +34,7 @@ public class ServerRequestService : IServerRequestService
             var encodedText = Uri.EscapeDataString(factText);
             var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
 
-            var response = _requestService.FetchData(url);
+            var response = _requestService.FetchData(url, null);
 
             // Парсим ответ Google API
             var jsonResponse = JsonDocument.Parse(response);
@@ -45,11 +45,11 @@ public class ServerRequestService : IServerRequestService
 
             // Создаем новый JSON с добавленным переводом с явным указанием кодировки
             var jsonObj = new Dictionary<string, object>
-        {
-            { "fact", factText },
-            { "length", factText.Length },
-            { "перевод", translatedText }
-        };
+            {
+                { "fact", factText },
+                { "length", factText.Length },
+                { "перевод", translatedText }
+            };
 
             return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
             {
@@ -78,7 +78,7 @@ public class ServerRequestService : IServerRequestService
             var encodedText = Uri.EscapeDataString(quoteText);
             var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=ru&dt=t&q={encodedText}";
 
-            var response = _requestService.FetchData(url);
+            var response = _requestService.FetchData(url, null);
 
             // Парсим ответ Google API
             var jsonResponse = JsonDocument.Parse(response);
@@ -86,10 +86,10 @@ public class ServerRequestService : IServerRequestService
 
             // Создаем новый JSON с добавленным переводом с явным указанием кодировки
             var jsonObj = new Dictionary<string, object>
-        {
-            { "quote", quoteText },
-            { "перевод", translatedText }
-        };
+            {
+                { "quote", quoteText },
+                { "перевод", translatedText }
+            };
 
             return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
             {
@@ -127,11 +127,11 @@ public class ServerRequestService : IServerRequestService
 
             // Создаем новый JSON с добавленным переводом с явным указанием кодировки
             var jsonObj = new Dictionary<string, object>
-        {
-            { "fact", factText },
-            { "length", factText.Length },
-            { "перевод", translatedText }
-        };
+            {
+                { "fact", factText },
+                { "length", factText.Length },
+                { "перевод", translatedText }
+            };
 
             return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
             {
@@ -169,10 +169,10 @@ public class ServerRequestService : IServerRequestService
 
             // Создаем новый JSON с добавленным переводом с явным указанием кодировки
             var jsonObj = new Dictionary<string, object>
-        {
-            { "quote", quoteText },
-            { "перевод", translatedText }
-        };
+            {
+                { "quote", quoteText },
+                { "перевод", translatedText }
+            };
 
             return JsonSerializer.Serialize(jsonObj, new JsonSerializerOptions
             {
@@ -191,11 +191,10 @@ public class ServerRequestService : IServerRequestService
     public string CatGetFacts()
     {
         var url = $"https://catfact.ninja/fact";
-        var response = _requestService.FetchData(url);
+        var response = _requestService.FetchData(url, null);
 
         // Форматируем JSON для лучшей читаемости
-        var formattedResponse = _responseProcessor.FormatJson(response);
-
+        var formattedResponse = _responseProcessor.FormatJson<CatFactResponseDto>(response);
         // Переводим текст
         try
         {
@@ -211,10 +210,10 @@ public class ServerRequestService : IServerRequestService
     public string KanyeRest()
     {
         var url = $"https://api.kanye.rest";
-        var response = _requestService.FetchData(url);
+        var response = _requestService.FetchData(url, null);
 
         // Форматируем JSON для лучшей читаемости
-        var formattedResponse = _responseProcessor.FormatJson(response);
+        var formattedResponse = _responseProcessor.FormatJson<KanyeRestResponseDto>(response);
 
         // Переводим текст
         try
@@ -236,8 +235,7 @@ public class ServerRequestService : IServerRequestService
         var response = await _requestService.FetchDataAsync(url, cancellationToken);
 
         // Форматируем JSON для лучшей читаемости
-        var formattedResponse = _responseProcessor.FormatJson(response);
-
+        var formattedResponse = _responseProcessor.FormatJson<CatFactResponseDto>(response);
         // Переводим текст асинхронно
         try
         {
@@ -256,7 +254,7 @@ public class ServerRequestService : IServerRequestService
         var response = await _requestService.FetchDataAsync(url, cancellationToken);
 
         // Форматируем JSON для лучшей читаемости
-        var formattedResponse = _responseProcessor.FormatJson(response);
+        var formattedResponse = _responseProcessor.FormatJson<KanyeRestResponseDto>(response);
 
         // Переводим текст асинхронно
         try
