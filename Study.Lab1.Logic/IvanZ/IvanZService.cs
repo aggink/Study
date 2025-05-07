@@ -1,8 +1,8 @@
 using Study.Lab1.Logic.Interfaces;
-using Study.Lab1.Logic.IvanZ.task1;
+using Study.Lab1.Logic.IvanZ.Task1;
 
-namespace Study.Lab1.Logic.IvanZ
-{
+namespace Study.Lab1.Logic.IvanZ;
+
     public class IvanZService : IRunService
     {
         public void RunTask1()
@@ -11,14 +11,14 @@ namespace Study.Lab1.Logic.IvanZ
             RationalNumber b = new RationalNumber(5, 13);
             RationalNumber c = new RationalNumber(23, 23);
             RationalNumber d = new RationalNumber(12, 85);
- 	          RationalNumber sum = a + b;
+ 	    RationalNumber sum = a + b;
             RationalNumber sub = a - c;
             RationalNumber multi = b * d;
             RationalNumber div = c / d;
            
             Console.WriteLine($"a: {a.ToString()}\n");
             Console.WriteLine($"b: {b.ToString()}\n");
-	          Console.WriteLine($"c: {c.ToString()}\n");
+	    Console.WriteLine($"c: {c.ToString()}\n");
             Console.WriteLine($"d: {d.ToString()}\n");
             Console.WriteLine($"Multi: {multi.ToString()}\n");
             Console.WriteLine($"Div: {div.ToString()}\n");
@@ -43,4 +43,3 @@ namespace Study.Lab1.Logic.IvanZ
             throw new NotImplementedException();
         }
     }
-}
