@@ -3,10 +3,10 @@ using Study.Lab1.Logic.IvanZ.Task1;
 
 namespace Study.Lab1.Logic.IvanZ;
 
-    public class IvanZService : IRunService
-    {
-        public void RunTask1()
-        {
+public class IvanZService : IRunService
+{
+	public void RunTask1()
+	{
             RationalNumber a = new RationalNumber(1, 2);
             RationalNumber b = new RationalNumber(5, 13);
             RationalNumber c = new RationalNumber(23, 23);
@@ -42,4 +42,4 @@ namespace Study.Lab1.Logic.IvanZ;
         {
             throw new NotImplementedException();
         }
-    }
+}
