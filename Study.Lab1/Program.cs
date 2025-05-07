@@ -2,6 +2,7 @@
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.eldarovskiy;
+using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.gegemonTV;
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Jki749;
@@ -13,8 +14,8 @@ using Study.Lab1.Logic.poroshok;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
+using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.freaxd;
 
 
 public static class Program
