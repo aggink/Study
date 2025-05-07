@@ -9,6 +9,7 @@ using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.neijrr;
+using Study.Lab1.Logic.poroshok;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
@@ -93,6 +94,8 @@ public static class Program
                 return new Pro100futaService();
             case ("idb-23-03", 16):
                 return new freaxdService();
+            case ("idb-23-03", 17):
+                return new poroshokService();
             default:
                 throw new NotSupportedException();
         }
