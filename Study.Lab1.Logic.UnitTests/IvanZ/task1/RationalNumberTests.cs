@@ -9,6 +9,7 @@ public class RationalNumberTests
     public void Constructor_ValidInput_ShouldInitializeCorrectly()
     {
         var A = new RationalNumber(3, 6);
+        
         Assert.AreEqual(new RationalNumber(1, 2), A);
     }
 
@@ -19,6 +20,7 @@ public class RationalNumberTests
         var B = new RationalNumber(1, 23);
         var C = new RationalNumber(127, 276);
         var result = A + B;
+        
         Assert.AreEqual(C, result);
     }
 
@@ -29,6 +31,7 @@ public class RationalNumberTests
         var B = new RationalNumber(1, 23);
         var C = new RationalNumber(103, 276);
         var result = A - B;
+        
         Assert.AreEqual(C, result);
     }
 
@@ -39,6 +42,7 @@ public class RationalNumberTests
         var B = new RationalNumber(23, 12);
         var C = new RationalNumber(5, 23);
         var result = A / B;
+        
         Assert.AreEqual(C, result);
     }
 
@@ -49,6 +53,7 @@ public class RationalNumberTests
         var B = new RationalNumber(12, 23);
         var C = new RationalNumber(5, 23);
         var result = A * B;
+        
         Assert.AreEqual(C, result);
     }
 
@@ -57,6 +62,7 @@ public class RationalNumberTests
     {
         var A = new RationalNumber(2, 4);
         var B = new RationalNumber(1, 2);
+        
         Assert.IsTrue(A == B);
     }
 
@@ -65,6 +71,7 @@ public class RationalNumberTests
     {
         var A = new RationalNumber(1, 2);
         var B = new RationalNumber(1, 3);
+        
         Assert.IsTrue(A != B);
     }
 
@@ -72,12 +79,14 @@ public class RationalNumberTests
     public void ToString_ShouldReturnCorrectStringRepresentation()
     {
         var A = new RationalNumber(1, 2);
+        
         Assert.AreEqual("1/2", A.ToString());
     }
     [Test]
     public void ToString_ShouldReturnCorrectStringRepresentation2()
     {
         var rationalNumber = new RationalNumber(12, 2);
+        
         Assert.AreEqual("6", rationalNumber.ToString());
     }
 
@@ -85,6 +94,7 @@ public class RationalNumberTests
     public void Operator_Minus_ShouldReturnReverse()
     {
         var A = new RationalNumber(1, 2);
+        
         Assert.AreEqual(new RationalNumber(-1, 2), -A);
     }
 
