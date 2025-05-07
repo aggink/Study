@@ -99,6 +99,8 @@ public static class Program
                 return new poroshokService();
             case ("idb-23-03", 4):
                 return new SlavicSquatService();
+            case ("idb-23-03", 7):
+                return new IvanZService();
             default:
                 throw new NotSupportedException();
         }
