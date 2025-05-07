@@ -16,6 +16,7 @@ using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.IvanZ;
 
 
 public static class Program
@@ -97,6 +98,10 @@ public static class Program
                 return new freaxdService();
             case ("idb-23-03", 17):
                 return new poroshokService();
+            case ("idb-23-03", 4):
+                return new SlavicSquatService();
+            case ("idb-23-03", 7):
+                return new IvanZService();
             default:
                 throw new NotSupportedException();
         }
