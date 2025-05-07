@@ -11,7 +11,9 @@ public class AmericanDateTimeFormatter : IDateTimeFormatter
     public string FormatDateTime()
     {
         var sb = new StringBuilder();
+
         sb.Append(DateTime.Now.ToString(_culture));
+
         return sb.ToString();
     }
 }

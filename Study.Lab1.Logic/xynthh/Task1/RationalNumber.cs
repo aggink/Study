@@ -56,6 +56,7 @@ public class RationalNumber : IRationalNumber
 
         var numerator = a.Numerator * b.Denominator;
         var denominator = a.Denominator * b.Numerator;
+
         return new RationalNumber(numerator, denominator);
     }
 
@@ -68,6 +69,7 @@ public class RationalNumber : IRationalNumber
     {
         if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
             return true;
+
         if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
             return false;
 
@@ -117,6 +119,7 @@ public class RationalNumber : IRationalNumber
     {
         if (obj is RationalNumber number)
             return this == number;
+
         return false;
     }
 

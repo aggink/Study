@@ -25,7 +25,7 @@ namespace Study.Lab1.Logic.lsokol14l.Task1
         /// <param name="denominator">Знаменатель</param>
         public RationalNumber(int numerator, int denominator)
         {
-            // если значенатель < 0 нам нужно нормалиховать дробь(перекинуть знак в числитель)
+            // если знаменатель < 0 нам нужно нормализовать дробь(перекинуть знак в числитель)
             // либо убрать знак если они оба отрицательные
             if (denominator < 0) { numerator *= -1; denominator *= -1; }
 
