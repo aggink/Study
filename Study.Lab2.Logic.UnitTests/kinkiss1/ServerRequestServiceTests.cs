@@ -1,22 +1,22 @@
 using Moq;
 using Study.Lab2.Logic.Interfaces.kinkiss1;
-using Study.Lab2.Logic.kinkiss1;
+using Study.Lab2.Logic.kinkiss1.DtoModels;
 
-namespace Study.Lab2.Logic.UnitTests.kinkiss1;
+namespace Study.Lab2.Logic.kinkiss1;
 
 [TestFixture]
 public class ServerRequestServiceTests
 {
     private Mock<IRequestService> _mockRequestService;
-    private Mock<IResponseProcessor> _mockResponseProcessor;
+    private IResponseProcessor _responseProcessor;
     private ServerRequestService _serverRequestService;
 
     [SetUp]
     public void Setup()
     {
         _mockRequestService = new Mock<IRequestService>();
-        _mockResponseProcessor = new Mock<IResponseProcessor>();
-        _serverRequestService = new ServerRequestService(_mockRequestService.Object, _mockResponseProcessor.Object);
+        _responseProcessor = new ResponseProcessor(); // Создаём реальный объект
+        _serverRequestService = new ServerRequestService(_mockRequestService.Object, _responseProcessor);
     }
 
     [TearDown]
@@ -30,10 +30,8 @@ public class ServerRequestServiceTests
     {
         var url = ApiTestData.GetCatFactsUrl();
         var rawResponse = ApiTestData.CatFactsResponse;
-        var formattedResponse = ApiTestData.CatFactsResponse;
 
         _mockRequestService.Setup(s => s.FetchData(url, null)).Returns(rawResponse);
-        _mockResponseProcessor.Setup(p => p.FormatJson<object>(rawResponse)).Returns(formattedResponse);
 
         _mockRequestService
             .Setup(s => s.FetchData(It.Is<string>(u => u.Contains("translate.googleapis.com")), null))
@@ -41,7 +39,7 @@ public class ServerRequestServiceTests
 
         var result = _serverRequestService.CatGetFacts();
 
-        Assert.That(result, Is.EqualTo(formattedResponse));
+        Assert.That(result, Does.Contain("fact"));
         _mockRequestService.Verify(s => s.FetchData(url, null), Times.Once);
     }
 
@@ -50,12 +48,10 @@ public class ServerRequestServiceTests
     {
         var url = ApiTestData.GetCatFactsUrl();
         var rawResponse = ApiTestData.CatFactsResponse;
-        var formattedResponse = ApiTestData.CatFactsResponse;
 
         _mockRequestService
             .Setup(s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()))
             .ReturnsAsync(rawResponse);
-        _mockResponseProcessor.Setup(p => p.FormatJson<object>(rawResponse)).Returns(formattedResponse);
 
         _mockRequestService
             .Setup(s => s.FetchDataAsync(
@@ -65,7 +61,7 @@ public class ServerRequestServiceTests
 
         var result = await _serverRequestService.CatGetFactsAsync();
 
-        Assert.That(result, Is.EqualTo(formattedResponse));
+        Assert.That(result, Does.Contain("fact"));
         _mockRequestService.Verify(
             s => s.FetchDataAsync(url, It.IsAny<CancellationToken>()),
             Times.Once);

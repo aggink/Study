@@ -2,6 +2,6 @@
 {
     public class KanyeRestTranslatedResponseDto : KanyeRestResponseDto
     {
-        public string Translate { get; set; }
+        public string Translate { get; init; }
     }
 }

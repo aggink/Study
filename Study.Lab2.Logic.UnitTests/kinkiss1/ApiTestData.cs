@@ -1,11 +1,11 @@
 using System.Text.Json;
-using Study.Lab2.Logic.UnitTests.kinkiss1.DtoModels;
+using Study.Lab2.Logic.Logic.kinkiss1.DtoModels;
 
-namespace Study.Lab2.Logic.UnitTests.kinkiss1;
+namespace Study.Lab2.Logic.kinkiss1.DtoModels;
 
 public static class ApiTestData
 {
-    #region Общие константы
+    #region general constats
 
     public const string ApiKeyHeader = "x-api-key";
 
@@ -27,12 +27,12 @@ public static class ApiTestData
 
     #region ServerRequestService
 
-    // Базовые URL
+    // Base URL
     public const string CatFactsBaseUrl = "https://catfact.ninja";
     public const string KanyeRestBaseUrl = "https://api.kanye.rest";
     public const string GoogleTranslateBaseUrl = "https://translate.googleapis.com/translate_a";
 
-    // JSON ответы через сериализацию объектов
+    // JSON responses through object serialization
     public static string CatFactsResponse => GetCatFactsResponseJson();
     public static string KanyeQuoteResponse => GetKanyeRestResponseJson();
     public static string GoogleTranslateCatFactResponse => GetGoogleTranslateCatFactResponseJson();
@@ -40,7 +40,7 @@ public static class ApiTestData
     public static string CatFactsWithTranslationFormatted => GetCatFactsWithTranslationFormattedJson();
     public static string KanyeRestWithTranslationFormatted => GetKanyeRestWithTranslationFormattedJson();
 
-    // Переведенные данные
+    // translated data
     public const string TranslatedCatFactText = "У кошек есть индивидуальные предпочтения для царапин поверхностей и углов. Некоторые являются горизонтальными царапаниями, в то время как другие тренируют свои когти вертикально.";
     public const string TranslatedKanyeQuoteText = "Поверьте мне... Я не остановлюсь";
 
@@ -48,7 +48,7 @@ public static class ApiTestData
     public const string CatFactNotFoundErrorMessage = "Факт о кошке не найден в JSON";
     public const string KanyeQuoteNotFoundErrorMessage = "Цитата Канье не найдена в JSON";
 
-    // Методы для получения JSON-строк
+    // Methods for obtaining JSON strings
     public static string GetCatFactsResponseJson()
     {
         var response = new CatFactResponseDto
@@ -91,25 +91,24 @@ public static class ApiTestData
 
     public static string GetGoogleTranslateCatFactResponseJson()
     {
-        // Создаем типизированную структуру для ответа Google Translate
         var response = new GoogleTranslateResponseDto
         {
             Translations = new List<GoogleTranslateSegmentDto>
-        {
-            new GoogleTranslateSegmentDto
             {
-                Items = new List<GoogleTranslateItemDto>
+                new GoogleTranslateSegmentDto
                 {
-                    new GoogleTranslateItemDto
+                    Items = new List<MainGoogleTranslateDto>
                     {
-                        TranslatedText = TranslatedCatFactText,
-                        OriginalText = "Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.",
-                        Confidence = 3,
-                        Index = 1
+                        new MainGoogleTranslateDto
+                        {
+                            TranslatedText = TranslatedCatFactText,
+                            OriginalText = "Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.",
+                            Confidence = 3,
+                            Index = 1
+                        }
                     }
                 }
-            }
-        },
+            },
             SourceLanguage = "en"
         };
 
@@ -118,32 +117,31 @@ public static class ApiTestData
 
     public static string GetGoogleTranslateKanyeResponseJson()
     {
-        // Создаем типизированную структуру для ответа Google Translate
         var response = new GoogleTranslateResponseDto
         {
             Translations = new List<GoogleTranslateSegmentDto>
-        {
-            new GoogleTranslateSegmentDto
             {
-                Items = new List<GoogleTranslateItemDto>
+                new GoogleTranslateSegmentDto
                 {
-                    new GoogleTranslateItemDto
+                    Items = new List<MainGoogleTranslateDto>
                     {
-                        TranslatedText = TranslatedKanyeQuoteText,
-                        OriginalText = "Trust me... I won't stop",
-                        Confidence = 3,
-                        Index = 1
+                        new MainGoogleTranslateDto
+                        {
+                            TranslatedText = TranslatedKanyeQuoteText,
+                            OriginalText = "Trust me... I won't stop",
+                            Confidence = 3,
+                            Index = 1
+                        }
                     }
                 }
-            }
-        },
+            },
             SourceLanguage = "en"
         };
 
         return JsonSerializer.Serialize(response);
     }
 
-    // Методы генерации URL
+    // generation methods url
     public static string GetCatFactsUrl()
     {
         return $"{CatFactsBaseUrl}/fact";
@@ -161,7 +159,6 @@ public static class ApiTestData
             Path = Path.Combine(new Uri(GoogleTranslateBaseUrl).AbsolutePath, "single")
         };
 
-        // Создаем коллекцию параметров запроса
         var queryParams = System.Web.HttpUtility.ParseQueryString(string.Empty);
         queryParams["client"] = "gtx";
         queryParams["sl"] = sourceLang;
@@ -169,7 +166,6 @@ public static class ApiTestData
         queryParams["dt"] = "t";
         queryParams["q"] = text;
 
-        // Устанавливаем параметры запроса в UriBuilder
         builder.Query = queryParams.ToString();
 
         return builder.Uri.ToString();

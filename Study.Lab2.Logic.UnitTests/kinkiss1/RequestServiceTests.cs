@@ -1,9 +1,9 @@
 using System.Net;
 using Moq;
 using Moq.Protected;
-using Study.Lab2.Logic.kinkiss1;
+using Study.Lab2.Logic.kinkiss1.DtoModels;
 
-namespace Study.Lab2.Logic.UnitTests.kinkiss1;
+namespace Study.Lab2.Logic.kinkiss1;
 
 [TestFixture]
 public class RequestServiceTests
@@ -17,6 +17,12 @@ public class RequestServiceTests
         _mockHttpMessageHandler = new Mock<HttpMessageHandler>();
         var httpClient = new HttpClient(_mockHttpMessageHandler.Object);
         _requestService = new RequestService(httpClient);
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        _requestService?.Dispose();
     }
 
     [Test]
@@ -56,12 +62,6 @@ public class RequestServiceTests
         Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
     }
 
-    [TearDown]
-    public void TearDown()
-    {
-        _requestService?.Dispose();
-    }
-
     [Test]
     public async Task FetchDataAsync_NetworkIssue_ThrowsException()
     {
@@ -90,10 +90,9 @@ public class RequestServiceTests
 
         var result = _requestService.FetchData(catFactsUrl);
 
-        // ѕровер€ем, что получен именно тот ответ, который был настроен в mock
+
         Assert.That(result, Is.EqualTo(expectedResponse));
 
-        // ѕровер€ем, что запрос был отправлен на правильный URL
         VerifyRequestSent(catFactsUrl, times: Times.Once());
     }
 
@@ -112,7 +111,7 @@ public class RequestServiceTests
     }
 
     /// <summary>
-    /// ѕровер€ет, что запрос был отправлен на указанный URL указанное количество раз
+    /// Verifies that the request was sent to the specified URL the expected number of times
     /// </summary>
     private void VerifyRequestSent(string url, Times times)
     {
@@ -125,8 +124,8 @@ public class RequestServiceTests
     }
 
     /// <summary>
-    /// ѕровер€ет, что запрос содержал указанный заголовок с указанным значением
-    /// </summary>
+    /// Verifies that the request was sent with the correct headers and values
+    /// </summary
     private void VerifyHeadersSent(string headerName, string headerValue)
     {
         _mockHttpMessageHandler.Protected().Verify(
@@ -175,4 +174,3 @@ public class RequestServiceTests
         return true;
     }
 }
-
