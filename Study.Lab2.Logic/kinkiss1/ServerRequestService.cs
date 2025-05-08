@@ -1,6 +1,6 @@
-﻿using System.Text.Json;
-using Study.Lab2.Logic.Interfaces.kinkiss1;
+﻿using Study.Lab2.Logic.Interfaces.kinkiss1;
 using Study.Lab2.Logic.kinkiss1.DtoModels;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.kinkiss1;
 
@@ -213,7 +213,6 @@ public class ServerRequestService : IServerRequestService
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ошибка при переводе: {ex.Message}");
             return formattedResponse;
         }
     }
@@ -233,7 +232,6 @@ public class ServerRequestService : IServerRequestService
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ошибка при переводе: {ex.Message}");
             return formattedResponse;
         }
     }

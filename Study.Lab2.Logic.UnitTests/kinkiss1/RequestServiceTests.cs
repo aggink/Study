@@ -1,8 +1,8 @@
-using System.Net;
 using Moq;
 using Moq.Protected;
 using Study.Lab2.Logic.Interfaces.kinkiss1;
 using Study.Lab2.Logic.kinkiss1;
+using System.Net;
 
 namespace Study.Lab2.Logic.UnitTests.kinkiss1;
 
@@ -146,8 +146,6 @@ public class RequestServiceTests
         string url = null)
     {
         url ??= ApiTestData.RequestServiceTestUrl;
-
-        Console.WriteLine($"Setting up mock for URL: {url}");
 
         _mockHttpMessageHandler
             .Protected()
