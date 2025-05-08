@@ -207,11 +207,12 @@ public class ServerRequestService : IServerRequestService
         // Форматируем JSON для лучшей читаемости
         var formattedResponse = _responseProcessor.FormatJson<CatFactResponseDto>(response);
         // Переводим текст
+
         try
         {
             return TranslateCatsSync(response);
         }
-        catch (Exception ex)
+        catch
         {
             return formattedResponse;
         }
@@ -230,7 +231,7 @@ public class ServerRequestService : IServerRequestService
         {
             return TranslateKanyeSync(response);
         }
-        catch (Exception ex)
+        catch
         {
             return formattedResponse;
         }
@@ -247,6 +248,7 @@ public class ServerRequestService : IServerRequestService
 
         // Форматируем JSON для лучшей читаемости
         var formattedResponse = _responseProcessor.FormatJson<CatFactResponseDto>(response);
+
         // Переводим текст асинхронно
         try
         {
@@ -316,8 +318,6 @@ public class ServerRequestService : IServerRequestService
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Ошибка при десериализации ответа от Google API: {ex.Message}");
-
             // Возвращаемся к проверенному методу с JsonDocument если десериализация не удалась
             var jsonResponse = JsonDocument.Parse(response);
             return jsonResponse.RootElement[0][0][0].GetString();
