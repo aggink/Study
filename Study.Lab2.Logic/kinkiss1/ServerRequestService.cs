@@ -252,9 +252,8 @@ public class ServerRequestService : IServerRequestService
         {
             return await TranslateCatsAsync(response, cancellationToken);
         }
-        catch (Exception ex)
+        catch
         {
-            Console.WriteLine($"Ошибка при асинхронном переводе: {ex.Message}");
             return formattedResponse;
         }
     }
@@ -272,9 +271,8 @@ public class ServerRequestService : IServerRequestService
         {
             return await TranslateKanyeAsync(response, cancellationToken);
         }
-        catch (Exception ex)
+        catch
         {
-            Console.WriteLine($"Ошибка при асинхронном переводе: {ex.Message}");
             return formattedResponse;
         }
     }

@@ -17,7 +17,7 @@ public class AmericanDateTimeFormatter : DateTimeBaseFormatter
     public override StringBuilder DateStringBuilder(DateTime? datetime)
     {
         return new StringBuilder(
-            (datetime ?? System.DateTime.Now).ToString(_culture.DateTimeFormat.ShortDatePattern)
+            (datetime ?? System.DateTime.Now).ToString("d", _culture)
         );
     }
 
