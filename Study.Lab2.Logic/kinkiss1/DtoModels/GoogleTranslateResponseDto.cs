@@ -1,5 +1,12 @@
 ﻿namespace Study.Lab2.Logic.kinkiss1.DtoModels;
-public class MainGoogleTranslateDto
+
+public class GoogleTranslateResponseDto
+{
+    public List<GoogleTranslateSegmentDto> Translations { get; init; }
+    public string SourceLanguage { get; init; }
+}
+
+public class GoogleTranslateItemDto
 {
     public string TranslatedText { get; init; }
     public string OriginalText { get; init; }
@@ -9,11 +16,5 @@ public class MainGoogleTranslateDto
 
 public class GoogleTranslateSegmentDto
 {
-    public List<MainGoogleTranslateDto> Items { get; init; }
-}
-
-public class GoogleTranslateResponseDto
-{
-    public List<GoogleTranslateSegmentDto> Translations { get; init; }
-    public string SourceLanguage { get; init; }
+    public List<GoogleTranslateItemDto> Items { get; init; }
 }

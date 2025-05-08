@@ -198,6 +198,7 @@ public class ServerRequestService : IServerRequestService
     #endregion
 
     #region Sync
+
     public string CatGetFacts()
     {
         var url = $"https://catfact.ninja/fact";

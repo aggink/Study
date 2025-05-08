@@ -1,15 +1,16 @@
 using System.Net;
 using Moq;
 using Moq.Protected;
-using Study.Lab2.Logic.UnitTests.kinkiss1;
+using Study.Lab2.Logic.Interfaces.kinkiss1;
+using Study.Lab2.Logic.kinkiss1;
 
-namespace Study.Lab2.Logic.kinkiss1;
+namespace Study.Lab2.Logic.UnitTests.kinkiss1;
 
 [TestFixture]
 public class RequestServiceTests
 {
     private Mock<HttpMessageHandler> _mockHttpMessageHandler;
-    private RequestService _requestService;
+    private IRequestService _requestService;
 
     [SetUp]
     public void Setup()
@@ -30,7 +31,7 @@ public class RequestServiceTests
     {
         SetupMockResponse(HttpStatusCode.OK, ApiTestData.RequestServiceTestResponse);
 
-        var result = _requestService.FetchData(ApiTestData.RequestServiceTestUrl);
+        var result = _requestService.FetchData(ApiTestData.RequestServiceTestUrl, null);
 
         Assert.That(result, Is.EqualTo(ApiTestData.RequestServiceTestResponse));
     }
@@ -88,7 +89,7 @@ public class RequestServiceTests
 
         SetupMockResponse(HttpStatusCode.OK, expectedResponse, null, catFactsUrl);
 
-        var result = _requestService.FetchData(catFactsUrl);
+        var result = _requestService.FetchData(catFactsUrl, null);
 
 
         Assert.That(result, Is.EqualTo(expectedResponse));

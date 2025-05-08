@@ -1,15 +1,15 @@
 using Moq;
 using Study.Lab2.Logic.Interfaces.kinkiss1;
-using Study.Lab2.Logic.UnitTests.kinkiss1;
+using Study.Lab2.Logic.kinkiss1;
 
-namespace Study.Lab2.Logic.kinkiss1;
+namespace Study.Lab2.Logic.UnitTests.kinkiss1;
 
 [TestFixture]
 public class ServerRequestServiceTests
 {
     private Mock<IRequestService> _mockRequestService;
     private IResponseProcessor _responseProcessor;
-    private ServerRequestService _serverRequestService;
+    private IServerRequestService _serverRequestService;
 
     [SetUp]
     public void Setup()

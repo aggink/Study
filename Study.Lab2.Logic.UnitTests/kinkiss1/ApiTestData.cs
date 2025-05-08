@@ -3,7 +3,6 @@ using Study.Lab2.Logic.kinkiss1.DtoModels;
 
 namespace Study.Lab2.Logic.UnitTests.kinkiss1;
 
-
 public static class ApiTestData
 {
     #region general constats
@@ -94,22 +93,20 @@ public static class ApiTestData
     {
         var response = new GoogleTranslateResponseDto
         {
-            Translations = new List<GoogleTranslateSegmentDto>
-            {
-                new GoogleTranslateSegmentDto
-                {
-                    Items = new List<MainGoogleTranslateDto>
-                    {
-                        new MainGoogleTranslateDto
-                        {
+            Translations =
+            [
+                new() {
+                    Items =
+                    [
+                        new() {
                             TranslatedText = TranslatedCatFactText,
                             OriginalText = "Cats have individual preferences for scratching surfaces and angles. Some are horizontal scratchers while others exercise their claws vertically.",
                             Confidence = 3,
                             Index = 1
                         }
-                    }
+                    ]
                 }
-            },
+            ],
             SourceLanguage = "en"
         };
 
@@ -120,22 +117,20 @@ public static class ApiTestData
     {
         var response = new GoogleTranslateResponseDto
         {
-            Translations = new List<GoogleTranslateSegmentDto>
-            {
-                new GoogleTranslateSegmentDto
-                {
-                    Items = new List<MainGoogleTranslateDto>
-                    {
-                        new MainGoogleTranslateDto
-                        {
+            Translations =
+            [
+                new() {
+                    Items =
+                    [
+                        new() {
                             TranslatedText = TranslatedKanyeQuoteText,
                             OriginalText = "Trust me... I won't stop",
                             Confidence = 3,
                             Index = 1
                         }
-                    }
+                    ]
                 }
-            },
+            ],
             SourceLanguage = "en"
         };
 
