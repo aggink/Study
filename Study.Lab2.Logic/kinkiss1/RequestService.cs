@@ -5,7 +5,6 @@ namespace Study.Lab2.Logic.kinkiss1;
 public class RequestService : IRequestService
 {
     private readonly HttpClient _httpClient;
-    private bool _disposed = false;
 
     public RequestService(HttpClient httpClient)
     {
@@ -67,10 +66,6 @@ public class RequestService : IRequestService
 
     public void Dispose()
     {
-        if (!_disposed)
-        {
-            _httpClient.Dispose();
-            _disposed = true;
-        }
+        _httpClient?.Dispose();
     }
 }

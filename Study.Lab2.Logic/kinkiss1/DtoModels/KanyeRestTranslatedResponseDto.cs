@@ -1,7 +1,5 @@
-﻿namespace Study.Lab2.Logic.kinkiss1.DtoModels
+﻿namespace Study.Lab2.Logic.kinkiss1.DtoModels;
+public class KanyeRestTranslatedResponseDto : KanyeRestResponseDto
 {
-    public class KanyeRestTranslatedResponseDto : KanyeRestResponseDto
-    {
-        public string Translate { get; init; }
-    }
+    public string Translate { get; init; }
 }

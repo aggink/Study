@@ -8,13 +8,14 @@ public class ServerRequestService : IServerRequestService
 {
     private readonly IRequestService _requestService;
     private readonly IResponseProcessor _responseProcessor;
-    private readonly IRequestService _rService;
 
     public ServerRequestService(IRequestService requestService, IResponseProcessor responseProcessor)
     {
         _requestService = requestService;
         _responseProcessor = responseProcessor;
     }
+
+    #region Translate sync and async
 
     public string TranslateCatsSync(string jsonString)
     {
@@ -194,9 +195,9 @@ public class ServerRequestService : IServerRequestService
         }
     }
 
+    #endregion
 
-    // --- СИНХРОННЫЕ ---
-
+    #region Sync
     public string CatGetFacts()
     {
         var url = $"https://catfact.ninja/fact";
@@ -236,7 +237,9 @@ public class ServerRequestService : IServerRequestService
         }
     }
 
-    // --- АСИНХРОННЫЕ ---
+    #endregion
+
+    #region Async
 
     public async Task<string> CatGetFactsAsync(CancellationToken cancellationToken = default)
     {
@@ -277,9 +280,11 @@ public class ServerRequestService : IServerRequestService
         }
     }
 
+    #endregion
+
     public void Dispose()
     {
-        _rService?.Dispose();
+        _requestService?.Dispose();
     }
 
     private async Task<string> TranslateTextAsync(string sourceText, CancellationToken cancellationToken = default)

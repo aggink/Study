@@ -1,7 +1,7 @@
 using System.Net;
 using Moq;
 using Moq.Protected;
-using Study.Lab2.Logic.kinkiss1.DtoModels;
+using Study.Lab2.Logic.UnitTests.kinkiss1;
 
 namespace Study.Lab2.Logic.kinkiss1;
 

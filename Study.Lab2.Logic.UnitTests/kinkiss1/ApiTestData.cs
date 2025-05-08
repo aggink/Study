@@ -1,7 +1,8 @@
 using System.Text.Json;
-using Study.Lab2.Logic.Logic.kinkiss1.DtoModels;
+using Study.Lab2.Logic.kinkiss1.DtoModels;
 
-namespace Study.Lab2.Logic.kinkiss1.DtoModels;
+namespace Study.Lab2.Logic.UnitTests.kinkiss1;
+
 
 public static class ApiTestData
 {
