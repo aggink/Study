@@ -3,7 +3,7 @@
     public interface IRequestService : IDisposable
     {
         /// <summary>
-        /// Отправить запрос к сервису
+        /// Отправить запрос к сервису.
         /// </summary>
         /// <param name="url">Веб-адрес</param>
         /// <returns>Ответ от сервиса</returns>
