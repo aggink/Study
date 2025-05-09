@@ -1,10 +1,12 @@
-﻿using Study.Lab1.Logic.Assistant;
+﻿using Study.Lab1.Logic.alkeivi;
+using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.eldarovskiy;
 using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.gegemonTV;
 using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.IvanZ;
 using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
@@ -16,7 +18,6 @@ using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.IvanZ;
 
 
 public static class Program
@@ -29,12 +30,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-03";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 12;
 
     public static void Main()
     {
@@ -102,6 +103,8 @@ public static class Program
                 return new SlavicSquatService();
             case ("idb-23-03", 7):
                 return new IvanZService();
+            case ("idb-23-03", 12):
+                return new alkeiviService();
             default:
                 throw new NotSupportedException();
         }
