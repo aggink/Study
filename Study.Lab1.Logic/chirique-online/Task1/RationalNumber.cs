@@ -2,7 +2,7 @@
 
 namespace Study.Lab1.Logic.chirique_online.Task1;
 
-public class RationalNumber : IRationalNum
+public class RationalNumber : IRationalNumber
 {
     public int Numerator { get; }
 
@@ -51,9 +51,6 @@ public class RationalNumber : IRationalNum
 
     public static RationalNumber operator /(RationalNumber a, RationalNumber b)
     {
-        if (b.Numerator == 0)
-            throw new DivideByZeroException("Деление на ноль");
-
         var numerator = a.Numerator * b.Denominator;
         var denominator = a.Denominator * b.Numerator;
         return new RationalNumber(numerator, denominator);
@@ -68,6 +65,7 @@ public class RationalNumber : IRationalNum
     {
         if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
             return true;
+
         if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
             return false;
 
@@ -117,6 +115,7 @@ public class RationalNumber : IRationalNum
     {
         if (obj is RationalNumber number)
             return this == number;
+
         return false;
     }
 
