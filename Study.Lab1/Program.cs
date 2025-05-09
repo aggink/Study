@@ -31,12 +31,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "idb-23-02";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 12;
+    private const int PERSON_NUMBER = 1;
 
     public static void Main()
     {
@@ -107,7 +107,7 @@ public static class Program
             case ("idb-23-03", 12):
                 return new alkeiviService();
             case ("idb-23-02", 12):
-                return new chirique_onlineService();
+                return new chiriqueOnlineService();
             default:
                 throw new NotSupportedException();
         }
