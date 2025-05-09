@@ -17,6 +17,7 @@ using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.IvanZ;
+using Study.Lab1.Logic.chirique_online;
 
 
 public static class Program
@@ -102,6 +103,8 @@ public static class Program
                 return new SlavicSquatService();
             case ("idb-23-03", 7):
                 return new IvanZService();
+            case ("idb-23-02", 12):
+                return new chiriqueOnlineService();
             default:
                 throw new NotSupportedException();
         }
