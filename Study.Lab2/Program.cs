@@ -1,7 +1,7 @@
 ﻿using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.Interfaces;
+using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.xynthh;
-
 public static class Program
 {
     /// <summary>
@@ -57,6 +57,8 @@ public static class Program
                 return new AssistantService();
             case ("idb-23-02", 15):
                 return new XynthhService();
+            case ("idb-23-02", 19):
+                return new lsokol14lService();
             default:
                 throw new NotSupportedException();
         }
