@@ -6,6 +6,7 @@ public class RationalNumber : IRationalNumber
 {
     public int Numerator { get; }
     public int Denominator { get; }
+
     public RationalNumber(int numerator, int denominator)
     {
         if (denominator == 0)
@@ -84,9 +85,6 @@ public class RationalNumber : IRationalNumber
 
     public static RationalNumber operator /(RationalNumber a, RationalNumber b)
     {
-        if (b.Numerator == 0)
-            throw new DivideByZeroException("Деление на ноль!");
-
         int numerator = a.Numerator * b.Denominator;
         int denominator = a.Denominator * b.Numerator;
         return new RationalNumber(numerator, denominator);
