@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Study.Lab1.Logic.chirique_online.Task1;
 
+using Study.Lab1.Logic.chirique_online.Task1;
 namespace Study.Lab1.Logic.chirique_online;
 
 
 
 
-public class chiriqueOnlineService : IRunService
+public class chirique_onlineService : IRunService
 {
     public void RunTask1()
     {
