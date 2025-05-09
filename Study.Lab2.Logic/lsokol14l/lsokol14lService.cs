@@ -13,6 +13,7 @@ namespace Study.Lab2.Logic.lsokol14l
         {
             _requestService = new RequestService(new HttpClient());
         }
+
         public lsokol14lService(IRequestService requestService)
         {
             _requestService = requestService;

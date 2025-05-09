@@ -2,8 +2,8 @@
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.kinkiss1;
-using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.lsokol14l;
+using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
 public static class Program
 {
