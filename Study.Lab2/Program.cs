@@ -1,5 +1,6 @@
 ﻿using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
+using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.Selestz;
@@ -63,6 +64,8 @@ public static class Program
                 return new brnvikaService();
             case ("idb-23-02", 23):
                 return new SelestzService();
+            case("idb-23-02", 2):
+                return new eldarovskiyService();
             default:
                 throw new NotSupportedException();
         }
