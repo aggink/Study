@@ -1,4 +1,7 @@
 //перенес приватную функцию вниз
+//поправил пробелы
+
+using Study.Lab1.Logic.Interfaces.mansurgh.Task1;
 
 namespace Study.Lab1.Logic.mansurgh.Task1;
 
@@ -18,7 +21,6 @@ public class RationalNumber
             numerator = -numerator;
             denominator = -denominator;
         }
-
 
         // нод по алгоритму Евклида
         int gcd = Gcd(Math.Abs(numerator), Math.Abs(denominator));
@@ -53,8 +55,6 @@ public class RationalNumber
         return HashCode.Combine(Numerator, Denominator);
     }
 
-    
-
 #region Operators
 
     public static RationalNumber operator+ (RationalNumber a, RationalNumber b)
@@ -84,7 +84,7 @@ public class RationalNumber
     public static RationalNumber operator/ (RationalNumber a, RationalNumber b)
     {
         if (b.Numerator == 0)
-        throw new DivideByZeroException("Нельзя делить на ноль");
+            throw new DivideByZeroException("Нельзя делить на ноль");
 
         int newNumerator = a.Numerator * b.Denominator;
         int newDenominator = a.Denominator * b.Numerator;
@@ -99,12 +99,10 @@ public class RationalNumber
         return a.Equals(b);
     }
 
-
     public static bool operator !=(RationalNumber a, RationalNumber b)
     {
         return !(a == b);  
     }
-
 
     public static bool operator <(RationalNumber a, RationalNumber b)
     {
@@ -113,12 +111,12 @@ public class RationalNumber
 
     public static bool operator >(RationalNumber a, RationalNumber b)
     {
-    return a.Numerator * b.Denominator > b.Numerator * a.Denominator;
+        return a.Numerator * b.Denominator > b.Numerator * a.Denominator;
     }
 
     public static bool operator <=(RationalNumber a, RationalNumber b)
     {
-    return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
+        return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
     }
 
     public static bool operator >=(RationalNumber a, RationalNumber b)
@@ -131,7 +129,6 @@ public class RationalNumber
         return new RationalNumber(-a.Numerator, a.Denominator);
     }
 
-
 #endregion
 
     private static int Gcd(int a, int b)
@@ -143,7 +140,5 @@ public class RationalNumber
             a = temp;
         }
         return a;
-    }
-
-
+    }   
 }

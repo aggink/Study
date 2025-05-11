@@ -1,6 +1,5 @@
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.mansurgh.Task1;
-using System;
 
 namespace Study.Lab1.Logic.mansurgh;
 

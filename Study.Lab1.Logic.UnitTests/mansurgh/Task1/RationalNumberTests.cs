@@ -1,3 +1,5 @@
+//добавил недостающий тест на деление
+
 using Study.Lab1.Logic.mansurgh.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.mansurgh.Task1;
@@ -36,6 +38,17 @@ public class RationalNumberTests
         var result = a * b;
 
         Assert.AreEqual(1, result.Numerator);
+        Assert.AreEqual(4, result.Denominator);
+    }
+
+    [Test]
+    public void CorrectDivision()
+    {
+        var a = new RationalNumber(-3, 4);
+        var b = new RationalNumber(1, -3);
+        var result = a / b;
+
+        Assert.AreEqual(9, result.Numerator);
         Assert.AreEqual(4, result.Denominator);
     }
 

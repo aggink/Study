@@ -1,4 +1,8 @@
-namespace Study.Lab1.Logic.Interfaces.mansurgh.Task1
+//поправил namespace 
+
+namespace Study.Lab1.Logic.Interfaces.mansurgh.Task1;
+
+public interface IRationalNumber
 {
     public interface IRationalNumber
     {
