@@ -1,18 +1,9 @@
+//перенес приватную функцию вниз
+
 namespace Study.Lab1.Logic.mansurgh.Task1;
 
 public class RationalNumber
 {   
-    private static int Gcd(int a, int b)
-    {
-        while (b != 0)
-        {
-            int temp = b;
-            b = a % b;
-            a = temp;
-        }
-        return a;
-    }
-
     public int Numerator { get; private set; }
     public int Denominator { get; private set; }
 
@@ -56,8 +47,6 @@ public class RationalNumber
         var other = (RationalNumber)obj;
         return this.Numerator == other.Numerator && this.Denominator == other.Denominator;
     }
-
-
 
     public override int GetHashCode()
     {
@@ -144,6 +133,17 @@ public class RationalNumber
 
 
 #endregion
+
+    private static int Gcd(int a, int b)
+    {
+        while (b != 0)
+        {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
 
 
 }
