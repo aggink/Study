@@ -1,8 +1,3 @@
-//перенес приватную функцию вниз
-//поправил пробелы
-
-using Study.Lab1.Logic.Interfaces.mansurgh.Task1;
-
 namespace Study.Lab1.Logic.mansurgh.Task1;
 
 public class RationalNumber

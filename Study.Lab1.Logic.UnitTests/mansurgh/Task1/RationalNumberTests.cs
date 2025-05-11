@@ -1,5 +1,3 @@
-//добавил недостающий тест на деление
-
 using Study.Lab1.Logic.mansurgh.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.mansurgh.Task1;
