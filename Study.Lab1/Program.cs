@@ -2,6 +2,7 @@
 using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
+using Study.Lab1.Logic.chirique_online;
 using Study.Lab1.Logic.eldarovskiy;
 using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.gegemonTV;
@@ -19,7 +20,6 @@ using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.chirique_online;
 
 
 public static class Program
