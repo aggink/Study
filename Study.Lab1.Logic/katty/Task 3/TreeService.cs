@@ -6,7 +6,7 @@ public class TreeService : ITreeService
 {
     public ITreeNode Root { get; private set; }
 
-    public void ConfigureTree()
+    public void BuildSampleTree()
     {
         Root = new TreeNode("Корень");
 
@@ -31,19 +31,16 @@ public class TreeService : ITreeService
         return CheckForCycles(Root, new HashSet<ITreeNode>());
     }
 
+    public bool IsValidTree()
+    {
+        return Root != null && !HasCycles();
+    }
+
     private bool CheckForCycles(ITreeNode node, HashSet<ITreeNode> visited)
     {
-        if (visited.Contains(node))
-            return true;
+        if (visited.Contains(node)) return true;
 
         visited.Add(node);
-
-        foreach (var child in node.Children)
-        {
-            if (CheckForCycles(child, new HashSet<ITreeNode>(visited)))
-                return true;
-        }
-
-        return false;
+        return node.Children.Any(child => CheckForCycles(child, new HashSet<ITreeNode>(visited)));
     }
 }

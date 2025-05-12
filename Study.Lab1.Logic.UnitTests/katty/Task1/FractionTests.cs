@@ -1,6 +1,6 @@
 ﻿using Study.Lab1.Logic.katty;
 
-namespace Study.Lab1.Logic.UnitTests.katty;
+namespace Study.Lab1.Logic.UnitTests.katty.Task1;
 
 [TestFixture]
 public class FractionTests

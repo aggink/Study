@@ -2,6 +2,7 @@
 public interface ITreeService
 {
     ITreeNode Root { get; }
-    void ConfigureTree();
+    void BuildSampleTree();
     bool HasCycles();
+    bool IsValidTree();
 }

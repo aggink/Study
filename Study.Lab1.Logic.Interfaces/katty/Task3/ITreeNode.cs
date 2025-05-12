@@ -2,8 +2,9 @@
 
 public interface ITreeNode
 {
-    string Value { get; set; }
-    IList<ITreeNode> Children { get; }
-    void PrintChildrenValues();
+    string Value { get; }
+    IReadOnlyList<ITreeNode> Children { get; }
     void AddChild(ITreeNode node);
+    string GetTreeAsString();
+    IEnumerable<string> GetAllValues();
 }

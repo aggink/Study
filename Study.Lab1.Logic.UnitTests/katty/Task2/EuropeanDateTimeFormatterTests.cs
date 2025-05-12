@@ -1,6 +1,6 @@
 ﻿using Study.Lab1.Logic.katty.Task_2;
 
-namespace Study.Lab1.Logic.UnitTests;
+namespace Study.Lab1.Logic.UnitTests.katty.Task2;
 
 [TestFixture]
 public class EuropeanDateTimeFormatterTests1

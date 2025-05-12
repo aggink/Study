@@ -34,16 +34,19 @@ public class kattyService : IRunService
 
     public void RunTask3()
     {
-        // Создаем сервис дерева
         ITreeService treeService = new TreeService();
+        treeService.BuildSampleTree();
 
-        // Конфигурируем дерево
-        treeService.ConfigureTree();
+        Console.WriteLine("Структура дерева:");
+        Console.WriteLine(treeService.Root.GetTreeAsString());
 
-        // Печатаем потомков корневого узла
-        treeService.Root.PrintChildrenValues();
+        Console.WriteLine($"\nДерево содержит циклы: {treeService.HasCycles()}");
+        Console.WriteLine($"Дерево валидно: {treeService.IsValidTree()}");
 
-        // Проверяем на циклы
-        Console.WriteLine($"Дерево содержит циклы: {treeService.HasCycles()}");
+        Console.WriteLine("\nВсе узлы дерева:");
+        foreach (var value in treeService.Root.GetAllValues())
+        {
+            Console.WriteLine($"- {value}");
+        }
     }
 }
