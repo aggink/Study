@@ -10,8 +10,14 @@ public class kattyService : IRunService
 {
     public void RunTask1()
     {
-        var fraction1 = new Fraction(1, 1);
-        Console.WriteLine(fraction1.ToString());
+        RationalNumber number1 = new RationalNumber(numerator: -1, denominator: 6);
+        RationalNumber number2 = new RationalNumber(numerator: 4, denominator: -4);
+
+        Console.WriteLine(number1);
+        Console.WriteLine(number2);
+
+        RationalNumber sum = number1 / number2;
+        Console.WriteLine(sum);
     }
 
     public void RunTask2()
