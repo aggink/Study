@@ -7,108 +7,114 @@ using Moq.Protected;
 using NUnit.Framework;
 using Study.Lab2.Logic.eldarovskiy;
 
-namespace Study.Lab2.Logic.UnitTests.eldarovskiy
+namespace Study.Lab2.Logic.UnitTests.eldarovskiy;
+
+[TestFixture]
+public class RequestServiceTests
 {
-    [TestFixture]
-    public class RequestServiceTests
+    [Test]
+    public void FetchData_ReturnsJsonString_OnSuccess()
     {
-        [Test]
-        public void FetchData_ReturnsJsonString_OnSuccess()
-        {
-            // Arrange: подготовим хэндлер, возвращающий код 200 и простой JSON
-            var handlerMock = new Mock<HttpMessageHandler>();
-            handlerMock
-             .Protected()
-             .Setup<Task<HttpResponseMessage>>(
-               "SendAsync",
-               ItExpr.IsAny<HttpRequestMessage>(),
-               ItExpr.IsAny<CancellationToken>()
-             )
-             .ReturnsAsync(new HttpResponseMessage
-             {
-                 StatusCode = HttpStatusCode.OK,
-                 Content = new StringContent("{\"foo\":123}")
-             });
+        // Arrange: подготовим хэндлер, возвращающий код 200 и простой JSON
+        var handlerMock = new Mock<HttpMessageHandler>();
+        handlerMock
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>()
+            )
+            .ReturnsAsync(
+                new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent("{\"foo\":123}"),
+                }
+            );
 
-            var httpClient = new HttpClient(handlerMock.Object);
-            var svc = new RequestService(httpClient);
+        var httpClient = new HttpClient(handlerMock.Object);
+        var svc = new RequestService(httpClient);
 
-            // Act
-            var result = svc.FetchData("http://test");
-            
-            // Assert
-            Assert.That(result, Is.EqualTo("{\"foo\":123}"));
-        }
+        // Act
+        var result = svc.FetchData("http://test");
 
-        [Test]
-        public void FetchData_ThrowsException_OnNonSuccess()
-        {
-            var handlerMock = new Mock<HttpMessageHandler>();
-            handlerMock
-             .Protected()
-             .Setup<Task<HttpResponseMessage>>(
-               "SendAsync",
-               ItExpr.IsAny<HttpRequestMessage>(),
-               ItExpr.IsAny<CancellationToken>()
-             )
-             .ReturnsAsync(new HttpResponseMessage
-             {
-                 StatusCode = HttpStatusCode.InternalServerError,
-                 ReasonPhrase = "Fail"
-             });
+        // Assert
+        Assert.That(result, Is.EqualTo("{\"foo\":123}"));
+    }
 
-            var httpClient = new HttpClient(handlerMock.Object);
-            var svc = new RequestService(httpClient);
+    [Test]
+    public void FetchData_ThrowsException_OnNonSuccess()
+    {
+        var handlerMock = new Mock<HttpMessageHandler>();
+        handlerMock
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>()
+            )
+            .ReturnsAsync(
+                new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    ReasonPhrase = "Fail",
+                }
+            );
 
-            Assert.Throws<Exception>(() => svc.FetchData("http://test"));
-        }
+        var httpClient = new HttpClient(handlerMock.Object);
+        var svc = new RequestService(httpClient);
 
-        [Test]
-        public async Task FetchDataAsync_ReturnsJsonString_OnSuccessAsync()
-        {
-            var handlerMock = new Mock<HttpMessageHandler>();
-            handlerMock
-             .Protected()
-             .Setup<Task<HttpResponseMessage>>(
-               "SendAsync",
-               ItExpr.IsAny<HttpRequestMessage>(),
-               ItExpr.IsAny<CancellationToken>()
-             )
-             .ReturnsAsync(new HttpResponseMessage
-             {
-                 StatusCode = HttpStatusCode.OK,
-                 Content = new StringContent("{\"bar\":456}")
-             });
+        Assert.Throws<Exception>(() => svc.FetchData("http://test"));
+    }
 
-            var httpClient = new HttpClient(handlerMock.Object);
-            var svc = new RequestService(httpClient);
+    [Test]
+    public async Task FetchDataAsync_ReturnsJsonString_OnSuccessAsync()
+    {
+        var handlerMock = new Mock<HttpMessageHandler>();
+        handlerMock
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>()
+            )
+            .ReturnsAsync(
+                new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.OK,
+                    Content = new StringContent("{\"bar\":456}"),
+                }
+            );
 
-            var result = await svc.FetchDataAsync("http://test");
-            Assert.That(result, Is.EqualTo("{\"bar\":456}"));
-        }
+        var httpClient = new HttpClient(handlerMock.Object);
+        var svc = new RequestService(httpClient);
 
-        [Test]
-        public void FetchDataAsync_ThrowsException_OnNonSuccessAsync()
-        {
-            var handlerMock = new Mock<HttpMessageHandler>();
-            handlerMock
-             .Protected()
-             .Setup<Task<HttpResponseMessage>>(
-               "SendAsync",
-               ItExpr.IsAny<HttpRequestMessage>(),
-               ItExpr.IsAny<CancellationToken>()
-             )
-             .ReturnsAsync(new HttpResponseMessage
-             {
-                 StatusCode = HttpStatusCode.BadRequest,
-                 ReasonPhrase = "Bad"
-             });
+        var result = await svc.FetchDataAsync("http://test");
+        Assert.That(result, Is.EqualTo("{\"bar\":456}"));
+    }
 
-            var httpClient = new HttpClient(handlerMock.Object);
-            var svc = new RequestService(httpClient);
+    [Test]
+    public void FetchDataAsync_ThrowsException_OnNonSuccessAsync()
+    {
+        var handlerMock = new Mock<HttpMessageHandler>();
+        handlerMock
+            .Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>()
+            )
+            .ReturnsAsync(
+                new HttpResponseMessage
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    ReasonPhrase = "Bad",
+                }
+            );
 
-            Assert.ThrowsAsync<Exception>(async () =>
-                await svc.FetchDataAsync("http://test"));
-        }
+        var httpClient = new HttpClient(handlerMock.Object);
+        var svc = new RequestService(httpClient);
+
+        Assert.ThrowsAsync<Exception>(async () => await svc.FetchDataAsync("http://test"));
     }
 }
