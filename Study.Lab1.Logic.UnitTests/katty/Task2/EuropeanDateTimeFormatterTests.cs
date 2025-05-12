@@ -3,7 +3,7 @@
 namespace Study.Lab1.Logic.UnitTests.katty.Task2;
 
 [TestFixture]
-public class EuropeanDateTimeFormatterTests1
+public class EuropeanDateTimeFormatterTests
 {
     [Test]
     public void FormatDateTime_ShouldReturn_CorrectEuropeanFormat()

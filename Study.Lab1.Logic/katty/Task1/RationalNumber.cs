@@ -23,23 +23,13 @@ public class RationalNumber
         Denominator = denominator / nod;
     }
 
-    private static int NOD(int a, int b)
-    {
-        while (b != 0)
-        {
-            int temp = b;
-            b = a % b;
-            a = temp;
-        }
-        return a;
-    }
-
     public override string ToString()
     {
         if (Denominator == 1)
         {
             return Numerator.ToString();
         }
+
         return $"{Numerator}/{Denominator}";
     }
 
@@ -70,6 +60,7 @@ public class RationalNumber
         {
             throw new DivideByZeroException("Деление на ноль.");
         }
+
         int newNumerator = a.Numerator * b.Denominator;
         int newDenominator = a.Denominator * b.Numerator;
         return new RationalNumber(newNumerator, newDenominator);
@@ -111,5 +102,17 @@ public class RationalNumber
     public static bool operator >=(RationalNumber a, RationalNumber b)
     {
         return (double)a.Numerator / a.Denominator >= (double)b.Numerator / b.Denominator;
+    }
+
+    private static int NOD(int a, int b)
+    {
+        while (b != 0)
+        {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        return a;
     }
 }
