@@ -3,7 +3,10 @@
 public interface ITreeService
 {
     ITreeNode Root { get; }
+
     void BuildSampleTree();
+
     bool HasCycles();
+
     bool IsValidTree();
 }

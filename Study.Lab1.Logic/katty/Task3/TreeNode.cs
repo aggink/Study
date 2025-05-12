@@ -1,7 +1,7 @@
 ﻿using Study.Lab1.Logic.Interfaces.katty.Task3;
 using System.Text;
 
-namespace Study.Lab1.Logic.katty.Task_3;
+namespace Study.Lab1.Logic.katty.Task3;
 
 public class TreeNode : ITreeNode
 {

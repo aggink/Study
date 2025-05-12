@@ -1,22 +1,22 @@
 ﻿using Study.Lab1.Logic.Interfaces.katty.Task2;
 using System.Text;
 
-namespace Study.Lab1.Logic.katty.Task_2;
+namespace Study.Lab1.Logic.katty.Task2;
 
-public class StartDecorator : DateTimeDecorator
+public class NextDecorator : DateTimeDecorator
 {
-    private readonly string _start;
+    private readonly string _next;
 
-    public StartDecorator(IDateTimeFormatter formatter, string start) : base(formatter)
+    public NextDecorator(IDateTimeFormatter formatter, string next) : base(formatter)
     {
-        _start = start;
+        _next = next;
     }
 
     public override string FormatDateTime(DateTime dateTime)
     {
         StringBuilder tmp = new StringBuilder();
-        tmp.Append(_start);
         tmp.Append(_formatter.FormatDateTime(dateTime));
+        tmp.Append(_next);
         return tmp.ToString();
     }
 }
