@@ -1,4 +1,5 @@
 ﻿using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.Interfaces;
 
 public static class Program
@@ -54,6 +55,8 @@ public static class Program
         {
             case ("assistant", 1):
                 return new AssistantService();
+            case ("idb-23-02", 24):
+                return new CherryyService();
             default:
                 throw new NotSupportedException();
         }
