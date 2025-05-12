@@ -1,5 +1,5 @@
 ﻿using Study.Lab1.Logic.Interfaces.katty.Task3;
-using Study.Lab1.Logic.katty.Task_3;
+using Study.Lab1.Logic.katty.Task3;
 
 namespace Study.Lab1.Logic.UnitTests.katty.Task3;
 

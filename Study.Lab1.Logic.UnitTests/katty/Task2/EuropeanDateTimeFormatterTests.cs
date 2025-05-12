@@ -1,4 +1,4 @@
-﻿using Study.Lab1.Logic.katty.Task_2;
+﻿using Study.Lab1.Logic.katty.Task2;
 
 namespace Study.Lab1.Logic.UnitTests.katty.Task2;
 

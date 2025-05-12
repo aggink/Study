@@ -1,4 +1,4 @@
-﻿namespace Study.Lab1.Logic.katty;
+﻿namespace Study.Lab1.Logic.katty.Task1;
 
 public class RationalNumber
 {
