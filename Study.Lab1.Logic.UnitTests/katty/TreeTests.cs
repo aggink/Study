@@ -1,8 +1,4 @@
 ﻿using Study.Lab1.Logic.katty.Task_3;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using NUnit.Framework;
 
 namespace Study.Lab1.Logic.UnitTests.katty
 {
