@@ -10,6 +10,7 @@ namespace Study.Lab1.Logic.Taipano.Task1
     {
         public int Numerator { get; }
         public int Denominator { get; }
+
         public RationalNumber(int numerator, int denominator)
         {
             if (denominator == 0)
@@ -46,18 +47,22 @@ namespace Study.Lab1.Logic.Taipano.Task1
         {
             return new RationalNumber(a.Numerator * b.Denominator + b.Numerator * a.Denominator, a.Denominator * b.Denominator);
         }
+
         public static RationalNumber operator -(RationalNumber a)
         {
             return new RationalNumber(-a.Numerator, a.Denominator);
         }
+
         public static RationalNumber operator -(RationalNumber a, RationalNumber b)
         {
             return new RationalNumber(a.Numerator * b.Denominator - b.Numerator * a.Denominator, a.Denominator * b.Denominator);
         }
+
         public static RationalNumber operator *(RationalNumber a, RationalNumber b)
         {
             return new RationalNumber(a.Numerator * b.Numerator, a.Denominator * b.Denominator);
         }
+
         public static RationalNumber operator /(RationalNumber a, RationalNumber b)
         {
             return new RationalNumber(a.Numerator * b.Denominator, a.Denominator * b.Numerator);
@@ -71,6 +76,7 @@ namespace Study.Lab1.Logic.Taipano.Task1
         {
             return (left.Numerator != right.Numerator) || (left.Denominator != right.Denominator);
         }
+
         public static bool operator <(RationalNumber left, RationalNumber right)
         {
             return left.CompareTo(right) < 0;
@@ -100,5 +106,5 @@ namespace Study.Lab1.Logic.Taipano.Task1
 
             return left.CompareTo(right);
         }
-    }; 
+    }
 }
