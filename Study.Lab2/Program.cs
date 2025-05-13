@@ -1,5 +1,6 @@
 ﻿using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
+using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.kinkiss1;
 using Study.Lab2.Logic.Selestz;
@@ -64,6 +65,8 @@ public static class Program
                 return new brnvikaService();
             case ("idb-23-02", 23):
                 return new SelestzService();
+            case ("idb-23-02", 2):
+                return new eldarovskiyService();
             case ("idb-23-02", 6):
                 return new kinkiss1Service();
             default:
