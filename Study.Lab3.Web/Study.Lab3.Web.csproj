@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Study.Lab3.Logic\Study.Lab3.Logic.csproj" />
+    <ProjectReference Include="..\Study.Lab3.Storage.MS_SQL\Study.Lab3.Storage.MS_SQL.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
