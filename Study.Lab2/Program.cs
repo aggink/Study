@@ -2,10 +2,7 @@
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.Interfaces;
-<<<<<<< HEAD
-=======
 using Study.Lab2.Logic.kinkiss1;
->>>>>>> master
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
 
