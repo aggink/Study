@@ -6,6 +6,11 @@
 public enum DatabaseProviderType
 {
     /// <summary>
+    /// В памяти
+    /// </summary>
+    InMemory,
+
+    /// <summary>
     /// PostgreSql
     /// </summary>
     PostgreSql,

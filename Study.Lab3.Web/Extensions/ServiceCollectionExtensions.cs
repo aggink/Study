@@ -52,5 +52,15 @@ public static class ServiceCollectionExtensions
                 });
             });
         }
+        else if (dbProvider == DatabaseProviderType.InMemory)
+        {
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseInMemoryDatabase("Study", o =>
+                {
+                    o.EnableNullChecks();
+                });
+            });
+        }
     }
 }

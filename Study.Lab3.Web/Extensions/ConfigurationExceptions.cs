@@ -17,6 +17,7 @@ public static class ConfigurationExceptions
         {
             "PostgreSql" => DatabaseProviderType.PostgreSql,
             "MSSql" => DatabaseProviderType.MSSql,
+            "InMemory" => DatabaseProviderType.InMemory,
             _ => throw new Exception("Провайдер базы данных не задан")
         };
     }
