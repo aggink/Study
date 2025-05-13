@@ -33,7 +33,7 @@ public class RequestServiceTests
             );
 
         var httpClient = new HttpClient(handlerMock.Object);
-        var svc = new RequestService(httpClient);
+        using var svc = new RequestService(httpClient);
 
         // Act
         var result = svc.FetchData("http://test");
@@ -62,7 +62,7 @@ public class RequestServiceTests
             );
 
         var httpClient = new HttpClient(handlerMock.Object);
-        var svc = new RequestService(httpClient);
+        using var svc = new RequestService(httpClient);
 
         Assert.Throws<Exception>(() => svc.FetchData("http://test"));
     }
@@ -87,7 +87,7 @@ public class RequestServiceTests
             );
 
         var httpClient = new HttpClient(handlerMock.Object);
-        var svc = new RequestService(httpClient);
+        using var svc = new RequestService(httpClient);
 
         var result = await svc.FetchDataAsync("http://test");
         Assert.That(result, Is.EqualTo("{\"bar\":456}"));
@@ -113,7 +113,7 @@ public class RequestServiceTests
             );
 
         var httpClient = new HttpClient(handlerMock.Object);
-        var svc = new RequestService(httpClient);
+        using var svc = new RequestService(httpClient);
 
         Assert.ThrowsAsync<Exception>(async () => await svc.FetchDataAsync("http://test"));
     }
