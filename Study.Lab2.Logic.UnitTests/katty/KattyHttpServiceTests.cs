@@ -48,12 +48,22 @@ public class KattyHttpServiceTests
     public async Task RunTaskAsync_УспешноВыполняетАсинхронныеЗапросы()
     {
         // Arrange
-        _mockServerRequestService.Setup(x => x.ExecuteRequestsAsync(It.IsAny<CancellationToken>())).Returns(Task.CompletedTask);
+        var expectedResponses = new List<string> { "test response" };
+        var expectedElapsedTime = 100L;
+
+        _mockServerRequestService
+            .Setup(x => x.ExecuteRequestsAsync(It.IsAny<CancellationToken>()))
+            .ReturnsAsync((expectedResponses, expectedElapsedTime));
 
         // Act & Assert
         await _kattyHttpService.RunTaskAsync();
-        _mockServerRequestService.Verify(x => x.ExecuteRequestsAsync(It.IsAny<CancellationToken>()), Times.Once(),
-            "Метод ExecuteRequestsAsync должен вызываться один раз");
+
+        // Verify
+        _mockServerRequestService.Verify(
+            x => x.ExecuteRequestsAsync(It.IsAny<CancellationToken>()),
+            Times.Once(),
+            "Метод ExecuteRequestsAsync должен вызываться один раз"
+        );
     }
 
     [Test]

@@ -1,4 +1,5 @@
 ﻿using Study.Lab2.Logic.Interfaces.katty;
+using Study.Lab2.Logic.katty.DTO;
 using System.Diagnostics;
 
 namespace Study.Lab2.Logic.katty;
@@ -9,83 +10,118 @@ public class ServerRequestService : IServerRequestService
     private readonly IResponseProcessor _responseProcessor;
     private readonly string[] _serverUrls =
     {
-            "https://jsonplaceholder.typicode.com/todos/1",
-            "https://jsonplaceholder.typicode.com/posts/1",
-            "https://jsonplaceholder.typicode.com/users/1"
-        };
+        "https://jsonplaceholder.typicode.com/todos/1",
+        "https://jsonplaceholder.typicode.com/posts/1",
+        "https://jsonplaceholder.typicode.com/users/1"
+    };
+
+    private readonly Dictionary<string, Type> _urlToDtoTypeMap = new()
+    {
+        { "https://jsonplaceholder.typicode.com/todos/1", typeof(TodoDto) },
+        { "https://jsonplaceholder.typicode.com/posts/1", typeof(PostDto) },
+        { "https://jsonplaceholder.typicode.com/users/1", typeof(UserDto) }
+    };
+
     public ServerRequestService(IRequestService requestService, IResponseProcessor responseProcessor)
     {
         _requestService = requestService ?? throw new ArgumentNullException(nameof(requestService));
         _responseProcessor = responseProcessor ?? throw new ArgumentNullException(nameof(responseProcessor));
     }
-    public void ExecuteRequests()
+
+    public (List<string> Responses, long ElapsedTime) ExecuteRequests()
     {
         var stopwatch = Stopwatch.StartNew();
+        var responses = new List<string>();
+
         try
         {
-            Console.WriteLine("Начало выполнения синхронных запросов...");
             foreach (var serverUrl in _serverUrls)
             {
-                Console.WriteLine($"Отправка запроса к серверу: {serverUrl}");
                 var response = _requestService.SendRequest(serverUrl);
-                if (!_responseProcessor.IsSuccessResponse(response))
+                var dtoType = _urlToDtoTypeMap[serverUrl];
+
+                bool isSuccess = (bool)typeof(IResponseProcessor)
+                    .GetMethod(nameof(IResponseProcessor.IsSuccessResponse))
+                    ?.MakeGenericMethod(dtoType)
+                    .Invoke(_responseProcessor, new[] { response })!;
+
+                if (!isSuccess)
                 {
-                    Console.WriteLine($"Получен негативный ответ от сервера: {response}");
                     throw new Exception($"Ошибка при выполнении запроса к {serverUrl}: {response}");
                 }
-                var formattedResponse = _responseProcessor.ProcessResponse(response);
-                Console.WriteLine($"Ответ от сервера {serverUrl}:\n{formattedResponse}\n");
+
+                string formattedResponse = (string)typeof(IResponseProcessor)
+                    .GetMethod(nameof(IResponseProcessor.ProcessResponse))
+                    ?.MakeGenericMethod(dtoType)
+                    .Invoke(_responseProcessor, new[] { response })!;
+
+                responses.Add($"Ответ от сервера {serverUrl}:\n{formattedResponse}");
             }
+
             stopwatch.Stop();
-            Console.WriteLine($"Все запросы выполнены успешно. Общее время выполнения: {stopwatch.ElapsedMilliseconds} мс");
+            return (responses, stopwatch.ElapsedMilliseconds);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             stopwatch.Stop();
-            Console.WriteLine($"Время до возникновения ошибки: {stopwatch.ElapsedMilliseconds} мс");
             throw;
         }
     }
-    public async Task ExecuteRequestsAsync(CancellationToken cancellationToken = default)
+
+    public async Task<(List<string> Responses, long ElapsedTime)> ExecuteRequestsAsync(CancellationToken cancellationToken = default)
     {
         var stopwatch = Stopwatch.StartNew();
+        var responses = new List<string>();
+
         try
         {
-            Console.WriteLine("Начало выполнения асинхронных запросов...");
-            var tasks = new Task<string>[_serverUrls.Length];
+            var tasks = new Task<(string Response, string Url)>[_serverUrls.Length];
+
             for (int i = 0; i < _serverUrls.Length; i++)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                Console.WriteLine($"Отправка асинхронного запроса к серверу: {_serverUrls[i]}");
-                tasks[i] = _requestService.SendRequestAsync(_serverUrls[i], cancellationToken);
+                var url = _serverUrls[i];
+                tasks[i] = _requestService.SendRequestAsync(url, cancellationToken)
+                    .ContinueWith(t => (t.Result, url), cancellationToken);
             }
+
             await Task.WhenAll(tasks);
-            for (int i = 0; i < _serverUrls.Length; i++)
+
+            foreach (var task in tasks)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                var response = tasks[i].Result;
-                if (!_responseProcessor.IsSuccessResponse(response))
+                var (response, url) = task.Result;
+                var dtoType = _urlToDtoTypeMap[url];
+
+                bool isSuccess = (bool)typeof(IResponseProcessor)
+                    .GetMethod(nameof(IResponseProcessor.IsSuccessResponse))
+                    ?.MakeGenericMethod(dtoType)
+                    .Invoke(_responseProcessor, new[] { response })!;
+
+                if (!isSuccess)
                 {
-                    Console.WriteLine($"Получен негативный ответ от сервера: {response}");
-                    throw new Exception($"Ошибка при выполнении запроса к {_serverUrls[i]}: {response}");
+                    throw new Exception($"Ошибка при выполнении запроса к {url}: {response}");
                 }
-                var formattedResponse = _responseProcessor.ProcessResponse(response);
-                Console.WriteLine($"Ответ от сервера {_serverUrls[i]}:\n{formattedResponse}\n");
+                string formattedResponse = (string)typeof(IResponseProcessor)
+                    .GetMethod(nameof(IResponseProcessor.ProcessResponse))
+                    ?.MakeGenericMethod(dtoType)
+                    .Invoke(_responseProcessor, new[] { response })!;
+
+                responses.Add($"Ответ от сервера {url}:\n{formattedResponse}");
             }
+
             stopwatch.Stop();
-            Console.WriteLine($"Все асинхронные запросы выполнены успешно. Общее время выполнения: {stopwatch.ElapsedMilliseconds} мс");
+            return (responses, stopwatch.ElapsedMilliseconds);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             stopwatch.Stop();
-            Console.WriteLine($"Время до возникновения ошибки: {stopwatch.ElapsedMilliseconds} мс");
             throw;
         }
     }
 
     public void Dispose()
     {
-        /*реализация для dispose не продумана в моей реализации, но требуется в наследуемом интерфейсе, такие дела, останется пустой метод
-        с возможной будущей реализацией*/
+        // Пустая реализация, как указано
     }
 }

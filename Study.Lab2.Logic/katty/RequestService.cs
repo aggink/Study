@@ -36,6 +36,7 @@ public class RequestService : IRequestService
             return $"Error: {ex.Message}";
         }
     }
+
     public async Task<string> SendRequestAsync(string url, CancellationToken cancellationToken = default)
     {
         try

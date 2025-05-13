@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Study.Lab2.Logic.Interfaces.katty;
 using Study.Lab2.Logic.katty;
+using Study.Lab2.Logic.katty.DTO;
 
 namespace Study.Lab2.Logic.UnitTests.katty;
 
@@ -29,67 +30,239 @@ public class ServerRequestServiceTests
     public void ExecuteRequests_УспешноВыполняетЗапросы_КогдаВсеЗапросыУспешны()
     {
         // Arrange
-        _mockRequestService.Setup(x => x.SendRequest(It.IsAny<string>())).Returns("{\"id\": 1}");
-        _mockResponseProcessor.Setup(x => x.IsSuccessResponse(It.IsAny<string>())).Returns(true);
-        _mockResponseProcessor.Setup(x => x.ProcessResponse(It.IsAny<string>())).Returns("{\n  \"id\": 1\n}");
+        var urls = new[]
+        {
+            "https://jsonplaceholder.typicode.com/todos/1",
+            "https://jsonplaceholder.typicode.com/posts/1",
+            "https://jsonplaceholder.typicode.com/users/1"
+        };
 
-        // Act & Assert
-        Assert.DoesNotThrow(() => _serverRequestService.ExecuteRequests(), "Метод должен выполниться без исключений");
+        var responses = new[]
+        {
+            @"{""userId"": 1, ""id"": 1, ""title"": ""Test"", ""completed"": false}",
+            @"{""userId"": 1, ""id"": 1, ""title"": ""Post"", ""body"": ""Body""}",
+            @"{""id"": 1, ""name"": ""User"", ""username"": ""User1"", ""email"": ""user@example.com""}"
+        };
+
+        var processedResponses = new[]
+        {
+            "{\n  \"userId\": 1,\n  \"id\": 1,\n  \"title\": \"Test\",\n  \"completed\": false\n}",
+            "{\n  \"userId\": 1,\n  \"id\": 1,\n  \"title\": \"Post\",\n  \"body\": \"Body\"\n}",
+            "{\n  \"id\": 1,\n  \"name\": \"User\",\n  \"username\": \"User1\",\n  \"email\": \"user@example.com\"\n}"
+        };
+
+        // Настройка моков для каждого URL и соответствующего DTO
+        for (int i = 0; i < urls.Length; i++)
+        {
+            var url = urls[i];
+            var response = responses[i];
+            var processed = processedResponses[i];
+
+            _mockRequestService.Setup(x => x.SendRequest(url)).Returns(response);
+
+            // Настройка в зависимости от типа DTO
+            switch (url)
+            {
+                case "https://jsonplaceholder.typicode.com/todos/1":
+                    _mockResponseProcessor.Setup(x => x.IsSuccessResponse<TodoDto>(response)).Returns(true);
+                    _mockResponseProcessor.Setup(x => x.ProcessResponse<TodoDto>(response)).Returns(processed);
+                    break;
+                case "https://jsonplaceholder.typicode.com/posts/1":
+                    _mockResponseProcessor.Setup(x => x.IsSuccessResponse<PostDto>(response)).Returns(true);
+                    _mockResponseProcessor.Setup(x => x.ProcessResponse<PostDto>(response)).Returns(processed);
+                    break;
+                case "https://jsonplaceholder.typicode.com/users/1":
+                    _mockResponseProcessor.Setup(x => x.IsSuccessResponse<UserDto>(response)).Returns(true);
+                    _mockResponseProcessor.Setup(x => x.ProcessResponse<UserDto>(response)).Returns(processed);
+                    break;
+            }
+        }
+
+        // Act
+        var (responses1, _) = _serverRequestService.ExecuteRequests();
+
+        // Assert
+        Assert.AreEqual(urls.Length, responses1.Count, "Должно быть возвращено правильное количество ответов");
+        for (int i = 0; i < urls.Length; i++)
+        {
+            Assert.IsTrue(responses[i].Contains(processedResponses[i]), $"Ответ для {urls[i]} должен содержать отформатированный JSON");
+        }
+        // Verify
+        foreach (var url in urls)
+        {
+            _mockRequestService.Verify(x => x.SendRequest(url), Times.Once());
+            switch (url)
+            {
+                case "https://jsonplaceholder.typicode.com/todos/1":
+                    _mockResponseProcessor.Verify(x => x.IsSuccessResponse<TodoDto>(It.IsAny<string>()), Times.Once());
+                    _mockResponseProcessor.Verify(x => x.ProcessResponse<TodoDto>(It.IsAny<string>()), Times.Once());
+                    break;
+                case "https://jsonplaceholder.typicode.com/posts/1":
+                    _mockResponseProcessor.Verify(x => x.IsSuccessResponse<PostDto>(It.IsAny<string>()), Times.Once());
+                    _mockResponseProcessor.Verify(x => x.ProcessResponse<PostDto>(It.IsAny<string>()), Times.Once());
+                    break;
+                case "https://jsonplaceholder.typicode.com/users/1":
+                    _mockResponseProcessor.Verify(x => x.IsSuccessResponse<UserDto>(It.IsAny<string>()), Times.Once());
+                    _mockResponseProcessor.Verify(x => x.ProcessResponse<UserDto>(It.IsAny<string>()), Times.Once());
+                    break;
+            }
+        }
     }
 
     [Test]
     public void ExecuteRequests_ВыбрасываетИсключение_ПриНеудачномЗапросе()
     {
         // Arrange
-        _mockRequestService.Setup(x => x.SendRequest(It.IsAny<string>())).Returns("Error: 404 Not Found");
-        _mockResponseProcessor.Setup(x => x.IsSuccessResponse(It.IsAny<string>())).Returns(false);
+        var url = "https://jsonplaceholder.typicode.com/todos/1";
+        var errorResponse = "Error: 404 Not Found";
+        _mockRequestService.Setup(x => x.SendRequest(url)).Returns(errorResponse);
+        _mockResponseProcessor.Setup(x => x.IsSuccessResponse<TodoDto>(errorResponse)).Returns(false);
 
         // Act & Assert
-        Assert.Throws<Exception>(() => _serverRequestService.ExecuteRequests(), "Метод должен выбросить исключение при неудачном запросе");
+        var ex = Assert.Throws<Exception>(() => _serverRequestService.ExecuteRequests());
+        Assert.That(ex.Message, Contains.Substring("Ошибка при выполнении запроса"));
+
+        // Verify
+        _mockRequestService.Verify(x => x.SendRequest(url), Times.Once());
+        _mockResponseProcessor.Verify(x => x.IsSuccessResponse<TodoDto>(errorResponse), Times.Once());
+        _mockResponseProcessor.Verify(x => x.ProcessResponse<TodoDto>(It.IsAny<string>()), Times.Never());
     }
 
     [Test]
     public async Task ExecuteRequestsAsync_УспешноВыполняетЗапросы_КогдаВсеЗапросыУспешны()
     {
         // Arrange
-        _mockRequestService.Setup(x => x.SendRequestAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync("{\"id\": 1}");
-        _mockResponseProcessor.Setup(x => x.IsSuccessResponse(It.IsAny<string>())).Returns(true);
-        _mockResponseProcessor.Setup(x => x.ProcessResponse(It.IsAny<string>())).Returns("{\n  \"id\": 1\n}");
+        var urls = new[]
+        {
+            "https://jsonplaceholder.typicode.com/todos/1",
+            "https://jsonplaceholder.typicode.com/posts/1",
+            "https://jsonplaceholder.typicode.com/users/1"
+        };
 
-        // Act & Assert
-        await _serverRequestService.ExecuteRequestsAsync();
+        var responses = new[]
+        {
+            @"{""userId"": 1, ""id"": 1, ""title"": ""Test"", ""completed"": false}",
+            @"{""userId"": 1, ""id"": 1, ""title"": ""Post"", ""body"": ""Body""}",
+            @"{""id"": 1, ""name"": ""User"", ""username"": ""User1"", ""email"": ""user@example.com""}"
+        };
+
+        var processedResponses = new[]
+        {
+            "{\n  \"userId\": 1,\n  \"id\": 1,\n  \"title\": \"Test\",\n  \"completed\": false\n}",
+            "{\n  \"userId\": 1,\n  \"id\": 1,\n  \"title\": \"Post\",\n  \"body\": \"Body\"\n}",
+            "{\n  \"id\": 1,\n  \"name\": \"User\",\n  \"username\": \"User1\",\n  \"email\": \"user@example.com\"\n}"
+        };
+
+        // Настройка моков для каждого URL и соответствующего DTO
+        for (int i = 0; i < urls.Length; i++)
+        {
+            var url = urls[i];
+            var response = responses[i];
+            var processed = processedResponses[i];
+
+            _mockRequestService.Setup(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>())).ReturnsAsync(response); switch (url)
+            {
+                case "https://jsonplaceholder.typicode.com/todos/1":
+                    _mockResponseProcessor.Setup(x => x.IsSuccessResponse<TodoDto>(response)).Returns(true);
+                    _mockResponseProcessor.Setup(x => x.ProcessResponse<TodoDto>(response)).Returns(processed);
+                    break;
+                case "https://jsonplaceholder.typicode.com/posts/1":
+                    _mockResponseProcessor.Setup(x => x.IsSuccessResponse<PostDto>(response)).Returns(true);
+                    _mockResponseProcessor.Setup(x => x.ProcessResponse<PostDto>(response)).Returns(processed);
+                    break;
+                case "https://jsonplaceholder.typicode.com/users/1":
+                    _mockResponseProcessor.Setup(x => x.IsSuccessResponse<UserDto>(response)).Returns(true);
+                    _mockResponseProcessor.Setup(x => x.ProcessResponse<UserDto>(response)).Returns(processed);
+                    break;
+            }
+        }
+
+        // Act
+        var (responsesRes, _) = await _serverRequestService.ExecuteRequestsAsync();
+
+        // Assert
+        Assert.AreEqual(urls.Length, responsesRes.Count, "Должно быть возвращено правильное количество ответов");
+        for (int i = 0; i < urls.Length; i++)
+        {
+            Assert.IsTrue(responses[i].Contains(processedResponses[i]), $"Ответ для {urls[i]} должен содержать отформатированный JSON");
+        }
+
+        // Verify
+        foreach (var url in urls)
+        {
+            _mockRequestService.Verify(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>()), Times.Once());
+            switch (url)
+            {
+                case "https://jsonplaceholder.typicode.com/todos/1":
+                    _mockResponseProcessor.Verify(x => x.IsSuccessResponse<TodoDto>(It.IsAny<string>()), Times.Once());
+                    _mockResponseProcessor.Verify(x => x.ProcessResponse<TodoDto>(It.IsAny<string>()), Times.Once());
+                    break;
+                case "https://jsonplaceholder.typicode.com/posts/1":
+                    _mockResponseProcessor.Verify(x => x.IsSuccessResponse<PostDto>(It.IsAny<string>()), Times.Once());
+                    _mockResponseProcessor.Verify(x => x.ProcessResponse<PostDto>(It.IsAny<string>()), Times.Once());
+                    break;
+                case "https://jsonplaceholder.typicode.com/users/1":
+                    _mockResponseProcessor.Verify(x => x.IsSuccessResponse<UserDto>(It.IsAny<string>()), Times.Once());
+                    _mockResponseProcessor.Verify(x => x.ProcessResponse<UserDto>(It.IsAny<string>()), Times.Once());
+                    break;
+            }
+        }
     }
 
     [Test]
-    public void ExecuteRequestsAsync_ВыбрасываетИсключение_ПриНеудачномЗапросе()
+    public async Task ExecuteRequestsAsync_ВыбрасываетИсключение_ПриНеудачномЗапросе()
     {
         // Arrange
-        _mockRequestService.Setup(x => x.SendRequestAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync("Error: 404 Not Found");
-        _mockResponseProcessor.Setup(x => x.IsSuccessResponse(It.IsAny<string>())).Returns(false);
+        var url = "https://jsonplaceholder.typicode.com/todos/1";
+        var errorResponse = "Error: 404 Not Found";
+        _mockRequestService.Setup(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>())).ReturnsAsync(errorResponse);
+        _mockResponseProcessor.Setup(x => x.IsSuccessResponse<TodoDto>(errorResponse)).Returns(false);
 
         // Act & Assert
-        Assert.ThrowsAsync<Exception>(async () => await _serverRequestService.ExecuteRequestsAsync(),
-            "Метод должен выбросить исключение при неудачном запросе");
-    }
+        var ex = Assert.ThrowsAsync<Exception>(async () => await _serverRequestService.ExecuteRequestsAsync());
+        Assert.That(ex.Message, Contains.Substring("Ошибка при выполнении запроса"));
 
+        // Verify
+        _mockRequestService.Verify(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>()), Times.Once());
+        _mockResponseProcessor.Verify(x => x.IsSuccessResponse<TodoDto>(errorResponse), Times.Once());
+        _mockResponseProcessor.Verify(x => x.ProcessResponse<TodoDto>(It.IsAny<string>()), Times.Never());
+    }
     [Test]
-    public void ExecuteRequestsAsync_ПрерываетВыполнение_ПриОтмене()
+    public async Task ExecuteRequestsAsyncIGNORE_ПрерываетВыполнение_ПриОтмене()
     {
         // Arrange
         var cts = new CancellationTokenSource();
-        cts.Cancel();
+        _mockRequestService.Setup(x => x.SendRequestAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Returns<string, CancellationToken>((_, token) => Task.Run(async () =>
+            {
+                await Task.Delay(1000, token);
+                return @"{""userId"": 1, ""id"": 1, ""title"": ""Test"", ""completed"": false}";
+            }, token));
 
         // Act & Assert
         Assert.ThrowsAsync<OperationCanceledException>(async () =>
-            await _serverRequestService.ExecuteRequestsAsync(cts.Token),
-            "Метод должен выбросить OperationCanceledException при отмене операции");
+        {
+            var requestTask = _serverRequestService.ExecuteRequestsAsync(cts.Token);
+            cts.Cancel();
+            await requestTask;
+        });
     }
+
     [Test]
-    public void Dispose_НеВыбрасываетИсключений()
+    public void Dispose_ВызываетсяОдинРаз()
+    {
+        // Act
+        _serverRequestService.Dispose();
+
+        // Assert & Verify
+        Assert.DoesNotThrow(() => _serverRequestService.Dispose());
+    }
+
+    [Test]
+    public void Constructor_ВыбрасываетИсключение_ПриНулевыхЗависимостях()
     {
         // Act & Assert
-        Assert.DoesNotThrow(() => _serverRequestService.Dispose(), "Метод Dispose не должен выбрасывать исключения");
+        Assert.Throws<ArgumentNullException>(() => new ServerRequestService(null, _mockResponseProcessor.Object));
+        Assert.Throws<ArgumentNullException>(() => new ServerRequestService(_mockRequestService.Object, null));
     }
 }

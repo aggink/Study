@@ -5,16 +5,21 @@ namespace Study.Lab2.Logic.katty;
 
 public class ResponseProcessor : IResponseProcessor
 {
-    public bool IsSuccessResponse(string response)
+    private readonly JsonSerializerOptions _option = new()
     {
-        if (response.StartsWith("Error:"))
+        PropertyNameCaseInsensitive = true,
+    };
+
+    public bool IsSuccessResponse<T>(string response)
+    {
+        if (string.IsNullOrWhiteSpace(response) || response.StartsWith("Error:"))
         {
             return false;
         }
 
         try
         {
-            var jsonElement = JsonSerializer.Deserialize<JsonElement>(response);
+            JsonSerializer.Deserialize<T>(response, _option);
             return true;
         }
         catch
@@ -23,19 +28,20 @@ public class ResponseProcessor : IResponseProcessor
         }
     }
 
-    public string ProcessResponse(string response)
+    public string ProcessResponse<T>(string response)
     {
-        if (response.StartsWith("Error:"))
+        if (string.IsNullOrWhiteSpace(response) || response.StartsWith("Error:"))
         {
             return response;
         }
 
         try
         {
-            var jsonElement = JsonSerializer.Deserialize<JsonElement>(response);
-            return JsonSerializer.Serialize(jsonElement, new JsonSerializerOptions
+            var deserialized = JsonSerializer.Deserialize<T>(response, _option);
+            return JsonSerializer.Serialize(deserialized, new JsonSerializerOptions
             {
-                WriteIndented = true
+                WriteIndented = true,
+                PropertyNameCaseInsensitive = true
             });
         }
         catch (Exception ex)

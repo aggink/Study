@@ -2,7 +2,6 @@
 
 public interface IResponseProcessor
 {
-    string ProcessResponse(string response);
-
-    bool IsSuccessResponse(string response);
+    bool IsSuccessResponse<T>(string response);
+    string ProcessResponse<T>(string response);
 }

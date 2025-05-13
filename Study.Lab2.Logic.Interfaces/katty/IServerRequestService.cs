@@ -1,7 +1,8 @@
 ﻿namespace Study.Lab2.Logic.Interfaces.katty;
+
 public interface IServerRequestService : IDisposable
 {
-    void ExecuteRequests();
+    (List<string> Responses, long ElapsedTime) ExecuteRequests();
 
-    Task ExecuteRequestsAsync(CancellationToken cancellationToken = default);
+    Task<(List<string> Responses, long ElapsedTime)> ExecuteRequestsAsync(CancellationToken cancellationToken = default);
 }
