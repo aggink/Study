@@ -27,17 +27,6 @@ namespace Study.Lab1.Logic.Taipano.Task1
             Denominator = denominator / gcd;
         }
 
-        private static int GreatestCommonDivisor(int a, int b)
-        {
-            while (b != 0)
-            {
-                int temp = b;
-                b = a % b;
-                a = temp;
-            }
-            return a;
-        }
-
         public override string ToString()
         {
             return Denominator == 1 ? Numerator.ToString() : $"{Numerator}/{Denominator}";
@@ -105,6 +94,17 @@ namespace Study.Lab1.Logic.Taipano.Task1
             long right = (long)other.Numerator * Denominator;
 
             return left.CompareTo(right);
+        }
+
+        private static int GreatestCommonDivisor(int a, int b)
+        {
+            while (b != 0)
+            {
+                int temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
         }
     }
 }
