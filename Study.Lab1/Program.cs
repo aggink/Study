@@ -20,6 +20,8 @@ using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.freaxd;
+using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.chirique_online;
 using Study.Lab1.Logic.TucKaW;
 
@@ -115,6 +117,8 @@ public static class Program
                 return new chiriqueOnlineService();
             case ("idb-23-03", 9):
                 return new TucKaWService();
+            case ("idb-23-03", 3):
+                return new TaipanoService();
             default:
                 throw new NotSupportedException();
         }
