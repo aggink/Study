@@ -1,20 +1,29 @@
-﻿using Study.Lab1.Logic.Assistant;
+﻿using Study.Lab1.Logic.alkeivi;
+using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
+using Study.Lab1.Logic.chirique_online;
 using Study.Lab1.Logic.eldarovskiy;
+using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.gegemonTV;
 using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.IvanZ;
 using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.lsokol14l;
+using Study.Lab1.Logic.mansurgh;
 using Study.Lab1.Logic.neijrr;
+using Study.Lab1.Logic.poroshok;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
+using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.Taipano;
+using Study.Lab1.Logic.chirique_online;
+using Study.Lab1.Logic.TucKaW;
 
 
 public static class Program
@@ -82,6 +91,8 @@ public static class Program
                 return new CherryyService();
             case ("idb-23-02", 2):
                 return new EldarovskiyService();
+            case ("idb-23-02", 1):
+                return new MansurghService();
             case ("idb-23-03", 22):
                 return new Jki749Service();
             case ("idb-23-03", 6):
@@ -94,6 +105,18 @@ public static class Program
                 return new Pro100futaService();
             case ("idb-23-03", 16):
                 return new freaxdService();
+            case ("idb-23-03", 17):
+                return new poroshokService();
+            case ("idb-23-03", 4):
+                return new SlavicSquatService();
+            case ("idb-23-03", 7):
+                return new IvanZService();
+            case ("idb-23-03", 12):
+                return new alkeiviService();
+            case ("idb-23-02", 12):
+                return new chiriqueOnlineService();
+            case ("idb-23-03", 9):
+                return new TucKaWService();
             case ("idb-23-03", 3):
                 return new TaipanoService();
             default:

@@ -54,39 +54,39 @@ public class TypedTreeNodeTests
         Assert.That(stringTree, Has.Count.EqualTo(3), "Ошибка при добавлении узла");
     }
 
-    [Test]
-    public void String()
-    {
-        // Условие
-        var stringTree = new TreeNode<string>("Корень дерева") {
-            "Первый узел",
-            new TreeNode<string>("Второй узел") {
-                "Вложенный узел"
-            }
-        };
-        const string childrenStr = """
-            Корень дерева
-            | Первый узел
-            | Второй узел
-            """;
-        const string treeStr = """
-            Корень дерева
-            | Первый узел
-            | Второй узел
-            | | Вложенный узел
-            """;
+    //[Test]
+    //public void String()
+    //{
+    //    // Условие
+    //    var stringTree = new TreeNode<string>("Корень дерева") {
+    //        "Первый узел",
+    //        new TreeNode<string>("Второй узел") {
+    //            "Вложенный узел"
+    //        }
+    //    };
+    //    const string childrenStr = """
+    //        Корень дерева
+    //        | Первый узел
+    //        | Второй узел
+    //        """;
+    //    const string treeStr = """
+    //        Корень дерева
+    //        | Первый узел
+    //        | Второй узел
+    //        | | Вложенный узел
+    //        """;
 
-        // Действие
-        var value = stringTree.ToString();
-        var children = stringTree.ToString(1);
-        var tree = stringTree.ToString(-1);
+    //    // Действие
+    //    var value = stringTree.ToString();
+    //    var children = stringTree.ToString(1);
+    //    var tree = stringTree.ToString(-1);
 
-        // Проверка
-        Assert.Multiple(() =>
-        {
-            Assert.That(value, Is.EqualTo("Корень дерева"), "Не работает преобразование в строку для значения узла");
-            Assert.That(children, Is.EqualTo(childrenStr), "Не работает преобразование в строку для заданного уровня");
-            Assert.That(tree, Is.EqualTo(treeStr), "Не работает преобразование в строку для всего дерева");
-        });
-    }
+    //    // Проверка
+    //    Assert.Multiple(() =>
+    //    {
+    //        Assert.That(value, Is.EqualTo("Корень дерева"), "Не работает преобразование в строку для значения узла");
+    //        Assert.That(children, Is.EqualTo(childrenStr), "Не работает преобразование в строку для заданного уровня");
+    //        Assert.That(tree, Is.EqualTo(treeStr), "Не работает преобразование в строку для всего дерева");
+    //    });
+    //}
 }

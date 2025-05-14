@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Extensions;
 using Study.Lab3.Storage.Database;
+using Study.Lab3.Storage.Enums;
+using Study.Lab3.Storage.MS_SQL;
 using Study.Lab3.Storage.PostgreSQL;
 
 namespace Study.Lab3.Web.Extensions;
@@ -26,13 +28,39 @@ public static class ServiceCollectionExtensions
     /// <param name="configuration">Набор свойств конфигурации</param>
     public static void AddDataContext(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<DataContext>(options =>
+        var dbProvider = configuration.GetDatabaseProvider();
+
+        if (dbProvider == DatabaseProviderType.PostgreSql)
         {
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"), o =>
+            services.AddDbContext<DataContext>(options =>
             {
-                o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
-                o.MigrationsAssembly(typeof(PostgreSqlContextFactory).Namespace);
+                options.UseNpgsql(configuration.GetConnectionString("PostgreSql"), o =>
+                {
+                    o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    o.MigrationsAssembly(typeof(PostgreSqlContextFactory).Namespace);
+                });
             });
-        });
+        }
+        else if (dbProvider == DatabaseProviderType.MSSql)
+        {
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("MSSql"), o =>
+                {
+                    o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                    o.MigrationsAssembly(typeof(MicrosoftSqlContextFactory).Namespace);
+                });
+            });
+        }
+        else if (dbProvider == DatabaseProviderType.InMemory)
+        {
+            services.AddDbContext<DataContext>(options =>
+            {
+                options.UseInMemoryDatabase("Study", o =>
+                {
+                    o.EnableNullChecks();
+                });
+            });
+        }
     }
 }
