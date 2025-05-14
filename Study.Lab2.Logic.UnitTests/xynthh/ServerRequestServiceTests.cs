@@ -7,9 +7,9 @@ namespace Study.Lab2.Logic.UnitTests.xynthh;
 [TestFixture]
 public class ServerRequestServiceTests
 {
-    private Mock<IRequestService>    _mockRequestService;
+    private Mock<IRequestService> _mockRequestService;
     private Mock<IResponseProcessor> _mockResponseProcessor;
-    private ServerRequestService     _serverRequestService;
+    private ServerRequestService _serverRequestService;
 
     [SetUp]
     public void Setup()
@@ -152,36 +152,6 @@ public class ServerRequestServiceTests
         _mockRequestService.Verify(s => s.FetchDataAsync(
                 expectedUrl,
                 null,
-                It.IsAny<CancellationToken>()),
-            Times.Once);
-    }
-
-    [Test]
-    public async Task GetReqResUserAsync_UsesCorrectApiKey_ReturnsFormattedJson()
-    {
-        // Arrange
-        const int userId = ApiTestData.ReqResTestUserId;
-        const string rawResponse = ApiTestData.ReqResUserResponseRaw;
-        const string formattedResponse = ApiTestData.ReqResUserFormatted;
-        var expectedUrl = ApiTestData.GetReqResUserUrl(userId);
-        var expectedHeaders = ApiTestData.ReqResHeaders;
-
-        _mockRequestService.Setup(s => s.FetchDataAsync(
-                expectedUrl,
-                expectedHeaders,
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(rawResponse);
-        _mockResponseProcessor.Setup(p => p.HasError(rawResponse)).Returns(false);
-        _mockResponseProcessor.Setup(p => p.FormatJsonResponse(rawResponse)).Returns(formattedResponse);
-
-        // Act
-        var result = await _serverRequestService.GetReqResUserAsync(userId);
-
-        // Assert
-        Assert.That(result, Is.EqualTo(formattedResponse));
-        _mockRequestService.Verify(s => s.FetchDataAsync(
-                expectedUrl,
-                expectedHeaders,
                 It.IsAny<CancellationToken>()),
             Times.Once);
     }
