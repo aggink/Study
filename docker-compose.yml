@@ -42,16 +42,13 @@ services:
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: mssql
+    container_name: study_mssql
     restart: always
     environment:
       SA_PASSWORD: "YourStrong!Passw0rd"
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
-    volumes:
-      - ./mssql-data:/var/opt/mssql
-      - ./mssql-scripts:/mssql-scripts
     healthcheck:
       test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong!Passw0rd -Q 'SELECT 1'"]
       interval: 10s
