@@ -2,6 +2,7 @@
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.Interfaces;
+using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
@@ -69,6 +70,8 @@ public static class Program
                 return new eldarovskiyService();
             case ("idb-23-02", 6):
                 return new kinkiss1Service();
+            case ("idb-23-02", 17):
+                return new KattyHttpService();
             default:
                 throw new NotSupportedException();
         }
