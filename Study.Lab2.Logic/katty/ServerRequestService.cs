@@ -120,5 +120,8 @@ public class ServerRequestService : IServerRequestService
         }
     }
 
-    public void Dispose() => Console.WriteLine("Тут будет реализован Dispose");
+    public void Dispose()
+    {
+        //Тут будет реализация
+    }
 }
