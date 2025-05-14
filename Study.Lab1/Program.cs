@@ -42,7 +42,7 @@ public static class Program
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 21;
+    private const int PERSON_NUMBER = 1;
 
     public static void Main()
     {
