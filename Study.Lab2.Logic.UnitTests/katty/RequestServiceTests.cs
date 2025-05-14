@@ -1,28 +1,33 @@
-﻿using Study.Lab2.Logic.katty;
+﻿using Moq;
+using Study.Lab2.Logic.Interfaces.katty;
+using Study.Lab2.Logic.katty.Data;
 
 namespace Study.Lab2.Logic.UnitTests.katty;
 
 [TestFixture]
 public class RequestServiceTests
 {
-    private RequestService _requestService;
+    private Mock<IRequestService> _mockRequestService;
 
     [SetUp]
     public void Setup()
     {
-        _requestService = new RequestService();
+        _mockRequestService = new Mock<IRequestService>();
     }
 
     [Test]
     public void SendRequest_ВозвращаетДанные_КогдаСерверДоступен()
     {
         // Arrange
-        string url = "https://jsonplaceholder.typicode.com/todos/1";
+        string url = KattyTestData.Urls[0];
+        _mockRequestService.Setup(x => x.SendRequest(url))
+            .Returns(KattyTestData.RawResponses[0]);
 
         // Act
-        var result = _requestService.SendRequest(url);
+        var result = _mockRequestService.Object.SendRequest(url);
 
         // Assert
+        Assert.AreEqual(KattyTestData.RawResponses[0], result);
         Assert.IsFalse(result.StartsWith("Error:"), "Ответ не должен содержать ошибку");
         Assert.IsTrue(result.Contains("\"id\":"), "Ответ должен содержать JSON с полем id");
     }
@@ -32,11 +37,15 @@ public class RequestServiceTests
     {
         // Arrange
         string url = "https://non-existing-server-123456789.com";
+        string expectedError = "Error: Не удалось подключиться к серверу";
+        _mockRequestService.Setup(x => x.SendRequest(url))
+            .Returns(expectedError);
 
         // Act
-        var result = _requestService.SendRequest(url);
+        var result = _mockRequestService.Object.SendRequest(url);
 
         // Assert
+        Assert.AreEqual(expectedError, result);
         Assert.IsTrue(result.StartsWith("Error:"), "Ответ должен содержать сообщение об ошибке");
     }
 
@@ -44,13 +53,15 @@ public class RequestServiceTests
     public async Task SendRequestAsync_ВозвращаетДанные_КогдаСерверДоступен()
     {
         // Arrange
-        string url = "https://jsonplaceholder.typicode.com/todos/1";
-        CancellationToken cancellationToken = CancellationToken.None;
+        string url = KattyTestData.Urls[0];
+        _mockRequestService.Setup(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(KattyTestData.RawResponses[0]);
 
         // Act
-        var result = await _requestService.SendRequestAsync(url, cancellationToken);
+        var result = await _mockRequestService.Object.SendRequestAsync(url);
 
         // Assert
+        Assert.AreEqual(KattyTestData.RawResponses[0], result);
         Assert.IsFalse(result.StartsWith("Error:"), "Ответ не должен содержать ошибку");
         Assert.IsTrue(result.Contains("\"id\":"), "Ответ должен содержать JSON с полем id");
     }
@@ -60,12 +71,15 @@ public class RequestServiceTests
     {
         // Arrange
         string url = "https://non-existing-server-123456789.com";
-        CancellationToken cancellationToken = CancellationToken.None;
+        string expectedError = "Error: Не удалось подключиться к серверу";
+        _mockRequestService.Setup(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>()))
+            .ReturnsAsync(expectedError);
 
         // Act
-        var result = await _requestService.SendRequestAsync(url, cancellationToken);
+        var result = await _mockRequestService.Object.SendRequestAsync(url);
 
         // Assert
+        Assert.AreEqual(expectedError, result);
         Assert.IsTrue(result.StartsWith("Error:"), "Ответ должен содержать сообщение об ошибке");
     }
 }

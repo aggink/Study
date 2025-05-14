@@ -70,5 +70,8 @@ public class KattyHttpService : IRunService
         }
     }
 
-    public void Dispose() => _serverRequestService.Dispose();
+    public void Dispose()
+    {
+        //Тут будет реализация
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using Study.Lab2.Logic.katty;
-using Study.Lab2.Logic.katty.DTO;
+using Study.Lab2.Logic.katty.Data;
+using Study.Lab2.Logic.katty.DtoModels;
 using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.katty;
@@ -19,7 +20,7 @@ public class ResponseProcessorTests
     public void IsSuccessResponse_ВозвращаетTrue_ПриКорректномJSON()
     {
         // Arrange
-        string response = @"{""userId"": 1, ""id"": 1, ""title"": ""Test"", ""completed"": false}";
+        string response = KattyTestData.RawResponses[0];
 
         // Act
         bool result = _responseProcessor.IsSuccessResponse<TodoDto>(response);
@@ -45,7 +46,7 @@ public class ResponseProcessorTests
     public void IsSuccessResponse_ВозвращаетFalse_ПриОшибкеВОтвете()
     {
         // Arrange
-        string response = "Error: 404 - Not Found";
+        string response = KattyTestData.ErrorResponse;
 
         // Act
         bool result = _responseProcessor.IsSuccessResponse<TodoDto>(response);
@@ -58,8 +59,9 @@ public class ResponseProcessorTests
     public void ProcessResponse_ФорматируетJSON_ПриКорректномJSON()
     {
         // Arrange
-        string response = @"{""userId"": 1, ""id"": 1, ""title"": ""Test"", ""completed"": false}";
-        var expectedDto = new TodoDto { UserId = 1, Id = 1, Title = "Test", Completed = false };
+        string response = KattyTestData.RawResponses[0];
+
+        var expectedDto = new TodoDto(1, 1, "Test", false);
         string expected = JsonSerializer.Serialize(expectedDto, new JsonSerializerOptions
         {
             WriteIndented = true,
@@ -90,7 +92,7 @@ public class ResponseProcessorTests
     public void ProcessResponse_СохраняетСообщениеОбОшибке_ИзОтвета()
     {
         // Arrange
-        string response = "Error: 404 - Not Found";
+        string response = KattyTestData.ErrorResponse;
 
         // Act
         string result = _responseProcessor.ProcessResponse<TodoDto>(response);

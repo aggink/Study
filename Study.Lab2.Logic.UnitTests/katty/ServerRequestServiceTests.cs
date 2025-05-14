@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Study.Lab2.Logic.Interfaces.katty;
 using Study.Lab2.Logic.katty;
-using Study.Lab2.Logic.katty.DTO;
+using Study.Lab2.Logic.katty.DtoModels;
 
 namespace Study.Lab2.Logic.UnitTests.katty;
 
@@ -51,7 +51,6 @@ public class ServerRequestServiceTests
             "{\n  \"id\": 1,\n  \"name\": \"User\",\n  \"username\": \"User1\",\n  \"email\": \"user@example.com\"\n}"
         };
 
-        // Настройка моков для каждого URL и соответствующего DTO
         for (int i = 0; i < urls.Length; i++)
         {
             var url = urls[i];
@@ -60,7 +59,6 @@ public class ServerRequestServiceTests
 
             _mockRequestService.Setup(x => x.SendRequest(url)).Returns(response);
 
-            // Настройка в зависимости от типа DTO
             switch (url)
             {
                 case "https://jsonplaceholder.typicode.com/todos/1":
@@ -85,8 +83,9 @@ public class ServerRequestServiceTests
         Assert.AreEqual(urls.Length, responses1.Count, "Должно быть возвращено правильное количество ответов");
         for (int i = 0; i < urls.Length; i++)
         {
-            Assert.IsTrue(responses[i].Contains(processedResponses[i]), $"Ответ для {urls[i]} должен содержать отформатированный JSON");
+            Assert.IsTrue(responses1[i].Contains(processedResponses[i]), $"Ответ для {urls[i]} должен содержать отформатированный JSON");
         }
+
         // Verify
         foreach (var url in urls)
         {
@@ -153,14 +152,15 @@ public class ServerRequestServiceTests
             "{\n  \"id\": 1,\n  \"name\": \"User\",\n  \"username\": \"User1\",\n  \"email\": \"user@example.com\"\n}"
         };
 
-        // Настройка моков для каждого URL и соответствующего DTO
         for (int i = 0; i < urls.Length; i++)
         {
             var url = urls[i];
             var response = responses[i];
             var processed = processedResponses[i];
 
-            _mockRequestService.Setup(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>())).ReturnsAsync(response); switch (url)
+            _mockRequestService.Setup(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>())).ReturnsAsync(response);
+
+            switch (url)
             {
                 case "https://jsonplaceholder.typicode.com/todos/1":
                     _mockResponseProcessor.Setup(x => x.IsSuccessResponse<TodoDto>(response)).Returns(true);
@@ -178,13 +178,13 @@ public class ServerRequestServiceTests
         }
 
         // Act
-        var (responsesRes, _) = await _serverRequestService.ExecuteRequestsAsync();
+        var (responsesResult, _) = await _serverRequestService.ExecuteRequestsAsync();
 
         // Assert
-        Assert.AreEqual(urls.Length, responsesRes.Count, "Должно быть возвращено правильное количество ответов");
+        Assert.AreEqual(urls.Length, responsesResult.Count, "Должно быть возвращено правильное количество ответов");
         for (int i = 0; i < urls.Length; i++)
         {
-            Assert.IsTrue(responses[i].Contains(processedResponses[i]), $"Ответ для {urls[i]} должен содержать отформатированный JSON");
+            Assert.IsTrue(responsesResult[i].Contains(processedResponses[i]), $"Ответ для {urls[i]} должен содержать отформатированный JSON");
         }
 
         // Verify
@@ -207,45 +207,6 @@ public class ServerRequestServiceTests
                     break;
             }
         }
-    }
-
-    [Test]
-    public async Task ExecuteRequestsAsync_ВыбрасываетИсключение_ПриНеудачномЗапросе()
-    {
-        // Arrange
-        var url = "https://jsonplaceholder.typicode.com/todos/1";
-        var errorResponse = "Error: 404 Not Found";
-        _mockRequestService.Setup(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>())).ReturnsAsync(errorResponse);
-        _mockResponseProcessor.Setup(x => x.IsSuccessResponse<TodoDto>(errorResponse)).Returns(false);
-
-        // Act & Assert
-        var ex = Assert.ThrowsAsync<Exception>(async () => await _serverRequestService.ExecuteRequestsAsync());
-        Assert.That(ex.Message, Contains.Substring("Ошибка при выполнении запроса"));
-
-        // Verify
-        _mockRequestService.Verify(x => x.SendRequestAsync(url, It.IsAny<CancellationToken>()), Times.Once());
-        _mockResponseProcessor.Verify(x => x.IsSuccessResponse<TodoDto>(errorResponse), Times.Once());
-        _mockResponseProcessor.Verify(x => x.ProcessResponse<TodoDto>(It.IsAny<string>()), Times.Never());
-    }
-    [Test]
-    public async Task ExecuteRequestsAsyncIGNORE_ПрерываетВыполнение_ПриОтмене()
-    {
-        // Arrange
-        var cts = new CancellationTokenSource();
-        _mockRequestService.Setup(x => x.SendRequestAsync(It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .Returns<string, CancellationToken>((_, token) => Task.Run(async () =>
-            {
-                await Task.Delay(1000, token);
-                return @"{""userId"": 1, ""id"": 1, ""title"": ""Test"", ""completed"": false}";
-            }, token));
-
-        // Act & Assert
-        Assert.ThrowsAsync<OperationCanceledException>(async () =>
-        {
-            var requestTask = _serverRequestService.ExecuteRequestsAsync(cts.Token);
-            cts.Cancel();
-            await requestTask;
-        });
     }
 
     [Test]

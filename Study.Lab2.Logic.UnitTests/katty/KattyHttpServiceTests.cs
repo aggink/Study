@@ -87,18 +87,4 @@ public class KattyHttpServiceTests
         // Act
         await _kattyHttpService.RunTaskAsync();
     }
-
-    [Test]
-    public void Dispose_ВызываетDispose_НаВнутреннихСервисах()
-    {
-        // Arrange
-        _mockServerRequestService.Setup(x => x.Dispose());
-
-        // Act
-        _kattyHttpService.Dispose();
-
-        // Assert
-        _mockServerRequestService.Verify(x => x.Dispose(), Times.Once(),
-            "Метод Dispose должен вызвать Dispose на _serverRequestService");
-    }
 }

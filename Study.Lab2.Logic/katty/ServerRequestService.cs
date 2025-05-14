@@ -1,5 +1,5 @@
 ﻿using Study.Lab2.Logic.Interfaces.katty;
-using Study.Lab2.Logic.katty.DTO;
+using Study.Lab2.Logic.katty.DtoModels;
 using System.Diagnostics;
 
 namespace Study.Lab2.Logic.katty;
@@ -120,8 +120,5 @@ public class ServerRequestService : IServerRequestService
         }
     }
 
-    public void Dispose()
-    {
-        // Пустая реализация, как указано
-    }
+    public void Dispose() => Console.WriteLine("Тут будет реализован Dispose");
 }
