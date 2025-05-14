@@ -17,7 +17,7 @@ public class ResponseProcessorTests
     }
 
     [Test]
-    public void IsSuccessResponse_ВозвращаетTrue_ПриКорректномJSON()
+    public void IsSuccessResponse_ReturnsTrueIfJSONIsValid()
     {
         // Arrange
         string response = KattyTestData.RawResponses[0];
@@ -30,7 +30,7 @@ public class ResponseProcessorTests
     }
 
     [Test]
-    public void IsSuccessResponse_ВозвращаетFalse_ПриНекорректномJSON()
+    public void IsSuccessResponse_ReturnsFalseIfJSONIsInvalid()
     {
         // Arrange
         string response = "This is not a JSON";
@@ -43,7 +43,7 @@ public class ResponseProcessorTests
     }
 
     [Test]
-    public void IsSuccessResponse_ВозвращаетFalse_ПриОшибкеВОтвете()
+    public void IsSuccessResponse_ReturnsFalseOnErrorInAnswerе()
     {
         // Arrange
         string response = KattyTestData.ErrorResponse;
@@ -56,7 +56,7 @@ public class ResponseProcessorTests
     }
 
     [Test]
-    public void ProcessResponse_ФорматируетJSON_ПриКорректномJSON()
+    public void ProcessResponse_FormatJSONWithCorrectJSON()
     {
         // Arrange
         string response = KattyTestData.RawResponses[0];
@@ -76,7 +76,7 @@ public class ResponseProcessorTests
     }
 
     [Test]
-    public void ProcessResponse_ВозвращаетСообщениеОбОшибке_ПриНекорректномJSON()
+    public void ProcessResponse_ReturnsErrorMessageWhenJSONIsInvalid()
     {
         // Arrange
         string response = "This is not a JSON";
@@ -89,7 +89,7 @@ public class ResponseProcessorTests
     }
 
     [Test]
-    public void ProcessResponse_СохраняетСообщениеОбОшибке_ИзОтвета()
+    public void ProcessResponse_SavesErrorMessageFromResponse()
     {
         // Arrange
         string response = KattyTestData.ErrorResponse;

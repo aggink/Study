@@ -27,7 +27,7 @@ public class ServerRequestServiceTests
     }
 
     [Test]
-    public void ExecuteRequests_УспешноВыполняетЗапросы_КогдаВсеЗапросыУспешны()
+    public void ExecuteRequests_SuccessfullyFulfilsRequestsWhenAllRequestsAreSuccessful()
     {
         // Arrange
         var urls = new[]
@@ -109,7 +109,7 @@ public class ServerRequestServiceTests
     }
 
     [Test]
-    public void ExecuteRequests_ВыбрасываетИсключение_ПриНеудачномЗапросе()
+    public void ExecuteRequests_ThrowsExceptionWhenRequestFailed()
     {
         // Arrange
         var url = "https://jsonplaceholder.typicode.com/todos/1";
@@ -128,7 +128,7 @@ public class ServerRequestServiceTests
     }
 
     [Test]
-    public async Task ExecuteRequestsAsync_УспешноВыполняетЗапросы_КогдаВсеЗапросыУспешны()
+    public async Task ExecuteRequestsAsync_SuccessfullyFulfilsRequestsWhenAllRequestsAreSuccessful()
     {
         // Arrange
         var urls = new[]
@@ -210,7 +210,7 @@ public class ServerRequestServiceTests
     }
 
     [Test]
-    public void Dispose_ВызываетсяОдинРаз()
+    public void Dispose_OneTime()
     {
         // Act
         _serverRequestService.Dispose();
@@ -220,7 +220,7 @@ public class ServerRequestServiceTests
     }
 
     [Test]
-    public void Constructor_ВыбрасываетИсключение_ПриНулевыхЗависимостях()
+    public void Constructor_ThrowExceptionWithNullValue()
     {
         // Act & Assert
         Assert.Throws<ArgumentNullException>(() => new ServerRequestService(null, _mockResponseProcessor.Object));

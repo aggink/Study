@@ -24,7 +24,7 @@ public class KattyHttpServiceTests
     }
 
     [Test]
-    public void RunTask_УспешноВыполняетСинхронныеЗапросы()
+    public void RunTask_SuccessfullyExecutesSynchronousRequests()
     {
         // Arrange
         _mockServerRequestService.Setup(x => x.ExecuteRequests());
@@ -35,7 +35,7 @@ public class KattyHttpServiceTests
     }
 
     [Test]
-    public void RunTask_ОбрабатываетИсключения_ПриОшибке()
+    public void RunTask_HandlesErrorExceptions()
     {
         // Arrange
         _mockServerRequestService.Setup(x => x.ExecuteRequests()).Throws(new Exception("Test error"));
@@ -45,7 +45,7 @@ public class KattyHttpServiceTests
     }
 
     [Test]
-    public async Task RunTaskAsync_УспешноВыполняетАсинхронныеЗапросы()
+    public async Task RunTaskAsync_SuccessfullyExecutesAsynchronousRequests()
     {
         // Arrange
         var expectedResponses = new List<string> { "test response" };
@@ -67,7 +67,7 @@ public class KattyHttpServiceTests
     }
 
     [Test]
-    public async Task RunTaskAsync_ОбрабатываетОтмену_ПриПрерывании()
+    public async Task RunTaskAsync_HandlesCancelOnInterrupt()
     {
         // Arrange
         _mockServerRequestService.Setup(x => x.ExecuteRequestsAsync(It.IsAny<CancellationToken>()))
@@ -78,7 +78,7 @@ public class KattyHttpServiceTests
     }
 
     [Test]
-    public async Task RunTaskAsync_ОбрабатываетОбщиеИсключения()
+    public async Task RunTaskAsync_HandlesGeneralExceptions()
     {
         // Arrange
         _mockServerRequestService.Setup(x => x.ExecuteRequestsAsync(It.IsAny<CancellationToken>()))

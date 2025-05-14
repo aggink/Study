@@ -46,7 +46,7 @@ public class ResponseProcessor : IResponseProcessor
         }
         catch (Exception ex)
         {
-            return $"Error: Неверный формат JSON - {ex.Message}";
+            throw new Exception($"Error: Неверный формат JSON - {ex.Message}");
         }
     }
 }

@@ -16,7 +16,7 @@ public class RequestServiceTests
     }
 
     [Test]
-    public void SendRequest_ВозвращаетДанные_КогдаСерверДоступен()
+    public void SendRequest_ReturnsDataWhenServerAvailable()
     {
         // Arrange
         string url = KattyTestData.Urls[0];
@@ -33,7 +33,7 @@ public class RequestServiceTests
     }
 
     [Test]
-    public void SendRequest_ВозвращаетОшибку_КогдаСерверНедоступен()
+    public void SendRequest_ReturnsErrorWhenServerIsUnavailable()
     {
         // Arrange
         string url = "https://non-existing-server-123456789.com";
@@ -50,7 +50,7 @@ public class RequestServiceTests
     }
 
     [Test]
-    public async Task SendRequestAsync_ВозвращаетДанные_КогдаСерверДоступен()
+    public async Task SendRequestAsync_ReturnsDataWhenServerAvailable()
     {
         // Arrange
         string url = KattyTestData.Urls[0];
@@ -67,7 +67,7 @@ public class RequestServiceTests
     }
 
     [Test]
-    public async Task SendRequestAsync_ВозвращаетОшибку_КогдаСерверНедоступен()
+    public async Task SendRequestAsync_ReturnsErrorWhenServerIsUnavailable()
     {
         // Arrange
         string url = "https://non-existing-server-123456789.com";
