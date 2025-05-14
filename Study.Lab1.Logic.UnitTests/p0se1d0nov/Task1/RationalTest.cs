@@ -10,16 +10,16 @@ public class RationalTests
     public void Constructor_WithValidParameters_SimplifiesFraction()
     {
         var rational = new Rational(4, 6);
-        Assert.That(rational.GetNumerator(), Is.EqualTo(2));
-        Assert.That(rational.GetDenominator(), Is.EqualTo(3));
+        Assert.That(rational.Numerator, Is.EqualTo(2));
+        Assert.That(rational.Denominator, Is.EqualTo(3));
     }
 
     [Test]
-    public void Constructor_WithNegativeDenominator_MovesSignToNumerator()
+    public void Constructor_WithNegativeDenominator_MovesSignToNumerator
     {
         var rational = new Rational(1, -2);
-        Assert.That(rational.GetNumerator(), Is.EqualTo(-1));
-        Assert.That(rational.GetDenominator(), Is.EqualTo(2));
+        Assert.That(rational.Numerator, Is.EqualTo(-1));
+        Assert.That(rational.Denominator, Is.EqualTo(2));
     }
   
 

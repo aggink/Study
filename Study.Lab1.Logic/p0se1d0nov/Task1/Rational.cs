@@ -14,7 +14,7 @@ public class Rational
 {
     public Rational(int num, int den)
     {
-        if (denominator == 0)
+        if (den == 0)
             throw new DivideByZeroException("Делитель не может быть равен нулю");
 
         numerator_ = num;
@@ -36,7 +36,6 @@ public class Rational
     {
         return (double)numerator_ / (double)denominator_;
     }
-
 
     // Перегрузка арифметических операторов
     #region arithmetic_overloading
@@ -70,7 +69,7 @@ public class Rational
 
     public static Rational operator -(Rational r)
     {
-        return new Rational(-r.GetNumerator(), r.GetDenominator());
+        return new Rational(-r.Numerator, r.Denominator);
     }
     #endregion
 
