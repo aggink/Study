@@ -23,19 +23,6 @@ public class Rational
         Simplify();
     }
 
-    private void Simplify()
-    {
-        if(denominator_ < 0)
-        {
-            denominator_ = -denominator_;
-            numerator_ = -numerator_;
-        }
-
-        int divisor = gcd(numerator_, denominator_);
-        numerator_ /= divisor;
-        denominator_ /= divisor;
-    }
-
     public String ToString()
     {
         if(denominator_ == 1)
@@ -120,22 +107,6 @@ public class Rational
     }
     #endregion
 
-    public void SetNumerator(int numerator)
-    {
-        numerator_ = numerator;
-        Simplify();
-    }
-
-    public void SetDenominator(int denominator)
-    {
-        if (denominator != 0)
-        {
-            denominator_ = denominator;
-        }
-
-        Simplify();
-    }
-
     #region private_methods
     private int gcd(int num1, int num2)
     {
@@ -164,7 +135,7 @@ public class Rational
     private int numerator_;
     private int denominator_;
 
-    public int GetNumerator
+    public int Numerator
     {
         get { return numerator_; }
         set
@@ -175,7 +146,7 @@ public class Rational
         }
     }
 
-    public int GetDenominator
+    public int Denominator
     {
         get { return denominator_; }
         set

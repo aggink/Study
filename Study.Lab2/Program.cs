@@ -69,6 +69,8 @@ public static class Program
                 return new eldarovskiyService();
             case ("idb-23-02", 6):
                 return new kinkiss1Service();
+            case ("idb-23-03", 21):
+                return new p0se1d0novService();
             default:
                 throw new NotSupportedException();
         }
