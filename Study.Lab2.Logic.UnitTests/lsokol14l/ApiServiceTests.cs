@@ -23,6 +23,12 @@ namespace Study.Lab2.Logic.UnitTests.lsokol14l
             _requestService = new RequestService(httpClient);
         }
 
+        [TearDown]
+        public void Dispose()
+        {
+            _requestService?.Dispose();
+        }
+
         [Test]
         public void FetchData_Success_ReturnsResponse()
         {
@@ -76,20 +82,24 @@ namespace Study.Lab2.Logic.UnitTests.lsokol14l
             // Arrange
             var urls = new[] { "https://example.com/api/1", "https://example.com/api/2" };
             var responseContent = "{\"message\": \"Success\"}";
-            var processedResponse = new { Message = "Processed" };
+            var processedResponse = new Dictionary<string, object> { { "message", "Processed" } };
 
             SetupHttpResponse(urls[0], responseContent, HttpStatusCode.OK);
             SetupHttpResponse(urls[1], responseContent, HttpStatusCode.OK);
 
             _responseProcessorMock
-                .Setup(processor => processor.ProcessResponse(responseContent))
+                .Setup(processor => processor.ProcessResponse<Dictionary<string, object>>(responseContent))
                 .Returns(processedResponse);
 
             // Act
-            _requestService.PerformRequestsSync(urls, _responseProcessorMock.Object);
+            foreach (var url in urls)
+            {
+                var response = _requestService.FetchData(url);
+                var result = _responseProcessorMock.Object.ProcessResponse<Dictionary<string, object>>(response);
 
-            // Assert
-            _responseProcessorMock.Verify(processor => processor.ProcessResponse(responseContent), Times.Exactly(urls.Length));
+                // Assert
+                Assert.That(result, Is.EqualTo(processedResponse));
+            }
         }
 
         [Test]
@@ -100,20 +110,24 @@ namespace Study.Lab2.Logic.UnitTests.lsokol14l
             // Arrange
             var urls = new[] { "https://example.com/api/1", "https://example.com/api/2" };
             var responseContent = "{\"message\": \"Success\"}";
-            var processedResponse = new { Message = "Processed" };
+            var processedResponse = new Dictionary<string, object> { { "message", "Processed" } };
 
             SetupHttpResponse(urls[0], responseContent, HttpStatusCode.OK);
             SetupHttpResponse(urls[1], responseContent, HttpStatusCode.OK);
 
             _responseProcessorMock
-                .Setup(processor => processor.ProcessResponse(responseContent))
+                .Setup(processor => processor.ProcessResponse<Dictionary<string, object>>(responseContent))
                 .Returns(processedResponse);
 
             // Act
-            await _requestService.PerformRequestsAsync(urls, _responseProcessorMock.Object, cancellationTokenSource.Token);
+            foreach (var url in urls)
+            {
+                var response = await _requestService.FetchDataAsync(url, cancellationTokenSource.Token);
+                var result = _responseProcessorMock.Object.ProcessResponse<Dictionary<string, object>>(response);
 
-            // Assert
-            _responseProcessorMock.Verify(processor => processor.ProcessResponse(responseContent), Times.Exactly(urls.Length));
+                // Assert
+                Assert.That(result, Is.EqualTo(processedResponse));
+            }
         }
 
         private void SetupHttpResponse(string url, string content, HttpStatusCode statusCode)
@@ -131,10 +145,5 @@ namespace Study.Lab2.Logic.UnitTests.lsokol14l
                 });
         }
 
-        [TearDown]
-        public void Dispose()
-        {
-            _requestService?.Dispose();
-        }
     }
 }

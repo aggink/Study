@@ -48,7 +48,7 @@ namespace Study.Lab2.Logic.lsokol14l
                     var response = _requestService.FetchData(Urls[i]);
 
                     // Обрабатываем ответ с помощью процессора
-                    var processedResponse = responseProcessor.ProcessResponse(response);
+                    var processedResponse = responseProcessor.ProcessResponse<Dictionary<string, object>>(response);
                     responses.Add(processedResponse);
                 }
 
@@ -111,7 +111,7 @@ namespace Study.Lab2.Logic.lsokol14l
                 var processedResponses = new List<object>();
                 foreach (var response in responses)
                 {
-                    var processedResponse = responseProcessor.ProcessResponse(response);
+                    var processedResponse = responseProcessor.ProcessResponse<Dictionary<string, object>>(response);
                     processedResponses.Add(processedResponse);
                 }
 
