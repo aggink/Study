@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,50 +8,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
     /// <inheritdoc />
     public partial class AddTeachersAndGrades : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // 1. Создаем таблицу Teachers
-            migrationBuilder.CreateTable(
-                name: "Teachers",
-                columns: table => new
-                {
-                    IsnTeacher = table.Column<Guid>(type: "uuid", nullable: false),
-                    SurName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    PatronymicName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Sex = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Teachers", x => x.IsnTeacher);
-                });
-
-            // 2. Создаем TeacherSubjects
-            migrationBuilder.CreateTable(
-                name: "TeacherSubjects",
-                columns: table => new
-                {
-                    IsnTeacher = table.Column<Guid>(type: "uuid", nullable: false),
-                    IsnSubject = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TeacherSubjects", x => new { x.IsnTeacher, x.IsnSubject });
-                    table.ForeignKey(
-                        name: "FK_TeacherSubjects_Teachers_IsnTeacher",
-                        column: x => x.IsnTeacher,
-                        principalTable: "Teachers",
-                        principalColumn: "IsnTeacher",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TeacherSubjects_Subjects_IsnSubject",
-                        column: x => x.IsnSubject,
-                        principalTable: "Subjects",
-                        principalColumn: "IsnSubject",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            // 3. Создаем Grades
             migrationBuilder.CreateTable(
                 name: "Grades",
                 columns: table => new
@@ -78,7 +38,45 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // Индексы
+            migrationBuilder.CreateTable(
+                name: "Teachers",
+                columns: table => new
+                {
+                    IsnTeacher = table.Column<Guid>(type: "uuid", nullable: false),
+                    SurName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    PatronymicName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Sex = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teachers", x => x.IsnTeacher);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TeacherSubjects",
+                columns: table => new
+                {
+                    IsnTeacher = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeacherSubjects", x => new { x.IsnTeacher, x.IsnSubject });
+                    table.ForeignKey(
+                        name: "FK_TeacherSubjects_Subjects_IsnSubject",
+                        column: x => x.IsnSubject,
+                        principalTable: "Subjects",
+                        principalColumn: "IsnSubject",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TeacherSubjects_Teachers_IsnTeacher",
+                        column: x => x.IsnTeacher,
+                        principalTable: "Teachers",
+                        principalColumn: "IsnTeacher",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Grades_IsnStudent",
                 table: "Grades",
@@ -93,8 +91,14 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "IX_TeacherSubjects_IsnSubject",
                 table: "TeacherSubjects",
                 column: "IsnSubject");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeacherSubjects_IsnTeacher_IsnSubject",
+                table: "TeacherSubjects",
+                columns: new[] { "IsnTeacher", "IsnSubject" });
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
