@@ -11,6 +11,7 @@ using Study.Lab1.Logic.IvanZ;
 using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
+using Study.Lab1.Logic.love100rubb;
 using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.mansurgh;
 using Study.Lab1.Logic.neijrr;
@@ -19,11 +20,9 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
-using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.Taipano;
-using Study.Lab1.Logic.chirique_online;
 using Study.Lab1.Logic.TucKaW;
+using Study.Lab1.Logic.xynthh;
 
 
 public static class Program
@@ -119,6 +118,8 @@ public static class Program
                 return new TucKaWService();
             case ("idb-23-03", 3):
                 return new TaipanoService();
+            case ("idb-23-03", 2):
+                return new love100rubbService();
             default:
                 throw new NotSupportedException();
         }
