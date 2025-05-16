@@ -24,6 +24,7 @@ using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.chirique_online;
 using Study.Lab1.Logic.TucKaW;
+using Study.Lab1.Logic.love100rubb;
 
 
 public static class Program
@@ -36,12 +37,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-03";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 2;
 
     public static void Main()
     {
@@ -119,6 +120,8 @@ public static class Program
                 return new TucKaWService();
             case ("idb-23-03", 3):
                 return new TaipanoService();
+            case ("idb-23-03", 2):
+                return new love100rubbService();
             default:
                 throw new NotSupportedException();
         }
