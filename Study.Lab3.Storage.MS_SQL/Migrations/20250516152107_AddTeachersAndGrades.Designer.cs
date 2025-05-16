@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
 
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250516152107_AddTeachersAndGrades")]
+    partial class AddTeachersAndGrades
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,7 +108,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("SubjectsGroups");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Grade", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.katty.Grade", b =>
                 {
                     b.Property<Guid>("IsnGrade")
                         .HasColumnType("uniqueidentifier");
@@ -131,7 +134,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Grades");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Teacher", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.katty.Teacher", b =>
                 {
                     b.Property<Guid>("IsnTeacher")
                         .HasColumnType("uniqueidentifier");
@@ -159,7 +162,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.TeacherSubject", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.katty.TeacherSubject", b =>
                 {
                     b.Property<Guid>("IsnTeacher")
                         .HasColumnType("uniqueidentifier");
@@ -206,7 +209,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Grade", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.katty.Grade", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
                         .WithMany()
@@ -225,7 +228,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.TeacherSubject", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.katty.TeacherSubject", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
                         .WithMany()
@@ -233,7 +236,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
+                    b.HasOne("Study.Lab3.Storage.Models.University.katty.Teacher", "Teacher")
                         .WithMany("TeacherSubjects")
                         .HasForeignKey("IsnTeacher")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -256,7 +259,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("GroupSubjects");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Teacher", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.katty.Teacher", b =>
                 {
                     b.Navigation("TeacherSubjects");
                 });
