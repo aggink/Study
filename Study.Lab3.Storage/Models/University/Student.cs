@@ -62,5 +62,5 @@ public class Student
     /// Связь с таблицей студента - оценки
     /// </summary>
     [InverseProperty(nameof(Grade.Student))]
-    public virtual ICollection<Grade> Grades { get; set; } = new HashSet<Grade>();
+    public virtual ICollection<Grade> Grades { get; set; }
 }
