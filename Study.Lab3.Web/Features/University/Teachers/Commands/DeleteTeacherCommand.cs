@@ -36,7 +36,7 @@ public sealed class DeleteTeacherCommandHandler : IRequestHandler<DeleteTeacherC
 
     public async Task Handle(DeleteTeacherCommand request, CancellationToken cancellationToken)
     {
-        var teacher = await _dataContext.Teachers.FirstOrDefaultAsync(x => x.IsnTeacher == request.IsnTeacher)
+        var teacher = await _dataContext.Teachers.FirstOrDefaultAsync(x => x.IsnTeacher == request.IsnTeacher, cancellationToken)
             ?? throw new BusinessLogicException($"Учителя с идентификатором \"{request.IsnTeacher}\" не существует");
 
         await _teacherService.CanDeleteAndThrowAsync(

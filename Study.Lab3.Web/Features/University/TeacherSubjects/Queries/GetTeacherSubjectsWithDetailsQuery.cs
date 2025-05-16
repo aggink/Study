@@ -1,7 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.TeacherSubjects.DtoModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
 
@@ -13,6 +15,8 @@ public sealed class GetTeacherSubjectsWithDetailsQuery : IRequest<TeacherSubject
     /// <summary>
     /// Идентификатор учителя
     /// </summary>
+    [Required]
+    [FromQuery]
     public Guid IsnTeacher { get; init; }
 }
 

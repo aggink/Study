@@ -30,19 +30,13 @@ public class Subject
     /// <summary>
     /// Оценки по предмету
     /// </summary>
+    [InverseProperty(nameof(Grade.Subject))]
     public virtual ICollection<Grade> Grades { get; set; }
 
     /// <summary>
     /// Связь с учителями
     /// </summary>
+    [InverseProperty(nameof(Grade.Subject))]
     public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
 
-    /// <summary>
-    /// Конструктор
-    /// </summary>
-    public Subject()
-    {
-        Grades = new HashSet<Grade>();
-        TeacherSubjects = new HashSet<TeacherSubject>();
-    }
 }

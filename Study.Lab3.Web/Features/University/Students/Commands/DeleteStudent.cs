@@ -31,7 +31,7 @@ public sealed class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentC
 
     public async Task Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
     {
-        var student = await _dataContext.Students.FirstOrDefaultAsync(x => x.IsnStudent == request.IsnStudent)
+        var student = await _dataContext.Students.FirstOrDefaultAsync(x => x.IsnStudent == request.IsnStudent, cancellationToken)
             ?? throw new BusinessLogicException($"Студента с идентификатором \"{request.IsnStudent}\" не существует");
 
         _dataContext.Students.Remove(student);

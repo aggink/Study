@@ -37,7 +37,7 @@ public sealed class UpdateTeacherCommandHandler : IRequestHandler<UpdateTeacherC
 
     public async Task<Guid> Handle(UpdateTeacherCommand request, CancellationToken cancellationToken)
     {
-        var teacher = await _dataContext.Teachers.FirstOrDefaultAsync(x => x.IsnTeacher == request.Teacher.IsnTeacher)
+        var teacher = await _dataContext.Teachers.FirstOrDefaultAsync(x => x.IsnTeacher == request.Teacher.IsnTeacher, cancellationToken)
             ?? throw new BusinessLogicException($"Учителя с идентификатором \"{request.Teacher.IsnTeacher}\" не существует");
 
         teacher.SurName = request.Teacher.SurName;

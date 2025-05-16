@@ -43,13 +43,5 @@ public class Teacher
     /// Связь с таблицей учителя - предметы
     /// </summary>
     [InverseProperty(nameof(TeacherSubject.Teacher))]
-    public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
-
-    /// <summary>
-    /// Конструктор
-    /// </summary>
-    public Teacher()
-    {
-        TeacherSubjects = new HashSet<TeacherSubject>();
-    }
+    public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; } = new HashSet<TeacherSubject>();
 }
