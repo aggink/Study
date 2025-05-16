@@ -82,10 +82,10 @@ public class ResponseProcessorTests
         string response = "This is not a JSON";
 
         // Act
-        string result = _responseProcessor.ProcessResponse<TodoDto>(response);
+        var ex = Assert.Throws<Exception>(() => _responseProcessor.ProcessResponse<TodoDto>(response));
 
         // Assert
-        Assert.IsTrue(result.Contains("Error: Неверный формат JSON"), "Должно вернуться сообщение об ошибке формата JSON");
+        Assert.IsTrue(ex.Message.Contains("Error: Неверный формат JSON"), "Должно вернуться сообщение об ошибке формата JSON");
     }
 
     [Test]
