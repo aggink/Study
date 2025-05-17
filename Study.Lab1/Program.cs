@@ -15,6 +15,7 @@ using Study.Lab1.Logic.love100rubb;
 using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.mansurgh;
 using Study.Lab1.Logic.neijrr;
+using Study.Lab1.Logic.poigko;
 using Study.Lab1.Logic.poroshok;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
@@ -120,6 +121,8 @@ public static class Program
                 return new TaipanoService();
             case ("idb-23-03", 2):
                 return new love100rubbService();
+            case ("idb-23-03", 10):
+                return new poigkoService();
             default:
                 throw new NotSupportedException();
         }
