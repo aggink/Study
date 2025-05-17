@@ -1,132 +1,155 @@
-﻿namespace Study.Lab1.Logic.poigko.Task1
+﻿namespace Study.Lab1.Logic.poigko.Task1;
+
+public class RationalNumber
 {
-    public class RationalNumber
+    public int Numerator { get; }
+    public int Denominator { get; }
+
+    public RationalNumber(int numerator, int denominator)
     {
-        public int numerator { get; }
-        public int denominator { get; }
+        if (denominator == 0)
+            throw new DivideByZeroException("Знаменатель не может быть равен нулю");
 
-        public RationalNumber(int numerator, int denominator)
+        var gcd = Math.Abs(GreatestCommonDivisor(numerator, denominator));
+
+        this.Numerator = numerator / gcd;
+        this.Denominator = denominator / gcd;
+
+        if ((numerator < 0 && denominator < 0) || (numerator > 0 && denominator < 0))
         {
-            if (denominator == 0)
-                throw new DivideByZeroException("Знаменатель не может быть равен нулю\n");
-            var gcd = Math.Abs(GreatestCommonDivisor(numerator, denominator));
-            this.numerator = numerator / gcd;
-            this.denominator = denominator / gcd;
-            if ((numerator < 0 && denominator < 0) || (numerator > 0 && denominator < 0))
-            {
-                this.numerator = -this.numerator;
-                this.denominator = -this.denominator;
-            }
+            this.Numerator = -this.Numerator;
+            this.Denominator = -this.Denominator;
+        }
+    }
+
+    public RationalNumber(int numerator)
+    {
+        this.Numerator = numerator;
+        this.Denominator = 1;
+    }
+
+    public override string ToString()
+    {
+        if (Denominator == 0)
+            return $"0";
+
+        if (Denominator == -1)
+            return $"{-Numerator}";
+
+        else if (Denominator != 1)
+        {
+            if (Numerator > 0 && Denominator > 0 || Numerator < 0 && Denominator > 0)
+                return $"{Numerator}/{Denominator}";
+
+            else
+                return $"{-Numerator} /{-Denominator}";
         }
 
-        public RationalNumber(int numerator)
-        {
-            this.numerator = numerator;
-            this.denominator = 1;
-        }
+        return $"{Numerator}";
+    }
 
-        public override string ToString()
-        {
-            if (denominator == 0)
-                return $"0";
-            if (denominator == -1)
-                return $"{-numerator}";
-            else if (denominator != 1)
-            {
-                if (numerator > 0 && denominator > 0 || numerator < 0 && denominator > 0)
-                    return $"{numerator}/{denominator}";
-                else
-                    return $"{-numerator} /{-denominator}";
-            }
-            return $"{numerator}";
-        }
+    #region Арифметические операторы
+    public static RationalNumber operator +(RationalNumber a, RationalNumber b)
+    {
+        var numerator = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
+        var denominator = a.Denominator * b.Denominator;
 
-        //Арифметические операторы
-        public static RationalNumber operator +(RationalNumber a, RationalNumber b)
-        {
-            var numerator = a.numerator * b.denominator + b.numerator * a.denominator;
-            var denominator = a.denominator * b.denominator;
-            return new RationalNumber(numerator, denominator);
-        }
+        return new RationalNumber(numerator, denominator);
+    }
 
-        public static RationalNumber operator -(RationalNumber a, RationalNumber b)
-        {
-            var numerator = a.numerator * b.denominator - b.numerator * a.denominator;
-            var denominator = a.denominator * b.denominator;
-            return new RationalNumber(numerator, denominator);
-        }
+    public static RationalNumber operator -(RationalNumber a, RationalNumber b)
+    {
+        var numerator = a.Numerator * b.Denominator - b.Numerator * a.Denominator;
+        var denominator = a.Denominator * b.Denominator;
 
-        public static RationalNumber operator *(RationalNumber a, RationalNumber b)
-        {
-            var numerator = a.numerator * b.numerator;
-            var denominator = a.denominator * b.denominator;
-            return new RationalNumber(numerator, denominator);
-        }
+        return new RationalNumber(numerator, denominator);
+    }
 
-        public static RationalNumber operator /(RationalNumber a, RationalNumber b)
-        {
-            var numerator = a.numerator * b.denominator;
-            var denominator = a.denominator * b.numerator;
-            return new RationalNumber(numerator, denominator);
-        }
+    public static RationalNumber operator *(RationalNumber a, RationalNumber b)
+    {
+        var numerator = a.Numerator * b.Numerator;
+        var denominator = a.Denominator * b.Denominator;
 
-        public static RationalNumber operator -(RationalNumber a)
-        {
-            var numerator = -a.numerator;
-            var denominator = a.denominator;
-            return new RationalNumber(numerator, denominator);
-        }
+        return new RationalNumber(numerator, denominator);
+    }
 
-        //Операторы сравнения
-        public static bool operator ==(RationalNumber a, RationalNumber b)
-        {
-            if (a.numerator == b.numerator && a.denominator == b.denominator) return true;
-            else return false;
-        }
+    public static RationalNumber operator /(RationalNumber a, RationalNumber b)
+    {
+        var numerator = a.Numerator * b.Denominator;
+        var denominator = a.Denominator * b.Numerator;
 
-        public static bool operator !=(RationalNumber a, RationalNumber b)
-        {
-            if (a.numerator == b.numerator && a.denominator == b.denominator) return false;
-            else return true;
-        }
+        return new RationalNumber(numerator, denominator);
+    }
 
-        public static bool operator <(RationalNumber a, RationalNumber b)
-        {
-            var aNumerator = a.numerator * b.denominator;
-            var bNumerator = b.numerator * a.denominator;
-            return (aNumerator < bNumerator);
-        }
+    public static RationalNumber operator -(RationalNumber a)
+    {
+        var numerator = -a.Numerator;
+        var denominator = a.Denominator;
 
-        public static bool operator <=(RationalNumber a, RationalNumber b)
-        {
-            var aNumerator = a.numerator * b.denominator;
-            var bNumerator = b.numerator * a.denominator;
-            return (aNumerator <= bNumerator);
-        }
+        return new RationalNumber(numerator, denominator);
+    }
+    #endregion
 
-        public static bool operator >(RationalNumber a, RationalNumber b)
-        {
-            var aNumerator = a.numerator * b.denominator;
-            var bNumerator = b.numerator * a.denominator;
-            return (aNumerator > bNumerator);
-        }
+    # region Операторы сравнения
+    public static bool operator ==(RationalNumber a, RationalNumber b)
+    {
+        if (a.Numerator == b.Numerator && a.Denominator == b.Denominator)
+            return true;
 
-        public static bool operator >=(RationalNumber a, RationalNumber b)
-        {
-            var aNumerator = a.numerator * b.denominator;
-            var bNumerator = b.numerator * a.denominator;
-            return (aNumerator >= bNumerator);
-        }
+        else
+            return false;
+    }
 
-        static private int GreatestCommonDivisor(int a, int b)
+    public static bool operator !=(RationalNumber a, RationalNumber b)
+    {
+        if (a.Numerator == b.Numerator && a.Denominator == b.Denominator)
+            return false;
+
+        else
+            return true;
+    }
+
+    public static bool operator <(RationalNumber a, RationalNumber b)
+    {
+        var aNumerator = a.Numerator * b.Denominator;
+        var bNumerator = b.Numerator * a.Denominator;
+
+        return (aNumerator < bNumerator);
+    }
+
+    public static bool operator <=(RationalNumber a, RationalNumber b)
+    {
+        var aNumerator = a.Numerator * b.Denominator;
+        var bNumerator = b.Numerator * a.Denominator;
+
+        return (aNumerator <= bNumerator);
+    }
+
+    public static bool operator >(RationalNumber a, RationalNumber b)
+    {
+        var aNumerator = a.Numerator * b.Denominator;
+        var bNumerator = b.Numerator * a.Denominator;
+
+        return (aNumerator > bNumerator);
+    }
+
+    public static bool operator >=(RationalNumber a, RationalNumber b)
+    {
+        var aNumerator = a.Numerator * b.Denominator;
+        var bNumerator = b.Numerator * a.Denominator;
+
+        return (aNumerator >= bNumerator);
+    }
+    #endregion
+
+    private static int GreatestCommonDivisor(int a, int b)
+    {
+        while (b != 0)
         {
-            while (b != 0)
-            {
-                int tmp = b;
-                b = a % b;
-                a = tmp;
-            }
-            return a;
+            int tmp = b;
+            b = a % b;
+            a = tmp;
         }
+        return a;
     }
 }
