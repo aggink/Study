@@ -2,6 +2,9 @@
 
 public interface IFormatDate
 {
-    public string European { get; }
-    public string American { get; }
+    /// <summary>
+    /// Форматирование даты и времени
+    /// </summary>
+    /// <returns>Дата и время</returns>
+    string FormatDateTime();
 }

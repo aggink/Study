@@ -1,6 +1,8 @@
-﻿namespace Study.Lab1.Logic.Interfaces.Cherryy.Task1;
+﻿using Study.Lab1.Logic.Interfaces.Cherryy.Task1;
 
-public class RationalNumber : IRationalNum
+namespace Study.Lab1.Logic.Cherryy.Task1;
+
+public class RationalNumber : IRationalNumber
 {
     public int Numerator { get; }
 

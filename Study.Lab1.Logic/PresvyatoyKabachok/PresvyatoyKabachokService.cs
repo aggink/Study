@@ -1,5 +1,6 @@
 using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.PresvyatoyKabachok.Task1;
+using Study.Lab1.Logic.PresvyatoyKabachok.Task2;
 
 namespace Study.Lab1.Logic.PresvyatoyKabachok;
 
@@ -45,7 +46,29 @@ public class PresvyatoyKabachokService : IRunService
 
     public void RunTask2()
     {
-        throw new NotImplementedException();
+        // Создаем форматтеры для европейского и американского форматов
+        var europeanDateForm = new EuropeanDateFormatter();
+        var americanDateForm = new AmericanDateFormatter();
+
+        // Применяем универсальный декоратор
+        var decoratedEuropeanForm = new LineDecorator(europeanDateForm);
+        var decoratedAmericanForm = new LineDecorator(americanDateForm);
+
+        var doubleDecorator = new BeforeDecorator(decoratedAmericanForm);
+        var tripleDecorator = new PostDecorator(doubleDecorator);
+
+        // Выводим результаты форматирования
+        Console.WriteLine("Европейский стиль даты и времени:");
+        Console.WriteLine(decoratedEuropeanForm.FormatDateTime());
+
+        Console.WriteLine("\nАмериканский стиль даты и времени:");
+        Console.WriteLine(decoratedAmericanForm.FormatDateTime());
+
+        Console.WriteLine("\nИспользуется два декоратора:");
+        Console.WriteLine(doubleDecorator.FormatDateTime());
+
+        Console.WriteLine("\nИспользуется три декоратора:");
+        Console.WriteLine(tripleDecorator.FormatDateTime());
     }
 
     public void RunTask3()

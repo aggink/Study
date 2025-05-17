@@ -32,7 +32,7 @@ public sealed class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentC
 
     public async Task<Guid> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
     {
-        var student = await _dataContext.Students.FirstOrDefaultAsync(x => x.IsnStudent == request.Student.IsnStudent)
+        var student = await _dataContext.Students.FirstOrDefaultAsync(x => x.IsnStudent == request.Student.IsnStudent, cancellationToken)
             ?? throw new BusinessLogicException($"Студента с идентификатором \"{request.Student.IsnStudent}\" не существует");
 
         if (student.IsnGroup != request.Student.IsnGroup && !await _dataContext.Groups.AnyAsync(x => x.IsnGroup == request.Student.IsnGroup, cancellationToken))

@@ -365,3 +365,6 @@ FodyWeavers.xsd
 # Docker files
 ./pgadmin
 ./postgres-data
+./mssql-data
+./mssql-scripts
+/.idea

@@ -48,4 +48,35 @@ public static class ModelConstants
         /// </summary>
         public const int Name = 255;
     }
+
+    public static class Teacher
+    {
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int SurName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Отчество"
+        /// </summary>
+        public const int PatronymicName = 100;
+    }
+
+    public static class Grade
+    {
+        /// <summary>
+        /// Минимальное значение оценки
+        /// </summary>
+        public const int MinValue = 2;
+
+        /// <summary>
+        /// Максимальное значение оценки
+        /// </summary>
+        public const int MaxValue = 5;
+    }
 }

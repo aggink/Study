@@ -29,4 +29,19 @@ public class DataContext : DbContext
     /// Связь предметов и групп
     /// </summary>
     public virtual DbSet<SubjectGroup> SubjectsGroups { get; set; }
+
+    /// <summary>
+    /// Учителя
+    /// </summary>
+    public virtual DbSet<Teacher> Teachers { get; set; }
+
+    /// <summary>
+    /// Связь учителей и предметов
+    /// </summary>
+    public virtual DbSet<TeacherSubject> TeacherSubjects { get; set; }
+
+    /// <summary>
+    /// Оценки
+    /// </summary>
+    public virtual DbSet<Grade> Grades { get; set; }
 }

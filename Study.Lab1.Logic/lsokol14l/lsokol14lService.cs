@@ -2,6 +2,7 @@
 using Study.Lab1.Logic.Interfaces.lsokol14l.Task2;
 using Study.Lab1.Logic.lsokol14l.Task1;
 using Study.Lab1.Logic.lsokol14l.Task2;
+using Study.Lab1.Logic.lsokol14l.Task3;
 
 namespace Study.Lab1.Logic.lsokol14l;
 
@@ -57,7 +58,7 @@ public class lsokol14lService : IRunService
         var formattedEuropeanDate = europeanFormatter.FormatDate(dateTime);
         var formattedEuropeanTime = europeanFormatter.FormatTime(dateTime);
 
-        Console.WriteLine($"formattedEuropeanDate - {formattedEuropeanDate}, foramattedEuropeanTime - {formattedEuropeanTime}");
+        Console.WriteLine($"formattedEuropeanDate - {formattedEuropeanDate}, formattedEuropeanTime - {formattedEuropeanTime}");
 
         americanFormatter = new AddBracketsDecorator(americanFormatter);
         americanFormatter = new AddPrefixDecorator(americanFormatter, "**** ");
@@ -74,6 +75,32 @@ public class lsokol14lService : IRunService
 
     public void RunTask3()
     {
-        throw new NotImplementedException();
+        var root1 = new TreeNode<string>("Root");
+        var child1 = new TreeNode<string>("Child 1");
+        var child2 = new TreeNode<string>("Child 2");
+        var grandChild1 = new TreeNode<string>("Grandchild 1");
+        var grandGrandChild1 = new TreeNode<string>("Grandchild 2");
+
+        grandChild1.Add(grandGrandChild1);
+        child1.Add(grandChild1);
+        root1.Add(child1);
+        root1.Add(child2);
+
+        Console.WriteLine("Потомки корня <string>:");
+        Console.WriteLine(root1.GetAllChildrenValues());
+
+        var root2 = new TreeNode<int>(0);
+        var child3 = new TreeNode<int>(1);
+        var child4 = new TreeNode<int>(2);
+        var grandChild2 = new TreeNode<int>(123);
+        var grandGrandChild2 = new TreeNode<int>(456);
+
+        grandChild2.Add(grandGrandChild2);
+        child3.Add(grandChild2);
+        root2.Add(child3);
+        root2.Add(child4);
+
+        Console.WriteLine("Потомки корня <int>:");
+        Console.WriteLine(root2.GetAllChildrenValues());
     }
 }
