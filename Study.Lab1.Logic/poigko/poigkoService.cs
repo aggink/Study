@@ -1,4 +1,5 @@
 ﻿using Study.Lab1.Logic.Interfaces;
+using Study.Lab1.Logic.poigko.Task1;
 
 namespace Study.Lab1.Logic.poigko
 {
@@ -6,7 +7,10 @@ namespace Study.Lab1.Logic.poigko
     {
         public void RunTask1()
         {
-            throw new NotImplementedException();
+            var a = new RationalNumber(3, 7);
+            var b = new RationalNumber(1, -5);
+            Console.WriteLine(b);
+            Console.WriteLine(a / b);
         }
 
         public void RunTask2()
