@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Study.Lab1.Logic.p0se1d0nov;
+
 public class p0se1d0nService : IRunService
 {
     public void RunTask1()

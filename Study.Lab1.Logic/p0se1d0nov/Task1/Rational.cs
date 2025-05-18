@@ -12,6 +12,10 @@ namespace Study.Lab1.Logic.p0se1d0nov.Task1;
 
 public class Rational
 {
+    private int numerator_;
+    private int denominator_;
+
+
     public Rational(int num, int den)
     {
         if (den == 0)
@@ -23,11 +27,37 @@ public class Rational
         Simplify();
     }
 
+
+    public int Numerator
+    {
+        get { return numerator_; }
+        set
+        {
+            numerator_ = value;
+
+            Simplify();
+        }
+    }
+
+    public int Denominator
+    {
+        get { return denominator_; }
+        set
+        {
+            if (value == 0)
+                throw new DivideByZeroException("Делитель не может быть равен нулю");
+
+            denominator_ = value;
+
+            Simplify();
+        }
+    }   
+
     public String ToString()
     {
         if(denominator_ == 1)
         {
-            return $"{numerator_}";
+            return $"{numerator_}"
         }
         return $"{numerator_}/{denominator_}";
     }
@@ -130,33 +160,5 @@ public class Rational
         denominator_ /= divisor;
     }
     #endregion
-
-    private int numerator_;
-    private int denominator_;
-
-    public int Numerator
-    {
-        get { return numerator_; }
-        set
-        {
-            numerator_ = value;
-
-            Simplify();
-        }
-    }
-
-    public int Denominator
-    {
-        get { return denominator_; }
-        set
-        {
-            if (value == 0)
-                throw new DivideByZeroException("Делитель не может быть равен нулю");
-
-            denominator_ = value;
-
-            Simplify();
-        }
-    }
 }
 
