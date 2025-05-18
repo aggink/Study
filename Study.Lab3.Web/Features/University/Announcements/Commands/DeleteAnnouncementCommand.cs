@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Announcements.Commands;
 
@@ -24,7 +24,7 @@ public sealed class DeleteAnnouncementCommand : IRequest
 public sealed class DeleteAnnouncementCommandHandler : IRequestHandler<DeleteAnnouncementCommand>
 {
     private readonly IAnnouncementService _announcementService;
-    private readonly DataContext          _dataContext;
+    private readonly DataContext _dataContext;
 
     public DeleteAnnouncementCommandHandler(
         DataContext dataContext,
@@ -37,9 +37,9 @@ public sealed class DeleteAnnouncementCommandHandler : IRequestHandler<DeleteAnn
     public async Task Handle(DeleteAnnouncementCommand request, CancellationToken cancellationToken)
     {
         var announcement = await _dataContext.Announcements
-                                             .Include(x => x.AnnouncementGroups)
-                                             .FirstOrDefaultAsync(x => x.IsnAnnouncement == request.IsnAnnouncement,
-                                                 cancellationToken)
+                               .Include(x => x.AnnouncementGroups)
+                               .FirstOrDefaultAsync(x => x.IsnAnnouncement == request.IsnAnnouncement,
+                                   cancellationToken)
                            ?? throw new BusinessLogicException(
                                $"Объявление с идентификатором \"{request.IsnAnnouncement}\" не существует");
 

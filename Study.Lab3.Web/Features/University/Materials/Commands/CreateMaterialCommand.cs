@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Materials.Commands;
 
@@ -23,7 +23,7 @@ public sealed class CreateMaterialCommand : IRequest<Guid>
 
 public sealed class CreateMaterialCommandHandler : IRequestHandler<CreateMaterialCommand, Guid>
 {
-    private readonly DataContext      _dataContext;
+    private readonly DataContext _dataContext;
     private readonly IMaterialService _materialService;
 
     public CreateMaterialCommandHandler(

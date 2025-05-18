@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Announcements.DtoModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Announcements.Queries;
 
@@ -21,8 +21,7 @@ public sealed class GetAnnouncementWithDetailsQuery : IRequest<AnnouncementWithD
     public Guid IsnAnnouncement { get; init; }
 }
 
-public sealed class
-    GetAnnouncementWithDetailsQueryHandler : IRequestHandler<GetAnnouncementWithDetailsQuery,
+public sealed class GetAnnouncementWithDetailsQueryHandler : IRequestHandler<GetAnnouncementWithDetailsQuery,
     AnnouncementWithDetailsDto>
 {
     private readonly DataContext _dataContext;

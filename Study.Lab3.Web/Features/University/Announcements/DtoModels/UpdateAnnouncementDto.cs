@@ -1,3 +1,4 @@
+using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Announcements.DtoModels;
@@ -14,13 +15,14 @@ public sealed record UpdateAnnouncementDto
     /// Заголовок объявления
     /// </summary>
     [Required]
-    [MaxLength(200)]
+    [MaxLength(ModelConstants.Announcement.Title)]
     public string Title { get; init; }
 
     /// <summary>
     /// Текст объявления
     /// </summary>
     [Required]
+    [MaxLength(ModelConstants.Announcement.Content)]
     public string Content { get; init; }
 
     /// <summary>

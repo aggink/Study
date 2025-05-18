@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
 using Study.Lab3.Web.Features.University.Announcements.DtoModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Announcements.Commands;
 
@@ -24,7 +24,7 @@ public sealed class CreateAnnouncementCommand : IRequest<Guid>
 public sealed class CreateAnnouncementCommandHandler : IRequestHandler<CreateAnnouncementCommand, Guid>
 {
     private readonly IAnnouncementService _announcementService;
-    private readonly DataContext          _dataContext;
+    private readonly DataContext _dataContext;
 
     public CreateAnnouncementCommandHandler(
         DataContext dataContext,
@@ -50,13 +50,10 @@ public sealed class CreateAnnouncementCommandHandler : IRequestHandler<CreateAnn
         await _announcementService.CreateOrUpdateAnnouncementValidateAndThrowAsync(
             _dataContext, announcement, cancellationToken);
 
-        // Сначала добавляем и сохраняем объявление
         await _dataContext.Announcements.AddAsync(announcement, cancellationToken);
-        await _dataContext.SaveChangesAsync(cancellationToken);
 
-        // Теперь добавляем связи с группами
+        // Добавление связей с группами
         if (request.Announcement.GroupIds != null && request.Announcement.GroupIds.Length > 0)
-        {
             foreach (var groupId in request.Announcement.GroupIds)
             {
                 var announcementGroup = new AnnouncementGroup
@@ -66,14 +63,13 @@ public sealed class CreateAnnouncementCommandHandler : IRequestHandler<CreateAnn
                 };
 
                 await _announcementService.AddGroupValidateAndThrowAsync(
-                    _dataContext, announcementGroup, cancellationToken);
+                    _dataContext, announcementGroup, cancellationToken, true); // true - пропустить проверку
 
                 await _dataContext.AnnouncementGroups.AddAsync(announcementGroup, cancellationToken);
             }
 
-            // Сохраняем изменения связей отдельной транзакцией
-            await _dataContext.SaveChangesAsync(cancellationToken);
-        }
+        // Единственный SaveChangesAsync в конце всех операций
+        await _dataContext.SaveChangesAsync(cancellationToken);
 
         return announcement.IsnAnnouncement;
     }

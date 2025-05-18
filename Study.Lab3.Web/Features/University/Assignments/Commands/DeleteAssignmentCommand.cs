@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Assignments.Commands;
 
@@ -24,7 +24,7 @@ public sealed class DeleteAssignmentCommand : IRequest
 public sealed class DeleteAssignmentCommandHandler : IRequestHandler<DeleteAssignmentCommand>
 {
     private readonly IAssignmentService _assignmentService;
-    private readonly DataContext        _dataContext;
+    private readonly DataContext _dataContext;
 
     public DeleteAssignmentCommandHandler(
         DataContext dataContext,
@@ -37,8 +37,8 @@ public sealed class DeleteAssignmentCommandHandler : IRequestHandler<DeleteAssig
     public async Task Handle(DeleteAssignmentCommand request, CancellationToken cancellationToken)
     {
         var assignment = await _dataContext.Assignments
-                                           .FirstOrDefaultAsync(x => x.IsnAssignment == request.IsnAssignment,
-                                               cancellationToken)
+                             .FirstOrDefaultAsync(x => x.IsnAssignment == request.IsnAssignment,
+                                 cancellationToken)
                          ?? throw new BusinessLogicException(
                              $"Задание с идентификатором \"{request.IsnAssignment}\" не существует");
 

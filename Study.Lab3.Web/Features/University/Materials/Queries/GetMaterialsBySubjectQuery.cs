@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Materials.Queries;
 
@@ -36,19 +36,19 @@ public sealed class GetMaterialsBySubjectQueryHandler : IRequestHandler<GetMater
             throw new BusinessLogicException($"Предмет с идентификатором \"{request.IsnSubject}\" не существует");
 
         return await _dataContext.Materials
-                                 .AsNoTracking()
-                                 .Where(x => x.IsnSubject == request.IsnSubject)
-                                 .Select(x => new MaterialDto
-                                 {
-                                     IsnMaterial = x.IsnMaterial,
-                                     IsnSubject = x.IsnSubject,
-                                     Title = x.Title,
-                                     Description = x.Description,
-                                     Type = x.Type,
-                                     Url = x.Url,
-                                     PublishDate = x.PublishDate
-                                 })
-                                 .OrderByDescending(x => x.PublishDate)
-                                 .ToArrayAsync(cancellationToken);
+            .AsNoTracking()
+            .Where(x => x.IsnSubject == request.IsnSubject)
+            .Select(x => new MaterialDto
+            {
+                IsnMaterial = x.IsnMaterial,
+                IsnSubject = x.IsnSubject,
+                Title = x.Title,
+                Description = x.Description,
+                Type = x.Type,
+                Url = x.Url,
+                PublishDate = x.PublishDate
+            })
+            .OrderByDescending(x => x.PublishDate)
+            .ToArrayAsync(cancellationToken);
     }
 }

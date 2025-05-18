@@ -37,8 +37,11 @@ public sealed class UpdateSubjectCommandHandler : IRequestHandler<UpdateSubjectC
 
     public async Task<Guid> Handle(UpdateSubjectCommand request, CancellationToken cancellationToken)
     {
-        var subject = await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.Subject.IsnSubject, cancellationToken)
-            ?? throw new BusinessLogicException($"Предмета с идентификатором \"{request.Subject.IsnSubject}\" не существует");
+        var subject =
+            await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.Subject.IsnSubject,
+                cancellationToken)
+            ?? throw new BusinessLogicException(
+                $"Предмета с идентификатором \"{request.Subject.IsnSubject}\" не существует");
 
         subject.Name = request.Subject.Name;
 

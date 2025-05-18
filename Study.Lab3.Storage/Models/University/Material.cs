@@ -1,3 +1,4 @@
+using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,19 +26,20 @@ public class Material
     /// Название материала
     /// </summary>
     [Required]
-    [MaxLength(200)]
+    [MaxLength(ModelConstants.Material.Title)]
     public string Title { get; set; }
 
     /// <summary>
     /// Описание материала
     /// </summary>
+    [MaxLength(ModelConstants.Material.Description)]
     public string Description { get; set; }
 
     /// <summary>
     /// Тип материала
     /// </summary>
     [Required]
-    [MaxLength(50)]
+    [MaxLength(ModelConstants.Material.Type)]
     public string Type { get; set; }
 
     /// <summary>
@@ -49,6 +51,7 @@ public class Material
     /// <summary>
     /// Дата публикации
     /// </summary>
+    [DataType(DataType.DateTime)]
     public DateTime PublishDate { get; set; }
 
     /// <summary>

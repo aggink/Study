@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Materials.Commands;
 
@@ -23,7 +23,7 @@ public sealed class DeleteMaterialCommand : IRequest
 
 public sealed class DeleteMaterialCommandHandler : IRequestHandler<DeleteMaterialCommand>
 {
-    private readonly DataContext      _dataContext;
+    private readonly DataContext _dataContext;
     private readonly IMaterialService _materialService;
 
     public DeleteMaterialCommandHandler(
@@ -37,8 +37,8 @@ public sealed class DeleteMaterialCommandHandler : IRequestHandler<DeleteMateria
     public async Task Handle(DeleteMaterialCommand request, CancellationToken cancellationToken)
     {
         var material = await _dataContext.Materials
-                                         .FirstOrDefaultAsync(x => x.IsnMaterial == request.IsnMaterial,
-                                             cancellationToken)
+                           .FirstOrDefaultAsync(x => x.IsnMaterial == request.IsnMaterial,
+                               cancellationToken)
                        ?? throw new BusinessLogicException(
                            $"Материал с идентификатором \"{request.IsnMaterial}\" не существует");
 

@@ -1,10 +1,10 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Materials.Queries;
 
@@ -33,9 +33,9 @@ public sealed class GetMaterialByIsnQueryHandler : IRequestHandler<GetMaterialBy
     public async Task<MaterialDto> Handle(GetMaterialByIsnQuery request, CancellationToken cancellationToken)
     {
         var material = await _dataContext.Materials
-                                         .AsNoTracking()
-                                         .FirstOrDefaultAsync(x => x.IsnMaterial == request.IsnMaterial,
-                                             cancellationToken)
+                           .AsNoTracking()
+                           .FirstOrDefaultAsync(x => x.IsnMaterial == request.IsnMaterial,
+                               cancellationToken)
                        ?? throw new BusinessLogicException(
                            $"Материал с идентификатором \"{request.IsnMaterial}\" не существует");
 

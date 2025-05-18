@@ -10,7 +10,6 @@ namespace Study.Lab3.Web.Features.University.Subjects.Queries;
 /// </summary>
 public sealed class GetListSubjectsQuery : IRequest<SubjectItemDto[]>
 {
-
 }
 
 public sealed class GetListSubjectsQueryHandler : IRequestHandler<GetListSubjectsQuery, SubjectItemDto[]>

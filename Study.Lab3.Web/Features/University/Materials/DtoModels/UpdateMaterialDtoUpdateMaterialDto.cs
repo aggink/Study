@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Web.Features.University.Materials.DtoModels;
 
@@ -14,19 +15,20 @@ public sealed record UpdateMaterialDto
     /// Название материала
     /// </summary>
     [Required]
-    [MaxLength(200)]
+    [MaxLength(ModelConstants.Material.Title)]
     public string Title { get; init; }
 
     /// <summary>
     /// Описание материала
     /// </summary>
+    [MaxLength(ModelConstants.Material.Description)]
     public string Description { get; init; }
 
     /// <summary>
     /// Тип материала
     /// </summary>
     [Required]
-    [MaxLength(50)]
+    [MaxLength(ModelConstants.Material.Type)]
     public string Type { get; init; }
 
     /// <summary>

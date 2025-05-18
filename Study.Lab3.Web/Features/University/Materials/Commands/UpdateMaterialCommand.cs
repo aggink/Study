@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Materials.Commands;
 
@@ -24,7 +24,7 @@ public sealed class UpdateMaterialCommand : IRequest<Guid>
 
 public sealed class UpdateMaterialCommandHandler : IRequestHandler<UpdateMaterialCommand, Guid>
 {
-    private readonly DataContext      _dataContext;
+    private readonly DataContext _dataContext;
     private readonly IMaterialService _materialService;
 
     public UpdateMaterialCommandHandler(
@@ -38,8 +38,8 @@ public sealed class UpdateMaterialCommandHandler : IRequestHandler<UpdateMateria
     public async Task<Guid> Handle(UpdateMaterialCommand request, CancellationToken cancellationToken)
     {
         var material = await _dataContext.Materials
-                                         .FirstOrDefaultAsync(x => x.IsnMaterial == request.Material.IsnMaterial,
-                                             cancellationToken)
+                           .FirstOrDefaultAsync(x => x.IsnMaterial == request.Material.IsnMaterial,
+                               cancellationToken)
                        ?? throw new BusinessLogicException(
                            $"Материал с идентификатором \"{request.Material.IsnMaterial}\" не существует");
 

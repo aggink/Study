@@ -35,14 +35,19 @@ public sealed class DeleteGroupAndSubjectCommandHandler : IRequestHandler<Delete
 
     public async Task Handle(DeleteGroupAndSubjectCommand request, CancellationToken cancellationToken)
     {
-        var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.IsnGroup, cancellationToken)
-            ?? throw new BusinessLogicException($"Группы с идентификатором \"{request.IsnGroup}\" не существует");
+        var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.IsnGroup,
+                        cancellationToken)
+                    ?? throw new BusinessLogicException(
+                        $"Группы с идентификатором \"{request.IsnGroup}\" не существует");
 
-        var subject = await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.IsnSubject, cancellationToken)
+        var subject =
+            await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.IsnSubject, cancellationToken)
             ?? throw new BusinessLogicException($"Предмета с идентификатором \"{request.IsnSubject}\" не существует");
 
-        var link = await _dataContext.SubjectsGroups.FirstOrDefaultAsync(x => x.IsnGroup == request.IsnGroup && x.IsnSubject == request.IsnSubject, cancellationToken)
-            ?? throw new BusinessLogicException($"Группа с идентификатором \"{request.IsnGroup}\" не привязана к предмету с идентификатором \"{request.IsnSubject}\"");
+        var link = await _dataContext.SubjectsGroups.FirstOrDefaultAsync(
+                       x => x.IsnGroup == request.IsnGroup && x.IsnSubject == request.IsnSubject, cancellationToken)
+                   ?? throw new BusinessLogicException(
+                       $"Группа с идентификатором \"{request.IsnGroup}\" не привязана к предмету с идентификатором \"{request.IsnSubject}\"");
 
         _dataContext.SubjectsGroups.Remove(link);
         await _dataContext.SaveChangesAsync(cancellationToken);

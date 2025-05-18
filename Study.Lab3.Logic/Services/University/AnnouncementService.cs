@@ -38,8 +38,14 @@ public sealed class AnnouncementService : IAnnouncementService
     public async Task AddGroupValidateAndThrowAsync(
         DataContext dataContext,
         AnnouncementGroup announcementGroup,
-        CancellationToken cancellationToken = default)
+        CancellationToken cancellationToken = default,
+        bool skipAnnouncementCheck = false)
     {
+        if (!skipAnnouncementCheck && !await dataContext.Announcements.AnyAsync(
+                x => x.IsnAnnouncement == announcementGroup.IsnAnnouncement, cancellationToken))
+            throw new BusinessLogicException(
+                $"Объявление с идентификатором \"{announcementGroup.IsnAnnouncement}\" не существует");
+
         if (!await dataContext.Announcements.AnyAsync(x => x.IsnAnnouncement == announcementGroup.IsnAnnouncement,
                 cancellationToken))
             throw new BusinessLogicException(

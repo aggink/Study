@@ -1,3 +1,4 @@
+using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -25,13 +26,14 @@ public class Announcement
     /// Заголовок объявления
     /// </summary>
     [Required]
-    [MaxLength(200)]
+    [MaxLength(ModelConstants.Announcement.Title)]
     public string Title { get; set; }
 
     /// <summary>
     /// Текст объявления
     /// </summary>
     [Required]
+    [MaxLength(ModelConstants.Announcement.Content)]
     public string Content { get; set; }
 
     /// <summary>

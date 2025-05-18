@@ -1,9 +1,9 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Announcements.Commands;
 
@@ -39,10 +39,10 @@ public sealed class RemoveGroupFromAnnouncementCommandHandler : IRequestHandler<
     public async Task Handle(RemoveGroupFromAnnouncementCommand request, CancellationToken cancellationToken)
     {
         var announcementGroup = await _dataContext.AnnouncementGroups
-                                                  .FirstOrDefaultAsync(x =>
-                                                          x.IsnAnnouncement == request.IsnAnnouncement &&
-                                                          x.IsnGroup == request.IsnGroup,
-                                                      cancellationToken)
+                                    .FirstOrDefaultAsync(x =>
+                                            x.IsnAnnouncement == request.IsnAnnouncement &&
+                                            x.IsnGroup == request.IsnGroup,
+                                        cancellationToken)
                                 ?? throw new BusinessLogicException(
                                     "Указанная группа не привязана к данному объявлению");
 

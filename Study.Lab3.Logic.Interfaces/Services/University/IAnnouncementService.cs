@@ -33,8 +33,10 @@ public interface IAnnouncementService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="announcementGroup">Связь объявления с группой</param>
     /// <param name="cancellationToken">Токен отмены</param>
+    /// <param name="skipAnnouncementCheck">Пропустить проверку существования объявления</param>
     Task AddGroupValidateAndThrowAsync(
         DataContext dataContext,
         AnnouncementGroup announcementGroup,
-        CancellationToken cancellationToken = default);
+        CancellationToken cancellationToken = default,
+        bool skipAnnouncementCheck = false);
 }

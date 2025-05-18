@@ -86,6 +86,11 @@ public static class ModelConstants
         /// Максимальная длина названия задания
         /// </summary>
         public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина описания
+        /// </summary>
+        public const int Description = 2000;
     }
 
     public static class Material
@@ -94,6 +99,11 @@ public static class ModelConstants
         /// Максимальная длина названия материала
         /// </summary>
         public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина описания
+        /// </summary>
+        public const int Description = 2000;
 
         /// <summary>
         /// Максимальная длина типа материала
@@ -107,5 +117,10 @@ public static class ModelConstants
         /// Максимальная длина заголовка объявления
         /// </summary>
         public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина содержимого задания
+        /// </summary>
+        public const int Content = 2000;
     }
 }

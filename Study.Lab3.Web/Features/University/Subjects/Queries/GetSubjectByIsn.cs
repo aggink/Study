@@ -32,7 +32,8 @@ public sealed class GetSubjectByIsnQueryHandler : IRequestHandler<GetSubjectByIs
 
     public async Task<SubjectDto> Handle(GetSubjectByIsnQuery request, CancellationToken cancellationToken)
     {
-        var subject = await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.IsnSubject, cancellationToken)
+        var subject =
+            await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.IsnSubject, cancellationToken)
             ?? throw new BusinessLogicException($"Предмета с идентификатором \"{request.IsnSubject}\" не существует");
 
         return new SubjectDto

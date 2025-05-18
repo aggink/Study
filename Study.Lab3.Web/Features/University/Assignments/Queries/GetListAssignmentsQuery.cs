@@ -24,18 +24,18 @@ public sealed class GetListAssignmentsQueryHandler : IRequestHandler<GetListAssi
     public async Task<AssignmentDto[]> Handle(GetListAssignmentsQuery request, CancellationToken cancellationToken)
     {
         return await _dataContext.Assignments
-                                 .AsNoTracking()
-                                 .Select(x => new AssignmentDto
-                                 {
-                                     IsnAssignment = x.IsnAssignment,
-                                     IsnSubject = x.IsnSubject,
-                                     Title = x.Title,
-                                     Description = x.Description,
-                                     PublishDate = x.PublishDate,
-                                     Deadline = x.Deadline,
-                                     MaxScore = x.MaxScore
-                                 })
-                                 .OrderByDescending(x => x.PublishDate)
-                                 .ToArrayAsync(cancellationToken);
+            .AsNoTracking()
+            .Select(x => new AssignmentDto
+            {
+                IsnAssignment = x.IsnAssignment,
+                IsnSubject = x.IsnSubject,
+                Title = x.Title,
+                Description = x.Description,
+                PublishDate = x.PublishDate,
+                Deadline = x.Deadline,
+                MaxScore = x.MaxScore
+            })
+            .OrderByDescending(x => x.PublishDate)
+            .ToArrayAsync(cancellationToken);
     }
 }

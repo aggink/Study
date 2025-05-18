@@ -24,18 +24,18 @@ public sealed class GetListAnnouncementsQueryHandler : IRequestHandler<GetListAn
     public async Task<AnnouncementDto[]> Handle(GetListAnnouncementsQuery request, CancellationToken cancellationToken)
     {
         return await _dataContext.Announcements
-                                 .AsNoTracking()
-                                 .Select(x => new AnnouncementDto
-                                 {
-                                     IsnAnnouncement = x.IsnAnnouncement,
-                                     IsnTeacher = x.IsnTeacher,
-                                     Title = x.Title,
-                                     Content = x.Content,
-                                     PublishDate = x.PublishDate,
-                                     IsImportant = x.IsImportant
-                                 })
-                                 .OrderByDescending(x => x.IsImportant)
-                                 .ThenByDescending(x => x.PublishDate)
-                                 .ToArrayAsync(cancellationToken);
+            .AsNoTracking()
+            .Select(x => new AnnouncementDto
+            {
+                IsnAnnouncement = x.IsnAnnouncement,
+                IsnTeacher = x.IsnTeacher,
+                Title = x.Title,
+                Content = x.Content,
+                PublishDate = x.PublishDate,
+                IsImportant = x.IsImportant
+            })
+            .OrderByDescending(x => x.IsImportant)
+            .ThenByDescending(x => x.PublishDate)
+            .ToArrayAsync(cancellationToken);
     }
 }

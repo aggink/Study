@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Assignments.DtoModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Assignments.Commands;
 
@@ -25,7 +25,7 @@ public sealed class UpdateAssignmentCommand : IRequest<Guid>
 public sealed class UpdateAssignmentCommandHandler : IRequestHandler<UpdateAssignmentCommand, Guid>
 {
     private readonly IAssignmentService _assignmentService;
-    private readonly DataContext        _dataContext;
+    private readonly DataContext _dataContext;
 
     public UpdateAssignmentCommandHandler(
         DataContext dataContext,
@@ -38,9 +38,9 @@ public sealed class UpdateAssignmentCommandHandler : IRequestHandler<UpdateAssig
     public async Task<Guid> Handle(UpdateAssignmentCommand request, CancellationToken cancellationToken)
     {
         var assignment = await _dataContext.Assignments
-                                           .FirstOrDefaultAsync(
-                                               x => x.IsnAssignment == request.Assignment.IsnAssignment,
-                                               cancellationToken)
+                             .FirstOrDefaultAsync(
+                                 x => x.IsnAssignment == request.Assignment.IsnAssignment,
+                                 cancellationToken)
                          ?? throw new BusinessLogicException(
                              $"Задание с идентификатором \"{request.Assignment.IsnAssignment}\" не существует");
 
