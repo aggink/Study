@@ -7,7 +7,6 @@ public class DataContext : DbContext
 {
     public DataContext(DbContextOptions options) : base(options)
     {
-
     }
 
     /// <summary>
@@ -44,4 +43,24 @@ public class DataContext : DbContext
     /// Оценки
     /// </summary>
     public virtual DbSet<Grade> Grades { get; set; }
+
+    /// <summary>
+    /// Задания
+    /// </summary>
+    public virtual DbSet<Assignment> Assignments { get; set; }
+
+    /// <summary>
+    /// Учебные материалы
+    /// </summary>
+    public virtual DbSet<Material> Materials { get; set; }
+
+    /// <summary>
+    /// Объявления
+    /// </summary>
+    public virtual DbSet<Announcement> Announcements { get; set; }
+
+    /// <summary>
+    /// Связь объявлений с группами
+    /// </summary>
+    public virtual DbSet<AnnouncementGroup> AnnouncementGroups { get; set; }
 }

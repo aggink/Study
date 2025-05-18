@@ -79,4 +79,33 @@ public static class ModelConstants
         /// </summary>
         public const int MaxValue = 5;
     }
+
+    public static class Assignment
+    {
+        /// <summary>
+        /// Максимальная длина названия задания
+        /// </summary>
+        public const int Title = 200;
+    }
+
+    public static class Material
+    {
+        /// <summary>
+        /// Максимальная длина названия материала
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина типа материала
+        /// </summary>
+        public const int Type = 50;
+    }
+
+    public static class Announcement
+    {
+        /// <summary>
+        /// Максимальная длина заголовка объявления
+        /// </summary>
+        public const int Title = 200;
+    }
 }
