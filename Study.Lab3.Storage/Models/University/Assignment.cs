@@ -39,11 +39,13 @@ public class Assignment
     /// <summary>
     /// Дата публикации
     /// </summary>
+    [DataType(DataType.DateTime)]
     public DateTime PublishDate { get; set; }
 
     /// <summary>
     /// Крайний срок выполнения
     /// </summary>
+    [DataType(DataType.DateTime)]
     public DateTime? Deadline { get; set; }
 
     /// <summary>

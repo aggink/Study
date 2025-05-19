@@ -42,6 +42,7 @@ public sealed class AssignmentService : IAssignmentService
         Assignment assignment,
         CancellationToken cancellationToken = default)
     {
-        await Task.CompletedTask;
+        if (!await dataContext.Assignments.AnyAsync(x => x.IsnAssignment == assignment.IsnAssignment, cancellationToken))
+            throw new BusinessLogicException($"Задание с идентификатором \"{assignment.IsnAssignment}\" не существует");
     }
 }

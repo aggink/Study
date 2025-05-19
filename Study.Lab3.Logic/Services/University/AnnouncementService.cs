@@ -32,7 +32,12 @@ public sealed class AnnouncementService : IAnnouncementService
         Announcement announcement,
         CancellationToken cancellationToken = default)
     {
-        await Task.CompletedTask;
+        if (!await dataContext.Announcements.AnyAsync(x => x.IsnAnnouncement == announcement.IsnAnnouncement, cancellationToken))
+            throw new BusinessLogicException(
+                $"Объявление с идентификатором \"{announcement.IsnAnnouncement}\" не существует");
+
+        if (await dataContext.AnnouncementGroups.AnyAsync(x => x.IsnAnnouncement == announcement.IsnAnnouncement, cancellationToken))
+            throw new BusinessLogicException("Невозможно удалить объявление, так как оно связано с группами");
     }
 
     public async Task AddGroupValidateAndThrowAsync(

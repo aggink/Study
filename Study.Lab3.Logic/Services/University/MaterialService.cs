@@ -39,6 +39,7 @@ public sealed class MaterialService : IMaterialService
         Material material,
         CancellationToken cancellationToken = default)
     {
-        await Task.CompletedTask;
+        if (!await dataContext.Materials.AnyAsync(x => x.IsnMaterial == material.IsnMaterial, cancellationToken))
+            throw new BusinessLogicException($"Материал с идентификатором \"{material.IsnMaterial}\" не существует");
     }
 }

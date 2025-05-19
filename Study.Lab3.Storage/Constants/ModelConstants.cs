@@ -91,6 +91,16 @@ public static class ModelConstants
         /// Максимальная длина описания
         /// </summary>
         public const int Description = 2000;
+
+        /// <summary>
+        /// Максимальная оценка за задание
+        /// </summary>
+        public const int MaxScore = 100;
+
+        /// <summary>
+        /// Минимальная оценка за задание
+        /// </summary>
+        public const int MinScore = 1;
     }
 
     public static class Material

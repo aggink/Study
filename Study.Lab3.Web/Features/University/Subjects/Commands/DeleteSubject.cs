@@ -12,7 +12,9 @@ namespace Study.Lab3.Web.Features.University.Subjects.Commands;
 /// </summary>
 public sealed class DeleteSubjectCommand : IRequest
 {
-    [Required][FromQuery] public Guid IsnSubject { get; init; }
+    [Required]
+    [FromQuery]
+    public Guid IsnSubject { get; init; }
 }
 
 public sealed class DeleteSubjectCommandHandler : IRequestHandler<DeleteSubjectCommand>
@@ -26,8 +28,7 @@ public sealed class DeleteSubjectCommandHandler : IRequestHandler<DeleteSubjectC
 
     public async Task Handle(DeleteSubjectCommand request, CancellationToken cancellationToken)
     {
-        var subject =
-            await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.IsnSubject, cancellationToken)
+        var subject = await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.IsnSubject, cancellationToken)
             ?? throw new BusinessLogicException($"Предмета с идентификатором \"{request.IsnSubject}\" не существует");
 
         _dataContext.Subjects.Remove(subject);

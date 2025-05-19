@@ -39,6 +39,6 @@ public sealed record CreateAssignmentDto
     /// Максимальная оценка
     /// </summary>
     [Required]
-    [Range(1, 100)]
+    [Range(ModelConstants.Assignment.MinScore, ModelConstants.Assignment.MaxScore)]
     public int MaxScore { get; init; }
 }
