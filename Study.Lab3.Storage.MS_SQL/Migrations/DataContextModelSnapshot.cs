@@ -17,7 +17,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -29,7 +29,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<bool>("IsImportant")
                         .HasColumnType("bit");
@@ -79,7 +80,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<Guid>("IsnSubject")
                         .HasColumnType("uniqueidentifier");
@@ -149,7 +151,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<Guid>("IsnSubject")
                         .HasColumnType("uniqueidentifier");
