@@ -13,7 +13,8 @@ public sealed class SubjectService : ISubjectService
         Subject subject,
         CancellationToken cancellationToken = default)
     {
-        if (await dataContext.Subjects.AnyAsync(x => x.IsnSubject != subject.IsnSubject && x.Name == subject.Name, cancellationToken))
+        if (await dataContext.Subjects.AnyAsync(x => x.IsnSubject != subject.IsnSubject && x.Name == subject.Name,
+                cancellationToken))
             throw new BusinessLogicException($"Предмет с названием \"{subject.IsnSubject}\" уже существует");
     }
 }
