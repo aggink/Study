@@ -20,5 +20,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITeacherService, TeacherService>();
         services.AddSingleton<ITeacherSubjectService, TeacherSubjectService>();
         services.AddSingleton<IGradeService, GradeService>();
+        services.AddSingleton<IAssignmentService, AssignmentService>();
+        services.AddSingleton<IMaterialService, MaterialService>();
+        services.AddSingleton<IAnnouncementService, AnnouncementService>();
     }
 }

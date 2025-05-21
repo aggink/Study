@@ -79,4 +79,58 @@ public static class ModelConstants
         /// </summary>
         public const int MaxValue = 5;
     }
+
+    public static class Assignment
+    {
+        /// <summary>
+        /// Максимальная длина названия задания
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина описания
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Максимальная оценка за задание
+        /// </summary>
+        public const int MaxScore = 100;
+
+        /// <summary>
+        /// Минимальная оценка за задание
+        /// </summary>
+        public const int MinScore = 1;
+    }
+
+    public static class Material
+    {
+        /// <summary>
+        /// Максимальная длина названия материала
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина описания
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Максимальная длина типа материала
+        /// </summary>
+        public const int Type = 50;
+    }
+
+    public static class Announcement
+    {
+        /// <summary>
+        /// Максимальная длина заголовка объявления
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина содержимого задания
+        /// </summary>
+        public const int Content = 2000;
+    }
 }
