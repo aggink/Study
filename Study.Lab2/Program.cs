@@ -1,6 +1,7 @@
 ﻿using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.eldarovskiy;
+using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
@@ -77,6 +78,8 @@ public static class Program
                 return new KattyHttpService();
             case ("idb-23-03", 10):
                 return new poigkoService();
+            case ("idb-23-02", 24):
+                return new CherryyService();
             default:
                 throw new NotSupportedException();
         }
