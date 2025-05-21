@@ -3,7 +3,7 @@ using System.Text.Json;
 using Moq;
 using Moq.Protected;
 using Study.Lab2.Logic.poigko;
-using Study.Lab2.Logic.poigko.DtoModel;
+using Study.Lab2.Logic.poigko.DtoModels;
 
 namespace Study.Lab2.Logic.UnitTests.poigko;
 

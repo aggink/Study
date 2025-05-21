@@ -2,7 +2,7 @@
 using System.Text.Json;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.poigko;
-using Study.Lab2.Logic.poigko.DtoModel;
+using Study.Lab2.Logic.poigko.DtoModels;
 
 namespace Study.Lab2.Logic.poigko;
 

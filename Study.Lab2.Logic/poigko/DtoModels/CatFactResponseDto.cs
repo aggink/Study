@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Study.Lab2.Logic.poigko.DtoModel;
+namespace Study.Lab2.Logic.poigko.DtoModels;
 
 public sealed record CatFactResponseDto
 {
