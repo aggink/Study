@@ -6,8 +6,4 @@
     <Folder Include="kinkiss1\Task2\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="katty\" />
-  </ItemGroup>
-
 </Project>

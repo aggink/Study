@@ -1,7 +1,8 @@
-﻿using Study.Lab1.Logic.Interfaces.kinkiss1.task1;
+﻿using Study.Lab1.Logic.Interfaces.kinkiss1.Task1;
+
 namespace Study.Lab1.Logic.kinkiss1.task1;
 
-public class RationalNumber : IRationalNum
+public class RationalNumber : IRationalNumber
 {
     public int Numerator { get; }
 
@@ -88,9 +89,11 @@ public class RationalNumber : IRationalNum
     {
         return a.Numerator * b.Denominator >= b.Numerator * a.Denominator;
     }
+
     #endregion
 
     #region Методы
+
     /// <summary>
     /// Переопределение метода ToString
     /// </summary>
@@ -146,5 +149,6 @@ public class RationalNumber : IRationalNum
 
         return one;
     }
+
     #endregion
 }

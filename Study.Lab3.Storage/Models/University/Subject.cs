@@ -26,4 +26,17 @@ public class Subject
     /// </summary>
     [InverseProperty(nameof(SubjectGroup.Subject))]
     public virtual ICollection<SubjectGroup> GroupSubjects { get; set; }
+
+    /// <summary>
+    /// Оценки по предмету
+    /// </summary>
+    [InverseProperty(nameof(Grade.Subject))]
+    public virtual ICollection<Grade> Grades { get; set; }
+
+    /// <summary>
+    /// Связь с учителями
+    /// </summary>
+    [InverseProperty(nameof(Grade.Subject))]
+    public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
+
 }

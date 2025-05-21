@@ -1,7 +1,14 @@
 ﻿using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.brnvika;
+using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.Interfaces;
-
+using Study.Lab2.Logic.katty;
+using Study.Lab2.Logic.kinkiss1;
+using Study.Lab2.Logic.lsokol14l;
+using Study.Lab2.Logic.poigko;
+using Study.Lab2.Logic.Selestz;
+using Study.Lab2.Logic.xynthh;
 public static class Program
 {
     /// <summary>
@@ -55,6 +62,22 @@ public static class Program
         {
             case ("assistant", 1):
                 return new AssistantService();
+            case ("idb-23-02", 15):
+                return new XynthhService();
+            case ("idb-23-02", 4):
+                return new brnvikaService();
+            case ("idb-23-02", 23):
+                return new SelestzService();
+            case ("idb-23-02", 2):
+                return new eldarovskiyService();
+            case ("idb-23-02", 6):
+                return new kinkiss1Service();
+            case ("idb-23-02", 19):
+                return new lsokol14lService();
+            case ("idb-23-02", 17):
+                return new KattyHttpService();
+            case ("idb-23-03", 10):
+                return new poigkoService();
             case ("idb-23-02", 24):
                 return new CherryyService();
             default:

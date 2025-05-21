@@ -22,6 +22,114 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
+                {
+                    b.Property<Guid>("IsnAnnouncement")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<bool>("IsImportant")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IsnTeacher")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("IsnAnnouncement");
+
+                    b.HasIndex("IsnTeacher");
+
+                    b.ToTable("Announcements");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AnnouncementGroup", b =>
+                {
+                    b.Property<Guid>("IsnAnnouncement")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnGroup")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("IsnAnnouncement", "IsnGroup");
+
+                    b.HasIndex("IsnGroup");
+
+                    b.HasIndex("IsnAnnouncement", "IsnGroup");
+
+                    b.ToTable("AnnouncementGroups");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Assignment", b =>
+                {
+                    b.Property<Guid>("IsnAssignment")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Deadline")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("MaxScore")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("IsnAssignment");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Assignments");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Grade", b =>
+                {
+                    b.Property<Guid>("IsnGrade")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("GradeDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnGrade");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Grades");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Group", b =>
                 {
                     b.Property<Guid>("IsnGroup")
@@ -35,6 +143,42 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnGroup");
 
                     b.ToTable("Groups");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
+                {
+                    b.Property<Guid>("IsnMaterial")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("IsnMaterial");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Materials");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
@@ -105,6 +249,122 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("SubjectsGroups");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Teacher", b =>
+                {
+                    b.Property<Guid>("IsnTeacher")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PatronymicName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Sex")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnTeacher");
+
+                    b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.TeacherSubject", b =>
+                {
+                    b.Property<Guid>("IsnTeacher")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("IsnTeacher", "IsnSubject");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.HasIndex("IsnTeacher", "IsnSubject");
+
+                    b.ToTable("TeacherSubjects");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("IsnTeacher")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AnnouncementGroup", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Announcement", "Announcement")
+                        .WithMany("AnnouncementGroups")
+                        .HasForeignKey("IsnAnnouncement")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Group", "Group")
+                        .WithMany()
+                        .HasForeignKey("IsnGroup")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Announcement");
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Assignment", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Grade", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Grades")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("Grades")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Group", "Group")
@@ -135,6 +395,30 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.TeacherSubject", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("TeacherSubjects")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
+                        .WithMany("TeacherSubjects")
+                        .HasForeignKey("IsnTeacher")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Subject");
+
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
+                {
+                    b.Navigation("AnnouncementGroups");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Group", b =>
                 {
                     b.Navigation("Students");
@@ -142,9 +426,23 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("SubjectGroups");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
+                {
+                    b.Navigation("Grades");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
+                    b.Navigation("Grades");
+
                     b.Navigation("GroupSubjects");
+
+                    b.Navigation("TeacherSubjects");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Teacher", b =>
+                {
+                    b.Navigation("TeacherSubjects");
                 });
 #pragma warning restore 612, 618
         }
