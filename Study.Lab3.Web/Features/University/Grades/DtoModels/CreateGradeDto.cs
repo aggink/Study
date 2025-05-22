@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Study.Lab3.Storage.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Grades.DtoModels;
 
@@ -20,7 +21,7 @@ public sealed record CreateGradeDto
     /// Значение оценки
     /// </summary>
     [Required]
-    [Range(2, 5)]
+    [Range(ModelConstants.Grade.MinValue, ModelConstants.Grade.MaxValue)]
     public int Value { get; init; }
 
     /// <summary>
