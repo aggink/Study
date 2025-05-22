@@ -44,13 +44,7 @@ public sealed class DeleteExamResultCommandHandler : IRequestHandler<DeleteExamR
 
         await _resultService.CanDeleteAndThrowAsync(
             _dataContext, result, cancellationToken);
-
-        // Обновляем статус регистрации на "Registered"
-        if (result.Registration != null)
-        {
-            result.Registration.Status = RegistrationStatus.Registered;
-        }
-
+        
         _dataContext.ExamResults.Remove(result);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }

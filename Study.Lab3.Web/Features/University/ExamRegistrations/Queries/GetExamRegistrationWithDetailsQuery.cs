@@ -32,22 +32,29 @@ public sealed class GetExamRegistrationWithDetailsQueryHandler : IRequestHandler
 
     public async Task<ExamRegistrationWithDetailsDto> Handle(GetExamRegistrationWithDetailsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.ExamRegistrations
+        var examRegistration = await _dataContext.ExamRegistrations
             .AsNoTracking()
-            .Where(x => x.IsnExamRegistration == request.IsnExamRegistration)
-            .Select(x => new ExamRegistrationWithDetailsDto
-            {
-                IsnExamRegistration = x.IsnExamRegistration,
-                IsnExam = x.IsnExam,
-                ExamName = x.Exam.Name,
-                IsnStudent = x.IsnStudent,
-                StudentFullName = $"{x.Student.SurName} {x.Student.Name} {x.Student.PatronymicName}",
-                RegistrationDate = x.RegistrationDate,
-                ExamDate = x.Exam.ExamDate,
-                Status = x.Status,
-                HasResult = x.Result != null
-            })
-            .FirstOrDefaultAsync(cancellationToken)
-            ?? throw new BusinessLogicException($"Регистрация с идентификатором \"{request.IsnExamRegistration}\" не существует");
+            .Include(x => x.Exam)
+            .Include(x => x.Student)
+            .Include(x => x.Result)
+            .FirstOrDefaultAsync(x => x.IsnExamRegistration == request.IsnExamRegistration, cancellationToken);
+
+        if (examRegistration == null)
+        {
+            throw new BusinessLogicException($"Регистрация с идентификатором \"{request.IsnExamRegistration}\" не существует");
+        }
+
+        return new ExamRegistrationWithDetailsDto
+        {
+            IsnExamRegistration = examRegistration.IsnExamRegistration,
+            IsnExam = examRegistration.IsnExam,
+            ExamName = examRegistration.Exam.Name,
+            IsnStudent = examRegistration.IsnStudent,
+            StudentFullName = $"{examRegistration.Student.SurName} {examRegistration.Student.Name} {examRegistration.Student.PatronymicName}",
+            RegistrationDate = examRegistration.RegistrationDate,
+            ExamDate = examRegistration.Exam.ExamDate,
+            Status = examRegistration.Status,
+            HasResult = examRegistration.Result != null
+        };
     }
 }

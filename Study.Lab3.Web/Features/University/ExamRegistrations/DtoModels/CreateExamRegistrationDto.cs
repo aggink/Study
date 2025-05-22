@@ -26,5 +26,5 @@ public sealed record CreateExamRegistrationDto
     /// Статус регистрации
     /// </summary>
     [Required]
-    public RegistrationStatus Status { get; init; } = RegistrationStatus.Registered;
+    public RegistrationStatus Status { get; init; }
 }

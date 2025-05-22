@@ -39,4 +39,10 @@ public class Subject
     [InverseProperty(nameof(Grade.Subject))]
     public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
 
+
+    /// <summary>
+    /// Связь с экзаменами
+    /// </summary>
+    [InverseProperty(nameof(Exam.Subject))]
+    public virtual ICollection<Exam> Exams { get; set; } = new List<Exam>();
 }

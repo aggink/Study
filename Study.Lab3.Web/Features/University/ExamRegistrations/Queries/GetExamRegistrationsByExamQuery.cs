@@ -35,9 +35,16 @@ public sealed class GetExamRegistrationsByExamQueryHandler : IRequestHandler<Get
         if (!await _dataContext.Exams.AnyAsync(x => x.IsnExam == request.IsnExam, cancellationToken))
             throw new BusinessLogicException($"Экзамен с идентификатором \"{request.IsnExam}\" не существует");
 
-        return await _dataContext.ExamRegistrations
+        var examRegistrations = await _dataContext.ExamRegistrations
             .AsNoTracking()
+            .Include(x => x.Exam)
+            .Include(x => x.Student)
+            .Include(x => x.Result)
             .Where(x => x.IsnExam == request.IsnExam)
+            .ToArrayAsync(cancellationToken);
+
+        return examRegistrations
+            .OrderBy(x => $"{x.Student.SurName} {x.Student.Name} {x.Student.PatronymicName}")
             .Select(x => new ExamRegistrationWithDetailsDto
             {
                 IsnExamRegistration = x.IsnExamRegistration,
@@ -50,7 +57,6 @@ public sealed class GetExamRegistrationsByExamQueryHandler : IRequestHandler<Get
                 Status = x.Status,
                 HasResult = x.Result != null
             })
-            .OrderBy(x => x.StudentFullName)
-            .ToArrayAsync(cancellationToken);
+            .ToArray();
     }
 }
