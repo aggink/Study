@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.ExamResults.DtoModels;
 using System.ComponentModel.DataAnnotations;
+using Study.Lab3.Logic.Extensions.University;
 
 namespace Study.Lab3.Web.Features.University.ExamResults.Queries;
 
@@ -45,7 +46,7 @@ public sealed class GetExamResultsByStudentQueryHandler : IRequestHandler<GetExa
                 IsnExam = x.Registration.IsnExam,
                 ExamName = x.Registration.Exam.Name,
                 IsnStudent = x.Registration.IsnStudent,
-                StudentFullName = $"{x.Registration.Student.SurName} {x.Registration.Student.Name} {x.Registration.Student.PatronymicName}",
+                StudentFullName = x.Registration.Student.GetFio(),
                 ExamDate = x.Registration.Exam.ExamDate,
                 MaxScore = x.Registration.Exam.MaxScore,
                 PassingScore = x.Registration.Exam.PassingScore,
