@@ -40,6 +40,12 @@ public class Teacher
     public SexType Sex { get; set; }
 
     /// <summary>
+    /// Объявление от преподавателя
+    /// </summary>
+    [InverseProperty(nameof(Announcement.Teacher))]
+    public virtual ICollection<Announcement> Announcements { get; set; }
+
+    /// <summary>
     /// Связь с таблицей учителя - предметы
     /// </summary>
     [InverseProperty(nameof(TeacherSubject.Teacher))]

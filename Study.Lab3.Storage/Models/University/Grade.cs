@@ -43,12 +43,10 @@ public class Grade
     /// <summary>
     /// Студент
     /// </summary>
-    [InverseProperty(nameof(Student.Grades))]
     public virtual Student Student { get; set; }
 
     /// <summary>
     /// Предмет
     /// </summary>
-    [InverseProperty(nameof(Subject.Grades))]
     public virtual Subject Subject { get; set; }
 }
