@@ -68,5 +68,5 @@ public class Student
     /// Список регистраций студента на экзамены
     /// </summary>
     [InverseProperty(nameof(ExamRegistration.Student))]
-    public virtual ICollection<ExamRegistration> ExamRegistrations { get; set; } = new List<ExamRegistration>();
+    public virtual ICollection<ExamRegistration> ExamRegistrations { get; set; }
 }

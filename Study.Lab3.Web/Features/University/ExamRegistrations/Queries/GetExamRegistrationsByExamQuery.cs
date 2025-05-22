@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
 using System.ComponentModel.DataAnnotations;
+using Study.Lab3.Logic.Extensions.University;
 
 namespace Study.Lab3.Web.Features.University.ExamRegistrations.Queries;
 
@@ -35,28 +36,27 @@ public sealed class GetExamRegistrationsByExamQueryHandler : IRequestHandler<Get
         if (!await _dataContext.Exams.AnyAsync(x => x.IsnExam == request.IsnExam, cancellationToken))
             throw new BusinessLogicException($"Экзамен с идентификатором \"{request.IsnExam}\" не существует");
 
-        var examRegistrations = await _dataContext.ExamRegistrations
+        return await _dataContext.ExamRegistrations
             .AsNoTracking()
             .Include(x => x.Exam)
             .Include(x => x.Student)
             .Include(x => x.Result)
             .Where(x => x.IsnExam == request.IsnExam)
-            .ToArrayAsync(cancellationToken);
-
-        return examRegistrations
-            .OrderBy(x => $"{x.Student.SurName} {x.Student.Name} {x.Student.PatronymicName}")
+            .OrderBy(x => x.Student.SurName)
+                .ThenBy(x => x.Student.Name)
+                    .ThenBy(x => x.Student.PatronymicName)
             .Select(x => new ExamRegistrationWithDetailsDto
             {
                 IsnExamRegistration = x.IsnExamRegistration,
                 IsnExam = x.IsnExam,
                 ExamName = x.Exam.Name,
                 IsnStudent = x.IsnStudent,
-                StudentFullName = $"{x.Student.SurName} {x.Student.Name} {x.Student.PatronymicName}",
+                StudentFullName = x.Student.GetFio(),
                 RegistrationDate = x.RegistrationDate,
                 ExamDate = x.Exam.ExamDate,
                 Status = x.Status,
                 HasResult = x.Result != null
             })
-            .ToArray();
+            .ToArrayAsync(cancellationToken);
     }
 }

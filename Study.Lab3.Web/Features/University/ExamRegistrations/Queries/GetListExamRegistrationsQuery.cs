@@ -23,18 +23,17 @@ public sealed class GetListExamRegistrationsQueryHandler : IRequestHandler<GetLi
 
     public async Task<ExamRegistrationDto[]> Handle(GetListExamRegistrationsQuery request, CancellationToken cancellationToken)
     {
-        var examRegistrations = await _dataContext.ExamRegistrations
+        return await _dataContext.ExamRegistrations
             .AsNoTracking()
             .OrderByDescending(x => x.RegistrationDate)
+            .Select(x => new ExamRegistrationDto
+            {
+                IsnExamRegistration = x.IsnExamRegistration,
+                IsnExam = x.IsnExam,
+                IsnStudent = x.IsnStudent,
+                RegistrationDate = x.RegistrationDate,
+                Status = x.Status
+            })
             .ToArrayAsync(cancellationToken);
-
-        return examRegistrations.Select(x => new ExamRegistrationDto
-        {
-            IsnExamRegistration = x.IsnExamRegistration,
-            IsnExam = x.IsnExam,
-            IsnStudent = x.IsnStudent,
-            RegistrationDate = x.RegistrationDate,
-            Status = x.Status
-        }).ToArray();
     }
 }

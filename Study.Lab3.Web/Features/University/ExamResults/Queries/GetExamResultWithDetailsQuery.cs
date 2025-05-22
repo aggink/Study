@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.ExamResults.DtoModels;
 using System.ComponentModel.DataAnnotations;
+using Study.Lab3.Logic.Extensions.University;
 
 namespace Study.Lab3.Web.Features.University.ExamResults.Queries;
 
@@ -32,25 +33,28 @@ public sealed class GetExamResultWithDetailsQueryHandler : IRequestHandler<GetEx
 
     public async Task<ExamResultWithDetailsDto> Handle(GetExamResultWithDetailsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.ExamResults
-            .AsNoTracking()
-            .Where(x => x.IsnExamResult == request.IsnExamResult)
-            .Select(x => new ExamResultWithDetailsDto
-            {
-                IsnExamResult = x.IsnExamResult,
-                IsnExamRegistration = x.IsnExamRegistration,
-                IsnExam = x.Registration.IsnExam,
-                ExamName = x.Registration.Exam.Name,
-                IsnStudent = x.Registration.IsnStudent,
-                StudentFullName = $"{x.Registration.Student.SurName} {x.Registration.Student.Name} {x.Registration.Student.PatronymicName}",
-                ExamDate = x.Registration.Exam.ExamDate,
-                MaxScore = x.Registration.Exam.MaxScore,
-                PassingScore = x.Registration.Exam.PassingScore,
-                Score = x.Score,
-                IsPassed = x.IsPassed,
-                Comments = x.Comments
-            })
-            .FirstOrDefaultAsync(cancellationToken)
-            ?? throw new BusinessLogicException($"Результат с идентификатором \"{request.IsnExamResult}\" не существует");
+        var examResult = await _dataContext.ExamResults
+                             .AsNoTracking()
+                             .Include(x => x.Registration)
+                             .Include(x => x.Registration.Exam)
+                             .Include(x => x.Registration.Student)
+                             .FirstOrDefaultAsync(x => x.IsnExamResult == request.IsnExamResult, cancellationToken)
+                         ?? throw new BusinessLogicException($"Результат с идентификатором \"{request.IsnExamResult}\" не существует");
+
+        return new ExamResultWithDetailsDto
+        {
+            IsnExamResult = examResult.IsnExamResult,
+            IsnExamRegistration = examResult.IsnExamRegistration,
+            IsnExam = examResult.Registration.IsnExam,
+            ExamName = examResult.Registration.Exam.Name,
+            IsnStudent = examResult.Registration.IsnStudent,
+            StudentFullName = examResult.Registration.Student.GetFio(),
+            ExamDate = examResult.Registration.Exam.ExamDate,
+            MaxScore = examResult.Registration.Exam.MaxScore,
+            PassingScore = examResult.Registration.Exam.PassingScore,
+            Score = examResult.Score,
+            IsPassed = examResult.IsPassed,
+            Comments = examResult.Comments
+        };
     }
 }

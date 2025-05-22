@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
 using System.ComponentModel.DataAnnotations;
+using Study.Lab3.Logic.Extensions.University;
 
 namespace Study.Lab3.Web.Features.University.ExamRegistrations.Queries;
 
@@ -35,26 +36,25 @@ public sealed class GetExamRegistrationsByStudentQueryHandler : IRequestHandler<
         if (!await _dataContext.Students.AnyAsync(x => x.IsnStudent == request.IsnStudent, cancellationToken))
             throw new BusinessLogicException($"Студент с идентификатором \"{request.IsnStudent}\" не существует");
 
-        var examRegistrations = await _dataContext.ExamRegistrations
+        return await _dataContext.ExamRegistrations
             .AsNoTracking()
             .Include(x => x.Exam)
             .Include(x => x.Student)
             .Include(x => x.Result)
             .Where(x => x.IsnStudent == request.IsnStudent)
             .OrderBy(x => x.Exam.ExamDate)
+            .Select(x => new ExamRegistrationWithDetailsDto
+            {
+                IsnExamRegistration = x.IsnExamRegistration,
+                IsnExam = x.IsnExam,
+                ExamName = x.Exam.Name,
+                IsnStudent = x.IsnStudent,
+                StudentFullName = x.Student.GetFio(),
+                RegistrationDate = x.RegistrationDate,
+                ExamDate = x.Exam.ExamDate,
+                Status = x.Status,
+                HasResult = x.Result != null
+            })
             .ToArrayAsync(cancellationToken);
-
-        return examRegistrations.Select(x => new ExamRegistrationWithDetailsDto
-        {
-            IsnExamRegistration = x.IsnExamRegistration,
-            IsnExam = x.IsnExam,
-            ExamName = x.Exam.Name,
-            IsnStudent = x.IsnStudent,
-            StudentFullName = $"{x.Student.SurName} {x.Student.Name} {x.Student.PatronymicName}",
-            RegistrationDate = x.RegistrationDate,
-            ExamDate = x.Exam.ExamDate,
-            Status = x.Status,
-            HasResult = x.Result != null
-        }).ToArray();
     }
 }

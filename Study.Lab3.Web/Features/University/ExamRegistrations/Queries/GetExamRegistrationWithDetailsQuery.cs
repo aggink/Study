@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
 using System.ComponentModel.DataAnnotations;
+using Study.Lab3.Logic.Extensions.University;
 
 namespace Study.Lab3.Web.Features.University.ExamRegistrations.Queries;
 
@@ -50,7 +51,7 @@ public sealed class GetExamRegistrationWithDetailsQueryHandler : IRequestHandler
             IsnExam = examRegistration.IsnExam,
             ExamName = examRegistration.Exam.Name,
             IsnStudent = examRegistration.IsnStudent,
-            StudentFullName = $"{examRegistration.Student.SurName} {examRegistration.Student.Name} {examRegistration.Student.PatronymicName}",
+            StudentFullName = examRegistration.Student.GetFio(),
             RegistrationDate = examRegistration.RegistrationDate,
             ExamDate = examRegistration.Exam.ExamDate,
             Status = examRegistration.Status,

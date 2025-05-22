@@ -32,23 +32,25 @@ public sealed class GetExamWithDetailsQueryHandler : IRequestHandler<GetExamWith
 
     public async Task<ExamWithDetailsDto> Handle(GetExamWithDetailsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.Exams
-                   .AsNoTracking()
-                   .Where(x => x.IsnExam == request.IsnExam)
-                   .Select(x => new ExamWithDetailsDto
-                   {
-                       IsnExam = x.IsnExam,
-                       IsnSubject = x.IsnSubject,
-                       SubjectName = x.Subject.Name,
-                       Name = x.Name,
-                       Description = x.Description,
-                       ExamDate = x.ExamDate,
-                       Duration = x.Duration,
-                       MaxScore = x.MaxScore,
-                       PassingScore = x.PassingScore,
-                       RegisteredStudentsCount = x.Registrations.Count
-                   })
-                   .FirstOrDefaultAsync(cancellationToken)
-               ?? throw new BusinessLogicException($"Экзамен с идентификатором \"{request.IsnExam}\" не существует");
+        var exam = await _dataContext.Exams
+                       .AsNoTracking()
+                       .Include(x => x.Subject)
+                       .Include(x => x.Registrations)
+                       .FirstOrDefaultAsync(x => x.IsnExam == request.IsnExam, cancellationToken)
+                   ?? throw new BusinessLogicException($"Экзамен с идентификатором \"{request.IsnExam}\" не существует");
+
+        return new ExamWithDetailsDto
+        {
+            IsnExam = exam.IsnExam,
+            IsnSubject = exam.IsnSubject,
+            SubjectName = exam.Subject.Name,
+            Name = exam.Name,
+            Description = exam.Description,
+            ExamDate = exam.ExamDate,
+            Duration = exam.Duration,
+            MaxScore = exam.MaxScore,
+            PassingScore = exam.PassingScore,
+            RegisteredStudentsCount = exam.Registrations.Count
+        };
     }
 }

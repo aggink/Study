@@ -42,7 +42,6 @@ public sealed class CreateExamRegistrationCommandHandler : IRequestHandler<Creat
             IsnExam = request.Registration.IsnExam,
             IsnStudent = request.Registration.IsnStudent,
             RegistrationDate = request.Registration.RegistrationDate,
-            Status = request.Registration.Status
         };
 
         await _registrationService.CreateOrUpdateRegistrationValidateAndThrowAsync(
