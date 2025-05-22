@@ -36,9 +36,20 @@ public class Subject
     /// <summary>
     /// Связь с учителями
     /// </summary>
-    [InverseProperty(nameof(Grade.Subject))]
+    [InverseProperty(nameof(TeacherSubject.Subject))]
     public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
 
+    /// <summary>
+    /// Связь с предметами
+    /// </summary>
+    [InverseProperty(nameof(Assignment.Subject))]
+    public virtual ICollection<Assignment> Assignments { get; set; }
+
+    /// <summary>
+    /// Учебные материалы
+    /// </summary>
+    [InverseProperty(nameof(Material.Subject))]
+    public virtual ICollection<Material> Materials { get; set; }
 
     /// <summary>
     /// Связь с экзаменами
