@@ -6,8 +6,8 @@ namespace Study.Lab2.Logic.SlavicSquat;
 
 public class SlavicSquatService : IRunService
 {
-    private readonly IRequestService _requestHandler;
     private string[] _apiUrls = new string[3];
+    private readonly IRequestService _requestHandler;
 
     public SlavicSquatService()
     {

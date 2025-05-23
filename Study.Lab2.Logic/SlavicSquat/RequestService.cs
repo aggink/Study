@@ -20,20 +20,20 @@ public class RequestService : IRequestService
     public string FetchData(string url)
     {
         var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
-        ValidateResponse(response);
-        return JsonNode.Parse(response.Content.ReadAsStringAsync().Result).ToJsonString();
+
+        if (!response.IsSuccessStatusCode)
+            throw new Exception($"HTTP {response.StatusCode}: {response.ReasonPhrase}");
+
+        return response.Content.ReadAsStringAsync().Result;
     }
 
     public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default)
     {
         var response = await _httpClient.GetAsync(url, cancellationToken);
-        ValidateResponse(response);
-        return JsonNode.Parse(await response.Content.ReadAsStringAsync(cancellationToken)).ToJsonString();
-    }
 
-    private void ValidateResponse(HttpResponseMessage response)
-    {
         if (!response.IsSuccessStatusCode)
             throw new Exception($"HTTP {response.StatusCode}: {response.ReasonPhrase}");
+
+        return JsonNode.Parse(await response.Content.ReadAsStringAsync(cancellationToken)).ToJsonString();
     }
 }

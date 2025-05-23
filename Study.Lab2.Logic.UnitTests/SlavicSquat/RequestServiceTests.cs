@@ -8,6 +8,8 @@ namespace Study.Lab2.Logic.UnitTests.SlavicSquat;
 [TestFixture]
 public class RequestServiceTests
 {
+    private const string TEST_URL = "http://test";
+
     [Test]
     public void FetchData_ReturnsJsonString_OnSuccess()
     {
@@ -32,7 +34,7 @@ public class RequestServiceTests
         using var svc = new RequestService(httpClient);
 
         // Act
-        var result = svc.FetchData("http://test");
+        var result = svc.FetchData(TEST_URL);
 
         // Assert
         Assert.That(result, Is.EqualTo("{\"foo\":123}"));
@@ -60,7 +62,7 @@ public class RequestServiceTests
         var httpClient = new HttpClient(handlerMock.Object);
         using var svc = new RequestService(httpClient);
 
-        Assert.Throws<Exception>(() => svc.FetchData("http://test"));
+        Assert.Throws<Exception>(() => svc.FetchData(TEST_URL));
     }
 
     [Test]
@@ -85,7 +87,7 @@ public class RequestServiceTests
         var httpClient = new HttpClient(handlerMock.Object);
         using var svc = new RequestService(httpClient);
 
-        var result = await svc.FetchDataAsync("http://test");
+        var result = await svc.FetchDataAsync(TEST_URL);
         Assert.That(result, Is.EqualTo("{\"bar\":456}"));
     }
 
@@ -111,6 +113,6 @@ public class RequestServiceTests
         var httpClient = new HttpClient(handlerMock.Object);
         using var svc = new RequestService(httpClient);
 
-        Assert.ThrowsAsync<Exception>(async () => await svc.FetchDataAsync("http://test"));
+        Assert.ThrowsAsync<Exception>(async () => await svc.FetchDataAsync(TEST_URL));
     }
 }
