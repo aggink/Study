@@ -12,7 +12,7 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250521192140_AddExaminationSystem")]
+    [Migration("20250523195149_AddExaminationSystem")]
     partial class AddExaminationSystem
     {
         /// <inheritdoc />
@@ -388,7 +388,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
-                        .WithMany()
+                        .WithMany("Announcements")
                         .HasForeignKey("IsnTeacher")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -405,7 +405,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Group", "Group")
-                        .WithMany()
+                        .WithMany("GroupAnnouncements")
                         .HasForeignKey("IsnGroup")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -418,7 +418,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Assignment", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Assignments")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -429,7 +429,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Exams")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -446,7 +446,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("ExamRegistrations")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -489,7 +489,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Materials")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -563,6 +563,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Group", b =>
                 {
+                    b.Navigation("GroupAnnouncements");
+
                     b.Navigation("Students");
 
                     b.Navigation("SubjectGroups");
@@ -570,20 +572,30 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
+                    b.Navigation("ExamRegistrations");
+
                     b.Navigation("Grades");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
+                    b.Navigation("Assignments");
+
+                    b.Navigation("Exams");
+
                     b.Navigation("Grades");
 
                     b.Navigation("GroupSubjects");
+
+                    b.Navigation("Materials");
 
                     b.Navigation("TeacherSubjects");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Teacher", b =>
                 {
+                    b.Navigation("Announcements");
+
                     b.Navigation("TeacherSubjects");
                 });
 #pragma warning restore 612, 618
