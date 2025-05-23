@@ -63,4 +63,19 @@ public class DataContext : DbContext
     /// Связь объявлений с группами
     /// </summary>
     public virtual DbSet<AnnouncementGroup> AnnouncementGroups { get; set; }
+
+    /// <summary>
+    /// Экзамены
+    /// </summary>
+    public virtual DbSet<Exam> Exams { get; set; }
+
+    /// <summary>
+    /// Регистрации на экзамены
+    /// </summary>
+    public virtual DbSet<ExamRegistration> ExamRegistrations { get; set; }
+
+    /// <summary>
+    /// Результаты экзаменов
+    /// </summary>
+    public virtual DbSet<ExamResult> ExamResults { get; set; }
 }
