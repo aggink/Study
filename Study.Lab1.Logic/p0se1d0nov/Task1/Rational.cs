@@ -55,7 +55,7 @@ public class Rational
     {
         if (denominator_ == 1)
         {
-            return $"{numerator_}"
+            return $"{numerator_}";
         }
         return $"{numerator_}/{denominator_}";
     }
