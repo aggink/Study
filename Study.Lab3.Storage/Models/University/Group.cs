@@ -32,4 +32,10 @@ public class Group
     /// </summary>
     [InverseProperty(nameof(SubjectGroup.Group))]
     public virtual ICollection<SubjectGroup> SubjectGroups { get; set; }
+
+    /// <summary>
+    /// Связь объявления с группами
+    /// </summary>
+    [InverseProperty(nameof(AnnouncementGroup.Group))]
+    public virtual ICollection<AnnouncementGroup> GroupAnnouncements { get; set; }
 }

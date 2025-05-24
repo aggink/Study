@@ -23,5 +23,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IAssignmentService, AssignmentService>();
         services.AddSingleton<IMaterialService, MaterialService>();
         services.AddSingleton<IAnnouncementService, AnnouncementService>();
+        services.AddSingleton<IExamService, ExamService>();
+        services.AddSingleton<IExamRegistrationService, ExamRegistrationService>();
+        services.AddSingleton<IExamResultService, ExamResultService>();
     }
 }

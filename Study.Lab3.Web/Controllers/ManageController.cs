@@ -6,6 +6,15 @@ using Study.Lab3.Web.Features.University.Announcements.Queries;
 using Study.Lab3.Web.Features.University.Assignments.Commands;
 using Study.Lab3.Web.Features.University.Assignments.DtoModels;
 using Study.Lab3.Web.Features.University.Assignments.Queries;
+using Study.Lab3.Web.Features.University.ExamRegistrations.Commands;
+using Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
+using Study.Lab3.Web.Features.University.ExamRegistrations.Queries;
+using Study.Lab3.Web.Features.University.ExamResults.Commands;
+using Study.Lab3.Web.Features.University.ExamResults.DtoModels;
+using Study.Lab3.Web.Features.University.ExamResults.Queries;
+using Study.Lab3.Web.Features.University.Exams.Commands;
+using Study.Lab3.Web.Features.University.Exams.DtoModels;
+using Study.Lab3.Web.Features.University.Exams.Queries;
 using Study.Lab3.Web.Features.University.Grades.Commands;
 using Study.Lab3.Web.Features.University.Grades.DtoModels;
 using Study.Lab3.Web.Features.University.Grades.Queries;
@@ -753,6 +762,248 @@ public class ManageController : Controller
     [HttpGet(nameof(GetAnnouncementsByGroup), Name = nameof(GetAnnouncementsByGroup))]
     public async Task<ActionResult<AnnouncementDto[]>> GetAnnouncementsByGroup(
         [FromQuery] GetAnnouncementsByGroupQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Exam
+
+    /// <summary>
+    /// Создание экзамена
+    /// </summary>
+    [HttpPost(nameof(CreateExam), Name = nameof(CreateExam))]
+    public async Task<ActionResult<Guid>> CreateExam(CreateExamCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Обновление экзамена
+    /// </summary>
+    [HttpPost(nameof(UpdateExam), Name = nameof(UpdateExam))]
+    public async Task<ActionResult<Guid>> UpdateExam(UpdateExamCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление экзамена
+    /// </summary>
+    [HttpPost(nameof(DeleteExam), Name = nameof(DeleteExam))]
+    public async Task<ActionResult> DeleteExam(DeleteExamCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение экзамена по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetExamByIsn), Name = nameof(GetExamByIsn))]
+    public async Task<ActionResult<ExamDto>> GetExamByIsn([FromQuery] GetExamByIsnQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение экзамена с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetExamWithDetails), Name = nameof(GetExamWithDetails))]
+    public async Task<ActionResult<ExamWithDetailsDto>> GetExamWithDetails([FromQuery] GetExamWithDetailsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка экзаменов
+    /// </summary>
+    [HttpGet(nameof(GetListExams), Name = nameof(GetListExams))]
+    public async Task<ActionResult<ExamDto[]>> GetListExams([FromQuery] GetListExamsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение экзаменов по предмету
+    /// </summary>
+    [HttpGet(nameof(GetExamsBySubject), Name = nameof(GetExamsBySubject))]
+    public async Task<ActionResult<ExamDto[]>> GetExamsBySubject([FromQuery] GetExamsBySubjectQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region ExamRegistration
+
+    /// <summary>
+    /// Создание регистрации на экзамен
+    /// </summary>
+    [HttpPost(nameof(CreateExamRegistration), Name = nameof(CreateExamRegistration))]
+    public async Task<ActionResult<Guid>> CreateExamRegistration(CreateExamRegistrationCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Обновление регистрации на экзамен
+    /// </summary>
+    [HttpPost(nameof(UpdateExamRegistration), Name = nameof(UpdateExamRegistration))]
+    public async Task<ActionResult<Guid>> UpdateExamRegistration(UpdateExamRegistrationCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление регистрации на экзамен
+    /// </summary>
+    [HttpPost(nameof(DeleteExamRegistration), Name = nameof(DeleteExamRegistration))]
+    public async Task<ActionResult> DeleteExamRegistration(DeleteExamRegistrationCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение регистрации на экзамен по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetExamRegistrationByIsn), Name = nameof(GetExamRegistrationByIsn))]
+    public async Task<ActionResult<ExamRegistrationDto>> GetExamRegistrationByIsn([FromQuery] GetExamRegistrationByIsnQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение регистрации на экзамен с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetExamRegistrationWithDetails), Name = nameof(GetExamRegistrationWithDetails))]
+    public async Task<ActionResult<ExamRegistrationWithDetailsDto>> GetExamRegistrationWithDetails([FromQuery] GetExamRegistrationWithDetailsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка регистраций на экзамены
+    /// </summary>
+    [HttpGet(nameof(GetListExamRegistrations), Name = nameof(GetListExamRegistrations))]
+    public async Task<ActionResult<ExamRegistrationDto[]>> GetListExamRegistrations([FromQuery] GetListExamRegistrationsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение регистраций по экзамену
+    /// </summary>
+    [HttpGet(nameof(GetExamRegistrationsByExam), Name = nameof(GetExamRegistrationsByExam))]
+    public async Task<ActionResult<ExamRegistrationWithDetailsDto[]>> GetExamRegistrationsByExam([FromQuery] GetExamRegistrationsByExamQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение регистраций по студенту
+    /// </summary>
+    [HttpGet(nameof(GetExamRegistrationsByStudent), Name = nameof(GetExamRegistrationsByStudent))]
+    public async Task<ActionResult<ExamRegistrationWithDetailsDto[]>> GetExamRegistrationsByStudent([FromQuery] GetExamRegistrationsByStudentQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region ExamResult
+
+    /// <summary>
+    /// Создание результата экзамена
+    /// </summary>
+    [HttpPost(nameof(CreateExamResult), Name = nameof(CreateExamResult))]
+    public async Task<ActionResult<Guid>> CreateExamResult(CreateExamResultCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Обновление результата экзамена
+    /// </summary>
+    [HttpPost(nameof(UpdateExamResult), Name = nameof(UpdateExamResult))]
+    public async Task<ActionResult<Guid>> UpdateExamResult(UpdateExamResultCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление результата экзамена
+    /// </summary>
+    [HttpPost(nameof(DeleteExamResult), Name = nameof(DeleteExamResult))]
+    public async Task<ActionResult> DeleteExamResult(DeleteExamResultCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение результата экзамена по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetExamResultByIsn), Name = nameof(GetExamResultByIsn))]
+    public async Task<ActionResult<ExamResultDto>> GetExamResultByIsn([FromQuery] GetExamResultByIsnQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение результата экзамена с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetExamResultWithDetails), Name = nameof(GetExamResultWithDetails))]
+    public async Task<ActionResult<ExamResultWithDetailsDto>> GetExamResultWithDetails([FromQuery] GetExamResultWithDetailsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка результатов экзаменов
+    /// </summary>
+    [HttpGet(nameof(GetListExamResults), Name = nameof(GetListExamResults))]
+    public async Task<ActionResult<ExamResultDto[]>> GetListExamResults([FromQuery] GetListExamResultsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение результатов по экзамену
+    /// </summary>
+    [HttpGet(nameof(GetExamResultsByExam), Name = nameof(GetExamResultsByExam))]
+    public async Task<ActionResult<ExamResultWithDetailsDto[]>> GetExamResultsByExam([FromQuery] GetExamResultsByExamQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение результатов по студенту
+    /// </summary>
+    [HttpGet(nameof(GetExamResultsByStudent), Name = nameof(GetExamResultsByStudent))]
+    public async Task<ActionResult<ExamResultWithDetailsDto[]>> GetExamResultsByStudent([FromQuery] GetExamResultsByStudentQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
