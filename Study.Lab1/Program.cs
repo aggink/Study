@@ -24,6 +24,7 @@ using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.danaky1;
 
 
 public static class Program
@@ -123,6 +124,8 @@ public static class Program
                 return new love100rubbService();
             case ("idb-23-03", 10):
                 return new poigkoService();
+            case ("idb-23-03", 1):
+                return new danaky1Service();
             default:
                 throw new NotSupportedException();
         }

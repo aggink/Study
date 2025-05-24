@@ -10,7 +10,6 @@ public class RationalNumber : IRationalNumber
 
     public RationalNumber(int numerator, int denominator)
     {
-
         if (denominator == 0)
         {
             throw new DivideByZeroException("Знаменатель не может быть равен нулю");
