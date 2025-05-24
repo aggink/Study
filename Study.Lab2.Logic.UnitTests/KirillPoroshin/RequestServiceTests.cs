@@ -12,7 +12,7 @@ public class RequestServiceTests
 {
     private RequestService _requestService;
     private Mock<HttpMessageHandler> _httpMessageHandlerMock;
-    private readonly string _requestUrl = "http://numbersapi.com/42/trivia?json";
+    private const string _requestUrl = "http://numbersapi.com/42/trivia?json";
 
     [SetUp]
     public void Setup()
@@ -20,6 +20,12 @@ public class RequestServiceTests
         _httpMessageHandlerMock = new Mock<HttpMessageHandler>();
         var httpClient = new HttpClient(_httpMessageHandlerMock.Object);
         _requestService = new RequestService(httpClient);
+    }
+
+    [TearDown]
+    public void Dispose()
+    {
+        _requestService?.Dispose();
     }
 
     [Test]
@@ -64,11 +70,5 @@ public class RequestServiceTests
                 StatusCode = statusCode,
                 Content = new StringContent(content)
             });
-    }
-
-    [TearDown]
-    public void Dispose()
-    {
-        _requestService?.Dispose();
     }
 }

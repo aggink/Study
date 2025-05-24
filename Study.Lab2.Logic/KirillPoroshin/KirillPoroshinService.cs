@@ -8,13 +8,14 @@ namespace Study.Lab2.Logic.KirillPoroshin;
 
 public class KirillPoroshinService : IRunService
 {
-    private readonly IRequestService _requestService;
     private readonly string[] urls = new[]
     {
         "http://numbersapi.com/random/trivia?json",
         "http://numbersapi.com/random/math?json",
         "http://numbersapi.com/random/year?json"
     };
+
+    private readonly IRequestService _requestService;
 
     public KirillPoroshinService() : this(new RequestService(new HttpClient()))
     { }
