@@ -9,6 +9,7 @@ using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.KirillPoroshin;
 public static class Program
 {
     /// <summary>
@@ -80,6 +81,8 @@ public static class Program
                 return new poigkoService();
             case ("idb-23-02", 24):
                 return new CherryyService();
+            case ("idb-23-03", 17):
+                return new KirillPoroshinService();
             default:
                 throw new NotSupportedException();
         }
