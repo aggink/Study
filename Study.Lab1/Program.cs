@@ -21,6 +21,9 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
+using Study.Lab1.Logic.xynthh;
+using Study.Lab1.Logic.freaxd;
+using Study.Lab1.Logic.p0se1d0nov;
 using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
@@ -106,6 +109,8 @@ public static class Program
                 return new Pro100futaService();
             case ("idb-23-03", 16):
                 return new freaxdService();
+            case ("idb-23-03", 21):
+                return new p0se1d0nService();
             case ("idb-23-03", 17):
                 return new poroshokService();
             case ("idb-23-03", 4):
