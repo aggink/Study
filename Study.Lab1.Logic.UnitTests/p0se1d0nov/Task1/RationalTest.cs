@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Study.Lab1.Logic.p0se1d0nov.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.p0se1d0nov.Task1;
+
 [TestFixture]
 public class RationalTests
 {

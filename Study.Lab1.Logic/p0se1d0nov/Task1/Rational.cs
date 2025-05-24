@@ -15,7 +15,6 @@ public class Rational
     private int numerator_;
     private int denominator_;
 
-
     public Rational(int num, int den)
     {
         if (den == 0)
@@ -23,10 +22,9 @@ public class Rational
 
         numerator_ = num;
         denominator_ = den;
-        
+
         Simplify();
     }
-
 
     public int Numerator
     {
@@ -51,11 +49,11 @@ public class Rational
 
             Simplify();
         }
-    }   
+    }
 
     public String ToString()
     {
-        if(denominator_ == 1)
+        if (denominator_ == 1)
         {
             return $"{numerator_}"
         }
