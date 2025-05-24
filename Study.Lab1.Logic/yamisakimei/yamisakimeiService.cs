@@ -1,7 +1,6 @@
 ﻿using Study.Lab1.Logic.yamisakimei.Task1;
 using Study.Lab1.Logic.Interfaces;
 
-
 namespace Study.Lab1.Logic.yamisakimei;
 
 public class yamisakimeiService : IRunService
@@ -31,7 +30,6 @@ public class yamisakimeiService : IRunService
             $"d >= a: {d >= a}\n"
             );
     }
-
     public void RunTask2()
     {
         throw new NotImplementedException();

@@ -6,7 +6,7 @@ namespace Study.Lab1.Logic.UnitTests.yamisakimei.Task1;
 public class RationalNumberTests
 {
     [Test]
-    public void correctlyInput()
+    public void СorrectlyInput()
     {
         var value = new RationalNumber(5, 10);
         Assert.AreEqual(1, value.Numerator);
@@ -14,7 +14,7 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlySumm()
+    public void СorrectlySumm()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(2, 7);
@@ -23,7 +23,7 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlyMultiply()
+    public void СorrectlyMultiply()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(2, 7);
@@ -32,7 +32,7 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlyDivide()
+    public void СorrectlyDivide()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(2, 7);
@@ -41,7 +41,7 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlySubtraction()
+    public void СorrectlySubtraction()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(2, 7);
@@ -50,7 +50,7 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlyEquality()
+    public void СorrectlyEquality()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(6, 8);
@@ -58,7 +58,7 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlyInequality()
+    public void СorrectlyInequality()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(2, 7);
@@ -66,14 +66,14 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlyToString()
+    public void СorrectlyToString()
     {
         var value = new RationalNumber(3, 4);
         Assert.AreEqual("3/4", value.ToString());
     }
 
     [Test]
-    public void correctlyReturnEquals()
+    public void СorrectlyReturnEquals()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(6, 8);
@@ -81,7 +81,7 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlyHashCode()
+    public void СorrectlyHashCode()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(6, 8);
@@ -89,37 +89,33 @@ public class RationalNumberTests
     }
 
     [Test]
-    public void correctlyOtricanie()
+    public void СorrectlyOtricanie()
     {
         var value = new RationalNumber(3, 4);
         Assert.AreEqual(new RationalNumber(-3, 4), -value);
     }
 
     [Test]
-    public void correctlySravnenie()
+    public void СorrectlySravnenie()
     {
         var firstValue = new RationalNumber(3, 4);
         var secondValue = new RationalNumber(2, 7);
-
         Assert.That(secondValue < firstValue, Is.True);
         Assert.That(secondValue <= firstValue, Is.True);
         Assert.That(secondValue > firstValue, Is.False);
         Assert.That(secondValue >= firstValue, Is.False);
-
     }
 
     [Test]
-    public void correctlyZerooo()
+    public void СorrectlyZerooo()
     {
         Assert.Throws<DivideByZeroException>(() => new RationalNumber(1, 0));
     }
 
     [Test]
-    public void correctlySokrashenieToString()
+    public void СorrectlySokrashenieToString()
     {
         var value = new RationalNumber(33, 11);
         Assert.AreEqual("3", value.ToString());
     }
-
 }
-
