@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Study.Lab1.Logic\Study.Lab1.Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="yamisakimei\Task1\" />
+  </ItemGroup>
+
 </Project>
