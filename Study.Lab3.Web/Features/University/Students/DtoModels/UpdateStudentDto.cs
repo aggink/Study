@@ -1,4 +1,4 @@
-﻿using Study.Lab3.Storage.Constants;
+using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Enums.University;
 using System.ComponentModel.DataAnnotations;
 
@@ -6,7 +6,7 @@ namespace Study.Lab3.Web.Features.University.Students.DtoModels;
 
 public sealed record UpdateStudentDto
 {
-    // <summary>
+    /// <summary>
     /// Идентификатор студента
     /// </summary>
     [Required]

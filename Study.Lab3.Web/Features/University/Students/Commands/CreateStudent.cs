@@ -33,7 +33,7 @@ public sealed class CreateStudentCommandHandler : IRequestHandler<CreateStudentC
 
     public async Task<Guid> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
     {
-        var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.Student.IsnGroup)
+        var group = await _dataContext.Groups.FirstOrDefaultAsync(x => x.IsnGroup == request.Student.IsnGroup, cancellationToken)
            ?? throw new BusinessLogicException($"Группы с идентификатором \"{request.Student.IsnGroup}\" не существует");
 
         var student = new Student
@@ -48,7 +48,7 @@ public sealed class CreateStudentCommandHandler : IRequestHandler<CreateStudentC
             Group = group
         };
 
-        await _dataContext.Students.AddAsync(student);
+        await _dataContext.Students.AddAsync(student, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return student.IsnStudent;
