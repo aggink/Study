@@ -16,7 +16,7 @@ public class RationalTests
     }
 
     [Test]
-    public void Constructor_WithNegativeDenominator_MovesSignToNumerator
+    public void Constructor_WithNegativeDenominator_MovesSignToNumerator()
     {
         var rational = new Rational(1, -2);
         Assert.That(rational.Numerator, Is.EqualTo(-1));
