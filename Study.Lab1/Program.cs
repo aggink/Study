@@ -22,11 +22,9 @@ using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.p0se1d0nov;
 using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
-using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.danaky1;
 using Study.Lab1.Logic.yamisakimei;
 

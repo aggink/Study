@@ -11,11 +11,13 @@ public class RationalNumber : IRationalNumber
     {
         if (denominator == 0)
             throw new DivideByZeroException("Знаменатель не может быть равен нулю.");
+
         if (denominator < 0)
         {
             numerator = -numerator;
             denominator = -denominator;
         }
+
         int nod = Math.Abs(NOD(numerator, denominator));
         Numerator = numerator / nod;
         Denominator = denominator / nod;
