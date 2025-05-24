@@ -22,12 +22,11 @@ using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.p0se1d0nov;
 using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
-using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.danaky1;
+using Study.Lab1.Logic.yamisakimei;
 
 
 public static class Program
@@ -131,6 +130,8 @@ public static class Program
                 return new poigkoService();
             case ("idb-23-03", 1):
                 return new danaky1Service();
+            case ("idb-23-03", 8):
+                return new yamisakimeiService();
             default:
                 throw new NotSupportedException();
         }
