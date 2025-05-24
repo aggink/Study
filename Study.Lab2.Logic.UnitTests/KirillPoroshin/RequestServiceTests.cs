@@ -10,9 +10,10 @@ namespace Study.Lab2.Logic.UnitTests.KirillPoroshin;
 [TestFixture]
 public class RequestServiceTests
 {
+    private const string REQUEST_URL = "http://numbersapi.com/42/trivia?json";
+
     private RequestService _requestService;
     private Mock<HttpMessageHandler> _httpMessageHandlerMock;
-    private const string _requestUrl = "http://numbersapi.com/42/trivia?json";
 
     [SetUp]
     public void Setup()
@@ -39,9 +40,9 @@ public class RequestServiceTests
         };
 
         var json = JsonSerializer.Serialize(data);
-        SetupHttpResponse(_requestUrl, json, HttpStatusCode.OK);
+        SetupHttpResponse(REQUEST_URL, json, HttpStatusCode.OK);
 
-        var result = _requestService.FetchData(_requestUrl);
+        var result = _requestService.FetchData(REQUEST_URL);
 
         Assert.That(result, Is.EqualTo(json));
     }
@@ -49,10 +50,10 @@ public class RequestServiceTests
     [Test]
     public void FetchDataAsync_Failure_ThrowsException()
     {
-        SetupHttpResponse(_requestUrl, "Not Found", HttpStatusCode.NotFound);
+        SetupHttpResponse(REQUEST_URL, "Not Found", HttpStatusCode.NotFound);
 
         var exception = Assert.ThrowsAsync<Exception>(async () =>
-            await _requestService.FetchDataAsync(_requestUrl, CancellationToken.None));
+            await _requestService.FetchDataAsync(REQUEST_URL, CancellationToken.None));
 
         StringAssert.Contains("Ошибка: NotFound", exception.Message);
     }
