@@ -34,7 +34,7 @@ public sealed class GetStudentByIsnQueryHandler : IRequestHandler<GetStudentByIs
     {
         var student = await _dataContext.Students
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.IsnStudent == request.IsnStudent)
+            .FirstOrDefaultAsync(x => x.IsnStudent == request.IsnStudent, cancellationToken)
                 ?? throw new BusinessLogicException($"Студента с идентификатором \"{request.IsnStudent}\" не существует");
 
         return new StudentDto

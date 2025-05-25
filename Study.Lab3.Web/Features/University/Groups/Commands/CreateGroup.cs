@@ -45,7 +45,7 @@ public sealed class CreateGroupCommandHandler : IRequestHandler<CreateGroupComma
         await _groupService.CreateOrUpdateGroupValidateAndThrowAsync(
             _dataContext, group, cancellationToken);
 
-        await _dataContext.Groups.AddAsync(group);
+        await _dataContext.Groups.AddAsync(group, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return group.IsnGroup;

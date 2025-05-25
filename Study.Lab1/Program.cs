@@ -11,17 +11,22 @@ using Study.Lab1.Logic.IvanZ;
 using Study.Lab1.Logic.Jki749;
 using Study.Lab1.Logic.katty;
 using Study.Lab1.Logic.kinkiss1;
+using Study.Lab1.Logic.love100rubb;
 using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.mansurgh;
 using Study.Lab1.Logic.neijrr;
+using Study.Lab1.Logic.poigko;
 using Study.Lab1.Logic.poroshok;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.chirique_online;
+using Study.Lab1.Logic.p0se1d0nov;
+using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
+using Study.Lab1.Logic.danaky1;
+using Study.Lab1.Logic.yamisakimei;
 
 
 public static class Program
@@ -103,6 +108,8 @@ public static class Program
                 return new Pro100futaService();
             case ("idb-23-03", 16):
                 return new freaxdService();
+            case ("idb-23-03", 21):
+                return new p0se1d0nService();
             case ("idb-23-03", 17):
                 return new poroshokService();
             case ("idb-23-03", 4):
@@ -115,6 +122,16 @@ public static class Program
                 return new chiriqueOnlineService();
             case ("idb-23-03", 9):
                 return new TucKaWService();
+            case ("idb-23-03", 3):
+                return new TaipanoService();
+            case ("idb-23-03", 2):
+                return new love100rubbService();
+            case ("idb-23-03", 10):
+                return new poigkoService();
+            case ("idb-23-03", 1):
+                return new danaky1Service();
+            case ("idb-23-03", 8):
+                return new yamisakimeiService();
             default:
                 throw new NotSupportedException();
         }

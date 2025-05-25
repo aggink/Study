@@ -368,3 +368,8 @@ FodyWeavers.xsd
 ./mssql-data
 ./mssql-scripts
 /.idea
+pgadmin
+postgres-data
+mssql-data
+mssql-scripts
+.idea
