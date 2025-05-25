@@ -5,18 +5,22 @@ using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.kinkiss1;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.Jki749;
+
 
 public static class Program
 {
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+     private const string GROUP_NAME = "assistant";
+
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+     private const int PERSON_NUMBER = 1;
+    
 
     public static async Task Main()
     {
@@ -69,6 +73,8 @@ public static class Program
                 return new eldarovskiyService();
             case ("idb-23-02", 6):
                 return new kinkiss1Service();
+            case ("idb-23-03", 22):
+                return new jki749Service();
             default:
                 throw new NotSupportedException();
         }
