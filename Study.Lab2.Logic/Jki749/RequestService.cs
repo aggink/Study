@@ -9,16 +9,12 @@ namespace Study.Lab2.Logic.Services.Jki749;
     {
         private readonly HttpClient _httpClient;
 
-        // Явный конструктор без параметров
-        public RequestService() : this(null) { }
+    public RequestService(HttpClient httpClient)
+    {
+        _httpClient = httpClient ?? new HttpClient();
+    }
 
-        // Основной конструктор
-        public RequestService(HttpClient httpClient)
-        {
-            _httpClient = httpClient ?? new HttpClient();
-        }
-
-        public string FetchData(string url)
+    public string FetchData(string url)
         {
             try
             {

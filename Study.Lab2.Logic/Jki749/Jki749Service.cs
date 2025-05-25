@@ -19,7 +19,7 @@ namespace Study.Lab2.Logic.Jki749;
 
         public jki749Service(IRequestService requestService = null)
         {
-            _requestService = requestService ?? new RequestService();
+            _requestService = requestService ?? new RequestService(new HttpClient());
         }
 
         public void RunTask()
