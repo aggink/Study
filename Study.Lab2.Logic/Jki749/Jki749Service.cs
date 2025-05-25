@@ -6,8 +6,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Study.Lab2.Logic.Jki749
-{
+namespace Study.Lab2.Logic.Jki749;
     public class jki749Service : IRunService, IDisposable
     {
         private readonly IRequestService _requestService;
@@ -78,4 +77,3 @@ namespace Study.Lab2.Logic.Jki749
             _requestService?.Dispose();
         }
     }
-}
