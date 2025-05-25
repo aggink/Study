@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Study.Lab2.Tests
+namespace Study.Lab2.Logic.UnitTests.Jki749;
 {
     [TestFixture]
     public class RequestServiceTests
