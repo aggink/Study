@@ -4,8 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Study.Lab2.Logic.Interfaces.Jki749;
 
-namespace Study.Lab2.Logic.Services.Jki749
-{
+namespace Study.Lab2.Logic.Services.Jki749;
     public class RequestService : IRequestService, IDisposable
     {
         private readonly HttpClient _httpClient;
@@ -52,4 +51,3 @@ namespace Study.Lab2.Logic.Services.Jki749
             _httpClient?.Dispose();
         }
     }
-}
