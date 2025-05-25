@@ -8,8 +8,20 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.Jki749;
+
+    public class TestDataDto
+    {
+        public int Id { get; set; }
+    }
+
+    public class TestUserDto
+    {
+        public string Name { get; set; }
+    }
+
     [TestFixture]
     public class RequestServiceTests
     {
@@ -24,11 +36,18 @@ namespace Study.Lab2.Logic.UnitTests.Jki749;
             _requestService = new RequestService(httpClient);
         }
 
+        [TearDown]
+        public void Cleanup()
+        {
+            _requestService.Dispose();
+        }
+
         [Test]
         public void FetchData_ValidRequest_ReturnsResponse()
         {
             // Arrange
-            var expectedResponse = "{\"id\": 1}";
+            var testData = new TestDataDto { Id = 1 };
+            var expectedResponse = JsonSerializer.Serialize(testData);
             var testUrl = "https://api.example.com/data";
 
             _mockHttpHandler.Protected()
@@ -44,9 +63,10 @@ namespace Study.Lab2.Logic.UnitTests.Jki749;
 
             // Act
             var result = _requestService.FetchData(testUrl);
+            var deserializedResult = JsonSerializer.Deserialize<TestDataDto>(result);
 
             // Assert
-            Assert.That(result, Is.EqualTo(expectedResponse));
+            Assert.That(deserializedResult.Id, Is.EqualTo(testData.Id));
         }
 
         [Test]
@@ -63,14 +83,15 @@ namespace Study.Lab2.Logic.UnitTests.Jki749;
                 .ThrowsAsync(new HttpRequestException("Network error"));
 
             // Act & Assert
-            Assert.Throws<Exception>(() => _requestService.FetchData(invalidUrl));
+            Assert.Throws<HttpRequestException>(() => _requestService.FetchData(invalidUrl));
         }
 
         [Test]
         public async Task FetchDataAsync_ValidRequest_ReturnsResponse()
         {
             // Arrange
-            var expectedResponse = "{\"name\":\"John\"}";
+            var testUser = new TestUserDto { Name = "John" };
+            var expectedResponse = JsonSerializer.Serialize(testUser); 
             var testUrl = "https://api.example.com/user";
 
             _mockHttpHandler.Protected()
@@ -86,14 +107,9 @@ namespace Study.Lab2.Logic.UnitTests.Jki749;
 
             // Act
             var result = await _requestService.FetchDataAsync(testUrl);
+            var deserializedResult = JsonSerializer.Deserialize<TestUserDto>(result);
 
             // Assert
-            Assert.That(result, Is.EqualTo(expectedResponse));
-        }
-
-        [TearDown]
-        public void Cleanup()
-        {
-            _requestService.Dispose();
-        }
+            Assert.That(deserializedResult.Name, Is.EqualTo(testUser.Name));
     }
+}
