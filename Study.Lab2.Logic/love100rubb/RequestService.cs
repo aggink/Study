@@ -1,6 +1,7 @@
 ﻿using Study.Lab2.Logic.Interfaces.love100rubb;
 
 namespace Study.Lab2.Logic.love100rubb;
+
 public class RequestService : IRequestService
 {
     private readonly HttpClient _httpClient;
