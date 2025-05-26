@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.University;
+using Study.Lab3.Logic.Services.Library;
 using Study.Lab3.Logic.Services.University;
 
 namespace Study.Lab3.Logic.Extensions;
@@ -26,5 +28,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IExamService, ExamService>();
         services.AddSingleton<IExamRegistrationService, ExamRegistrationService>();
         services.AddSingleton<IExamResultService, ExamResultService>();
+        services.AddSingleton<IBookService, BookService>();
+        services.AddSingleton<IGenreService, GenreService>();
+        services.AddSingleton<IAuthorService, AuthorService>();
     }
 }

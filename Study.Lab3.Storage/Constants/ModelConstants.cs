@@ -141,6 +141,56 @@ public static class ModelConstants
         /// </summary>
         public const int Name = 100;
 
+    public static class Author
+    {
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int SurName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Отчество"
+        /// </summary>
+        public const int PatronymicName = 100;
+    }
+
+    public static class Book
+    {
+        /// <summary>
+        /// Максимальная длина поля "Названия"
+        /// </summary>
+        public const int Title = 255;
+
+        /// <summary>
+        /// Минимальное значение года
+        /// </summary>
+        public const int MinYear = 1800;
+
+        /// <summary>
+        /// Максимальное значение года
+        /// </summary>
+        public const int MaxYear = 2025;
+
+        /// <summary>
+        /// Максимальная длина поля "Жанр"
+        /// </summary>
+        public const int Genre = 255;
+    }
+
+    public static class Genre
+    {
+        /// <summary>
+        /// Максимальная длина поля "Названия"
+        /// </summary>
+        public const int Name = 255;
+    }
+}
+
         /// <summary>
         /// Максимальная длина поля "Описание"
         /// </summary>

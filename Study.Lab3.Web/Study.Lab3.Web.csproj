@@ -8,6 +8,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.8.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
@@ -15,6 +20,20 @@
   <ItemGroup>
     <ProjectReference Include="..\Study.Lab3.Logic\Study.Lab3.Logic.csproj" />
     <ProjectReference Include="..\Study.Lab3.Storage.MS_SQL\Study.Lab3.Storage.MS_SQL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Library\AuthorBooks\Commands\" />
+    <Folder Include="Features\Library\AuthorBooks\Queries\" />
+    <Folder Include="Features\Library\AuthorBooks\DtoModels\" />
+    <Folder Include="Features\Library\Authors\Commands\" />
+    <Folder Include="Features\Library\Authors\Queries\" />
+    <Folder Include="Features\Library\GenreBooks\DtoModels\" />
+    <Folder Include="Features\Library\GenreBooks\Commands\" />
+    <Folder Include="Features\Library\GenreBooks\Queries\" />
+    <Folder Include="Features\Library\Genres\DtoModels\" />
+    <Folder Include="Features\Library\Genres\Commands\" />
+    <Folder Include="Features\Library\Genres\Queries\" />
   </ItemGroup>
 
   <PropertyGroup>

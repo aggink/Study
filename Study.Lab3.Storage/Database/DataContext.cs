@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Storage.Database;
@@ -73,6 +74,32 @@ public class DataContext : DbContext
     /// Регистрации на экзамены
     /// </summary>
     public virtual DbSet<ExamRegistration> ExamRegistrations { get; set; }
+
+    /// <summary>
+    /// Авторы
+    /// </summary>
+    public virtual DbSet<Authors> Authors { get; set; }
+
+    /// <summary>
+    /// Книги
+    /// </summary>
+    public virtual DbSet<Books> Books { get; set; }
+
+    /// <summary>
+    /// Жанры
+    /// </summary>
+    public virtual DbSet<Genre> Genre { get; set; }
+
+    /// <summary>
+    /// Связь авторов и книг
+    /// </summary>
+    public virtual DbSet<AuthorBooks> AuthorBooks { get; set; }
+
+    /// <summary>
+    /// Связь жанров и книг
+    /// </summary>
+    public virtual DbSet<GenreBooks> GenreBooks { get; set; }
+}
 
     /// <summary>
     /// Результаты экзаменов
