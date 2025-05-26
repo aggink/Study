@@ -9,107 +9,98 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Text.Json;
+using Study.Lab2.Logic.UnitTests.Jki749.DtoModels;
 
 namespace Study.Lab2.Logic.UnitTests.Jki749;
 
-    public class TestDataDto
+[TestFixture]
+public class RequestServiceTests
+{
+    private Mock<HttpMessageHandler> _mockHttpHandler;
+    private RequestService _requestService;
+
+    [SetUp]
+    public void Setup()
     {
-        public int Id { get; set; }
+        _mockHttpHandler = new Mock<HttpMessageHandler>();
+        var httpClient = new HttpClient(_mockHttpHandler.Object);
+        _requestService = new RequestService(httpClient);
     }
 
-    public class TestUserDto
+    [TearDown]
+    public void Cleanup()
     {
-        public string Name { get; set; }
+        _requestService.Dispose();
     }
 
-    [TestFixture]
-    public class RequestServiceTests
+    [Test]
+    public void FetchData_ValidRequest_ReturnsResponse()
     {
-        private Mock<HttpMessageHandler> _mockHttpHandler;
-        private RequestService _requestService;
+        // Arrange
+        var testData = new TestDataDto { Id = 1 };
+        var expectedResponse = JsonSerializer.Serialize(testData);
+        var testUrl = "https://api.example.com/data";
 
-        [SetUp]
-        public void Setup()
-        {
-            _mockHttpHandler = new Mock<HttpMessageHandler>();
-            var httpClient = new HttpClient(_mockHttpHandler.Object);
-            _requestService = new RequestService(httpClient);
-        }
+        _mockHttpHandler.Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(req => req.RequestUri.ToString() == testUrl),
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(expectedResponse)
+            });
 
-        [TearDown]
-        public void Cleanup()
-        {
-            _requestService.Dispose();
-        }
+        // Act
+        var result = _requestService.FetchData(testUrl);
+        var deserializedResult = JsonSerializer.Deserialize<TestDataDto>(result);
 
-        [Test]
-        public void FetchData_ValidRequest_ReturnsResponse()
-        {
-            // Arrange
-            var testData = new TestDataDto { Id = 1 };
-            var expectedResponse = JsonSerializer.Serialize(testData);
-            var testUrl = "https://api.example.com/data";
+        // Assert
+        Assert.That(deserializedResult.Id, Is.EqualTo(testData.Id));
+    }
 
-            _mockHttpHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(req => req.RequestUri.ToString() == testUrl),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(expectedResponse)
-                });
+    [Test]
+    public void FetchData_InvalidRequest_ThrowsException()
+    {
+        // Arrange
+        var invalidUrl = "https://api.example.com/error";
 
-            // Act
-            var result = _requestService.FetchData(testUrl);
-            var deserializedResult = JsonSerializer.Deserialize<TestDataDto>(result);
+        _mockHttpHandler.Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.IsAny<HttpRequestMessage>(),
+                ItExpr.IsAny<CancellationToken>())
+            .ThrowsAsync(new HttpRequestException("Network error"));
 
-            // Assert
-            Assert.That(deserializedResult.Id, Is.EqualTo(testData.Id));
-        }
+        // Act & Assert
+        Assert.Throws<HttpRequestException>(() => _requestService.FetchData(invalidUrl));
+    }
 
-        [Test]
-        public void FetchData_InvalidRequest_ThrowsException()
-        {
-            // Arrange
-            var invalidUrl = "https://api.example.com/error";
+    [Test]
+    public async Task FetchDataAsync_ValidRequest_ReturnsResponse()
+    {
+        // Arrange
+        var testUser = new TestUserDto { Name = "John" };
+        var expectedResponse = JsonSerializer.Serialize(testUser); 
+        var testUrl = "https://api.example.com/user";
 
-            _mockHttpHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ThrowsAsync(new HttpRequestException("Network error"));
+        _mockHttpHandler.Protected()
+            .Setup<Task<HttpResponseMessage>>(
+                "SendAsync",
+                ItExpr.Is<HttpRequestMessage>(req => req.RequestUri.ToString() == testUrl),
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.OK,
+                Content = new StringContent(expectedResponse)
+            });
 
-            // Act & Assert
-            Assert.Throws<HttpRequestException>(() => _requestService.FetchData(invalidUrl));
-        }
+        // Act
+        var result = await _requestService.FetchDataAsync(testUrl);
+        var deserializedResult = JsonSerializer.Deserialize<TestUserDto>(result);
 
-        [Test]
-        public async Task FetchDataAsync_ValidRequest_ReturnsResponse()
-        {
-            // Arrange
-            var testUser = new TestUserDto { Name = "John" };
-            var expectedResponse = JsonSerializer.Serialize(testUser); 
-            var testUrl = "https://api.example.com/user";
-
-            _mockHttpHandler.Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(req => req.RequestUri.ToString() == testUrl),
-                    ItExpr.IsAny<CancellationToken>())
-                .ReturnsAsync(new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent(expectedResponse)
-                });
-
-            // Act
-            var result = await _requestService.FetchDataAsync(testUrl);
-            var deserializedResult = JsonSerializer.Deserialize<TestUserDto>(result);
-
-            // Assert
-            Assert.That(deserializedResult.Name, Is.EqualTo(testUser.Name));
+        // Assert
+        Assert.That(deserializedResult.Name, Is.EqualTo(testUser.Name));
     }
 }
