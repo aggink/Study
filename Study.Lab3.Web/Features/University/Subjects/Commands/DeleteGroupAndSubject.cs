@@ -5,7 +5,7 @@ using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Subjects.Commands;
-
+//Команда удаления группы и предмета
 /// <summary>
 /// Удаление связи группы с предметом
 /// </summary>

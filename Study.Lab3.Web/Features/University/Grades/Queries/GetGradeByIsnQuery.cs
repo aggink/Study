@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.University.Grades.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Grades.Queries;
-
+//Запрос получения оценки студента
 /// <summary>
 /// Получить оценку по идентификатору
 /// </summary>

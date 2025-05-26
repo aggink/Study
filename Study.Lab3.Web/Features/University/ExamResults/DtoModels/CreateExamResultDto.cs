@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+/*using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.ExamResults.DtoModels;
@@ -23,4 +23,4 @@ public sealed record CreateExamResultDto
     /// </summary>
     [MaxLength(ModelConstants.ExamResult.Comments)]
     public string Comments { get; init; }
-}
+}*/

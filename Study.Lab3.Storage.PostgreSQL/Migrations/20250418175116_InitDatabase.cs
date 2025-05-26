@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+//Инициализация базы данных и создание таблиц
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />

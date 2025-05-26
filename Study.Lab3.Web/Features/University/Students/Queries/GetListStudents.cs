@@ -5,13 +5,13 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Students.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.Students.Queries;
-
+//Запрос на получение списка студентов
 /// <summary>
 /// Получить список студентов
 /// </summary>
 public class GetListStudentsQuery : IRequest<StudentItemDto[]>
 {
-
+    //
 }
 
 public class GetListStudentsQueryHandler : IRequestHandler<GetListStudentsQuery, StudentItemDto[]>
@@ -27,9 +27,6 @@ public class GetListStudentsQueryHandler : IRequestHandler<GetListStudentsQuery,
     {
         return await _dataContext.Students
             .AsNoTracking()
-            .OrderBy(x => x.SurName)
-                .ThenBy(x => x.Name)
-                    .ThenBy(x => x.PatronymicName)
             .Select(x => new StudentItemDto
             {
                 IsnStudent = x.IsnStudent,
@@ -38,6 +35,7 @@ public class GetListStudentsQueryHandler : IRequestHandler<GetListStudentsQuery,
                 Sex = x.Sex,
                 Age = x.Age
             })
+            .OrderBy(x => x.Fio)
             .ToArrayAsync(cancellationToken);
     }
 }

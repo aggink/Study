@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -55,4 +55,4 @@ public sealed class UpdateAssignmentCommandHandler : IRequestHandler<UpdateAssig
         await _dataContext.SaveChangesAsync(cancellationToken);
         return assignment.IsnAssignment;
     }
-}
+}*/

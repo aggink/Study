@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.University.Subjects.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Subjects.Commands;
-
+//Команда создания предмета
 /// <summary>
 /// Создать предмет
 /// </summary>

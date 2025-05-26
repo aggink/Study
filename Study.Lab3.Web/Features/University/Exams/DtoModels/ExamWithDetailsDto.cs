@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.University.Exams.DtoModels;
+/*namespace Study.Lab3.Web.Features.University.Exams.DtoModels;
 
 public sealed record ExamWithDetailsDto
 {
@@ -51,4 +51,4 @@ public sealed record ExamWithDetailsDto
     /// Количество зарегистрированных студентов
     /// </summary>
     public int RegisteredStudentsCount { get; init; }
-}
+}*/

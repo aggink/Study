@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.University.Teachers.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Teachers.Queries;
-
+//Запрос на получение информации по преподавателю
 /// <summary>
 /// Получить учителя по идентификатору
 /// </summary>

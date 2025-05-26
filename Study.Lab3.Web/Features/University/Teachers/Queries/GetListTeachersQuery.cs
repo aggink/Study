@@ -4,12 +4,13 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Teachers.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.Teachers.Queries;
-
+//Запрос на получение списка преподавателей
 /// <summary>
 /// Получение списка учителей
 /// </summary>
 public sealed class GetListTeachersQuery : IRequest<TeacherDto[]>
 {
+    //
 }
 
 public sealed class GetListTeachersQueryHandler : IRequestHandler<GetListTeachersQuery, TeacherDto[]>

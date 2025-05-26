@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -119,3 +119,4 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
         }
     }
 }
+*/

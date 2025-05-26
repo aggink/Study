@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.University.Exams.DtoModels;
+/*namespace Study.Lab3.Web.Features.University.Exams.DtoModels;
 
 public sealed record ExamDto
 {
@@ -41,4 +41,4 @@ public sealed record ExamDto
     /// Проходной балл
     /// </summary>
     public int PassingScore { get; init; }
-}
+}*/

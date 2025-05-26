@@ -7,7 +7,7 @@ using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Groups.Commands;
-
+//Удаление группы
 /// <summary>
 /// Удаление группы
 /// </summary>

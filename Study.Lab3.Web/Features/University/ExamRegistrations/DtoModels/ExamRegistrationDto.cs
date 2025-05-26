@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Enums.University;
+/*using Study.Lab3.Storage.Enums.University;
 
 namespace Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
 
@@ -28,4 +28,4 @@ public sealed record ExamRegistrationDto
     /// Статус регистрации
     /// </summary>
     public RegistrationStatus Status { get; init; }
-}
+}*/

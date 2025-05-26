@@ -8,7 +8,7 @@ using Study.Lab3.Web.Features.University.Students.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Students.Commands;
-
+//Создание студента
 /// <summary>
 /// Создание студента
 /// </summary>

@@ -5,7 +5,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Logic.Services.University;
-
+//Обработка группы
 public sealed class GroupService : IGroupService
 {
     public async Task CreateOrUpdateGroupValidateAndThrowAsync(

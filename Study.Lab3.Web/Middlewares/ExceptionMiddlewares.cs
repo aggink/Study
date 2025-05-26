@@ -3,7 +3,7 @@ using Study.Lab3.Web.Middlewares.DtoModels;
 using System.Net;
 
 namespace Study.Lab3.Web.Middlewares;
-
+//Обработка исключений с логированием и преобразованием в HTTP-ответы
 public sealed class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;

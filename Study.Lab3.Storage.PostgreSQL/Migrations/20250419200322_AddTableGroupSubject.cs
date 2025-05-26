@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+//Создание новой таблицы SubjectsGroups с аналогичной структурой
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />

@@ -1,4 +1,4 @@
-using MediatR;
+/*using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
@@ -52,4 +52,4 @@ public sealed class CreateExamRegistrationCommandHandler : IRequestHandler<Creat
 
         return registration.IsnExamRegistration;
     }
-}
+}*/

@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Enums.University;
+/*using Study.Lab3.Storage.Enums.University;
 
 namespace Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
 
@@ -48,4 +48,4 @@ public sealed record ExamRegistrationWithDetailsDto
     /// Наличие результата
     /// </summary>
     public bool HasResult { get; init; }
-}
+}*/

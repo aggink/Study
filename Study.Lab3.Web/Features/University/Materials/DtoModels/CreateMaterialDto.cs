@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+/*using System.ComponentModel.DataAnnotations;
 using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Web.Features.University.Materials.DtoModels;
@@ -41,4 +41,4 @@ public sealed record CreateMaterialDto
     /// Дата публикации
     /// </summary>
     public DateTime PublishDate { get; init; } = DateTime.UtcNow;
-}
+}*/

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.University;
-
+//Модель преподавателя
 /// <summary>
 /// Учитель
 /// </summary>
@@ -38,12 +38,6 @@ public class Teacher
     /// Пол
     /// </summary>
     public SexType Sex { get; set; }
-
-    /// <summary>
-    /// Объявление от преподавателя
-    /// </summary>
-    [InverseProperty(nameof(Announcement.Teacher))]
-    public virtual ICollection<Announcement> Announcements { get; set; }
 
     /// <summary>
     /// Связь с таблицей учителя - предметы

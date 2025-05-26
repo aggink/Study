@@ -6,7 +6,7 @@ using Study.Lab3.Storage.Models.University;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Subjects.Commands;
-
+//Команда добавления группы и предмета
 /// <summary>
 /// Создание связи группы с предметом
 /// </summary>

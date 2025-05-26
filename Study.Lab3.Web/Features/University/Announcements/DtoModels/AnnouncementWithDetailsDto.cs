@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.University.Announcements.DtoModels;
+/*namespace Study.Lab3.Web.Features.University.Announcements.DtoModels;
 
 public sealed record AnnouncementWithDetailsDto
 {
@@ -54,4 +54,4 @@ public sealed record AnnouncementGroupItemDto
     /// Название группы
     /// </summary>
     public string GroupName { get; init; }
-}
+}*/

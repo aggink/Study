@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+//Первичная миграция для создания структуры базы данных
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />

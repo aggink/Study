@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.University.Teachers.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Teachers.Commands;
-
+//Команда создания преподавателя
 /// <summary>
 /// Создание учителя
 /// </summary>

@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+/*using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -58,4 +58,4 @@ public class Material
     /// Предмет
     /// </summary>
     public virtual Subject Subject { get; set; }
-}
+}*/

@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Database;
+/*using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Logic.Interfaces.Services.University;
@@ -39,4 +39,4 @@ public interface IAnnouncementService
         AnnouncementGroup announcementGroup,
         CancellationToken cancellationToken = default,
         bool skipAnnouncementCheck = false);
-}
+}*/

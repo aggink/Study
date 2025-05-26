@@ -1,7 +1,7 @@
 ﻿using Study.Lab3.Storage.Enums;
 
 namespace Study.Lab3.Web.Extensions;
-
+//Методы расширения для определения провайдера
 public static class ConfigurationExceptions
 {
     /// <summary>

@@ -4,13 +4,13 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Subjects.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.Subjects.Queries;
-
+//Запрос на получение списка предметов
 /// <summary>
 /// Получить список предметов
 /// </summary>
 public sealed class GetListSubjectsQuery : IRequest<SubjectItemDto[]>
 {
-
+    //
 }
 
 public sealed class GetListSubjectsQueryHandler : IRequestHandler<GetListSubjectsQuery, SubjectItemDto[]>

@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+/*using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -56,4 +56,4 @@ public class Announcement
     /// </summary>
     [InverseProperty(nameof(AnnouncementGroup.Announcement))]
     public virtual ICollection<AnnouncementGroup> AnnouncementGroups { get; set; }
-}
+}*/

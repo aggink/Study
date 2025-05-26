@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.University.Materials.DtoModels;
+/*namespace Study.Lab3.Web.Features.University.Materials.DtoModels;
 
 public sealed record MaterialWithDetailsDto
 {
@@ -41,4 +41,4 @@ public sealed record MaterialWithDetailsDto
     /// Дата публикации
     /// </summary>
     public DateTime PublishDate { get; init; }
-}
+}*/

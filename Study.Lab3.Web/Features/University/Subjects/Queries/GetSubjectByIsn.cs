@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.University.Subjects.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Subjects.Queries;
-
+//Запрос на получение данных по предмету
 /// <summary>
 /// Получить данные предмета
 /// </summary>

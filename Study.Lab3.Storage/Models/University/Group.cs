@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.University;
-
+//Модель группы студента по предмету
 /// <summary>
 /// Группа
 /// </summary>
@@ -32,10 +32,4 @@ public class Group
     /// </summary>
     [InverseProperty(nameof(SubjectGroup.Group))]
     public virtual ICollection<SubjectGroup> SubjectGroups { get; set; }
-
-    /// <summary>
-    /// Связь объявления с группами
-    /// </summary>
-    [InverseProperty(nameof(AnnouncementGroup.Group))]
-    public virtual ICollection<AnnouncementGroup> GroupAnnouncements { get; set; }
 }

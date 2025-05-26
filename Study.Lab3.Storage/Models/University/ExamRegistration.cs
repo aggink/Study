@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Enums.University;
+/*using Study.Lab3.Storage.Enums.University;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -52,4 +52,4 @@ public class ExamRegistration
     /// </summary>
     [InverseProperty(nameof(ExamResult.Registration))]
     public virtual ExamResult Result { get; set; }
-}
+}*/

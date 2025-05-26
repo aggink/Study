@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+//Корректировка FK в SubjectsGroups для PostgreSQL
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />

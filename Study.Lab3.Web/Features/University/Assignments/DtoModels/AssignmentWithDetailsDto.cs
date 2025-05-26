@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.University.Assignments.DtoModels;
+/*namespace Study.Lab3.Web.Features.University.Assignments.DtoModels;
 
 public sealed record AssignmentWithDetailsDto
 {
@@ -41,4 +41,4 @@ public sealed record AssignmentWithDetailsDto
     /// Максимальная оценка
     /// </summary>
     public int MaxScore { get; init; }
-}
+}*/

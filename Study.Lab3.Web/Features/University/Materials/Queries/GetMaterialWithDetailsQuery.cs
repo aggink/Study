@@ -1,9 +1,8 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.University.Materials.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Materials.Queries;
@@ -51,4 +50,4 @@ public sealed class GetMaterialWithDetailsQueryHandler : IRequestHandler<GetMate
                ?? throw new BusinessLogicException(
                    $"Материал с идентификатором \"{request.IsnMaterial}\" не существует");
     }
-}
+}*/

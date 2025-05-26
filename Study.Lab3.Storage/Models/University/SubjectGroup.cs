@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.University;
-
+//Модель связи предмет-группа
 /// <summary>
 /// Связь таблиц предметы - группы
 /// </summary>

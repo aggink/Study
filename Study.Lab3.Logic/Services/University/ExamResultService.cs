@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Constants;
@@ -53,3 +53,4 @@ public sealed class ExamResultService : IExamResultService
             throw new BusinessLogicException("Невозможно удалить результат экзамена, прошедшего более 30 дней назад");
     }
 }
+*/

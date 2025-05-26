@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -52,4 +52,4 @@ public sealed class GetExamsBySubjectQueryHandler : IRequestHandler<GetExamsBySu
             .OrderBy(x => x.ExamDate)
             .ToArrayAsync(cancellationToken);
     }
-}
+}*/

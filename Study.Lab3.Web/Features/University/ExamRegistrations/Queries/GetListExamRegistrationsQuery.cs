@@ -1,4 +1,4 @@
-using MediatR;
+/*using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
@@ -36,4 +36,4 @@ public sealed class GetListExamRegistrationsQueryHandler : IRequestHandler<GetLi
             })
             .ToArrayAsync(cancellationToken);
     }
-}
+}*/

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.University;
-
+//Модель предмета
 /// <summary>
 /// Предмет
 /// </summary>
@@ -36,24 +36,7 @@ public class Subject
     /// <summary>
     /// Связь с учителями
     /// </summary>
-    [InverseProperty(nameof(TeacherSubject.Subject))]
+    [InverseProperty(nameof(Grade.Subject))]
     public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
 
-    /// <summary>
-    /// Связь с предметами
-    /// </summary>
-    [InverseProperty(nameof(Assignment.Subject))]
-    public virtual ICollection<Assignment> Assignments { get; set; }
-
-    /// <summary>
-    /// Учебные материалы
-    /// </summary>
-    [InverseProperty(nameof(Material.Subject))]
-    public virtual ICollection<Material> Materials { get; set; }
-
-    /// <summary>
-    /// Связь с экзаменами
-    /// </summary>
-    [InverseProperty(nameof(Exam.Subject))]
-    public virtual ICollection<Exam> Exams { get; set; }
 }

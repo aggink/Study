@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Study.Lab3.Storage.Database;
-
+//Создание DataContext PostgreSQL при работе с миграциями и настройка подключения к локальному серверу
 namespace Study.Lab3.Storage.PostgreSQL;
 
 /// <summary>

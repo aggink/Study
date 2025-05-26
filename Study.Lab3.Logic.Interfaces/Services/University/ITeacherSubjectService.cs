@@ -2,7 +2,7 @@
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Logic.Interfaces.Services.University;
-
+//Обработка связей преподаватель-предмет
 public interface ITeacherSubjectService
 {
     /// <summary>

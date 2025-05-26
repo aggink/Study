@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+//Инициализация методов базы данных
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     /// <inheritdoc />

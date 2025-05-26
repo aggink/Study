@@ -1,4 +1,4 @@
-using MediatR;
+/*using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
@@ -38,4 +38,4 @@ public sealed class GetListMaterialsQueryHandler : IRequestHandler<GetListMateri
             .OrderByDescending(x => x.PublishDate)
             .ToArrayAsync(cancellationToken);
     }
-}
+}*/

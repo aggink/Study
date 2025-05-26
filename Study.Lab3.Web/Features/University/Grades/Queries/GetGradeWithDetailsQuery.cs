@@ -6,7 +6,7 @@ using Study.Lab3.Web.Features.University.Teachers.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Grades.Queries;
-
+//Запрос получения расширенной информации об оценке с данными
 /// <summary>
 /// Получить оценку с деталями
 /// </summary>

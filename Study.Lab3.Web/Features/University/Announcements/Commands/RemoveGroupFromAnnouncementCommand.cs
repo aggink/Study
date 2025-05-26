@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -49,4 +49,4 @@ public sealed class RemoveGroupFromAnnouncementCommandHandler : IRequestHandler<
         _dataContext.AnnouncementGroups.Remove(announcementGroup);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
-}
+}*/

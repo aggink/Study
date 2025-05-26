@@ -1,4 +1,4 @@
-using MediatR;
+/*using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Assignments.DtoModels;
@@ -38,4 +38,4 @@ public sealed class GetListAssignmentsQueryHandler : IRequestHandler<GetListAssi
             .OrderByDescending(x => x.PublishDate)
             .ToArrayAsync(cancellationToken);
     }
-}
+}*/

@@ -6,7 +6,7 @@ using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Subjects.Commands;
-
+//Команда удаления предмета
 /// <summary>
 /// Удаление предмета
 /// </summary>

@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.University.Announcements.DtoModels;
+/*namespace Study.Lab3.Web.Features.University.Announcements.DtoModels;
 
 public sealed record AnnouncementDto
 {
@@ -31,4 +31,4 @@ public sealed record AnnouncementDto
     /// Важность объявления
     /// </summary>
     public bool IsImportant { get; init; }
-}
+}*/

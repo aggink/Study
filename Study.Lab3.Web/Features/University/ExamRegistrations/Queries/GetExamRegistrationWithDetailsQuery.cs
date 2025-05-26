@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -58,4 +58,4 @@ public sealed class GetExamRegistrationWithDetailsQueryHandler : IRequestHandler
             HasResult = examRegistration.Result != null
         };
     }
-}
+}*/

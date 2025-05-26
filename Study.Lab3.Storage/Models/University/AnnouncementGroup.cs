@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+/*using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -34,4 +34,4 @@ public class AnnouncementGroup
     /// Группа
     /// </summary>
     public virtual Group Group { get; set; }
-}
+}*/

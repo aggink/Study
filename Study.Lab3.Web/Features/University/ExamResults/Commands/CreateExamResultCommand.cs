@@ -1,4 +1,4 @@
-using MediatR;
+/*using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
@@ -64,4 +64,4 @@ public sealed class CreateExamResultCommandHandler : IRequestHandler<CreateExamR
 
         return result.IsnExamResult;
     }
-}
+}*/

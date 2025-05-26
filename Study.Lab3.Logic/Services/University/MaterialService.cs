@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
@@ -42,4 +42,4 @@ public sealed class MaterialService : IMaterialService
         if (!await dataContext.Materials.AnyAsync(x => x.IsnMaterial == material.IsnMaterial, cancellationToken))
             throw new BusinessLogicException($"Материал с идентификатором \"{material.IsnMaterial}\" не существует");
     }
-}
+}*/

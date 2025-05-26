@@ -6,7 +6,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Logic.Services.University;
-
+//Обработка оценок
 public sealed class GradeService : IGradeService
 {
     public async Task CreateOrUpdateGradeValidateAndThrowAsync(

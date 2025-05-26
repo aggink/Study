@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Enums.University;
+/*using Study.Lab3.Storage.Enums.University;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
@@ -27,4 +27,4 @@ public sealed record CreateExamRegistrationDto
     /// </summary>
     [Required]
     public RegistrationStatus Status { get; init; }
-}
+}*/

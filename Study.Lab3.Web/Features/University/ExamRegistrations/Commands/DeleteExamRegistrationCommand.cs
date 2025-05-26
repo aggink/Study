@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -46,4 +46,4 @@ public sealed class DeleteExamRegistrationCommandHandler : IRequestHandler<Delet
         _dataContext.ExamRegistrations.Remove(registration);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
-}
+}*/

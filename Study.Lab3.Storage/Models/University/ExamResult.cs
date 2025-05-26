@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+/*using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -42,4 +42,4 @@ public class ExamResult
     /// Навигационное свойство для связи с регистрацией на экзамен.
     /// </summary>
     public virtual ExamRegistration Registration { get; set; }
-}
+}*/

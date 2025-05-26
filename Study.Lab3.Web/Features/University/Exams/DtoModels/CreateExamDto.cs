@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+/*using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Exams.DtoModels;
@@ -50,4 +50,4 @@ public sealed record CreateExamDto
     [Required]
     [Range(ModelConstants.Exam.MinScore, ModelConstants.Exam.MaxScore)]
     public int PassingScore { get; init; }
-}
+}*/

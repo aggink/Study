@@ -6,7 +6,7 @@ using Study.Lab3.Storage.MS_SQL;
 using Study.Lab3.Storage.PostgreSQL;
 
 namespace Study.Lab3.Web.Extensions;
-
+//Настройка провайдеров и инициализация
 /// <summary>
 /// Расширения для <see cref="IServiceCollection"/>
 /// </summary>

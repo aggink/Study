@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
@@ -45,4 +45,4 @@ public sealed class AssignmentService : IAssignmentService
         if (!await dataContext.Assignments.AnyAsync(x => x.IsnAssignment == assignment.IsnAssignment, cancellationToken))
             throw new BusinessLogicException($"Задание с идентификатором \"{assignment.IsnAssignment}\" не существует");
     }
-}
+}*/

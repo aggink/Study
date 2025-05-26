@@ -1,4 +1,4 @@
-using MediatR;
+/*using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
@@ -48,4 +48,4 @@ public sealed class AddGroupToAnnouncementCommandHandler : IRequestHandler<AddGr
         await _dataContext.AnnouncementGroups.AddAsync(announcementGroup, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
-}
+}*/

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.University;
-
+//Модель оценки студента по предмету
 /// <summary>
 /// Оценки
 /// </summary>
@@ -43,10 +43,12 @@ public class Grade
     /// <summary>
     /// Студент
     /// </summary>
+    [InverseProperty(nameof(Student.Grades))]
     public virtual Student Student { get; set; }
 
     /// <summary>
     /// Предмет
     /// </summary>
+    [InverseProperty(nameof(Subject.Grades))]
     public virtual Subject Subject { get; set; }
 }

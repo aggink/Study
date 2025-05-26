@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.University.ExamResults.DtoModels;
+/*namespace Study.Lab3.Web.Features.University.ExamResults.DtoModels;
 
 public sealed record ExamResultWithDetailsDto
 {
@@ -61,4 +61,4 @@ public sealed record ExamResultWithDetailsDto
     /// Комментарии к результату
     /// </summary>
     public string Comments { get; init; }
-}
+}*/

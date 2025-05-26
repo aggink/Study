@@ -5,7 +5,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Logic.Services.University;
-
+//Обработка связей преподаватель-предмет
 public sealed class TeacherSubjectService : ITeacherSubjectService
 {
     public async Task CreateTeacherSubjectValidateAndThrowAsync(

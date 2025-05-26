@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Constants;
@@ -52,3 +52,4 @@ public sealed class ExamService : IExamService
             throw new BusinessLogicException("Невозможно удалить экзамен, так как на него есть регистрации");
     }
 }
+*/

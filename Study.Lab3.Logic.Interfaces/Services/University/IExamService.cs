@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Database;
+/*using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Logic.Interfaces.Services.University;
@@ -26,4 +26,4 @@ public interface IExamService
         DataContext dataContext,
         Exam exam,
         CancellationToken cancellationToken = default);
-}
+}*/

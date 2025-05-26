@@ -4,13 +4,13 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Groups.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.Groups.Queries;
-
+//Запрос на получение списка групп с предметами
 /// <summary>
 /// Получить группу с предметами
 /// </summary>
 public sealed class GetListGroupsWithSubjectsQuery : IRequest<GroupWithSubjectItemDto[]>
 {
-
+    //
 }
 
 public sealed class GetListGroupsWithSubjectsQueryHandler : IRequestHandler<GetListGroupsWithSubjectsQuery, GroupWithSubjectItemDto[]>

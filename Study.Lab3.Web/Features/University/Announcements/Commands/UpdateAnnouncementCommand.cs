@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -54,4 +54,4 @@ public sealed class UpdateAnnouncementCommandHandler : IRequestHandler<UpdateAnn
         await _dataContext.SaveChangesAsync(cancellationToken);
         return announcement.IsnAnnouncement;
     }
-}
+}*/

@@ -8,7 +8,7 @@ using Study.Lab3.Web.Features.University.Teachers.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Teachers.Commands;
-
+//Команда обновления преподавателя
 /// <summary>
 /// Редактирование данных учителя
 /// </summary>

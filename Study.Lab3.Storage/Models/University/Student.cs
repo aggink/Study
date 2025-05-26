@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.University;
-
+//Модель студента
 /// <summary>
 /// Студент
 /// </summary>
@@ -62,11 +62,5 @@ public class Student
     /// Связь с таблицей студента - оценки
     /// </summary>
     [InverseProperty(nameof(Grade.Student))]
-    public virtual ICollection<Grade> Grades { get; set; }
-    
-    /// <summary>
-    /// Список регистраций студента на экзамены
-    /// </summary>
-    [InverseProperty(nameof(ExamRegistration.Student))]
-    public virtual ICollection<ExamRegistration> ExamRegistrations { get; set; }
+    public virtual ICollection<Grade> Grades { get; set; } = new HashSet<Grade>();
 }

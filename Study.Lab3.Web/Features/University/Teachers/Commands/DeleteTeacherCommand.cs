@@ -7,7 +7,7 @@ using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Teachers.Commands;
-
+//Команда удаления преподавателя
 /// <summary>
 /// Удаление учителя
 /// </summary>

@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.University.Groups.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Groups.Commands;
-
+//Создание группы
 /// <summary>
 /// Создание группы
 /// </summary>

@@ -9,7 +9,7 @@ using Study.Lab3.Web.Features.University.Grades.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Grades.Commands;
-
+//Команда создания оценки студента
 /// <summary>
 /// Создание оценки
 /// </summary>

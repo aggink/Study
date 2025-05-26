@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Study.Lab3.Storage.Database;
-
+//Создания контекста базы данных и указание сборки для миграций
 namespace Study.Lab3.Storage.MS_SQL
 {
     public class MicrosoftSqlContextFactory : IDesignTimeDbContextFactory<DataContext>

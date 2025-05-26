@@ -7,7 +7,7 @@ using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Grades.Commands;
-
+//Удаление команды оценки студента
 /// <summary>
 /// Удаление оценки
 /// </summary>

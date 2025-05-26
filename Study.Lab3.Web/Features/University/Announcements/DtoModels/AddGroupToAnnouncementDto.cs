@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+/*using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Announcements.DtoModels;
 
@@ -15,4 +15,4 @@ public sealed record AddGroupToAnnouncementDto
     /// </summary>
     [Required]
     public Guid IsnGroup { get; init; }
-}
+}*/

@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+/*using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -69,4 +69,4 @@ public class Exam
     /// </summary>
     [InverseProperty(nameof(ExamRegistration.Exam))]
     public virtual ICollection<ExamRegistration> Registrations { get; set; }
-}
+}*/

@@ -4,7 +4,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Grades.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.Grades.Queries;
-
+//Запрос получения списка оценок с сортировкой по дате
 /// <summary>
 /// Получение списка оценок
 /// </summary>

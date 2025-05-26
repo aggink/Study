@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -51,4 +51,4 @@ public sealed class GetAssignmentWithDetailsQueryHandler : IRequestHandler<GetAs
                ?? throw new BusinessLogicException(
                    $"Задание с идентификатором \"{request.IsnAssignment}\" не существует");
     }
-}
+}*/

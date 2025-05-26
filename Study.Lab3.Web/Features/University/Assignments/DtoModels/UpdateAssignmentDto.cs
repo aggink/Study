@@ -1,4 +1,4 @@
-using System.ComponentModel.DataAnnotations;
+/*using System.ComponentModel.DataAnnotations;
 using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Web.Features.University.Assignments.DtoModels;
@@ -36,4 +36,4 @@ public sealed record UpdateAssignmentDto
     [Required]
     [Range(ModelConstants.Assignment.MinScore, ModelConstants.Assignment.MaxScore)]
     public int MaxScore { get; init; }
-}
+}*/

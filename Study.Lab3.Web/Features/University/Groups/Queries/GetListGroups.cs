@@ -4,7 +4,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.Groups.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.Groups.Queries;
-
+//Запрос на получение списка групп студентов
 /// <summary>
 /// Получение списка групп
 /// </summary>

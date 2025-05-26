@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿/*using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -72,3 +72,4 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         }
     }
 }
+*/

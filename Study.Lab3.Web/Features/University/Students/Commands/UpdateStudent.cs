@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.University.Students.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.Students.Commands;
-
+//Обновление студента
 /// <summary>
 /// Редактирование данных студента
 /// </summary>

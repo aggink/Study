@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -52,4 +52,4 @@ public sealed class GetAnnouncementsByGroupQueryHandler : IRequestHandler<GetAnn
             .ThenByDescending(x => x.PublishDate)
             .ToArrayAsync(cancellationToken);
     }
-}
+}*/

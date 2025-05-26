@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
-
+//Создание необходимых таблиц
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     /// <inheritdoc />
@@ -9,7 +9,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // 1. Сначала создаем таблицу Teachers
+            //Создание таблицы Teachers
             migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
@@ -25,7 +25,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     table.PrimaryKey("PK_Teachers", x => x.IsnTeacher);
                 });
 
-            // 2. Затем TeacherSubjects
+            //Создание таблицы TeacherSubjects
             migrationBuilder.CreateTable(
                 name: "TeacherSubjects",
                 columns: table => new
@@ -50,7 +50,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // 3. И наконец Grades
+            //Создание таблицы Grades
             migrationBuilder.CreateTable(
                 name: "Grades",
                 columns: table => new
@@ -78,7 +78,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            // Индексы
+            //Создание индексов (параметров)
             migrationBuilder.CreateIndex(
                 name: "IX_Grades_IsnStudent",
                 table: "Grades",

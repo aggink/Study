@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+/*using CoreLib.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
@@ -66,4 +66,4 @@ public sealed class AnnouncementService : IAnnouncementService
                 cancellationToken))
             throw new BusinessLogicException("Эта группа уже добавлена к данному объявлению");
     }
-}
+}*/
