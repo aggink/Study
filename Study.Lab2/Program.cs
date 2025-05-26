@@ -1,4 +1,5 @@
-﻿using Study.Lab2.Logic.Assistant;
+﻿using Study.Lab2.Logic.alkeivi;
+using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.eldarovskiy;
@@ -90,6 +91,8 @@ public static class Program
                 return new love100rubbService();
             case ("idb-23-03", 22):
                 return new jki749Service();
+            case ("idb-23-03", 12):
+                return new alkeiviService();
             default:
                 throw new NotSupportedException();
         }
