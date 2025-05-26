@@ -51,7 +51,7 @@ public class RequestServiceTests : IDisposable
         SetupMockResponse(ErrorUrl, ErrorResponse, HttpStatusCode.NotFound);
 
         var ex = Assert.Throws<Exception>(() => _requestService.FetchData(ErrorUrl));
-        Assert.That(ex.Message, Does.Contain("Œ¯Ë·Í‡: NotFound"));
+        Assert.That(ex.Message, Does.Contain("–û—à–∏–±–∫–∞: NotFound"));
     }
 
     [Test]
@@ -63,7 +63,7 @@ public class RequestServiceTests : IDisposable
 
         var ex = Assert.ThrowsAsync<Exception>(async () =>
             await _requestService.FetchDataAsync(ErrorUrl, cts.Token));
-        Assert.That(ex.Message, Does.Contain("Œ¯Ë·Í‡: NotFound"));
+        Assert.That(ex.Message, Does.Contain("–û—à–∏–±–∫–∞: NotFound"));
     }
 
     private void SetupMockResponse(string url, string content, HttpStatusCode statusCode)

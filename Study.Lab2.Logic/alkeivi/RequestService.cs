@@ -17,7 +17,7 @@ public class RequestService : IRequestService
 
         if (!response.IsSuccessStatusCode)
         {
-            throw new Exception($"Œ¯Ë·Í‡: {response.StatusCode} - {response.ReasonPhrase}");
+            throw new Exception($"–û—à–∏–±–∫–∞: {response.StatusCode} - {response.ReasonPhrase}");
         }
 
         using (var stream = response.Content.ReadAsStream())
@@ -33,7 +33,7 @@ public class RequestService : IRequestService
 
         if (!response.IsSuccessStatusCode)
         {
-            throw new Exception($"Œ¯Ë·Í‡: {response.StatusCode} - {response.ReasonPhrase}");
+            throw new Exception($"–û—à–∏–±–∫–∞: {response.StatusCode} - {response.ReasonPhrase}");
         }
 
         return await response.Content.ReadAsStringAsync(cancellationToken);

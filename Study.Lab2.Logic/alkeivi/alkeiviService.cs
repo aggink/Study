@@ -22,7 +22,7 @@ public class alkeiviService : IRunService
 
     public void RunTask()
     {
-        Console.WriteLine("\nВыполняется синхронный запрос к Random Word API...\n");
+        Console.WriteLine("\nР’С‹РїРѕР»РЅСЏРµС‚СЃСЏ СЃРёРЅС…СЂРѕРЅРЅС‹Р№ Р·Р°РїСЂРѕСЃ Рє Random Word API...\n");
         var stopwatch = Stopwatch.StartNew();
 
         try
@@ -32,7 +32,7 @@ public class alkeiviService : IRunService
             for (int i = 0; i < urls.Length; i++)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"Запрос {i + 1}: {urls[i]}");
+                Console.WriteLine($"Р—Р°РїСЂРѕСЃ {i + 1}: {urls[i]}");
                 Console.ResetColor();
 
                 var response = _requestService.FetchData(urls[i]);
@@ -40,7 +40,7 @@ public class alkeiviService : IRunService
             }
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nВсе ответы успешно получены!\n");
+            Console.WriteLine("\nР’СЃРµ РѕС‚РІРµС‚С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РµРЅС‹!\n");
             Console.ResetColor();
 
             for (int i = 0; i < responses.Count; i++)
@@ -52,21 +52,21 @@ public class alkeiviService : IRunService
         catch (Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"\nОшибка запроса: {ex.Message}");
+            Console.WriteLine($"\nРћС€РёР±РєР° Р·Р°РїСЂРѕСЃР°: {ex.Message}");
             Console.ResetColor();
         }
         finally
         {
             stopwatch.Stop();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} мс");
+            Console.WriteLine($"\nРћР±С‰Р°СЏ РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ: {stopwatch.ElapsedMilliseconds} пїЅпїЅ");
             Console.ResetColor();
         }
     }
 
     public async Task RunTaskAsync(CancellationToken cancellationToken)
     {
-        Console.WriteLine("\nВыполняется асинхронный запрос к Random Word API...\n");
+        Console.WriteLine("\nР’С‹РїРѕР»РЅСЏРµС‚СЃСЏ Р°СЃРёРЅС…СЂРѕРЅРЅС‹Р№ Р·Р°РїСЂРѕСЃ Рє Random Word API...\n");
         var stopwatch = Stopwatch.StartNew();
 
         try
@@ -76,7 +76,7 @@ public class alkeiviService : IRunService
             for (int i = 0; i < urls.Length; i++)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine($"Запрос {i + 1}: {urls[i]}");
+                Console.WriteLine($"Р—Р°РїСЂРѕСЃ {i + 1}: {urls[i]}");
                 Console.ResetColor();
 
                 tasks[i] = _requestService.FetchDataAsync(urls[i], cancellationToken);
@@ -85,7 +85,7 @@ public class alkeiviService : IRunService
             var responses = await Task.WhenAll(tasks);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nВсе ответы успешно получены!\n");
+            Console.WriteLine("\nР’СЃРµ РѕС‚РІРµС‚С‹ СѓСЃРїРµС€РЅРѕ РїРѕР»СѓС‡РµРЅС‹!\n");
             Console.ResetColor();
 
             for (int i = 0; i < responses.Length; i++)
@@ -97,14 +97,14 @@ public class alkeiviService : IRunService
         catch (Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"\nОшибка запроса: {ex.Message}");
+            Console.WriteLine($"\nРћС€РёР±РєР° Р·Р°РїСЂРѕСЃР°: {ex.Message}");
             Console.ResetColor();
         }
         finally
         {
             stopwatch.Stop();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} мс");
+            Console.WriteLine($"\nРћР±С‰Р°СЏ РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ: {stopwatch.ElapsedMilliseconds} пїЅпїЅ");
             Console.ResetColor();
         }
     }
@@ -113,10 +113,10 @@ public class alkeiviService : IRunService
     {
         return index switch
         {
-            0 => "Случайные 12 слов",
-            1 => "Случайное испанское слово",
-            2 => "Случайное слово из 12 букв",
-            _ => "Неизвестный запрос"
+            0 => "РЎР»СѓС‡Р°Р№РЅС‹Рµ 12 СЃР»РѕРІ",
+            1 => "РЎР»СѓС‡Р°Р№РЅРѕРµ РёСЃРїР°РЅСЃРєРѕРµ СЃР»РѕРІРѕ",
+            2 => "РЎР»СѓС‡Р°Р№РЅРѕРµ СЃР»РѕРІРѕ РёР· 12 Р±СѓРєРІ",
+            _ => "РќРµРёР·РІРµСЃС‚РЅС‹Р№ Р·Р°РїСЂРѕСЃ"
         };
     }
 
