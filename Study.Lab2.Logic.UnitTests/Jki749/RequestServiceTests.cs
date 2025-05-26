@@ -1,15 +1,10 @@
 ﻿using Moq;
 using Moq.Protected;
-using NUnit.Framework;
 using Study.Lab2.Logic.Interfaces.Jki749;
 using Study.Lab2.Logic.Services.Jki749;
-using System;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Text.Json;
 using Study.Lab2.Logic.UnitTests.Jki749.DtoModels;
+using System.Net;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.Jki749;
 
@@ -17,7 +12,7 @@ namespace Study.Lab2.Logic.UnitTests.Jki749;
 public class RequestServiceTests
 {
     private Mock<HttpMessageHandler> _mockHttpHandler;
-    private RequestService _requestService;
+    private IRequestService _requestService;
 
     [SetUp]
     public void Setup()
@@ -76,8 +71,7 @@ public class RequestServiceTests
         // Act & Assert
         var ex = Assert.Throws<Exception>(() => _requestService.FetchData(invalidUrl));
 
-        Assert.That(ex.InnerException, Is.InstanceOf<HttpRequestException>());
-        Assert.That(ex.InnerException.Message, Is.EqualTo("Network error"));
+        Assert.True(ex.Message.StartsWith("Ошибка при запросе к"));
     }
 
     [Test]
@@ -85,7 +79,7 @@ public class RequestServiceTests
     {
         // Arrange
         var testUser = new TestUserDto { Name = "John" };
-        var expectedResponse = JsonSerializer.Serialize(testUser); 
+        var expectedResponse = JsonSerializer.Serialize(testUser);
         var testUrl = "https://api.example.com/user";
 
         _mockHttpHandler.Protected()

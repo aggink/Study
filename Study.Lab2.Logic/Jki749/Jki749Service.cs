@@ -1,25 +1,22 @@
 ﻿using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.Jki749;
 using Study.Lab2.Logic.Services.Jki749;
-using System;
 using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Study.Lab2.Logic.Jki749;
 
 public class jki749Service : IRunService, IDisposable
-{ 
-    private readonly string[] _apiUrls = new[]          
+{
+    private readonly string[] _apiUrls = new[]
     {
         "https://jsonplaceholder.typicode.com/posts/1",
         "https://api.agify.io?name=alex",
         "https://api.genderize.io?name=maria"
     };
 
-private readonly IRequestService _requestService;
+    private readonly IRequestService _requestService;
 
-public jki749Service(IRequestService requestService = null)
+    public jki749Service(IRequestService requestService = null)
     {
         _requestService = requestService ?? new RequestService(new HttpClient());
     }
