@@ -59,7 +59,7 @@ public class alkeiviService : IRunService
         {
             stopwatch.Stop();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} ��");
+            Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} мс");
             Console.ResetColor();
         }
     }
@@ -104,7 +104,7 @@ public class alkeiviService : IRunService
         {
             stopwatch.Stop();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} ��");
+            Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} мс");
             Console.ResetColor();
         }
     }
