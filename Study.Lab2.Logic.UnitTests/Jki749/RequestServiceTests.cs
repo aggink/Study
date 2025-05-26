@@ -74,7 +74,10 @@ public class RequestServiceTests
             .ThrowsAsync(new HttpRequestException("Network error"));
 
         // Act & Assert
-        Assert.Throws<HttpRequestException>(() => _requestService.FetchData(invalidUrl));
+        var ex = Assert.Throws<Exception>(() => _requestService.FetchData(invalidUrl));
+
+        Assert.That(ex.InnerException, Is.InstanceOf<HttpRequestException>());
+        Assert.That(ex.InnerException.Message, Is.EqualTo("Network error"));
     }
 
     [Test]
