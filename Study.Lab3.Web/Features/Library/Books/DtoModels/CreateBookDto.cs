@@ -16,10 +16,4 @@ public sealed record CreateBookDto
     /// </summary>
     [Required, Range(ModelConstants.Book.MinYear, ModelConstants.Book.MaxYear)]
     public int PublicationYear { get; init; }
-
-    /// <summary>
-    /// Жанр книги
-    /// </summary>
-    [Required, MaxLength(ModelConstants.Book.Genre)]
-    public string Genre { get; init; }
 }

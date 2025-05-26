@@ -22,20 +22,6 @@
     <ProjectReference Include="..\Study.Lab3.Storage.MS_SQL\Study.Lab3.Storage.MS_SQL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Library\AuthorBooks\Commands\" />
-    <Folder Include="Features\Library\AuthorBooks\Queries\" />
-    <Folder Include="Features\Library\AuthorBooks\DtoModels\" />
-    <Folder Include="Features\Library\Authors\Commands\" />
-    <Folder Include="Features\Library\Authors\Queries\" />
-    <Folder Include="Features\Library\GenreBooks\DtoModels\" />
-    <Folder Include="Features\Library\GenreBooks\Commands\" />
-    <Folder Include="Features\Library\GenreBooks\Queries\" />
-    <Folder Include="Features\Library\Genres\DtoModels\" />
-    <Folder Include="Features\Library\Genres\Commands\" />
-    <Folder Include="Features\Library\Genres\Queries\" />
-  </ItemGroup>
-
   <PropertyGroup>
   	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   	<NoWarn>$(NoWarn);1591</NoWarn>

@@ -30,7 +30,6 @@ public sealed class GetListBooksWithAuthorsQueryHandler : IRequestHandler<GetLis
             IsnBook = book.IsnBook,
             Title = book.Title,
             PublicationYear = book.PublicationYear,
-            Genre = book.Genre,
             Authors = book.AuthorBook.Select(author => new AuthorItemDto
             {
                 IsnAuthor = author.IsnAuthor,

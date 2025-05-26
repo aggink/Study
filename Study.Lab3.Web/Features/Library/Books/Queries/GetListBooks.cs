@@ -30,8 +30,7 @@ public sealed class GetListBooksQueryHandler : IRequestHandler<GetListBooksQuery
             {
                 IsnBook = x.IsnBook,
                 Title = x.Title,
-                PublicationYear = x.PublicationYear,
-                Genre = x.Genre,
+                PublicationYear = x.PublicationYear
             })
             .OrderBy(x => x.Title)
             .ToArrayAsync(cancellationToken);

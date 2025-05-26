@@ -1,23 +1,11 @@
 ﻿using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Enums.University;
-using Study.Lab3.Storage.Models.University;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Study.Lab3.Storage.Models.Library;
+namespace Study.Lab3.Web.Features.Library.Authors.DtoModels;
 
-/// <summary>
-/// Автор
-/// </summary>
-public class Authors
+public sealed record CreateAuthorDto
 {
-    /// <summary>
-    /// Идентификатор автора
-    /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid IsnAuthor { get; set; }
-
     /// <summary>
     /// Фамилия
     /// </summary>
@@ -44,17 +32,6 @@ public class Authors
     /// <summary>
     /// Идентификатор преподавателя
     /// </summary>
-    [ForeignKey(nameof(Teacher)), Required, DefaultValue(null)]
+    [Required]
     public Guid IsnTeacher { get; set; }
-
-    /// <summary>
-    /// Преподаватель
-    /// </summary>
-    public virtual Teacher Teacher { get; set; }
-
-    /// <summary>
-    /// Связь с таблицей Авторы - Книги
-    /// </summary>
-    [InverseProperty(nameof(AuthorBooks.Author))]
-    public virtual ICollection<AuthorBooks> AuthorBook { get; set; }
 }

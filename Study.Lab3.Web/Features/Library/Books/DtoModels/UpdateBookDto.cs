@@ -22,10 +22,4 @@ public sealed record UpdateBookDto
     /// </summary>
     [Required, Range(ModelConstants.Book.MinYear, ModelConstants.Book.MaxYear)]
     public int PublicationYear { get; set; }
-
-    /// <summary>
-    /// Жанр книги
-    /// </summary>
-    [Required, MaxLength(ModelConstants.Book.Genre)]
-    public string Genre { get; set; }
 }

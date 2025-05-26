@@ -76,6 +76,11 @@ public class DataContext : DbContext
     public virtual DbSet<ExamRegistration> ExamRegistrations { get; set; }
 
     /// <summary>
+    /// Результаты экзаменов
+    /// </summary>
+    public virtual DbSet<ExamResult> ExamResults { get; set; }
+
+    /// <summary>
     /// Авторы
     /// </summary>
     public virtual DbSet<Authors> Authors { get; set; }
@@ -86,23 +91,7 @@ public class DataContext : DbContext
     public virtual DbSet<Books> Books { get; set; }
 
     /// <summary>
-    /// Жанры
-    /// </summary>
-    public virtual DbSet<Genre> Genre { get; set; }
-
-    /// <summary>
     /// Связь авторов и книг
     /// </summary>
     public virtual DbSet<AuthorBooks> AuthorBooks { get; set; }
-
-    /// <summary>
-    /// Связь жанров и книг
-    /// </summary>
-    public virtual DbSet<GenreBooks> GenreBooks { get; set; }
-}
-
-    /// <summary>
-    /// Результаты экзаменов
-    /// </summary>
-    public virtual DbSet<ExamResult> ExamResults { get; set; }
 }

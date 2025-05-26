@@ -3,16 +3,16 @@ using Study.Lab3.Storage.Models.Library;
 
 namespace Study.Lab3.Logic.Interfaces.Services.Library;
 
-public interface IAuthorService
+public interface IAuthorBookService
 {
     /// <summary>
-    /// Проверка модели автора на возможность создания или редактирования
+    /// Проверка связи Автор-Книга на возможность создания
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
-    /// <param name="group">Автор</param>
+    /// <param name="teacherSubject">Связь Автор-Книга</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task CreateOrUpdateAuthorValidateAndThrowAsync(
+    Task CreateAuthorBookValidateAndThrowAsync(
         DataContext dataContext,
-        Authors author,
+        AuthorBooks authorBook,
         CancellationToken cancellationToken = default);
 }

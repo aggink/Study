@@ -39,7 +39,6 @@ public sealed class CreateBookCommandHandler : IRequestHandler<CreateBookCommand
             IsnBook = Guid.NewGuid(),
             Title = request.Book.Title,
             PublicationYear = request.Book.PublicationYear,
-            Genre = request.Book.Genre,
         };
 
         await _bookService.CreateOrUpdateBookValidateAndThrowAsync(_dataContext, book, cancellationToken);

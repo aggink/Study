@@ -40,7 +40,6 @@ public sealed class UpdateBookCommandHandler : IRequestHandler<UpdateBookCommand
 
         book.Title = request.Book.Title;
         book.PublicationYear = request.Book.PublicationYear;
-        book.Genre = request.Book.Genre;
 
         await _bookService.CreateOrUpdateBookValidateAndThrowAsync(_dataContext, book, cancellationToken);
 

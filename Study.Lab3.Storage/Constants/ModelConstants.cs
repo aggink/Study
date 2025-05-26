@@ -133,13 +133,40 @@ public static class ModelConstants
         /// </summary>
         public const int Content = 2000;
     }
-    
+
     public static class Exam
     {
         /// <summary>
         /// Максимальная длина поля "Имя"
         /// </summary>
         public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Минимальная продолжительность экзамена в минутах
+        /// </summary>
+        public const int MinDuration = 30;
+
+        /// <summary>
+        /// Максимальная продолжительность экзамена в минутах
+        /// </summary>
+        public const int MaxDuration = 240;
+
+        /// <summary>
+        /// Минимальное количество баллов для зачета
+        /// </summary>
+        public const int MinScore = 1;
+
+        /// <summary>
+        /// Максимальное количество баллов за экзамен
+        /// </summary>
+        public const int MaxScore = 100;
+
+    }
 
     public static class Author
     {
@@ -182,41 +209,6 @@ public static class ModelConstants
         public const int Genre = 255;
     }
 
-    public static class Genre
-    {
-        /// <summary>
-        /// Максимальная длина поля "Названия"
-        /// </summary>
-        public const int Name = 255;
-    }
-}
-
-        /// <summary>
-        /// Максимальная длина поля "Описание"
-        /// </summary>
-        public const int Description = 500;
-
-        /// <summary>
-        /// Минимальная продолжительность экзамена в минутах
-        /// </summary>
-        public const int MinDuration = 30;
-
-        /// <summary>
-        /// Максимальная продолжительность экзамена в минутах
-        /// </summary>
-        public const int MaxDuration = 240;
-
-        /// <summary>
-        /// Минимальное количество баллов для зачета
-        /// </summary>
-        public const int MinScore = 1;
-
-        /// <summary>
-        /// Максимальное количество баллов за экзамен
-        /// </summary>
-        public const int MaxScore = 100;
-    }
-
     public static class ExamResult
     {
         /// <summary>
@@ -234,5 +226,4 @@ public static class ModelConstants
         /// </summary>
         public const int Comments = 500;
     }
-
 }

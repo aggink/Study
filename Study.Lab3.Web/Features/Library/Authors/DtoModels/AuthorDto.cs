@@ -2,7 +2,7 @@
 
 namespace Study.Lab3.Web.Features.Library.Authors.DtoModels;
 
-public class AuthorItemDto
+public sealed record AuthorDto
 {
     /// <summary>
     /// Идентификатор автора

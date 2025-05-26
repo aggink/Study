@@ -29,7 +29,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IExamRegistrationService, ExamRegistrationService>();
         services.AddSingleton<IExamResultService, ExamResultService>();
         services.AddSingleton<IBookService, BookService>();
-        services.AddSingleton<IGenreService, GenreService>();
         services.AddSingleton<IAuthorService, AuthorService>();
+        services.AddSingleton<IAuthorBookService, AuthorBookService>();
     }
 }

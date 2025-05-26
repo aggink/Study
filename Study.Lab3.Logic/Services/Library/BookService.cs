@@ -10,7 +10,7 @@ public class BookService : IBookService
 {
     public async Task CreateOrUpdateBookValidateAndThrowAsync(DataContext dataContext, Books book, CancellationToken cancellationToken = default)
     {
-        if (await dataContext.Books.AnyAsync(x => x.IsnBook != book.IsnBook && x.Title == book.Title && x.PublicationYear == book.PublicationYear && x.Genre == book.Genre, cancellationToken))
+        if (await dataContext.Books.AnyAsync(x => x.IsnBook != book.IsnBook && x.Title == book.Title && x.PublicationYear == book.PublicationYear, cancellationToken))
             throw new BusinessLogicException($"Книга с такими параметрами уже создана");
     }
 }

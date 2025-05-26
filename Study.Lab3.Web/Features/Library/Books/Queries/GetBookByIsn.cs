@@ -42,7 +42,6 @@ public sealed class GetBookByIsnQueryHandler : IRequestHandler<GetBookByIsnQuery
             IsnBook = book.IsnBook,
             Title = book.Title,
             PublicationYear = book.PublicationYear,
-            Genre = book.Genre
         };
     }
 }

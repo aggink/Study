@@ -16,9 +16,4 @@ public sealed record BookDto
     /// Год издания
     /// </summary>
     public int PublicationYear { get; init; }
-
-    /// <summary>
-    /// Жанр книги
-    /// </summary>
-    public string Genre { get; init; }
 }

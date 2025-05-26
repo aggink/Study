@@ -28,12 +28,6 @@ public class Books
     public int PublicationYear { get; set; }
 
     /// <summary>
-    /// Жанр книги
-    /// </summary>
-    [Required, MaxLength(ModelConstants.Book.Genre)]
-    public string Genre { get; set; }
-
-    /// <summary>
     /// Связь с таблицей Авторы - Книги
     /// </summary>
     [InverseProperty(nameof(AuthorBooks.Book))]
