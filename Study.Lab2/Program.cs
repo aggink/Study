@@ -10,6 +10,7 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.KirillPoroshin;
+using Study.Lab2.Logic.Jki749;
 public static class Program
 {
     /// <summary>
@@ -83,6 +84,8 @@ public static class Program
                 return new CherryyService();
             case ("idb-23-03", 17):
                 return new KirillPoroshinService();
+            case ("idb-23-03", 22):
+                return new jki749Service();
             default:
                 throw new NotSupportedException();
         }
