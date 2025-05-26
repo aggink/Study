@@ -31,22 +31,6 @@ public class RationalNumber : IRationalNumber
         Denominator = denominator / gcd;
     }
 
-    // Метод для вычисления наибольшего общего делителя
-    private static int ComputeGCD(int a, int b)
-    {
-        a = Math.Abs(a);
-        b = Math.Abs(b);
-
-        while (b != 0)
-        {
-            int remainder = a % b;
-            a = b;
-            b = remainder;
-        }
-
-        return a;
-    }
-
     #region Перегрузка арифметических операторов
 
     public static RationalNumber operator +(RationalNumber r1, RationalNumber r2)
@@ -144,4 +128,20 @@ public class RationalNumber : IRationalNumber
         HashCode.Combine(Numerator, Denominator);
 
     #endregion
+
+    // Метод для вычисления наибольшего общего делителя
+    private static int ComputeGCD(int a, int b)
+    {
+        a = Math.Abs(a);
+        b = Math.Abs(b);
+
+        while (b != 0)
+        {
+            int remainder = a % b;
+            a = b;
+            b = remainder;
+        }
+
+        return a;
+    }
 }
