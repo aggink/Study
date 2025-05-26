@@ -11,6 +11,8 @@ using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.KirillPoroshin;
+using Study.Lab2.Logic.Jki749;
 public static class Program
 {
     /// <summary>
@@ -86,6 +88,8 @@ public static class Program
                 return new KirillPoroshinService();
             case ("idb-23-03", 2):
                 return new love100rubbService();
+            case ("idb-23-03", 22):
+                return new jki749Service();
             default:
                 throw new NotSupportedException();
         }
