@@ -1,8 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using Study.Lab2.Logic.Interfaces.Jki749;
+﻿using Study.Lab2.Logic.Interfaces.Jki749;
 
 namespace Study.Lab2.Logic.Services.Jki749;
 
@@ -10,12 +6,12 @@ public class RequestService : IRequestService, IDisposable
 {
     private readonly HttpClient _httpClient;
 
-public RequestService(HttpClient httpClient)
-{
-    _httpClient = httpClient ?? new HttpClient();
-}
+    public RequestService(HttpClient httpClient)
+    {
+        _httpClient = httpClient ?? new HttpClient();
+    }
 
-public string FetchData(string url)
+    public string FetchData(string url)
     {
         try
         {
