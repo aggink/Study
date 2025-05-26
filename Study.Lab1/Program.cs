@@ -27,6 +27,7 @@ using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.danaky1;
 using Study.Lab1.Logic.yamisakimei;
+using Study.Lab1.Logic.alexmark1612;
 
 
 public static class Program
@@ -39,12 +40,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-03";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 13;
 
     public static void Main()
     {
@@ -132,6 +133,8 @@ public static class Program
                 return new danaky1Service();
             case ("idb-23-03", 8):
                 return new yamisakimeiService();
+            case ("idb-23-03", 13):
+                return new alexmark1612Service();
             default:
                 throw new NotSupportedException();
         }
