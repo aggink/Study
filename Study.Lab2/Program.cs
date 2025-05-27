@@ -1,15 +1,19 @@
-﻿using Study.Lab2.Logic.Assistant;
+﻿using Study.Lab2.Logic.alkeivi;
+using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
-using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.Cherryy;
+using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
+using Study.Lab2.Logic.KirillPoroshin;
+using Study.Lab2.Logic.love100rubb;
 using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.KirillPoroshin;
+using Study.Lab2.Logic.Jki749;
 public static class Program
 {
     /// <summary>
@@ -83,6 +87,12 @@ public static class Program
                 return new CherryyService();
             case ("idb-23-03", 17):
                 return new KirillPoroshinService();
+            case ("idb-23-03", 2):
+                return new love100rubbService();
+            case ("idb-23-03", 22):
+                return new jki749Service();
+            case ("idb-23-03", 12):
+                return new alkeiviService();
             default:
                 throw new NotSupportedException();
         }
