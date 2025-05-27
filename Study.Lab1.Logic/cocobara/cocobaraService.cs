@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Study.Lab1.Logic.cocobara.Task1;
 
-namespace Study.Lab1.Logic.chirique_online;
+namespace Study.Lab1.Logic.cocobara;
 
 public class cocobaraService : IRunService
 {

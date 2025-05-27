@@ -27,6 +27,7 @@ using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.danaky1;
 using Study.Lab1.Logic.yamisakimei;
+using Study.Lab1.Logic.cocobara;
 
 
 public static class Program
