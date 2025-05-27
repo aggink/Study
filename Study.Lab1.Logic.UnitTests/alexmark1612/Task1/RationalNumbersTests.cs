@@ -10,6 +10,7 @@ public class RationalNumberTests
     public void ValidClassConstructorTest()
     {
         var a = new RationalNumber(4, 8);
+
         Assert.That(a.Numerator, Is.EqualTo(1), "Числитель не сокращён правильно.");
         Assert.That(a.Denominator, Is.EqualTo(2), "Знаменатель не сокращён правильно.");
     }
@@ -18,6 +19,7 @@ public class RationalNumberTests
     public void ValidClassConstructorTestDenominatorDivingByZero()
     {
         var a = new RationalNumber(1, -3);
+
         Assert.That(a.Numerator, Is.EqualTo(-1), "Числитель не сокращён правильно.");
         Assert.That(a.Denominator, Is.EqualTo(3), "Знаменатель не сокращён правильно.");
     }
@@ -35,6 +37,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var sum = a + b;
         var expected = new RationalNumber(5, 6);
+
         Assert.That(sum, Is.EqualTo(expected), "Операция сложения выполнена неверно.");
     }
 
@@ -45,6 +48,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var diff = a - b;
         var expected = new RationalNumber(1, 6);
+
         Assert.That(diff, Is.EqualTo(expected), "Операция вычитания выполнена неверно.");
     }
 
@@ -55,6 +59,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var product = a * b;
         var expected = new RationalNumber(1, 6);
+
         Assert.That(product, Is.EqualTo(expected), "Операция умножения не даёт ожидаемый результат.");
     }
 
@@ -65,6 +70,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var quotient = a / b;
         var expected = new RationalNumber(3, 2);
+
         Assert.That(quotient, Is.EqualTo(expected), "Операция деления не даёт ожидаемый результат.");
     }
 
@@ -75,6 +81,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         var quotient = -a - b;
         var expected = new RationalNumber(-5, 6);
+
         Assert.That(quotient, Is.EqualTo(expected), "Операция деления не даёт ожидаемый результат.");
     }
 
@@ -83,6 +90,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
+
         Assert.IsTrue(a == b, "Оператор равенства не распознаёт эквивалентные дроби.");
     }
 
@@ -91,6 +99,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(1, 3);
+
         Assert.IsTrue(a != b, "Оператор неравенства неверно определяет разные дроби.");
     }
 
@@ -99,6 +108,7 @@ public class RationalNumberTests
     {
         var a = new RationalChislo(1, 2);
         var b = new RationalChislo(1, 3);
+
         Assert.IsTrue(a > b);
     }
 
@@ -107,6 +117,7 @@ public class RationalNumberTests
     {
         var a = new RationalChislo(1, 2);
         var b = new RationalChislo(1, 3);
+
         Assert.IsTrue(b < a);
     }
 
@@ -115,6 +126,7 @@ public class RationalNumberTests
     {
         var a = new RationalChislo(1, 2);
         var b = new RationalChislo(1, 3);
+
         Assert.IsTrue(a >= b);
     }
 
@@ -123,6 +135,7 @@ public class RationalNumberTests
     {
         var a = new RationalChislo(1, 2);
         var b = new RationalChislo(1, 3);
+
         Assert.IsTrue(b <= a);
     }
 
@@ -130,6 +143,7 @@ public class RationalNumberTests
     public void ToStringMethod()
     {
         var a = new RationalNumber(1, 2);
+
         Assert.That(a.ToString(), Is.EqualTo("1/2"), "Метод ToString возвращает неверное представление дроби.");
     }
 
@@ -138,6 +152,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
+
         Assert.IsTrue(a.Equals(b), "Метод Equals не распознаёт эквивалентные объектные дроби.");
     }
 
@@ -146,6 +161,7 @@ public class RationalNumberTests
     {
         var a = new RationalNumber(1, 2);
         var b = new RationalNumber(2, 4);
+
         Assert.That(a.GetHashCode(), Is.EqualTo(b.GetHashCode()), "Метод GetHashCode не возвращает одинаковые значения для эквивалентных дробей.");
     }
 }
