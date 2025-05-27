@@ -10,28 +10,28 @@ public sealed record CreateAuthorDto
     /// Фамилия
     /// </summary>
     [Required, MaxLength(ModelConstants.Author.SurName)]
-    public string SurName { get; set; }
+    public string SurName { get; init; }
 
     /// <summary>
     /// Имя
     /// </summary>
     [Required, MaxLength(ModelConstants.Author.Name)]
-    public string Name { get; set; }
+    public string Name { get; init; }
 
     /// <summary>
     /// Отчество
     /// </summary>
     [Required, MaxLength(ModelConstants.Author.PatronymicName)]
-    public string PatronymicName { get; set; }
+    public string PatronymicName { get; init; }
 
     /// <summary>
     /// Пол
     /// </summary>
-    public SexType Sex { get; set; }
+    public SexType Sex { get; init; }
 
     /// <summary>
     /// Идентификатор преподавателя
     /// </summary>
     [Required]
-    public Guid IsnTeacher { get; set; }
+    public Guid? IsnTeacher { get; init; }
 }

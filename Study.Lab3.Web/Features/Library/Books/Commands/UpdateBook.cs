@@ -15,7 +15,7 @@ namespace Study.Lab3.Web.Features.Library.Books.Commands;
 public sealed class UpdateBookCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Данные группы
+    /// Данные книги
     /// </summary>
     [Required]
     [FromBody]

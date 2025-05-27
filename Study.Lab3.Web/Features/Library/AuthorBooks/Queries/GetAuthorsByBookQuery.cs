@@ -39,7 +39,8 @@ public sealed class GetAuthorsByBookQueryHandler : IRequestHandler<GetAuthorsByB
 
         return await _dataContext.AuthorBooks
             .AsNoTracking()
-            .Where(x => x.IsnBook == request.IsnBook).Select(ab => new AuthorBookWithDetailsDto
+            .Where(x => x.IsnBook == request.IsnBook)
+            .Select(ab => new AuthorBookWithDetailsDto
             {
                 IsnAuthor = ab.IsnAuthor,
                 AuthorFullName = $"{ab.Author.SurName} {ab.Author.Name} {ab.Author.PatronymicName}",

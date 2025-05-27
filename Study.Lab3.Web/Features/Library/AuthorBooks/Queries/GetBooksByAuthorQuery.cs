@@ -32,7 +32,7 @@ public sealed class GetBooksByAuthorQueryHandler : IRequestHandler<GetBooksByAut
 
     public async Task<AuthorBookWithDetailsDto[]> Handle(GetBooksByAuthorQuery request, CancellationToken cancellationToken)
     {
-        var author = await _dataContext.Authors
+        var author = _dataContext.Authors
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnAuthor == request.IsnAuthor, cancellationToken)
             ?? throw new BusinessLogicException($"Автора с идентификатором \"{request.IsnAuthor}\" не существует");

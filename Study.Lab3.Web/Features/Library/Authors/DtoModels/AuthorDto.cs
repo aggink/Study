@@ -7,30 +7,30 @@ public sealed record AuthorDto
     /// <summary>
     /// Идентификатор автора
     /// </summary>
-    public Guid IsnAuthor { get; set; }
+    public Guid IsnAuthor { get; init; }
 
     /// <summary>
     /// Фамилия
     /// </summary>
-    public string SurName { get; set; }
+    public string SurName { get; init; }
 
     /// <summary>
     /// Имя
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; init; }
 
     /// <summary>
     /// Отчество
     /// </summary>
-    public string PatronymicName { get; set; }
+    public string PatronymicName { get; init; }
 
     /// <summary>
     /// Пол
     /// </summary>
-    public SexType Sex { get; set; }
+    public SexType Sex { get; init; }
 
     /// <summary>
     /// Идентификатор преподавателя
     /// </summary>
-    public Guid IsnTeacher { get; set; }
+    public Guid? IsnTeacher { get; init; }
 }

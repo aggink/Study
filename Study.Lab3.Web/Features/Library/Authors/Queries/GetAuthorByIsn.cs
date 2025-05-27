@@ -32,7 +32,9 @@ public sealed class GetAuthorByIsnQueryHandler : IRequestHandler<GetAuthorByIsnQ
 
     public async Task<AuthorDto> Handle(GetAuthorByIsnQuery request, CancellationToken cancellationToken)
     {
-        var author = await _dataContext.Authors.FirstOrDefaultAsync(x => x.IsnAuthor == request.IsnAuthor, cancellationToken)
+        var author = await _dataContext.Authors
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.IsnAuthor == request.IsnAuthor, cancellationToken)
             ?? throw new BusinessLogicException($"Автора с идентификатором \"{request.IsnAuthor}\" не существует");
 
         return new AuthorDto

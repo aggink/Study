@@ -9,17 +9,17 @@ public sealed record UpdateBookDto
     /// Идентификатор книги
     /// </summary>
     [Required]
-    public Guid IsnBook { get; set; }
+    public Guid IsnBook { get; init; }
 
     /// <summary>
     /// Название книги
     /// </summary>
     [Required, MaxLength(ModelConstants.Book.Title)]
-    public string Title { get; set; }
+    public string Title { get; init; }
 
     /// <summary>
     /// Год издания
     /// </summary>
     [Required, Range(ModelConstants.Book.MinYear, ModelConstants.Book.MaxYear)]
-    public int PublicationYear { get; set; }
+    public int PublicationYear { get; init; }
 }

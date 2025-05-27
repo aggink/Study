@@ -1,7 +1,6 @@
 ﻿using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Enums.University;
 using Study.Lab3.Storage.Models.University;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -44,8 +43,8 @@ public class Authors
     /// <summary>
     /// Идентификатор преподавателя
     /// </summary>
-    [ForeignKey(nameof(Teacher)), Required, DefaultValue(null)]
-    public Guid IsnTeacher { get; set; }
+    [ForeignKey(nameof(Teacher)), Required]
+    public Guid? IsnTeacher { get; set; }
 
     /// <summary>
     /// Преподаватель

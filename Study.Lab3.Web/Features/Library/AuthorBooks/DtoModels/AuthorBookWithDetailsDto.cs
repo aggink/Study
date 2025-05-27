@@ -17,25 +17,25 @@ public sealed record AuthorBookWithDetailsDto
     /// <summary>
     /// Пол
     /// </summary>
-    public SexType Sex { get; set; }
+    public SexType Sex { get; init; }
 
     /// <summary>
     /// Идентификатор преподавателя
     /// </summary>
-    public Guid IsnTeacher { get; set; }
+    public Guid? IsnTeacher { get; init; }
 
     /// <summary>
     /// Идентификатор книги
     /// </summary>
-    public Guid IsnBook { get; set; }
+    public Guid IsnBook { get; init; }
 
     /// <summary>
     /// Название книги
     /// </summary>
-    public string Title { get; set; }
+    public string Title { get; init; }
 
     /// <summary>
     /// Год издания
     /// </summary>
-    public int PublicationYear { get; set; }
+    public int PublicationYear { get; init; }
 }
