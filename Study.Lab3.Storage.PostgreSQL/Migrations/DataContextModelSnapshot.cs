@@ -44,7 +44,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<Guid>("IsnAuthor")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("IsnTeacher")
+                    b.Property<Guid?>("IsnTeacher")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Name")
@@ -474,9 +474,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
                         .WithOne("Author")
-                        .HasForeignKey("Study.Lab3.Storage.Models.Library.Authors", "IsnTeacher")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Study.Lab3.Storage.Models.Library.Authors", "IsnTeacher");
 
                     b.Navigation("Teacher");
                 });

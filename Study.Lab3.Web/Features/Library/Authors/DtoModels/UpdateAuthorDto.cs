@@ -38,6 +38,5 @@ public sealed record UpdateAuthorDto
     /// <summary>
     /// Идентификатор преподавателя
     /// </summary>
-    [Required]
     public Guid? IsnTeacher { get; init; }
 }

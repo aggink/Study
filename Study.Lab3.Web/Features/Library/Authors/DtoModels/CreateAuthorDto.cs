@@ -32,6 +32,5 @@ public sealed record CreateAuthorDto
     /// <summary>
     /// Идентификатор преподавателя
     /// </summary>
-    [Required]
     public Guid? IsnTeacher { get; init; }
 }

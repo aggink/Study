@@ -44,7 +44,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Property<Guid>("IsnAuthor")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IsnTeacher")
+                    b.Property<Guid?>("IsnTeacher")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -68,7 +68,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasKey("IsnAuthor");
 
                     b.HasIndex("IsnTeacher")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[IsnTeacher] IS NOT NULL");
 
                     b.ToTable("Authors");
                 });
@@ -474,9 +475,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
                         .WithOne("Author")
-                        .HasForeignKey("Study.Lab3.Storage.Models.Library.Authors", "IsnTeacher")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Study.Lab3.Storage.Models.Library.Authors", "IsnTeacher");
 
                     b.Navigation("Teacher");
                 });

@@ -43,7 +43,7 @@ public class Authors
     /// <summary>
     /// Идентификатор преподавателя
     /// </summary>
-    [ForeignKey(nameof(Teacher)), Required]
+    [ForeignKey(nameof(Teacher))]
     public Guid? IsnTeacher { get; set; }
 
     /// <summary>
