@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Storage.Database;
@@ -8,6 +9,8 @@ public class DataContext : DbContext
     public DataContext(DbContextOptions options) : base(options)
     {
     }
+
+    #region University
 
     /// <summary>
     /// Студенты
@@ -78,4 +81,50 @@ public class DataContext : DbContext
     /// Результаты экзаменов
     /// </summary>
     public virtual DbSet<ExamResult> ExamResults { get; set; }
+    
+    #endregion
+    
+    #region Cinema
+
+    /// <summary>
+    /// Фильмы
+    /// </summary>
+    public virtual DbSet<Movie> Movies { get; set; }
+
+    /// <summary>
+    /// Жанры фильмов
+    /// </summary>
+    public virtual DbSet<Genre> Genres { get; set; }
+
+    /// <summary>
+    /// Связь фильмов и жанров
+    /// </summary>
+    public virtual DbSet<MovieGenre> MovieGenres { get; set; }
+
+    /// <summary>
+    /// Кинозалы
+    /// </summary>
+    public virtual DbSet<Hall> Halls { get; set; }
+
+    /// <summary>
+    /// Места в залах
+    /// </summary>
+    public virtual DbSet<Seat> Seats { get; set; }
+
+    /// <summary>
+    /// Киносеансы
+    /// </summary>
+    public virtual DbSet<Session> Sessions { get; set; }
+
+    /// <summary>
+    /// Клиенты
+    /// </summary>
+    public virtual DbSet<Customer> Customers { get; set; }
+
+    /// <summary>
+    /// Билеты
+    /// </summary>
+    public virtual DbSet<Ticket> Tickets { get; set; }
+    
+    #endregion
 }
