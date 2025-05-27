@@ -13,6 +13,7 @@ public class RationalNumberTests
         Assert.That(a.Numerator, Is.EqualTo(1), "Числитель не сокращён правильно.");
         Assert.That(a.Denominator, Is.EqualTo(2), "Знаменатель не сокращён правильно.");
     }
+
     [Test]
     public void ValidClassConstructorTestDenominatorDivingByZero()
     {
@@ -20,11 +21,13 @@ public class RationalNumberTests
         Assert.That(a.Numerator, Is.EqualTo(-1), "Числитель не сокращён правильно.");
         Assert.That(a.Denominator, Is.EqualTo(3), "Знаменатель не сокращён правильно.");
     }
+
     [Test]
     public void ValidClassConstructorZeroDenominatorTest()
     {
         Assert.Throws<DivideByZeroException>(() => new RationalNumber(1, 0));
     }
+
     [Test]
     public void ValidSummatorOperatorTest()
     {
@@ -34,6 +37,7 @@ public class RationalNumberTests
         var expected = new RationalNumber(5, 6);
         Assert.That(sum, Is.EqualTo(expected), "Операция сложения выполнена неверно.");
     }
+
     [Test]
     public void ValidSubtractionOperatorTest()
     {
@@ -43,6 +47,7 @@ public class RationalNumberTests
         var expected = new RationalNumber(1, 6);
         Assert.That(diff, Is.EqualTo(expected), "Операция вычитания выполнена неверно.");
     }
+
     [Test]
     public void ValidMultiplicationOperatorTest()
     {
@@ -52,6 +57,7 @@ public class RationalNumberTests
         var expected = new RationalNumber(1, 6);
         Assert.That(product, Is.EqualTo(expected), "Операция умножения не даёт ожидаемый результат.");
     }
+
     [Test]
     public void ValidDivisionOperatorTest()
     {
@@ -61,6 +67,7 @@ public class RationalNumberTests
         var expected = new RationalNumber(3, 2);
         Assert.That(quotient, Is.EqualTo(expected), "Операция деления не даёт ожидаемый результат.");
     }
+
     [Test]
     public void ValidUnaryMinusOperatorTest()
     {
@@ -70,6 +77,7 @@ public class RationalNumberTests
         var expected = new RationalNumber(-5, 6);
         Assert.That(quotient, Is.EqualTo(expected), "Операция деления не даёт ожидаемый результат.");
     }
+
     [Test]
     public void ValidEqualityOperatorTest()
     {
@@ -77,6 +85,7 @@ public class RationalNumberTests
         var b = new RationalNumber(2, 4);
         Assert.IsTrue(a == b, "Оператор равенства не распознаёт эквивалентные дроби.");
     }
+
     [Test]
     public void ValidInequalityOperatorTest()
     {
@@ -84,6 +93,7 @@ public class RationalNumberTests
         var b = new RationalNumber(1, 3);
         Assert.IsTrue(a != b, "Оператор неравенства неверно определяет разные дроби.");
     }
+
     [Test]
     public void ValidBiggerOperatorTest()
     {
@@ -91,6 +101,7 @@ public class RationalNumberTests
         var b = new RationalChislo(1, 3);
         Assert.IsTrue(a > b);
     }
+
     [Test]
     public void ValidSmallerOperatorTest()
     {
@@ -98,6 +109,7 @@ public class RationalNumberTests
         var b = new RationalChislo(1, 3);
         Assert.IsTrue(b < a);
     }
+
     [Test]
     public void ValidBiggerOrEqualOperatorTest()
     {
@@ -105,6 +117,7 @@ public class RationalNumberTests
         var b = new RationalChislo(1, 3);
         Assert.IsTrue(a >= b);
     }
+
     [Test]
     public void ValidSmallerOrEqualOperatorTest()
     {
@@ -112,12 +125,14 @@ public class RationalNumberTests
         var b = new RationalChislo(1, 3);
         Assert.IsTrue(b <= a);
     }
+
     [Test]
     public void ToStringMethod()
     {
         var a = new RationalNumber(1, 2);
         Assert.That(a.ToString(), Is.EqualTo("1/2"), "Метод ToString возвращает неверное представление дроби.");
     }
+
     [Test]
     public void EqualsMethod()
     {
@@ -125,6 +140,7 @@ public class RationalNumberTests
         var b = new RationalNumber(2, 4);
         Assert.IsTrue(a.Equals(b), "Метод Equals не распознаёт эквивалентные объектные дроби.");
     }
+
     [Test]
     public void GetHashCodeMethod()
     {
