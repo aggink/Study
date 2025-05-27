@@ -28,6 +28,7 @@ using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.danaky1;
 using Study.Lab1.Logic.yamisakimei;
 using Study.Lab1.Logic.cocobara;
+using Study.Lab1.Logic.Dronio1337;
 
 
 public static class Program
@@ -135,6 +136,8 @@ public static class Program
                 return new yamisakimeiService();
             case ("idb-23-02", 13):
                 return new cocobaraService();
+            case("idb-23-02", 5):
+                return new Dronio1337Service();
             default:
                 throw new NotSupportedException();
         }
