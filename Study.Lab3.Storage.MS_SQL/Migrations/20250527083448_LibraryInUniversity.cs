@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace Study.Lab3.Storage.PostgreSQL.Migrations
+namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     /// <inheritdoc />
-    public partial class Library : Migration
+    public partial class LibraryInUniversity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
