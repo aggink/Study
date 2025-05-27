@@ -15,4 +15,15 @@ public interface IAuthorBookService
         DataContext dataContext,
         AuthorBooks authorBook,
         CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Проверка связи Автор-Книга на возможность удаления
+    /// </summary>
+    /// <param name="dataContext">Контекст базы данных</param>
+    /// <param name="teacherSubject">Связь Автор-Книга</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    Task CanDeleteAuthorBook(
+        DataContext dataContext,
+        AuthorBooks authorBook,
+        CancellationToken cancellationToken = default);
 }

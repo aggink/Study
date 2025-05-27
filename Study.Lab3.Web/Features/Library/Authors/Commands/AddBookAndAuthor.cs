@@ -1,33 +1,23 @@
-﻿using CoreLib.Common.Extensions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.Library.Authors.DtoModels;
-using Study.Lab3.Web.Features.Library.Books.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Library.Authors.Commands;
 
 /// <summary>
-/// Создание связи книги с автором
+/// Создание книги с автором
 /// </summary>
 public sealed class AddBookAndAuthorCommand : IRequest
 {
     /// <summary>
-    /// Данные книги
+    /// Данные книги и автора
     /// </summary>
     [Required]
     [FromBody]
-    public UpdateBookDto Book { get; init; }
-
-    /// <summary>
-    /// Данные автора
-    /// </summary>
-    [Required]
-    [FromBody]
-    public UpdateAuthorDto Author { get; init; }
+    public AddBookAndAuthorDto AuthorBook { get; init; }
 }
 
 public sealed class AddBookAndAuthorCommandHandler : IRequest<AddBookAndAuthorCommand>
@@ -45,32 +35,31 @@ public sealed class AddBookAndAuthorCommandHandler : IRequest<AddBookAndAuthorCo
 
     public async Task Handle(AddBookAndAuthorCommand request, CancellationToken cancellationToken)
     {
-        var book = await _dataContext.Books.FirstOrDefaultAsync(x => x.IsnBook == request.Book.IsnBook, cancellationToken)
-            ?? throw new BusinessLogicException($"Книги с идентификатором \"{request.Book.IsnBook}\" не существует");
-
-        var author = await _dataContext.Authors.FirstOrDefaultAsync(x => x.IsnAuthor == request.Author.IsnAuthor, cancellationToken)
-            ?? throw new BusinessLogicException($"Автора с идентификатором \"{request.Author.IsnAuthor}\" не существует");
-
-        if (await _dataContext.AuthorBooks.AnyAsync(x => x.IsnBook == request.Book.IsnBook && x.IsnAuthor == request.Author.IsnAuthor, cancellationToken))
-            throw new BusinessLogicException($"Книга с идентификатором \"{request.Book.IsnBook}\" уже привязана к автору с идентификатором \"{request.Author.IsnAuthor}\"");
-
-        book.Title = request.Book.Title;
-        book.PublicationYear = request.Book.PublicationYear;
-
-        await _bookService.CreateOrUpdateBookValidateAndThrowAsync(_dataContext, book, cancellationToken);
-
-        author.SurName = request.Author.SurName;
-        author.Name = request.Author.Name;
-        author.PatronymicName = request.Author.PatronymicName;
-        author.Sex = request.Author.Sex;
-        author.IsnTeacher = request.Author.IsnTeacher;
+        var author = new Storage.Models.Library.Authors
+        {
+            IsnAuthor = Guid.NewGuid(),
+            SurName = request.AuthorBook.Name,
+            Name = request.AuthorBook.Name,
+            PatronymicName = request.AuthorBook.Name,
+            Sex = request.AuthorBook.Sex,
+            IsnTeacher = request.AuthorBook.IsnTeacher
+        };
 
         await _authorService.CreateOrUpdateAuthorValidateAndThrowAsync(_dataContext, author, cancellationToken);
 
+        var book = new Storage.Models.Library.Books
+        {
+            IsnBook = Guid.NewGuid(),
+            Title = request.AuthorBook.Title,
+            PublicationYear = request.AuthorBook.PublicationYear,
+        };
+
+        await _bookService.CreateOrUpdateBookValidateAndThrowAsync(_dataContext, book, cancellationToken);
+
         var link = new Storage.Models.Library.AuthorBooks
         {
-            IsnAuthor = request.Author.IsnAuthor,
-            IsnBook = request.Book.IsnBook
+            IsnAuthor = author.IsnAuthor,
+            IsnBook = book.IsnBook
         };
 
         await _dataContext.AuthorBooks.AddAsync(link, cancellationToken);

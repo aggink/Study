@@ -28,4 +28,17 @@ public sealed class AuthorBookService : IAuthorBookService
             throw new BusinessLogicException("Такая связь Автор-Книга уже существует");
         }
     }
+
+    public async Task CanDeleteAuthorBook(DataContext dataContext, AuthorBooks authorBook, CancellationToken cancellationToken = default)
+    {
+        if (!await dataContext.Authors.AnyAsync(x => x.IsnAuthor == authorBook.IsnAuthor, cancellationToken))
+        {
+            throw new BusinessLogicException($"Автора с идентификатором \"{authorBook.IsnAuthor}\" не существует");
+        }
+
+        if (!await dataContext.Books.AnyAsync(x => x.IsnBook == authorBook.IsnBook, cancellationToken))
+        {
+            throw new BusinessLogicException($"Книги с идентификатором \"{authorBook.IsnBook}\" не существует");
+        }
+    }
 }

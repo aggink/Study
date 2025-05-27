@@ -44,6 +44,8 @@ public sealed class DeleteAuthorBookCommandHandler : IRequestHandler<DeleteAutho
         var authorBook = await _dataContext.AuthorBooks.FirstOrDefaultAsync(x => x.IsnBook == request.IsnBook && x.IsnAuthor == request.IsnAuthor, cancellationToken)
             ?? throw new BusinessLogicException("Связь Автор-Книга не существует");
 
+        await _authorBookService.CanDeleteAuthorBook(_dataContext, authorBook, cancellationToken);
+
         _dataContext.AuthorBooks.Remove(authorBook);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }

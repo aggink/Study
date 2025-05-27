@@ -1125,7 +1125,7 @@ public class ManageController : Controller
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Идентификатор автора</returns>
     [HttpPost(nameof(UpdateAuthor), Name = nameof(UpdateAuthor))]
-    public async Task<ActionResult<Guid>> UpdateAuthor(UpdateSubjectCommand command,
+    public async Task<ActionResult<Guid>> UpdateAuthor(UpdateAuthorCommand command,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -1138,7 +1138,7 @@ public class ManageController : Controller
     /// <param name="command">Dto запроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
     [HttpPost(nameof(DeleteAuthor), Name = nameof(DeleteAuthor))]
-    public async Task<ActionResult<Guid>> DeleteAuthor(DeleteSubjectCommand command,
+    public async Task<ActionResult<Guid>> DeleteAuthor(DeleteAuthorCommand command,
         CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
@@ -1174,7 +1174,7 @@ public class ManageController : Controller
     }
 
     /// <summary>
-    /// Привязать книгу к автору
+    /// Добавить книгу с автором
     /// </summary>
     /// <param name="command">Dto запроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
@@ -1187,7 +1187,7 @@ public class ManageController : Controller
     }
 
     /// <summary>
-    /// Отвязать книгу от автора
+    /// Удалить книгу с автором
     /// </summary>
     /// <param name="command">Dto запроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
@@ -1204,7 +1204,7 @@ public class ManageController : Controller
     #region AuthorBook
 
     /// <summary>
-    /// Привязка книги к автору
+    /// Привязать книгу к автору
     /// </summary>
     [HttpPost(nameof(CreateAuthorBook), Name = nameof(CreateAuthorBook))]
     public async Task<ActionResult> CreateAuthorBook(CreateAuthorBookCommand command,
@@ -1215,7 +1215,7 @@ public class ManageController : Controller
     }
 
     /// <summary>
-    /// Отвязка книги от автора
+    /// Отвязать книгу от автора
     /// </summary>
     [HttpPost(nameof(DeleteAuthorBook), Name = nameof(DeleteAuthorBook))]
     public async Task<ActionResult> DeleteAuthorBook(DeleteAuthorBookCommand command,
