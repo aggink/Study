@@ -11,4 +11,4 @@ public interface IRationalNumber
     int Numerator { get; }
 
     int Denominator { get; }
-}
+} 

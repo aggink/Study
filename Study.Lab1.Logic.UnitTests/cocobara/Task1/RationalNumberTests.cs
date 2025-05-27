@@ -13,7 +13,7 @@ public class RationalNumberTests
 
         var result = A + B;
 
-        Assert.That(result.Numerator, Is.EqualTo(11));
+        Assert.That(result.Numerator, Is.EqualTo(11)); 
         Assert.That(result.Denominator, Is.EqualTo(6));
     }
 

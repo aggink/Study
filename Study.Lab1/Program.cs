@@ -46,7 +46,7 @@ public static class Program
     /// Порядковый номер
     /// </summary>
     private const int PERSON_NUMBER = 1;
-
+ 
     public static void Main()
     {
         var service = GetRunLabService(GROUP_NAME, PERSON_NUMBER);

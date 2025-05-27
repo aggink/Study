@@ -8,7 +8,7 @@ public class RationalNumber : IRationalNumber
 
     public int Denominator { get; }
 
-    public RationalNumber(int numerator, int denominator)
+    public RationalNumber(int numerator, int denominator) 
     {
         if (denominator == 0)
             throw new DivideByZeroException("Знаменатель не может быть равен нулю");
