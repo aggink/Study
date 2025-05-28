@@ -47,4 +47,62 @@ public class RationalNumber
         var den = a.Denominator * b.Denominator;
         return new RationalNumber(num, den);
     }
+
+    public static RationalNumber operator -(RationalNumber a, RationalNumber b)
+    {
+        var numerator = a.Numerator * b.Denominator - b.Numerator * a.Denominator;
+        var denominator = a.Denominator * b.Denominator;
+        return new RationalNumber(numerator, denominator);
+    }
+
+    public static RationalNumber operator /(RationalNumber a, RationalNumber b)
+    {
+        if (b.Numerator == 0)
+            throw new DivideByZeroException("Деление на ноль");
+
+        var numerator = a.Numerator * b.Denominator;
+        var denominator = a.Denominator * b.Numerator;
+        return new RationalNumber(numerator, denominator);
+    }
+
+    public static RationalNumber operator -(RationalNumber a)
+    {
+        return new RationalNumber(-a.Numerator, a.Denominator);
+    }
+
+    public static bool operator ==(RationalNumber a, RationalNumber b)
+    {
+        if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+            return true;
+
+        if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+            return false;
+
+        return a.Numerator * b.Denominator == b.Numerator * a.Denominator;
+    }
+
+    public static bool operator !=(RationalNumber a, RationalNumber b)
+    {
+        return !(a == b);
+    }
+
+    public static bool operator >(RationalNumber a, RationalNumber b)
+    {
+        return a.Numerator * b.Denominator > b.Numerator * a.Denominator;
+    }
+
+    public static bool operator <(RationalNumber a, RationalNumber b)
+    {
+        return a.Numerator * b.Denominator < b.Numerator * a.Denominator;
+    }
+
+    public static bool operator >=(RationalNumber a, RationalNumber b)
+    {
+        return a.Numerator * b.Denominator >= b.Numerator * a.Denominator;
+    }
+
+    public static bool operator <=(RationalNumber a, RationalNumber b)
+    {
+        return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
+    }
 }
