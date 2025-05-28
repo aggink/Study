@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.University;
+using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.University;
 
 namespace Study.Lab3.Logic.Extensions;
@@ -26,5 +28,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IExamService, ExamService>();
         services.AddSingleton<IExamRegistrationService, ExamRegistrationService>();
         services.AddSingleton<IExamResultService, ExamResultService>();
+        services.AddSingleton<IMovieService, MovieService>();
+        services.AddSingleton<IGenreService, GenreService>();
+        services.AddSingleton<IHallService, HallService>();
+        services.AddSingleton<ISessionService, SessionService>();
+        services.AddSingleton<ICustomerService, CustomerService>();
+        services.AddSingleton<ITicketService, TicketService>();
     }
 }
