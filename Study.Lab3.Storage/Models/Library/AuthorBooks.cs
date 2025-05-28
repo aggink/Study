@@ -7,8 +7,8 @@ namespace Study.Lab3.Storage.Models.Library;
 /// <summary>
 /// Связь таблиц Авторы - Книги
 /// </summary>
-[Index(nameof(Authors.IsnAuthor), nameof(Books.IsnBook))]
-[PrimaryKey(nameof(Authors.IsnAuthor), nameof(Books.IsnBook))]
+[Index(nameof(IsnAuthor), nameof(IsnBook))]
+[PrimaryKey(nameof(IsnAuthor), nameof(IsnBook))]
 public class AuthorBooks
 {
     /// <summary>
