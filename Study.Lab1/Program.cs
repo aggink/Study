@@ -134,8 +134,10 @@ public static class Program
                 return new danaky1Service();
             case ("idb-23-03", 8):
                 return new yamisakimeiService();
-                case("idb-23-02", 5):
+            case("idb-23-02", 5):
                 return new Dronio1337Service();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
             default:
                 throw new NotSupportedException();
         }
