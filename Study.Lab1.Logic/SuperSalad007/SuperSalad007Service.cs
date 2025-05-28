@@ -37,9 +37,7 @@ public class SuperSalad007Service : IRunService
                           $"d>=b: {D >= B}\n" +
                           $"a<=c: {A <= C}\n" +
                           $"a == d: {A == C}\n"
-            );
-
-            
+            );          
         }
     }
 
