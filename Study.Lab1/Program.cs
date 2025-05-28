@@ -27,6 +27,7 @@ using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.danaky1;
 using Study.Lab1.Logic.yamisakimei;
+using Study.Lab1.Logic.cocobara;
 using Study.Lab1.Logic.alexmark1612;
 using Study.Lab1.Logic.Dronio1337;
 
@@ -137,6 +138,8 @@ public static class Program
                 return new alexmark1612Service();
             case("idb-23-02", 5):
                 return new Dronio1337Service();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
             default:
                 throw new NotSupportedException();
         }
