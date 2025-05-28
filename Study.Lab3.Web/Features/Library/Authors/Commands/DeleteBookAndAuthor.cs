@@ -24,7 +24,7 @@ public sealed class DeleteBookAndAuthorCommand : IRequest
     public Guid IsnAuthor { get; init; }
 }
 
-public sealed class DeleteBookAndAuthorCommandHandler : IRequest<DeleteBookAndAuthorCommand>
+public sealed class DeleteBookAndAuthorCommandHandler : IRequestHandler<DeleteBookAndAuthorCommand>
 {
     private readonly DataContext _dataContext;
 
@@ -36,17 +36,23 @@ public sealed class DeleteBookAndAuthorCommandHandler : IRequest<DeleteBookAndAu
     public async Task Handle(DeleteBookAndAuthorCommand request, CancellationToken cancellationToken)
     {
         var book = await _dataContext.Books.FirstOrDefaultAsync(x => x.IsnBook == request.IsnBook, cancellationToken)
-           ?? throw new BusinessLogicException($"Книги с идентификатором \"{request.IsnBook}\" не существует");
+                   ?? throw new BusinessLogicException($"Книги с идентификатором \"{request.IsnBook}\" не существует");
 
         var author = await _dataContext.Authors.FirstOrDefaultAsync(x => x.IsnAuthor == request.IsnAuthor, cancellationToken)
-            ?? throw new BusinessLogicException($"Автора с идентификатором \"{request.IsnAuthor}\" не существует");
+                     ?? throw new BusinessLogicException($"Автора с идентификатором \"{request.IsnAuthor}\" не существует");
 
-        var link = await _dataContext.AuthorBooks.FirstOrDefaultAsync(x => x.IsnBook == request.IsnBook && x.IsnAuthor == request.IsnAuthor, cancellationToken)
-            ?? throw new BusinessLogicException($"Книга с идентификатором \"{request.IsnBook}\" не привязана к автору с идентификатором \"{request.IsnAuthor}\"");
+        var links = await _dataContext.AuthorBooks
+            .Where(x => x.IsnBook == request.IsnBook && x.IsnAuthor == request.IsnAuthor)
+            .ToListAsync(cancellationToken);
 
-        _dataContext.AuthorBooks.Remove(link);
+        if (!links.Any())
+            throw new BusinessLogicException($"Книга с идентификатором \"{request.IsnBook}\" не привязана к автору с идентификатором \"{request.IsnAuthor}\"");
+
+        _dataContext.AuthorBooks.RemoveRange(links);
+
+        _dataContext.Books.Remove(book);
+        _dataContext.Authors.Remove(author);
+
         await _dataContext.SaveChangesAsync(cancellationToken);
-
-        return;
     }
 }

@@ -20,7 +20,7 @@ public sealed class AddBookAndAuthorCommand : IRequest
     public AddBookAndAuthorDto AuthorBook { get; init; }
 }
 
-public sealed class AddBookAndAuthorCommandHandler : IRequest<AddBookAndAuthorCommand>
+public sealed class AddBookAndAuthorCommandHandler : IRequestHandler<AddBookAndAuthorCommand>
 {
     private readonly DataContext _dataContext;
     private readonly IBookService _bookService;
@@ -38,33 +38,34 @@ public sealed class AddBookAndAuthorCommandHandler : IRequest<AddBookAndAuthorCo
         var author = new Storage.Models.Library.Authors
         {
             IsnAuthor = Guid.NewGuid(),
-            SurName = request.AuthorBook.Name,
+            SurName = request.AuthorBook.SurName,
             Name = request.AuthorBook.Name,
-            PatronymicName = request.AuthorBook.Name,
+            PatronymicName = request.AuthorBook.PatronymicName,
             Sex = request.AuthorBook.Sex,
             IsnTeacher = request.AuthorBook.IsnTeacher
         };
 
         await _authorService.CreateOrUpdateAuthorValidateAndThrowAsync(_dataContext, author, cancellationToken);
+        await _dataContext.Authors.AddAsync(author, cancellationToken);
 
         var book = new Storage.Models.Library.Books
         {
             IsnBook = Guid.NewGuid(),
             Title = request.AuthorBook.Title,
-            PublicationYear = request.AuthorBook.PublicationYear,
+            PublicationYear = request.AuthorBook.PublicationYear
         };
 
         await _bookService.CreateOrUpdateBookValidateAndThrowAsync(_dataContext, book, cancellationToken);
+        await _dataContext.Books.AddAsync(book, cancellationToken);
+        await _dataContext.SaveChangesAsync(cancellationToken);
 
-        var link = new Storage.Models.Library.AuthorBooks
+        var authorBook = new Storage.Models.Library.AuthorBooks
         {
             IsnAuthor = author.IsnAuthor,
             IsnBook = book.IsnBook
         };
 
-        await _dataContext.AuthorBooks.AddAsync(link, cancellationToken);
+        await _dataContext.AuthorBooks.AddAsync(authorBook, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
-
-        return;
     }
 }

@@ -32,25 +32,30 @@ public sealed class GetAuthorsByBookQueryHandler : IRequestHandler<GetAuthorsByB
 
     public async Task<AuthorBookWithDetailsDto[]> Handle(GetAuthorsByBookQuery request, CancellationToken cancellationToken)
     {
-        var book = await _dataContext.Books
-            .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.IsnBook == request.IsnBook, cancellationToken)
-            ?? throw new BusinessLogicException($"Книги с идентификатором \"{request.IsnBook}\" не существует");
+        var book = await _dataContext.Books.FirstOrDefaultAsync(x => x.IsnBook == request.IsnBook, cancellationToken)
+                   ?? throw new BusinessLogicException($"Книги с идентификатором \"{request.IsnBook}\" не существует");
 
-        return await _dataContext.AuthorBooks
-            .AsNoTracking()
-            .Where(x => x.IsnBook == request.IsnBook)
-            .Select(ab => new AuthorBookWithDetailsDto
+        var authorsWithLinks = await _dataContext.AuthorBooks
+            .Where(a => a.IsnBook == request.IsnBook)
+            .Join(
+                _dataContext.Authors,
+                a => a.IsnAuthor,
+                a => a.IsnAuthor,
+                (authorBook, author) => new { AuthorBook = authorBook, Author = author }
+            )
+            .ToListAsync(cancellationToken);
+
+        var result = authorsWithLinks
+            .OrderBy(a => a.Author.SurName + " " + a.Author.Name + " " + a.Author.PatronymicName)
+            .Select(a => new AuthorBookWithDetailsDto
             {
-                IsnAuthor = ab.IsnAuthor,
-                AuthorFullName = $"{ab.Author.SurName} {ab.Author.Name} {ab.Author.PatronymicName}",
-                Sex = ab.Author.Sex,
-                IsnTeacher = ab.Author.IsnTeacher,
-                IsnBook = ab.IsnBook,
-                Title = ab.Book.Title,
-                PublicationYear = ab.Book.PublicationYear
+                IsnAuthor = a.Author.IsnAuthor,
+                IsnBook = a.AuthorBook.IsnBook,
+                AuthorFullName = $"{a.Author.SurName} {a.Author.Name} {a.Author.PatronymicName}",
+                Sex = a.Author.Sex
             })
-            .OrderBy(x => x.AuthorFullName)
-            .ToArrayAsync(cancellationToken);
+            .ToArray();
+
+        return result;
     }
 }

@@ -32,24 +32,30 @@ public sealed class GetBooksByAuthorQueryHandler : IRequestHandler<GetBooksByAut
 
     public async Task<AuthorBookWithDetailsDto[]> Handle(GetBooksByAuthorQuery request, CancellationToken cancellationToken)
     {
-        var author = _dataContext.Authors
-            .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.IsnAuthor == request.IsnAuthor, cancellationToken)
-            ?? throw new BusinessLogicException($"Автора с идентификатором \"{request.IsnAuthor}\" не существует");
+        var author = await _dataContext.Authors.FirstOrDefaultAsync(x => x.IsnAuthor == request.IsnAuthor, cancellationToken)
+                     ?? throw new BusinessLogicException($"Автора с идентификатором \"{request.IsnAuthor}\" не существует");
 
-        return await _dataContext.AuthorBooks
-            .AsNoTracking().Where(x => x.IsnAuthor == request.IsnAuthor)
-            .Select(ba => new AuthorBookWithDetailsDto
+        var booksWithLinks = await _dataContext.AuthorBooks
+            .Where(a => a.IsnAuthor == request.IsnAuthor)
+            .Join(
+                _dataContext.Books,
+                a => a.IsnBook,
+                b => b.IsnBook,
+                (authorBook, book) => new { AuthorBook = authorBook, Book = book }
+            )
+            .ToListAsync(cancellationToken);
+
+        var result = booksWithLinks
+            .OrderBy(b => b.Book.Title)
+            .Select(b => new AuthorBookWithDetailsDto
             {
-                IsnAuthor = ba.IsnAuthor,
-                AuthorFullName = $"{ba.Author.SurName} {ba.Author.Name} {ba.Author.PatronymicName}",
-                Sex = ba.Author.Sex,
-                IsnTeacher = ba.Author.IsnTeacher,
-                IsnBook = ba.IsnBook,
-                Title = ba.Book.Title,
-                PublicationYear = ba.Book.PublicationYear
+                IsnAuthor = b.AuthorBook.IsnAuthor,
+                IsnBook = b.Book.IsnBook,
+                Title = b.Book.Title,
+                PublicationYear = b.Book.PublicationYear
             })
-            .OrderBy(x => x.Title)
-            .ToArrayAsync(cancellationToken);
+            .ToArray();
+
+        return result;
     }
 }
