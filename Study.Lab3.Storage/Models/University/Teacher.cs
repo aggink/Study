@@ -1,5 +1,6 @@
 ﻿using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Enums.University;
+using Study.Lab3.Storage.Models.Library;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -50,4 +51,10 @@ public class Teacher
     /// </summary>
     [InverseProperty(nameof(TeacherSubject.Teacher))]
     public virtual ICollection<TeacherSubject> TeacherSubjects { get; set; }
+
+    /// <summary>
+    /// Связь с таблицей авторов
+    /// </summary>
+    [InverseProperty(nameof(Authors.Teacher))]
+    public virtual Authors Author { get; set; }
 }
