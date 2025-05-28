@@ -258,6 +258,76 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Tickets");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>
+                {
+                    b.Property<Guid>("IsnAuthor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnBook")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IsnAuthor", "IsnBook");
+
+                    b.HasIndex("IsnBook");
+
+                    b.HasIndex("IsnAuthor", "IsnBook");
+
+                    b.ToTable("AuthorBooks");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Authors", b =>
+                {
+                    b.Property<Guid>("IsnAuthor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IsnTeacher")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PatronymicName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Sex")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("IsnAuthor");
+
+                    b.HasIndex("IsnTeacher")
+                        .IsUnique()
+                        .HasFilter("[IsnTeacher] IS NOT NULL");
+
+                    b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
+                {
+                    b.Property<Guid>("IsnBook")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("PublicationYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("IsnBook");
+
+                    b.ToTable("Books");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
                     b.Property<Guid>("IsnAnnouncement")
@@ -694,6 +764,34 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Session");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Library.Authors", "Author")
+                        .WithMany("AuthorBook")
+                        .HasForeignKey("IsnAuthor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Library.Books", "Book")
+                        .WithMany("AuthorBook")
+                        .HasForeignKey("IsnBook")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Authors", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
+                        .WithOne("Author")
+                        .HasForeignKey("Study.Lab3.Storage.Models.Library.Authors", "IsnTeacher");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
@@ -889,6 +987,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Tickets");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Authors", b =>
+                {
+                    b.Navigation("AuthorBook");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
+                {
+                    b.Navigation("AuthorBook");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
                     b.Navigation("AnnouncementGroups");
@@ -938,6 +1046,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Teacher", b =>
                 {
                     b.Navigation("Announcements");
+
+                    b.Navigation("Author");
 
                     b.Navigation("TeacherSubjects");
                 });

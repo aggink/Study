@@ -12,7 +12,7 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250528065522_AddLibrary")]
+    [Migration("20250528095813_AddLibrary")]
     partial class AddLibrary
     {
         /// <inheritdoc />
@@ -20,10 +20,246 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Genre", b =>
+                {
+                    b.Property<Guid>("IsnGenre")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("IsnGenre");
+
+                    b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Hall", b =>
+                {
+                    b.Property<Guid>("IsnHall")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("RowsCount")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SeatsPerRow")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnHall");
+
+                    b.ToTable("Halls");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Movie", b =>
+                {
+                    b.Property<Guid>("IsnMovie")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AgeRating")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnMovie");
+
+                    b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.MovieGenre", b =>
+                {
+                    b.Property<Guid>("IsnMovie")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnGenre")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("IsnMovie", "IsnGenre");
+
+                    b.HasIndex("IsnGenre");
+
+                    b.ToTable("MovieGenres");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Seat", b =>
+                {
+                    b.Property<Guid>("IsnSeat")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IsnHall")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Row")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnSeat");
+
+                    b.HasIndex("IsnHall");
+
+                    b.ToTable("Seats");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
+                {
+                    b.Property<Guid>("IsnSession")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("BasePrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IsnHall")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnMovie")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnSession");
+
+                    b.HasIndex("IsnHall");
+
+                    b.HasIndex("IsnMovie");
+
+                    b.ToTable("Sessions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Ticket", b =>
+                {
+                    b.Property<Guid>("IsnTicket")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSeat")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSession")
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("TicketCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("IsnTicket");
+
+                    b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnSeat");
+
+                    b.HasIndex("IsnSession");
+
+                    b.ToTable("Tickets");
+                });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>
                 {
@@ -454,6 +690,82 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("TeacherSubjects");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.MovieGenre", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Genre", "Genre")
+                        .WithMany("MovieGenres")
+                        .HasForeignKey("IsnGenre")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Movie", "Movie")
+                        .WithMany("MovieGenres")
+                        .HasForeignKey("IsnMovie")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Seat", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Hall", "Hall")
+                        .WithMany("Seats")
+                        .HasForeignKey("IsnHall")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hall");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Hall", "Hall")
+                        .WithMany("Sessions")
+                        .HasForeignKey("IsnHall")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Movie", "Movie")
+                        .WithMany("Sessions")
+                        .HasForeignKey("IsnMovie")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hall");
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Ticket", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Customer", "Customer")
+                        .WithMany("Tickets")
+                        .HasForeignKey("IsnCustomer")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Seat", "Seat")
+                        .WithMany("Tickets")
+                        .HasForeignKey("IsnSeat")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Session", "Session")
+                        .WithMany("Tickets")
+                        .HasForeignKey("IsnSession")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Seat");
+
+                    b.Navigation("Session");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Library.Authors", "Author")
@@ -641,6 +953,40 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Genre", b =>
+                {
+                    b.Navigation("MovieGenres");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Hall", b =>
+                {
+                    b.Navigation("Seats");
+
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Movie", b =>
+                {
+                    b.Navigation("MovieGenres");
+
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Seat", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Authors", b =>

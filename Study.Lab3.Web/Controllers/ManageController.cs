@@ -1067,7 +1067,7 @@ public class ManageController : Controller
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Список групп</returns>
     [HttpGet(nameof(GetListBooks), Name = nameof(GetListBooks))]
-    public async Task<ActionResult<BookItemDto[]>> GetListBooks([FromQuery] GetListGroupsQuery query, CancellationToken cancellationToken)
+    public async Task<ActionResult<BookItemDto[]>> GetListBooks([FromQuery] GetListBooksQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
