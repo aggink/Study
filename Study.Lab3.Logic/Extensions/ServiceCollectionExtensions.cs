@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.University;
+using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.Library;
 using Study.Lab3.Logic.Services.University;
 
@@ -31,5 +33,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBookService, BookService>();
         services.AddSingleton<IAuthorService, AuthorService>();
         services.AddSingleton<IAuthorBookService, AuthorBookService>();
+        services.AddSingleton<IMovieService, MovieService>();
+        services.AddSingleton<IGenreService, GenreService>();
+        services.AddSingleton<IHallService, HallService>();
+        services.AddSingleton<ISessionService, SessionService>();
+        services.AddSingleton<ICustomerService, CustomerService>();
+        services.AddSingleton<ITicketService, TicketService>();
     }
 }
