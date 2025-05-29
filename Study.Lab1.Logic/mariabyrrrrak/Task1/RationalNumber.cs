@@ -34,7 +34,7 @@ public class RationalNumber
         Denominator = dum / nod;
     }
 
-    #region Перегрузки
+    #region Overloads
     public static RationalNumber operator +(RationalNumber a, RationalNumber b)
     {
         var num = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
@@ -108,7 +108,7 @@ public class RationalNumber
     }
     #endregion
 
-    #region Методы
+    #region Methods
     public override int GetHashCode()
     {
         return HashCode.Combine(Numerator, Denominator);
