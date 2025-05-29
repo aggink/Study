@@ -1,16 +1,15 @@
-﻿namespace Study.Lab2.Logic.Interfaces
-{
-    public interface IRunService : IDisposable
-    {
-        /// <summary>
-        /// Запуск выполнения задания
-        /// </summary>
-        void RunTask();
+﻿namespace Study.Lab2.Logic.Interfaces.SuperSalad007;
 
-        /// <summary>
-        /// Запуск выполнения задания
-        /// </summary>
-        /// <param name="cancellationToken">Токен отмены</param>
-        Task RunTaskAsync(CancellationToken cancellationToken = default);
-    }
+public interface IRunService : IDisposable
+{
+    /// <summary>
+    /// Запуск выполнения задания
+    /// </summary>
+    void RunTask();
+
+    /// <summary>
+    /// Запуск выполнения задания
+    /// </summary>
+    /// <param name="cancellationToken">Токен отмены</param>
+    Task RunTaskAsync(CancellationToken cancellationToken = default);
 }

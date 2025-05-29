@@ -1,5 +1,6 @@
 ﻿using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.Interfaces;
+using Study.Lab2.Logic.SuperSalad007;
 
 public static class Program
 {
@@ -54,6 +55,8 @@ public static class Program
         {
             case ("assistant", 1):
                 return new AssistantService();
+            case ("SuperSalad007", 5):
+                return new SuperSaladService();
             default:
                 throw new NotSupportedException();
         }
