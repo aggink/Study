@@ -31,10 +31,7 @@ using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.yamisakimei;
-using Study.Lab1.Logic.cocobara;
-using Study.Lab1.Logic.alexmark1612;
-using Study.Lab1.Logic.Dronio1337;
-using Study.Lab1.Logic.Cherryy;
+using Study.Lab1.Logic.Bonnemort;
 using Study.Lab1.Logic.SuperSalad007;
 
 public static class Program
@@ -144,6 +141,8 @@ public static class Program
                 return new alexmark1612Service();
             case ("idb-23-02", 5):
                 return new Dronio1337Service();
+            case ("idb-23-02", 18):
+                return new BonnemortService();
             case ("idb-23-03", 20):
                 return new mariabyrrrrakService();
             case ("idb-23-02", 13):
