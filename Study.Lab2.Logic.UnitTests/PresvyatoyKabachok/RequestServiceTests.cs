@@ -3,24 +3,6 @@
 [TestFixture]
 public class RequestServiceTests
 {
-    private static HttpClient CreateClient(HttpStatusCode code, string content = "", string reason = "Error")
-    {
-        var handler = new Mock<HttpMessageHandler>();
-        handler.Protected()
-               .Setup<Task<HttpResponseMessage>>(
-                   "SendAsync",
-                   ItExpr.IsAny<HttpRequestMessage>(),
-                   ItExpr.IsAny<CancellationToken>())
-               .ReturnsAsync(new HttpResponseMessage
-               {
-                   StatusCode = code,
-                   ReasonPhrase = reason,
-                   Content = new StringContent(content)
-               });
-
-        return new HttpClient(handler.Object);
-    }
-
     [Test]
     public void FetchData_ReturnsContent_On200()
     {
@@ -48,5 +30,23 @@ public class RequestServiceTests
     {
         using var svc = new RequestService(CreateClient(HttpStatusCode.InternalServerError));
         Assert.ThrowsAsync<Exception>(async () => await svc.FetchDataAsync("http://any"));
+    }
+
+    private static HttpClient CreateClient(HttpStatusCode code, string content = "", string reason = "Error")
+    {
+        var handler = new Mock<HttpMessageHandler>();
+        handler.Protected()
+               .Setup<Task<HttpResponseMessage>>(
+                   "SendAsync",
+                   ItExpr.IsAny<HttpRequestMessage>(),
+                   ItExpr.IsAny<CancellationToken>())
+               .ReturnsAsync(new HttpResponseMessage
+               {
+                   StatusCode = code,
+                   ReasonPhrase = reason,
+                   Content = new StringContent(content)
+               });
+
+        return new HttpClient(handler.Object);
     }
 }
