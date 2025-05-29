@@ -30,6 +30,9 @@ using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.yamisakimei;
+using Study.Lab1.Logic.cocobara;
+using Study.Lab1.Logic.alexmark1612;
+using Study.Lab1.Logic.Dronio1337;
 
 public static class Program
 {
@@ -140,6 +143,8 @@ public static class Program
                 return new Dronio1337Service();
             case ("idb-23-03", 20):
                 return new mariabyrrrrakService();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
             default:
                 throw new NotSupportedException();
         }
