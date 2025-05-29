@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.Cinema;
+using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Storage.Database;
@@ -81,6 +82,21 @@ public class DataContext : DbContext
     /// Результаты экзаменов
     /// </summary>
     public virtual DbSet<ExamResult> ExamResults { get; set; }
+
+    /// <summary>
+    /// Авторы
+    /// </summary>
+    public virtual DbSet<Authors> Authors { get; set; }
+
+    /// <summary>
+    /// Книги
+    /// </summary>
+    public virtual DbSet<Books> Books { get; set; }
+
+    /// <summary>
+    /// Связь авторов и книг
+    /// </summary>
+    public virtual DbSet<AuthorBooks> AuthorBooks { get; set; }
     
     #endregion
     
