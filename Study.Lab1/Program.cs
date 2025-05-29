@@ -19,6 +19,7 @@ using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.chirique_online;
+using Study.Lab1.Logic.Crocodile17;
 
 
 public static class Program
@@ -108,6 +109,8 @@ public static class Program
                 return new alkeiviService();
             case ("idb-23-02", 12):
                 return new chiriqueOnlineService();
+            case ("idb-23-03", 19):
+                return new Crocodile17Service();
             default:
                 throw new NotSupportedException();
         }
