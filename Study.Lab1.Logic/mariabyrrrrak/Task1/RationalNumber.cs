@@ -28,10 +28,29 @@ public class RationalNumber
             throw new ArgumentException("Делить на 0 нельзя!", nameof(dum));
         }
     }
-
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Numerator, Denominator);
+    }
     public override string ToString()
     {
+        if (Denominator == 1)
+            return Numerator.ToString();
+
         return $"{Numerator}/{Denominator}";
+
+    }
+
+    private static int GreatestCommonDivisor(int a, int b)
+    {
+        while (b != 0)
+        {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        return a;
     }
 
     public static RationalNumber operator +(RationalNumber a, RationalNumber b)
