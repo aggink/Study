@@ -31,11 +31,7 @@ using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.yamisakimei;
-using Study.Lab1.Logic.cocobara;
-using Study.Lab1.Logic.alexmark1612;
-using Study.Lab1.Logic.Dronio1337;
 using Study.Lab1.Logic.Bonnemort;
-using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.SuperSalad007;
 
 public static class Program

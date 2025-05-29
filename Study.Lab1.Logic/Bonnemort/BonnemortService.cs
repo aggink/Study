@@ -13,7 +13,7 @@ public class BonnemortService : IRunService
         var d = new RationalNumber(-8, 2);
         var e = new RationalNumber(-12, -3);
 
-        var sum = a + b;
+        var sum = a + b; 
         var difference = a - b;
         var product = a * b;
         var quotient = a / b;
