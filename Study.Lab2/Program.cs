@@ -14,17 +14,18 @@ using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.Jki749;
+using Study.Lab2.Logic.chirique_online;
 public static class Program
 {
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 12;
 
     public static async Task Main()
     {
@@ -93,6 +94,8 @@ public static class Program
                 return new jki749Service();
             case ("idb-23-03", 12):
                 return new alkeiviService();
+            case ("idb-23-02", 12):
+                return new chiriqueOnlineService();
             default:
                 throw new NotSupportedException();
         }
