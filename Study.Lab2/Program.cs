@@ -4,16 +4,16 @@ using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.Interfaces;
+using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
 using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.love100rubb;
 using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.poigko;
+using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
-using Study.Lab2.Logic.KirillPoroshin;
-using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.chirique_online;
 public static class Program
 {
@@ -94,6 +94,8 @@ public static class Program
                 return new jki749Service();
             case ("idb-23-03", 12):
                 return new alkeiviService();
+            case ("idb-23-02", 10):
+                return new PresvyatoyKabachokService();
             case ("idb-23-02", 12):
                 return new chiriqueOnlineService();
             default:
