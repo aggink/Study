@@ -12,7 +12,6 @@ public sealed class ProfcomService : IProfcomService
     public async Task CreateOrUpdateProfcomValidateAndThrowAsync(
         DataContext dataContext,
         Profcom profcom,
-        Guid teacherId,
         CancellationToken cancellationToken = default)
     {
         if (!await dataContext.Students.AnyAsync(x => x.IsnStudent == profcom.IsnStudent, cancellationToken))
@@ -28,13 +27,6 @@ public sealed class ProfcomService : IProfcomService
         if (profcom.ParticipantsCount < ModelConstants.Profcom.MinPartValue || profcom.ParticipantsCount > ModelConstants.Profcom.MaxPartValue)
         {
             throw new BusinessLogicException($"Количество участников должно быть от {ModelConstants.Profcom.MinPartValue} до {ModelConstants.Profcom.MaxPartValue}");
-        }
-
-        if (!await dataContext.TeacherSubjects.AnyAsync(
-            x => x.IsnTeacher == teacherId && x.IsnSubject == profcom.IsnSubject,
-            cancellationToken))
-        {
-            throw new BusinessLogicException("У вас нет доступа к научной деятельности по данному предмету");
         }
 
         if (profcom.ProfcomDate > DateTime.UtcNow)
@@ -71,15 +63,8 @@ public sealed class ProfcomService : IProfcomService
     public async Task CanDeleteAndThrowAsync(
         DataContext dataContext,
         Profcom profcom,
-        Guid teacherId,
         CancellationToken cancellationToken = default)
     {
-        if (!await dataContext.TeacherSubjects.AnyAsync(
-            x => x.IsnTeacher == teacherId && x.IsnSubject == profcom.IsnSubject,
-            cancellationToken))
-        {
-            throw new BusinessLogicException("У вас нет прав на удаление научной встречи по данному предмету");
-        }
 
         if ((DateTime.UtcNow - profcom.ProfcomDate).TotalDays > 30)
         {

@@ -39,18 +39,14 @@ public sealed class UpdateProfcomCommandHandler : IRequestHandler<UpdateProfcomC
     {
         var profcom = await _dataContext.TheProfcom
             .Include(x => x.Subject)
-            .ThenInclude(x => x.TeacherSubjects)
             .FirstOrDefaultAsync(x => x.IsnProfcom == request.Profcom.IsnProfcom, cancellationToken)
                 ?? throw new BusinessLogicException($"Научной встречи с идентификатором \"{request.Profcom.IsnProfcom}\" не существует");
-
-        var teacherSubject = profcom.Subject.TeacherSubjects.FirstOrDefault()
-            ?? throw new BusinessLogicException($"Научная встреча с идентификатором \"{profcom.IsnSubject}\" не закреплена ни за одним преподавателем");
 
         profcom.ParticipantsCount = request.Profcom.ParticipantsCount;
         profcom.ProfcomDate = request.Profcom.ProfcomDate;
 
         await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(
-            _dataContext, profcom, teacherSubject.IsnTeacher, cancellationToken);
+            _dataContext, profcom, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
         return profcom.IsnProfcom;

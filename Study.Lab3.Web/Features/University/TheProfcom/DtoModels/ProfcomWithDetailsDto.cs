@@ -1,6 +1,4 @@
-﻿using Study.Lab3.Web.Features.University.Teachers.DtoModels;
-
-namespace Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
+﻿namespace Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 
 public sealed record ProfcomWithDetailsDto
 {
@@ -38,9 +36,4 @@ public sealed record ProfcomWithDetailsDto
     /// Дата проведения научной встречи
     /// </summary>
     public DateTime ProfcomDate { get; init; }
-
-    /// <summary>
-    /// Преподаватель предмета научной встречи
-    /// </summary>
-    public TeacherInfoDto Teacher { get; init; }
 }

@@ -1,7 +1,5 @@
-﻿using CoreLib.Common.Extensions;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
@@ -38,10 +36,6 @@ public sealed class CreateProfcomCommandHandler : IRequestHandler<CreateProfcomC
 
     public async Task<Guid> Handle(CreateProfcomCommand request, CancellationToken cancellationToken)
     {
-        var teacherSubject = await _dataContext.TeacherSubjects
-            .FirstOrDefaultAsync(x => x.IsnSubject == request.Profcom.IsnSubject, cancellationToken)
-            ?? throw new BusinessLogicException($"Научная встреча с идентификатором \"{request.Profcom.IsnSubject}\" не закреплена ни за одним преподавателем");
-
         var profcom = new Profcom
         {
             IsnProfcom = Guid.NewGuid(),
@@ -52,7 +46,7 @@ public sealed class CreateProfcomCommandHandler : IRequestHandler<CreateProfcomC
         };
 
         await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(
-            _dataContext, profcom, teacherSubject.IsnTeacher, cancellationToken);
+            _dataContext, profcom, cancellationToken);
 
         await _dataContext.TheProfcom.AddAsync(profcom, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);

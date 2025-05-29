@@ -14,7 +14,6 @@ public interface IProfcomService
     Task CreateOrUpdateProfcomValidateAndThrowAsync(
         DataContext dataContext,
         Profcom profcom,
-        Guid teacherId,
         CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -26,6 +25,5 @@ public interface IProfcomService
     Task CanDeleteAndThrowAsync(
         DataContext dataContext,
         Profcom profcom,
-        Guid teacherId,
         CancellationToken cancellationToken = default);
 }

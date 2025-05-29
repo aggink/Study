@@ -38,15 +38,11 @@ public sealed class DeleteProfcomCommandHandler : IRequestHandler<DeleteProfcomC
     {
         var profcom = await _dataContext.TheProfcom
             .Include(x => x.Subject)
-            .ThenInclude(x => x.TeacherSubjects)
             .FirstOrDefaultAsync(x => x.IsnProfcom == request.IsnProfcom, cancellationToken)
                 ?? throw new BusinessLogicException($"Научной встречи с идентификатором \"{request.IsnProfcom}\" не существует");
 
-        var teacherSubject = profcom.Subject.TeacherSubjects.FirstOrDefault()
-            ?? throw new BusinessLogicException($"Научная встреча с идентификатором \"{profcom.IsnSubject}\" не закреплена ни за одним преподавателем");
-
         await _profcomService.CanDeleteAndThrowAsync(
-            _dataContext, profcom, teacherSubject.IsnTeacher, cancellationToken);
+            _dataContext, profcom, cancellationToken);
 
         _dataContext.TheProfcom.Remove(profcom);
         await _dataContext.SaveChangesAsync(cancellationToken);

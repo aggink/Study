@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.University.Teachers.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
@@ -42,13 +41,6 @@ public sealed class GetProfcomWithDetailsQueryHandler : IRequestHandler<GetProfc
                 SubjectName = profcom.Subject.Name,
                 ParticipantsCount = profcom.ParticipantsCount,
                 ProfcomDate = profcom.ProfcomDate,
-                Teacher = profcom.Subject.TeacherSubjects
-                    .Select(ts => new TeacherInfoDto
-                    {
-                        IsnTeacher = ts.Teacher.IsnTeacher,
-                        FullName = $"{ts.Teacher.SurName} {ts.Teacher.Name} {ts.Teacher.PatronymicName}"
-                    })
-                    .FirstOrDefault()
             })
             .FirstOrDefaultAsync(cancellationToken);
     }
