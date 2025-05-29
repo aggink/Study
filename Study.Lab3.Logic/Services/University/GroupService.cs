@@ -13,7 +13,7 @@ public sealed class GroupService : IGroupService
         Group group,
         CancellationToken cancellationToken = default)
     {
-        if (await dataContext.Groups.AnyAsync(x => x.IsnGroup != group.IsnGroup && x.Name == group.Name))
+        if (await dataContext.Groups.AnyAsync(x => x.IsnGroup != group.IsnGroup && x.Name == group.Name, cancellationToken))
             throw new BusinessLogicException($"Группа с именем \"{group.Name}\" уже создана");
     }
 
