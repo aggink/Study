@@ -1,4 +1,9 @@
-﻿namespace Study.Lab2.Logic.UnitTests.PresvyatoyKabachok;
+﻿using Moq;
+using Moq.Protected;
+using Study.Lab2.Logic.PresvyatoyKabachok;
+using System.Net;
+
+namespace Study.Lab2.Logic.UnitTests.PresvyatoyKabachok;
 
 [TestFixture]
 public class RequestServiceTests
