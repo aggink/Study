@@ -21,44 +21,14 @@ public class RationalChislo : IRationalChislo
 
         if (Denominator == 0)
         {
-            Console.WriteLine("Знаменатель не должен быть нулем");
+            throw new ArgumentException("Знаменатель не должен быть нулем");
         }
     }
 
     public override string ToString()
     {
-        if (Denominator == 1)
-            return $"{Numerator}";
-
-        if (Denominator == 0)
-            return $"Знаменатель не должен быть нулем";
 
         return $"{Numerator}/{Denominator}";
-    }
-
-    private int NOD(int a, int b)
-    {
-        while (b != 0)
-        {
-            int t = b;
-            b = a % b;
-            a = t;
-        }
-        return a;
-    }
-
-    private void Reduce()
-    {
-        int nod = NOD(Math.Abs(Numerator), Math.Abs(Denominator));
-        Numerator /= nod;
-        Denominator /= nod;
-
-        if (Denominator < 0)
-        {
-            Denominator = Math.Abs(Denominator);
-            Numerator = -Numerator;
-        }
-
     }
 
     public static RationalChislo operator *(RationalChislo a, RationalChislo b)
@@ -84,7 +54,6 @@ public class RationalChislo : IRationalChislo
 
         return new RationalChislo(a.Numerator * b.Denominator - b.Numerator * a.Denominator, a.Denominator * b.Denominator);
     }
-
 
     public static bool operator ==(RationalChislo a, RationalChislo b)
     {
@@ -122,4 +91,27 @@ public class RationalChislo : IRationalChislo
         return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
     }
 
+    private int NOD(int a, int b)
+    {
+        while (b != 0)
+        {
+            int t = b;
+            b = a % b;
+            a = t;
+        }
+        return a;
+    }
+
+    private void Reduce()
+    {
+        int nod = NOD(Math.Abs(Numerator), Math.Abs(Denominator));
+        Numerator /= nod;
+        Denominator /= nod;
+
+        if (Denominator < 0)
+        {
+            Denominator = Math.Abs(Denominator);
+            Numerator = -Numerator;
+        }
+    }
 }

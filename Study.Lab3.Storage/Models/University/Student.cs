@@ -57,4 +57,16 @@ public class Student
     /// Группа
     /// </summary>
     public virtual Group Group { get; set; }
+
+    /// <summary>
+    /// Связь с таблицей студента - оценки
+    /// </summary>
+    [InverseProperty(nameof(Grade.Student))]
+    public virtual ICollection<Grade> Grades { get; set; }
+    
+    /// <summary>
+    /// Список регистраций студента на экзамены
+    /// </summary>
+    [InverseProperty(nameof(ExamRegistration.Student))]
+    public virtual ICollection<ExamRegistration> ExamRegistrations { get; set; }
 }
