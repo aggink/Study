@@ -42,7 +42,7 @@ public sealed class AddGroupAndSubjectCommandHandler : IRequestHandler<AddGroupA
         var subject = await _dataContext.Subjects.FirstOrDefaultAsync(x => x.IsnSubject == request.IsnSubject, cancellationToken)
             ?? throw new BusinessLogicException($"Предмета с идентификатором \"{request.IsnSubject}\" не существует");
 
-        if (await _dataContext.SubjectsGroups.AnyAsync(x => x.IsnGroup == request.IsnGroup && x.IsnSubject == request.IsnSubject))
+        if (await _dataContext.SubjectsGroups.AnyAsync(x => x.IsnGroup == request.IsnGroup && x.IsnSubject == request.IsnSubject, cancellationToken))
             throw new BusinessLogicException($"Группа с идентификатором \"{request.IsnGroup}\" уже привязана к предмету с идентификатором \"{request.IsnSubject}\"");
 
         var link = new SubjectGroup
