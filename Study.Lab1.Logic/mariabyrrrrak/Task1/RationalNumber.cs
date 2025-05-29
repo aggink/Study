@@ -25,34 +25,16 @@ public class RationalNumber
 
         if (Denominator == 0)
         {
-            throw new ArgumentException("Делить на 0 нельзя!", nameof(dum));
-        }
-    }
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(Numerator, Denominator);
-    }
-    public override string ToString()
-    {
-        if (Denominator == 1)
-            return Numerator.ToString();
-
-        return $"{Numerator}/{Denominator}";
-
-    }
-
-    private static int GreatestCommonDivisor(int a, int b)
-    {
-        while (b != 0)
-        {
-            int temp = b;
-            b = a % b;
-            a = temp;
+            throw new ArgumentException("You can't divide by 0.", nameof(dum));
         }
 
-        return a;
+        int nod = GreatestCommonDivisor(Math.Abs(num), Math.Abs(dum));
+
+        Numerator = num / nod;
+        Denominator = dum / nod;
     }
 
+    #region Перегрузки
     public static RationalNumber operator +(RationalNumber a, RationalNumber b)
     {
         var num = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
@@ -77,7 +59,7 @@ public class RationalNumber
     public static RationalNumber operator /(RationalNumber a, RationalNumber b)
     {
         if (b.Numerator == 0)
-            throw new DivideByZeroException("Деление на ноль");
+            throw new DivideByZeroException("Division by zero");
 
         var numerator = a.Numerator * b.Denominator;
         var denominator = a.Denominator * b.Numerator;
@@ -124,4 +106,43 @@ public class RationalNumber
     {
         return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
     }
+    #endregion
+
+    #region Методы
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Numerator, Denominator);
+    }
+
+    public override string ToString()
+    {
+        if (Denominator == 1)
+            return Numerator.ToString();
+
+        return $"{Numerator}/{Denominator}";
+
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is RationalNumber other)
+        {
+            return this == other;
+        }
+
+        return false;
+    }
+
+    private static int GreatestCommonDivisor(int a, int b)
+    {
+        while (b != 0)
+        {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        return a;
+    }
+    #endregion
 }

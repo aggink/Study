@@ -4,6 +4,7 @@ using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.chirique_online;
+using Study.Lab1.Logic.cocobara;
 using Study.Lab1.Logic.danaky1;
 using Study.Lab1.Logic.Dronio1337;
 using Study.Lab1.Logic.eldarovskiy;
@@ -30,9 +31,6 @@ using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.yamisakimei;
-using Study.Lab1.Logic.cocobara;
-using Study.Lab1.Logic.alexmark1612;
-using Study.Lab1.Logic.Dronio1337;
 
 public static class Program
 {
@@ -44,12 +42,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "idb-23-03";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 20;
+    private const int PERSON_NUMBER = 1;
 
     public static void Main()
     {
