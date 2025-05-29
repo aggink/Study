@@ -5,6 +5,7 @@ using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.chirique_online;
 using Study.Lab1.Logic.cocobara;
+using Study.Lab1.Logic.Crocodile17;
 using Study.Lab1.Logic.danaky1;
 using Study.Lab1.Logic.Dronio1337;
 using Study.Lab1.Logic.eldarovskiy;
@@ -27,17 +28,11 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
+using Study.Lab1.Logic.SuperSalad007;
 using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.yamisakimei;
-using Study.Lab1.Logic.cocobara;
-using Study.Lab1.Logic.alexmark1612;
-using Study.Lab1.Logic.Dronio1337;
-using Study.Lab1.Logic.chirique_online;
-using Study.Lab1.Logic.Crocodile17;
-using Study.Lab1.Logic.Cherryy;
-using Study.Lab1.Logic.SuperSalad007;
 
 public static class Program
 {

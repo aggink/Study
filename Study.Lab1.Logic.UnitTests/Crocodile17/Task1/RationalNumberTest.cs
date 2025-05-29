@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using Study.Lab1.Logic.Crocodile17.Task1;
-using Study.Lab1.Logic.Interfaces.Crocodile17.Task1;
+﻿using Study.Lab1.Logic.Crocodile17.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.Crocodile17.Task1;
 
