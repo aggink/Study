@@ -7,8 +7,6 @@ using Study.Lab3.Web.Features.Library.Authors.Commands;
 using Study.Lab3.Web.Features.Library.Authors.DtoModels;
 using Study.Lab3.Web.Features.Library.Authors.Queries;
 using Study.Lab3.Web.Features.Library.Books.Commands;
-using Study.Lab3.Web.Features.Library.Books.DtoModels;
-using Study.Lab3.Web.Features.Library.Books.Queries;
 using Study.Lab3.Web.Features.University.Announcements.Commands;
 using Study.Lab3.Web.Features.University.Announcements.DtoModels;
 using Study.Lab3.Web.Features.University.Announcements.Queries;
@@ -44,6 +42,9 @@ using Study.Lab3.Web.Features.University.Teachers.Queries;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Commands;
 using Study.Lab3.Web.Features.University.TeacherSubjects.DtoModels;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
+using Study.Lab3.Web.Features.University.TheProfcom.Commands;
+using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
+using Study.Lab3.Web.Features.University.TheProfcom.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1034,67 +1035,71 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
+    #endregion
+
+    #region ProfcomActivity
 
     /// <summary>
-    /// Редактирование данных книги
+    /// Создание профкома
     /// </summary>
-    /// <param name="command">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Идентификатор книги</returns>
-    [HttpPost(nameof(UpdateBook), Name = nameof(UpdateBook))]
-    public async Task<ActionResult<Guid>> UpdateBook(UpdateBookCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(CreateProfcom), Name = nameof(CreateProfcom))]
+    public async Task<ActionResult<Guid>> CreateProfcom([FromBody] CreateProfcomCommand command,
+        CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Удаление книги
+    /// Редактирование профкома
     /// </summary>
-    /// <param name="command">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    [HttpPost(nameof(DeleteBook), Name = nameof(DeleteBook))]
-    public async Task<ActionResult<Guid>> DeleteBook(DeleteBookCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(UpdateProfcom), Name = nameof(UpdateProfcom))]
+    public async Task<ActionResult<Guid>> UpdateProfcom([FromBody] UpdateProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление профкома
+    /// </summary>
+    [HttpPost(nameof(DeleteProfcom), Name = nameof(DeleteProfcom))]
+    public async Task<ActionResult> DeleteProfcom([FromQuery] DeleteProfcomCommand command,
+        CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
         return Ok();
     }
 
     /// <summary>
-    /// Получение списка книг
+    /// Получение научной деятельности по идентификатору
     /// </summary>
-    /// <param name="query">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Список групп</returns>
-    [HttpGet(nameof(GetListBooks), Name = nameof(GetListBooks))]
-    public async Task<ActionResult<BookItemDto[]>> GetListBooks([FromQuery] GetListBooksQuery query, CancellationToken cancellationToken)
+    [HttpGet(nameof(GetProfcomByIsn), Name = nameof(GetProfcomByIsn))]
+    public async Task<ActionResult<ProfcomDto>> GetProfcomByIsn([FromQuery] GetProfcomByIsnQuery query,
+        CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Получение данных книг
+    /// Получение научной деятельности с детальной информацией
     /// </summary>
-    /// <param name="query">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Данные группы</returns>
-    [HttpGet(nameof(GetBookByIsn), Name = nameof(GetBookByIsn))]
-    public async Task<ActionResult<BookDto>> GetBookByIsn(GetBookByIsnQuery query, CancellationToken cancellationToken)
+    [HttpGet(nameof(GetProfcomWithDetails), Name = nameof(GetProfcomWithDetails))]
+    public async Task<ActionResult<ProfcomWithDetailsDto>> GetProfcomWithDetails([FromQuery] GetProfcomWithDetailsQuery query,
+        CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Получение список книг с авторами
+    /// Получение списка научной деятельности
     /// </summary>
-    /// <param name="query">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Список книг с авторами</returns>
-    [HttpGet(nameof(GetListBooksWithAuthors), Name = nameof(GetListBooksWithAuthors))]
-    public async Task<ActionResult<BookWithAuthorsItemDto[]>> GetListBooksWithAuthors(
-        [FromQuery] GetListBooksWithAuthorsQuery query, CancellationToken cancellationToken)
+    [HttpGet(nameof(GetListProfcom), Name = nameof(GetListProfcom))]
+    public async Task<ActionResult<ProfcomDto[]>> GetListProfcom([FromQuery] GetListProfcomQuery query,
+        CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
@@ -1240,8 +1245,7 @@ public class ManageController : Controller
     /// Получение списка авторов книги
     /// </summary>
     [HttpGet(nameof(GetAuthorsByBook), Name = nameof(GetAuthorsByBook))]
-    public async Task<ActionResult<AuthorBookWithDetailsDto[]>> GetAuthorsByBook(
-        [FromQuery] GetAuthorsByBookQuery query, CancellationToken cancellationToken)
+    public async Task<ActionResult<AuthorBookWithDetailsDto[]>> GetAuthorsByBook([FromQuery] GetAuthorsByBookQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
