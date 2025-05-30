@@ -1,6 +1,6 @@
 ﻿using Study.Example.Interfaces;
 
-namespace Study.Example.Task1;
+namespace Study.Example.Tasks;
 
 public class Address
 {
@@ -33,7 +33,6 @@ public class Person
         return $"Имя: {Name}, Адрес: {Address}";
     }
 }
-
 
 public class Task1 : IRunnable
 {

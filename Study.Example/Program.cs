@@ -1,5 +1,5 @@
 ﻿using Study.Example.Interfaces;
-using Study.Example.Task1;
+using Study.Example.Tasks;
 
 var task = "Task1";
 
