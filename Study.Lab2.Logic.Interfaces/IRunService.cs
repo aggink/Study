@@ -1,5 +1,4 @@
-﻿namespace Study.Lab2.Logic.Interfaces.SuperSalad007;
-
+﻿
 public interface IRunService : IDisposable
 {
     /// <summary>

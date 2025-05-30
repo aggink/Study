@@ -19,14 +19,19 @@ namespace Study.Lab2.Logic.SuperSalad007
 
         private readonly string[] Urls = new string[]
         {
-            "https://jsonplaceholder.typicode.com/posts/1",
-            "https://jsonplaceholder.typicode.com/posts/2",
-            "https://jsonplaceholder.typicode.com/posts/3"
+            "https://jsonplaceholder.typicode.com/posts/32",
+            "https://jsonplaceholder.typicode.com/posts/54",
+            "https://jsonplaceholder.typicode.com/posts/78"
         };
+
+        public void Dispose()
+        {
+            _requestService.Dispose();
+        }
 
         public void RunTask()
         {
-            Console.WriteLine("\nВыполняется синхронный запрос...\n");
+            Console.WriteLine("\nA synchronous request is being executed...\n");
             var stopwatch = Stopwatch.StartNew();
 
             try
@@ -35,16 +40,16 @@ namespace Study.Lab2.Logic.SuperSalad007
 
                 for (int i = 0; i < Urls.Length; i++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"Запрос {i + 1}: {Urls[i]}");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine($"Request {i + 1}: {Urls[i]}");
                     Console.ResetColor();
 
                     var response = _requestService.FetchData(Urls[i]);
                     responses.Add(response);
                 }
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\nВсе ответы успешно получены!\n");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("\nAll responses have been successfully received!\n");
                 Console.ResetColor();
 
                 foreach (var response in responses)
@@ -55,22 +60,22 @@ namespace Study.Lab2.Logic.SuperSalad007
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"\nОшибка запроса: {ex.Message}");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"\nRequest error: {ex.Message}");
                 Console.ResetColor();
             }
             finally
             {
                 stopwatch.Stop();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} мс");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"\nTotal duration: {stopwatch.ElapsedMilliseconds} мс");
                 Console.ResetColor();
             }
         }
 
         public async Task RunTaskAsync(CancellationToken cancellationToken)
         {
-            Console.WriteLine("\nВыполняется асинхронный запрос...\n");
+            Console.WriteLine("\nAn asynchronous request is being made...\n");
             var stopwatch = Stopwatch.StartNew();
 
             try
@@ -79,8 +84,8 @@ namespace Study.Lab2.Logic.SuperSalad007
 
                 for (int i = 0; i < Urls.Length; i++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"Запрос {i + 1}: {Urls[i]}");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine($"Request {i + 1}: {Urls[i]}");
                     Console.ResetColor();
 
                     tasks[i] = _requestService.FetchDataAsync(Urls[i], cancellationToken);
@@ -88,8 +93,8 @@ namespace Study.Lab2.Logic.SuperSalad007
 
                 var responses = await Task.WhenAll(tasks);
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\nВсе ответы успешно получены!\n");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("\nAll responses have been successfully received!\n");
                 Console.ResetColor();
 
                 foreach (var response in responses)
@@ -100,22 +105,17 @@ namespace Study.Lab2.Logic.SuperSalad007
             }
             catch (Exception ex)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"\nОшибка запроса: {ex.Message}");
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.WriteLine($"\nRequest error: {ex.Message}");
                 Console.ResetColor();
             }
             finally
             {
                 stopwatch.Stop();
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"\nОбщая длительность: {stopwatch.ElapsedMilliseconds} мс");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine($"\nTotal duration: {stopwatch.ElapsedMilliseconds} мс");
                 Console.ResetColor();
             }
-        }
-
-        public void Dispose()
-        {
-            _requestService.Dispose();
         }
     }
 }

@@ -17,6 +17,11 @@ namespace Study.Lab2.Logic.SuperSalad007
             _httpClient = httpClient;
         }
 
+        public void Dispose()
+        {
+            _httpClient.Dispose();
+        }
+
         public string FetchData(string url)
         {
             var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
@@ -41,11 +46,6 @@ namespace Study.Lab2.Logic.SuperSalad007
             }
 
             return await response.Content.ReadAsStringAsync(cancellationToken);
-        }
-
-        public void Dispose()
-        {
-            _httpClient.Dispose();
         }
     }
 }

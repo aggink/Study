@@ -9,18 +9,18 @@ namespace Study.Lab2.Logic.Interfaces.SuperSalad007
     public interface IRequestService : IDisposable
     {
         /// <summary>
-        /// Отправить запрос к сервису
+        /// Send a request to the service
         /// </summary>
-        /// <param name="url">Веб-адрес</param>
-        /// <returns>Ответ от сервиса</returns>
+        /// <param name="url">Web-adress</param>
+        /// <returns>Response from the service</returns>
         string FetchData(string url);
 
         /// <summary>
-        /// Отправить запрос к сервису
+        /// Send a request to the service
         /// </summary>
-        /// <param name="url">Веб-адрес</param>
-        /// <param name="cancellationToken">Токен отмены</param>
-        /// <returns>Ответ от сервиса</returns>
+        /// <param name="url">Web-adress</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
+        /// <returns>Response from the service</returns>
         Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default);
     }
 }
