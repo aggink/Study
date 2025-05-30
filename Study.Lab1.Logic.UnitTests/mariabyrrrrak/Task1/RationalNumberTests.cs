@@ -12,7 +12,7 @@ public class RationalNumberTests
 
         var tekst = n.ToString();
 
-        Assert.AreEqual("1/1", tekst);
+        Assert.AreEqual("1", tekst);
     }
 
     [Test]
@@ -23,8 +23,8 @@ public class RationalNumberTests
 
         var tesks = n + m;
 
-        Assert.AreEqual(tesks.Denominator, 2);
-        Assert.AreEqual(tesks.Numerator, 4);
+        Assert.AreEqual(tesks.Denominator, 1);
+        Assert.AreEqual(tesks.Numerator, 2);
     }
 
     [Test]
@@ -35,8 +35,8 @@ public class RationalNumberTests
 
         var tesks = n * m;
 
-        Assert.AreEqual(tesks.Denominator, 2);
-        Assert.AreEqual(tesks.Numerator, 2);
+        Assert.AreEqual(tesks.Denominator, 1);
+        Assert.AreEqual(tesks.Numerator, 1);
     }
 
     [Test]
@@ -45,8 +45,8 @@ public class RationalNumberTests
         var A = new RationalNumber(4, 6);
         var B = new RationalNumber(2, 8);
         var tesks = A - B;
-        Assert.AreEqual(tesks.Denominator, 48);
-        Assert.AreEqual(tesks.Numerator, 20);
+        Assert.AreEqual(tesks.Denominator, 12);
+        Assert.AreEqual(tesks.Numerator, 5);
     }
 
     [Test]
@@ -55,8 +55,8 @@ public class RationalNumberTests
         var A = new RationalNumber(4, 6);
         var B = new RationalNumber(2, 8);
         var tesks = A / B;
-        Assert.AreEqual(tesks.Numerator, 32);
-        Assert.AreEqual(tesks.Denominator, 12);
+        Assert.AreEqual(tesks.Numerator, 8);
+        Assert.AreEqual(tesks.Denominator, 3);
 
     }
 
