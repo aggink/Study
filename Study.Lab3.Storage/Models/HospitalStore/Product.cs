@@ -1,4 +1,8 @@
-﻿namespace Lab3.Storage.Models.HospitalStore;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Study.Lab3.Storage.Constants;
+
+namespace Lab3.Storage.Models.HospitalStore;
 
 public class Product
 {

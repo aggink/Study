@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using Lab3.Storage.Constants;
+using System.ComponentModel.DataAnnotations.Schema;
+using Study.Lab3.Storage.Constants;
 
 namespace Lab3.Storage.Models.HospitalStore;
 
