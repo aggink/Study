@@ -44,6 +44,9 @@ using Study.Lab3.Web.Features.University.Teachers.Queries;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Commands;
 using Study.Lab3.Web.Features.University.TeacherSubjects.DtoModels;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
+using Study.Lab3.Web.Features.University.TheProfcom.Commands;
+using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
+using Study.Lab3.Web.Features.University.TheProfcom.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1095,6 +1098,76 @@ public class ManageController : Controller
     [HttpGet(nameof(GetListBooksWithAuthors), Name = nameof(GetListBooksWithAuthors))]
     public async Task<ActionResult<BookWithAuthorsItemDto[]>> GetListBooksWithAuthors(
         [FromQuery] GetListBooksWithAuthorsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+    
+    #endregion
+
+    #region ProfcomActivity
+
+    /// <summary>
+    /// Создание профкома
+    /// </summary>
+    [HttpPost(nameof(CreateProfcom), Name = nameof(CreateProfcom))]
+    public async Task<ActionResult<Guid>> CreateProfcom([FromBody] CreateProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование профкома
+    /// </summary>
+    [HttpPost(nameof(UpdateProfcom), Name = nameof(UpdateProfcom))]
+    public async Task<ActionResult<Guid>> UpdateProfcom([FromBody] UpdateProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление профкома
+    /// </summary>
+    [HttpPost(nameof(DeleteProfcom), Name = nameof(DeleteProfcom))]
+    public async Task<ActionResult> DeleteProfcom([FromQuery] DeleteProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение научной деятельности по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetProfcomByIsn), Name = nameof(GetProfcomByIsn))]
+    public async Task<ActionResult<ProfcomDto>> GetProfcomByIsn([FromQuery] GetProfcomByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение научной деятельности с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetProfcomWithDetails), Name = nameof(GetProfcomWithDetails))]
+    public async Task<ActionResult<ProfcomWithDetailsDto>> GetProfcomWithDetails([FromQuery] GetProfcomWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка научной деятельности
+    /// </summary>
+    [HttpGet(nameof(GetListProfcom), Name = nameof(GetListProfcom))]
+    public async Task<ActionResult<ProfcomDto[]>> GetListProfcom([FromQuery] GetListProfcomQuery query,
+        CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
