@@ -7,6 +7,8 @@ using Study.Lab3.Web.Features.Library.Authors.Commands;
 using Study.Lab3.Web.Features.Library.Authors.DtoModels;
 using Study.Lab3.Web.Features.Library.Authors.Queries;
 using Study.Lab3.Web.Features.Library.Books.Commands;
+using Study.Lab3.Web.Features.Library.Books.DtoModels;
+using Study.Lab3.Web.Features.Library.Books.Queries;
 using Study.Lab3.Web.Features.University.Announcements.Commands;
 using Study.Lab3.Web.Features.University.Announcements.DtoModels;
 using Study.Lab3.Web.Features.University.Announcements.Queries;
@@ -1035,6 +1037,72 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
+
+    /// <summary>
+    /// Редактирование данных книги
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор книги</returns>
+    [HttpPost(nameof(UpdateBook), Name = nameof(UpdateBook))]
+    public async Task<ActionResult<Guid>> UpdateBook(UpdateBookCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление книги
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    [HttpPost(nameof(DeleteBook), Name = nameof(DeleteBook))]
+    public async Task<ActionResult<Guid>> DeleteBook(DeleteBookCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение списка книг
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список групп</returns>
+    [HttpGet(nameof(GetListBooks), Name = nameof(GetListBooks))]
+    public async Task<ActionResult<BookItemDto[]>> GetListBooks([FromQuery] GetListBooksQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение данных книг
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Данные группы</returns>
+    [HttpGet(nameof(GetBookByIsn), Name = nameof(GetBookByIsn))]
+    public async Task<ActionResult<BookDto>> GetBookByIsn(GetBookByIsnQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение список книг с авторами
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список книг с авторами</returns>
+    [HttpGet(nameof(GetListBooksWithAuthors), Name = nameof(GetListBooksWithAuthors))]
+    public async Task<ActionResult<BookWithAuthorsItemDto[]>> GetListBooksWithAuthors(
+        [FromQuery] GetListBooksWithAuthorsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+    
     #endregion
 
     #region ProfcomActivity
@@ -1245,7 +1313,8 @@ public class ManageController : Controller
     /// Получение списка авторов книги
     /// </summary>
     [HttpGet(nameof(GetAuthorsByBook), Name = nameof(GetAuthorsByBook))]
-    public async Task<ActionResult<AuthorBookWithDetailsDto[]>> GetAuthorsByBook([FromQuery] GetAuthorsByBookQuery query, CancellationToken cancellationToken)
+    public async Task<ActionResult<AuthorBookWithDetailsDto[]>> GetAuthorsByBook(
+        [FromQuery] GetAuthorsByBookQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
