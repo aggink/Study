@@ -2,6 +2,7 @@
 
 public class Product
 {
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid IsnProduct { get; set; }  // Уникальный идентификатор
 
     [Required, MaxLength(ModelConstants.Product.NameMaxLength)]

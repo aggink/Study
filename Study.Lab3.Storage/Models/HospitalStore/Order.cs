@@ -5,10 +5,13 @@ namespace Lab3.Storage.Models.HospitalStore;
 
 public class Order
 {
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid IsnOrder { get; set; }    // ”никальный идентификатор заказа
 
+    [Required]
     public Guid IsnPatient { get; set; }  // ID пациента 
 
+    [Required]
     public Guid IsnProduct { get; set; }  // ID товара 
 
     [Required, Range(ModelConstants.Order.QuantityMin, ModelConstants.Order.QuantityMax)]
