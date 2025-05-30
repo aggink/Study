@@ -373,5 +373,19 @@ public static class ModelConstants
         /// Максимальная длина кода билета
         /// </summary>
         public const int TicketCodeLength = 50;
+
+    }
+
+    public static class Profcom
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinPartValue = 0;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxPartValue = 500;
     }
 }
