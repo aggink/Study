@@ -6,15 +6,27 @@ namespace Lab3.Storage.Models.HospitalStore;
 
 public class Patient
 {
+    /// <summary>
+    /// Айди
+    /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid IsnPatient { get; set; }  // Айди
+    public Guid IsnPatient { get; set; }
 
+    /// <summary>
+    /// ФИО пациента
+    /// </summary>
     [Required, MaxLength(ModelConstants.Patient.FullNameMaxLength)]
-    public string FullName { get; set; }  // ФИО пациента
+    public string FullName { get; set; }
 
+    /// <summary>
+    /// Номер медкарты
+    /// </summary>
     [Required, MaxLength(ModelConstants.Patient.MedicalCardIdMaxLength)]
-    public string MedicalCardId { get; set; }  // Номер медкарты
+    public string MedicalCardId { get; set; }
 
+    /// <summary>
+    /// Контактный телефон
+    /// </summary>
     [Required, MaxLength(ModelConstants.Patient.PhoneMaxLength)]
-    public string Phone { get; set; }     // Контактный телефон
+    public string Phone { get; set; }     
 }

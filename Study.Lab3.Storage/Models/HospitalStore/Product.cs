@@ -6,15 +6,27 @@ namespace Lab3.Storage.Models.HospitalStore;
 
 public class Product
 {
+    /// <summary>
+    /// айди
+    /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid IsnProduct { get; set; }  // Уникальный идентификатор
+    public Guid IsnProduct { get; set; }
 
+    /// <summary>
+    /// Название товара
+    /// </summary>
     [Required, MaxLength(ModelConstants.Product.NameMaxLength)]
-    public string Name { get; set; }      // Название товара
+    public string Name { get; set; }
 
+    /// <summary>
+    /// Категория: "Medicine", "Equipment", etc.
+    /// </summary>
     [Required, MaxLength(ModelConstants.Product.CategoryMaxLength)]
-    public string Category { get; set; }  // "Medicine", "Equipment", etc.
+    public string Category { get; set; }
 
+    /// <summary>
+    /// Цена в рублях (без копеек)
+    /// </summary>
     [Required, Range(ModelConstants.Product.PriceMin, ModelConstants.Product.PriceMax)]
-    public int Price { get; set; }        // Цена в рублях (без копеек)
+    public int Price { get; set; }        
 }
