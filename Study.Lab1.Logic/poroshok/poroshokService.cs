@@ -1,11 +1,8 @@
-﻿using System.Text;
-using Study.Lab1.Logic.Interfaces;
-using Study.Lab1.Logic.poroshok.Task1;
-using Study.Lab1.Logic.poroshok.Task1;
+﻿using Study.Lab1.Logic.Interfaces;
 using Study.Lab1.Logic.Interfaces.poroshok.Task2;
+using Study.Lab1.Logic.poroshok.Task1;
 using Study.Lab1.Logic.poroshok.Task2;
-using Study.Lab1.Logic.Interfaces.poroshok.Task2;
-using Study.Lab1.Logic.poroshok.Task2;
+using System.Text;
 
 namespace Study.Lab1.Logic.poroshok;
 
@@ -21,15 +18,15 @@ public class poroshokService : IRunService
         var F = new RationalNumber(1, 1);
 
         var summary = A + B;
-     
+
         var difference = A - B;
-       
+
         var product = A * B;
-       
+
         var quotient = A / B;
-        
+
         var Equal = A == B;
-        
+
         Console.Write($"a:{A}, b:{B}, c:{C}, d:{D}, e:{E}, f:{F}\n" +
                       $"a + b = {summary}\n" +
                       $"a - b = {difference}\n" +

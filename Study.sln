@@ -58,6 +58,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLib.Common", "CoreLib.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study.Lab3.Logic.Interfaces", "Study.Lab3.Logic.Interfaces\Study.Lab3.Logic.Interfaces.csproj", "{881475D9-10D8-4A22-93DD-20BD644DA134}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Study.Lab3.Storage.MS_SQL", "Study.Lab3.Storage.MS_SQL\Study.Lab3.Storage.MS_SQL.csproj", "{ED036FA6-565B-41D2-B0F5-C04FC9AB6DB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +134,10 @@ Global
 		{881475D9-10D8-4A22-93DD-20BD644DA134}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{881475D9-10D8-4A22-93DD-20BD644DA134}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{881475D9-10D8-4A22-93DD-20BD644DA134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED036FA6-565B-41D2-B0F5-C04FC9AB6DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED036FA6-565B-41D2-B0F5-C04FC9AB6DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED036FA6-565B-41D2-B0F5-C04FC9AB6DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED036FA6-565B-41D2-B0F5-C04FC9AB6DB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,5 +164,6 @@ Global
 		{B120D68D-6874-4F48-B70D-544CA28DC337} = {F0861847-890B-4BFD-9C09-21D47C823165}
 		{E8CA6262-7587-4BAA-AA90-BB1EC2854E3D} = {C36166F1-EC64-4753-B0F9-D36FECA78743}
 		{881475D9-10D8-4A22-93DD-20BD644DA134} = {F0861847-890B-4BFD-9C09-21D47C823165}
+		{ED036FA6-565B-41D2-B0F5-C04FC9AB6DB1} = {F0861847-890B-4BFD-9C09-21D47C823165}
 	EndGlobalSection
 EndGlobal
