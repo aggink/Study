@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Study.Lab3.Storage.Constants;
 
-namespace Lab3.Storage.Models.HospitalStore;
+namespace Study.Lab3.Storage.Models.HospitalStore;
 
 public class Product
 {
