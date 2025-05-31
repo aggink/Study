@@ -14,6 +14,8 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.TucKaW;
+
 public static class Program
 {
     /// <summary>
@@ -93,6 +95,8 @@ public static class Program
                 return new jki749Service();
             case ("idb-23-03", 12):
                 return new alkeiviService();
+            case ("idb-23-03", 9):
+                return new TucKaWService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
             default:
