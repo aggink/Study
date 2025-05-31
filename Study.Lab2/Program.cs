@@ -21,7 +21,7 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistent";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
