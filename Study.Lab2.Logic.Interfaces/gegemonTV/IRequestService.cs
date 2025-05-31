@@ -1,9 +1,7 @@
-﻿namespace Study.Lab2.Logic.Interfaces.gegemonTV
+﻿namespace Study.Lab2.Logic.Interfaces.gegemonTV;
+public interface IRequestService : IDisposable
 {
-    public interface IRequestService : IDisposable
-    {
-        string FetchData(string url);
+    string FetchData(string url);
 
-        Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default);
-    }
+    Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default);
 }

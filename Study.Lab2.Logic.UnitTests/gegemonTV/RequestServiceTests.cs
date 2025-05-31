@@ -1,7 +1,10 @@
-﻿using Moq;
+﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
+using Moq;
 using Moq.Protected;
 using Study.Lab2.Logic.gegemonTV;
+using Study.Lab2.Logic.UnitTests.gegemonTV.DtoModels;
 using System.Net;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.gegemonTV
 {
@@ -27,7 +30,8 @@ namespace Study.Lab2.Logic.UnitTests.gegemonTV
         public void FetchData_Success_ReturnsResponse()
         {
             // Arrange
-            var expectedResponse = "{\"message\": \"Success\"}";
+            var res = new TestResponseDto { Message = "Success" };
+            var expectedResponse = JsonSerializer.Serialize<TestResponseDto>(res);
             var requestUrl = "https://example.com/api/test";
 
             // Настройка мок-ответа
@@ -49,7 +53,8 @@ namespace Study.Lab2.Logic.UnitTests.gegemonTV
             using var cancellationTokenSource = new CancellationTokenSource();
 
             // Arrange
-            var expectedResponse = "{\"message\": \"Success\"}";
+            var res = new TestResponseDto { Message = "Success" };
+            var expectedResponse = JsonSerializer.Serialize<TestResponseDto>(res);
             var requestUrl = "https://example.com/api/test";
 
             // Настройка мок-ответа
@@ -68,7 +73,16 @@ namespace Study.Lab2.Logic.UnitTests.gegemonTV
         [Test]
         public void FetchData_CheckJson()
         {
-            var expectedJson = "[\r\n\t{\r\n\t\t\"domains\": [\r\n\t\t\t\"technion.ac.il\"\r\n\t\t],\r\n\t\t\"web_pages\": [\r\n\t\t\t\"http://www.technion.ac.il/\"\r\n\t\t],\r\n\t\t\"state-province\": null,\r\n\t\t\"alpha_two_code\": \"IL\",\r\n\t\t\"name\": \"Technion - Israel Institute of Technology\",\r\n\t\t\"country\": \"Israel\"\r\n\t}\r\n]";
+            var res = new CheckJsonResponseDto
+            {
+                Domains = ["technion.ac.il"],
+                WebPages = ["http://www.technion.ac.il/"],
+                StateProvince = null,
+                AlphaTwoCode = "IL",
+                Name = "Technion - Israel Institute of Technology",
+                Country = "Israel"
+            };
+            var expectedJson = JsonHelper.FormatJson("[" + JsonSerializer.Serialize<CheckJsonResponseDto>(res) + "]");
             var requestUrl = "http://universities.hipolabs.com/search?name=Technion&country=israel";
 
             // Настройка мок-ответа
@@ -87,7 +101,16 @@ namespace Study.Lab2.Logic.UnitTests.gegemonTV
         {
             using var cancellationTokenSource = new CancellationTokenSource();
 
-            var expectedJson = "[\r\n\t{\r\n\t\t\"domains\": [\r\n\t\t\t\"technion.ac.il\"\r\n\t\t],\r\n\t\t\"web_pages\": [\r\n\t\t\t\"http://www.technion.ac.il/\"\r\n\t\t],\r\n\t\t\"state-province\": null,\r\n\t\t\"alpha_two_code\": \"IL\",\r\n\t\t\"name\": \"Technion - Israel Institute of Technology\",\r\n\t\t\"country\": \"Israel\"\r\n\t}\r\n]";
+            var res = new CheckJsonResponseDto
+            {
+                Domains = ["technion.ac.il"],
+                WebPages = ["http://www.technion.ac.il/"],
+                StateProvince = null,
+                AlphaTwoCode = "IL",
+                Name = "Technion - Israel Institute of Technology",
+                Country = "Israel"
+            };
+            var expectedJson = JsonHelper.FormatJson("[" + JsonSerializer.Serialize<CheckJsonResponseDto>(res) + "]");
             var requestUrl = "http://universities.hipolabs.com/search?name=Technion&country=israel";
 
             // Настройка мок-ответа
