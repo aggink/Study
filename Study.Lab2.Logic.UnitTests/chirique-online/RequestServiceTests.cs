@@ -31,14 +31,16 @@ public class RequestServiceTests
     [Test]
     public void FetchData_ReturnsResponse_WhenSuccess()
     {
-        var url = "https://example.com/api/test ";
-        var expected = "{\"message\": \"Success\"}";
+        var url = "https://example.com/api/test";
+        var expectedResponse = new ResponseDto { Message = "Success" };
+        var expectedJson = JsonSerializer.Serialize(expectedResponse);
 
-        SetupHttpResponse(url, expected, HttpStatusCode.OK);
+        SetupHttpResponse(url, expectedJson, HttpStatusCode.OK);
 
-        var result = _requestService.FetchData(url);
+        var resultJson = _requestService.FetchData(url);
+        var result = JsonSerializer.Deserialize<ResponseDto>(resultJson);
 
-        Assert.That(result, Is.EqualTo(expected));
+        Assert.That(result?.Message, Is.EqualTo(expectedResponse.Message));
     }
 
     [Test]
@@ -59,37 +61,50 @@ public class RequestServiceTests
     [Test]
     public void FetchData_ThrowsException_WhenRequestFailsWithNotFound()
     {
-        var url = "https://example.com/api/fail ";
+        var url = "https://example.com/api/fail";
+        var errorResponse = new ErrorResponseDto
+        {
+            Error = "Resource not found",
+            ErrorCode = "404"
+        };
+        var errorJson = JsonSerializer.Serialize(errorResponse);
 
-        SetupHttpResponse(url, "Not Found", HttpStatusCode.NotFound);
+        SetupHttpResponse(url, errorJson, HttpStatusCode.NotFound);
 
         var ex = Assert.Throws<Exception>(() => _requestService.FetchData(url));
+
         StringAssert.Contains("Ошибка: NotFound", ex.Message);
+
+        if (ex.Data.Contains("ResponseContent"))
+        {
+            var responseContent = ex.Data["ResponseContent"] as string;
+            var responseDto = JsonSerializer.Deserialize<ErrorResponseDto>(responseContent);
+            Assert.That(responseDto.Error, Is.EqualTo("Resource not found"));
+            Assert.That(responseDto.ErrorCode, Is.EqualTo("404"));
+        }
     }
 
     [Test]
     public void FetchData_ThrowsException_WhenNonSuccess()
     {
-        var handlerMock = new Mock<HttpMessageHandler>();
-        handlerMock
+        var url = "http://test";
+        var errorResponse = new ErrorResponseDto { Error = "Internal Server Error" };
+        var errorJson = JsonSerializer.Serialize(errorResponse);
+
+        _httpMessageHandlerMock
             .Protected()
             .Setup<Task<HttpResponseMessage>>(
                 "SendAsync",
                 ItExpr.IsAny<HttpRequestMessage>(),
-                ItExpr.IsAny<CancellationToken>()
-            )
-            .ReturnsAsync(
-                new HttpResponseMessage
-                {
-                    StatusCode = HttpStatusCode.InternalServerError,
-                    ReasonPhrase = "Fail",
-                }
-            );
+                ItExpr.IsAny<CancellationToken>())
+            .ReturnsAsync(new HttpResponseMessage
+            {
+                StatusCode = HttpStatusCode.InternalServerError,
+                Content = new StringContent(errorJson)
+            });
 
-        var httpClient = new HttpClient(handlerMock.Object);
-        using var svc = new RequestService(httpClient);
-
-        Assert.Throws<Exception>(() => svc.FetchData("http://test"));
+        var ex = Assert.Throws<Exception>(() => _requestService.FetchData(url));
+        StringAssert.Contains("Ошибка: InternalServerError", ex.Message);
     }
 
     private void SetupHttpResponse(string url, string content, HttpStatusCode status)
