@@ -14,12 +14,13 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.danaky1;
 public static class Program
 {
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-03";
 
     /// <summary>
     /// Порядковый номер
@@ -95,6 +96,8 @@ public static class Program
                 return new alkeiviService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
+            case ("idb-23-03", 1):
+                return new danaky1Service();
             default:
                 throw new NotSupportedException();
         }
