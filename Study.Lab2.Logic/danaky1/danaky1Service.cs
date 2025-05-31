@@ -8,9 +8,6 @@ namespace Study.Lab2.Logic.danaky1;
 
 public class danaky1Service : IRunService
 {
-    private readonly IRequestService _requestService;
-    private readonly string _apiEndpoint = "https://restcountries.com/v3.1/name/russia";
-
     private readonly List<string> _localFacts = new()
     {
         "Россия - самая большая страна в мире (17.1 млн км²)",
@@ -19,6 +16,10 @@ public class danaky1Service : IRunService
         "В России 11 часовых поясов",
         "Метро Санкт-Петербурга - самое глубокое в мире"
     };
+    private readonly IRequestService _requestService;
+    private readonly string _apiEndpoint = "https://restcountries.com/v3.1/name/russia";
+
+  
 
     public danaky1Service()
     {
