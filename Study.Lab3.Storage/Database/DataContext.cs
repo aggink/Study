@@ -97,9 +97,14 @@ public class DataContext : DbContext
     /// Связь авторов и книг
     /// </summary>
     public virtual DbSet<AuthorBooks> AuthorBooks { get; set; }
-    
+
+    /// <summary>
+    /// Профком
+    /// </summary>
+    public virtual DbSet<Profcom> TheProfcom { get; set; }
+
     #endregion
-    
+
     #region Cinema
 
     /// <summary>
@@ -141,6 +146,7 @@ public class DataContext : DbContext
     /// Билеты
     /// </summary>
     public virtual DbSet<Ticket> Tickets { get; set; }
-    
+
     #endregion
+
 }

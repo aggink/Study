@@ -39,5 +39,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ISessionService, SessionService>();
         services.AddSingleton<ICustomerService, CustomerService>();
         services.AddSingleton<ITicketService, TicketService>();
+        services.AddSingleton<IProfcomService, ProfcomService>();
     }
 }
