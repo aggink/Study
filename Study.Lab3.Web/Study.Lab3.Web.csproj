@@ -22,6 +22,11 @@
     <ProjectReference Include="..\Study.Lab3.Storage.MS_SQL\Study.Lab3.Storage.MS_SQL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\University\Sportclub\DtoModels\" />
+    <Folder Include="Features\University\Sportclub\Queries\" />
+  </ItemGroup>
+
   <PropertyGroup>
   	<GenerateDocumentationFile>true</GenerateDocumentationFile>
   	<NoWarn>$(NoWarn);1591</NoWarn>
