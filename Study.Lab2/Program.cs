@@ -14,6 +14,8 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.gegemonTV;
+
 public static class Program
 {
     /// <summary>
@@ -95,6 +97,8 @@ public static class Program
                 return new alkeiviService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
+            case ("idb-23-03", 15):
+                return new gegemonTVService();
             default:
                 throw new NotSupportedException();
         }
