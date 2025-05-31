@@ -1,4 +1,4 @@
-using MediatR;
+п»їusing MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheSportclub.Commands;
 
 /// <summary>
-/// Создание спортивного клуба
+/// РЎРѕР·РґР°РЅРёРµ РїСЂРѕС„РєРѕРјР°
 /// </summary>
 public sealed class CreateSportclubCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Данные спортивного клуба
+    /// Р”Р°РЅРЅС‹Рµ РїСЂРѕС„РєРѕРјР°
     /// </summary>
     [Required]
     [FromBody]

@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheSportclub.Commands;
 
 /// <summary>
-/// Удаление спортивного клуба
+/// РЈРґР°Р»РµРЅРёРµ СЃРїРѕСЂС‚РёРІРЅРѕРіРѕ РєР»СѓР±Р°
 /// </summary>
 public sealed class DeleteSportclubCommand : IRequest
 {
     /// <summary>
-    /// Идентификатор спортивного клуба
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРїРѕСЂС‚РёРІРЅРѕРіРѕ РєР»СѓР±Р°
     /// </summary>
     [Required]
     [FromQuery]
@@ -39,7 +39,7 @@ public sealed class DeleteSportclubCommandHandler : IRequestHandler<DeleteSportc
         var sportclub = await _dataContext.Sportclub
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnSportclub == request.IsnSportclub, cancellationToken)
-                ?? throw new BusinessLogicException($"Соревнований с идентификатором \"{request.IsnSportclub}\" не существует");
+                ?? throw new BusinessLogicException($"РЎРѕСЂРµРІРЅРѕРІР°РЅРёР№ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnSportclub}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         await _sportclubService.CanDeleteAndThrowAsync(
             _dataContext, sportclub, cancellationToken);

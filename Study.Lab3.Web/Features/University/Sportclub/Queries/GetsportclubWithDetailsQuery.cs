@@ -1,4 +1,4 @@
-using MediatR;
+п»їusing MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
@@ -7,12 +7,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheSportclub.Queries;
 
 /// <summary>
-/// Получить количество участников с деталями
+/// РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєРѕРІ СЃ РґРµС‚Р°Р»СЏРјРё
 /// </summary>
 public sealed class GetSportclubWithDetailsQuery : IRequest<SportclubWithDetailsDto>
 {
     /// <summary>
-    /// Идентификатор количества участников
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     [Required]
     public Guid IsnSportclub { get; init; }

@@ -1,29 +1,29 @@
-namespace Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
+п»їnamespace Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
 
 public sealed record SportclubDto
 {
     /// <summary>
-    /// Идентификатор спортивного клуба
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРїРѕСЂС‚РёРІРЅРѕРіРѕ РєР»СѓР±Р°
     /// </summary>
     public Guid IsnSportclub { get; init; }
 
     /// <summary>
-    /// Идентификатор студента
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СѓРґРµРЅС‚Р°
     /// </summary>
     public Guid IsnStudent { get; init; }
 
     /// <summary>
-    /// Идентификатор соревнований
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРѕСЂРµРІРЅРѕРІР°РЅРёР№
     /// </summary>
     public Guid IsnSubject { get; init; }
 
     /// <summary>
-    /// Значение количества участников
+    /// Р—РЅР°С‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     public int ParticipantsCount { get; init; }
 
     /// <summary>
-    /// Дата проведения соревнований
+    /// Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ СЃРѕСЂРµРІРЅРѕРІР°РЅРёР№
     /// </summary>
     public DateTime SportclubDate { get; init; }
 }

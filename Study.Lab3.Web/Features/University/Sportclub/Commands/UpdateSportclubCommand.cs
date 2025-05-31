@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +10,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheSportclub.Commands;
 
 /// <summary>
-/// Редактирование спортивного клуба
+/// Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ СЃРїРѕСЂС‚РёРІРЅРѕРіРѕ РєР»СѓР±Р°
 /// </summary>
 public sealed class UpdateSportclubCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Данные спортивного клуба
+    /// Р”Р°РЅРЅС‹Рµ СЃРїРѕСЂС‚РёРІРЅРѕРіРѕ РєР»СѓР±Р°
     /// </summary>
     [Required]
     [FromBody]
@@ -40,7 +40,7 @@ public sealed class UpdateSportclubCommandHandler : IRequestHandler<UpdateSportc
         var sportclub = await _dataContext.Sportclub
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnSportclub == request.Sportclub.IsnSportclub, cancellationToken)
-                ?? throw new BusinessLogicException($"Соревнований с идентификатором \"{request.Sportclub.IsnSportclub}\" не существует");
+                ?? throw new BusinessLogicException($"РЎРѕСЂРµРІРЅРѕРІР°РЅРёР№ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.Sportclub.IsnSportclub}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         sportclub.ParticipantsCount = request.Sportclub.ParticipantsCount;
         sportclub.SportclubDate = request.Sportclub.SportclubDate;

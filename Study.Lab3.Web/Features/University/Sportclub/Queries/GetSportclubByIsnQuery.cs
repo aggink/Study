@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheSportclub.Queries;
 
 /// <summary>
-/// Получить количество участников по идентификатору
+/// РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РїРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ
 /// </summary>
 public sealed class GetSportclubByIsnQuery : IRequest<SportclubDto>
 {
     /// <summary>
-    /// Идентификатор количества участников
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     [Required]
     [FromQuery]
@@ -35,7 +35,7 @@ public sealed class GetSportclubByIsnQueryHandler : IRequestHandler<GetSportclub
         var Sportclub = await _dataContext.Sportclub
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnSportclub == request.IsnSportclub, cancellationToken)
-                ?? throw new BusinessLogicException($"Количества участников с идентификатором \"{request.IsnSportclub}\" не существует");
+                ?? throw new BusinessLogicException($"РљРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnSportclub}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         return new SportclubDto
         {

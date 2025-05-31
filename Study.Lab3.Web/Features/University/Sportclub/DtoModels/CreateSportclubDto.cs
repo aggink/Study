@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+п»їusing Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
@@ -6,26 +6,26 @@ namespace Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
 public sealed record CreateSportclubDto
 {
     /// <summary>
-    /// Идентификатор студента
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СѓРґРµРЅС‚Р°
     /// </summary>
     [Required]
     public Guid IsnStudent { get; init; }
 
     /// <summary>
-    /// Идентификатор соревнований
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРѕСЂРµРІРЅРѕРІР°РЅРёР№
     /// </summary>
     [Required]
     public Guid IsnSubject { get; init; }
 
     /// <summary>
-    /// Значение количества участников
+    /// Р—РЅР°С‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     [Required]
     [Range(ModelConstants.Sportclub.MinParticipantValue, ModelConstants.Sportclub.MaxParticipantValue)]
     public int ParticipantsCount { get; init; }
 
     /// <summary>
-    /// Дата соревнований
+    /// Р”Р°С‚Р° СЃРѕСЂРµРІРЅРѕРІР°РЅРёР№
     /// </summary>
     [Required]
     public DateTime SportclubDate { get; init; }
