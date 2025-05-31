@@ -17,6 +17,8 @@ using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.gegemonTV;
 using Study.Lab2.Logic.chirique_online;
 
+using Study.Lab2.Logic.TucKaW;
+
 public static class Program
 {
     /// <summary>
@@ -96,6 +98,8 @@ public static class Program
                 return new jki749Service();
             case ("idb-23-03", 12):
                 return new alkeiviService();
+            case ("idb-23-03", 9):
+                return new TucKaWService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
             case ("idb-23-03", 15):
