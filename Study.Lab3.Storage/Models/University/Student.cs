@@ -63,4 +63,10 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(Grade.Student))]
     public virtual ICollection<Grade> Grades { get; set; }
+    
+    /// <summary>
+    /// Список регистраций студента на экзамены
+    /// </summary>
+    [InverseProperty(nameof(ExamRegistration.Student))]
+    public virtual ICollection<ExamRegistration> ExamRegistrations { get; set; }
 }
