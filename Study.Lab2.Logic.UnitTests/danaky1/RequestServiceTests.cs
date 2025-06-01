@@ -1,9 +1,9 @@
-﻿using System.Net;
-using System.Text.Json;
-using Moq;
+﻿using Moq;
 using Moq.Protected;
 using Study.Lab2.Logic.danaky1;
-using Study.Lab2.Logic.danaky1.DtoModels;
+using Study.Lab2.Logic.Interfaces.danaky1.DtoModels;
+using System.Net;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.danaky1;
 
@@ -30,6 +30,7 @@ public class RequestServiceTests
         {
             Fact = "Россия - самая большая страна в мире по площади."
         };
+
         var json = JsonSerializer.Serialize(data);
 
         // Настройка мок-ответа
