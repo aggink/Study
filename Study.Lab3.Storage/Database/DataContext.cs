@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.University;
@@ -149,4 +150,22 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region BeautySalon
+
+    /// <summary>
+    /// Клиенты
+    /// </summary>
+    public virtual DbSet<BeautyClients> BeautyClients { get; set; }
+
+    /// <summary>
+    /// Услуги
+    /// </summary>
+    public virtual DbSet<BeautyServices> BeautyServices { get; set; }
+
+    /// <summary>
+    /// Записи на услуги
+    /// </summary>
+    public virtual DbSet<BeautyAppointments> BeautyAppointments { get; set; }
+
+    #endregion
 }

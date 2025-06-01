@@ -1,0 +1,32 @@
+﻿using Study.Lab3.Storage.Database;
+using Study.Lab3.Storage.Models.BeautySalon;
+
+namespace Study.Lab3.Logic.Interfaces.Services.BeautySalon;
+
+/// <summary>
+/// Интерфейс сервиса записи клиента на услугу
+/// </summary>
+public interface IBeautyAppointmentsService
+{
+    /// <summary>
+    /// Проверка записи на возможность создания/редактирования
+    /// </summary>
+    /// <param name="dataContext">Контекст базы данных</param>
+    /// <param name="appointment">Запись в салон</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    Task CreateOrUpdateAppointmentValidate(
+        DataContext dataContext,
+        BeautyAppointments appointment,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Проверка записи на возможность удаления
+    /// </summary>
+    /// <param name="dataContext">Контекст базы данных</param>
+    /// <param name="appointment">ЗАпись в салон</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    Task DeleteAppointmentValidate(
+        DataContext dataContext,
+        BeautyAppointments appointment,
+        CancellationToken cancellationToken = default);
+}

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.University;
+using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.Library;
 using Study.Lab3.Logic.Services.University;
@@ -40,5 +42,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ICustomerService, CustomerService>();
         services.AddSingleton<ITicketService, TicketService>();
         services.AddSingleton<IProfcomService, ProfcomService>();
+        services.AddSingleton<IBeautyClientsService, BeautyClientsService>();
+        services.AddSingleton<IBeautyServicesService, BeautyServicesService>();
+        services.AddSingleton<IBeautyAppointmentsService, BeautyAppointmentsService>();
     }
 }
