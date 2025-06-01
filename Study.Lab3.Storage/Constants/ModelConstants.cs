@@ -321,6 +321,19 @@ public static class ModelConstants
         public const int MaxSeatsPerRow = 30;
     }
 
+    public static class Sportclub
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinParticipantValue = 2;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxParticipantValue = 100;
+    }
+
     public static class Session
     {
         /// <summary>
@@ -388,4 +401,5 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPartValue = 500;
     }
+
 }
