@@ -3,26 +3,29 @@ using Study.Lab3.Storage.Models.HospitalStore;
 
 namespace Study.Lab3.Logic.Interfaces.Services.HospitalStore;
 
+/// <summary>
+/// Интерфейс сервиса товаров 
+/// </summary>
 public interface IProductService
 {
     /// <summary>
-    /// Проверка товара на возможность создания/обновления
+    /// Проверка модели товара на возможность создания или редактирования
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
-    /// <param name="product">Данные товара</param>
+    /// <param name="product">Модель товара</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task CreateProductValidateAndThrowAsync(
+    Task CreateOrUpdateProductValidateAndThrowAsync(
         DataContext dataContext,
         Product product,
         CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Проверка товара на возможность удаления
+    /// Проверка возможности удаления товара
     /// </summary>
     /// <param name="dataContext">Контекст базы данных</param>
-    /// <param name="product">Данные товара</param>
+    /// <param name="product">Модель товара</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task DeleteProductValidateAndThrowAsync(
+    Task CanDeleteAndThrowAsync(
         DataContext dataContext,
         Product product,
         CancellationToken cancellationToken = default);

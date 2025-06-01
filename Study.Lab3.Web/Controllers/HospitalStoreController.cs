@@ -3,6 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Web.Features.HospitalStore.Order.Commands;
 using Study.Lab3.Web.Features.HospitalStore.Order.DtoModels;
 using Study.Lab3.Web.Features.HospitalStore.Order.Queries;
+using Study.Lab3.Web.Features.HospitalStore.Patient.Commands;
+using Study.Lab3.Web.Features.HospitalStore.Patient.DtoModels;
+using Study.Lab3.Web.Features.HospitalStore.Patient.Queries;
+using Study.Lab3.Web.Features.HospitalStore.Product.Commands;
+using Study.Lab3.Web.Features.HospitalStore.Product.DtoModels;
+using Study.Lab3.Web.Features.HospitalStore.Product.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -86,6 +92,84 @@ public class HospitalStoreController : ControllerBase
     public async Task<ActionResult<OrderDto[]>> GetListOrders(CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetListOrderQuery(), cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Patients
+
+    [HttpPost("patients")]
+    public async Task<ActionResult<Guid>> CreatePatient([FromBody] CreatePatientCommand command, CancellationToken cancellationToken)
+    {
+        var id = await _mediator.Send(command, cancellationToken);
+        return Ok(id);
+    }
+
+    [HttpPut("patients")]
+    public async Task<ActionResult<Guid>> UpdatePatient([FromBody] UpdatePatientCommand command, CancellationToken cancellationToken)
+    {
+        var id = await _mediator.Send(command, cancellationToken);
+        return Ok(id);
+    }
+
+    [HttpDelete("patients")]
+    public async Task<ActionResult> DeletePatient([FromBody] DeletePatientCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    [HttpGet("patients/{id}")]
+    public async Task<ActionResult<PatientDto>> GetPatientById([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetPatientByIsnQuery(id), cancellationToken);
+        return result == null ? NotFound() : Ok(result);
+    }
+
+    [HttpGet("patients")]
+    public async Task<ActionResult<PatientDto[]>> GetListPatients(CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetListPatientQuery(), cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Products
+
+    [HttpPost("products")]
+    public async Task<ActionResult<Guid>> CreateProduct([FromBody] CreateProductCommand command, CancellationToken cancellationToken)
+    {
+        var id = await _mediator.Send(command, cancellationToken);
+        return Ok(id);
+    }
+
+    [HttpPut("products")]
+    public async Task<ActionResult<Guid>> UpdateProduct([FromBody] UpdateProductCommand command, CancellationToken cancellationToken)
+    {
+        var id = await _mediator.Send(command, cancellationToken);
+        return Ok(id);
+    }
+
+    [HttpDelete("products")]
+    public async Task<ActionResult> DeleteProduct([FromBody] DeleteProductCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    [HttpGet("products/{id}")]
+    public async Task<ActionResult<ProductDto>> GetProductById([FromRoute] Guid id, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetProductByIsnQuery(id), cancellationToken);
+        return result == null ? NotFound() : Ok(result);
+    }
+
+    [HttpGet("products")]
+    public async Task<ActionResult<ProductDto[]>> GetListProducts(CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetListProductQuery(), cancellationToken);
         return Ok(result);
     }
 
