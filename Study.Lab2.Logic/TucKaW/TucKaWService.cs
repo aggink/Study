@@ -14,81 +14,101 @@ namespace Study.Lab2.Logic.TucKaW
     public class TucKaWService : IRunService
     {
         private readonly IRequestService _requestService;
-        private readonly List<string> _localFacts = new()
+        private const string ApiUrl = "https://example.com/api/barca";
+        private readonly List<string> _defaultFacts = new()
         {
-            "🔵🔴 ФК Барселона - один из самых титулованных клубов мира",
-            "🏆 26 раз чемпион Испании, 5 раз победитель Лиги Чемпионов",
-            "⭐ Легендарные игроки: Месси, Кройф, Марадона, Хави, Иньеста",
+            "🔵🔴 ФК Барселона основана 29 ноября 1899 года",
             "🏟 Камп Ноу - крупнейший стадион Европы (99 354 места)",
-            "👕 Клубные цвета: синий и гранатовый (blaugrana)"
+            "⭐ Легендарные игроки: Месси, Кройф, Марадона",
+            "🏆 26-кратный чемпион Испании, 5-кратный победитель ЛЧ",
+            "👕 Клубные цвета: синий и гранатовый (blaugrana)",
+            "🎯 Девиз: «Més que un club» (Больше, чем клуб)"
         };
 
-        public TucKaWService()
+        public TucKaWService() : this(new RequestService(new HttpClient()))
         {
-            var httpClient = new HttpClient();
-            // Добавляем заголовки для избежания 403 Forbidden
-            httpClient.DefaultRequestHeaders.Add("User-Agent", "BarcaFactsApp/1.0");
-            _requestService = new RequestService(httpClient);
+        }
+
+        public TucKaWService(IRequestService requestService)
+        {
+            _requestService = requestService ?? throw new ArgumentNullException(nameof(requestService));
         }
 
         public void RunTask()
         {
-            Console.WriteLine("\n=== СИНХРОННЫЙ ЗАПРОС ===\n");
-            ProcessRequest(false).Wait();
+            ProcessFootballData(false).Wait();
         }
 
         public async Task RunTaskAsync(CancellationToken cancellationToken)
         {
-            Console.WriteLine("\n=== АСИНХРОННЫЙ ЗАПРОС ===\n");
-            await ProcessRequest(true, cancellationToken);
+            await ProcessFootballData(true, cancellationToken);
         }
-
-        private async Task ProcessRequest(bool asyncMode, CancellationToken ct = default)
-        {
-            var timer = Stopwatch.StartNew();
-
-            try
-            {
-                // Всегда используем локальные данные, так как API требует ключ
-                var barcaData = BarcaFactResponseDto.CreateDefault();
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("=== ИНФОРМАЦИЯ О ФК БАРСЕЛОНА ===\n");
-                Console.ResetColor();
-
-                foreach (var fact in barcaData.Data)
-                {
-                    Console.WriteLine($"✅ {fact}");
-                }
-
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("\n🔍 ДОПОЛНИТЕЛЬНЫЕ ФАКТЫ:");
-                Console.ResetColor();
-
-                foreach (var fact in _localFacts)
-                {
-                    Console.WriteLine($"✨ {fact}");
-                    if (asyncMode) await Task.Delay(200, ct); // Анимация для асинхронного режима
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"⚠ Ошибка: {ex.Message}");
-                Console.ResetColor();
-            }
-            finally
-            {
-                timer.Stop();
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine($"\n⏱ Время выполнения: {timer.ElapsedMilliseconds} мс");
-                Console.ResetColor();
-            }
-        }
-
         public void Dispose()
         {
             _requestService?.Dispose();
+        }
+
+        private async Task ProcessFootballData(bool asyncMode, CancellationToken ct = default)
+        {
+            var stopwatch = Stopwatch.StartNew();
+            Console.WriteLine("\n=== ИНФОРМАЦИЯ О ФК БАРСЕЛОНА ===\n");
+
+            try
+            {
+                // Всегда используем локальные данные, так как API недоступно
+                DisplayFootballInfo(GetDefaultData());
+            }
+            catch (Exception ex)
+            {
+                HandleError(ex);
+            }
+            finally
+            {
+                stopwatch.Stop();
+                DisplayExecutionTime(stopwatch.ElapsedMilliseconds);
+            }
+        }
+
+        private BarcaFactResponseDto GetDefaultData()
+        {
+            return new BarcaFactResponseDto
+            {
+                Data = new List<string>(_defaultFacts)
+            };
+        }
+
+        private void DisplayFootballInfo(BarcaFactResponseDto data)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("📌 ОСНОВНЫЕ ФАКТЫ:");
+            Console.ResetColor();
+
+            foreach (var fact in data.Data)
+            {
+                Console.WriteLine($"  • {fact}");
+                Thread.Sleep(100); // Небольшая задержка для наглядности
+            }
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n🌟 ИСТОРИЧЕСКИЕ ДОСТИЖЕНИЯ:");
+            Console.ResetColor();
+            Console.WriteLine("  • Первый клуб, выигравший 6 трофеев за год (2009)");
+            Console.WriteLine("  • Рекордсмен по количеству титулов в Ла Лиге");
+        }
+
+        private void HandleError(Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"⚠ Ошибка: {ex.Message}");
+            Console.ResetColor();
+            Console.WriteLine("Используются локальные данные...\n");
+        }
+
+        private void DisplayExecutionTime(long milliseconds)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine($"\n⌛ Время выполнения: {milliseconds} мс");
+            Console.ResetColor();
         }
     }
 }
