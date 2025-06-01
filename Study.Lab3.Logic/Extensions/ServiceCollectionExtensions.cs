@@ -42,6 +42,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ICustomerService, CustomerService>();
         services.AddSingleton<ITicketService, TicketService>();
         services.AddSingleton<IProfcomService, ProfcomService>();
+        services.AddSingleton<ISportclubService, SportclubService>();
         services.AddSingleton<IBeautyClientsService, BeautyClientsService>();
         services.AddSingleton<IBeautyServicesService, BeautyServicesService>();
         services.AddSingleton<IBeautyAppointmentsService, BeautyAppointmentsService>();
