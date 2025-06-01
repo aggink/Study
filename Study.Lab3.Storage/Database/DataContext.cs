@@ -141,6 +141,25 @@ public class DataContext : DbContext
     /// Билеты
     /// </summary>
     public virtual DbSet<Ticket> Tickets { get; set; }
-    
+
+    #endregion
+
+    #region SweetFactory
+
+    /// <summary>
+    /// Конфеты
+    /// </summary>
+    public virtual DbSet<Movie> Sweets { get; set; }
+
+    /// <summary>
+    /// Конфетная фабрика
+    /// </summary>
+    public virtual DbSet<Genre> SweetFactories { get; set; }
+
+    /// <summary>
+    /// Тип конфет
+    /// </summary>
+    public virtual DbSet<MovieGenre> SweetTypes { get; set; }
+
     #endregion
 }

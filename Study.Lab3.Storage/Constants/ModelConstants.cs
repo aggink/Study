@@ -374,4 +374,53 @@ public static class ModelConstants
         /// </summary>
         public const int TicketCodeLength = 50;
     }
+
+    public static class SweetFactory
+    {
+        /// <summary>
+        /// Минимальная длинна названия фабрики
+        /// </summary>
+        public const int MinNameLenght = 1;
+
+        /// <summary>
+        /// Максимальная длинна идентификатора фабрики
+        /// </summary>
+        public const int MaxNameLenght = 256;
+
+        /// <summary>
+        /// Минимальная длинна адреса
+        /// </summary>
+        public const int MinAddressLenght = 1;
+
+        /// <summary>
+        /// Максимальная длинна адреса
+        /// </summary>
+        public const int MaxAddressLenght = 256;
+    }
+
+    public static class Sweet
+    {
+        /// <summary>
+        /// Минимальное наименование конфеты
+        /// </summary>
+        public const int MinNameLenght = 1;
+
+        /// <summary>
+        /// Максимальное наименование конфеты
+        /// </summary>
+        public const int MaxNameLenght = 256;
+    }
+
+    public static class SweetType
+    {
+        /// <summary>
+        /// Минимальное наименование типа конфеты
+        /// </summary>
+        public const int MinNameLenght = 1;
+
+        /// <summary>
+        /// Максимальное наименование типа конфеты
+        /// </summary>
+        public const int MaxNameLenght = 256;
+    }
 }
