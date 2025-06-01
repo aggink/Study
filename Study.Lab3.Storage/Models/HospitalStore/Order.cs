@@ -1,6 +1,6 @@
+using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.HospitalStore;
 
@@ -13,20 +13,20 @@ public class Order
     public Guid IsnOrder { get; set; }
 
     /// <summary>
-    /// ID пациента
+    /// айди пациента
     /// </summary>
     [Required]
     public Guid IsnPatient { get; set; }
 
     /// <summary>
-    /// ID товара
+    /// айди товара
     /// </summary>
     [Required]
     public Guid IsnProduct { get; set; }
 
     /// <summary>
-    /// Количество товара
+    /// количество товара
     /// </summary>
     [Required, Range(ModelConstants.Order.QuantityMin, ModelConstants.Order.QuantityMax)]
-    public int Quantity { get; set; }     
+    public int Quantity { get; set; }
 }
