@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
 
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250531084356_AddSportclub")]
+    partial class AddSportclub
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,73 +259,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnSession");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
-                {
-                    b.Property<Guid>("IsnOrder")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnPatient")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnProduct")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("IsnOrder");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Patient", b =>
-                {
-                    b.Property<Guid>("IsnPatient")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("MedicalCardId")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("IsnPatient");
-
-                    b.ToTable("Patients");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Product", b =>
-                {
-                    b.Property<Guid>("IsnProduct")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.HasKey("IsnProduct");
-
-                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>

@@ -667,6 +667,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("TheProfcom");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
+                {
+                    b.Property<Guid>("IsnSportclub")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("SportclubDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnSportclub");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Sportclub");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
                     b.Property<Guid>("IsnStudent")
@@ -997,6 +1023,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
                         .WithMany()

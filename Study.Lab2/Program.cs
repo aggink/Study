@@ -17,6 +17,7 @@ using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.gegemonTV;
 using Study.Lab2.Logic.chirique_online;
 
+using Study.Lab2.Logic.danaky1;
 public static class Program
 {
     /// <summary>
@@ -100,8 +101,6 @@ public static class Program
                 return new PresvyatoyKabachokService();
             case ("idb-23-03", 15):
                 return new gegemonTVService();
-            case ("idb-23-02", 12):
-                return new chiriqueOnlineService();
             default:
                 throw new NotSupportedException();
         }
