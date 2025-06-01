@@ -13,17 +13,18 @@ namespace Study.Lab2.Logic.TucKaW;
 
 public class TucKaWService : IRunService
 {
-    private readonly IRequestService _requestService;
     private const string ApiUrl = "https://example.com/api/barca";
     private readonly List<string> _defaultFacts = new()
-    {
-        "🔵🔴 ФК Барселона основана 29 ноября 1899 года",
-        "🏟 Камп Ноу - крупнейший стадион Европы (99 354 места)",
-        "⭐ Легендарные игроки: Месси, Кройф, Марадона",
-        "🏆 26-кратный чемпион Испании, 5-кратный победитель ЛЧ",
-        "👕 Клубные цвета: синий и гранатовый (blaugrana)",
-        "🎯 Девиз: «Més que un club» (Больше, чем клуб)"
-    };
+{
+    "🔵🔴 ФК Барселона основана 29 ноября 1899 года",
+    "🏟 Камп Ноу - крупнейший стадион Европы (99 354 места)",
+    "⭐ Легендарные игроки: Месси, Кройф, Марадона",
+    "🏆 26-кратный чемпион Испании, 5-кратный победитель ЛЧ",
+    "👕 Клубные цвета: синий и гранатовый (blaugrana)",
+    "🎯 Девиз: «Més que un club» (Больше, чем клуб)"
+};
+
+    private readonly IRequestService _requestService;
 
     public TucKaWService() : this(new RequestService(new HttpClient()))
     {
@@ -43,6 +44,7 @@ public class TucKaWService : IRunService
     {
         await ProcessFootballData(true, cancellationToken);
     }
+
     public void Dispose()
     {
         _requestService?.Dispose();
@@ -55,8 +57,8 @@ public class TucKaWService : IRunService
 
         try
         {
-            // Всегда используем локальные данные, так как API недоступно
-            DisplayFootballInfo(GetDefaultData());
+            // Используем BarcaFactResponseHelper для получения данных
+            DisplayFootballInfo(BarcaFactResponseHelper.CreateDefault());
         }
         catch (Exception ex)
         {
@@ -69,14 +71,6 @@ public class TucKaWService : IRunService
         }
     }
 
-    private BarcaFactResponseDto GetDefaultData()
-    {
-        return new BarcaFactResponseDto
-        {
-            Data = new List<string>(_defaultFacts)
-        };
-    }
-
     private void DisplayFootballInfo(BarcaFactResponseDto data)
     {
         Console.ForegroundColor = ConsoleColor.Green;
@@ -86,7 +80,7 @@ public class TucKaWService : IRunService
         foreach (var fact in data.Data)
         {
             Console.WriteLine($"  • {fact}");
-            Thread.Sleep(100); // Небольшая задержка для наглядности
+            Thread.Sleep(100);
         }
 
         Console.ForegroundColor = ConsoleColor.Blue;
@@ -102,6 +96,9 @@ public class TucKaWService : IRunService
         Console.WriteLine($"⚠ Ошибка: {ex.Message}");
         Console.ResetColor();
         Console.WriteLine("Используются локальные данные...\n");
+
+        // В случае ошибки также используем BarcaFactResponseHelper
+        DisplayFootballInfo(BarcaFactResponseHelper.CreateDefault());
     }
 
     private void DisplayExecutionTime(long milliseconds)

@@ -1,17 +1,17 @@
-﻿using System;
+﻿using Study.Lab2.Logic.Interfaces.TucKaW;
+using Study.Lab2.Logic.TucKaW.DtoModels;
+using System;
 using System.IO;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Study.Lab2.Logic.Interfaces.TucKaW;
 
 namespace Study.Lab2.Logic.TucKaW;
 
-public class RequestService : IRequestService
+public class RequestService : IRequestService, IDisposable
 {
     private readonly HttpClient _httpClient;
-    private bool _disposed = false;
 
     public RequestService(HttpClient httpClient)
     {
@@ -22,12 +22,12 @@ public class RequestService : IRequestService
     {
         try
         {
-            var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
+            using var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
             return ProcessResponse(response);
         }
         catch
         {
-            return GetLocalFact();
+            return BarcaFactResponseHelper.GetDefaultJson();
         }
     }
 
@@ -35,34 +35,16 @@ public class RequestService : IRequestService
     {
         try
         {
-            var response = await _httpClient.GetAsync(url, cancellationToken);
+            using var response = await _httpClient.GetAsync(url, cancellationToken);
             return await ProcessResponseAsync(response, cancellationToken);
         }
         catch
         {
-            return GetLocalFact();
+            return BarcaFactResponseHelper.GetDefaultJson();
         }
     }
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!_disposed)
-        {
-            if (disposing)
-            {
-                _httpClient?.Dispose();
-            }
-            _disposed = true;
-        }
-    }
-
-    private string ProcessResponse(HttpResponseMessage response)
+    private static string ProcessResponse(HttpResponseMessage response)
     {
         if (!response.IsSuccessStatusCode)
         {
@@ -74,7 +56,7 @@ public class RequestService : IRequestService
         return reader.ReadToEnd();
     }
 
-    private async Task<string> ProcessResponseAsync(HttpResponseMessage response, CancellationToken cancellationToken)
+    private static async Task<string> ProcessResponseAsync(HttpResponseMessage response, CancellationToken cancellationToken)
     {
         if (!response.IsSuccessStatusCode)
         {
@@ -84,16 +66,8 @@ public class RequestService : IRequestService
         return await response.Content.ReadAsStringAsync(cancellationToken);
     }
 
-    private string GetLocalFact()
+    public void Dispose()
     {
-        return JsonSerializer.Serialize(new
-        {
-            Data = new[]
-            {
-                "ФК Барселона основана в 1899 году",
-                "Камп Ноу - домашний стадион",
-                "Известные игроки: Месси, Хави, Иньеста"
-            }
-        });
+        _httpClient?.Dispose();
     }
 }
