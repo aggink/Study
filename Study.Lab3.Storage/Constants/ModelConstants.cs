@@ -390,7 +390,7 @@ public static class ModelConstants
         /// <summary>
         /// Максимальная длина номера телефона клиента
         /// </summary>
-        public const int Number = 15;
+        public const int PhoneNumber = 15;
 
         /// <summary>
         /// Максимальная длина email клиента

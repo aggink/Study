@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.Shelter
 {
@@ -12,15 +13,17 @@ namespace Study.Lab3.Storage.Models.Shelter
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(ModelConstants.Cat.Nickname)]
         public string Nickname { get; set; }
 
+        [Required]
         public DateTime BirthDate { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(ModelConstants.Cat.Description)]
         public string Description { get; set; }
 
-        [MaxLength(100)]
+        [Required]
+        [MaxLength(ModelConstants.Cat.Breed)]
         public string Breed { get; set; }
 
         [Required]
@@ -29,21 +32,30 @@ namespace Study.Lab3.Storage.Models.Shelter
         [Required]
         public bool IsSterilized { get; set; }
 
-        [MaxLength(200)]
+        [Required]
+        [MaxLength(ModelConstants.Cat.Color)]
         public string Color { get; set; }
 
-        [MaxLength(1000)]
+        [Required]
+        [MaxLength(ModelConstants.Cat.MedicalHistory)]
         public string MedicalHistory { get; set; }
 
-        [MaxLength(255)]
+        [Required]
         public string PhotoUrl { get; set; }
 
+        [Required]
         public DateTime ArrivalDate { get; set; }
 
+        [Required]
         public bool IsAvailableForAdoption { get; set; }
 
+        [Required]
+        [Range(ModelConstants.Cat.AgeMin, ModelConstants.Cat.AgeMax)]
         public int Age { get; set; }
-
+        
+        [Required]
+        [Range(ModelConstants.Cat.WeightMin, ModelConstants.Cat.WeightMax)]
+        public int Weight { get; set; }
         // Навигационное свойство для отношения многие-ко-многим
         public virtual ICollection<Adoption> Adoptions { get; set; }
     }
