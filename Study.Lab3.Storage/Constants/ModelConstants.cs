@@ -370,7 +370,7 @@ public static class ModelConstants
         public const double WeightMax = 15.0;
     }
 
-    public static class Customer
+    public static class ShelterCustomer
     {
         /// <summary>
         /// Максимальная длина имени клиента
@@ -465,7 +465,7 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPartValue = 500;
     }
-}
+
     public static class Adoption
     {
         /// <summary>
@@ -484,4 +484,3 @@ public static class ModelConstants
         public const int Status = 50;
     }
 }
-
