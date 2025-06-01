@@ -16,10 +16,10 @@ public class danaky1Service : IRunService
         "В России 11 часовых поясов",
         "Метро Санкт-Петербурга - самое глубокое в мире"
     };
-    private readonly IRequestService _requestService;
-    private readonly string _apiEndpoint = "https://restcountries.com/v3.1/name/russia";
 
-  
+    private const string _apiEndpoint = "https://restcountries.com/v3.1/name/russia";
+
+    private readonly IRequestService _requestService;
 
     public danaky1Service()
     {
