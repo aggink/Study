@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.Library;
+using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.Library;
+using Study.Lab3.Logic.Services.Restaurants;
 using Study.Lab3.Logic.Services.University;
 
 namespace Study.Lab3.Logic.Extensions;
@@ -41,5 +43,10 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITicketService, TicketService>();
         services.AddSingleton<IProfcomService, ProfcomService>();
         services.AddSingleton<ISportclubService, SportclubService>();
+        services.AddSingleton<IRestaurantService, RestaurantService>();
+        services.AddSingleton<IMenuService, MenuService>();
+        services.AddSingleton<IMenuItemService, MenuItemService>();
+        services.AddSingleton<IOrderService, OrderService>();
+        services.AddSingleton<IOrderItemService, OrderItemService>();
     }
 }

@@ -402,4 +402,134 @@ public static class ModelConstants
         public const int MaxPartValue = 500;
     }
 
+    public static class Restaurant
+    {
+        /// <summary>
+        /// Максимальная длина названия ресторана
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина адреса
+        /// </summary>
+        public const int Address = 500;
+
+        /// <summary>
+        /// Максимальная длина телефона
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина email
+        /// </summary>
+        public const int Email = 100;
+
+        /// <summary>
+        /// Максимальная длина времени работы
+        /// </summary>
+        public const int WorkingHours = 100;
+    }
+
+    public static class Menu
+    {
+        /// <summary>
+        /// Максимальная длина названия меню
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина описания меню
+        /// </summary>
+        public const int Description = 500;
+    }
+
+    public static class MenuItem
+    {
+        /// <summary>
+        /// Максимальная длина названия блюда
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина описания блюда
+        /// </summary>
+        public const int Description = 1000;
+        
+        /// <summary>
+        /// Максимальная длина категории
+        /// </summary>
+        public const int Category = 50;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double MaxPrice = 99999.99;
+
+        /// <summary>
+        /// Минимальное время приготовления
+        /// </summary>
+        public const int MinCookingTime = 1;
+
+        /// <summary>
+        /// Максимальное время приготовления
+        /// </summary>
+        public const int MaxCookingTime = 480; // 8 часов
+    }
+
+    public static class Order
+    {
+        /// <summary>
+        /// Максимальная длина номера заказа
+        /// </summary>
+        public const int OrderNumber = 20;
+
+        /// <summary>
+        /// Максимальная длина имени клиента
+        /// </summary>
+        public const int CustomerName = 100;
+
+        /// <summary>
+        /// Максимальная длина телефона клиента
+        /// </summary>
+        public const int CustomerPhone = 20;
+        
+        /// <summary>
+        /// Максимальная длина статуса
+        /// </summary>
+        public const int Status = 20;
+
+        /// <summary>
+        /// Минимальный номер стола
+        /// </summary>
+        public const int MinTableNumber = 1;
+
+        /// <summary>
+        /// Максимальный номер стола
+        /// </summary>
+        public const int MaxTableNumber = 999;
+    }
+
+    public static class OrderItem
+    {
+        /// <summary>
+        /// Минимальное количество
+        /// </summary>
+        public const int MinQuantity = 1;
+
+        /// <summary>
+        /// Максимальное количество
+        /// </summary>
+        public const int MaxQuantity = 100;
+
+        /// <summary>
+        /// Максимальная длина особых пожеланий
+        /// </summary>
+        public const int SpecialRequests = 500;
+    }
+    
 }
