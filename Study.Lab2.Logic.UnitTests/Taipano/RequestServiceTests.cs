@@ -12,8 +12,8 @@ using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.Taipano;
 
-    public class RequestServiceTests
-    {
+public class RequestServiceTests
+{
     private const string REQUEST_URL = "https://dummyjson.com/products/1";
 
     private RequestService _requestService;
@@ -40,7 +40,7 @@ namespace Study.Lab2.Logic.UnitTests.Taipano;
         {
             Id = 1,
             Title = "Essence Mascara Lash Princess",
-            Category ="beauty",
+            Category = "beauty",
             Price = 9.99
         };
 

@@ -23,6 +23,7 @@ public class TaipanoService : IRunService
         "https://dummyjson.com/products/3"
 
     };
+
     public void RunTask()
     {
         Console.WriteLine("\nВыполняется синхронный запрос...\n");

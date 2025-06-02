@@ -96,7 +96,6 @@ public static class Program
                 return new CherryyService();
             case ("idb-23-03", 17):
                 return new KirillPoroshinService();
-
             case ("idb-23-03", 3):
                 return new TaipanoService();
             case ("idb-23-03", 2):
