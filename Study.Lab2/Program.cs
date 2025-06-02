@@ -16,6 +16,11 @@ using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.gegemonTV;
+using Study.Lab2.Logic.chirique_online;
+using Study.Lab2.Logic.TucKaW;
+using Study.Lab2.Logic.danaky1;
+
 public static class Program
 {
 	/// <summary>
@@ -57,52 +62,50 @@ public static class Program
 		Console.ReadKey();
 	}
 
-	/// <summary> 
-	/// Получить сервис для выполнения задач
-	/// </summary>
-	/// <param name="group">Название группы</param>
-	/// <param name="number">Порядковый номер</param>
-	/// <returns>Сервис для выполнения задач</returns>
-	private static IRunService GetRunLabService(string group, int number)
-	{
-		switch (group, number)
-		{
-			case ("assistant", 1):
-				return new AssistantService();
-			case ("idb-23-02", 15):
-				return new XynthhService();
-			case ("idb-23-02", 4):
-				return new brnvikaService();
-			case ("idb-23-02", 23):
-				return new SelestzService();
-			case ("idb-23-02", 2):
-				return new eldarovskiyService();
-			case ("idb-23-02", 6):
-				return new kinkiss1Service();
-			case ("idb-23-02", 19):
-				return new lsokol14lService();
-			case ("idb-23-02", 17):
-				return new KattyHttpService();
-			case ("idb-23-03", 10):
-				return new poigkoService();
-			case ("idb-23-02", 24):
-				return new CherryyService();
-			case ("idb-23-03", 17):
-				return new KirillPoroshinService();
-			case ("idb-23-03", 2):
-				return new love100rubbService();
-			case ("idb-23-03", 22):
-				return new jki749Service();
-			case ("idb-23-03", 12):
-				return new alkeiviService();
-			case ("idb-23-02", 10):
-				return new PresvyatoyKabachokService();
-			case ("idb-23-03", 15):
-				return new gegemonTVService();
-			case ("idb-23-03", 23):
-				return new Pro100futaService();
-			default:
-				throw new NotSupportedException();
-		}
-	}
+    /// <summary>
+    /// Получить сервис для выполнения задач
+    /// </summary>
+    /// <param name="group">Название группы</param>
+    /// <param name="number">Порядковый номер</param>
+    /// <returns>Сервис для выполнения задач</returns>
+    private static IRunService GetRunLabService(string group, int number)
+    {
+        switch (group, number)
+        {
+            case ("assistant", 1):
+                return new AssistantService();
+            case ("idb-23-02", 15):
+                return new XynthhService();
+            case ("idb-23-02", 4):
+                return new brnvikaService();
+            case ("idb-23-02", 23):
+                return new SelestzService();
+            case ("idb-23-02", 2):
+                return new eldarovskiyService();
+            case ("idb-23-02", 6):
+                return new kinkiss1Service();
+            case ("idb-23-02", 19):
+                return new lsokol14lService();
+            case ("idb-23-02", 17):
+                return new KattyHttpService();
+            case ("idb-23-03", 10):
+                return new poigkoService();
+            case ("idb-23-02", 24):
+                return new CherryyService();
+            case ("idb-23-03", 17):
+                return new KirillPoroshinService();
+            case ("idb-23-03", 2):
+                return new love100rubbService();
+            case ("idb-23-03", 22):
+                return new jki749Service();
+            case ("idb-23-03", 12):
+                return new alkeiviService();
+            case ("idb-23-02", 10):
+                return new PresvyatoyKabachokService();
+            case ("idb-23-03", 15):
+                return new gegemonTVService();
+            default:
+                throw new NotSupportedException();
+        }
+    }
 }
