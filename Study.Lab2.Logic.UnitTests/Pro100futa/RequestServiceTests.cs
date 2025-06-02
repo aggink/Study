@@ -10,10 +10,19 @@ namespace Study.Lab2.Logic.UnitTests.Pro100futa;
 [TestFixture]
 public class RequestServiceTests
 {
+	private readonly string _requestUrl = "https://example.com/api/test";
+
 	private RequestService _requestService;
 	private Mock<HttpMessageHandler> _httpMessageHandlerMock;
 
-	private readonly string _requestUrl = "https://example.com/api/test";
+	/// <summary>
+	/// Освобождение ресурсов, реализует IDisposable.
+	/// </summary>
+	[TearDown]
+	public void Dispose()
+	{
+		_requestService?.Dispose();
+	}
 
 	[SetUp]
 	public void Setup()
@@ -84,14 +93,5 @@ public class RequestServiceTests
 				StatusCode = statusCode,
 				Content = new StringContent(content)
 			});
-	}
-
-	/// <summary>
-	/// Освобождение ресурсов, реализует IDisposable.
-	/// </summary>
-	[TearDown]
-	public void Dispose()
-	{
-		_requestService?.Dispose();
 	}
 }

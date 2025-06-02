@@ -8,9 +8,9 @@ namespace Study.Lab2.Logic.Pro100futa;
 //хихихаха
 public class Pro100futaService : IRunService
 {
-	private readonly IRequestService _requestService;
+	private const string url = "https://official-joke-api.appspot.com/jokes/random";
 
-	private readonly string url = "https://official-joke-api.appspot.com/jokes/random";
+	private readonly IRequestService _requestService;
 
 	public Pro100futaService()
 	{
