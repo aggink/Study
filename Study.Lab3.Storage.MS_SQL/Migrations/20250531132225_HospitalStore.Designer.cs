@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
 
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250531132225_HospitalStore")]
+    partial class HospitalStore
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -642,58 +645,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Materials");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
-                {
-                    b.Property<Guid>("IsnProfcom")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ParticipantsCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ProfcomDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("IsnProfcom");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.HasIndex("IsnSubject");
-
-                    b.ToTable("TheProfcom");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
-                {
-                    b.Property<Guid>("IsnSportclub")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ParticipantsCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SportclubDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("IsnSportclub");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.HasIndex("IsnSubject");
-
-                    b.ToTable("Sportclub");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
                     b.Property<Guid>("IsnStudent")
@@ -1019,44 +970,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Subject");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("IsnSubject")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Subject");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("IsnSubject")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
 
                     b.Navigation("Subject");
                 });
