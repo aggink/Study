@@ -10,14 +10,14 @@ namespace Study.Lab3.Storage.Models.Shelter
         /// Идентификатор кота
         /// </summary>
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(ModelConstants.Cat.Nickname)]
         public string Nickname { get; set; }
 
         [Required]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
 
         [MaxLength(ModelConstants.Cat.Description)]
         public string Description { get; set; }
@@ -41,6 +41,7 @@ namespace Study.Lab3.Storage.Models.Shelter
         public string MedicalHistory { get; set; }
 
         [Required]
+        [MaxLength(ModelConstants.Cat.PhotoUrl)]
         public string PhotoUrl { get; set; }
 
         [Required]
@@ -56,7 +57,9 @@ namespace Study.Lab3.Storage.Models.Shelter
         [Required]
         [Range(ModelConstants.Cat.WeightMin, ModelConstants.Cat.WeightMax)]
         public int Weight { get; set; }
-        // Навигационное свойство для отношения многие-ко-многим
+        
+        [InverseProperty(nameof(Adoption.Cat))]
         public virtual ICollection<Adoption> Adoptions { get; set; }
+        
     }
 }

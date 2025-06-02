@@ -17,7 +17,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -325,6 +325,136 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnBook");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("AdoptionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("CatId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CatId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Adoptions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Breed")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool>("IsAvailableForAdoption")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsSterilized")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsVaccinated")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("MedicalHistory")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cats");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShelterCustomers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
@@ -817,6 +947,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Shelter.Cat", "Cat")
+                        .WithMany("Adoptions")
+                        .HasForeignKey("CatId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Shelter.Customer", "Customer")
+                        .WithMany("Adoptions")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cat");
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
@@ -1039,6 +1188,16 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
                 {
                     b.Navigation("AuthorBook");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>
+                {
+                    b.Navigation("Adoptions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
+                {
+                    b.Navigation("Adoptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>

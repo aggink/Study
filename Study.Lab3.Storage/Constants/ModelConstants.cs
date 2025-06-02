@@ -368,6 +368,11 @@ public static class ModelConstants
         /// Максимальный вес кота (в кг)
         /// </summary>
         public const double WeightMax = 15.0;
+        
+        /// <summary>
+        /// Ссылка на фотографию кота
+        /// </summary>
+        public const int PhotoUrl = 100;
     }
 
     public static class ShelterCustomer

@@ -9,7 +9,7 @@ namespace Study.Lab3.Storage.Models.Shelter
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         
         [Required]
         [Range(ModelConstants.Adoption.PriceMin, ModelConstants.Adoption.PriceMax)]
@@ -17,10 +17,10 @@ namespace Study.Lab3.Storage.Models.Shelter
 
         [Required]
         [ForeignKey(nameof(Customer))]
-        public int CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
         [ForeignKey(nameof(Cat))]
-        public int CatId { get; set; }
+        public Guid CatId { get; set; }
 
         [Required]
         public DateTime AdoptionDate { get; set; }
@@ -28,5 +28,14 @@ namespace Study.Lab3.Storage.Models.Shelter
         [Required]
         [MaxLength(ModelConstants.Adoption.Status)]
         public string Status { get; set; }
+        
+        /// <summary>
+        /// Клиент
+        /// </summary>
+        public virtual Customer Customer { get; set; }
+        /// <summary>
+        /// Кот
+        /// </summary>
+        public virtual Cat Cat { get; set; }
     }
 }

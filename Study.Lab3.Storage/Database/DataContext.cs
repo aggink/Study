@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Library;
+using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.University;
+using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
+using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -149,4 +152,22 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region Shelter
+
+    /// <summary>
+    /// Клиенты
+    /// </summary>
+    public virtual DbSet<ShelterCustomer> ShelterCustomers { get; set; }
+    
+    /// <summary>
+    /// Коты с приюта
+    /// </summary>
+    public virtual DbSet<Cat> Cats { get; set; }
+    
+    /// <summary>
+    /// Заказ на усыновление кота
+    /// </summary>
+    public virtual DbSet<Adoption> Adoptions { get; set; }
+
+    #endregion
 }
