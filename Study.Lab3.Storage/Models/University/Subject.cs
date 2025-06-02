@@ -56,4 +56,10 @@ public class Subject
     /// </summary>
     [InverseProperty(nameof(Exam.Subject))]
     public virtual ICollection<Exam> Exams { get; set; }
+
+    /// <summary>
+    /// Связь с квн
+    /// </summary>
+    [InverseProperty(nameof(Kvn.Subject))]
+    public virtual ICollection<Kvn> Kvns { get; set; }
 }

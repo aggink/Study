@@ -538,6 +538,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Groups");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Kvn", b =>
+                {
+                    b.Property<Guid>("IsnKvn")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("KvnDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnKvn");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("TheKvn");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
                 {
                     b.Property<Guid>("IsnMaterial")
@@ -909,6 +935,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
                         .WithMany("Grades")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Kvn", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany()
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -103,6 +103,11 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Profcom> TheProfcom { get; set; }
 
+    /// <summary>
+    /// Квн
+    /// </summary>
+    public virtual DbSet<Kvn> TheKvn { get; set; }
+
     #endregion
 
     #region Cinema

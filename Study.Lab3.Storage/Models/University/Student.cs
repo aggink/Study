@@ -69,4 +69,10 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(ExamRegistration.Student))]
     public virtual ICollection<ExamRegistration> ExamRegistrations { get; set; }
+
+    /// <summary>
+    /// Связь с квн
+    /// </summary>
+    [InverseProperty(nameof(Kvn.Student))]
+    public virtual ICollection<Kvn> Kvns { get; set; }
 }
