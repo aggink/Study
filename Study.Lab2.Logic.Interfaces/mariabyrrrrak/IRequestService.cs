@@ -1,9 +1,8 @@
-﻿namespace Study.Lab2.Logic.Interfaces.mariabyrrrrak
-{
-    public interface IRequestService : IDisposable
-    {
-        string FetchData(string url);
+﻿namespace Study.Lab2.Logic.Interfaces.mariabyrrrrak;
 
-        Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default);
-    }
+public interface IRequestService : IDisposable
+{
+    string FetchData(string url);
+
+    Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default);
 }

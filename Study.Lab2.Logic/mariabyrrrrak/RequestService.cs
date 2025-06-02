@@ -1,45 +1,44 @@
 ﻿using Study.Lab2.Logic.Interfaces.mariabyrrrrak;
 
-namespace Study.Lab2.Logic.mariabyrrrrak
+namespace Study.Lab2.Logic.mariabyrrrrak;
+
+public class RequestService : IRequestService
 {
-    public class RequestService : IRequestService
+    private readonly HttpClient _http;
+
+    public RequestService(HttpClient httpClient)
     {
-        private readonly HttpClient _http;
+        _http = httpClient;
+    }
 
-        public RequestService(HttpClient httpClient)
+    public string FetchData(string url)
+    {
+        var response = _http.GetAsync(url).GetAwaiter().GetResult();
+        if (!response.IsSuccessStatusCode)
         {
-            _http = httpClient;
+            throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
         }
 
-        public string FetchData(string url)
+        using (var stream = response.Content.ReadAsStream())
+        using (var reader = new StreamReader(stream))
         {
-            var response = _http.GetAsync(url).GetAwaiter().GetResult();
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-            }
+            return reader.ReadToEnd();
+        }
+    }
 
-            using (var stream = response.Content.ReadAsStream())
-            using (var reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
+    public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default)
+    {
+        var response = await _http.GetAsync(url, cancellationToken);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
         }
 
-        public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default)
-        {
-            var response = await _http.GetAsync(url, cancellationToken);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"Error: {response.StatusCode} - {response.ReasonPhrase}");
-            }
+        return await response.Content.ReadAsStringAsync(cancellationToken);
+    }
 
-            return await response.Content.ReadAsStringAsync(cancellationToken);
-        }
-
-        public void Dispose()
-        {
-            _http.Dispose();
-        }
+    public void Dispose()
+    {
+        _http.Dispose();
     }
 }
