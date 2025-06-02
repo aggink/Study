@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +10,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheKvn.Commands;
 
 /// <summary>
-/// Редактирование квн
+/// Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РєРІРЅ
 /// </summary>
 public sealed class UpdateKvnCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Данные квн
+    /// Р”Р°РЅРЅС‹Рµ РєРІРЅ
     /// </summary>
     [Required]
     [FromBody]
@@ -40,7 +40,7 @@ public sealed class UpdateKvnCommandHandler : IRequestHandler<UpdateKvnCommand, 
         var profcom = await _dataContext.TheKvn
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnKvn == request.Kvn.IsnKvn, cancellationToken)
-                ?? throw new BusinessLogicException($"Выступления с идентификатором \"{request.Kvn.IsnKvn}\" не существует");
+                ?? throw new BusinessLogicException($"Р’С‹СЃС‚СѓРїР»РµРЅРёСЏ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.Kvn.IsnKvn}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         profcom.ParticipantsCount = request.Kvn.ParticipantsCount;
         profcom.KvnDate = request.Kvn.KvnDate;

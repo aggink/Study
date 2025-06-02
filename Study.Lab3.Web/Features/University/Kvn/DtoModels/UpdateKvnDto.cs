@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+п»їusing Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheKvn.DtoModels;
@@ -6,20 +6,20 @@ namespace Study.Lab3.Web.Features.University.TheKvn.DtoModels;
 public sealed record UpdateKvnDto
 {
     /// <summary>
-    /// Идентификатор квн
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєРІРЅ
     /// </summary>
     [Required]
     public Guid IsnKvn { get; init; }
 
     /// <summary>
-    /// Значение количества участников
+    /// Р—РЅР°С‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     [Required]
     [Range(ModelConstants.Kvn.MinPart, ModelConstants.Kvn.MaxPart)]
     public int ParticipantsCount { get; init; }
 
     /// <summary>
-    /// Дата проведения выступления
+    /// Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ РІС‹СЃС‚СѓРїР»РµРЅРёСЏ
     /// </summary>
     [Required]
     public DateTime KvnDate { get; init; }

@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheKvn.Commands;
 
 /// <summary>
-/// Удаление квн
+/// РЈРґР°Р»РµРЅРёРµ РєРІРЅ
 /// </summary>
 public sealed class DeleteKvnCommand : IRequest
 {
     /// <summary>
-    /// Идентификатор квн
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєРІРЅ
     /// </summary>
     [Required]
     [FromQuery]
@@ -39,7 +39,7 @@ public sealed class DeleteKvnCommandHandler : IRequestHandler<DeleteKvnCommand>
         var kvn = await _dataContext.TheKvn
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnKvn == request.IsnKvn, cancellationToken)
-                ?? throw new BusinessLogicException($"Выступления с идентификатором \"{request.IsnKvn}\" не существует");
+                ?? throw new BusinessLogicException($"Р’С‹СЃС‚СѓРїР»РµРЅРёСЏ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnKvn}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         await _kvnService.CanDeleteAndThrowAsync(
             _dataContext, kvn, cancellationToken);

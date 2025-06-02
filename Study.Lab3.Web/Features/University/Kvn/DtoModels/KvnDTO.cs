@@ -1,29 +1,29 @@
-namespace Study.Lab3.Web.Features.University.TheKvn.DtoModels;
+п»їnamespace Study.Lab3.Web.Features.University.TheKvn.DtoModels;
 
 public sealed record KvnDto
 {
     /// <summary>
-    /// Идентификатор квн
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєРІРЅ
     /// </summary>
     public Guid IsnKvn { get; init; }
 
     /// <summary>
-    /// Идентификатор участника
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СѓС‡Р°СЃС‚РЅРёРєР°
     /// </summary>
     public Guid IsnStudent { get; init; }
 
     /// <summary>
-    /// Идентификатор темы выступления
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С‚РµРјС‹ РІС‹СЃС‚СѓРїР»РµРЅРёСЏ
     /// </summary>
     public Guid IsnSubject { get; init; }
 
     /// <summary>
-    /// Значение количества участников
+    /// Р—РЅР°С‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     public int ParticipantsCount { get; init; }
 
     /// <summary>
-    /// Дата проведения выступления
+    /// Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ РІС‹СЃС‚СѓРїР»РµРЅРёСЏ
     /// </summary>
     public DateTime KvnDate { get; init; }
 }
