@@ -6,7 +6,7 @@ using Study.Lab3.Storage.Models.BeautySalon;
 
 namespace Study.Lab3.Logic.Services.BeautySalon;
 
-public sealed class BeautyClientsService : IBeautyClientsService
+public sealed class BeautyClientService : IBeautyClientService
 {
     public async Task CreateOrUpdateBeautyClientValidate(
         DataContext dataContext,

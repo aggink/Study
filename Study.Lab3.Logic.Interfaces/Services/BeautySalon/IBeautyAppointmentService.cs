@@ -6,7 +6,7 @@ namespace Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 /// <summary>
 /// Интерфейс сервиса записи клиента на услугу
 /// </summary>
-public interface IBeautyAppointmentsService
+public interface IBeautyAppointmentService
 {
     /// <summary>
     /// Проверка записи на возможность создания/редактирования

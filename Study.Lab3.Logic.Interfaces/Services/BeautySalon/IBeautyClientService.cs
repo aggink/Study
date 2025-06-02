@@ -3,7 +3,7 @@ using Study.Lab3.Storage.Models.BeautySalon;
 
 namespace Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 
-public interface IBeautyClientsService
+public interface IBeautyClientService
 {
     /// <summary>
     /// Проверка клиента на возможность создания/редактирования

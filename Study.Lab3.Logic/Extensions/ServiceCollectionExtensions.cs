@@ -43,8 +43,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITicketService, TicketService>();
         services.AddSingleton<IProfcomService, ProfcomService>();
         services.AddSingleton<ISportclubService, SportclubService>();
-        services.AddSingleton<IBeautyClientsService, BeautyClientsService>();
-        services.AddSingleton<IBeautyServicesService, BeautyServicesService>();
-        services.AddSingleton<IBeautyAppointmentsService, BeautyAppointmentsService>();
+        services.AddSingleton<IBeautyClientService, BeautyClientService>();
+        services.AddSingleton<IBeautyServiceService, BeautyServiceService>();
+        services.AddSingleton<IBeautyAppointmentService, BeautyAppointmentService>();
     }
 }
