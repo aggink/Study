@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+п»їusing Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,25 +7,25 @@ namespace Study.Lab3.Storage.Models.HospitalStore;
 public class Order
 {
     /// <summary>
-    /// Уникальный идентификатор заказа
+    /// РЈРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РєР°Р·Р°
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid IsnOrder { get; set; }
 
     /// <summary>
-    /// Идентификатор пациента
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїР°С†РёРµРЅС‚Р°
     /// </summary>
     [Required]
     public Guid IsnPatient { get; set; }
 
     /// <summary>
-    /// Идентификатор продукта
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїСЂРѕРґСѓРєС‚Р°
     /// </summary>
     [Required]
     public Guid IsnProduct { get; set; }
 
     /// <summary>
-    /// Количество товара
+    /// РљРѕР»РёС‡РµСЃС‚РІРѕ С‚РѕРІР°СЂР°
     /// </summary>
     [Required, Range(ModelConstants.Order.QuantityMin, ModelConstants.Order.QuantityMax)]
     public int Quantity { get; set; }
