@@ -133,7 +133,7 @@ public static class ModelConstants
         /// </summary>
         public const int Content = 2000;
     }
-    
+
     public static class Exam
     {
         /// <summary>
@@ -165,6 +165,48 @@ public static class ModelConstants
         /// Максимальное количество баллов за экзамен
         /// </summary>
         public const int MaxScore = 100;
+
+    }
+
+    public static class Author
+    {
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int SurName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Отчество"
+        /// </summary>
+        public const int PatronymicName = 100;
+    }
+
+    public static class Book
+    {
+        /// <summary>
+        /// Максимальная длина поля "Названия"
+        /// </summary>
+        public const int Title = 255;
+
+        /// <summary>
+        /// Минимальное значение года
+        /// </summary>
+        public const int MinYear = 1800;
+
+        /// <summary>
+        /// Максимальное значение года
+        /// </summary>
+        public const int MaxYear = 2025;
+
+        /// <summary>
+        /// Максимальная длина поля "Жанр"
+        /// </summary>
+        public const int Genre = 255;
     }
 
     public static class ExamResult
@@ -185,4 +227,233 @@ public static class ModelConstants
         public const int Comments = 500;
     }
 
+    public static class Movie
+    {
+        /// <summary>
+        /// Максимальная длина названия фильма
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина описания
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Максимальная длина страны производства
+        /// </summary>
+        public const int Country = 100;
+
+        /// <summary>
+        /// Минимальная продолжительность фильма в минутах
+        /// </summary>
+        public const int MinDuration = 1;
+
+        /// <summary>
+        /// Максимальная продолжительность фильма в минутах
+        /// </summary>
+        public const int MaxDuration = 600;
+
+        /// <summary>
+        /// Минимальный рейтинг
+        /// </summary>
+        public const double MinRating = 0.0;
+
+        /// <summary>
+        /// Максимальный рейтинг
+        /// </summary>
+        public const double MaxRating = 10.0;
+
+        /// <summary>
+        /// Минимальный год выпуска
+        /// </summary>
+        public const int MinYear = 1895; // Год изобретения кинематографа
+
+        /// <summary>
+        /// Максимальный возрастной рейтинг
+        /// </summary>
+        public const int MaxAgeRating = 21;
+    }
+
+    public static class Genre
+    {
+        /// <summary>
+        /// Максимальная длина названия жанра
+        /// </summary>
+        public const int Name = 50;
+    }
+
+    public static class Hall
+    {
+        /// <summary>
+        /// Максимальная длина названия зала
+        /// </summary>
+        public const int Name = 50;
+
+        /// <summary>
+        /// Минимальная вместимость зала
+        /// </summary>
+        public const int MinCapacity = 10;
+
+        /// <summary>
+        /// Максимальная вместимость зала
+        /// </summary>
+        public const int MaxCapacity = 500;
+
+        /// <summary>
+        /// Минимальное количество рядов
+        /// </summary>
+        public const int MinRows = 1;
+
+        /// <summary>
+        /// Максимальное количество рядов
+        /// </summary>
+        public const int MaxRows = 30;
+
+        /// <summary>
+        /// Минимальное количество мест в ряду
+        /// </summary>
+        public const int MinSeatsPerRow = 1;
+
+        /// <summary>
+        /// Максимальное количество мест в ряду
+        /// </summary>
+        public const int MaxSeatsPerRow = 30;
+    }
+
+    public static class Sportclub
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinParticipantValue = 2;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxParticipantValue = 100;
+    }
+
+    public static class Session
+    {
+        /// <summary>
+        /// Минимальная цена билета
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена билета
+        /// </summary>
+        public const double MaxPrice = 10000;
+    }
+
+    public static class Customer
+    {
+        /// <summary>
+        /// Максимальная длина имени
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина фамилии
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина email
+        /// </summary>
+        public const int Email = 255;
+
+        /// <summary>
+        /// Максимальная длина телефона
+        /// </summary>
+        public const int Phone = 20;
+    }
+
+    public static class Ticket
+    {
+        /// <summary>
+        /// Минимальная цена билета
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена билета
+        /// </summary>
+        public const double MaxPrice = 10000;
+
+        /// <summary>
+        /// Максимальная длина кода билета
+        /// </summary>
+        public const int TicketCodeLength = 50;
+
+    }
+
+    public static class Profcom
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinPartValue = 0;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxPartValue = 500;
+    }
+
+    public static class Order
+    {
+        /// <summary>
+        /// Минимальное количество товара в заказе
+        /// </summary>
+        public const int QuantityMin = 1;
+
+        /// <summary>
+        /// Максимальное количество товара в заказе
+        /// </summary>
+        public const int QuantityMax = 100;
+    }
+
+    public static class Patient
+    {
+        /// <summary>
+        /// Максимальная длина поля "ФИО пациента"
+        /// </summary>
+        public const int FullNameMaxLength = 200;
+
+        /// <summary>
+        /// Максимальная длина номера медицинской карты
+        /// </summary>
+        public const int MedicalCardIdMaxLength = 50;
+
+        /// <summary>
+        /// Максимальная длина телефонного номера
+        /// </summary>
+        public const int PhoneMaxLength = 20;
+    }
+
+    public static class Product
+    {
+        /// <summary>
+        /// Максимальная длина названия товара
+        /// </summary>
+        public const int NameMaxLength = 100;
+
+        /// <summary>
+        /// Максимальная длина категории товара
+        /// </summary>
+        public const int CategoryMaxLength = 50;
+
+        /// <summary>
+        /// Минимальная цена товара (в рублях)
+        /// </summary>
+        public const int PriceMin = 0;
+
+        /// <summary>
+        /// Максимальная цена товара (в рублях)
+        /// </summary>
+        public const int PriceMax = 1000000;
+
+    }
 }

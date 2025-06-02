@@ -1,6 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Study.Lab3.Logic.Interfaces.Services.Cinema;
+using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
+using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.University;
+using Study.Lab3.Logic.Services.Cinema;
+using Study.Lab3.Logic.Services.HospitalStore;
+using Study.Lab3.Logic.Services.Library;
 using Study.Lab3.Logic.Services.University;
+
 
 namespace Study.Lab3.Logic.Extensions;
 
@@ -26,5 +33,19 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IExamService, ExamService>();
         services.AddSingleton<IExamRegistrationService, ExamRegistrationService>();
         services.AddSingleton<IExamResultService, ExamResultService>();
+        services.AddSingleton<IBookService, BookService>();
+        services.AddSingleton<IAuthorService, AuthorService>();
+        services.AddSingleton<IAuthorBookService, AuthorBookService>();
+        services.AddSingleton<IMovieService, MovieService>();
+        services.AddSingleton<IGenreService, GenreService>();
+        services.AddSingleton<IHallService, HallService>();
+        services.AddSingleton<ISessionService, SessionService>();
+        services.AddSingleton<ICustomerService, CustomerService>();
+        services.AddSingleton<ITicketService, TicketService>();
+        services.AddSingleton<IProfcomService, ProfcomService>();
+        services.AddSingleton<IOrderService, OrderService>();
+        services.AddSingleton<ISportclubService, SportclubService>();
+        services.AddSingleton<IPatientService, PatientService>();
+        services.AddSingleton<IProductService, ProductService>();
     }
 }

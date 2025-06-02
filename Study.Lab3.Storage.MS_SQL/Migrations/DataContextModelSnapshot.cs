@@ -17,10 +17,383 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Genre", b =>
+                {
+                    b.Property<Guid>("IsnGenre")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IsnGenre");
+
+                    b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Hall", b =>
+                {
+                    b.Property<Guid>("IsnHall")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("RowsCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeatsPerRow")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnHall");
+
+                    b.ToTable("Halls");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Movie", b =>
+                {
+                    b.Property<Guid>("IsnMovie")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AgeRating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Country")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnMovie");
+
+                    b.ToTable("Movies");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.MovieGenre", b =>
+                {
+                    b.Property<Guid>("IsnMovie")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnGenre")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IsnMovie", "IsnGenre");
+
+                    b.HasIndex("IsnGenre");
+
+                    b.ToTable("MovieGenres");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Seat", b =>
+                {
+                    b.Property<Guid>("IsnSeat")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("IsnHall")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Row")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnSeat");
+
+                    b.HasIndex("IsnHall");
+
+                    b.ToTable("Seats");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
+                {
+                    b.Property<Guid>("IsnSession")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("BasePrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("IsnHall")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnMovie")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnSession");
+
+                    b.HasIndex("IsnHall");
+
+                    b.HasIndex("IsnMovie");
+
+                    b.ToTable("Sessions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Ticket", b =>
+                {
+                    b.Property<Guid>("IsnTicket")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSeat")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSession")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TicketCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IsnTicket");
+
+                    b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnSeat");
+
+                    b.HasIndex("IsnSession");
+
+                    b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
+                {
+                    b.Property<Guid>("IsnOrder")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnPatient")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnProduct")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnOrder");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Patient", b =>
+                {
+                    b.Property<Guid>("IsnPatient")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("MedicalCardId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IsnPatient");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Product", b =>
+                {
+                    b.Property<Guid>("IsnProduct")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnProduct");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>
+                {
+                    b.Property<Guid>("IsnAuthor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnBook")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IsnAuthor", "IsnBook");
+
+                    b.HasIndex("IsnBook");
+
+                    b.HasIndex("IsnAuthor", "IsnBook");
+
+                    b.ToTable("AuthorBooks");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Authors", b =>
+                {
+                    b.Property<Guid>("IsnAuthor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("IsnTeacher")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PatronymicName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Sex")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("IsnAuthor");
+
+                    b.HasIndex("IsnTeacher")
+                        .IsUnique()
+                        .HasFilter("[IsnTeacher] IS NOT NULL");
+
+                    b.ToTable("Authors");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
+                {
+                    b.Property<Guid>("IsnBook")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("PublicationYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("IsnBook");
+
+                    b.ToTable("Books");
+                });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
@@ -269,6 +642,58 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Materials");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
+                {
+                    b.Property<Guid>("IsnProfcom")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ProfcomDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnProfcom");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("TheProfcom");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
+                {
+                    b.Property<Guid>("IsnSportclub")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SportclubDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnSportclub");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Sportclub");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
                     b.Property<Guid>("IsnStudent")
@@ -380,6 +805,110 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnTeacher", "IsnSubject");
 
                     b.ToTable("TeacherSubjects");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.MovieGenre", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Genre", "Genre")
+                        .WithMany("MovieGenres")
+                        .HasForeignKey("IsnGenre")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Movie", "Movie")
+                        .WithMany("MovieGenres")
+                        .HasForeignKey("IsnMovie")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Genre");
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Seat", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Hall", "Hall")
+                        .WithMany("Seats")
+                        .HasForeignKey("IsnHall")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hall");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Hall", "Hall")
+                        .WithMany("Sessions")
+                        .HasForeignKey("IsnHall")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Movie", "Movie")
+                        .WithMany("Sessions")
+                        .HasForeignKey("IsnMovie")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hall");
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Ticket", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Customer", "Customer")
+                        .WithMany("Tickets")
+                        .HasForeignKey("IsnCustomer")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Seat", "Seat")
+                        .WithMany("Tickets")
+                        .HasForeignKey("IsnSeat")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Cinema.Session", "Session")
+                        .WithMany("Tickets")
+                        .HasForeignKey("IsnSession")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Seat");
+
+                    b.Navigation("Session");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Library.Authors", "Author")
+                        .WithMany("AuthorBook")
+                        .HasForeignKey("IsnAuthor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Library.Books", "Book")
+                        .WithMany("AuthorBook")
+                        .HasForeignKey("IsnBook")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Authors", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
+                        .WithOne("Author")
+                        .HasForeignKey("Study.Lab3.Storage.Models.Library.Authors", "IsnTeacher");
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
@@ -494,6 +1023,44 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Group", "Group")
@@ -541,6 +1108,50 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Genre", b =>
+                {
+                    b.Navigation("MovieGenres");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Hall", b =>
+                {
+                    b.Navigation("Seats");
+
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Movie", b =>
+                {
+                    b.Navigation("MovieGenres");
+
+                    b.Navigation("Sessions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Seat", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Authors", b =>
+                {
+                    b.Navigation("AuthorBook");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
+                {
+                    b.Navigation("AuthorBook");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
@@ -592,6 +1203,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Teacher", b =>
                 {
                     b.Navigation("Announcements");
+
+                    b.Navigation("Author");
 
                     b.Navigation("TeacherSubjects");
                 });
