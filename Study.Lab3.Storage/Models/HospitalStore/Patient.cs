@@ -1,32 +1,32 @@
+п»їusing Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.HospitalStore;
 
 public class Patient
 {
     /// <summary>
-    /// Айди
+    /// РђР№РґРё
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid IsnPatient { get; set; }
 
     /// <summary>
-    /// ФИО пациента
+    /// Р¤РРћ РїР°С†РёРµРЅС‚Р°
     /// </summary>
     [Required, MaxLength(ModelConstants.Patient.FullNameMaxLength)]
     public string FullName { get; set; }
 
     /// <summary>
-    /// Номер медкарты
+    /// РќРѕРјРµСЂ РјРµРґРєР°СЂС‚С‹
     /// </summary>
     [Required, MaxLength(ModelConstants.Patient.MedicalCardIdMaxLength)]
     public string MedicalCardId { get; set; }
 
     /// <summary>
-    /// Контактный телефон
+    /// РљРѕРЅС‚Р°РєС‚РЅС‹Р№ С‚РµР»РµС„РѕРЅ
     /// </summary>
     [Required, MaxLength(ModelConstants.Patient.PhoneMaxLength)]
-    public string Phone { get; set; }     
+    public string Phone { get; set; }
 }
