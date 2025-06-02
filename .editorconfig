@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# IDE0005: Директива using не нужна.
+dotnet_diagnostic.IDE0005.severity = silent
+
+# Default severity for all analyzer diagnostics
+dotnet_analyzer_diagnostic.severity = silent
