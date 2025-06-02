@@ -11,6 +11,7 @@ using Study.Lab2.Logic.kinkiss1;
 using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.love100rubb;
 using Study.Lab2.Logic.lsokol14l;
+using Study.Lab2.Logic.mariabyrrrrak;
 using Study.Lab2.Logic.p0se1d0n;
 using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
@@ -105,6 +106,8 @@ public static class Program
                 return new alkeiviService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
+            case ("idb-23-03", 20):
+                return new mariabyrrrrakService();
             case ("idb-23-03", 15):
                 return new gegemonTVService();
             default:
