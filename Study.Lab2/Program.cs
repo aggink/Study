@@ -18,6 +18,8 @@ using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.KirillPoroshin;
+using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.gegemonTV;
 using Study.Lab2.Logic.chirique_online;
 using Study.Lab2.Logic.TucKaW;
@@ -96,6 +98,8 @@ public static class Program
                 return new CherryyService();
             case ("idb-23-03", 17):
                 return new KirillPoroshinService();
+            case ("idb-23-03", 3):
+                return new TaipanoService();
             case ("idb-23-03", 21):
                 return new p0se1d0nService();
             case ("idb-23-03", 2):
