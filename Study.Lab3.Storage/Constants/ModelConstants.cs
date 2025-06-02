@@ -409,6 +409,16 @@ public static class ModelConstants
         /// Максимальное наименование конфеты
         /// </summary>
         public const int MaxNameLenght = 256;
+
+        /// <summary>
+        /// Минимальное наименование ингридиента конфеты
+        /// </summary>
+        public const int MinIngredientsLenght = 1;
+
+        /// <summary>
+        /// Максимальное наименование ингридиента конфеты
+        /// </summary>
+        public const int MaxIngredientsLenght = 256;
     }
 
     public static class SweetType

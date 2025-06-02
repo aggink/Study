@@ -2,6 +2,7 @@
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.University;
+using Study.Lab3.Storage.Models.Sweets;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -149,17 +150,22 @@ public class DataContext : DbContext
     /// <summary>
     /// Конфеты
     /// </summary>
-    public virtual DbSet<Movie> Sweets { get; set; }
+    public virtual DbSet<Sweet> Sweets { get; set; }
 
     /// <summary>
     /// Конфетная фабрика
     /// </summary>
-    public virtual DbSet<Genre> SweetFactories { get; set; }
+    public virtual DbSet<SweetFactory> SweetFactories { get; set; }
 
     /// <summary>
     /// Тип конфет
     /// </summary>
-    public virtual DbSet<MovieGenre> SweetTypes { get; set; }
+    public virtual DbSet<SweetType> SweetTypes { get; set; }
+
+    /// <summary>
+    /// Sweet Production
+    /// </summary>
+    public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
 }

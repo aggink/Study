@@ -42,5 +42,11 @@ namespace Study.Lab3.Storage.Models.Sweets
         /// 
         /// </summary>
         public virtual ICollection<SweetFactory> SweetFactories{ get; set; }
+
+        /// <summary>
+        /// Состав конфеты
+        /// </summary>
+        [Required, MaxLength(ModelConstants.Sweet.MaxIngredientsLenght), MinLength(ModelConstants.Sweet.MinIngredientsLenght)]
+        public string Ingredients { get; set; }
     }
 }
