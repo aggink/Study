@@ -405,11 +405,6 @@ public static class ModelConstants
     public static class BeautyClient
     {
         /// <summary>
-        /// Максимальная длина поля "ID клиента"
-        /// </summary>
-        public const int ClientID = 15;
-
-        /// <summary>
         /// Максимальная длина поля "Имя"
         /// </summary>
         public const int FirstName = 100;
@@ -432,11 +427,6 @@ public static class ModelConstants
 
     public static class BeautyService
     {
-        /// <summary>
-        /// Максимальная длина поля "ID услуги"
-        /// </summary>
-        public const int ServiceID = 15;
-
         /// <summary>
         /// Максимальная длина поля "Название услуги"
         /// </summary>
@@ -465,11 +455,6 @@ public static class ModelConstants
 
     public static class BeautyAppointment
     {
-        /// <summary>
-        /// Максимальная длина поля "ID записи"
-        /// </summary>
-        public const int AppointmentID = 15;
-
         /// <summary>
         /// Максимальное значение поля "День"
         /// </summary>

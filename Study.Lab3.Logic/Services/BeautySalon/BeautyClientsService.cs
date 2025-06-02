@@ -10,15 +10,9 @@ public sealed class BeautyClientsService : IBeautyClientsService
 {
     public async Task CreateOrUpdateBeautyClientValidate(
         DataContext dataContext,
-        BeautyClients beautyclient,
+        BeautyClient beautyclient,
         CancellationToken cancellationToken = default)
     {
-        /// Проверка правильности ввода ID
-        if (beautyclient.ClientID.Length > ModelConstants.BeautyClient.ClientID)
-        {
-            throw new BusinessLogicException($"ID клиента не может превышать {ModelConstants.BeautyClient.ClientID} символов!");
-        }
-
         /// Проверка правильности ввода имени клиента
         if (string.IsNullOrWhiteSpace(beautyclient.FirstName))
         {
@@ -66,7 +60,7 @@ public sealed class BeautyClientsService : IBeautyClientsService
 
     public async Task DeleteBeautyClientValidate(
         DataContext dataContext,
-        BeautyClients beautyclient,
+        BeautyClient beautyclient,
         CancellationToken cancellationToken = default)
     {
         return;

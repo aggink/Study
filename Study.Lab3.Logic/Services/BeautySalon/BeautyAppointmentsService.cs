@@ -10,15 +10,9 @@ public sealed class BeautyAppointmentsService : IBeautyAppointmentsService
 {
     public async Task CreateOrUpdateAppointmentValidate(
         DataContext dataContext,
-        BeautyAppointments appointment,
+        BeautyAppointment appointment,
         CancellationToken cancellationToken = default)
     {
-        /// Проверка правильности ввода ID
-        if (appointment.AppointmentID.Length > ModelConstants.BeautyAppointment.AppointmentID)
-        {
-            throw new BusinessLogicException($"ID записи не может превышать {ModelConstants.BeautyAppointment.AppointmentID} символов!");
-        }
-
         /// Проверка правильности ввода дня проведения услуги
         if (appointment.Day > ModelConstants.BeautyAppointment.Day)
         {
@@ -46,7 +40,7 @@ public sealed class BeautyAppointmentsService : IBeautyAppointmentsService
 
     public async Task DeleteAppointmentValidate(
         DataContext dataContext,
-        BeautyAppointments appointment,
+        BeautyAppointment appointment,
         CancellationToken cancellationToken = default)
     {
         return;

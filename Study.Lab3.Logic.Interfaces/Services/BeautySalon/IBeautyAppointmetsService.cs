@@ -16,7 +16,7 @@ public interface IBeautyAppointmentsService
     /// <param name="cancellationToken">Токен отмены</param>
     Task CreateOrUpdateAppointmentValidate(
         DataContext dataContext,
-        BeautyAppointments appointment,
+        BeautyAppointment appointment,
         CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -27,6 +27,6 @@ public interface IBeautyAppointmentsService
     /// <param name="cancellationToken">Токен отмены</param>
     Task DeleteAppointmentValidate(
         DataContext dataContext,
-        BeautyAppointments appointment,
+        BeautyAppointment appointment,
         CancellationToken cancellationToken = default);
 }

@@ -13,7 +13,7 @@ public interface IBeautyServicesService
     /// <param name="cancellationToken">Токен отмены</param>
     Task CreateOrUpdateBeautyServiceValidate(
         DataContext dataContext,
-        BeautyServices beautyservice,
+        BeautyService beautyservice,
         CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -24,6 +24,6 @@ public interface IBeautyServicesService
     /// <param name="cancellationToken">Токен отмены</param>
     Task DeleteBeautyServiceValidate(
         DataContext dataContext,
-        BeautyServices beautyservice,
+        BeautyService beautyservice,
         CancellationToken cancellationToken = default);
 }

@@ -160,17 +160,17 @@ public class DataContext : DbContext
     /// <summary>
     /// Клиенты
     /// </summary>
-    public virtual DbSet<BeautyClients> BeautyClients { get; set; }
+    public virtual DbSet<BeautyClient> BeautyClients { get; set; }
 
     /// <summary>
     /// Услуги
     /// </summary>
-    public virtual DbSet<BeautyServices> BeautyServices { get; set; }
+    public virtual DbSet<BeautyService> BeautyServices { get; set; }
 
     /// <summary>
     /// Записи на услуги
     /// </summary>
-    public virtual DbSet<BeautyAppointments> BeautyAppointments { get; set; }
+    public virtual DbSet<BeautyAppointment> BeautyAppointments { get; set; }
 
     #endregion
 }

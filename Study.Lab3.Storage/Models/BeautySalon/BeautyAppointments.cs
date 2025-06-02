@@ -1,18 +1,19 @@
 ﻿using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.BeautySalon;
 
 /// <summary>
 /// Запись клиента на услугу
 /// </summary>
-public class BeautyAppointments
+public class BeautyAppointment
 {
     /// <summary>
     /// ID записи 
     /// </summary>
-    [Required, MaxLength(ModelConstants.BeautyAppointment.AppointmentID)]
-    public string AppointmentID { get; set; }
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public Guid IsnAppointment { get; set; }
 
     /// <summary>
     /// День записи

@@ -1,18 +1,19 @@
 ﻿using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.BeautySalon;
 
 /// <summary>
 /// Клиент салона красоты
 /// </summary>
-public class BeautyClients
+public class BeautyClient
 {
     /// <summary>
     /// ID клиента
     /// </summary>
-    [Required, MaxLength(ModelConstants.BeautyClient.ClientID)]
-    public string ClientID { get; set; }
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public Guid IsnClient { get; set; }
 
     /// <summary>
     /// Имя

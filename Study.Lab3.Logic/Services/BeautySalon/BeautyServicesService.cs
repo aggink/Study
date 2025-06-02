@@ -10,15 +10,9 @@ public sealed class BeautyServicesService : IBeautyServicesService
 {
     public async Task CreateOrUpdateBeautyServiceValidate(
         DataContext dataContext,
-        BeautyServices beautyservice,
+        BeautyService beautyservice,
         CancellationToken cancellationToken = default)
     {
-        /// Проверка правильности ввода ID
-        if (beautyservice.ServiceID.Length > ModelConstants.BeautyService.ServiceID)
-        {
-            throw new BusinessLogicException($"ID клиента не может превышать {ModelConstants.BeautyService.ServiceID} символов!");
-        }
-
         /// Проверка правильности ввода названия услуги
         if (string.IsNullOrWhiteSpace(beautyservice.ServiceName))
         {
@@ -56,7 +50,7 @@ public sealed class BeautyServicesService : IBeautyServicesService
 
     public async Task DeleteBeautyServiceValidate(
         DataContext dataContext,
-        BeautyServices beautyservice,
+        BeautyService beautyservice,
         CancellationToken cancellationToken = default)
     {
         return;
