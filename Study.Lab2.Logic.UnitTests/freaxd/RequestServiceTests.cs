@@ -21,6 +21,12 @@ public class RequestServiceTests
         _requestService = new RequestService(httpClient);
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        _requestService?.Dispose();
+    }
+
     [Test]
     public void FetchData_ValidRequest_ReturnsJsonString()
     {
