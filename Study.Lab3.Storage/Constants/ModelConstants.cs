@@ -321,6 +321,19 @@ public static class ModelConstants
         public const int MaxSeatsPerRow = 30;
     }
 
+    public static class Sportclub
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinParticipantValue = 2;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxParticipantValue = 100;
+    }
+
     public static class Session
     {
         /// <summary>
@@ -387,5 +400,60 @@ public static class ModelConstants
         /// Максимально допустимое количество участников.
         /// </summary>
         public const int MaxPartValue = 500;
+    }
+
+    public static class Order
+    {
+        /// <summary>
+        /// Минимальное количество товара в заказе
+        /// </summary>
+        public const int QuantityMin = 1;
+
+        /// <summary>
+        /// Максимальное количество товара в заказе
+        /// </summary>
+        public const int QuantityMax = 100;
+    }
+
+    public static class Patient
+    {
+        /// <summary>
+        /// Максимальная длина поля "ФИО пациента"
+        /// </summary>
+        public const int FullNameMaxLength = 200;
+
+        /// <summary>
+        /// Максимальная длина номера медицинской карты
+        /// </summary>
+        public const int MedicalCardIdMaxLength = 50;
+
+        /// <summary>
+        /// Максимальная длина телефонного номера
+        /// </summary>
+        public const int PhoneMaxLength = 20;
+    }
+
+    public static class Product
+    {
+        /// <summary>
+        /// Максимальная длина названия товара
+        /// </summary>
+        public const int NameMaxLength = 100;
+
+        /// <summary>
+        /// Максимальная длина категории товара
+        /// </summary>
+        public const int CategoryMaxLength = 50;
+
+        /// <summary>
+        /// Минимальная цена товара (в рублях)
+        /// </summary>
+        public const int PriceMin = 0;
+
+        /// <summary>
+        /// Максимальная цена товара (в рублях)
+        /// </summary>
+        public const int PriceMax = 1000000;
+
     }
 }
