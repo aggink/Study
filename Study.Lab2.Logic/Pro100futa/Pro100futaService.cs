@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Text.Json;
 
 namespace Study.Lab2.Logic.Pro100futa;
-
+//хихихаха
 public class Pro100futaService : IRunService
 {
 	private readonly IRequestService _requestService;

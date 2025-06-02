@@ -1,7 +1,7 @@
 ﻿using Study.Lab2.Logic.Interfaces.Pro100futa;
 
 namespace Study.Lab2.Logic.Pro100futa;
-
+//хихихаха
 public class RequestService : IRequestService
 {
 	private readonly HttpClient _httpClient;

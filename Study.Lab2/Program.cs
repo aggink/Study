@@ -57,7 +57,7 @@ public static class Program
 		Console.ReadKey();
 	}
 
-	/// <summary>
+	/// <summary> 
 	/// Получить сервис для выполнения задач
 	/// </summary>
 	/// <param name="group">Название группы</param>

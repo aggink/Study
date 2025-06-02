@@ -64,7 +64,7 @@ public class RequestServiceTests
 		var exception = Assert.ThrowsAsync<Exception>(async () => await _requestService.FetchDataAsync(_requestUrl, CancellationToken.None));
 		StringAssert.Contains("Ошибка: NotFound", exception.Message);
 	}
-
+	//хихихаха
 	/// <summary>
 	/// Настройка мок-ответа для HTTP-запроса.
 	/// </summary>
