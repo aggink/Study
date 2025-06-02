@@ -12,6 +12,7 @@ using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.love100rubb;
 using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.mariabyrrrrak;
+using Study.Lab2.Logic.p0se1d0n;
 using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
@@ -95,6 +96,8 @@ public static class Program
                 return new CherryyService();
             case ("idb-23-03", 17):
                 return new KirillPoroshinService();
+            case ("idb-23-03", 21):
+                return new p0se1d0nService();
             case ("idb-23-03", 2):
                 return new love100rubbService();
             case ("idb-23-03", 22):
