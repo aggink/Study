@@ -1,39 +1,39 @@
-namespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+п»їnamespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
 
 public sealed record CareerWithDetailsDto
 {
     /// <summary>
-    /// Идентификатор карьеры
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂСЊРµСЂС‹
     /// </summary>
     public Guid IsnCareer { get; init; }
 
     /// <summary>
-    /// Идентификатор студента
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СѓРґРµРЅС‚Р°
     /// </summary>
     public Guid IsnStudent { get; init; }
 
     /// <summary>
-    /// ФИО студента
+    /// Р¤РРћ СЃС‚СѓРґРµРЅС‚Р°
     /// </summary>
     public string StudentFullName { get; init; }
 
     /// <summary>
-    /// Идентификатор собеседования
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРѕР±РµСЃРµРґРѕРІР°РЅРёСЏ
     /// </summary>
     public Guid IsnSubject { get; init; }
 
     /// <summary>
-    /// Название собеседования
+    /// РќР°Р·РІР°РЅРёРµ СЃРѕР±РµСЃРµРґРѕРІР°РЅРёСЏ
     /// </summary>
     public string SubjectName { get; init; }
 
     /// <summary>
-    /// Значение количества участников
+    /// Р—РЅР°С‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     public int ParticipantsCount { get; init; }
 
     /// <summary>
-    /// Дата проведения собеседоваиния
+    /// Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ СЃРѕР±РµСЃРµРґРѕРІР°РёРЅРёСЏ
     /// </summary>
     public DateTime CareerDate { get; init; }
 }

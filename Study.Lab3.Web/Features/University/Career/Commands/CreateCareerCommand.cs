@@ -1,4 +1,4 @@
-using MediatR;
+п»їusing MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheCareer.Commands;
 
 /// <summary>
-/// Создание карьеры
+/// РЎРѕР·РґР°РЅРёРµ РєР°СЂСЊРµСЂС‹
 /// </summary>
 public sealed class CreateCareerCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Данные карьеры
+    /// Р”Р°РЅРЅС‹Рµ РєР°СЂСЊРµСЂС‹
     /// </summary>
     [Required]
     [FromBody]

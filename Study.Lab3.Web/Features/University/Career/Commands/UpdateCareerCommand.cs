@@ -10,12 +10,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheCareer.Commands;
 
 /// <summary>
-/// Редактирование карьеры
+/// Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РєР°СЂСЊРµСЂС‹
 /// </summary>
 public sealed class UpdateCareerCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Данные карьеры
+    /// Р”Р°РЅРЅС‹Рµ РєР°СЂСЊРµСЂС‹
     /// </summary>
     [Required]
     [FromBody]
@@ -40,7 +40,7 @@ public sealed class UpdateCareerCommandHandler : IRequestHandler<UpdateCareerCom
         var career = await _dataContext.Career
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnCareer == request.Career.IsnCareer, cancellationToken)
-                ?? throw new BusinessLogicException($"Собеседования с идентификатором \"{request.Career.IsnCareer}\" не существует");
+                ?? throw new BusinessLogicException($"РЎРѕР±РµСЃРµРґРѕРІР°РЅРёСЏ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.Career.IsnCareer}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         career.ParticipantsCount = request.Career.ParticipantsCount;
         career.CareerDate = request.Career.CareerDate;

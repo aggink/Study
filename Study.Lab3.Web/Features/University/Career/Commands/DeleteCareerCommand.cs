@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheCareer.Commands;
 
 /// <summary>
-/// Удаление карьеры
+/// вЂќРґР°Р»РµРЅРёРµ РєР°СЂСЊРµСЂС‹
 /// </summary>
 public sealed class DeleteCareerCommand : IRequest
 {
     /// <summary>
-    /// Идентификатор карьеры
+    /// В»РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂСЊРµСЂС‹
     /// </summary>
     [Required]
     [FromQuery]
@@ -39,7 +39,7 @@ public sealed class DeleteCareerCommandHandler : IRequestHandler<DeleteCareerCom
         var career = await _dataContext.Career
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnCareer == request.IsnCareer, cancellationToken)
-                ?? throw new BusinessLogicException($"Собеседования с идентификатором \"{request.IsnCareer}\" не существует");
+                ?? throw new BusinessLogicException($"вЂ”РѕР±РµСЃРµРґРѕРІР°РЅРёВ¤ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnCareer}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         await _careerService.CanDeleteAndThrowAsync(
             _dataContext, career, cancellationToken);

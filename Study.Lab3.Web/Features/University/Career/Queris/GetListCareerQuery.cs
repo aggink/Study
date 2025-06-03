@@ -1,4 +1,4 @@
-using MediatR;
+п»їusing MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
@@ -6,7 +6,7 @@ using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
 namespace Study.Lab3.Web.Features.University.TheCareer.Queries;
 
 /// <summary>
-/// ѕолучение списка количеств участников
+/// РЉРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РєРѕР»РёС‡РµСЃС‚РІ СѓС‡Р°СЃС‚РЅРёРєРѕРІ
 /// </summary>
 public sealed class GetListCareerQuery : IRequest<CareerDto[]>
 {

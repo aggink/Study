@@ -1,29 +1,29 @@
-namespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+п»їnamespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
 
 public sealed record CareerDto
 {
     /// <summary>
-    /// Идентификатор карьеры
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂСЊРµСЂС‹
     /// </summary>
     public Guid IsnCareer { get; init; }
 
     /// <summary>
-    /// Идентификатор студента
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СѓРґРµРЅС‚Р°
     /// </summary>
     public Guid IsnStudent { get; init; }
 
     /// <summary>
-    /// Идентификатор собеседования
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРѕР±РµСЃРµРґРѕРІР°РЅРёСЏ
     /// </summary>
     public Guid IsnSubject { get; init; }
 
     /// <summary>
-    /// Значение количества участников
+    /// Р—РЅР°С‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     public int ParticipantsCount { get; init; }
 
     /// <summary>
-    /// Дата проведения собеседования
+    /// Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ СЃРѕР±РµСЃРµРґРѕРІР°РЅРёСЏ
     /// </summary>
     public DateTime CareerDate { get; init; }
 }

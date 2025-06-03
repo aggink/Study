@@ -1,4 +1,4 @@
-using MediatR;
+п»їusing MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
@@ -7,12 +7,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheCareer.Queries;
 
 /// <summary>
-/// Получить количество участников с деталями
+/// РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєРѕРІ СЃ РґРµС‚Р°Р»СЏРјРё
 /// </summary>
 public sealed class GetCareerWithDetailsQuery : IRequest<CareerWithDetailsDto>
 {
     /// <summary>
-    /// Идентификатор количества участников
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     [Required]
     public Guid IsnCareer { get; init; }
@@ -29,19 +29,21 @@ public sealed class GetCareerWithDetailsQueryHandler : IRequestHandler<GetCareer
 
     public async Task<CareerWithDetailsDto> Handle(GetCareerWithDetailsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.Career
-            .AsNoTracking()
-            .Where(x => x.IsnCareer == request.IsnCareer)
-            .Select(Career => new CareerWithDetailsDto
-            {
-                IsnCareer = Career.IsnCareer,
-                IsnStudent = Career.IsnStudent,
-                StudentFullName = $"{Career.Student.SurName} {Career.Student.Name} {Career.Student.PatronymicName}",
-                IsnSubject = Career.IsnSubject,
-                SubjectName = Career.Subject.Name,
-                ParticipantsCount = Career.ParticipantsCount,
-                CareerDate = Career.CareerDate,
-            })
-            .FirstOrDefaultAsync(cancellationToken);
+        var career = await _dataContext.Career
+    .AsNoTracking()
+    .FirstOrDefaultAsync(x => x.IsnCareer == request.IsnCareer, cancellationToken);
+
+        if (career == null) return null;
+
+        return new CareerWithDetailsDto
+        {
+            IsnCareer = career.IsnCareer,
+            IsnStudent = career.IsnStudent,
+            StudentFullName = $"{career.Student.SurName} {career.Student.Name} {career.Student.PatronymicName}",
+            IsnSubject = career.IsnSubject,
+            SubjectName = career.Subject.Name,
+            ParticipantsCount = career.ParticipantsCount,
+            CareerDate = career.CareerDate,
+        };
     }
 }

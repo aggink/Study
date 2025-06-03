@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheCareer.Queries;
 
 /// <summary>
-/// Получить количество участников по идентификатору
+/// РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СѓС‡Р°СЃС‚РЅРёРєРѕРІ РїРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ
 /// </summary>
 public sealed class GetCareerByIsnQuery : IRequest<CareerDto>
 {
     /// <summary>
-    /// Идентификатор количества участников
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     [Required]
     [FromQuery]
@@ -35,7 +35,7 @@ public sealed class GetCareerByIsnQueryHandler : IRequestHandler<GetCareerByIsnQ
         var Career = await _dataContext.Career
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnCareer == request.IsnCareer, cancellationToken)
-                ?? throw new BusinessLogicException($"Количества участников с идентификатором \"{request.IsnCareer}\" не существует");
+                ?? throw new BusinessLogicException($"РљРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnCareer}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         return new CareerDto
         {

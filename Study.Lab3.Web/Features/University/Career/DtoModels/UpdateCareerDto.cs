@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+п»їusing Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
@@ -6,20 +6,20 @@ namespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
 public sealed record UpdateCareerDto
 {
     /// <summary>
-    /// Идентификатор карьеры
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РєР°СЂСЊРµСЂС‹
     /// </summary>
     [Required]
     public Guid IsnCareer { get; init; }
 
     /// <summary>
-    /// Значение количества участников
+    /// Р—РЅР°С‡РµРЅРёРµ РєРѕР»РёС‡РµСЃС‚РІР° СѓС‡Р°СЃС‚РЅРёРєРѕРІ
     /// </summary>
     [Required]
     [Range(ModelConstants.Career.MinPartValue, ModelConstants.Career.MaxPartValue)]
     public int ParticipantsCount { get; init; }
 
     /// <summary>
-    /// Дата проведения собеседования
+    /// Р”Р°С‚Р° РїСЂРѕРІРµРґРµРЅРёСЏ СЃРѕР±РµСЃРµРґРѕРІР°РЅРёСЏ
     /// </summary>
     [Required]
     public DateTime CareerDate { get; init; }
