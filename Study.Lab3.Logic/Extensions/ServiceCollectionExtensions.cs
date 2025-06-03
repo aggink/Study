@@ -3,11 +3,13 @@ using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
 using Study.Lab3.Logic.Interfaces.Services.Library;
+using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.HospitalStore;
 using Study.Lab3.Logic.Services.Library;
+using Study.Lab3.Logic.Services.Restaurants;
 using Study.Lab3.Logic.Services.University;
 
 
@@ -49,6 +51,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ISportclubService, SportclubService>();
         services.AddSingleton<IPatientService, PatientService>();
         services.AddSingleton<IProductService, ProductService>();
+        services.AddSingleton<IRestaurantService, RestaurantService>();
+        services.AddSingleton<IMenuService, MenuService>();
+        services.AddSingleton<IMenuItemService, MenuItemService>();
+        services.AddSingleton<IRestaurantOrderService, RestaurantOrderService>();
+        services.AddSingleton<IOrderItemService, OrderItemService>();
         services.AddSingleton<IBeautyClientService, BeautyClientService>();
         services.AddSingleton<IBeautyServiceService, BeautyServiceService>();
         services.AddSingleton<IBeautyAppointmentService, BeautyAppointmentService>();
