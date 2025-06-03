@@ -394,6 +394,188 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
+                {
+                    b.Property<Guid>("IsnMenu")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IsnRestaurant")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnMenu");
+
+                    b.HasIndex("IsnRestaurant");
+
+                    b.ToTable("Menus");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.MenuItem", b =>
+                {
+                    b.Property<Guid>("IsnMenuItem")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("CookingTimeMinutes")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IsnMenu")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("IsnMenuItem");
+
+                    b.HasIndex("IsnMenu");
+
+                    b.ToTable("MenuItems");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.OrderItem", b =>
+                {
+                    b.Property<Guid>("IsnOrderItem")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnMenuItem")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnOrder")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SpecialRequests")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("IsnOrderItem");
+
+                    b.HasIndex("IsnMenuItem");
+
+                    b.HasIndex("IsnOrder");
+
+                    b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Restaurant", b =>
+                {
+                    b.Property<Guid>("IsnRestaurant")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("WorkingHours")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnRestaurant");
+
+                    b.ToTable("Restaurants");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", b =>
+                {
+                    b.Property<Guid>("IsnOrder")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CompletedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("CustomerPhone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<Guid>("IsnRestaurant")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("OrderNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int?>("TableNumber")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("IsnOrder");
+
+                    b.HasIndex("IsnRestaurant");
+
+                    b.ToTable("RestaurantOrders");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
                 {
                     b.Property<Guid>("IsnAdoption")
@@ -1040,6 +1222,58 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
+                        .WithMany("Menus")
+                        .HasForeignKey("IsnRestaurant")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.MenuItem", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.Menu", "Menu")
+                        .WithMany("MenuItems")
+                        .HasForeignKey("IsnMenu")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Menu");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.OrderItem", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.MenuItem", "MenuItem")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("IsnMenuItem")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", "RestaurantOrder")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("IsnOrder")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MenuItem");
+
+                    b.Navigation("RestaurantOrder");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
+                        .WithMany("Orders")
+                        .HasForeignKey("IsnRestaurant")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Shelter.Cat", "Cat")
@@ -1300,6 +1534,28 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
                 {
                     b.Navigation("AuthorBook");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
+                {
+                    b.Navigation("MenuItems");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.MenuItem", b =>
+                {
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Restaurant", b =>
+                {
+                    b.Navigation("Menus");
+
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>

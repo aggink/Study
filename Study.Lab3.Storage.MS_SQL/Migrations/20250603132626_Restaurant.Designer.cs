@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
 
@@ -11,13 +12,15 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250603132626_Restaurant")]
+    partial class Restaurant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -575,136 +578,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnRestaurant");
 
                     b.ToTable("RestaurantOrders");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
-                {
-                    b.Property<Guid>("IsnAdoption")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("AdoptionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CatId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("IsnAdoption");
-
-                    b.HasIndex("CatId");
-
-                    b.HasIndex("CustomerId");
-
-                    b.ToTable("Adoptions");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>
-                {
-                    b.Property<Guid>("IsnCat")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ArrivalDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Breed")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsAvailableForAdoption")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSterilized")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsVaccinated")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MedicalHistory")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("Nickname")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhotoUrl")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Weight")
-                        .HasColumnType("int");
-
-                    b.HasKey("IsnCat");
-
-                    b.ToTable("Cats");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
-                {
-                    b.Property<Guid>("IsnCustomer")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.HasKey("IsnCustomer");
-
-                    b.ToTable("ShelterCustomers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
@@ -1275,25 +1148,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Restaurant");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Shelter.Cat", "Cat")
-                        .WithMany("Adoptions")
-                        .HasForeignKey("CatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.Shelter.Customer", "Customer")
-                        .WithMany("Adoptions")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cat");
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
@@ -1557,16 +1411,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", b =>
                 {
                     b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>
-                {
-                    b.Navigation("Adoptions");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
-                {
-                    b.Navigation("Adoptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
