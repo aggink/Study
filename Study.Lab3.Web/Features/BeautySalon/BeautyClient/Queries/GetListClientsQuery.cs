@@ -28,7 +28,6 @@ public sealed class GetListClientsQueryHandler : IRequestHandler<GetListClientsQ
             .Select(x => new ClientDto
             {
                 IsnClient = x.IsnClient,
-                IsnAppointment = x.IsnAppointment,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 PhoneNumber = x.PhoneNumber,

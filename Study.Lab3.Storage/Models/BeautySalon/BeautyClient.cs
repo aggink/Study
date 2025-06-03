@@ -16,12 +16,6 @@ public class BeautyClient
     public Guid IsnClient { get; set; }
 
     /// <summary>
-    /// ID записи клиента
-    /// </summary>
-    [Required]
-    public Guid IsnAppointment { get; set; }
-
-    /// <summary>
     /// Имя
     /// </summary>
     [Required, MaxLength(ModelConstants.BeautyClient.FirstName)]

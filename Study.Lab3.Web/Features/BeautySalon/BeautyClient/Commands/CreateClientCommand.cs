@@ -36,7 +36,6 @@ public sealed class CreateClientCommandHandler : IRequestHandler<CreateClientCom
         var client = new Storage.Models.BeautySalon.BeautyClient
         {
             IsnClient = Guid.NewGuid(),
-            IsnAppointment = Guid.NewGuid(),
             FirstName = request.Client.FirstName,
             LastName = request.Client.LastName,
             PhoneNumber = request.Client.PhoneNumber,
