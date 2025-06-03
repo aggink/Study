@@ -22,11 +22,11 @@ public sealed class DeleteSweetProductionCommand : IRequest
     public Int64 FactoryID { get; init; }
 }
 
-public sealed class DeleteSweetFactoryCommandHandler : IRequestHandler<DeleteSweetProductionCommand>
+public sealed class DeleteSweetProductionCommandHandler : IRequestHandler<DeleteSweetProductionCommand>
 {
     private readonly DataContext _dataContext;
 
-    public DeleteSweetFactoryCommandHandler(DataContext dataContext)
+    public DeleteSweetProductionCommandHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
     }

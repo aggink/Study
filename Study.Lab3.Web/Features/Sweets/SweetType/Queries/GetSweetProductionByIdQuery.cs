@@ -6,8 +6,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetProductions.Queries;
-
+namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Queries;
 /// <summary>
 /// Получение сладости по идентификатору
 /// </summary>

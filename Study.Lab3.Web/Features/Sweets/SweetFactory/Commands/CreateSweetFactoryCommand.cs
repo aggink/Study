@@ -8,7 +8,7 @@ using Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
 using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets. SweetFactories.Commands;
+namespace Study.Lab3.Web.Features.Sweets.SweetFactories.Commands;
 
 /// <summary>
 /// Создание клиента

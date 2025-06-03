@@ -23,11 +23,11 @@ public sealed class UpdateSweetProductionCommand : IRequest<long>
     public UpdateSweetProductionDto SweetProduction { get; init; }
 }
 
-public sealed class UpdateSweetFactoryCommandHandler : IRequestHandler<UpdateSweetProductionCommand, long>
+public sealed class UpdateSweetProductionCommandHandler : IRequestHandler<UpdateSweetProductionCommand, long>
 {
     private readonly DataContext _dataContext;
 
-    public UpdateSweetFactoryCommandHandler(DataContext dataContext)
+    public UpdateSweetProductionCommandHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
