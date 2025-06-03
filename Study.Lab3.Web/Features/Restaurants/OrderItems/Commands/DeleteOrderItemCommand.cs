@@ -37,16 +37,16 @@ public sealed class DeleteOrderItemCommandHandler : IRequestHandler<DeleteOrderI
     public async Task Handle(DeleteOrderItemCommand request, CancellationToken cancellationToken)
     {
         var orderItem = await _dataContext.OrderItems
-                            .Include(x => x.Order)
+                            .Include(x => x.RestaurantOrder)
                             .FirstOrDefaultAsync(x => x.IsnOrderItem == request.IsnOrderItem, cancellationToken)
                         ?? throw new BusinessLogicException($"Позиция заказа с идентификатором \"{request.IsnOrderItem}\" не существует");
 
         await _orderItemService.CanDeleteAndThrowAsync(_dataContext, orderItem, cancellationToken);
 
         // Обновляем общую сумму заказа
-        if (orderItem.Order != null)
+        if (orderItem.RestaurantOrder != null)
         {
-            orderItem.Order.TotalAmount -= orderItem.TotalPrice;
+            orderItem.RestaurantOrder.TotalAmount -= orderItem.TotalPrice;
         }
 
         _dataContext.OrderItems.Remove(orderItem);

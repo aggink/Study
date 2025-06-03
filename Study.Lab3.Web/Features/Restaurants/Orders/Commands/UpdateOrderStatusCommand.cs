@@ -25,19 +25,19 @@ public sealed class UpdateOrderStatusCommand : IRequest
 public sealed class UpdateOrderStatusCommandHandler : IRequestHandler<UpdateOrderStatusCommand>
 {
     private readonly DataContext _dataContext;
-    private readonly IOrderService _orderService;
+    private readonly IRestaurantOrderService _restaurantOrderService;
 
     public UpdateOrderStatusCommandHandler(
         DataContext dataContext,
-        IOrderService orderService)
+        IRestaurantOrderService restaurantOrderService)
     {
         _dataContext = dataContext;
-        _orderService = orderService;
+        _restaurantOrderService = restaurantOrderService;
     }
 
     public async Task Handle(UpdateOrderStatusCommand request, CancellationToken cancellationToken)
     {
-        var order = await _dataContext.Orders
+        var order = await _dataContext.RestaurantOrders
                         .FirstOrDefaultAsync(x => x.IsnOrder == request.OrderStatus.IsnOrder, cancellationToken)
                     ?? throw new BusinessLogicException($"Заказ с идентификатором \"{request.OrderStatus.IsnOrder}\" не существует");
 
@@ -52,7 +52,7 @@ public sealed class UpdateOrderStatusCommandHandler : IRequestHandler<UpdateOrde
             }
         }
 
-        await _orderService.CreateOrUpdateOrderValidateAndThrowAsync(_dataContext, order, cancellationToken);
+        await _restaurantOrderService.CreateOrUpdateOrderValidateAndThrowAsync(_dataContext, order, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
     }

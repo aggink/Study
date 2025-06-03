@@ -32,7 +32,7 @@ public sealed class GetOrderByIsnQueryHandler : IRequestHandler<GetOrderByIsnQue
 
     public async Task<OrderDto> Handle(GetOrderByIsnQuery request, CancellationToken cancellationToken)
     {
-        var order = await _dataContext.Orders
+        var order = await _dataContext.RestaurantOrders
                         .AsNoTracking()
                         .FirstOrDefaultAsync(x => x.IsnOrder == request.IsnOrder, cancellationToken)
                     ?? throw new BusinessLogicException($"Заказ с идентификатором \"{request.IsnOrder}\" не существует");

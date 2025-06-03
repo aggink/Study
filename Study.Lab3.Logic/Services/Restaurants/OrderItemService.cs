@@ -14,7 +14,7 @@ public sealed class OrderItemService : IOrderItemService
         OrderItem orderItem,
         CancellationToken cancellationToken = default)
     {
-        if (!await dataContext.Orders.AnyAsync(x => x.IsnOrder == orderItem.IsnOrder, cancellationToken))
+        if (!await dataContext.RestaurantOrders.AnyAsync(x => x.IsnOrder == orderItem.IsnOrder, cancellationToken))
             throw new BusinessLogicException($"Заказ с идентификатором \"{orderItem.IsnOrder}\" не существует");
 
         if (!await dataContext.MenuItems.AnyAsync(x => x.IsnMenuItem == orderItem.IsnMenuItem, cancellationToken))
@@ -43,7 +43,7 @@ public sealed class OrderItemService : IOrderItemService
         OrderItem orderItem,
         CancellationToken cancellationToken = default)
     {
-        var order = await dataContext.Orders.FirstOrDefaultAsync(x => x.IsnOrder == orderItem.IsnOrder, cancellationToken);
+        var order = await dataContext.RestaurantOrders.FirstOrDefaultAsync(x => x.IsnOrder == orderItem.IsnOrder, cancellationToken);
         if (order != null && (order.Status == "Completed" || order.Status == "Delivered"))
             throw new BusinessLogicException("Невозможно удалить позицию из завершенного заказа");
     }

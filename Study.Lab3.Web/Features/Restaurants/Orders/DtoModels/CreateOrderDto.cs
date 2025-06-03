@@ -16,19 +16,19 @@ public sealed record CreateOrderDto
     /// Имя клиента
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.Order.CustomerName)]
+    [MaxLength(ModelConstants.RestaurantOrder.CustomerName)]
     public string CustomerName { get; init; }
 
     /// <summary>
     /// Телефон клиента
     /// </summary>
-    [MaxLength(ModelConstants.Order.CustomerPhone)]
+    [MaxLength(ModelConstants.RestaurantOrder.CustomerPhone)]
     public string CustomerPhone { get; init; }
 
     /// <summary>
     /// Номер стола
     /// </summary>
-    [Range(ModelConstants.Order.MinTableNumber, ModelConstants.Order.MaxTableNumber)]
+    [Range(ModelConstants.RestaurantOrder.MinTableNumber, ModelConstants.RestaurantOrder.MaxTableNumber)]
     public int? TableNumber { get; init; }
 
     /// <summary>

@@ -1,4 +1,3 @@
-using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,25 +25,25 @@ public sealed class CreateOrderCommand : IRequest<Guid>
 public sealed class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Guid>
 {
     private readonly DataContext _dataContext;
-    private readonly IOrderService _orderService;
+    private readonly IRestaurantOrderService _restaurantOrderService;
     private readonly IOrderItemService _orderItemService;
 
     public CreateOrderCommandHandler(
         DataContext dataContext,
-        IOrderService orderService,
+        IRestaurantOrderService restaurantOrderService,
         IOrderItemService orderItemService)
     {
         _dataContext = dataContext;
-        _orderService = orderService;
+        _restaurantOrderService = restaurantOrderService;
         _orderItemService = orderItemService;
     }
 
     public async Task<Guid> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        var orderNumber = await _orderService.GenerateOrderNumberAsync(
+        var orderNumber = await _restaurantOrderService.GenerateOrderNumberAsync(
             _dataContext, request.Order.IsnRestaurant, cancellationToken);
 
-        var order = new Order
+        var order = new RestaurantOrder
         {
             IsnOrder = Guid.NewGuid(),
             IsnRestaurant = request.Order.IsnRestaurant,
@@ -57,10 +56,10 @@ public sealed class CreateOrderCommandHandler : IRequestHandler<CreateOrderComma
             CreatedDate = DateTime.UtcNow
         };
 
-        await _orderService.CreateOrUpdateOrderValidateAndThrowAsync(
+        await _restaurantOrderService.CreateOrUpdateOrderValidateAndThrowAsync(
             _dataContext, order, cancellationToken);
 
-        await _dataContext.Orders.AddAsync(order, cancellationToken);
+        await _dataContext.RestaurantOrders.AddAsync(order, cancellationToken);
 
         // СОХРАНЯЕМ ЗАКАЗ СНАЧАЛА
         await _dataContext.SaveChangesAsync(cancellationToken);

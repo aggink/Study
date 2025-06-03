@@ -52,7 +52,7 @@ public sealed class RestaurantService : IRestaurantService
         if (await dataContext.Menus.AnyAsync(x => x.IsnRestaurant == restaurant.IsnRestaurant, cancellationToken))
             throw new BusinessLogicException("Невозможно удалить ресторан, так как у него есть меню");
 
-        if (await dataContext.Orders.AnyAsync(x => x.IsnRestaurant == restaurant.IsnRestaurant, cancellationToken))
+        if (await dataContext.RestaurantOrders.AnyAsync(x => x.IsnRestaurant == restaurant.IsnRestaurant, cancellationToken))
             throw new BusinessLogicException("Невозможно удалить ресторан, так как у него есть заказы");
     }
 }

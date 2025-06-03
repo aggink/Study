@@ -38,7 +38,7 @@ public sealed class UpdateOrderItemCommandHandler : IRequestHandler<UpdateOrderI
     public async Task<Guid> Handle(UpdateOrderItemCommand request, CancellationToken cancellationToken)
     {
         var orderItem = await _dataContext.OrderItems
-                            .Include(x => x.Order)
+                            .Include(x => x.RestaurantOrder)
                             .FirstOrDefaultAsync(x => x.IsnOrderItem == request.OrderItem.IsnOrderItem, cancellationToken)
                         ?? throw new BusinessLogicException($"Позиция заказа с идентификатором \"{request.OrderItem.IsnOrderItem}\" не существует");
 
@@ -51,9 +51,9 @@ public sealed class UpdateOrderItemCommandHandler : IRequestHandler<UpdateOrderI
             _dataContext, orderItem, cancellationToken);
 
         // Обновляем общую сумму заказа
-        if (orderItem.Order != null)
+        if (orderItem.RestaurantOrder != null)
         {
-            orderItem.Order.TotalAmount = orderItem.Order.TotalAmount - oldTotalPrice + orderItem.TotalPrice;
+            orderItem.RestaurantOrder.TotalAmount = orderItem.RestaurantOrder.TotalAmount - oldTotalPrice + orderItem.TotalPrice;
         }
 
         await _dataContext.SaveChangesAsync(cancellationToken);

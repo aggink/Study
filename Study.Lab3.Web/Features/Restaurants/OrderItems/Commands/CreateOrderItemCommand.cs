@@ -66,7 +66,7 @@ public sealed class CreateOrderItemCommandHandler : IRequestHandler<CreateOrderI
         await _dataContext.OrderItems.AddAsync(orderItem, cancellationToken);
 
         // Обновляем общую сумму заказа
-        var order = await _dataContext.Orders.FirstOrDefaultAsync(x => x.IsnOrder == request.IsnOrder, cancellationToken);
+        var order = await _dataContext.RestaurantOrders.FirstOrDefaultAsync(x => x.IsnOrder == request.IsnOrder, cancellationToken);
         if (order != null)
         {
             order.TotalAmount += orderItem.TotalPrice;

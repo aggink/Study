@@ -195,7 +195,7 @@ public class DataContext : DbContext
     /// <summary>
     /// Заказы
     /// </summary>
-    public virtual DbSet<Order> Orders { get; set; }
+    public virtual DbSet<RestaurantOrder> RestaurantOrders { get; set; }
 
     /// <summary>
     /// Позиции заказов

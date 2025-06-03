@@ -15,6 +15,6 @@ public sealed record UpdateOrderStatusDto
     /// Новый статус заказа
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.Order.Status)]
+    [MaxLength(ModelConstants.RestaurantOrder.Status)]
     public string Status { get; init; }
 }

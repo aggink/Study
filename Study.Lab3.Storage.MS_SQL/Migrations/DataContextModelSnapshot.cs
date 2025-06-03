@@ -463,52 +463,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("MenuItems");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Order", b =>
-                {
-                    b.Property<Guid>("IsnOrder")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("CompletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("CustomerPhone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<Guid>("IsnRestaurant")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("OrderNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int?>("TableNumber")
-                        .HasColumnType("int");
-
-                    b.Property<double>("TotalAmount")
-                        .HasColumnType("float");
-
-                    b.HasKey("IsnOrder");
-
-                    b.HasIndex("IsnRestaurant");
-
-                    b.ToTable("Orders");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.OrderItem", b =>
                 {
                     b.Property<Guid>("IsnOrderItem")
@@ -575,6 +529,52 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasKey("IsnRestaurant");
 
                     b.ToTable("Restaurants");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", b =>
+                {
+                    b.Property<Guid>("IsnOrder")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("CompletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CustomerPhone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<Guid>("IsnRestaurant")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("OrderNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("TableNumber")
+                        .HasColumnType("int");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
+
+                    b.HasKey("IsnOrder");
+
+                    b.HasIndex("IsnRestaurant");
+
+                    b.ToTable("RestaurantOrders");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
@@ -1115,17 +1115,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Menu");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Order", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
-                        .WithMany("Orders")
-                        .HasForeignKey("IsnRestaurant")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Restaurant");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.OrderItem", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Restaurants.MenuItem", "MenuItem")
@@ -1134,7 +1123,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.Order", "Order")
+                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", "RestaurantOrder")
                         .WithMany("OrderItems")
                         .HasForeignKey("IsnOrder")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1142,7 +1131,18 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.Navigation("MenuItem");
 
-                    b.Navigation("Order");
+                    b.Navigation("RestaurantOrder");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
+                        .WithMany("Orders")
+                        .HasForeignKey("IsnRestaurant")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
@@ -1398,16 +1398,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Order", b =>
-                {
-                    b.Navigation("OrderItems");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Restaurant", b =>
                 {
                     b.Navigation("Menus");
 
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>

@@ -41,7 +41,7 @@ public sealed class GetOrdersByRestaurantQueryHandler : IRequestHandler<GetOrder
         if (!await _dataContext.Restaurants.AnyAsync(x => x.IsnRestaurant == request.IsnRestaurant, cancellationToken))
             throw new BusinessLogicException($"Ресторан с идентификатором \"{request.IsnRestaurant}\" не существует");
 
-        var query = _dataContext.Orders
+        var query = _dataContext.RestaurantOrders
             .AsNoTracking()
             .Where(x => x.IsnRestaurant == request.IsnRestaurant);
 

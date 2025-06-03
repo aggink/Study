@@ -202,7 +202,7 @@ public class RestaurantController : Controller
 
     #endregion
 
-    #region Order
+    #region RestaurantOrder
 
     /// <summary>
     /// Создание заказа

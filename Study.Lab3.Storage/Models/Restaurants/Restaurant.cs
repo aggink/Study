@@ -62,6 +62,6 @@ public class Restaurant
     /// <summary>
     /// Заказы ресторана
     /// </summary>
-    [InverseProperty(nameof(Order.Restaurant))]
-    public virtual ICollection<Order> Orders { get; set; }
+    [InverseProperty(nameof(RestaurantOrder.Restaurant))]
+    public virtual ICollection<RestaurantOrder> Orders { get; set; }
 }

@@ -52,7 +52,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IRestaurantService, RestaurantService>();
         services.AddSingleton<IMenuService, MenuService>();
         services.AddSingleton<IMenuItemService, MenuItemService>();
-        services.AddSingleton<IOrderService, OrderService>();
+        services.AddSingleton<IRestaurantOrderService, RestaurantOrderService>();
         services.AddSingleton<IOrderItemService, OrderItemService>();
     }
 }

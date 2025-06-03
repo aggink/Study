@@ -24,27 +24,27 @@ public sealed class DeleteOrderCommand : IRequest
 public sealed class DeleteOrderCommandHandler : IRequestHandler<DeleteOrderCommand>
 {
     private readonly DataContext _dataContext;
-    private readonly IOrderService _orderService;
+    private readonly IRestaurantOrderService _restaurantOrderService;
 
     public DeleteOrderCommandHandler(
         DataContext dataContext,
-        IOrderService orderService)
+        IRestaurantOrderService restaurantOrderService)
     {
         _dataContext = dataContext;
-        _orderService = orderService;
+        _restaurantOrderService = restaurantOrderService;
     }
 
     public async Task Handle(DeleteOrderCommand request, CancellationToken cancellationToken)
     {
-        var order = await _dataContext.Orders
+        var order = await _dataContext.RestaurantOrders
                         .Include(x => x.OrderItems)
                         .FirstOrDefaultAsync(x => x.IsnOrder == request.IsnOrder, cancellationToken)
                     ?? throw new BusinessLogicException($"Заказ с идентификатором \"{request.IsnOrder}\" не существует");
 
-        await _orderService.CanDeleteAndThrowAsync(_dataContext, order, cancellationToken);
+        await _restaurantOrderService.CanDeleteAndThrowAsync(_dataContext, order, cancellationToken);
 
         _dataContext.OrderItems.RemoveRange(order.OrderItems);
-        _dataContext.Orders.Remove(order);
+        _dataContext.RestaurantOrders.Remove(order);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

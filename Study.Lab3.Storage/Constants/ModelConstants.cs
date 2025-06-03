@@ -535,7 +535,7 @@ public static class ModelConstants
         public const int MaxCookingTime = 480; // 8 часов
     }
 
-    public static class Order
+    public static class RestaurantOrder
     {
         /// <summary>
         /// Максимальная длина номера заказа

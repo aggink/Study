@@ -7,7 +7,7 @@ namespace Study.Lab3.Storage.Models.Restaurants;
 /// <summary>
 /// Заказ
 /// </summary>
-public class Order
+public class RestaurantOrder
 {
     /// <summary>
     /// Идентификатор заказа
@@ -26,33 +26,33 @@ public class Order
     /// Номер заказа
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.Order.OrderNumber)]
+    [MaxLength(ModelConstants.RestaurantOrder.OrderNumber)]
     public string OrderNumber { get; set; }
 
     /// <summary>
     /// Имя клиента
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.Order.CustomerName)]
+    [MaxLength(ModelConstants.RestaurantOrder.CustomerName)]
     public string CustomerName { get; set; }
 
     /// <summary>
     /// Телефон клиента
     /// </summary>
-    [MaxLength(ModelConstants.Order.CustomerPhone)]
+    [MaxLength(ModelConstants.RestaurantOrder.CustomerPhone)]
     public string CustomerPhone { get; set; }
 
     /// <summary>
     /// Номер стола
     /// </summary>
-    [Range(ModelConstants.Order.MinTableNumber, ModelConstants.Order.MaxTableNumber)]
+    [Range(ModelConstants.RestaurantOrder.MinTableNumber, ModelConstants.RestaurantOrder.MaxTableNumber)]
     public int? TableNumber { get; set; }
 
     /// <summary>
     /// Статус заказа
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.Order.Status)]
+    [MaxLength(ModelConstants.RestaurantOrder.Status)]
     public string Status { get; set; }
 
     /// <summary>
@@ -78,6 +78,6 @@ public class Order
     /// <summary>
     /// Позиции заказа
     /// </summary>
-    [InverseProperty(nameof(OrderItem.Order))]
+    [InverseProperty(nameof(OrderItem.RestaurantOrder))]
     public virtual ICollection<OrderItem> OrderItems { get; set; }
 }

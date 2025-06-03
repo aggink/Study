@@ -19,7 +19,7 @@ public class OrderItem
     /// <summary>
     /// Идентификатор заказа
     /// </summary>
-    [ForeignKey(nameof(Order))]
+    [ForeignKey(nameof(RestaurantOrder))]
     public Guid IsnOrder { get; set; }
 
     /// <summary>
@@ -55,7 +55,7 @@ public class OrderItem
     /// <summary>
     /// Заказ
     /// </summary>
-    public virtual Order Order { get; set; }
+    public virtual RestaurantOrder RestaurantOrder { get; set; }
 
     /// <summary>
     /// Позиция меню
