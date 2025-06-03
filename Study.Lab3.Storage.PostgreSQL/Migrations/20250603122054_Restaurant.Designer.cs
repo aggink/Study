@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250603122054_Restaurant")]
+    partial class Restaurant
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -787,32 +790,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Kvn", b =>
-                {
-                    b.Property<Guid>("IsnKvn")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("KvnDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("ParticipantsCount")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnKvn");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.HasIndex("IsnSubject");
-
-                    b.ToTable("TheKvn");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
                 {
                     b.Property<Guid>("IsnMaterial")
@@ -1262,25 +1239,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
                         .WithMany("Grades")
-                        .HasForeignKey("IsnSubject")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Subject");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Kvn", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
