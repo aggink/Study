@@ -12,7 +12,7 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250603151544_AddBeautySalon")]
+    [Migration("20250603172238_AddBeautySalon")]
     partial class AddBeautySalon
     {
         /// <inheritdoc />
@@ -882,6 +882,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Groups");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Kvn", b =>
+                {
+                    b.Property<Guid>("IsnKvn")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("KvnDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnKvn");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("TheKvn");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
                 {
                     b.Property<Guid>("IsnMaterial")
@@ -1340,6 +1366,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Kvn", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Kvns")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("Kvns")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
@@ -1534,6 +1579,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.Navigation("Grades");
 
+                    b.Navigation("Kvns");
+
                     b.Navigation("Sportclubs");
                 });
 
@@ -1546,6 +1593,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Grades");
 
                     b.Navigation("GroupSubjects");
+
+                    b.Navigation("Kvns");
 
                     b.Navigation("Materials");
 
