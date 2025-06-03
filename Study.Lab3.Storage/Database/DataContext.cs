@@ -3,6 +3,7 @@ using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.University;
+using Study.Lab3.Storage.Models.HospitalStore;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 
@@ -106,6 +107,11 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Profcom> TheProfcom { get; set; }
 
+    /// <summary>
+    /// Спортивный клуб
+    /// </summary>
+    public virtual DbSet<Sportclub> Sportclub { get; set; }
+
     #endregion
 
     #region Cinema
@@ -149,6 +155,25 @@ public class DataContext : DbContext
     /// Билеты
     /// </summary>
     public virtual DbSet<Ticket> Tickets { get; set; }
+
+    #endregion
+
+    #region HospitalStore
+
+    /// <summary>
+    /// Заказы
+    /// </summary>
+    public virtual DbSet<Order> Orders { get; set; }
+
+    /// <summary>
+    /// Покупатели
+    /// </summary>
+    public virtual DbSet<Patient> Patients { get; set; }
+
+    /// <summary>
+    /// Товары
+    /// </summary>
+    public virtual DbSet<Product> Products { get; set; }
 
     #endregion
 

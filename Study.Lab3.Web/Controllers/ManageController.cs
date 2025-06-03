@@ -55,6 +55,9 @@ using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
 using Study.Lab3.Web.Features.University.TheProfcom.Commands;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.Queries;
+using Study.Lab3.Web.Features.University.TheSportclub.Commands;
+using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
+using Study.Lab3.Web.Features.University.TheSportclub.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1323,6 +1326,75 @@ public class ManageController : Controller
     [HttpGet(nameof(GetAuthorsByBook), Name = nameof(GetAuthorsByBook))]
     public async Task<ActionResult<AuthorBookWithDetailsDto[]>> GetAuthorsByBook(
         [FromQuery] GetAuthorsByBookQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Sportclub
+    /// <summary>
+    /// Создание спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(CreateSportclub), Name = nameof(CreateSportclub))]
+    public async Task<ActionResult<Guid>> CreateSportclub([FromBody] CreateSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(UpdateSportclub), Name = nameof(UpdateSportclub))]
+    public async Task<ActionResult<Guid>> UpdateSportclub([FromBody] UpdateSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(DeleteSportclub), Name = nameof(DeleteSportclub))]
+    public async Task<ActionResult> DeleteSportclub([FromQuery] DeleteSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetSportclubByIsn), Name = nameof(GetSportclubByIsn))]
+    public async Task<ActionResult<SportclubDto>> GetSportclubByIsn([FromQuery] GetSportclubByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetSportclubWithDetails), Name = nameof(GetSportclubWithDetails))]
+    public async Task<ActionResult<SportclubWithDetailsDto>> GetSportclubWithDetails([FromQuery] GetSportclubWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка соревновательной деятельности
+    /// </summary>
+    [HttpGet(nameof(GetListSportclub), Name = nameof(GetListSportclub))]
+    public async Task<ActionResult<SportclubDto[]>> GetListSportclub([FromQuery] GetListSportclubQuery query,
+        CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
