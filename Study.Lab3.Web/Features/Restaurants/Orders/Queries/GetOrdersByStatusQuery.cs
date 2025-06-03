@@ -11,7 +11,7 @@ namespace Study.Lab3.Web.Features.Restaurants.Orders.Queries;
 /// <summary>
 /// Получение заказов по статусу
 /// </summary>
-public sealed class GetOrdersByStatusQuery : IRequest<OrderDto[]>
+public sealed class GetOrdersByStatusQuery : IRequest<RestaurantOrderDto[]>
 {
     /// <summary>
     /// Идентификатор ресторана
@@ -28,7 +28,7 @@ public sealed class GetOrdersByStatusQuery : IRequest<OrderDto[]>
     public string Status { get; init; }
 }
 
-public sealed class GetOrdersByStatusQueryHandler : IRequestHandler<GetOrdersByStatusQuery, OrderDto[]>
+public sealed class GetOrdersByStatusQueryHandler : IRequestHandler<GetOrdersByStatusQuery, RestaurantOrderDto[]>
 {
     private readonly DataContext _dataContext;
 
@@ -37,7 +37,7 @@ public sealed class GetOrdersByStatusQueryHandler : IRequestHandler<GetOrdersByS
         _dataContext = dataContext;
     }
 
-    public async Task<OrderDto[]> Handle(GetOrdersByStatusQuery request, CancellationToken cancellationToken)
+    public async Task<RestaurantOrderDto[]> Handle(GetOrdersByStatusQuery request, CancellationToken cancellationToken)
     {
         if (!await _dataContext.Restaurants.AnyAsync(x => x.IsnRestaurant == request.IsnRestaurant, cancellationToken))
             throw new BusinessLogicException($"Ресторан с идентификатором \"{request.IsnRestaurant}\" не существует");
@@ -45,7 +45,7 @@ public sealed class GetOrdersByStatusQueryHandler : IRequestHandler<GetOrdersByS
         return await _dataContext.RestaurantOrders
             .AsNoTracking()
             .Where(x => x.IsnRestaurant == request.IsnRestaurant && x.Status == request.Status)
-            .Select(x => new OrderDto
+            .Select(x => new RestaurantOrderDto
             {
                 IsnOrder = x.IsnOrder,
                 IsnRestaurant = x.IsnRestaurant,

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Restaurants.Orders.DtoModels;
 
-public sealed record CreateOrderDto
+public sealed record CreateRestaurantOrderDto
 {
     /// <summary>
     /// Идентификатор ресторана

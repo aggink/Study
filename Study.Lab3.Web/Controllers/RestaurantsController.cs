@@ -248,7 +248,7 @@ public class RestaurantController : Controller
     /// Получение заказа по идентификатору
     /// </summary>
     [HttpGet(nameof(GetOrderByIsn), Name = nameof(GetOrderByIsn))]
-    public async Task<ActionResult<OrderDto>> GetOrderByIsn(GetOrderByIsnQuery query, CancellationToken cancellationToken)
+    public async Task<ActionResult<RestaurantOrderDto>> GetOrderByIsn(GetOrderByIsnQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
@@ -258,7 +258,7 @@ public class RestaurantController : Controller
     /// Получение заказов ресторана
     /// </summary>
     [HttpGet(nameof(GetOrdersByRestaurant), Name = nameof(GetOrdersByRestaurant))]
-    public async Task<ActionResult<OrderDto[]>> GetOrdersByRestaurant([FromQuery] GetOrdersByRestaurantQuery query, CancellationToken cancellationToken)
+    public async Task<ActionResult<RestaurantOrderDto[]>> GetOrdersByRestaurant([FromQuery] GetOrdersByRestaurantQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
@@ -268,7 +268,7 @@ public class RestaurantController : Controller
     /// Получение заказов по статусу
     /// </summary>
     [HttpGet(nameof(GetOrdersByStatus), Name = nameof(GetOrdersByStatus))]
-    public async Task<ActionResult<OrderDto[]>> GetOrdersByStatus([FromQuery] GetOrdersByStatusQuery query, CancellationToken cancellationToken)
+    public async Task<ActionResult<RestaurantOrderDto[]>> GetOrdersByStatus([FromQuery] GetOrdersByStatusQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);

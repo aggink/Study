@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.HospitalStore.Order.DtoModels;
 
-public sealed record UpdateOrderDto
+public sealed record UpdateHospitalStoreOrderDto
 {
     /// <summary>
     /// Идентификатор заказа
