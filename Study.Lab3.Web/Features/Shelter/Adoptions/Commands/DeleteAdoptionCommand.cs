@@ -33,7 +33,7 @@ public sealed class DeleteAdoptionCommandHandler : IRequestHandler<DeleteAdoptio
     public async Task Handle(DeleteAdoptionCommand request, CancellationToken cancellationToken)
     {
         var adoption = await _dataContext.Adoptions
-            .FirstOrDefaultAsync(a => a.Id == request.AdoptionId, cancellationToken)
+            .FirstOrDefaultAsync(a => a.IsnAdoption == request.AdoptionId, cancellationToken)
             ?? throw new BusinessLogicException($"Усыновление с идентификатором \"{request.AdoptionId}\" не существует");
 
         _dataContext.Adoptions.Remove(adoption);

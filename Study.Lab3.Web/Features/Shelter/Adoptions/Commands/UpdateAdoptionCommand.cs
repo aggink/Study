@@ -33,7 +33,7 @@ public sealed class UpdateAdoptionCommandHandler : IRequestHandler<UpdateAdoptio
     public async Task<Guid> Handle(UpdateAdoptionCommand request, CancellationToken cancellationToken)
     {
         var adoption = await _dataContext.Adoptions
-            .FirstOrDefaultAsync(a => a.Id == request.Adoption.Id, cancellationToken)
+            .FirstOrDefaultAsync(a => a.IsnAdoption == request.Adoption.Id, cancellationToken)
             ?? throw new BusinessLogicException($"Усыновление с идентификатором \"{request.Adoption.Id}\" не существует");
 
         adoption.Price = request.Adoption.Price;
@@ -45,6 +45,6 @@ public sealed class UpdateAdoptionCommandHandler : IRequestHandler<UpdateAdoptio
         _dataContext.Adoptions.Update(adoption);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return adoption.Id;
+        return adoption.IsnAdoption;
     }
 }

@@ -8,7 +8,6 @@ using Study.Lab3.Web.Features.Shelter.Cats.DtoModels;
 
 namespace Study.Lab3.Web.Features.Shelter.Adoptions.Commands;
 
-
 /// <summary>
 /// Создание кота
 /// </summary>
@@ -35,7 +34,7 @@ public sealed class CreateAdoptionCommandHandler : IRequestHandler<CreateAdoptio
     {
         var adoption = new Adoption
         {
-            Id = Guid.NewGuid(),
+            IsnAdoption = Guid.NewGuid(),
             Price = request.Adoption.Price,
             CustomerId = request.Adoption.CustomerId,
             CatId = request.Adoption.CatId,
@@ -46,6 +45,6 @@ public sealed class CreateAdoptionCommandHandler : IRequestHandler<CreateAdoptio
         await _dataContext.Adoptions.AddAsync(adoption, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return adoption.Id;
+        return adoption.IsnAdoption;
     }
 }

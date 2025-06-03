@@ -12,7 +12,7 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250602171259_Shelter")]
+    [Migration("20250603121547_Shelter")]
     partial class Shelter
     {
         /// <inheritdoc />
@@ -261,6 +261,73 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Tickets");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
+                {
+                    b.Property<Guid>("IsnOrder")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnPatient")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnProduct")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnOrder");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Patient", b =>
+                {
+                    b.Property<Guid>("IsnPatient")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("MedicalCardId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IsnPatient");
+
+                    b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Product", b =>
+                {
+                    b.Property<Guid>("IsnProduct")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnProduct");
+
+                    b.ToTable("Products");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>
                 {
                     b.Property<Guid>("IsnAuthor")
@@ -333,7 +400,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnAdoption")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AdoptionDate")
@@ -353,7 +420,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnAdoption");
 
                     b.HasIndex("CatId");
 
@@ -364,7 +431,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnCat")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Age")
@@ -417,14 +484,14 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnCat");
 
                     b.ToTable("Cats");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
@@ -456,7 +523,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnCustomer");
 
                     b.ToTable("ShelterCustomers");
                 });
@@ -732,6 +799,32 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnSubject");
 
                     b.ToTable("TheProfcom");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
+                {
+                    b.Property<Guid>("IsnSportclub")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SportclubDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnSportclub");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Sportclub");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
@@ -1101,6 +1194,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Sportclubs")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("Sportclubs")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Group", "Group")
@@ -1233,6 +1345,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("ExamRegistrations");
 
                     b.Navigation("Grades");
+
+                    b.Navigation("Sportclubs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -1246,6 +1360,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("GroupSubjects");
 
                     b.Navigation("Materials");
+
+                    b.Navigation("Sportclubs");
 
                     b.Navigation("TeacherSubjects");
                 });

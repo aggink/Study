@@ -35,7 +35,7 @@ public sealed class CreateCatCommandHandler : IRequestHandler<CreateCatCommand, 
     {
         var cat = new Cat
         {
-            Id = Guid.NewGuid(),
+            IsnCat = Guid.NewGuid(),
             Nickname = request.Customer.Nickname,
             BirthDate = request.Customer.BirthDate,
             Breed = request.Customer.Breed,
@@ -53,6 +53,6 @@ public sealed class CreateCatCommandHandler : IRequestHandler<CreateCatCommand, 
         await _dataContext.Cats.AddAsync(cat, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return cat.Id;
+        return cat.IsnCat;
     }
 }

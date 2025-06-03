@@ -397,7 +397,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnAdoption")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AdoptionDate")
@@ -417,7 +417,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnAdoption");
 
                     b.HasIndex("CatId");
 
@@ -428,7 +428,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnCat")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Age")
@@ -481,14 +481,14 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnCat");
 
                     b.ToTable("Cats");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
@@ -520,7 +520,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnCustomer");
 
                     b.ToTable("ShelterCustomers");
                 });
@@ -1194,13 +1194,13 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("Sportclubs")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Sportclubs")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1342,6 +1342,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("ExamRegistrations");
 
                     b.Navigation("Grades");
+
+                    b.Navigation("Sportclubs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -1355,6 +1357,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("GroupSubjects");
 
                     b.Navigation("Materials");
+
+                    b.Navigation("Sportclubs");
 
                     b.Navigation("TeacherSubjects");
                 });

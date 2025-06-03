@@ -29,7 +29,7 @@ public sealed class DeleteCustomerCommandHandler : IRequestHandler<DeleteShelter
     public async Task Handle(DeleteShelterCustomerCommand request, CancellationToken cancellationToken)
     {
         var customer = await _dataContext.ShelterCustomers
-            .FirstOrDefaultAsync(c => c.Id == request.CustomerId, cancellationToken)
+            .FirstOrDefaultAsync(c => c.IsnCustomer == request.CustomerId, cancellationToken)
             ?? throw new BusinessLogicException($"Клиент с идентификатором \"{request.CustomerId}\" не существует");
 
         _dataContext.ShelterCustomers.Remove(customer);

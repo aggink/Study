@@ -29,7 +29,7 @@ public sealed class CustomerService : ICustomerService
 
         // Проверка на уникальность email
         if (await dataContext.ShelterCustomers.AnyAsync(
-            x => x.Email == customer.Email && x.Id != customer.Id,
+            x => x.Email == customer.Email && x.IsnCustomer != customer.IsnCustomer,
             cancellationToken))
         {
             throw new BusinessLogicException($"Клиент с email \"{customer.Email}\" уже существует");
@@ -49,9 +49,9 @@ public sealed class CustomerService : ICustomerService
         Customer customer,
         CancellationToken cancellationToken = default)
     {
-        if (!await dataContext.ShelterCustomers.AnyAsync(x => x.Id == customer.Id, cancellationToken))
+        if (!await dataContext.ShelterCustomers.AnyAsync(x => x.IsnCustomer == customer.IsnCustomer, cancellationToken))
             throw new BusinessLogicException(
-                $"Клиент с идентификатором \"{customer.Id}\" не существует");
+                $"Клиент с идентификатором \"{customer.IsnCustomer}\" не существует");
     }
 
     private bool IsValidEmail(string email)

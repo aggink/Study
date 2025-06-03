@@ -46,7 +46,7 @@ public sealed class CatService : ICatService
             throw new BusinessLogicException("Необходимо указать URL фотографии кота");
         
         if (await dataContext.Cats.AnyAsync(
-                x => x.PhotoUrl == cat.PhotoUrl && x.Id != cat.Id,
+                x => x.PhotoUrl == cat.PhotoUrl && x.IsnCat != cat.IsnCat,
                 cancellationToken))
         {
             throw new BusinessLogicException("Фото уже используется для другого кота");

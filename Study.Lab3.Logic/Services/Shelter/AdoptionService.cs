@@ -14,14 +14,14 @@ public class AdoptionService : IAdoptionService
         CancellationToken cancellationToken = default)
     {
         if (!await dataContext.ShelterCustomers.AnyAsync(
-                x =>  x.Id == adoption.CustomerId,
+                x =>  x.IsnCustomer == adoption.CustomerId,
                 cancellationToken))
         {
             throw new BusinessLogicException($"Клиент с идентификатором \"{adoption.CustomerId}\" не найден");
         }
         
         if (!await dataContext.Cats.AnyAsync(
-                x => x.Id == adoption.CatId,
+                x => x.IsnCat == adoption.CatId,
                 cancellationToken))
         {
             throw new BusinessLogicException($"Кот с идентификатором \"{adoption.CatId}\" не найден");
@@ -35,10 +35,10 @@ public class AdoptionService : IAdoptionService
         CancellationToken cancellationToken = default)
     {
         if(!await dataContext.Adoptions.AnyAsync(
-                x => x.Id == adoption.Id,
+                x => x.IsnAdoption == adoption.IsnAdoption,
                 cancellationToken))
         {
-            throw new BusinessLogicException($"Невозможно удалить: усыновление с идентификатором \"{adoption.Id}\" не найдено");
+            throw new BusinessLogicException($"Невозможно удалить: усыновление с идентификатором \"{adoption.IsnAdoption}\" не найдено");
         }
     }
 }

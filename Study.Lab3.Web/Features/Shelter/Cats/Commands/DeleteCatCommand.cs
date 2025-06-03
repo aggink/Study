@@ -32,7 +32,7 @@ public sealed class DeleteCatCommandHandler : IRequestHandler<DeleteCatCommand>
     public async Task Handle(DeleteCatCommand request, CancellationToken cancellationToken)
     {
         var cat = await _dataContext.Cats
-                      .FirstOrDefaultAsync(c => c.Id == request.CatId, cancellationToken)
+                      .FirstOrDefaultAsync(c => c.IsnCat == request.CatId, cancellationToken)
                   ?? throw new BusinessLogicException($"Кот с идентификатором \"{request.CatId}\" не существует");
 
         _dataContext.Cats.Remove(cat);

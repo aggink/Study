@@ -35,13 +35,13 @@ public sealed class GetCatByIdQueryHandler : IRequestHandler<GetCatByIdQuery, Ca
     {
         var cat = await _dataContext.Cats
                       .AsNoTracking()
-                      .FirstOrDefaultAsync(c => c.Id == request.CatId, cancellationToken)
+                      .FirstOrDefaultAsync(c => c.IsnCat == request.CatId, cancellationToken)
                   ?? throw new BusinessLogicException(
                       $"Кот с идентификатором \"{request.CatId}\" не существует");
 
         return new CatDto
         {
-            Id = cat.Id,
+            Id = cat.IsnCat,
             Nickname = cat.Nickname,
             BirthDate = cat.BirthDate,
             Description = cat.Description,

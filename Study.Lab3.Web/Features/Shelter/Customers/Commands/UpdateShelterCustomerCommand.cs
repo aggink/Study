@@ -33,7 +33,7 @@ public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateShelter
     public async Task<Guid> Handle(UpdateShelterCustomerCommand request, CancellationToken cancellationToken)
     {
         var customer = await _dataContext.ShelterCustomers
-                           .FirstOrDefaultAsync(c => c.Id == request.ShelterCustomer.Id, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnCustomer == request.ShelterCustomer.Id, cancellationToken)
                        ?? throw new BusinessLogicException(
                            $"Клиент с идентификатором \"{request.ShelterCustomer.Id}\" не существует");
 
@@ -50,6 +50,6 @@ public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateShelter
         customer.Address = request.ShelterCustomer.Address;
         
         await _dataContext.SaveChangesAsync(cancellationToken);
-        return customer.Id;
+        return customer.IsnCustomer;
     }
 }

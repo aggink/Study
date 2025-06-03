@@ -34,13 +34,13 @@ public sealed class GetCustomerByIdQueryHandler : IRequestHandler<GetShelterCust
     {
         var customer = await _dataContext.ShelterCustomers
                            .AsNoTracking()
-                           .FirstOrDefaultAsync(c => c.Id == request.CustomerId, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnCustomer == request.CustomerId, cancellationToken)
                        ?? throw new BusinessLogicException(
                            $"Клиент с идентификатором \"{request.CustomerId}\" не существует");
 
         return new ShelterCustomerDto
         {
-            Id = customer.Id,
+            Id = customer.IsnCustomer,
             Name = customer.Name,
             LastName = customer.LastName,
             Email = customer.Email,

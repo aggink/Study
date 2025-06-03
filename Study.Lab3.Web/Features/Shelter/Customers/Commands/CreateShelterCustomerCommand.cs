@@ -39,7 +39,7 @@ public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateShelter
 
         var customer = new Customer
         {
-            Id = Guid.NewGuid(),
+            IsnCustomer = Guid.NewGuid(),
             Name = request.ShelterCustomer.Name,
             LastName = request.ShelterCustomer.LastName,
             Email = request.ShelterCustomer.Email,
@@ -51,6 +51,6 @@ public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateShelter
         await _dataContext.ShelterCustomers.AddAsync(customer, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
         
-        return customer.Id;
+        return customer.IsnCustomer;
     }
 }

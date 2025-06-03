@@ -396,7 +396,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnAdoption")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("AdoptionDate")
@@ -416,7 +416,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnAdoption");
 
                     b.HasIndex("CatId");
 
@@ -427,7 +427,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnCat")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Age")
@@ -480,14 +480,14 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("integer");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnCat");
 
                     b.ToTable("Cats");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
@@ -519,7 +519,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("character varying(15)");
 
-                    b.HasKey("Id");
+                    b.HasKey("IsnCustomer");
 
                     b.ToTable("ShelterCustomers");
                 });
@@ -1193,13 +1193,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("Sportclubs")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Sportclubs")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1341,6 +1341,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("ExamRegistrations");
 
                     b.Navigation("Grades");
+
+                    b.Navigation("Sportclubs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -1354,6 +1356,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("GroupSubjects");
 
                     b.Navigation("Materials");
+
+                    b.Navigation("Sportclubs");
 
                     b.Navigation("TeacherSubjects");
                 });
