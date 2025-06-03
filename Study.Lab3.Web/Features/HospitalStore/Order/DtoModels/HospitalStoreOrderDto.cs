@@ -3,7 +3,7 @@
 /// <summary>
 /// DTO для отображения информации о заказе
 /// </summary>
-public sealed record OrderDto
+public sealed record HospitalStoreOrderDto
 {
     /// <summary>
     /// Идентификатор заказа
