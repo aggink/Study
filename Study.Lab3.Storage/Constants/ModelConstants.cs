@@ -456,6 +456,19 @@ public static class ModelConstants
         public const int PriceMax = 1000000;
 
     }
+
+    public static class Kvn
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinPart = 3;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxPart = 10;
+    }
     public static class Restaurant
     {
         /// <summary>

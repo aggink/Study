@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
 
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250603160654_AddKvn")]
+    partial class AddKvn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,98 +24,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyAppointment", b =>
-                {
-                    b.Property<Guid>("IsnAppointment")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Day")
-                        .HasMaxLength(31)
-                        .HasColumnType("int");
-
-                    b.Property<int>("Hour")
-                        .HasMaxLength(24)
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("IsnClient")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnService")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Minutes")
-                        .HasMaxLength(60)
-                        .HasColumnType("int");
-
-                    b.Property<int>("Month")
-                        .HasMaxLength(12)
-                        .HasColumnType("int");
-
-                    b.HasKey("IsnAppointment");
-
-                    b.ToTable("BeautyAppointments");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyClient", b =>
-                {
-                    b.Property<Guid>("IsnClient")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<Guid>("IsnAppointment")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.HasKey("IsnClient");
-
-                    b.ToTable("BeautyClients");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyService", b =>
-                {
-                    b.Property<Guid>("IsnService")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
-
-                    b.Property<int>("Duration")
-                        .HasMaxLength(600)
-                        .HasColumnType("int");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ServiceName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("IsnService");
-
-                    b.ToTable("BeautyServices");
-                });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
                 {
