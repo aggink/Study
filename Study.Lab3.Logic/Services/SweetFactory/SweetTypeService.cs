@@ -1,6 +1,6 @@
 ﻿using CoreLib.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Study.Lab3.Logic.Interfaces.Services.SweetFactory;
+using Study.Lab3.Logic.Interfaces.Services.Sweets;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.Sweets;
 using System;
@@ -13,7 +13,7 @@ namespace Study.Lab3.Logic.Services.Sweets
 {
     internal class SweetTypeService : ISweetTypeService
     {
-        public async Task CreateOrUpdateSweetValidateAndThrowAsync(
+        public async Task CreateOrUpdateSweetTypeValidateAndThrowAsync(
         DataContext dataContext,
         SweetType sweettype,
         CancellationToken cancellationToken = default)
