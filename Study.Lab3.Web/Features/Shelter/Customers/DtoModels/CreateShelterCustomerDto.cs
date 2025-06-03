@@ -35,5 +35,5 @@ public sealed record CreateShelterCustomerDto
     
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Address)]
-    public string Address { get; set; }
+    public string Address { get; init; }
 }

@@ -7,40 +7,40 @@ public class CreateCatDto
 {
     [Required]
     [MaxLength(ModelConstants.Cat.Nickname)]
-    public string Nickname { get; set; }
+    public string Nickname { get; init; }
     
-    public DateTime? BirthDate { get; set; }
+    public DateTime? BirthDate { get; init; }
 
     [Required]
     [MaxLength(ModelConstants.Cat.Breed)]
-    public string Breed { get; set; }
+    public string Breed { get; init; }
 
     [Required]
-    public bool IsVaccinated { get; set; }
+    public bool IsVaccinated { get; init; }
 
     [Required]
-    public bool IsSterilized { get; set; }
+    public bool IsSterilized { get; init; }
 
     [Required]
     [MaxLength(ModelConstants.Cat.Color)]
-    public string Color { get; set; }
+    public string Color { get; init; }
 
     [Required]
     [MaxLength(ModelConstants.Cat.MedicalHistory)]
-    public string MedicalHistory { get; set; }
+    public string MedicalHistory { get; init; }
 
     [Required]
     [MaxLength(ModelConstants.Cat.PhotoUrl)]
-    public string PhotoUrl { get; set; }
+    public string PhotoUrl { get; init; }
 
     [Required]
-    public DateTime ArrivalDate { get; set; }
+    public DateTime ArrivalDate { get; init; }
 
     [Required]
     [Range(ModelConstants.Cat.AgeMin, ModelConstants.Cat.AgeMax)]
-    public int Age { get; set; }
+    public int Age { get; init; }
         
     [Required]
     [Range(ModelConstants.Cat.WeightMin, ModelConstants.Cat.WeightMax)]
-    public int Weight { get; set; }
+    public int Weight { get; init; }
 }

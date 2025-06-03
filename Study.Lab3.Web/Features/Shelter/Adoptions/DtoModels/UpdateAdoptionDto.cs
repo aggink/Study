@@ -8,20 +8,20 @@ namespace Study.Lab3.Web.Features.Shelter.Adoptions.DtoModels;
 public class UpdateAdoptionDto
 {
     [Required]
-    public Guid IsnAdoption { get; set; }
+    public Guid IsnAdoption { get; init; }
     
     [Required]
-    public int Price { get; set; }
+    public int Price { get; init; }
 
     [Required]
-    public Guid IsnCustomer { get; set; }
+    public Guid IsnCustomer { get; init; }
 
     [Required]
-    public Guid IsnCat { get; set; }
+    public Guid IsnCat { get; init; }
 
     [Required]
-    public DateTime AdoptionDate { get; set; }
+    public DateTime AdoptionDate { get; init; }
         
     [Required]
-    public string Status { get; set; }
+    public string Status { get; init; }
 }
