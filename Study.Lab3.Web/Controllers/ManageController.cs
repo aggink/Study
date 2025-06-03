@@ -50,6 +50,9 @@ using Study.Lab3.Web.Features.University.TheProfcom.Queries;
 using Study.Lab3.Web.Features.University.TheSportclub.Commands;
 using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
 using Study.Lab3.Web.Features.University.TheSportclub.Queries;
+using Study.Lab3.Web.Features.University.TheCareer.Commands;
+using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+using Study.Lab3.Web.Features.University.TheCareer.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1386,6 +1389,75 @@ public class ManageController : Controller
     /// </summary>
     [HttpGet(nameof(GetListSportclub), Name = nameof(GetListSportclub))]
     public async Task<ActionResult<SportclubDto[]>> GetListSportclub([FromQuery] GetListSportclubQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Career
+    /// <summary>
+    /// Создание карьеры
+    /// </summary>
+    [HttpPost(nameof(CreateCareer), Name = nameof(CreateCareer))]
+    public async Task<ActionResult<Guid>> CreateCareer([FromBody] CreateCareerCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование карьеры
+    /// </summary>
+    [HttpPost(nameof(UpdateCareer), Name = nameof(UpdateCareer))]
+    public async Task<ActionResult<Guid>> UpdateCareer([FromBody] UpdateCareerCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление карьеры
+    /// </summary>
+    [HttpPost(nameof(DeleteCareer), Name = nameof(DeleteCareer))]
+    public async Task<ActionResult> DeleteCareer([FromQuery] DeleteCareerCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение собеседования по работе
+    /// </summary>
+    [HttpGet(nameof(GetCareerByIsn), Name = nameof(GetCareerByIsn))]
+    public async Task<ActionResult<CareerDto>> GetCareerByIsn([FromQuery] GetCareerByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение собеседования по работе с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetCareerWithDetails), Name = nameof(GetCareerWithDetails))]
+    public async Task<ActionResult<CareerWithDetailsDto>> GetCareerWithDetails([FromQuery] GetCareerWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка собеседований
+    /// </summary>
+    [HttpGet(nameof(GetListCareer), Name = nameof(GetListCareer))]
+    public async Task<ActionResult<CareerDto[]>> GetListCareer([FromQuery] GetListCareerQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);

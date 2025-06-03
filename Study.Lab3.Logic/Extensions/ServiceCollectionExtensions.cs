@@ -47,5 +47,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ISportclubService, SportclubService>();
         services.AddSingleton<IPatientService, PatientService>();
         services.AddSingleton<IProductService, ProductService>();
+        services.AddSingleton<ICareerService, CareerService>();
     }
 }
