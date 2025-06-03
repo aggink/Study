@@ -36,8 +36,8 @@ public sealed class CreateAdoptionCommandHandler : IRequestHandler<CreateAdoptio
         {
             IsnAdoption = Guid.NewGuid(),
             Price = request.Adoption.Price,
-            CustomerId = request.Adoption.CustomerId,
-            CatId = request.Adoption.CatId,
+            CustomerIsn = request.Adoption.CustomerId,
+            CatIsn = request.Adoption.CatId,
             AdoptionDate = request.Adoption.AdoptionDate,
             Status = "Pending" // Default status
         };

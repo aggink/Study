@@ -16,10 +16,8 @@ public sealed record AdoptionDto
     public int Price { get; set; }
 
     [Required]
-    [ForeignKey(nameof(Customer))]
     public Guid CustomerId { get; set; }
-
-    [ForeignKey(nameof(Cat))]
+    
     public Guid CatId { get; set; }
 
     [Required]

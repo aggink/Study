@@ -16,7 +16,8 @@ public class Cat
     [MaxLength(ModelConstants.Cat.Nickname)]
     public string Nickname { get; set; }
 
-    [Required] public DateTime? BirthDate { get; set; }
+    [Required]
+    public DateTime? BirthDate { get; set; }
 
     [MaxLength(ModelConstants.Cat.Description)]
     public string Description { get; set; }
@@ -25,9 +26,11 @@ public class Cat
     [MaxLength(ModelConstants.Cat.Breed)]
     public string Breed { get; set; }
 
-    [Required] public bool IsVaccinated { get; set; }
+    [Required] 
+    public bool IsVaccinated { get; set; }
 
-    [Required] public bool IsSterilized { get; set; }
+    [Required]
+    public bool IsSterilized { get; set; }
 
     [Required]
     [MaxLength(ModelConstants.Cat.Color)]
@@ -41,9 +44,11 @@ public class Cat
     [MaxLength(ModelConstants.Cat.PhotoUrl)]
     public string PhotoUrl { get; set; }
 
-    [Required] public DateTime ArrivalDate { get; set; }
+    [Required] 
+    public DateTime ArrivalDate { get; set; }
 
-    [Required] public bool IsAvailableForAdoption { get; set; }
+    [Required] 
+    public bool IsAvailableForAdoption { get; set; }
 
     [Required]
     [Range(ModelConstants.Cat.AgeMin, ModelConstants.Cat.AgeMax)]

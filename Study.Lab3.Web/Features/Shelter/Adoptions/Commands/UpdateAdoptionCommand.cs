@@ -37,8 +37,8 @@ public sealed class UpdateAdoptionCommandHandler : IRequestHandler<UpdateAdoptio
             ?? throw new BusinessLogicException($"Усыновление с идентификатором \"{request.Adoption.Id}\" не существует");
 
         adoption.Price = request.Adoption.Price;
-        adoption.CustomerId = request.Adoption.CustomerId;
-        adoption.CatId = request.Adoption.CatId;
+        adoption.CustomerIsn = request.Adoption.CustomerId;
+        adoption.CatIsn = request.Adoption.CatId;
         adoption.AdoptionDate = request.Adoption.AdoptionDate;
         adoption.Status = request.Adoption.Status;
 

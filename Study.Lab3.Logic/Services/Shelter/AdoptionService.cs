@@ -14,17 +14,17 @@ public class AdoptionService : IAdoptionService
         CancellationToken cancellationToken = default)
     {
         if (!await dataContext.ShelterCustomers.AnyAsync(
-                x =>  x.IsnCustomer == adoption.CustomerId,
+                x =>  x.IsnCustomer == adoption.CustomerIsn,
                 cancellationToken))
         {
-            throw new BusinessLogicException($"Клиент с идентификатором \"{adoption.CustomerId}\" не найден");
+            throw new BusinessLogicException($"Клиент с идентификатором \"{adoption.CustomerIsn}\" не найден");
         }
         
         if (!await dataContext.Cats.AnyAsync(
-                x => x.IsnCat == adoption.CatId,
+                x => x.IsnCat == adoption.CatIsn,
                 cancellationToken))
         {
-            throw new BusinessLogicException($"Кот с идентификатором \"{adoption.CatId}\" не найден");
+            throw new BusinessLogicException($"Кот с идентификатором \"{adoption.CatIsn}\" не найден");
         }
     }
 
