@@ -11,7 +11,7 @@ namespace Study.Lab3.Web.Features.Restaurants.Orders.Queries;
 /// <summary>
 /// Получение заказа по идентификатору
 /// </summary>
-public sealed class GetOrderByIsnQuery : IRequest<OrderDto>
+public sealed class GetOrderByIsnQuery : IRequest<RestaurantOrderDto>
 {
     /// <summary>
     /// Идентификатор заказа
@@ -21,7 +21,7 @@ public sealed class GetOrderByIsnQuery : IRequest<OrderDto>
     public Guid IsnOrder { get; init; }
 }
 
-public sealed class GetOrderByIsnQueryHandler : IRequestHandler<GetOrderByIsnQuery, OrderDto>
+public sealed class GetOrderByIsnQueryHandler : IRequestHandler<GetOrderByIsnQuery, RestaurantOrderDto>
 {
     private readonly DataContext _dataContext;
 
@@ -30,14 +30,14 @@ public sealed class GetOrderByIsnQueryHandler : IRequestHandler<GetOrderByIsnQue
         _dataContext = dataContext;
     }
 
-    public async Task<OrderDto> Handle(GetOrderByIsnQuery request, CancellationToken cancellationToken)
+    public async Task<RestaurantOrderDto> Handle(GetOrderByIsnQuery request, CancellationToken cancellationToken)
     {
         var order = await _dataContext.RestaurantOrders
                         .AsNoTracking()
                         .FirstOrDefaultAsync(x => x.IsnOrder == request.IsnOrder, cancellationToken)
                     ?? throw new BusinessLogicException($"Заказ с идентификатором \"{request.IsnOrder}\" не существует");
 
-        return new OrderDto
+        return new RestaurantOrderDto
         {
             IsnOrder = order.IsnOrder,
             IsnRestaurant = order.IsnRestaurant,

@@ -72,7 +72,7 @@ public class HospitalStoreController : ControllerBase
     /// <param name="cancellationToken">Токен отмены операции</param>
     /// <returns>Информация о заказе</returns>
     [HttpGet("orders/{id}")]
-    public async Task<ActionResult<OrderDto>> GetOrderById([FromRoute] Guid id, CancellationToken cancellationToken)
+    public async Task<ActionResult<HospitalStoreOrderDto>> GetOrderById([FromRoute] Guid id, CancellationToken cancellationToken)
     {
         var query = new GetOrderByIsnQuery(id);
         var result = await _mediator.Send(query, cancellationToken);
@@ -89,7 +89,7 @@ public class HospitalStoreController : ControllerBase
     /// <param name="cancellationToken">Токен отмены операции</param>
     /// <returns>Список заказов</returns>
     [HttpGet("orders")]
-    public async Task<ActionResult<OrderDto[]>> GetListOrders(CancellationToken cancellationToken)
+    public async Task<ActionResult<HospitalStoreOrderDto[]>> GetListOrders(CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new GetListOrderQuery(), cancellationToken);
         return Ok(result);
