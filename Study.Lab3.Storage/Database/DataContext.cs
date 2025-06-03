@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Library;
+using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.University;
 using Study.Lab3.Storage.Models.HospitalStore;
 
@@ -174,4 +175,32 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region Restaurants
+
+    /// <summary>
+    /// Рестораны
+    /// </summary>
+    public virtual DbSet<Restaurant> Restaurants { get; set; }
+
+    /// <summary>
+    /// Меню ресторанов
+    /// </summary>
+    public virtual DbSet<Menu> Menus { get; set; }
+
+    /// <summary>
+    /// Позиции меню
+    /// </summary>
+    public virtual DbSet<MenuItem> MenuItems { get; set; }
+
+    /// <summary>
+    /// Заказы
+    /// </summary>
+    public virtual DbSet<RestaurantOrder> RestaurantOrders { get; set; }
+
+    /// <summary>
+    /// Позиции заказов
+    /// </summary>
+    public virtual DbSet<OrderItem> OrderItems { get; set; }
+
+    #endregion
 }
