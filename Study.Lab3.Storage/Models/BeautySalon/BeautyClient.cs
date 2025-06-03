@@ -38,4 +38,7 @@ public class BeautyClient
     /// </summary>
     [Required, MaxLength(ModelConstants.BeautyClient.EmailAddress)]
     public string EmailAddress { get; set; }
+
+    [InverseProperty(nameof(BeautyAppointment.BeautyClient))]
+    public virtual ICollection<BeautyAppointment> BeautyAppointments { get; set; }
 }

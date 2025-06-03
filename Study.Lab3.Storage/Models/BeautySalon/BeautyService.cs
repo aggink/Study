@@ -38,4 +38,7 @@ public class BeautyService
     /// </summary>
     [Required, MaxLength(ModelConstants.BeautyService.Duration)]
     public int Duration { get; set; }
+
+    [InverseProperty(nameof(BeautyAppointment.BeautyService))]
+    public virtual ICollection<BeautyAppointment> BeautyAppointments { get; set; }
 }

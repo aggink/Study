@@ -18,14 +18,14 @@ public class BeautyAppointment
     /// <summary>
     /// ID клиента
     /// </summary>
-    [Required]
-    public Guid IsnClient { get; set; }
+    [Required, ForeignKey(nameof(BeautyClient))]
+    public Guid IsnBeautyClient { get; set; }
 
     /// <summary>
     /// ID услуги 
     /// </summary>
-    [Required]
-    public Guid IsnService { get; set; }
+    [Required, ForeignKey(nameof(BeautyService))]
+    public Guid IsnBeautyService { get; set; }
 
     /// <summary>
     /// День записи
@@ -50,4 +50,8 @@ public class BeautyAppointment
     /// </summary>
     [Required, MaxLength(ModelConstants.BeautyAppointment.Minutes)]
     public int Minutes { get; set; }
+
+    public virtual BeautyClient BeautyClient { get; set; }
+
+    public virtual BeautyService BeautyService { get; set; }
 }
