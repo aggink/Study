@@ -5,6 +5,7 @@ using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.chirique_online;
 using Study.Lab1.Logic.cocobara;
+using Study.Lab1.Logic.Crocodile17;
 using Study.Lab1.Logic.danaky1;
 using Study.Lab1.Logic.Dronio1337;
 using Study.Lab1.Logic.eldarovskiy;
@@ -27,6 +28,7 @@ using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
+using Study.Lab1.Logic.SuperSalad007;
 using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
@@ -147,6 +149,8 @@ public static class Program
                 return new mariabyrrrrakService();
             case ("idb-23-02", 13):
                 return new cocobaraService();
+            case ("idb-23-03", 19):
+                return new Crocodile17Service();
             case ("idb-23-03", 5):
                 return new SuperSalad007Service();
             default:

@@ -44,6 +44,15 @@ using Study.Lab3.Web.Features.University.Teachers.Queries;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Commands;
 using Study.Lab3.Web.Features.University.TeacherSubjects.DtoModels;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
+using Study.Lab3.Web.Features.University.TheProfcom.Commands;
+using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
+using Study.Lab3.Web.Features.University.TheProfcom.Queries;
+using Study.Lab3.Web.Features.University.TheSportclub.Commands;
+using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
+using Study.Lab3.Web.Features.University.TheSportclub.Queries;
+using Study.Lab3.Web.Features.University.TheKvn.Commands;
+using Study.Lab3.Web.Features.University.TheKvn.DtoModels;
+using Study.Lab3.Web.Features.University.TheKvn.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1099,6 +1108,76 @@ public class ManageController : Controller
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
+    
+    #endregion
+
+    #region ProfcomActivity
+
+    /// <summary>
+    /// Создание профкома
+    /// </summary>
+    [HttpPost(nameof(CreateProfcom), Name = nameof(CreateProfcom))]
+    public async Task<ActionResult<Guid>> CreateProfcom([FromBody] CreateProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование профкома
+    /// </summary>
+    [HttpPost(nameof(UpdateProfcom), Name = nameof(UpdateProfcom))]
+    public async Task<ActionResult<Guid>> UpdateProfcom([FromBody] UpdateProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление профкома
+    /// </summary>
+    [HttpPost(nameof(DeleteProfcom), Name = nameof(DeleteProfcom))]
+    public async Task<ActionResult> DeleteProfcom([FromQuery] DeleteProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение научной деятельности по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetProfcomByIsn), Name = nameof(GetProfcomByIsn))]
+    public async Task<ActionResult<ProfcomDto>> GetProfcomByIsn([FromQuery] GetProfcomByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение научной деятельности с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetProfcomWithDetails), Name = nameof(GetProfcomWithDetails))]
+    public async Task<ActionResult<ProfcomWithDetailsDto>> GetProfcomWithDetails([FromQuery] GetProfcomWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка научной деятельности
+    /// </summary>
+    [HttpGet(nameof(GetListProfcom), Name = nameof(GetListProfcom))]
+    public async Task<ActionResult<ProfcomDto[]>> GetListProfcom([FromQuery] GetListProfcomQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
 
     #endregion
 
@@ -1242,6 +1321,146 @@ public class ManageController : Controller
     [HttpGet(nameof(GetAuthorsByBook), Name = nameof(GetAuthorsByBook))]
     public async Task<ActionResult<AuthorBookWithDetailsDto[]>> GetAuthorsByBook(
         [FromQuery] GetAuthorsByBookQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Sportclub
+    /// <summary>
+    /// Создание спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(CreateSportclub), Name = nameof(CreateSportclub))]
+
+    public async Task<ActionResult<Guid>> CreateSportclub([FromBody] CreateSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(UpdateSportclub), Name = nameof(UpdateSportclub))]
+    public async Task<ActionResult<Guid>> UpdateSportclub([FromBody] UpdateSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(DeleteSportclub), Name = nameof(DeleteSportclub))]
+    public async Task<ActionResult> DeleteSportclub([FromQuery] DeleteSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetSportclubByIsn), Name = nameof(GetSportclubByIsn))]
+    public async Task<ActionResult<SportclubDto>> GetSportclubByIsn([FromQuery] GetSportclubByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetSportclubWithDetails), Name = nameof(GetSportclubWithDetails))]
+    public async Task<ActionResult<SportclubWithDetailsDto>> GetSportclubWithDetails([FromQuery] GetSportclubWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка соревновательной деятельности
+    /// </summary>
+    [HttpGet(nameof(GetListSportclub), Name = nameof(GetListSportclub))]
+    public async Task<ActionResult<SportclubDto[]>> GetListSportclub([FromQuery] GetListSportclubQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Kvn
+    /// <summary>
+    /// Создание КВН
+    /// </summary>
+    [HttpPost(nameof(CreateKvn), Name = nameof(CreateKvn))]
+
+    public async Task<ActionResult<Guid>> CreateKvn([FromBody] CreateKvnCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование КВН
+    /// </summary>
+    [HttpPost(nameof(UpdateKvn), Name = nameof(UpdateKvn))]
+    public async Task<ActionResult<Guid>> UpdateKvn([FromBody] UpdateKvnCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление КВН
+    /// </summary>
+    [HttpPost(nameof(DeleteKvn), Name = nameof(DeleteKvn))]
+    public async Task<ActionResult> DeleteKvn([FromQuery] DeleteKvnCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение выступления по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetKvnByIsn), Name = nameof(GetKvnByIsn))]
+    public async Task<ActionResult<KvnDto>> GetKvnByIsn([FromQuery] GetKvnByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение выступления с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetKvnWithDetails), Name = nameof(GetKvnWithDetails))]
+    public async Task<ActionResult<KvnWithDetailsDto>> GetKvnWithDetails([FromQuery] GetKvnWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка мероприятий
+    /// </summary>
+    [HttpGet(nameof(GetListKvn), Name = nameof(GetListKvn))]
+    public async Task<ActionResult<KvnDto[]>> GetListKvn([FromQuery] GetListKvnQuery query,
+        CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);

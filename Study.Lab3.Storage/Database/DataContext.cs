@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Library;
+using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.University;
+using Study.Lab3.Storage.Models.HospitalStore;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -97,9 +99,24 @@ public class DataContext : DbContext
     /// Связь авторов и книг
     /// </summary>
     public virtual DbSet<AuthorBooks> AuthorBooks { get; set; }
-    
+
+    /// <summary>
+    /// Профком
+    /// </summary>
+    public virtual DbSet<Profcom> TheProfcom { get; set; }
+
+    /// <summary>
+    /// Спортивный клуб
+    /// </summary>
+    public virtual DbSet<Sportclub> Sportclub { get; set; }
+
+    /// <summary>
+    /// Квн
+    /// </summary>
+    public virtual DbSet<Kvn> TheKvn { get; set; }
+
     #endregion
-    
+
     #region Cinema
 
     /// <summary>
@@ -141,6 +158,54 @@ public class DataContext : DbContext
     /// Билеты
     /// </summary>
     public virtual DbSet<Ticket> Tickets { get; set; }
-    
+
+    #endregion
+
+    #region HospitalStore
+
+    /// <summary>
+    /// Заказы
+    /// </summary>
+    public virtual DbSet<Order> Orders { get; set; }
+
+    /// <summary>
+    /// Покупатели
+    /// </summary>
+    public virtual DbSet<Patient> Patients { get; set; }
+
+    /// <summary>
+    /// Товары
+    /// </summary>
+    public virtual DbSet<Product> Products { get; set; }
+
+    #endregion
+
+    #region Restaurants
+
+    /// <summary>
+    /// Рестораны
+    /// </summary>
+    public virtual DbSet<Restaurant> Restaurants { get; set; }
+
+    /// <summary>
+    /// Меню ресторанов
+    /// </summary>
+    public virtual DbSet<Menu> Menus { get; set; }
+
+    /// <summary>
+    /// Позиции меню
+    /// </summary>
+    public virtual DbSet<MenuItem> MenuItems { get; set; }
+
+    /// <summary>
+    /// Заказы
+    /// </summary>
+    public virtual DbSet<RestaurantOrder> RestaurantOrders { get; set; }
+
+    /// <summary>
+    /// Позиции заказов
+    /// </summary>
+    public virtual DbSet<OrderItem> OrderItems { get; set; }
+
     #endregion
 }
