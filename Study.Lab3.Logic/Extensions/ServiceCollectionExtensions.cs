@@ -54,5 +54,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMenuItemService, MenuItemService>();
         services.AddSingleton<IRestaurantOrderService, RestaurantOrderService>();
         services.AddSingleton<IOrderItemService, OrderItemService>();
+        services.AddSingleton<IKvnService, KvnService>();
     }
 }

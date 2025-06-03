@@ -539,6 +539,19 @@ public static class ModelConstants
 
     }
 
+    public static class Kvn
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinPart = 3;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxPart = 10;
+    }
+
     public static class Adoption
     {
         /// <summary>
