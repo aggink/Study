@@ -1,4 +1,5 @@
 ﻿using CoreLib.Common.Extensions;
+using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Database;
@@ -8,31 +9,21 @@ namespace Study.Lab3.Logic.Services.BeautySalon;
 
 public sealed class BeautyServiceService : IBeautyServiceService
 {
-    public async Task CreateOrUpdateBeautyServiceValidate(
+    public async Task CreateOrUpdateBeautyServiceValidateAndThrowAsync(
         DataContext dataContext,
         BeautyService beautyservice,
         CancellationToken cancellationToken = default)
     {
         /// Проверка правильности ввода названия услуги
-        if (string.IsNullOrWhiteSpace(beautyservice.ServiceName))
+        if (string.IsNullOrWhiteSpace(beautyservice.ServiceName) || (beautyservice.ServiceName.Length > ModelConstants.BeautyService.ServiceName))
         {
-            throw new BusinessLogicException($"Название услуги не может быть пустым!");
-        }
-
-        if (beautyservice.ServiceName.Length > ModelConstants.BeautyService.ServiceName)
-        {
-            throw new BusinessLogicException($"Название услуги не может превышать {ModelConstants.BeautyService.ServiceName} символов!");
+            throw new BusinessLogicException($"Название услуги не может быть пустым и не может превышать {ModelConstants.BeautyService.ServiceName} символов!");
         }
 
         /// Проверка правильности ввода описания услуги
-        if (string.IsNullOrWhiteSpace(beautyservice.Description))
+        if (string.IsNullOrWhiteSpace(beautyservice.Description) || (beautyservice.Description.Length > ModelConstants.BeautyService.Description))
         {
-            throw new BusinessLogicException($"Описание услуги не может быть пустым!");
-        }
-
-        if (beautyservice.Description.Length > ModelConstants.BeautyService.Description)
-        {
-            throw new BusinessLogicException($"Описание услуги не может превышать {ModelConstants.BeautyService.Description} символов!");
+            throw new BusinessLogicException($"Описание услуги не может быть пустым и не может превышать {ModelConstants.BeautyService.Description} символов!");
         }
 
         /// Проверка правильности ввода цены
@@ -48,11 +39,15 @@ public sealed class BeautyServiceService : IBeautyServiceService
         }
     }
 
-    public async Task DeleteBeautyServiceValidate(
+    public async Task CanDeleteAndThrowAsync(
         DataContext dataContext,
         BeautyService beautyservice,
         CancellationToken cancellationToken = default)
     {
-        return;
+        bool hasAppointments = await dataContext.BeautyAppointments.AnyAsync(x => x.IsnService == beautyservice.IsnService, cancellationToken);
+        if (hasAppointments)
+        {
+            throw new BusinessLogicException("Невозможно удалить услугу, котор используется в заказах");
+        }
     }
 }

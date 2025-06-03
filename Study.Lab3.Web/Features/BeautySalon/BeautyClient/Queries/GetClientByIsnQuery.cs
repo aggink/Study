@@ -40,6 +40,7 @@ public sealed class GetClientByIsnQueryHandler : IRequestHandler<GetClientByIsnQ
         return new ClientDto
         {
             IsnClient = client.IsnClient,
+            IsnAppointment = client.IsnAppointment,
             FirstName = client.FirstName,
             LastName = client.LastName,
             PhoneNumber = client.PhoneNumber,

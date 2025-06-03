@@ -43,7 +43,7 @@ public sealed class UpdateServiceCommandHandler : IRequestHandler<UpdateServiceC
         service.Price = request.Service.Price;
         service.Duration = request.Service.Duration;
 
-        await _serviceService.CreateOrUpdateBeautyServiceValidate(_dataContext, service, cancellationToken);
+        await _serviceService.CreateOrUpdateBeautyServiceValidateAndThrowAsync(_dataContext, service, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
         return service.IsnService;

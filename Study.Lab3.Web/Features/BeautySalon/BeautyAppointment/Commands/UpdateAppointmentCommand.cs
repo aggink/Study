@@ -43,7 +43,7 @@ public sealed class UpdateAppointmentCommandHandler : IRequestHandler<UpdateAppo
         appointment.Hour = request.Appointment.Hour;
         appointment.Minutes = request.Appointment.Minutes;
 
-        await _appointmentService.CreateOrUpdateAppointmentValidate(_dataContext, appointment, cancellationToken);
+        await _appointmentService.CreateOrUpdateAppointmentValidateAndThrowAsync(_dataContext, appointment, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
         return appointment.IsnAppointment;

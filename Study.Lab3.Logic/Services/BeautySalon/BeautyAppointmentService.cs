@@ -1,4 +1,5 @@
 ﻿using CoreLib.Common.Extensions;
+using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Database;
@@ -8,7 +9,7 @@ namespace Study.Lab3.Logic.Services.BeautySalon;
 
 public sealed class BeautyAppointmentService : IBeautyAppointmentService
 {
-    public async Task CreateOrUpdateAppointmentValidate(
+    public async Task CreateOrUpdateAppointmentValidateAndThrowAsync(
         DataContext dataContext,
         BeautyAppointment appointment,
         CancellationToken cancellationToken = default)
@@ -38,11 +39,15 @@ public sealed class BeautyAppointmentService : IBeautyAppointmentService
         }
     }
 
-    public async Task DeleteAppointmentValidate(
+    public async Task CanDeleteAndThrowAsync(
         DataContext dataContext,
         BeautyAppointment appointment,
         CancellationToken cancellationToken = default)
     {
-        return;
+        bool hasClients = await dataContext.BeautyClients.AnyAsync(x => x.IsnAppointment == appointment.IsnAppointment, cancellationToken);
+        if (hasClients)
+        {
+            throw new BusinessLogicException("Невозможно удалить запись, на записался клиент!");
+        }
     }
 }

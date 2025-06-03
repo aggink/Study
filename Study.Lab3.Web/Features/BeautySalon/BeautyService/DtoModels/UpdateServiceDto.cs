@@ -30,12 +30,12 @@ public sealed record UpdateServiceDto
     /// </summary>
     [Required]
     [Range(ModelConstants.BeautyService.MinServicePrice, ModelConstants.BeautyService.MaxServicePrice)]
-    public int Price { get; set; }
+    public int Price { get; init; }
 
     /// <summary>
     /// Длительность
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.BeautyService.Duration)]
-    public int Duration { get; set; }
+    public int Duration { get; init; }
 }

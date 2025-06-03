@@ -16,6 +16,18 @@ public class BeautyAppointment
     public Guid IsnAppointment { get; set; }
 
     /// <summary>
+    /// ID клиента
+    /// </summary>
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public Guid IsnClient { get; set; }
+
+    /// <summary>
+    /// ID услуги 
+    /// </summary>
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public Guid IsnService { get; set; }
+
+    /// <summary>
     /// День записи
     /// </summary>
     [Required, MaxLength(ModelConstants.BeautyAppointment.Day)]

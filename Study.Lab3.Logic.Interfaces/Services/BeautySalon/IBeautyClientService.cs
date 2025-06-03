@@ -11,7 +11,7 @@ public interface IBeautyClientService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="beautyclient">Клиент салона</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task CreateOrUpdateBeautyClientValidate(
+    Task CreateOrUpdateBeautyClientValidateAndThrowAsync(
         DataContext dataContext,
         BeautyClient beautyclient,
         CancellationToken cancellationToken = default);
@@ -22,7 +22,7 @@ public interface IBeautyClientService
     /// <param name="dataContext">Контекст базы данных</param>
     /// <param name="beautyclient">Клиент салона</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    Task DeleteBeautyClientValidate(
+    Task CanDeleteAndThrowAsync(
         DataContext dataContext,
         BeautyClient beautyclient,
         CancellationToken cancellationToken = default);

@@ -6,6 +6,18 @@ namespace Study.Lab3.Web.Features.BeautySalon.BeautyAppointment.DtoModels;
 public sealed record CreateAppointmentDto
 {
     /// <summary>
+    /// ID клиента
+    /// </summary>
+    [Required]
+    public Guid IsnClient { get; init; }
+
+    /// <summary>
+    /// ID услуги
+    /// </summary>
+    [Required]
+    public Guid IsnService { get; init; }
+
+    /// <summary>
     /// День записи
     /// </summary>
     [Required]

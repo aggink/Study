@@ -7,6 +7,16 @@ public sealed record AppointmentDto
     public Guid IsnAppointment { get; init; }
 
     /// <summary>
+    /// ID клиента
+    /// </summary>
+    public Guid IsnClient { get; init; }
+
+    /// <summary>
+    /// ID услуги
+    /// </summary>
+    public Guid IsnService { get; init; }
+
+    /// <summary>
     /// День записи
     /// </summary>
     public int Day { get; init; }

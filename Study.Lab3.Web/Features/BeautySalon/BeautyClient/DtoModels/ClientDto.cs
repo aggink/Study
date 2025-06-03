@@ -7,6 +7,11 @@ public sealed record ClientDto
     public Guid IsnClient { get; init; }
 
     /// <summary>
+    /// ID записи
+    /// </summary>
+    public Guid IsnAppointment { get; init; }
+
+    /// <summary>
     /// Имя клиента
     /// </summary>
     public string FirstName { get; init; }

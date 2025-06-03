@@ -42,7 +42,7 @@ public sealed class CreateServiceCommandHandler : IRequestHandler<CreateServiceC
             Duration = request.Service.Duration,
         };
 
-        await _serviceService.CreateOrUpdateBeautyServiceValidate(_dataContext, service, cancellationToken);
+        await _serviceService.CreateOrUpdateBeautyServiceValidateAndThrowAsync(_dataContext, service, cancellationToken);
 
         await _dataContext.BeautyServices.AddAsync(service, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);

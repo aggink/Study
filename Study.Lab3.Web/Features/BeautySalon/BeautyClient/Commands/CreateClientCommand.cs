@@ -36,13 +36,14 @@ public sealed class CreateClientCommandHandler : IRequestHandler<CreateClientCom
         var client = new Storage.Models.BeautySalon.BeautyClient
         {
             IsnClient = Guid.NewGuid(),
+            IsnAppointment = Guid.NewGuid(),
             FirstName = request.Client.FirstName,
             LastName = request.Client.LastName,
             PhoneNumber = request.Client.PhoneNumber,
             EmailAddress = request.Client.EmailAddress,
         };
 
-        await _clientService.CreateOrUpdateBeautyClientValidate(_dataContext, client, cancellationToken);
+        await _clientService.CreateOrUpdateBeautyClientValidateAndThrowAsync(_dataContext, client, cancellationToken);
 
         await _dataContext.BeautyClients.AddAsync(client, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);

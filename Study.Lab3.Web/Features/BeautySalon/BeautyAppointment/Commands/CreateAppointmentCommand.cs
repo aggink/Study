@@ -36,13 +36,15 @@ public sealed class CreateAppointmentCommandHandler : IRequestHandler<CreateAppo
         var appointment = new Storage.Models.BeautySalon.BeautyAppointment
         {
             IsnAppointment = Guid.NewGuid(),
+            IsnClient = Guid.NewGuid(),
+            IsnService = Guid.NewGuid(),
             Day = request.Appointment.Day,
             Month = request.Appointment.Month,
             Hour = request.Appointment.Hour,
             Minutes = request.Appointment.Minutes,
         };
 
-        await _appointmentService.CreateOrUpdateAppointmentValidate(_dataContext, appointment, cancellationToken);
+        await _appointmentService.CreateOrUpdateAppointmentValidateAndThrowAsync(_dataContext, appointment, cancellationToken);
 
         await _dataContext.BeautyAppointments.AddAsync(appointment, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);

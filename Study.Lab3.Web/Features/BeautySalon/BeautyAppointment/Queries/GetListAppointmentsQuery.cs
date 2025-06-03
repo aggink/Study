@@ -28,6 +28,8 @@ public sealed class GetListAppointmentsQueryHandler : IRequestHandler<GetListApp
             .Select(x => new AppointmentDto
             {
                 IsnAppointment = x.IsnAppointment,
+                IsnClient = x.IsnClient,
+                IsnService = x.IsnService,
                 Day = x.Day,
                 Month = x.Month,
                 Hour = x.Hour,

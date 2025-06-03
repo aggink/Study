@@ -43,7 +43,7 @@ public sealed class UpdateClientCommandHandler : IRequestHandler<UpdateClientCom
         client.PhoneNumber = request.Client.PhoneNumber;
         client.EmailAddress = request.Client.EmailAddress;
 
-        await _clientService.CreateOrUpdateBeautyClientValidate(_dataContext, client, cancellationToken);
+        await _clientService.CreateOrUpdateBeautyClientValidateAndThrowAsync(_dataContext, client, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
         return client.IsnClient;
