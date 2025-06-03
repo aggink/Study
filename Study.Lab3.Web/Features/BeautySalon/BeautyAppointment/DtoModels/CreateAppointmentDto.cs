@@ -21,27 +21,27 @@ public sealed record CreateAppointmentDto
     /// День записи
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.BeautyAppointment.Day)]
+    [Range(0, ModelConstants.BeautyAppointment.Day)]
     public int Day { get; init; }
 
     /// <summary>
     /// Месяц записи
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.BeautyAppointment.Month)]
+    [Range(0, ModelConstants.BeautyAppointment.Month)]
     public int Month { get; init; }
 
     /// <summary>
     /// Час записи
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.BeautyAppointment.Hour)]
+    [Range(0, ModelConstants.BeautyAppointment.Hour)]
     public int Hour { get; init; }
 
     /// <summary>
     /// Минуты
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.BeautyAppointment.Minutes)]
+    [Range(0, ModelConstants.BeautyAppointment.Minutes)]
     public int Minutes { get; init; }
 }

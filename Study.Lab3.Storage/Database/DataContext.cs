@@ -209,6 +209,7 @@ public class DataContext : DbContext
     public virtual DbSet<OrderItem> OrderItems { get; set; }
 
     #endregion
+
     #region BeautySalon
 
     /// <summary>

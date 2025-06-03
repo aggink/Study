@@ -1,4 +1,5 @@
 namespace Study.Lab3.Web.Features.BeautySalon.BeautyAppointment.DtoModels;
+
 public sealed record AppointmentDto
 {
     /// <summary>

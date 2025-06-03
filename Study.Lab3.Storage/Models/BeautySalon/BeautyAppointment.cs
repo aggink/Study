@@ -30,25 +30,25 @@ public class BeautyAppointment
     /// <summary>
     /// День записи
     /// </summary>
-    [Required, MaxLength(ModelConstants.BeautyAppointment.Day)]
+    [Required, Range(0, ModelConstants.BeautyAppointment.Day)]
     public int Day { get; set; }
 
     /// <summary>
     /// Месяц записи
     /// </summary>
-    [Required, MaxLength(ModelConstants.BeautyAppointment.Month)]
+    [Required, Range(0, ModelConstants.BeautyAppointment.Month)]
     public int Month { get; set; }
 
     /// <summary>
     /// Час записи
     /// </summary>
-    [Required, MaxLength(ModelConstants.BeautyAppointment.Hour)]
+    [Required, Range(0, ModelConstants.BeautyAppointment.Hour)]
     public int Hour { get; set; }
 
     /// <summary>
     /// Минуты
     /// </summary>
-    [Required, MaxLength(ModelConstants.BeautyAppointment.Minutes)]
+    [Required, Range(0, ModelConstants.BeautyAppointment.Minutes)]
     public int Minutes { get; set; }
 
     public virtual BeautyClient BeautyClient { get; set; }

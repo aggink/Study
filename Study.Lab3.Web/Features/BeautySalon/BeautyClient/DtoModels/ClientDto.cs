@@ -1,4 +1,5 @@
 namespace Study.Lab3.Web.Features.BeautySalon.BeautyClient.DtoModels;
+
 public sealed record ClientDto
 {
     /// <summary>

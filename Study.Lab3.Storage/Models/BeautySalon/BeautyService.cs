@@ -36,7 +36,7 @@ public class BeautyService
     /// <summary>
     /// Длительность услуги
     /// </summary>
-    [Required, MaxLength(ModelConstants.BeautyService.Duration)]
+    [Required, Range(0, ModelConstants.BeautyService.Duration)]
     public int Duration { get; set; }
 
     [InverseProperty(nameof(BeautyAppointment.BeautyService))]

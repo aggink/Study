@@ -30,6 +30,6 @@ public sealed record CreateServiceDto
     /// Длительность
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants.BeautyService.Duration)]
+    [Range(0, ModelConstants.BeautyService.Duration)]
     public int Duration { get; init; }
 }
