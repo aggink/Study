@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Restaurants.Orders.DtoModels;
 
-public sealed record UpdateOrderDto
+public sealed record UpdateRestaurantOrderDto
 {
     /// <summary>
     /// Идентификатор заказа

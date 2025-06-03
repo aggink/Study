@@ -11,7 +11,7 @@ namespace Study.Lab3.Web.Features.Restaurants.Orders.Queries;
 /// <summary>
 /// Получение заказов ресторана
 /// </summary>
-public sealed class GetOrdersByRestaurantQuery : IRequest<OrderDto[]>
+public sealed class GetOrdersByRestaurantQuery : IRequest<RestaurantOrderDto[]>
 {
     /// <summary>
     /// Идентификатор ресторана
@@ -27,7 +27,7 @@ public sealed class GetOrdersByRestaurantQuery : IRequest<OrderDto[]>
     public string Status { get; init; }
 }
 
-public sealed class GetOrdersByRestaurantQueryHandler : IRequestHandler<GetOrdersByRestaurantQuery, OrderDto[]>
+public sealed class GetOrdersByRestaurantQueryHandler : IRequestHandler<GetOrdersByRestaurantQuery, RestaurantOrderDto[]>
 {
     private readonly DataContext _dataContext;
 
@@ -36,7 +36,7 @@ public sealed class GetOrdersByRestaurantQueryHandler : IRequestHandler<GetOrder
         _dataContext = dataContext;
     }
 
-    public async Task<OrderDto[]> Handle(GetOrdersByRestaurantQuery request, CancellationToken cancellationToken)
+    public async Task<RestaurantOrderDto[]> Handle(GetOrdersByRestaurantQuery request, CancellationToken cancellationToken)
     {
         if (!await _dataContext.Restaurants.AnyAsync(x => x.IsnRestaurant == request.IsnRestaurant, cancellationToken))
             throw new BusinessLogicException($"Ресторан с идентификатором \"{request.IsnRestaurant}\" не существует");
@@ -51,7 +51,7 @@ public sealed class GetOrdersByRestaurantQueryHandler : IRequestHandler<GetOrder
         }
 
         return await query
-            .Select(x => new OrderDto
+            .Select(x => new RestaurantOrderDto
             {
                 IsnOrder = x.IsnOrder,
                 IsnRestaurant = x.IsnRestaurant,
