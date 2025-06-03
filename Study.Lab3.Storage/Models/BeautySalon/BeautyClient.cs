@@ -18,7 +18,7 @@ public class BeautyClient
     /// <summary>
     /// ID записи клиента
     /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [Required]
     public Guid IsnAppointment { get; set; }
 
     /// <summary>

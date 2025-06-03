@@ -18,13 +18,13 @@ public class BeautyAppointment
     /// <summary>
     /// ID клиента
     /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [Required]
     public Guid IsnClient { get; set; }
 
     /// <summary>
     /// ID услуги 
     /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    [Required]
     public Guid IsnService { get; set; }
 
     /// <summary>

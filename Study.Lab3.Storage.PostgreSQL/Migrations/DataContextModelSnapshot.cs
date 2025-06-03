@@ -35,6 +35,12 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(24)
                         .HasColumnType("integer");
 
+                    b.Property<Guid>("IsnClient")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnService")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("Minutes")
                         .HasMaxLength(60)
                         .HasColumnType("integer");
@@ -62,6 +68,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
+
+                    b.Property<Guid>("IsnAppointment")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("LastName")
                         .IsRequired()

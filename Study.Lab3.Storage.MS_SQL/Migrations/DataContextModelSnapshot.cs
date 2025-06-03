@@ -35,6 +35,12 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasMaxLength(24)
                         .HasColumnType("int");
 
+                    b.Property<Guid>("IsnClient")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnService")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Minutes")
                         .HasMaxLength(60)
                         .HasColumnType("int");
@@ -62,6 +68,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("IsnAppointment")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LastName")
                         .IsRequired()
