@@ -23,7 +23,7 @@ public sealed class GetListClientsQueryHandler : IRequestHandler<GetListClientsQ
 
     public async Task<ClientDto[]> Handle(GetListClientsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.BeautyClients
+        return await _dataContext.BeautyClient
             .AsNoTracking()
             .Select(x => new ClientDto
             {

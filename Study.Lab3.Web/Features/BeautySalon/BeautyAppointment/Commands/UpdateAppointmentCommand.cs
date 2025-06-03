@@ -35,7 +35,7 @@ public sealed class UpdateAppointmentCommandHandler : IRequestHandler<UpdateAppo
 
     public async Task<Guid> Handle(UpdateAppointmentCommand request, CancellationToken cancellationToken)
     {
-        var appointment = await _dataContext.BeautyAppointments.FirstOrDefaultAsync(x => x.IsnAppointment == request.Appointment.IsnAppointment, cancellationToken)
+        var appointment = await _dataContext.BeautyAppointment.FirstOrDefaultAsync(x => x.IsnAppointment == request.Appointment.IsnAppointment, cancellationToken)
                 ?? throw new BusinessLogicException($"Записи с идентификатором \"{request.Appointment.IsnAppointment}\" не существует!");
 
         appointment.Day = request.Appointment.Day;

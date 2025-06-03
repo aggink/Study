@@ -44,7 +44,7 @@ public sealed class BeautyServiceService : IBeautyServiceService
         BeautyService beautyservice,
         CancellationToken cancellationToken = default)
     {
-        bool hasAppointments = await dataContext.BeautyAppointments.AnyAsync(x => x.IsnBeautyService == beautyservice.IsnService, cancellationToken);
+        bool hasAppointments = await dataContext.BeautyAppointment.AnyAsync(x => x.IsnBeautyService == beautyservice.IsnService, cancellationToken);
         if (hasAppointments)
         {
             throw new BusinessLogicException("Невозможно удалить услугу, котор используется в заказах");

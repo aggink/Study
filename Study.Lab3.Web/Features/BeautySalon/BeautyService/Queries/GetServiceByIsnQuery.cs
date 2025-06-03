@@ -32,7 +32,7 @@ public sealed class GetServiceByIsnQueryHandler : IRequestHandler<GetServiceByIs
 
     public async Task<ServiceDto> Handle(GetServiceByIsnQuery request, CancellationToken cancellationToken)
     {
-        var service = await _dataContext.BeautyServices
+        var service = await _dataContext.BeautyService
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnService == request.IsnService, cancellationToken)
             ?? throw new BusinessLogicException($"Услуги с идентификатором \"{request.IsnService}\" не существует!");

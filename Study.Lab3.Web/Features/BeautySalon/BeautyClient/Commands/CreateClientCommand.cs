@@ -44,7 +44,7 @@ public sealed class CreateClientCommandHandler : IRequestHandler<CreateClientCom
 
         await _clientService.CreateOrUpdateBeautyClientValidateAndThrowAsync(_dataContext, client, cancellationToken);
 
-        await _dataContext.BeautyClients.AddAsync(client, cancellationToken);
+        await _dataContext.BeautyClient.AddAsync(client, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return client.IsnClient;

@@ -34,10 +34,10 @@ public sealed class DeleteClientCommandHandler : IRequestHandler<DeleteClientCom
 
     public async Task Handle(DeleteClientCommand request, CancellationToken cancellationToken)
     {
-        var client = await _dataContext.BeautyClients.FirstOrDefaultAsync(x => x.IsnClient == request.IsnClient, cancellationToken)
+        var client = await _dataContext.BeautyClient.FirstOrDefaultAsync(x => x.IsnClient == request.IsnClient, cancellationToken)
                 ?? throw new BusinessLogicException($"Клиента с идентификатором \"{request.IsnClient}\" не существует!");
 
-        _dataContext.BeautyClients.Remove(client);
+        _dataContext.BeautyClient.Remove(client);
         await _dataContext.SaveChangesAsync(cancellationToken);
         return;
     }

@@ -35,7 +35,7 @@ public sealed class UpdateServiceCommandHandler : IRequestHandler<UpdateServiceC
 
     public async Task<Guid> Handle(UpdateServiceCommand request, CancellationToken cancellationToken)
     {
-        var service = await _dataContext.BeautyServices.FirstOrDefaultAsync(x => x.IsnService == request.Service.IsnService, cancellationToken)
+        var service = await _dataContext.BeautyService.FirstOrDefaultAsync(x => x.IsnService == request.Service.IsnService, cancellationToken)
                 ?? throw new BusinessLogicException($"Услуги с идентификатором \"{request.Service.IsnService}\" не существует!");
 
         service.ServiceName = request.Service.ServiceName;

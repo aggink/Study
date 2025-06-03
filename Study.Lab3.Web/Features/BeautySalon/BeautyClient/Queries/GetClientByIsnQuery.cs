@@ -32,7 +32,7 @@ public sealed class GetClientByIsnQueryHandler : IRequestHandler<GetClientByIsnQ
 
     public async Task<ClientDto> Handle(GetClientByIsnQuery request, CancellationToken cancellationToken)
     {
-        var client = await _dataContext.BeautyClients
+        var client = await _dataContext.BeautyClient
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnClient == request.IsnClient, cancellationToken)
             ?? throw new BusinessLogicException($"Клиента с идентификатором \"{request.IsnClient}\" не существует!");

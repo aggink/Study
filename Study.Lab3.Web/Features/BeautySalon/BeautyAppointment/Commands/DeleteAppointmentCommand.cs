@@ -34,10 +34,10 @@ public sealed class DeleteAppointmentCommandHandler : IRequestHandler<DeleteAppo
 
     public async Task Handle(DeleteAppointmentCommand request, CancellationToken cancellationToken)
     {
-        var appointment = await _dataContext.BeautyAppointments.FirstOrDefaultAsync(x => x.IsnAppointment == request.IsnAppointment, cancellationToken)
+        var appointment = await _dataContext.BeautyAppointment.FirstOrDefaultAsync(x => x.IsnAppointment == request.IsnAppointment, cancellationToken)
                 ?? throw new BusinessLogicException($"Записи с идентификатором \"{request.IsnAppointment}\" не существует!");
 
-        _dataContext.BeautyAppointments.Remove(appointment);
+        _dataContext.BeautyAppointment.Remove(appointment);
         await _dataContext.SaveChangesAsync(cancellationToken);
         return;
     }

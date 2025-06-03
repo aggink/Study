@@ -44,7 +44,7 @@ public sealed class CreateServiceCommandHandler : IRequestHandler<CreateServiceC
 
         await _serviceService.CreateOrUpdateBeautyServiceValidateAndThrowAsync(_dataContext, service, cancellationToken);
 
-        await _dataContext.BeautyServices.AddAsync(service, cancellationToken);
+        await _dataContext.BeautyService.AddAsync(service, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return service.IsnService;

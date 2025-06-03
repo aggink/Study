@@ -35,7 +35,7 @@ public sealed class UpdateClientCommandHandler : IRequestHandler<UpdateClientCom
 
     public async Task<Guid> Handle(UpdateClientCommand request, CancellationToken cancellationToken)
     {
-        var client = await _dataContext.BeautyClients.FirstOrDefaultAsync(x => x.IsnClient == request.Client.IsnClient, cancellationToken)
+        var client = await _dataContext.BeautyClient.FirstOrDefaultAsync(x => x.IsnClient == request.Client.IsnClient, cancellationToken)
                 ?? throw new BusinessLogicException($"Клиента с идентификатором \"{request.Client.IsnClient}\" не существует!");
 
         client.FirstName = request.Client.FirstName;

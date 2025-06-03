@@ -32,7 +32,7 @@ public sealed class GetAppointmentByIsnQueryHandler : IRequestHandler<GetAppoint
 
     public async Task<AppointmentDto> Handle(GetAppointmentByIsnQuery request, CancellationToken cancellationToken)
     {
-        var appointment = await _dataContext.BeautyAppointments
+        var appointment = await _dataContext.BeautyAppointment
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnAppointment == request.IsnAppointment, cancellationToken)
             ?? throw new BusinessLogicException($"Записи с идентификатором \"{request.IsnAppointment}\" не существует!");

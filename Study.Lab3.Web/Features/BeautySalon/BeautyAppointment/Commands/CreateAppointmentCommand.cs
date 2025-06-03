@@ -46,7 +46,7 @@ public sealed class CreateAppointmentCommandHandler : IRequestHandler<CreateAppo
 
         await _appointmentService.CreateOrUpdateAppointmentValidateAndThrowAsync(_dataContext, appointment, cancellationToken);
 
-        await _dataContext.BeautyAppointments.AddAsync(appointment, cancellationToken);
+        await _dataContext.BeautyAppointment.AddAsync(appointment, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return appointment.IsnAppointment;

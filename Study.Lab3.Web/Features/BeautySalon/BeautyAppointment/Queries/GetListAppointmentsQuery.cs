@@ -23,7 +23,7 @@ public sealed class GetListAppointmentsQueryHandler : IRequestHandler<GetListApp
 
     public async Task<AppointmentDto[]> Handle(GetListAppointmentsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.BeautyAppointments
+        return await _dataContext.BeautyAppointment
             .AsNoTracking()
             .Select(x => new AppointmentDto
             {

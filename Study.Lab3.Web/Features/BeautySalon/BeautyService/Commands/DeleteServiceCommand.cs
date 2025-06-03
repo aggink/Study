@@ -34,10 +34,10 @@ public sealed class DeleteServiceCommandHandler : IRequestHandler<DeleteServiceC
 
     public async Task Handle(DeleteServiceCommand request, CancellationToken cancellationToken)
     {
-        var service = await _dataContext.BeautyServices.FirstOrDefaultAsync(x => x.IsnService == request.IsnService, cancellationToken)
+        var service = await _dataContext.BeautyService.FirstOrDefaultAsync(x => x.IsnService == request.IsnService, cancellationToken)
                 ?? throw new BusinessLogicException($"Услуги с идентификатором \"{request.IsnService}\" не существует!");
 
-        _dataContext.BeautyServices.Remove(service);
+        _dataContext.BeautyService.Remove(service);
         await _dataContext.SaveChangesAsync(cancellationToken);
         return;
     }
