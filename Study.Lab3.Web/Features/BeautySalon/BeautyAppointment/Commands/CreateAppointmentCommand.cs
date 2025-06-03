@@ -36,8 +36,8 @@ public sealed class CreateAppointmentCommandHandler : IRequestHandler<CreateAppo
         var appointment = new Storage.Models.BeautySalon.BeautyAppointment
         {
             IsnAppointment = Guid.NewGuid(),
-            IsnClient = Guid.NewGuid(),
-            IsnService = Guid.NewGuid(),
+            IsnBeautyClient = Guid.NewGuid(),
+            IsnBeautyService = Guid.NewGuid(),
             Day = request.Appointment.Day,
             Month = request.Appointment.Month,
             Hour = request.Appointment.Hour,

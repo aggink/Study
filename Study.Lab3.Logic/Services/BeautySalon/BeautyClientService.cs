@@ -44,7 +44,7 @@ public sealed class BeautyClientService : IBeautyClientService
         BeautyClient beautyclient,
         CancellationToken cancellationToken = default)
     {
-        bool hasApointments = await dataContext.BeautyAppointments.AnyAsync(x => x.IsnClient == beautyclient.IsnClient, cancellationToken);
+        bool hasApointments = await dataContext.BeautyAppointments.AnyAsync(x => x.IsnBeautyClient == beautyclient.IsnClient, cancellationToken);
         if (hasApointments)
         {
             throw new BusinessLogicException("Невозможно удалить клиента, у которого есть связанные записи на услуги!");

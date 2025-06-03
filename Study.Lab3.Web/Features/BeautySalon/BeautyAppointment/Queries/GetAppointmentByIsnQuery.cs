@@ -40,8 +40,8 @@ public sealed class GetAppointmentByIsnQueryHandler : IRequestHandler<GetAppoint
         return new AppointmentDto
         {
             IsnAppointment = appointment.IsnAppointment,
-            IsnClient = appointment.IsnClient,
-            IsnService = appointment.IsnService,
+            IsnClient = appointment.IsnBeautyClient,
+            IsnService = appointment.IsnBeautyService,
             Day = appointment.Day,
             Month = appointment.Month,
             Hour = appointment.Hour,
