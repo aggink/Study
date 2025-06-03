@@ -1,6 +1,6 @@
 namespace Study.Lab3.Web.Features.Restaurants.Orders.DtoModels;
 
-public sealed record OrderDto
+public sealed record RestaurantOrderDto
 {
     /// <summary>
     /// Идентификатор заказа

@@ -6,7 +6,7 @@ namespace Study.Lab3.Web.Features.HospitalStore.Order.DtoModels;
 /// <summary>
 /// DTO для создания заказа
 /// </summary>
-public sealed record CreateOrderDto
+public sealed record CreateHospitalStoreOrderDto
 {
     /// <summary>
     /// Идентификатор пациента

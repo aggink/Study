@@ -19,7 +19,7 @@ public sealed class UpdateOrderCommand : IRequest<Guid>
     /// </summary>
     [Required]
     [FromBody]
-    public UpdateOrderDto Order { get; init; }
+    public UpdateHospitalStoreOrderDto Order { get; init; }
 }
 
 public sealed class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Guid>
