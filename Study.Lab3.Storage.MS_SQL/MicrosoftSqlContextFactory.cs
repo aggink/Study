@@ -6,7 +6,7 @@ namespace Study.Lab3.Storage.MS_SQL
 {
     public class MicrosoftSqlContextFactory : IDesignTimeDbContextFactory<DataContext>
     {
-        private const string DbConnectionString = "Server=localhost,1433;Database=Study;User Id=user_developer;Password=user_developer;TrustServerCertificate=True;";
+        private const string DbConnectionString = "Server=localhost,1433;Database=Study;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;";
 
         public DataContext CreateDbContext(string[] args)
         {
