@@ -33,9 +33,9 @@ public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateShelter
     public async Task<Guid> Handle(UpdateShelterCustomerCommand request, CancellationToken cancellationToken)
     {
         var customer = await _dataContext.ShelterCustomers
-                           .FirstOrDefaultAsync(c => c.IsnCustomer == request.ShelterCustomer.Id, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnCustomer == request.ShelterCustomer.IsnCustomer, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Клиент с идентификатором \"{request.ShelterCustomer.Id}\" не существует");
+                           $"Клиент с идентификатором \"{request.ShelterCustomer.IsnCustomer}\" не существует");
 
         // Проверка уникальности email
         if (customer.Email != request.ShelterCustomer.Email && 

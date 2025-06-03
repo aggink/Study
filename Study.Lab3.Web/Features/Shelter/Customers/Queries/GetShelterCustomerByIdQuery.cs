@@ -18,7 +18,7 @@ public sealed class GetShelterCustomerByIdQuery : IRequest<ShelterCustomerDto>
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid CustomerId { get; init; }
+    public Guid IsnCustomer { get; init; }
 }
 
 public sealed class GetCustomerByIdQueryHandler : IRequestHandler<GetShelterCustomerByIdQuery, ShelterCustomerDto>
@@ -34,13 +34,13 @@ public sealed class GetCustomerByIdQueryHandler : IRequestHandler<GetShelterCust
     {
         var customer = await _dataContext.ShelterCustomers
                            .AsNoTracking()
-                           .FirstOrDefaultAsync(c => c.IsnCustomer == request.CustomerId, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnCustomer == request.IsnCustomer, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Клиент с идентификатором \"{request.CustomerId}\" не существует");
+                           $"Клиент с идентификатором \"{request.IsnCustomer}\" не существует");
 
         return new ShelterCustomerDto
         {
-            Id = customer.IsnCustomer,
+            IsnCustomer = customer.IsnCustomer,
             Name = customer.Name,
             LastName = customer.LastName,
             Email = customer.Email,

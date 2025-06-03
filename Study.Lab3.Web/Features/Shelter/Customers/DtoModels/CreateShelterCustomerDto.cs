@@ -24,7 +24,6 @@ public sealed record CreateShelterCustomerDto
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Email)]
-    [EmailAddress]
     public string Email { get; init; }
     
     /// <summary>

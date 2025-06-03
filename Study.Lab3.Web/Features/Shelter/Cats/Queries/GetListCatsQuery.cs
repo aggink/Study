@@ -28,7 +28,7 @@ public sealed class GetListCatsQueryHandler : IRequestHandler<GetListCatsQuery, 
             .OrderBy(c => c.Nickname)
             .Select(c => new CatDto
             {
-                Id = c.IsnCat,
+                IsnCat = c.IsnCat,
                 Nickname = c.Nickname,
                 BirthDate = c.BirthDate,
                 Description = c.Description,

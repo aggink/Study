@@ -29,7 +29,7 @@ public sealed class GetListCustomersQueryHandler : IRequestHandler<GetShelterLis
             .ThenBy(c => c.Name)
             .Select(c => new ShelterCustomerDto
             {
-                Id = c.IsnCustomer,
+                IsnCustomer = c.IsnCustomer,
                 Name = c.Name,
                 LastName = c.LastName,
                 Email = c.Email,

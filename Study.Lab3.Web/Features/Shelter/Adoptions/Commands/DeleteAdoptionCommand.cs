@@ -15,7 +15,7 @@ public sealed class DeleteAdoptionCommand : IRequest
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid AdoptionId { get; init; }
+    public Guid IsnAdoption { get; init; }
 }
 
 /// <summary>
@@ -33,8 +33,8 @@ public sealed class DeleteAdoptionCommandHandler : IRequestHandler<DeleteAdoptio
     public async Task Handle(DeleteAdoptionCommand request, CancellationToken cancellationToken)
     {
         var adoption = await _dataContext.Adoptions
-            .FirstOrDefaultAsync(a => a.IsnAdoption == request.AdoptionId, cancellationToken)
-            ?? throw new BusinessLogicException($"Усыновление с идентификатором \"{request.AdoptionId}\" не существует");
+            .FirstOrDefaultAsync(a => a.IsnAdoption == request.IsnAdoption, cancellationToken)
+            ?? throw new BusinessLogicException($"Усыновление с идентификатором \"{request.IsnAdoption}\" не существует");
 
         _dataContext.Adoptions.Remove(adoption);
         await _dataContext.SaveChangesAsync(cancellationToken);

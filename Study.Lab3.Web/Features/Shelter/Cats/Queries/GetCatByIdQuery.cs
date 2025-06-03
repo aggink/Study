@@ -19,7 +19,7 @@ public sealed class GetCatByIdQuery : IRequest<CatDto>
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid CatId { get; init; }
+    public Guid IsnCat { get; init; }
 }
 
 public sealed class GetCatByIdQueryHandler : IRequestHandler<GetCatByIdQuery, CatDto>
@@ -35,13 +35,13 @@ public sealed class GetCatByIdQueryHandler : IRequestHandler<GetCatByIdQuery, Ca
     {
         var cat = await _dataContext.Cats
                       .AsNoTracking()
-                      .FirstOrDefaultAsync(c => c.IsnCat == request.CatId, cancellationToken)
+                      .FirstOrDefaultAsync(c => c.IsnCat == request.IsnCat, cancellationToken)
                   ?? throw new BusinessLogicException(
-                      $"Кот с идентификатором \"{request.CatId}\" не существует");
+                      $"Кот с идентификатором \"{request.IsnCat}\" не существует");
 
         return new CatDto
         {
-            Id = cat.IsnCat,
+            IsnCat = cat.IsnCat,
             Nickname = cat.Nickname,
             BirthDate = cat.BirthDate,
             Description = cat.Description,

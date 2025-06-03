@@ -5,7 +5,7 @@ public sealed record UpdateShelterCustomerDto
     /// <summary>
     /// Идентификатор клиента
     /// </summary>
-    public Guid Id { get; init; }
+    public Guid IsnCustomer { get; init; }
 
     /// <summary>
     /// Имя клиента

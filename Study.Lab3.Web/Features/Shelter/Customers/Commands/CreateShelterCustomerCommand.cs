@@ -18,7 +18,7 @@ public class CreateShelterCustomerCommand : IRequest<Guid>
     /// Данные клиента
     /// </summary>
     [Required]
-    [FromBody]
+    [FromBody]  
     public CreateShelterCustomerDto ShelterCustomer { get; init; }
 }
 

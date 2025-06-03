@@ -9,14 +9,13 @@ public sealed record CatDto
     /// <summary>
     /// Идентификатор кота
     /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid Id { get; set; }
+    [Required]
+    public Guid IsnCat { get; set; }
 
     [Required]
     [MaxLength(ModelConstants.Cat.Nickname)]
     public string Nickname { get; set; }
-
-    [Required]
+    
     public DateTime? BirthDate { get; set; }
 
     [MaxLength(ModelConstants.Cat.Description)]

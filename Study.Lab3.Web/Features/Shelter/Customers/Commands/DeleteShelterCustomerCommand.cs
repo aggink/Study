@@ -14,7 +14,7 @@ public sealed class DeleteShelterCustomerCommand : IRequest
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid CustomerId { get; init; }
+    public Guid IsnCustomer { get; init; }
 }
 
 public sealed class DeleteCustomerCommandHandler : IRequestHandler<DeleteShelterCustomerCommand>
@@ -29,8 +29,8 @@ public sealed class DeleteCustomerCommandHandler : IRequestHandler<DeleteShelter
     public async Task Handle(DeleteShelterCustomerCommand request, CancellationToken cancellationToken)
     {
         var customer = await _dataContext.ShelterCustomers
-            .FirstOrDefaultAsync(c => c.IsnCustomer == request.CustomerId, cancellationToken)
-            ?? throw new BusinessLogicException($"Клиент с идентификатором \"{request.CustomerId}\" не существует");
+            .FirstOrDefaultAsync(c => c.IsnCustomer == request.IsnCustomer, cancellationToken)
+            ?? throw new BusinessLogicException($"Клиент с идентификатором \"{request.IsnCustomer}\" не существует");
 
         _dataContext.ShelterCustomers.Remove(customer);
         await _dataContext.SaveChangesAsync(cancellationToken);

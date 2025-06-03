@@ -33,8 +33,8 @@ public sealed class UpdateCatCommandHandler : IRequestHandler<UpdateCatCommand, 
     public async Task<Guid> Handle(UpdateCatCommand request, CancellationToken cancellationToken)
     {
         var cat = await _dataContext.Cats
-            .FirstOrDefaultAsync(c => c.IsnCat == request.Cat.Id, cancellationToken)
-            ?? throw new BusinessLogicException($"Кот с идентификатором \"{request.Cat.Id}\" не существует");
+            .FirstOrDefaultAsync(c => c.IsnCat == request.Cat.IsnCat, cancellationToken)
+            ?? throw new BusinessLogicException($"Кот с идентификатором \"{request.Cat.IsnCat}\" не существует");
 
         cat.Nickname = request.Cat.Nickname;
         cat.BirthDate = request.Cat.BirthDate;

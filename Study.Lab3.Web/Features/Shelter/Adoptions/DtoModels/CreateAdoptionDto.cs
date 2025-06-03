@@ -8,13 +8,13 @@ namespace Study.Lab3.Web.Features.Shelter.Adoptions.DtoModels;
 public sealed record CreateAdoptionDto
 {
     [Required]
-    [Range(ModelConstants.Adoption.PriceMin, ModelConstants.Adoption.PriceMax)]
     public int Price { get; set; }
 
     [Required]
-    public Guid CustomerId { get; set; }
+    public Guid IsnCustomer { get; set; }
 
-    public Guid CatId { get; set; }
+    [Required]
+    public Guid IsnCat { get; set; }
 
     [Required]
     public DateTime AdoptionDate { get; set; }

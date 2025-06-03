@@ -8,8 +8,7 @@ public class CreateCatDto
     [Required]
     [MaxLength(ModelConstants.Cat.Nickname)]
     public string Nickname { get; set; }
-
-    [Required]
+    
     public DateTime? BirthDate { get; set; }
 
     [Required]
