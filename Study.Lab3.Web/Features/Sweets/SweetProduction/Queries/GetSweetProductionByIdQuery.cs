@@ -32,7 +32,7 @@ public sealed class GetSweetProductionByIdQueryHandler : IRequestHandler<GetSwee
         _dataContext = dataContext;
     }
 
-    public async Task<SweetFactoryDto> Handle(GetSweetProductionByIdQuery request, CancellationToken cancellationToken)
+    public async Task<SweetProductionDto> Handle(GetSweetProductionByIdQuery request, CancellationToken cancellationToken)
     {
         var sweetproduction = await _dataContext.SweetProductions
                            .AsNoTracking()
@@ -40,7 +40,7 @@ public sealed class GetSweetProductionByIdQueryHandler : IRequestHandler<GetSwee
                        ?? throw new BusinessLogicException(
                            $"Фабрика с идентификатором \"{request.FactoryID}\" не существует");
 
-        return new SweetProduction
+        return new SweetProductionDto
         {
             FactoryID = sweetproduction.SweetFactoryID,
             SweetID = sweetproduction.SweetID

@@ -21,7 +21,7 @@ public sealed class DeleteSweetTypeCommand : IRequest
     /// </summary>
     [Required]
     [FromQuery]
-    public SweetTypeDto ID { get; init; }
+    public SweetTypeDto SweetType { get; init; }
 }
 
 public sealed class DeleteSweetTypeCommandHandler : IRequestHandler<DeleteSweetTypeCommand>
@@ -35,9 +35,9 @@ public sealed class DeleteSweetTypeCommandHandler : IRequestHandler<DeleteSweetT
 
     public async Task Handle(DeleteSweetTypeCommand request, CancellationToken cancellationToken)
     {
-        var sweettype = await _dataContext.SweetTypes.FirstOrDefaultAsync(c => c.ID == request.ID, cancellationToken)
+        var sweettype = await _dataContext.SweetTypes.FirstOrDefaultAsync(c => c.ID == request.SweetType.ID, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Sweet type с идентификатором \"{request.ID}\" не существует");
+                           $"Sweet type с идентификатором \"{request.SweetType.ID}\" не существует");
 
         // Удаление записи
         _dataContext.SweetTypes.Remove(sweettype);

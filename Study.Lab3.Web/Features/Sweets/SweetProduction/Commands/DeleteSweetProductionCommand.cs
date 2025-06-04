@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetProductions.Commands;
@@ -19,7 +20,7 @@ public sealed class DeleteSweetProductionCommand : IRequest
     /// </summary>
     [Required]
     [FromQuery]
-    public Int64 FactoryID { get; init; }
+    public SweetProductionDto SweetProduction { get; init; }
 }
 
 public sealed class DeleteSweetProductionCommandHandler : IRequestHandler<DeleteSweetProductionCommand>
@@ -33,9 +34,9 @@ public sealed class DeleteSweetProductionCommandHandler : IRequestHandler<Delete
 
     public async Task Handle(DeleteSweetProductionCommand request, CancellationToken cancellationToken)
     {
-        var sweetproduction = await _dataContext.SweetProductions.FirstOrDefaultAsync(c => c.SweetFactoryID == request.FactoryID, cancellationToken)
+        var sweetproduction = await _dataContext.SweetProductions.FirstOrDefaultAsync(c => c.SweetFactoryID == request.SweetProduction.FactoryID, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Фабрика с идентификатором \"{request.FactoryID}\" не существует");
+                           $"Фабрика с идентификатором \"{request.SweetProduction.FactoryID}\" не существует");
 
         // Удаление записи
         _dataContext.SweetProductions.Remove(sweetproduction);

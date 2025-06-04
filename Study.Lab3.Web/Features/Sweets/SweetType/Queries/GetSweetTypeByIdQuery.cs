@@ -4,45 +4,44 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetTypes.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Queries;
 /// <summary>
 /// Получение сладости по идентификатору
 /// </summary>
-public sealed class GetSweetFactoryByIdQuery : IRequest<SweetFactoryDto>
+public sealed class GetSweetTypeByIdQuery : IRequest<SweetTypeDto>
 {
     /// <summary>
     /// Идентификатор cладости
     /// </summary>
     [Required]
     [FromQuery]
-    public  Int64 FactoryID { get; init; }
+    public  Int64 ID { get; init; }
 }
 
-public sealed class GetSweetFactoryByIdQueryHandler : IRequestHandler<GetSweetFactoryByIdQuery, SweetFactoryDto>
+public sealed class GetSweetTypeByIdQueryHandler : IRequestHandler<GetSweetTypeByIdQuery, SweetTypeDto>
 {
     private readonly DataContext _dataContext;
 
-    public GetSweetFactoryByIdQueryHandler(DataContext dataContext)
+    public GetSweetTypeByIdQueryHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
 
-    public async Task<SweetFactoryDto> Handle(GetSweetFactoryByIdQuery request, CancellationToken cancellationToken)
+    public async Task<SweetTypeDto> Handle(GetSweetTypeByIdQuery request, CancellationToken cancellationToken)
     {
-        var sweetfactory = await _dataContext.SweetFactories
+        var sweettype = await _dataContext.SweetTypes
                            .AsNoTracking()
                            .FirstOrDefaultAsync(c => c.ID == request.ID, cancellationToken)
                        ?? throw new BusinessLogicException(
                            $"Фабрика с идентификатором \"{request.ID}\" не существует");
 
-        return new SweetFactoryDto
+        return new SweetTypeDto
         {
-            ID = sweetfactory.ID,
-            Name = sweetfactory.Name,
-            Address = sweetfactory.Address,
-            Volume = sweetfactory.Volume,
+            ID = sweettype.ID,
+            Name = sweettype.Name,
         };
     }
 }

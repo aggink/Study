@@ -6,13 +6,12 @@ using Study.Lab3.Web.Features.Sweets.SweetFactories.Queries;
 using Study.Lab3.Web.Features.Sweets.Sweets.Commands;
 using Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
 using Study.Lab3.Web.Features.Sweets.Sweets.Queries;
-using Study.Lab3.Web.Features.Sweets.SweetProduction.Commands;
-using Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetProduction.Queries;
-using Study.Lab3.Web.Features.Sweets.SweetType.Commands;
-using Study.Lab3.Web.Features.Sweets.SweetType.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetType.Queries;
-using Study.Lab3.Web.Features.Sweets.Commands;
+using Study.Lab3.Web.Features.Sweets.SweetTypes.Commands;
+using Study.Lab3.Web.Features.Sweets.SweetTypes.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetTypes.Queries;
+using Study.Lab3.Web.Features.Sweets.SweetProductions.Commands;
+using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetProductions.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -126,63 +125,53 @@ public class SweetController : Controller
 
     #endregion
 
-    #region Halls
+    #region SweetProduction
 
     /// <summary>
-    /// Создание зала
+    /// Создание записи
     /// </summary>
-    [HttpPost(nameof(CreateHall), Name = nameof(CreateHall))]
-    public async Task<ActionResult<Guid>> CreateHall(CreateHallCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(CreateSweetProduction), Name = nameof(CreateSweetProduction))]
+    public async Task<ActionResult<Guid>> CreateSweetProduction(CreateSweetProductionCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Обновление зала
+    /// Обновление записи
     /// </summary>
-    [HttpPost(nameof(UpdateHall), Name = nameof(UpdateHall))]
-    public async Task<ActionResult<Guid>> UpdateHall(UpdateHallCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(UpdateSweetProduction), Name = nameof(UpdateSweetProduction))]
+    public async Task<ActionResult<Guid>> UpdateSweetProduction(UpdateSweetProductionCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Удаление зала
+    /// Удаление записи
     /// </summary>
-    [HttpPost(nameof(DeleteHall), Name = nameof(DeleteHall))]
-    public async Task<ActionResult> DeleteHall(DeleteHallCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(DeleteSweetProduction), Name = nameof(DeleteSweetProduction))]
+    public async Task<ActionResult> DeleteSweetProduction(DeleteSweetProductionCommand command, CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
         return Ok();
     }
 
     /// <summary>
-    /// Получение зала по идентификатору
+    /// Получение записи по идентификатору
     /// </summary>
-    [HttpGet(nameof(GetHallById), Name = nameof(GetHallById))]
-    public async Task<ActionResult<HallDto>> GetHallById([FromQuery] GetHallByIdQuery query, CancellationToken cancellationToken)
+    [HttpGet(nameof(GetSweetProductionById), Name = nameof(GetSweetProductionById))]
+    public async Task<ActionResult<SweetProductionDto>> GetSweetProductionById([FromQuery] GetSweetProductionByIdQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Получение зала с местами
+    /// Получение списка записей
     /// </summary>
-    [HttpGet(nameof(GetHallWithSeats), Name = nameof(GetHallWithSeats))]
-    public async Task<ActionResult<HallWithSeatsDto>> GetHallWithSeats([FromQuery] GetHallWithSeatsQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение списка залов
-    /// </summary>
-    [HttpGet(nameof(GetListHalls), Name = nameof(GetListHalls))]
-    public async Task<ActionResult<HallDto[]>> GetListHalls([FromQuery] GetListHallsQuery query, CancellationToken cancellationToken)
+    [HttpGet(nameof(GetListSweetProduction), Name = nameof(GetListSweetProduction))]
+    public async Task<ActionResult<SweetProductionDto[]>> GetListSweetProduction([FromQuery] GetListSweetProductionQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
@@ -190,211 +179,53 @@ public class SweetController : Controller
 
     #endregion
 
-    #region Sessions
+    #region SweetType
 
     /// <summary>
-    /// Создание сеанса
+    /// Создание типа сладости
     /// </summary>
-    [HttpPost(nameof(CreateSession), Name = nameof(CreateSession))]
-    public async Task<ActionResult<Guid>> CreateSession(CreateSessionCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(CreateSwettType), Name = nameof(CreateSwettType))]
+    public async Task<ActionResult<Guid>> CreateSwettType(CreateSweetTypeCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Обновление сеанса
+    /// Обновление типа сладости
     /// </summary>
-    [HttpPost(nameof(UpdateSession), Name = nameof(UpdateSession))]
-    public async Task<ActionResult<Guid>> UpdateSession(UpdateSessionCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(UpdateSweetType), Name = nameof(UpdateSweetType))]
+    public async Task<ActionResult<Guid>> UpdateSweetType(UpdateSweetTypeCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Удаление сеанса
+    /// Удаление типа сладости
     /// </summary>
-    [HttpPost(nameof(DeleteSession), Name = nameof(DeleteSession))]
-    public async Task<ActionResult> DeleteSession(DeleteSessionCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(DeleteSweetType), Name = nameof(DeleteSweetType))]
+    public async Task<ActionResult> DeleteSweetType(DeleteSweetTypeCommand command, CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
         return Ok();
     }
 
     /// <summary>
-    /// Получение сеанса по идентификатору
+    /// Получение типа сладости по идентификатору
     /// </summary>
-    [HttpGet(nameof(GetSessionById), Name = nameof(GetSessionById))]
-    public async Task<ActionResult<SessionDto>> GetSessionById([FromQuery] GetSessionByIdQuery query, CancellationToken cancellationToken)
+    [HttpGet(nameof(GetSweetTypeById), Name = nameof(GetSweetTypeById))]
+    public async Task<ActionResult<SweetTypeDto>> GetSweetTypeById([FromQuery] GetSweetTypeByIdQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
-    /// Получение сеанса с информацией о местах
+    /// Получение списка типов сладости
     /// </summary>
-    [HttpGet(nameof(GetSessionWithSeats), Name = nameof(GetSessionWithSeats))]
-    public async Task<ActionResult<SessionWithSeatsDto>> GetSessionWithSeats([FromQuery] GetSessionWithSeatsQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение списка сеансов
-    /// </summary>
-    [HttpGet(nameof(GetListSessions), Name = nameof(GetListSessions))]
-    public async Task<ActionResult<SessionDto[]>> GetListSessions([FromQuery] GetListSessionsQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение сеансов по фильму
-    /// </summary>
-    [HttpGet(nameof(GetSessionsByMovie), Name = nameof(GetSessionsByMovie))]
-    public async Task<ActionResult<SessionDto[]>> GetSessionsByMovie([FromQuery] GetSessionsByMovieQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    #endregion
-
-    #region Customers
-
-    /// <summary>
-    /// Создание клиента
-    /// </summary>
-    [HttpPost(nameof(CreateCustomer), Name = nameof(CreateCustomer))]
-    public async Task<ActionResult<Guid>> CreateCustomer(CreateCustomerCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Обновление клиента
-    /// </summary>
-    [HttpPost(nameof(UpdateCustomer), Name = nameof(UpdateCustomer))]
-    public async Task<ActionResult<Guid>> UpdateCustomer(UpdateCustomerCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Удаление клиента
-    /// </summary>
-    [HttpPost(nameof(DeleteCustomer), Name = nameof(DeleteCustomer))]
-    public async Task<ActionResult> DeleteCustomer(DeleteCustomerCommand command, CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Получение клиента по идентификатору
-    /// </summary>
-    [HttpGet(nameof(GetCustomerById), Name = nameof(GetCustomerById))]
-    public async Task<ActionResult<CustomerDto>> GetCustomerById([FromQuery] GetCustomerByIdQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение клиента с историей покупок
-    /// </summary>
-    [HttpGet(nameof(GetCustomerWithHistory), Name = nameof(GetCustomerWithHistory))]
-    public async Task<ActionResult<CustomerWithHistoryDto>> GetCustomerWithHistory([FromQuery] GetCustomerWithHistoryQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение списка клиентов
-    /// </summary>
-    [HttpGet(nameof(GetListCustomers), Name = nameof(GetListCustomers))]
-    public async Task<ActionResult<CustomerDto[]>> GetListCustomers([FromQuery] GetListCustomersQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    #endregion
-
-    #region Tickets
-
-    /// <summary>
-    /// Покупка билета
-    /// </summary>
-    [HttpPost(nameof(BuyTicket), Name = nameof(BuyTicket))]
-    public async Task<ActionResult<Guid>> BuyTicket(BuyTicketCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Отмена билета
-    /// </summary>
-    [HttpPost(nameof(CancelTicket), Name = nameof(CancelTicket))]
-    public async Task<ActionResult> CancelTicket(CancelTicketCommand command, CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Использование билета
-    /// </summary>
-    [HttpPost(nameof(UseTicket), Name = nameof(UseTicket))]
-    public async Task<ActionResult> UseTicket(UseTicketCommand command, CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Получение билета по идентификатору
-    /// </summary>
-    [HttpGet(nameof(GetTicketById), Name = nameof(GetTicketById))]
-    public async Task<ActionResult<TicketDto>> GetTicketById([FromQuery] GetTicketByIdQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение билета с детальной информацией
-    /// </summary>
-    [HttpGet(nameof(GetTicketWithDetails), Name = nameof(GetTicketWithDetails))]
-    public async Task<ActionResult<TicketWithDetailsDto>> GetTicketWithDetails([FromQuery] GetTicketWithDetailsQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение билетов клиента
-    /// </summary>
-    [HttpGet(nameof(GetTicketsByCustomer), Name = nameof(GetTicketsByCustomer))]
-    public async Task<ActionResult<TicketDto[]>> GetTicketsByCustomer([FromQuery] GetTicketsByCustomerQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение билетов на сеанс
-    /// </summary>
-    [HttpGet(nameof(GetTicketsBySession), Name = nameof(GetTicketsBySession))]
-    public async Task<ActionResult<TicketDto[]>> GetTicketsBySession([FromQuery] GetTicketsBySessionQuery query, CancellationToken cancellationToken)
+    [HttpGet(nameof(GetListSweetType), Name = nameof(GetListSweetType))]
+    public async Task<ActionResult<SweetTypeDto[]>> GetListSweetType([FromQuery] GetListSweetTypeQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
