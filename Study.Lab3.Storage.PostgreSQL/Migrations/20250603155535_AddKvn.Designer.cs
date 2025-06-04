@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250603155535_AddKvn")]
+    partial class AddKvn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -658,32 +661,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Assignments");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
-                {
-                    b.Property<Guid>("IsnCareer")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CareerDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("ParticipantsCount")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnCareer");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.HasIndex("IsnSubject");
-
-                    b.ToTable("Career");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
                 {
                     b.Property<Guid>("IsnExam")
@@ -1237,25 +1214,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("Careers")
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany("Careers")
-                        .HasForeignKey("IsnSubject")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
@@ -1525,8 +1483,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
-                    b.Navigation("Careers");
-
                     b.Navigation("ExamRegistrations");
 
                     b.Navigation("Grades");
@@ -1539,8 +1495,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
                     b.Navigation("Assignments");
-
-                    b.Navigation("Careers");
 
                     b.Navigation("Exams");
 

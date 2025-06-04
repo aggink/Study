@@ -8,11 +8,11 @@ namespace Study.Lab3.Web.Features.HospitalStore.Order.Queries;
 /// <summary>
 /// Получение списка заказов
 /// </summary>
-public sealed class GetListOrderQuery : IRequest<OrderDto[]>
+public sealed class GetListOrderQuery : IRequest<HospitalStoreOrderDto[]>
 {
 }
 
-public sealed class GetListOrderQueryHandler : IRequestHandler<GetListOrderQuery, OrderDto[]>
+public sealed class GetListOrderQueryHandler : IRequestHandler<GetListOrderQuery, HospitalStoreOrderDto[]>
 {
     private readonly DataContext _dataContext;
 
@@ -21,11 +21,11 @@ public sealed class GetListOrderQueryHandler : IRequestHandler<GetListOrderQuery
         _dataContext = dataContext;
     }
 
-    public async Task<OrderDto[]> Handle(GetListOrderQuery request, CancellationToken cancellationToken)
+    public async Task<HospitalStoreOrderDto[]> Handle(GetListOrderQuery request, CancellationToken cancellationToken)
     {
         return await _dataContext.Orders
             .AsNoTracking()
-            .Select(x => new OrderDto
+            .Select(x => new HospitalStoreOrderDto
             {
                 IsnOrder = x.IsnOrder,
                 IsnPatient = x.IsnPatient,

@@ -111,6 +111,11 @@ public class DataContext : DbContext
     public virtual DbSet<Sportclub> Sportclub { get; set; }
 
     /// <summary>
+    /// Квн
+    /// </summary>
+    public virtual DbSet<Kvn> TheKvn { get; set; }
+
+    /// <summary>
     /// Карьера
     /// </summary>
     public virtual DbSet<Career> Career { get; set; }
