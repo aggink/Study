@@ -673,4 +673,17 @@ public static class ModelConstants
         public const int Minutes = 60;
     }
 
+
+    public static class Career
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinPartValue = 20;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxPartValue = 100;
+    }
 }
