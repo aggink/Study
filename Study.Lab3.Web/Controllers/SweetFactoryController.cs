@@ -184,8 +184,8 @@ public class SweetController : Controller
     /// <summary>
     /// Создание типа сладости
     /// </summary>
-    [HttpPost(nameof(CreateSwettType), Name = nameof(CreateSwettType))]
-    public async Task<ActionResult<Guid>> CreateSwettType(CreateSweetTypeCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(CreateSwetType), Name = nameof(CreateSwetType))]
+    public async Task<ActionResult<Guid>> CreateSwetType(CreateSweetTypeCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
