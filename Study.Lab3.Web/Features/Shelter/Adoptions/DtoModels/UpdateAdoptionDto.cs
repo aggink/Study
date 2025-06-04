@@ -11,6 +11,7 @@ public class UpdateAdoptionDto
     public Guid IsnAdoption { get; init; }
     
     [Required]
+    [Range(ModelConstants.Adoption.PriceMin, ModelConstants.Adoption.PriceMax)]
     public int Price { get; init; }
 
     [Required]
@@ -23,5 +24,6 @@ public class UpdateAdoptionDto
     public DateTime AdoptionDate { get; init; }
         
     [Required]
+    [MaxLength(ModelConstants.Adoption.Status)]
     public string Status { get; init; }
 }

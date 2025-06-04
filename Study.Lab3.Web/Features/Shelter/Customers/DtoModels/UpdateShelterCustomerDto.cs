@@ -1,39 +1,34 @@
-﻿namespace Study.Lab3.Web.Features.Shelter.Customers.DtoModels;
+﻿using System.ComponentModel.DataAnnotations;
+using Study.Lab3.Storage.Constants;
+
+namespace Study.Lab3.Web.Features.Shelter.Customers.DtoModels;
 
 public sealed record UpdateShelterCustomerDto
 {
-    /// <summary>
-    /// Идентификатор клиента
-    /// </summary>
+    [Required]
     public Guid IsnCustomer { get; init; }
 
-    /// <summary>
-    /// Имя клиента
-    /// </summary>
+    [Required]
+    [MaxLength(ModelConstants.ShelterCustomer.Name)]
     public string Name { get; init; }
 
-    /// <summary>
-    /// Фамилия клиента
-    /// </summary>
+    [Required]
+    [MaxLength(ModelConstants.ShelterCustomer.Name)]
     public string LastName { get; init; }
-
-    /// <summary>
-    /// Описание клиента
-    /// </summary>
+    
+    [Required]
+    [MaxLength(ModelConstants.ShelterCustomer.Description)]
     public string Description { get; init; }
 
-    /// <summary>
-    /// Адрес клиента
-    /// </summary>
+    [Required]
+    [MaxLength(ModelConstants.ShelterCustomer.Address)]
     public string Address { get; init; }
 
-    /// <summary>
-    /// Номер телефона клиента
-    /// </summary>
+    [Required]
+    [MaxLength(ModelConstants.ShelterCustomer.PhoneNumber)]
     public string PhoneNumber { get; init; }
 
-    /// <summary>
-    /// Email клиента
-    /// </summary>
+    [Required]
+    [MaxLength(ModelConstants.ShelterCustomer.Email)]
     public string Email { get; init; }
 }

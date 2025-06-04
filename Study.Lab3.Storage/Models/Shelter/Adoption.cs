@@ -12,11 +12,11 @@ public class Adoption
     public Guid IsnAdoption  { get; set; }
     
     [ForeignKey(nameof(Cat))] 
-    public Guid CatIsn { get; set; }
+    public Guid IsnCat { get; set; }
 
     [Required]
     [ForeignKey(nameof(Customer))]
-    public Guid CustomerIsn { get; set; }
+    public Guid IsnCustomer { get; set; }
     
     [Required]
     [Range(ModelConstants.Adoption.PriceMin, ModelConstants.Adoption.PriceMax)]

@@ -14,7 +14,7 @@ public sealed class DeleteCatCommand : IRequest
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid CatId { get; init; }
+    public Guid IsnCat { get; init; }
 }
 
 /// <summary>
@@ -32,8 +32,8 @@ public sealed class DeleteCatCommandHandler : IRequestHandler<DeleteCatCommand>
     public async Task Handle(DeleteCatCommand request, CancellationToken cancellationToken)
     {
         var cat = await _dataContext.Cats
-                      .FirstOrDefaultAsync(c => c.IsnCat == request.CatId, cancellationToken)
-                  ?? throw new BusinessLogicException($"Кот с идентификатором \"{request.CatId}\" не существует");
+                      .FirstOrDefaultAsync(c => c.IsnCat == request.IsnCat, cancellationToken)
+                  ?? throw new BusinessLogicException($"Кот с идентификатором \"{request.IsnCat}\" не существует");
 
         _dataContext.Cats.Remove(cat);
         await _dataContext.SaveChangesAsync(cancellationToken);
