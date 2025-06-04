@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
+using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.University;
-using Study.Lab3.Storage.Models.HospitalStore;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -115,6 +116,11 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Kvn> TheKvn { get; set; }
 
+    /// <summary>
+    /// Карьера
+    /// </summary>
+    public virtual DbSet<Career> Career { get; set; }
+
     #endregion
 
     #region Cinema
@@ -206,6 +212,25 @@ public class DataContext : DbContext
     /// Позиции заказов
     /// </summary>
     public virtual DbSet<OrderItem> OrderItems { get; set; }
+
+    #endregion
+
+    #region BeautySalon
+
+    /// <summary>
+    /// Клиенты
+    /// </summary>
+    public virtual DbSet<BeautyClient> BeautyClient { get; set; }
+
+    /// <summary>
+    /// Услуги
+    /// </summary>
+    public virtual DbSet<BeautyService> BeautyService { get; set; }
+
+    /// <summary>
+    /// Записи на услуги
+    /// </summary>
+    public virtual DbSet<BeautyAppointment> BeautyAppointment { get; set; }
 
     #endregion
 }
