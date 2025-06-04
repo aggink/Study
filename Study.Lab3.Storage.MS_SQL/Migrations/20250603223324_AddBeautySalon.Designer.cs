@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
 
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250603223324_AddBeautySalon")]
+    partial class AddBeautySalon
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -747,32 +750,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Assignments");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
-                {
-                    b.Property<Guid>("IsnCareer")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CareerDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ParticipantsCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("IsnCareer");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.HasIndex("IsnSubject");
-
-                    b.ToTable("Career");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
                 {
                     b.Property<Guid>("IsnExam")
@@ -1345,25 +1322,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("Careers")
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany("Careers")
-                        .HasForeignKey("IsnSubject")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
@@ -1643,8 +1601,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
-                    b.Navigation("Careers");
-
                     b.Navigation("ExamRegistrations");
 
                     b.Navigation("Grades");
@@ -1657,8 +1613,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
                     b.Navigation("Assignments");
-
-                    b.Navigation("Careers");
 
                     b.Navigation("Exams");
 
