@@ -60,5 +60,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBeautyClientService, BeautyClientService>();
         services.AddSingleton<IBeautyServiceService, BeautyServiceService>();
         services.AddSingleton<IBeautyAppointmentService, BeautyAppointmentService>();
+        services.AddSingleton<ICareerService, CareerService>();
     }
 }
