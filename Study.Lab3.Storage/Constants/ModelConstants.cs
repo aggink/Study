@@ -599,4 +599,78 @@ public static class ModelConstants
         public const int SpecialRequests = 500;
     }
     
+    public static class BeautyClient
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Номер телефона"
+        /// </summary>
+        public const int PhoneNumber = 11;
+
+        /// <summary>
+        /// Максимальная длина поля "Электронная почта"
+        /// </summary>
+        public const int EmailAddress = 100;
+    }
+
+    public static class BeautyService
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название услуги"
+        /// </summary>
+        public const int ServiceName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание услуги"
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Минимальная цена в рублях
+        /// </summary>
+        public const int MinServicePrice = 1;
+
+        /// <summary>
+        /// Максимальная цена в рублях
+        /// </summary>
+        public const int MaxServicePrice = 1000000;
+
+        /// <summary>
+        /// Максимальная длина поля "Длительность услуги в минутах"
+        /// </summary>
+        public const int Duration = 600;
+    }
+
+    public static class BeautyAppointment
+    {
+        /// <summary>
+        /// Максимальное значение поля "День"
+        /// </summary>
+        public const int Day = 31;
+
+        /// <summary>
+        /// Максимальное значение поля "Месяц"
+        /// </summary>
+        public const int Month = 12;
+
+        /// <summary>
+        /// Максимальное значение поля "Час"
+        /// </summary>
+        public const int Hour = 24;
+
+        /// <summary>
+        /// Максимальное значение поля "Минуты"
+        /// </summary>
+        public const int Minutes = 60;
+    }
+
 }

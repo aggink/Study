@@ -22,6 +22,94 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyAppointment", b =>
+                {
+                    b.Property<Guid>("IsnAppointment")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Hour")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("IsnBeautyClient")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnBeautyService")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Minutes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnAppointment");
+
+                    b.HasIndex("IsnBeautyClient");
+
+                    b.HasIndex("IsnBeautyService");
+
+                    b.ToTable("BeautyAppointment");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyClient", b =>
+                {
+                    b.Property<Guid>("IsnClient")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.HasKey("IsnClient");
+
+                    b.ToTable("BeautyClient");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyService", b =>
+                {
+                    b.Property<Guid>("IsnService")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("IsnService");
+
+                    b.ToTable("BeautyService");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
                 {
                     b.Property<Guid>("IsnCustomer")
@@ -1015,6 +1103,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("TeacherSubjects");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyAppointment", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.BeautySalon.BeautyClient", "BeautyClient")
+                        .WithMany("BeautyAppointments")
+                        .HasForeignKey("IsnBeautyClient")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.BeautySalon.BeautyService", "BeautyService")
+                        .WithMany("BeautyAppointments")
+                        .HasForeignKey("IsnBeautyService")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BeautyClient");
+
+                    b.Navigation("BeautyService");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.MovieGenre", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Cinema.Genre", "Genre")
@@ -1387,6 +1494,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyClient", b =>
+                {
+                    b.Navigation("BeautyAppointments");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyService", b =>
+                {
+                    b.Navigation("BeautyAppointments");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
