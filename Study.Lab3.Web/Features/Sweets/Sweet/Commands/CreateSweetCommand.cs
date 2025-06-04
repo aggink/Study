@@ -44,7 +44,6 @@ public sealed class CreateSweetCommandHandler : IRequestHandler<CreateSweetComma
             SweetTypeID = request.Sweet.SweetTypeID,
             Ingredients = request.Sweet.Ingredients,
             SweetFactories = new List<SweetFactory>(),
-            SweetType = new SweetType()
         };
 
         await _dataContext.Sweets.AddAsync(sweet, cancellationToken);

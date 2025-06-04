@@ -16,6 +16,13 @@ namespace Study.Lab3.Storage.Models.Sweets
         /// <summary>
         /// Идентификатор конфеты
         /// </summary>
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public Int64 ID { get; set; }
+        
+        
+        /// <summary>
+        /// Идентификатор конфеты
+        /// </summary>
         [ForeignKey(nameof(Sweet))]
         public Int64 SweetID { get; set; }
 
