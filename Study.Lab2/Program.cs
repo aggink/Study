@@ -1,12 +1,9 @@
 ﻿using Study.Lab2.Logic.alkeivi;
 using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
+using Study.Lab2.Logic.chaspix;
 using Study.Lab2.Logic.Cherryy;
-using Study.Lab2.Logic.chirique_online;
-using Study.Lab2.Logic.danaky1;
 using Study.Lab2.Logic.eldarovskiy;
-using Study.Lab2.Logic.freaxd;
-using Study.Lab2.Logic.gegemonTV;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.katty;
@@ -14,31 +11,21 @@ using Study.Lab2.Logic.kinkiss1;
 using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.love100rubb;
 using Study.Lab2.Logic.lsokol14l;
-using Study.Lab2.Logic.mariabyrrrrak;
-using Study.Lab2.Logic.p0se1d0n;
 using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
-using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
-using Study.Lab2.Logic.KirillPoroshin;
-using Study.Lab2.Logic.Taipano;
-using Study.Lab2.Logic.gegemonTV;
-using Study.Lab2.Logic.chirique_online;
-using Study.Lab2.Logic.TucKaW;
-using Study.Lab2.Logic.xynthh;
-
 public static class Program
 {
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 11;
 
     public static async Task Main()
     {
@@ -101,10 +88,6 @@ public static class Program
                 return new CherryyService();
             case ("idb-23-03", 17):
                 return new KirillPoroshinService();
-            case ("idb-23-03", 3):
-                return new TaipanoService();
-            case ("idb-23-03", 21):
-                return new p0se1d0nService();
             case ("idb-23-03", 2):
                 return new love100rubbService();
             case ("idb-23-03", 22):
@@ -113,20 +96,8 @@ public static class Program
                 return new alkeiviService();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
-            case ("idb-23-03", 20):
-                return new mariabyrrrrakService();
-            case ("idb-23-03", 15):
-                return new gegemonTVService();
-            case ("idb-23-03", 23):
-                return new Pro100futaService();
-            case ("idb-23-02", 12):
-                return new chiriqueOnlineService();
-            case ("idb-23-03", 9):
-                return new TucKaWService();
-            case ("idb-23-03", 1):
-                return new danaky1Service();
-            case ("idb-23-03", 16):
-                return new freaxdService();
+            case ("idb-23-02", 11):
+                return new ChaspixService();
             default:
                 throw new NotSupportedException();
         }
