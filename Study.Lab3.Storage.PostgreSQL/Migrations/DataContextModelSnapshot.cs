@@ -672,10 +672,10 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<DateTime>("AdoptionDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("CatIsn")
+                    b.Property<Guid>("IsnCat")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("CustomerIsn")
+                    b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Price")
@@ -688,9 +688,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnAdoption");
 
-                    b.HasIndex("CatIsn");
+                    b.HasIndex("IsnCat");
 
-                    b.HasIndex("CustomerIsn");
+                    b.HasIndex("IsnCustomer");
 
                     b.ToTable("Adoptions");
                 });
@@ -1437,13 +1437,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Shelter.Cat", "Cat")
                         .WithMany("Adoptions")
-                        .HasForeignKey("CatIsn")
+                        .HasForeignKey("IsnCat")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.Shelter.Customer", "Customer")
                         .WithMany("Adoptions")
-                        .HasForeignKey("CustomerIsn")
+                        .HasForeignKey("IsnCustomer")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

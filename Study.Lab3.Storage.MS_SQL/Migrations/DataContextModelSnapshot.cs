@@ -673,10 +673,10 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Property<DateTime>("AdoptionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CatIsn")
+                    b.Property<Guid>("IsnCat")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CustomerIsn")
+                    b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Price")
@@ -689,9 +689,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasKey("IsnAdoption");
 
-                    b.HasIndex("CatIsn");
+                    b.HasIndex("IsnCat");
 
-                    b.HasIndex("CustomerIsn");
+                    b.HasIndex("IsnCustomer");
 
                     b.ToTable("Adoptions");
                 });
@@ -1438,13 +1438,13 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Shelter.Cat", "Cat")
                         .WithMany("Adoptions")
-                        .HasForeignKey("CatIsn")
+                        .HasForeignKey("IsnCat")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.Shelter.Customer", "Customer")
                         .WithMany("Adoptions")
-                        .HasForeignKey("CustomerIsn")
+                        .HasForeignKey("IsnCustomer")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
