@@ -61,6 +61,9 @@ using Study.Lab3.Web.Features.University.TheSportclub.Queries;
 using Study.Lab3.Web.Features.University.TheKvn.Commands;
 using Study.Lab3.Web.Features.University.TheKvn.DtoModels;
 using Study.Lab3.Web.Features.University.TheKvn.Queries;
+using Study.Lab3.Web.Features.University.TheCareer.Commands;
+using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+using Study.Lab3.Web.Features.University.TheCareer.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1398,76 +1401,6 @@ public class ManageController : Controller
     /// </summary>
     [HttpGet(nameof(GetListSportclub), Name = nameof(GetListSportclub))]
     public async Task<ActionResult<SportclubDto[]>> GetListSportclub([FromQuery] GetListSportclubQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    #endregion
-
-    #region Kvn
-    /// <summary>
-    /// Создание КВН
-    /// </summary>
-    [HttpPost(nameof(CreateKvn), Name = nameof(CreateKvn))]
-
-    public async Task<ActionResult<Guid>> CreateKvn([FromBody] CreateKvnCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Редактирование КВН
-    /// </summary>
-    [HttpPost(nameof(UpdateKvn), Name = nameof(UpdateKvn))]
-    public async Task<ActionResult<Guid>> UpdateKvn([FromBody] UpdateKvnCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Удаление КВН
-    /// </summary>
-    [HttpPost(nameof(DeleteKvn), Name = nameof(DeleteKvn))]
-    public async Task<ActionResult> DeleteKvn([FromQuery] DeleteKvnCommand command,
-        CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Получение выступления по идентификатору
-    /// </summary>
-    [HttpGet(nameof(GetKvnByIsn), Name = nameof(GetKvnByIsn))]
-    public async Task<ActionResult<KvnDto>> GetKvnByIsn([FromQuery] GetKvnByIsnQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение выступления с детальной информацией
-    /// </summary>
-    [HttpGet(nameof(GetKvnWithDetails), Name = nameof(GetKvnWithDetails))]
-    public async Task<ActionResult<KvnWithDetailsDto>> GetKvnWithDetails([FromQuery] GetKvnWithDetailsQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение списка мероприятий
-    /// </summary>
-    [HttpGet(nameof(GetListKvn), Name = nameof(GetListKvn))]
-    public async Task<ActionResult<KvnDto[]>> GetListKvn([FromQuery] GetListKvnQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
