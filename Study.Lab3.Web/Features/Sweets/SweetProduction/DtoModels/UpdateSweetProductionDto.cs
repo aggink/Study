@@ -6,6 +6,11 @@ namespace Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
 public sealed record UpdateSweetProductionDto
 {
     /// <summary>
+    /// Идентификатор 
+    /// </summary>
+    public Int64 ID { get; init; }
+
+    /// <summary>
     /// Идентификатор Сладости
     /// </summary>
     [Required]

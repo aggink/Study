@@ -35,12 +35,11 @@ public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSwe
     public async Task<long> Handle(CreateSweetFactoryCommand request, CancellationToken cancellationToken)
     {
         // Проверка уникальности 
-        if (await _dataContext.SweetFactories.AnyAsync(c => c.ID == request.SweetFactory.ID, cancellationToken))
-            throw new BusinessLogicException($"Запись с индентификатором \"{request.SweetFactory.ID}\" уже существует");
+        if (await _dataContext.SweetFactories.AnyAsync(c => c.Name == request.SweetFactory.Name, cancellationToken))
+            throw new BusinessLogicException($"Запись с индентификатором \"{request.SweetFactory.Name}\" уже существует");
 
         var sweetfactory = new SweetFactory
         {
-            ID = request.SweetFactory.ID,
             Name = request.SweetFactory.Name,
             Address = request.SweetFactory.Adress,
             Volume = request.SweetFactory.Volume,

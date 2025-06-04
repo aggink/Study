@@ -34,12 +34,11 @@ public sealed class CreateSweetCommandHandler : IRequestHandler<CreateSweetComma
     public async Task<long> Handle(CreateSweetCommand request, CancellationToken cancellationToken)
     {
         // Проверка уникальности 
-        if (await _dataContext.Sweets.AnyAsync(c => c.ID == request.Sweet.ID, cancellationToken))
-            throw new BusinessLogicException($"Запись с индентификатором \"{request.Sweet.ID}\" уже существует");
+        if (await _dataContext.Sweets.AnyAsync(c => c.Name == request.Sweet.Name, cancellationToken))
+            throw new BusinessLogicException($"Запись с индентификатором \"{request.Sweet.Name}\" уже существует");
 
         var sweet = new Sweet
         {
-            ID = request.Sweet.ID,
             Name = request.Sweet.Name,
             SweetTypeID = request.Sweet.SweetTypeID,
             Ingredients = request.Sweet.Ingredients,

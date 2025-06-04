@@ -6,12 +6,6 @@ namespace Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
 public sealed record CreateSweetDto
 {
     /// <summary>
-    /// Идентификатор
-    /// </summary>
-    [Required]
-    public Int64 ID { get; init; }
-    
-    /// <summary>
     /// Название
     /// </summary>
     [Required]

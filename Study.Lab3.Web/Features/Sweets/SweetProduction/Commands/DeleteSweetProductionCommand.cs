@@ -34,7 +34,8 @@ public sealed class DeleteSweetProductionCommandHandler : IRequestHandler<Delete
 
     public async Task Handle(DeleteSweetProductionCommand request, CancellationToken cancellationToken)
     {
-        var sweetproduction = await _dataContext.SweetProductions.FirstOrDefaultAsync(c => c.SweetFactoryID == request.SweetProduction.FactoryID, cancellationToken)
+        var sweetproduction = await _dataContext.SweetProductions.FirstOrDefaultAsync(c => c.SweetFactoryID == request.SweetProduction.FactoryID &&
+     c.SweetID == request.SweetProduction.SweetID, cancellationToken)
                        ?? throw new BusinessLogicException(
                            $"Фабрика с идентификатором \"{request.SweetProduction.FactoryID}\" не существует");
 

@@ -5,11 +5,6 @@ namespace Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
 
 public sealed record CreateSweetFactoryDto
 {
-    /// <summary>
-    /// Идентификатор
-    /// </summary>
-    [Required]
-    public Int64 ID { get; init; }
     
     /// <summary>
     /// Название фабрики
