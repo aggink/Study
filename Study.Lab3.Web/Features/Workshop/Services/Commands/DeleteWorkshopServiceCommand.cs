@@ -2,16 +2,16 @@ using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Logic.Interfaces.Services.Workshop;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.Workshop.Services.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Workshop.Services.Queries;
+namespace Study.Lab3.Web.Features.Workshop.Services.Commands;
 
 /// <summary>
-/// Получить услугу по идентификатору
+/// Удаление услуги
 /// </summary>
-public sealed class GetServiceByIsnQuery : IRequest<ServiceDto>
+public sealed class DeleteWorkshopServiceCommand : IRequest
 {
     /// <summary>
     /// Идентификатор услуги
@@ -21,30 +21,29 @@ public sealed class GetServiceByIsnQuery : IRequest<ServiceDto>
     public Guid IsnService { get; init; }
 }
 
-public sealed class GetServiceByIsnQueryHandler : IRequestHandler<GetServiceByIsnQuery, ServiceDto>
+public sealed class DeleteServiceCommandHandler : IRequestHandler<DeleteWorkshopServiceCommand>
 {
     private readonly DataContext _dataContext;
+    private readonly IServiceService _serviceService;
 
-    public GetServiceByIsnQueryHandler(DataContext dataContext)
+    public DeleteServiceCommandHandler(
+        DataContext dataContext,
+        IServiceService serviceService)
     {
         _dataContext = dataContext;
+        _serviceService = serviceService;
     }
 
-    public async Task<ServiceDto> Handle(GetServiceByIsnQuery request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteWorkshopServiceCommand request, CancellationToken cancellationToken)
     {
         var service = await _dataContext.Services
-                          .AsNoTracking()
                           .FirstOrDefaultAsync(x => x.IsnService == request.IsnService, cancellationToken)
                       ?? throw new BusinessLogicException(
                           $"Услуга с идентификатором \"{request.IsnService}\" не существует");
 
-        return new ServiceDto
-        {
-            IsnService = service.IsnService,
-            Name = service.Name,
-            Description = service.Description,
-            Price = service.Price,
-            Duration = service.Duration
-        };
+        await _serviceService.CanDeleteAndThrowAsync(_dataContext, service, cancellationToken);
+
+        _dataContext.Services.Remove(service);
+        await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

@@ -3,14 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Workshop.Services.DtoModels;
 
-public sealed record UpdateServiceDto
+public sealed record CreateWorkshopServiceDto
 {
-    /// <summary>
-    /// Идентификатор услуги
-    /// </summary>
-    [Required]
-    public Guid IsnService { get; init; }
-
     /// <summary>
     /// Название услуги
     /// </summary>

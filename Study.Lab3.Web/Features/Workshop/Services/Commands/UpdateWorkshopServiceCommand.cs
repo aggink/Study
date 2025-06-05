@@ -12,17 +12,17 @@ namespace Study.Lab3.Web.Features.Workshop.Services.Commands;
 /// <summary>
 /// Обновление услуги
 /// </summary>
-public sealed class UpdateServiceCommand : IRequest<Guid>
+public sealed class UpdateWorkshopServiceCommand : IRequest<Guid>
 {
     /// <summary>
     /// Данные услуги
     /// </summary>
     [Required]
     [FromBody]
-    public UpdateServiceDto Service { get; init; }
+    public UpdateServiceServiceDto ServiceService { get; init; }
 }
 
-public sealed class UpdateServiceCommandHandler : IRequestHandler<UpdateServiceCommand, Guid>
+public sealed class UpdateServiceCommandHandler : IRequestHandler<UpdateWorkshopServiceCommand, Guid>
 {
     private readonly DataContext _dataContext;
     private readonly IServiceService _serviceService;
@@ -35,17 +35,17 @@ public sealed class UpdateServiceCommandHandler : IRequestHandler<UpdateServiceC
         _serviceService = serviceService;
     }
 
-    public async Task<Guid> Handle(UpdateServiceCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(UpdateWorkshopServiceCommand request, CancellationToken cancellationToken)
     {
         var service = await _dataContext.Services
-                          .FirstOrDefaultAsync(x => x.IsnService == request.Service.IsnService, cancellationToken)
+                          .FirstOrDefaultAsync(x => x.IsnService == request.ServiceService.IsnService, cancellationToken)
                       ?? throw new BusinessLogicException(
-                          $"Услуга с идентификатором \"{request.Service.IsnService}\" не существует");
+                          $"Услуга с идентификатором \"{request.ServiceService.IsnService}\" не существует");
 
-        service.Name = request.Service.Name;
-        service.Description = request.Service.Description;
-        service.Price = request.Service.Price;
-        service.Duration = request.Service.Duration;
+        service.Name = request.ServiceService.Name;
+        service.Description = request.ServiceService.Description;
+        service.Price = request.ServiceService.Price;
+        service.Duration = request.ServiceService.Duration;
 
         await _serviceService.CreateOrUpdateServiceValidateAndThrowAsync(
             _dataContext, service, cancellationToken);

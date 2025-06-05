@@ -94,7 +94,7 @@ public class WorkshopController : Controller
 
     #endregion
 
-    #region Service
+    #region WorkshopService
 
     /// <summary>
     /// Создание услуги
@@ -102,8 +102,8 @@ public class WorkshopController : Controller
     /// <param name="command">Dto запроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Идентификатор услуги</returns>
-    [HttpPost(nameof(CreateService), Name = nameof(CreateService))]
-    public async Task<ActionResult<Guid>> CreateService(CreateServiceCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(CreateService), Name = "CreateWorkshopService")]
+    public async Task<ActionResult<Guid>> CreateService(CreateWorkshopServiceCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
@@ -115,8 +115,8 @@ public class WorkshopController : Controller
     /// <param name="command">Dto запроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Идентификатор услуги</returns>
-    [HttpPost(nameof(UpdateService), Name = nameof(UpdateService))]
-    public async Task<ActionResult<Guid>> UpdateService(UpdateServiceCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(UpdateService), Name = "UpdateWorkshopService")]
+    public async Task<ActionResult<Guid>> UpdateService(UpdateWorkshopServiceCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
@@ -127,8 +127,8 @@ public class WorkshopController : Controller
     /// </summary>
     /// <param name="command">Dto запроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
-    [HttpPost(nameof(DeleteService), Name = nameof(DeleteService))]
-    public async Task<ActionResult> DeleteService(DeleteServiceCommand command, CancellationToken cancellationToken)
+    [HttpPost(nameof(DeleteService), Name = "DeleteWorkshopService")]
+    public async Task<ActionResult> DeleteService(DeleteWorkshopServiceCommand command, CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
         return Ok();
@@ -140,8 +140,8 @@ public class WorkshopController : Controller
     /// <param name="query">Dto запроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Список услуг</returns>
-    [HttpGet(nameof(GetListServices), Name = nameof(GetListServices))]
-    public async Task<ActionResult<ServiceDto[]>> GetListServices([FromQuery] GetListServicesQuery query,
+    [HttpGet(nameof(GetListServices), Name = "GetListWorkshopService")]
+    public async Task<ActionResult<WorkshopServiceDto[]>> GetListServices([FromQuery] GetListWorkshopServiceQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
@@ -154,8 +154,8 @@ public class WorkshopController : Controller
     /// <param name="query">Dto запроса</param>
     /// <param name="cancellationToken">Токен отмены</param>
     /// <returns>Данные услуги</returns>
-    [HttpGet(nameof(GetServiceByIsn), Name = nameof(GetServiceByIsn))]
-    public async Task<ActionResult<ServiceDto>> GetServiceByIsn(GetServiceByIsnQuery query,
+    [HttpGet(nameof(GetServiceByIsn), Name = "GetWorkshopServiceByIsn")]
+    public async Task<ActionResult<WorkshopServiceDto>> GetServiceByIsn(GetWorkshopServiceByIsnQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);

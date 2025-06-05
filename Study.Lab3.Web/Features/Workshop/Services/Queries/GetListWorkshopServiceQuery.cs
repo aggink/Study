@@ -8,11 +8,11 @@ namespace Study.Lab3.Web.Features.Workshop.Services.Queries;
 /// <summary>
 /// Получение списка услуг
 /// </summary>
-public sealed class GetListServicesQuery : IRequest<ServiceDto[]>
+public sealed class GetListWorkshopServiceQuery : IRequest<WorkshopServiceDto[]>
 {
 }
 
-public sealed class GetListServicesQueryHandler : IRequestHandler<GetListServicesQuery, ServiceDto[]>
+public sealed class GetListServicesQueryHandler : IRequestHandler<GetListWorkshopServiceQuery, WorkshopServiceDto[]>
 {
     private readonly DataContext _dataContext;
 
@@ -21,11 +21,11 @@ public sealed class GetListServicesQueryHandler : IRequestHandler<GetListService
         _dataContext = dataContext;
     }
 
-    public async Task<ServiceDto[]> Handle(GetListServicesQuery request, CancellationToken cancellationToken)
+    public async Task<WorkshopServiceDto[]> Handle(GetListWorkshopServiceQuery request, CancellationToken cancellationToken)
     {
         return await _dataContext.Services
             .AsNoTracking()
-            .Select(x => new ServiceDto
+            .Select(x => new WorkshopServiceDto
             {
                 IsnService = x.IsnService,
                 Name = x.Name,

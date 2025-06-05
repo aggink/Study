@@ -11,17 +11,17 @@ namespace Study.Lab3.Web.Features.Workshop.Services.Commands;
 /// <summary>
 /// Создание услуги
 /// </summary>
-public sealed class CreateServiceCommand : IRequest<Guid>
+public sealed class CreateWorkshopServiceCommand : IRequest<Guid>
 {
     /// <summary>
     /// Данные услуги
     /// </summary>
     [Required]
     [FromBody]
-    public CreateServiceDto Service { get; init; }
+    public CreateWorkshopServiceDto WorkshopService { get; init; }
 }
 
-public sealed class CreateServiceCommandHandler : IRequestHandler<CreateServiceCommand, Guid>
+public sealed class CreateServiceCommandHandler : IRequestHandler<CreateWorkshopServiceCommand, Guid>
 {
     private readonly DataContext _dataContext;
     private readonly IServiceService _serviceService;
@@ -34,15 +34,15 @@ public sealed class CreateServiceCommandHandler : IRequestHandler<CreateServiceC
         _serviceService = serviceService;
     }
 
-    public async Task<Guid> Handle(CreateServiceCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateWorkshopServiceCommand request, CancellationToken cancellationToken)
     {
         var service = new Service
         {
             IsnService = Guid.NewGuid(),
-            Name = request.Service.Name,
-            Description = request.Service.Description,
-            Price = request.Service.Price,
-            Duration = request.Service.Duration
+            Name = request.WorkshopService.Name,
+            Description = request.WorkshopService.Description,
+            Price = request.WorkshopService.Price,
+            Duration = request.WorkshopService.Duration
         };
 
         await _serviceService.CreateOrUpdateServiceValidateAndThrowAsync(
