@@ -2,9 +2,14 @@
 
 namespace Study.Lab2.Logic.neijrr;
 
-public class RequestService(HttpClient httpClient) : IRequestService
+public class RequestService : IRequestService
 {
-    private readonly HttpClient _httpClient = httpClient;
+    private readonly HttpClient _httpClient;
+
+    public RequestService(HttpClient httpClient)
+    {
+        _httpClient = httpClient;
+    }
 
     public string FetchData(string url)
     {
