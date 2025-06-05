@@ -39,8 +39,9 @@ public sealed class CreateSweetCommandHandler : IRequestHandler<CreateSweetComma
 
         var sweet = new Sweet
         {
+            IsnSweet = Guid.NewGuid(),
             Name = request.Sweet.Name,
-            SweetTypeID = request.Sweet.SweetTypeID,
+            IsnSweetType = request.Sweet.IsnSweetType,
             Ingredients = request.Sweet.Ingredients,
             SweetProductions = new List<SweetProduction>(),
         };
@@ -48,6 +49,6 @@ public sealed class CreateSweetCommandHandler : IRequestHandler<CreateSweetComma
         await _dataContext.Sweets.AddAsync(sweet, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
         
-        return sweet.ID;
+        return sweet.IsnSweet;
     }
 }

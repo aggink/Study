@@ -27,11 +27,11 @@ namespace Study.Lab3.Logic.Services.Sweets
             SweetType sweettype,
             CancellationToken cancellationToken = default)
         {
-            if (!await dataContext.SweetTypes.AnyAsync(x => x.ID == sweettype.ID, cancellationToken))
+            if (!await dataContext.SweetTypes.AnyAsync(x => x.IsnSweetType == sweettype.IsnSweetType, cancellationToken))
                 throw new BusinessLogicException(
-                    $"Сладости с идентификатором \"{sweettype.ID}\" не существует");
+                    $"Сладости с идентификатором \"{sweettype.IsnSweetType}\" не существует");
 
-            if (await dataContext.Sweets.AnyAsync(x => x.SweetTypeID == sweettype.ID, cancellationToken))
+            if (await dataContext.Sweets.AnyAsync(x => x.IsnSweetType == sweettype.IsnSweetType, cancellationToken))
                 throw new BusinessLogicException(
                     "Невозможно удалить сладость, так как у неё есть история создания");
         }

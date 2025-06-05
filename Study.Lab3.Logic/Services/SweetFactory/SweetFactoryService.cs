@@ -31,12 +31,12 @@ namespace Study.Lab3.Logic.Services.Sweets
             SweetFactory sweetfactory,
             CancellationToken cancellationToken = default)
         {
-            if (!await dataContext.SweetFactories.AnyAsync(x => x.ID == sweetfactory.ID, cancellationToken))
+            if (!await dataContext.SweetFactories.AnyAsync(x => x.IsnSweetFactory == sweetfactory.IsnSweetFactory, cancellationToken))
                 throw new BusinessLogicException(
-                    $"Фабрики с идентификатором \"{sweetfactory.ID}\" не существует");
+                    $"Фабрики с идентификатором \"{sweetfactory.IsnSweetFactory}\" не существует");
 
             // Проверка на наличие фабрик 
-            if (await dataContext.SweetProductions.AnyAsync(x => x.SweetFactoryID == sweetfactory.ID, cancellationToken))
+            if (await dataContext.SweetProductions.AnyAsync(x => x.IsnSweetFactory == sweetfactory.IsnSweetFactory, cancellationToken))
                 throw new BusinessLogicException(
                     "Невозможно удалить фабрику, так как у неё есть история производства сладостей");
         }

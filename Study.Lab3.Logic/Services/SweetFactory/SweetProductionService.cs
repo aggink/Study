@@ -18,15 +18,15 @@ namespace Study.Lab3.Logic.Services.Sweets
             SweetProduction sweetproduction,
             CancellationToken cancellationToken = default)
         {
-            if (!await dataContext.Sweets.AnyAsync(x => x.ID == sweetproduction.SweetID, cancellationToken))
+            if (!await dataContext.Sweets.AnyAsync(x => x.IsnSweet == sweetproduction.IsnSweet, cancellationToken))
                 throw new BusinessLogicException(
-                    $" Сладости с идентификатором \"{sweetproduction.SweetID}\" не существует");
+                    $" Сладости с идентификатором \"{sweetproduction.IsnSweet}\" не существует");
 
-            if (!await dataContext.SweetFactories.AnyAsync(x => x.ID == sweetproduction.SweetFactoryID, cancellationToken))
+            if (!await dataContext.SweetFactories.AnyAsync(x => x.IsnSweetFactory == sweetproduction.IsnSweetFactory, cancellationToken))
                 throw new BusinessLogicException(
-                    $"Фабрики с идентификатором \"{sweetproduction.SweetFactoryID}\" не существует");
+                    $"Фабрики с идентификатором \"{sweetproduction.IsnSweetFactory}\" не существует");
 
-            if (await dataContext.SweetProductions.AnyAsync(x => x.SweetFactoryID == sweetproduction.SweetFactoryID && x.SweetID == sweetproduction.SweetID, cancellationToken))
+            if (await dataContext.SweetProductions.AnyAsync(x => x.IsnSweetFactory == sweetproduction.IsnSweetFactory && x.IsnSweet == sweetproduction.IsnSweet, cancellationToken))
                 throw new BusinessLogicException(
                     "Запись уже существует, невозможно завести запись");
         }
@@ -36,7 +36,7 @@ namespace Study.Lab3.Logic.Services.Sweets
             SweetProduction sweetproduction,
             CancellationToken cancellationToken = default)
         {
-            if (!await dataContext.SweetProductions.AnyAsync(x => x.SweetFactoryID == sweetproduction.SweetFactoryID && x.SweetID == sweetproduction.SweetID, cancellationToken))
+            if (!await dataContext.SweetProductions.AnyAsync(x => x.IsnSweetFactory == sweetproduction.IsnSweetFactory && x.IsnSweet == sweetproduction.IsnSweet, cancellationToken))
                 throw new BusinessLogicException(
                     "Записи не существует, невозможно завести запись");
         }

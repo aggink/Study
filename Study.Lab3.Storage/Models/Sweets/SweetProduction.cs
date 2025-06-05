@@ -17,19 +17,19 @@ public class SweetProduction
     /// Идентификатор конфеты
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid ID { get; set; }
+    public Guid IsnSweetProduction { get; set; }
     
     /// <summary>
     /// Идентификатор конфеты
     /// </summary>
     [ForeignKey(nameof(Sweet))]
-    public Guid SweetID { get; set; }
+    public Guid IsnSweet { get; set; }
 
     /// <summary>
     /// Идентификатор фабрики
     /// </summary>
     [ForeignKey(nameof(SweetFactory))]
-    public Guid SweetFactoryID { get; set; }
+    public Guid IsnSweetFactory { get; set; }
 
     /// <summary>
     /// 

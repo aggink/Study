@@ -5,7 +5,7 @@ public sealed record SweetFactoryDto
     /// <summary>
     /// Идентификатор фабрики
     /// </summary>
-    public Guid ID { get; init; }
+    public Guid IsnSweetFactory { get; init; }
     
     /// <summary>
     /// Имя

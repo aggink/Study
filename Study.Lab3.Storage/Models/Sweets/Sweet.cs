@@ -19,14 +19,14 @@ public class Sweet
     /// Идентификатор конфеты
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid ID { get; set; }
+    public Guid IsnSweet { get; set; }
 
     /// <summary>
     /// Идентификатор типа конфеты
     /// </summary>
     [Required]
     [ForeignKey(nameof(SweetType))]
-    public Guid SweetTypeID { get; set; }
+    public Guid IsnSweetType { get; set; }
 
     /// <summary>
     /// Наименование конфеты
@@ -48,6 +48,6 @@ public class Sweet
     /// <summary>
     /// 
     /// </summary>
-    [InverseProperty(nameof(SweetProduction.SweetID))]
+    [InverseProperty(nameof(SweetProduction.Sweet))]
     public virtual ICollection<SweetProduction> SweetProductions{ get; set; }
 }

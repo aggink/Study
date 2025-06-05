@@ -20,7 +20,7 @@ public sealed class GetSweetProductionByIdQuery : IRequest<SweetProductionDto>
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid FactoryID { get; init; }
+    public Guid IsnFactory { get; init; }
 }
 
 public sealed class GetSweetProductionByIdQueryHandler : IRequestHandler<GetSweetProductionByIdQuery, SweetProductionDto>
@@ -36,14 +36,14 @@ public sealed class GetSweetProductionByIdQueryHandler : IRequestHandler<GetSwee
     {
         var sweetproduction = await _dataContext.SweetProductions
                            .AsNoTracking()
-                           .FirstOrDefaultAsync(c => c.SweetFactoryID == request.FactoryID, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnSweetFactory == request.IsnFactory, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Фабрика с идентификатором \"{request.FactoryID}\" не существует");
+                           $"Фабрика с идентификатором \"{request.IsnFactory}\" не существует");
 
         return new SweetProductionDto
         {
-            FactoryID = sweetproduction.SweetFactoryID,
-            SweetID = sweetproduction.SweetID
+            IsnFactory = sweetproduction.IsnSweetFactory,
+            IsnSweet = sweetproduction.IsnSweet
         };
     }
 }

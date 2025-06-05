@@ -9,7 +9,7 @@ public sealed record UpdateSweetFactoryDto
     /// Идентификатор Фабрики
     /// </summary>
     [Required]
-    public Guid ID { get; init; }
+    public Guid IsnSweetFactory { get; init; }
     
     /// <summary>
     /// Имя

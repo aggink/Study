@@ -35,19 +35,20 @@ public sealed class CreateSweetProductionCommandHandler : IRequestHandler<Create
     public async Task<Guid> Handle(CreateSweetProductionCommand request, CancellationToken cancellationToken)
     {
         // Проверка уникальности 
-        if (await _dataContext.SweetProductions.AnyAsync(c => c.SweetFactoryID == request.SweetProduction.FactoryID &&  
-            c.SweetID == request.SweetProduction.SweetID , cancellationToken))
-            throw new BusinessLogicException($"Запись с индентификатором \"{request.SweetProduction.FactoryID}\" уже существует");
+        if (await _dataContext.SweetProductions.AnyAsync(c => c.IsnSweetFactory == request.SweetProduction.IsnFactory &&  
+            c.IsnSweet == request.SweetProduction.IsnSweet , cancellationToken))
+            throw new BusinessLogicException($"Запись с индентификатором \"{request.SweetProduction.IsnFactory}\" уже существует");
 
         var sweetproduction = new SweetProduction
         {
-            SweetFactoryID = request.SweetProduction.FactoryID,
-            SweetID = request.SweetProduction.SweetID
+            IsnSweetProduction = Guid.NewGuid(),
+            IsnSweetFactory = request.SweetProduction.IsnFactory,
+            IsnSweet = request.SweetProduction.IsnSweet
         };
 
         await _dataContext.SweetProductions.AddAsync(sweetproduction, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
         
-        return sweetproduction.ID;
+        return sweetproduction.IsnSweetProduction;
     }
 }

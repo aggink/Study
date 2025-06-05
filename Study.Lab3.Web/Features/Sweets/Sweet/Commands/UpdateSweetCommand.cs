@@ -33,16 +33,16 @@ public sealed class UpdateSweetCommandHandler : IRequestHandler<UpdateSweetComma
     public async Task<Guid> Handle(UpdateSweetCommand request, CancellationToken cancellationToken)
     {
         var sweet = await _dataContext.Sweets
-                           .FirstOrDefaultAsync(c => c.ID == request.Sweet.ID, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnSweet == request.Sweet.IsnSweet, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Сладости с идентификатором \"{request.Sweet.ID}\" не существует");
+                           $"Сладости с идентификатором \"{request.Sweet.IsnSweet}\" не существует");
 
-        sweet.ID = request.Sweet.ID;
+        sweet.IsnSweet = request.Sweet.IsnSweet;
         sweet.Name = request.Sweet.Name;
-        sweet.SweetTypeID = request.Sweet.SweetTypeID;
+        sweet.IsnSweetType = request.Sweet.IsnSweetType;
         sweet.Ingredients = request.Sweet.Ingredients;
 
         await _dataContext.SaveChangesAsync(cancellationToken);
-        return sweet.ID;
+        return sweet.IsnSweet;
     }
 }

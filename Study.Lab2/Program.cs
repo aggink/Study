@@ -22,12 +22,8 @@ using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
-using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.Taipano;
-using Study.Lab2.Logic.gegemonTV;
-using Study.Lab2.Logic.chirique_online;
 using Study.Lab2.Logic.TucKaW;
-using Study.Lab2.Logic.xynthh;
 
 public static class Program
 {

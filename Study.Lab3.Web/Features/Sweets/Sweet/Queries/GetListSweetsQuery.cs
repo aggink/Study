@@ -27,13 +27,13 @@ public sealed class GetListSweetQueryHandler : IRequestHandler<GetListSweetsQuer
     {
         return await _dataContext.Sweets
             .AsNoTracking()
-            .OrderBy(c => c.ID)
+            .OrderBy(c => c.IsnSweet)
             .ThenBy(c => c.Name)
             .Select(c => new SweetDto
             {
-                ID = c.ID,
+                IsnSweet = c.IsnSweet,
                 Name = c.Name,
-                SweetTypeID = c.SweetTypeID,
+                IsnSweetType = c.IsnSweetType,
                 Ingredients = c.Ingredients
             })
             .ToArrayAsync(cancellationToken);

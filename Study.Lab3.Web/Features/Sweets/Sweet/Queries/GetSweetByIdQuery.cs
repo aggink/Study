@@ -18,7 +18,7 @@ public sealed class GetSweetByIdQuery : IRequest<SweetDto>
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid ID { get; init; }
+    public Guid IsnSweet { get; init; }
 }
 
 public sealed class GetSweetByIdQueryHandler : IRequestHandler<GetSweetByIdQuery, SweetDto>
@@ -34,15 +34,15 @@ public sealed class GetSweetByIdQueryHandler : IRequestHandler<GetSweetByIdQuery
     {
         var sweet = await _dataContext.Sweets
                            .AsNoTracking()
-                           .FirstOrDefaultAsync(c => c.ID == request.ID, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnSweet == request.IsnSweet, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Сладость с идентификатором \"{request.ID}\" не существует");
+                           $"Сладость с идентификатором \"{request.IsnSweet}\" не существует");
 
         return new SweetDto
         {
-            ID = sweet.ID,
+            IsnSweet = sweet.IsnSweet,
             Name = sweet.Name,
-            SweetTypeID = sweet.SweetTypeID,
+            IsnSweetType = sweet.IsnSweetType,
             Ingredients = sweet.Ingredients,
         };
     }

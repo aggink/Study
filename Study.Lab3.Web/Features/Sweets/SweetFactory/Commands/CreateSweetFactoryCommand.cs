@@ -40,6 +40,7 @@ public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSwe
 
         var sweetfactory = new SweetFactory
         {
+            IsnSweetFactory = Guid.NewGuid(),
             Name = request.SweetFactory.Name,
             Address = request.SweetFactory.Adress,
             Volume = request.SweetFactory.Volume,
@@ -49,6 +50,6 @@ public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSwe
         await _dataContext.SweetFactories.AddAsync(sweetfactory, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
         
-        return sweetfactory.ID;
+        return sweetfactory.IsnSweetFactory;
     }
 }

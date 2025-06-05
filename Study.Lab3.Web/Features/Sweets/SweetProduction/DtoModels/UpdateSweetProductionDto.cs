@@ -8,18 +8,18 @@ public sealed record UpdateSweetProductionDto
     /// <summary>
     /// Идентификатор 
     /// </summary>
-    public Guid ID { get; init; }
+    public Guid IsnSweetProduction { get; init; }
 
     /// <summary>
     /// Идентификатор Сладости
     /// </summary>
     [Required]
-    public Guid SweetID { get; init; }
+    public Guid IsnSweet { get; init; }
 
     /// <summary>
     /// Идентификатор Фабрики
     /// </summary>
     [Required]
-    public Guid FactoryID { get; init; }
+    public Guid IsnFactory { get; init; }
     
 }

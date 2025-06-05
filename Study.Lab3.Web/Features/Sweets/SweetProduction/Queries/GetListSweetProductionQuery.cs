@@ -26,12 +26,12 @@ public sealed class GetListSweetProductionQueryHandler : IRequestHandler<GetList
     {
         return await _dataContext.SweetProductions
             .AsNoTracking()
-            .OrderBy(c => c.SweetFactoryID)
-            .ThenBy(c => c.SweetID)
+            .OrderBy(c => c.IsnSweetFactory)
+            .ThenBy(c => c.IsnSweet)
             .Select(c => new SweetProductionDto
             {
-                FactoryID = c.SweetFactoryID,
-                SweetID = c.SweetID,
+                IsnFactory = c.IsnSweetFactory,
+                IsnSweet= c.IsnSweet,
             })
             .ToArrayAsync(cancellationToken);
     }

@@ -35,15 +35,15 @@ public sealed class UpdateSweetProductionCommandHandler : IRequestHandler<Update
     public async Task<Guid> Handle(UpdateSweetProductionCommand request, CancellationToken cancellationToken)
     {
         var sweetproduction = await _dataContext.SweetProductions
-                           .FirstOrDefaultAsync(c => c.ID == request.SweetProduction.ID, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnSweetProduction == request.SweetProduction.IsnSweetProduction, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Фабрики с идентификатором \"{request.SweetProduction.ID}\" не существует");
+                           $"Фабрики с идентификатором \"{request.SweetProduction.IsnSweetProduction}\" не существует");
 
-        sweetproduction.SweetFactoryID = request.SweetProduction.FactoryID;
-        sweetproduction.SweetID = request.SweetProduction.SweetID;
-        sweetproduction.ID = request.SweetProduction.ID;
+        sweetproduction.IsnSweetFactory = request.SweetProduction.IsnFactory;
+        sweetproduction.IsnSweet = request.SweetProduction.IsnSweet;
+        sweetproduction.IsnSweetProduction = request.SweetProduction.IsnSweetProduction;
 
         await _dataContext.SaveChangesAsync(cancellationToken);
-        return sweetproduction.ID;
+        return sweetproduction.IsnSweetProduction;
     }
 }

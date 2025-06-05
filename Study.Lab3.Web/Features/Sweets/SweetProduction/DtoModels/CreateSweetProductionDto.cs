@@ -9,12 +9,12 @@ public sealed record CreateSweetProductionDto
     /// Идентификатор Сладости
     /// </summary>
     [Required]
-    public Guid SweetID { get; init; }
+    public Guid IsnSweet { get; init; }
 
     /// <summary>
     /// Идентификатор Фабрики
     /// </summary>
     [Required]
-    public Guid FactoryID { get; init; }
+    public Guid IsnFactory { get; init; }
 
 }

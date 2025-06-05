@@ -9,7 +9,7 @@ public sealed record UpdateSweetDto
     /// Идентификатор Сладости
     /// </summary>
     [Required]
-    public Guid ID { get; init; }
+    public Guid IsnSweet { get; init; }
     
     /// <summary>
     /// Имя
@@ -22,7 +22,7 @@ public sealed record UpdateSweetDto
     /// Идентификатор Типа Сладости
     /// </summary>
     [Required]
-    public Guid SweetTypeID { get; init; }
+    public Guid IsnSweetType { get; init; }
 
     /// <summary>
     /// Ингридиенты
@@ -30,9 +30,4 @@ public sealed record UpdateSweetDto
     [Required]
     [MaxLength(ModelConstants.Sweet.MaxIngredientsLenght)]
     public string Ingredients { get; init; }
-    
-    /// <summary>
-    /// Активна ли запись
-    /// </summary>
-    public bool IsActiveRecord { get; init; }
 }

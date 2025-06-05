@@ -796,7 +796,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<Guid>("IsnSweet")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Ingredients")
@@ -804,24 +804,24 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
+                    b.Property<Guid>("IsnSweetType")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.Property<Guid>("SweetTypeID")
-                        .HasColumnType("uuid");
+                    b.HasKey("IsnSweet");
 
-                    b.HasKey("ID");
-
-                    b.HasIndex("SweetTypeID");
+                    b.HasIndex("IsnSweetType");
 
                     b.ToTable("Sweets");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetFactory", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<Guid>("IsnSweetFactory")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Address")
@@ -837,34 +837,34 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<long>("Volume")
                         .HasColumnType("bigint");
 
-                    b.HasKey("ID");
+                    b.HasKey("IsnSweetFactory");
 
                     b.ToTable("SweetFactories");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetProduction", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<Guid>("IsnSweetProduction")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("SweetFactoryID")
+                    b.Property<Guid>("IsnSweet")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("SweetID")
+                    b.Property<Guid>("IsnSweetFactory")
                         .HasColumnType("uuid");
 
-                    b.HasKey("ID");
+                    b.HasKey("IsnSweetProduction");
 
-                    b.HasIndex("SweetFactoryID");
+                    b.HasIndex("IsnSweet");
 
-                    b.HasIndex("SweetID");
+                    b.HasIndex("IsnSweetFactory");
 
                     b.ToTable("SweetProductions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetType", b =>
                 {
-                    b.Property<Guid>("ID")
+                    b.Property<Guid>("IsnSweetType")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Name")
@@ -872,7 +872,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.HasKey("ID");
+                    b.HasKey("IsnSweetType");
 
                     b.ToTable("SweetTypes");
                 });
@@ -1360,21 +1360,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("BeautyService");
                 });
 
-            modelBuilder.Entity("SweetSweetFactory", b =>
-                {
-                    b.Property<Guid>("SweetFactoriesID")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SweetsID")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("SweetFactoriesID", "SweetsID");
-
-                    b.HasIndex("SweetsID");
-
-                    b.ToTable("SweetSweetFactory");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.MovieGenre", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Cinema.Genre", "Genre")
@@ -1554,7 +1539,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Sweets.SweetType", "SweetType")
                         .WithMany("Sweets")
-                        .HasForeignKey("SweetTypeID")
+                        .HasForeignKey("IsnSweetType")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1563,15 +1548,15 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetProduction", b =>
                 {
-                    b.HasOne("Study.Lab3.Storage.Models.Sweets.SweetFactory", "SweetFactory")
-                        .WithMany()
-                        .HasForeignKey("SweetFactoryID")
+                    b.HasOne("Study.Lab3.Storage.Models.Sweets.Sweet", "Sweet")
+                        .WithMany("SweetProductions")
+                        .HasForeignKey("IsnSweet")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Study.Lab3.Storage.Models.Sweets.Sweet", "Sweet")
-                        .WithMany()
-                        .HasForeignKey("SweetID")
+                    b.HasOne("Study.Lab3.Storage.Models.Sweets.SweetFactory", "SweetFactory")
+                        .WithMany("SweetProductions")
+                        .HasForeignKey("IsnSweetFactory")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1827,21 +1812,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("BeautyAppointments");
                 });
 
-            modelBuilder.Entity("SweetSweetFactory", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Sweets.SweetFactory", null)
-                        .WithMany()
-                        .HasForeignKey("SweetFactoriesID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.Sweets.Sweet", null)
-                        .WithMany()
-                        .HasForeignKey("SweetsID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
                 {
                     b.Navigation("Tickets");
@@ -1916,6 +1886,16 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
                 {
                     b.Navigation("Adoptions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
+                {
+                    b.Navigation("SweetProductions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetFactory", b =>
+                {
+                    b.Navigation("SweetProductions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetType", b =>

@@ -35,13 +35,13 @@ public sealed class GetSweetTypeByIdQueryHandler : IRequestHandler<GetSweetTypeB
     {
         var sweettype = await _dataContext.SweetTypes
                            .AsNoTracking()
-                           .FirstOrDefaultAsync(c => c.ID == request.ID, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnSweetType == request.ID, cancellationToken)
                        ?? throw new BusinessLogicException(
                            $"Фабрика с идентификатором \"{request.ID}\" не существует");
 
         return new SweetTypeDto
         {
-            ID = sweettype.ID,
+            IsnSweetType = sweettype.IsnSweetType,
             Name = sweettype.Name,
         };
     }

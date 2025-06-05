@@ -16,7 +16,7 @@ public class SweetType
     /// Идентификатор типа конфеты
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid ID { get; set; }
+    public Guid IsnSweetType { get; set; }
 
     /// <summary>
     /// Наименование типа конфеты

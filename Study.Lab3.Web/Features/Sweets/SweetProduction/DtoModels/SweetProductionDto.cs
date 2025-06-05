@@ -6,15 +6,15 @@ public sealed record SweetProductionDto
     /// <summary>
     /// Идентификатор 
     /// </summary>
-    public Guid ID { get; init; }
+    public Guid IsnSweetProduction { get; init; }
 
     /// <summary>
     /// Идентификатор Сладости
     /// </summary>
-    public Guid SweetID { get; init; }
+    public Guid IsnSweet { get; init; }
 
     /// <summary>
     /// Идентификатор фабрики
     /// </summary>
-    public Guid FactoryID { get; init; }
+    public Guid IsnFactory { get; init; }
 }

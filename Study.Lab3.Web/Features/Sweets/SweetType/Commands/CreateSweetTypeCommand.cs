@@ -41,12 +41,13 @@ public sealed class CreateSweetTypeCommandHandler : IRequestHandler<CreateSweetT
 
         var sweettype = new SweetType
         {
+            IsnSweetType = Guid.NewGuid(),
             Name = request.SweetType.Name
         };
 
         await _dataContext.SweetTypes.AddAsync(sweettype, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
         
-        return sweettype.ID;
+        return sweettype.IsnSweetType;
     }
 }

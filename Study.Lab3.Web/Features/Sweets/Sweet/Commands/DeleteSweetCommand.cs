@@ -17,7 +17,7 @@ public sealed class DeleteSweetCommand : IRequest
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid ID { get; init; }
+    public Guid IsnSweet { get; init; }
 }
 
 public sealed class DeleteSweetCommandHandler : IRequestHandler<DeleteSweetCommand>
@@ -33,13 +33,12 @@ public sealed class DeleteSweetCommandHandler : IRequestHandler<DeleteSweetComma
     {
         var sweet = await _dataContext.Sweets
                            .Include(c => c.SweetType)
-                           .FirstOrDefaultAsync(c => c.ID == request.ID, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnSweet == request.IsnSweet, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Сладость с идентификатором \"{request.ID}\" не существует");
+                           $"Сладость с идентификатором \"{request.IsnSweet}\" не существует");
 
         // Удаление записи
         _dataContext.Sweets.Remove(sweet);
-        
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

@@ -30,11 +30,11 @@ namespace Study.Lab3.Logic.Services.Sweets
             Sweet sweet,
             CancellationToken cancellationToken = default)
         {
-            if (!await dataContext.Sweets.AnyAsync(x => x.ID == sweet.ID, cancellationToken))
+            if (!await dataContext.Sweets.AnyAsync(x => x.IsnSweet == sweet.IsnSweet, cancellationToken))
                 throw new BusinessLogicException(
-                    $"Сладости с идентификатором \"{sweet.ID}\" не существует");
+                    $"Сладости с идентификатором \"{sweet.IsnSweet}\" не существует");
 
-            if (await dataContext.SweetProductions.AnyAsync(x => x.SweetID == sweet.ID, cancellationToken))
+            if (await dataContext.SweetProductions.AnyAsync(x => x.IsnSweet == sweet.IsnSweet, cancellationToken))
                 throw new BusinessLogicException(
                     "Невозможно удалить фабрику, так как у неё есть история производства сладостей");
         }

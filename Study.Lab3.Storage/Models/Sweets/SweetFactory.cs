@@ -20,7 +20,7 @@ public class SweetFactory
     /// Идентификатор фабрики
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid ID { get; set; }
+    public Guid IsnSweetFactory { get; set; }
 
     /// <summary>
     /// Наименование фабрики
@@ -44,6 +44,6 @@ public class SweetFactory
     /// 
     /// </summary>
 
-    [InverseProperty(nameof(SweetProduction.SweetFactoryID))]
+    [InverseProperty(nameof(SweetProduction.SweetFactory))]
     public virtual ICollection<SweetProduction> SweetProductions{ get; set; }
 }

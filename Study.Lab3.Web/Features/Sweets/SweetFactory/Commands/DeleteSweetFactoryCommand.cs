@@ -18,7 +18,7 @@ public sealed class DeleteSweetFactoryCommand : IRequest
     /// </summary>
     [Required]
     [FromQuery]
-    public Guid ID { get; init; }
+    public Guid IsnSweetFactory { get; init; }
 }
 
 public sealed class DeleteSweetFactoryCommandHandler : IRequestHandler<DeleteSweetFactoryCommand>
@@ -32,9 +32,9 @@ public sealed class DeleteSweetFactoryCommandHandler : IRequestHandler<DeleteSwe
 
     public async Task Handle(DeleteSweetFactoryCommand request, CancellationToken cancellationToken)
     {
-        var sweetfactory = await _dataContext.SweetFactories.FirstOrDefaultAsync(c => c.ID == request.ID, cancellationToken)
+        var sweetfactory = await _dataContext.SweetFactories.FirstOrDefaultAsync(c => c.IsnSweetFactory == request.IsnSweetFactory, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Фабрика с идентификатором \"{request.ID}\" не существует");
+                           $"Фабрика с идентификатором \"{request.IsnSweetFactory}\" не существует");
 
         // Удаление записи
         _dataContext.SweetFactories.Remove(sweetfactory);

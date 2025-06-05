@@ -16,7 +16,7 @@ public sealed record CreateSweetDto
     /// Идентификатор типа сладости
     /// </summary>
     [Required]
-    public Guid SweetTypeID { get; init; }
+    public Guid IsnSweetType { get; init; }
     
     /// <summary>
     /// Ингридиенты

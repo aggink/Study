@@ -15,45 +15,45 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SweetFactories",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSweetFactory = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     Address = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     Volume = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SweetFactories", x => x.ID);
+                    table.PrimaryKey("PK_SweetFactories", x => x.IsnSweetFactory);
                 });
 
             migrationBuilder.CreateTable(
                 name: "SweetTypes",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSweetType = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SweetTypes", x => x.ID);
+                    table.PrimaryKey("PK_SweetTypes", x => x.IsnSweetType);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Sweets",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSweet = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSweetType = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    SweetTypeID = table.Column<Guid>(type: "uuid", nullable: false),
                     Ingredients = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sweets", x => x.ID);
+                    table.PrimaryKey("PK_Sweets", x => x.IsnSweet);
                     table.ForeignKey(
-                        name: "FK_Sweets_SweetTypes_SweetTypeID",
-                        column: x => x.SweetTypeID,
+                        name: "FK_Sweets_SweetTypes_IsnSweetType",
+                        column: x => x.IsnSweetType,
                         principalTable: "SweetTypes",
-                        principalColumn: "ID",
+                        principalColumn: "IsnSweetType",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -61,70 +61,41 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SweetProductions",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    SweetID = table.Column<Guid>(type: "uuid", nullable: false),
-                    SweetFactoryID = table.Column<Guid>(type: "uuid", nullable: false)
+                    IsnSweetProduction = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSweet = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSweetFactory = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SweetProductions", x => x.ID);
+                    table.PrimaryKey("PK_SweetProductions", x => x.IsnSweetProduction);
                     table.ForeignKey(
-                        name: "FK_SweetProductions_SweetFactories_SweetFactoryID",
-                        column: x => x.SweetFactoryID,
+                        name: "FK_SweetProductions_SweetFactories_IsnSweetFactory",
+                        column: x => x.IsnSweetFactory,
                         principalTable: "SweetFactories",
-                        principalColumn: "ID",
+                        principalColumn: "IsnSweetFactory",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SweetProductions_Sweets_SweetID",
-                        column: x => x.SweetID,
+                        name: "FK_SweetProductions_Sweets_IsnSweet",
+                        column: x => x.IsnSweet,
                         principalTable: "Sweets",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SweetSweetFactory",
-                columns: table => new
-                {
-                    SweetFactoriesID = table.Column<Guid>(type: "uuid", nullable: false),
-                    SweetsID = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SweetSweetFactory", x => new { x.SweetFactoriesID, x.SweetsID });
-                    table.ForeignKey(
-                        name: "FK_SweetSweetFactory_SweetFactories_SweetFactoriesID",
-                        column: x => x.SweetFactoriesID,
-                        principalTable: "SweetFactories",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_SweetSweetFactory_Sweets_SweetsID",
-                        column: x => x.SweetsID,
-                        principalTable: "Sweets",
-                        principalColumn: "ID",
+                        principalColumn: "IsnSweet",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SweetProductions_SweetFactoryID",
+                name: "IX_SweetProductions_IsnSweet",
                 table: "SweetProductions",
-                column: "SweetFactoryID");
+                column: "IsnSweet");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SweetProductions_SweetID",
+                name: "IX_SweetProductions_IsnSweetFactory",
                 table: "SweetProductions",
-                column: "SweetID");
+                column: "IsnSweetFactory");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sweets_SweetTypeID",
+                name: "IX_Sweets_IsnSweetType",
                 table: "Sweets",
-                column: "SweetTypeID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SweetSweetFactory_SweetsID",
-                table: "SweetSweetFactory",
-                column: "SweetsID");
+                column: "IsnSweetType");
         }
 
         /// <inheritdoc />
@@ -132,9 +103,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
             migrationBuilder.DropTable(
                 name: "SweetProductions");
-
-            migrationBuilder.DropTable(
-                name: "SweetSweetFactory");
 
             migrationBuilder.DropTable(
                 name: "SweetFactories");

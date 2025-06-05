@@ -34,14 +34,14 @@ public sealed class UpdateSweetTypeCommandHandler : IRequestHandler<UpdateSweetT
     public async Task<Guid> Handle(UpdateSweetTypeCommand request, CancellationToken cancellationToken)
     {
         var sweettype = await _dataContext.SweetTypes
-                           .FirstOrDefaultAsync(c => c.ID == request.SweetType.ID, cancellationToken)
+                           .FirstOrDefaultAsync(c => c.IsnSweetType == request.SweetType.IsnSweetType, cancellationToken)
                        ?? throw new BusinessLogicException(
-                           $"Фабрики с идентификатором \"{request.SweetType.ID}\" не существует");
+                           $"Фабрики с идентификатором \"{request.SweetType.IsnSweetType}\" не существует");
 
-        sweettype.ID = request.SweetType.ID;
+        sweettype.IsnSweetType = request.SweetType.IsnSweetType;
         sweettype.Name = request.SweetType.Name;
 
         await _dataContext.SaveChangesAsync(cancellationToken);
-        return sweettype.ID;
+        return sweettype.IsnSweetType;
     }
 }

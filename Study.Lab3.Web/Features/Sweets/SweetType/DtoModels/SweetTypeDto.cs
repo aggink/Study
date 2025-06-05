@@ -9,7 +9,7 @@ public sealed record SweetTypeDto
     /// Идентификатор Сладости
     /// </summary>
     [Required]
-    public Guid ID { get; init; }
+    public Guid IsnSweetType { get; init; }
 
     /// <summary>
     /// Имя

@@ -27,11 +27,11 @@ public sealed class GetListSweetFactoryQueryHandler : IRequestHandler<GetListSwe
     {
         return await _dataContext.SweetFactories
             .AsNoTracking()
-            .OrderBy(c => c.ID)
+            .OrderBy(c => c.IsnSweetFactory)
             .ThenBy(c => c.Name)
             .Select(c => new SweetFactoryDto
             {
-                ID = c.ID,
+                IsnSweetFactory = c.IsnSweetFactory,
                 Name = c.Name,
                 Address = c.Address,
                 Volume = c.Volume

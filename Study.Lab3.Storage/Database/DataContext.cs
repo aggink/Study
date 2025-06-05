@@ -6,7 +6,6 @@ using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.University;
-using Study.Lab3.Storage.Models.HospitalStore;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 using Study.Lab3.Storage.Models.Sweets;
