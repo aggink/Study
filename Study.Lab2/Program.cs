@@ -1,5 +1,6 @@
-﻿using Study.Lab2.Logic.alkeivi;
-using Study.Lab2.Logic.Assistant;
+﻿using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.Interfaces;
+using Study.Lab2.Logic.alkeivi;
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.chirique_online;
@@ -7,7 +8,6 @@ using Study.Lab2.Logic.danaky1;
 using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.freaxd;
 using Study.Lab2.Logic.gegemonTV;
-using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
@@ -15,16 +15,13 @@ using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.love100rubb;
 using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.mariabyrrrrak;
+using Study.Lab2.Logic.neijrr;
 using Study.Lab2.Logic.p0se1d0n;
 using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
-using Study.Lab2.Logic.xynthh;
-using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.Taipano;
-using Study.Lab2.Logic.gegemonTV;
-using Study.Lab2.Logic.chirique_online;
 using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 
@@ -127,6 +124,8 @@ public static class Program
                 return new danaky1Service();
             case ("idb-23-03", 16):
                 return new freaxdService();
+            case ("idb-23-03", 6):
+                return new neijrrService();
             default:
                 throw new NotSupportedException();
         }
