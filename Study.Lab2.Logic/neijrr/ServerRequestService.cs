@@ -2,15 +2,18 @@ using Study.Lab2.Logic.Interfaces.neijrr;
 
 namespace Study.Lab2.Logic.neijrr;
 
-public class ServerRequestService(
-    string Url, IRequestService requestService = null, IResponseProcessor responseProcessor = null
-) : IServerRequestService
+public class ServerRequestService : IServerRequestService
 {
-    private readonly IRequestService _requestService = requestService ?? new RequestService(new HttpClient());
+    private readonly UrlBuilder _urlBuilder;
+    private readonly IRequestService _requestService;
+    private readonly IResponseProcessor _responseProcessor;
 
-    private readonly IResponseProcessor _responseProcessor = responseProcessor ?? new ResponseProcessor();
-
-    private readonly UrlBuilder _urlBuilder = new(Url);
+    public ServerRequestService(string Url, IRequestService requestService = null, IResponseProcessor responseProcessor = null)
+    {
+        _urlBuilder = new(Url);
+        _requestService = requestService ?? new RequestService(new HttpClient());
+        _responseProcessor = responseProcessor ?? new ResponseProcessor();
+    }
 
     public IPost GetPost(int id)
     {
