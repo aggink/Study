@@ -321,6 +321,101 @@ public static class ModelConstants
         public const int MaxSeatsPerRow = 30;
     }
 
+    public static class Sportclub
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinParticipantValue = 2;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxParticipantValue = 100;
+    }
+
+
+    public static class Cat
+    {
+        /// <summary>
+        /// Максимальная длина клички кота
+        /// </summary>
+        public const int Nickname = 100;
+
+        /// <summary>
+        /// Максимальная длина описания кота
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Максимальная длина названия породы
+        /// </summary>
+        public const int Breed = 100;
+
+        /// <summary>
+        /// Максимальная длина названия окраса
+        /// </summary>
+        public const int Color = 20;
+
+        /// <summary>
+        /// Максимальная длина истории болезней
+        /// </summary>
+        public const int MedicalHistory = 1000;
+
+        /// <summary>
+        /// Минимальный возраст кота (в годах)
+        /// </summary>
+        public const int AgeMin = 0;
+
+        /// <summary>
+        /// Максимальный возраст кота (в годах)
+        /// </summary>
+        public const int AgeMax = 30;
+
+        /// <summary>
+        /// Минимальный вес кота (в кг)
+        /// </summary>
+        public const double WeightMin = 0.5;
+
+        /// <summary>
+        /// Максимальный вес кота (в кг)
+        /// </summary>
+        public const double WeightMax = 15.0;
+        
+        /// <summary>
+        /// Ссылка на фотографию кота
+        /// </summary>
+        public const int PhotoUrl = 100;
+    }
+
+    public static class ShelterCustomer
+    {
+        /// <summary>
+        /// Максимальная длина имени клиента
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина описания клиента
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Максимальная длина адреса клиента
+        /// </summary>
+        public const int Address = 100;
+
+        /// <summary>
+        /// Максимальная длина номера телефона клиента
+        /// </summary>
+        public const int PhoneNumber = 15;
+
+        /// <summary>
+        /// Максимальная длина email клиента
+        /// </summary>
+        public const int Email = 255;
+    }
+
     public static class Session
     {
         /// <summary>
@@ -387,5 +482,308 @@ public static class ModelConstants
         /// Максимально допустимое количество участников.
         /// </summary>
         public const int MaxPartValue = 500;
+    }
+
+    public static class Order
+    {
+        /// <summary>
+        /// Минимальное количество товара в заказе
+        /// </summary>
+        public const int QuantityMin = 1;
+
+        /// <summary>
+        /// Максимальное количество товара в заказе
+        /// </summary>
+        public const int QuantityMax = 100;
+    }
+
+    public static class Patient
+    {
+        /// <summary>
+        /// Максимальная длина поля "ФИО пациента"
+        /// </summary>
+        public const int FullNameMaxLength = 200;
+
+        /// <summary>
+        /// Максимальная длина номера медицинской карты
+        /// </summary>
+        public const int MedicalCardIdMaxLength = 50;
+
+        /// <summary>
+        /// Максимальная длина телефонного номера
+        /// </summary>
+        public const int PhoneMaxLength = 20;
+    }
+
+    public static class Product
+    {
+        /// <summary>
+        /// Максимальная длина названия товара
+        /// </summary>
+        public const int NameMaxLength = 100;
+
+        /// <summary>
+        /// Максимальная длина категории товара
+        /// </summary>
+        public const int CategoryMaxLength = 50;
+
+        /// <summary>
+        /// Минимальная цена товара (в рублях)
+        /// </summary>
+        public const int PriceMin = 0;
+
+        /// <summary>
+        /// Максимальная цена товара (в рублях)
+        /// </summary>
+        public const int PriceMax = 1000000;
+
+    }
+
+    public static class Kvn
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinPart = 3;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxPart = 10;
+    }
+
+    public static class Adoption
+    {
+        /// <summary>
+        /// Минимальная цена за усыновление
+        /// </summary>
+        public const int PriceMin = 0;
+
+        /// <summary>
+        /// Максимальная цена за усыновление
+        /// </summary>
+        public const int PriceMax = 1_000_000;
+
+        /// <summary>
+        /// Максимальная длина статуса усыновления
+        /// </summary>
+        public const int Status = 50;
+    }
+    public static class Restaurant
+    {
+        /// <summary>
+        /// Максимальная длина названия ресторана
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина адреса
+        /// </summary>
+        public const int Address = 500;
+
+        /// <summary>
+        /// Максимальная длина телефона
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина email
+        /// </summary>
+        public const int Email = 100;
+
+        /// <summary>
+        /// Максимальная длина времени работы
+        /// </summary>
+        public const int WorkingHours = 100;
+    }
+
+    public static class Menu
+    {
+        /// <summary>
+        /// Максимальная длина названия меню
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина описания меню
+        /// </summary>
+        public const int Description = 500;
+    }
+
+    public static class MenuItem
+    {
+        /// <summary>
+        /// Максимальная длина названия блюда
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина описания блюда
+        /// </summary>
+        public const int Description = 1000;
+        
+        /// <summary>
+        /// Максимальная длина категории
+        /// </summary>
+        public const int Category = 50;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double MaxPrice = 99999.99;
+
+        /// <summary>
+        /// Минимальное время приготовления
+        /// </summary>
+        public const int MinCookingTime = 1;
+
+        /// <summary>
+        /// Максимальное время приготовления
+        /// </summary>
+        public const int MaxCookingTime = 480; // 8 часов
+    }
+
+    public static class RestaurantOrder
+    {
+        /// <summary>
+        /// Максимальная длина номера заказа
+        /// </summary>
+        public const int OrderNumber = 20;
+
+        /// <summary>
+        /// Максимальная длина имени клиента
+        /// </summary>
+        public const int CustomerName = 100;
+
+        /// <summary>
+        /// Максимальная длина телефона клиента
+        /// </summary>
+        public const int CustomerPhone = 20;
+        
+        /// <summary>
+        /// Максимальная длина статуса
+        /// </summary>
+        public const int Status = 20;
+
+        /// <summary>
+        /// Минимальный номер стола
+        /// </summary>
+        public const int MinTableNumber = 1;
+
+        /// <summary>
+        /// Максимальный номер стола
+        /// </summary>
+        public const int MaxTableNumber = 999;
+    }
+
+    public static class OrderItem
+    {
+        /// <summary>
+        /// Минимальное количество
+        /// </summary>
+        public const int MinQuantity = 1;
+
+        /// <summary>
+        /// Максимальное количество
+        /// </summary>
+        public const int MaxQuantity = 100;
+
+        /// <summary>
+        /// Максимальная длина особых пожеланий
+        /// </summary>
+        public const int SpecialRequests = 500;
+    }
+    
+    public static class BeautyClient
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Номер телефона"
+        /// </summary>
+        public const int PhoneNumber = 11;
+
+        /// <summary>
+        /// Максимальная длина поля "Электронная почта"
+        /// </summary>
+        public const int EmailAddress = 100;
+    }
+
+    public static class BeautyService
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название услуги"
+        /// </summary>
+        public const int ServiceName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание услуги"
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Минимальная цена в рублях
+        /// </summary>
+        public const int MinServicePrice = 1;
+
+        /// <summary>
+        /// Максимальная цена в рублях
+        /// </summary>
+        public const int MaxServicePrice = 1000000;
+
+        /// <summary>
+        /// Максимальная длина поля "Длительность услуги в минутах"
+        /// </summary>
+        public const int Duration = 600;
+    }
+
+    public static class BeautyAppointment
+    {
+        /// <summary>
+        /// Максимальное значение поля "День"
+        /// </summary>
+        public const int Day = 31;
+
+        /// <summary>
+        /// Максимальное значение поля "Месяц"
+        /// </summary>
+        public const int Month = 12;
+
+        /// <summary>
+        /// Максимальное значение поля "Час"
+        /// </summary>
+        public const int Hour = 24;
+
+        /// <summary>
+        /// Максимальное значение поля "Минуты"
+        /// </summary>
+        public const int Minutes = 60;
+    }
+
+
+    public static class Career
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinPartValue = 20;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxPartValue = 100;
     }
 }

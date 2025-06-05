@@ -8,6 +8,7 @@ using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.SuperSalad007;
 
 namespace Study.Lab2.Logic.SuperSalad007;
+
 public class SuperSalad007Service : IRunService
 {
     private readonly IRequestService _requestService;
