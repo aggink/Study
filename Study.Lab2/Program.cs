@@ -15,12 +15,13 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.Taipano;
 public static class Program
 {
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "idb-23-02";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
@@ -98,6 +99,8 @@ public static class Program
                 return new PresvyatoyKabachokService();
             case ("idb-23-02", 11):
                 return new ChaspixService();
+            case ("idb-23-03", 3):
+                return new TaipanoService();
             default:
                 throw new NotSupportedException();
         }
