@@ -75,4 +75,16 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(Sportclub.Student))]
     public virtual ICollection<Sportclub> Sportclubs { get; set; }
+
+    /// <summary>
+    /// Связь с квн
+    /// </summary>
+    [InverseProperty(nameof(Kvn.Student))]
+    public virtual ICollection<Kvn> Kvns { get; set; }
+
+    /// <summary>
+    /// Связь с таблицей студента - карьера
+    /// </summary>
+    [InverseProperty(nameof(Career.Student))]
+    public virtual ICollection<Career> Careers { get; set; }
 }
