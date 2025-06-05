@@ -5,50 +5,48 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
-using Study.Lab2.Logic.Interfaces.SuperSalad007;
 
-namespace Study.Lab2.Logic.SuperSalad007
+namespace Study.Lab2.Logic.SuperSalad007;
+
+public class RequestService : IRequestService
 {
-    public class RequestService : IRequestService
+    private readonly HttpClient _httpClient;
+
+    public RequestService(HttpClient httpClient)
     {
-        private readonly HttpClient _httpClient;
+        _httpClient = httpClient;
+    }
 
-        public RequestService(HttpClient httpClient)
+    public string FetchData(string url)
+    {
+        var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
+
+        if (!response.IsSuccessStatusCode)
         {
-            _httpClient = httpClient;
+            throw new Exception($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
         }
 
-        public string FetchData(string url)
+        using (var stream = response.Content.ReadAsStream())
+        using (var reader = new StreamReader(stream))
         {
-            var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
+            return reader.ReadToEnd();
+        }
+    }
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
-            }
+    public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken)
+    {
+        var response = await _httpClient.GetAsync(url, cancellationToken);
 
-            using (var stream = response.Content.ReadAsStream())
-            using (var reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
         }
 
-        public async Task<string> FetchDataAsync(string url, CancellationToken cancellationToken)
-        {
-            var response = await _httpClient.GetAsync(url, cancellationToken);
+        return await response.Content.ReadAsStringAsync(cancellationToken);
+    }
 
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception($"Ошибка: {response.StatusCode} - {response.ReasonPhrase}");
-            }
-
-            return await response.Content.ReadAsStringAsync(cancellationToken);
-        }
-
-        public void Dispose()
-        {
-            _httpClient.Dispose();
-        }
+    public void Dispose()
+    {
+        _httpClient.Dispose();
     }
 }
