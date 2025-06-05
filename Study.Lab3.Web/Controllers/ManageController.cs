@@ -9,6 +9,14 @@ using Study.Lab3.Web.Features.Library.Authors.Queries;
 using Study.Lab3.Web.Features.Library.Books.Commands;
 using Study.Lab3.Web.Features.Library.Books.DtoModels;
 using Study.Lab3.Web.Features.Library.Books.Queries;
+using Study.Lab3.Web.Features.Shelter.Adoptions.Commands;
+using Study.Lab3.Web.Features.Shelter.Adoptions.DtoModels;
+using Study.Lab3.Web.Features.Shelter.Cats.Commands;
+using Study.Lab3.Web.Features.Shelter.Cats.DtoModels;
+using Study.Lab3.Web.Features.Shelter.Cats.Queries;
+using Study.Lab3.Web.Features.Shelter.Customers.Commands;
+using Study.Lab3.Web.Features.Shelter.Customers.DtoModels;
+using Study.Lab3.Web.Features.Shelter.Customers.Queries;
 using Study.Lab3.Web.Features.University.Announcements.Commands;
 using Study.Lab3.Web.Features.University.Announcements.DtoModels;
 using Study.Lab3.Web.Features.University.Announcements.Queries;
@@ -1399,5 +1407,141 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    #endregion
+    
+    #region ShelterCustomer
+
+    /// <summary>
+    /// Получение покупателя по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetShelterCustomerById), Name = nameof(GetShelterCustomerById))]
+    public async Task<ActionResult<ShelterCustomerDto>> GetShelterCustomerById([FromQuery] GetShelterCustomerByIdQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        if (result == null)
+            return NotFound();
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка покупателей приюта
+    /// </summary>
+    [HttpGet(nameof(GetShelterListCustomers), Name = nameof(GetShelterListCustomers))]
+    public async Task<ActionResult<ShelterCustomerDto[]>> GetShelterListCustomers([FromQuery] GetShelterListCustomersQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Создание покупателя
+    /// </summary>
+    [HttpPost(nameof(CreateShelterCustomer), Name = nameof(CreateShelterCustomer))]
+    public async Task<ActionResult<Guid>> CreateShelterCustomer(CreateShelterCustomerCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление покупателя
+    /// </summary>
+    [HttpPost(nameof(DeleteShelterCustomer), Name = nameof(DeleteShelterCustomer))]
+    public async Task<ActionResult> DeleteShelterCustomer(DeleteShelterCustomerCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Обновление покупателя
+    /// </summary>
+    [HttpPost(nameof(UpdateShelterCustomer), Name = nameof(UpdateShelterCustomer))]
+    public async Task<ActionResult<Guid>> UpdateShelterCustomer(UpdateShelterCustomerCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+    
+    #endregion
+    
+    #region Adoption
+    
+    /// <summary>
+    /// Создание усыновления
+    /// </summary>
+    [HttpPost(nameof(CreateAdoption), Name = nameof(CreateAdoption))]
+    public async Task<ActionResult<Guid>> CreateAdoption(CreateAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+    
+    /// <summary>
+    /// Редактирование усыновления
+    /// </summary>
+    [HttpPost(nameof(UpdateAdoption), Name = nameof(UpdateAdoption))]
+    public async Task<ActionResult<Guid>> UpdateAdoption(UpdateAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+    
+    /// <summary>
+    /// Удаление усыновления
+    /// </summary>
+    [HttpPost(nameof(DeleteAdoption), Name = nameof(DeleteAdoption))]
+    public async Task<ActionResult> DeleteAdoption(DeleteAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+    
+    #endregion
+    
+    #region Cat
+    // Получение списка котов
+    [HttpGet(nameof(GetListCats), Name = nameof(GetListCats))]
+    public async Task<ActionResult<CatDto[]>> GetListCats([FromQuery] GetListCatsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+    
+    // Создание кота
+    [HttpPost(nameof(CreateCat), Name = nameof(CreateCat))]
+    public async Task<ActionResult<Guid>> CreateCat(CreateCatCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+    
+    // Обновление кота
+    [HttpPost(nameof(UpdateCat), Name = nameof(UpdateCat))]
+    public async Task<ActionResult<Guid>> UpdateCat(UpdateCatCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+    
+    // Удаление кота
+    [HttpPost(nameof(DeleteCat), Name = nameof(DeleteCat))]
+    public async Task<ActionResult> DeleteCat(DeleteCatCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+    
+    /// <summary>
+    /// Получение кота по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetCatById), Name = nameof(GetCatById))]
+    public async Task<ActionResult<CatDto>> GetCatById([FromQuery] GetCatByIdQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        if (result == null)
+            return NotFound();
+        return Ok(result);
+    }
     #endregion
 }
