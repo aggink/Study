@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Study.Lab3.Storage.Constants;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.HospitalStore;
 
@@ -28,5 +28,8 @@ public class Product
     /// Цена в рублях (без копеек)
     /// </summary>
     [Required, Range(ModelConstants.Product.PriceMin, ModelConstants.Product.PriceMax)]
-    public int Price { get; set; }        
+    public int Price { get; set; }
+
+    [InverseProperty(nameof(Order.Product))]
+    public virtual ICollection<Order> Orders { get; set; }
 }
