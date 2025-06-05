@@ -43,6 +43,7 @@ public sealed class ExceptionMiddleware
         switch (ex)
         {
             case BusinessLogicException businessException:
+                _logger.LogWarning(ex.Message);
                 return (new ErrorResponseDto
                 {
                     Code = businessException.HResult.ToString(),
