@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using Study.Lab2.Logic.Interfaces;
-using Study.Lab2.Logic.Interfaces.gegemonTV;
+using Study.Lab2.Logic.Interfaces.Crocodile17;
 
-namespace Study.Lab2.Logic.gegemonTV;
+namespace Study.Lab2.Logic.Crocodile17;
 
-public class gegemonTVService : IRunService
+public class Crocodile17Service : IRunService
 {
     private readonly IRequestService _requestService;
 
@@ -15,7 +15,7 @@ public class gegemonTVService : IRunService
         "https://jsonplaceholder.typicode.com/posts/1"
     };
 
-    public gegemonTVService()
+    public Crocodile17Service()
     {
         _requestService = new RequestService(new HttpClient());
     }
