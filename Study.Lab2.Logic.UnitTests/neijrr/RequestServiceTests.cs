@@ -9,15 +9,20 @@ namespace Study.Lab2.Logic.UnitTests.neijrr;
 public class RequestServiceTests
 {
     private Mock<HttpMessageHandler> _httpMessageHandler;
-    private HttpClient _httpClient;
     private RequestService _requestService;
 
     [SetUp]
     public void Setup()
     {
         _httpMessageHandler = new Mock<HttpMessageHandler>();
-        _httpClient = new HttpClient(_httpMessageHandler.Object);
-        _requestService = new RequestService(_httpClient);
+        var httpClient = new HttpClient(_httpMessageHandler.Object);
+        _requestService = new RequestService(httpClient);
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        _requestService?.Dispose();
     }
 
     [Test]
@@ -115,12 +120,5 @@ public class RequestServiceTests
                 return false;
 
         return true;
-    }
-
-    [TearDown]
-    public void TearDown()
-    {
-        _requestService?.Dispose();
-        _httpClient?.Dispose();
     }
 }

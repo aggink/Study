@@ -6,7 +6,7 @@ public class ServerRequestService(
     string Url, IRequestService requestService = null, IResponseProcessor responseProcessor = null
 ) : IServerRequestService
 {
-    private readonly IRequestService _requestService = requestService ?? new RequestService();
+    private readonly IRequestService _requestService = requestService ?? new RequestService(new HttpClient());
 
     private readonly IResponseProcessor _responseProcessor = responseProcessor ?? new ResponseProcessor();
 

@@ -20,7 +20,7 @@ public interface IResponseProcessor
     /// </summary>
     /// <param name="obj">Десериализуемый объект</param>
     /// <returns>Объект JsonDocument, или <see langword="null"/> при ошибке десериализации</returns>
-    public System.Text.Json.JsonDocument ToJsonDocument(object obj);
+    public JsonDocument ToJsonDocument(object obj);
 
     /// <summary>
     /// Извлекает сообщение об ошибке из ответа
