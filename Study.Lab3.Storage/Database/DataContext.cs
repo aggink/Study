@@ -255,4 +255,23 @@ public class DataContext : DbContext
     public virtual DbSet<Adoption> Adoptions { get; set; }
 
     #endregion
+    #region Workshop
+
+    /// <summary>
+    /// Мастера
+    /// </summary>
+    public virtual DbSet<Models.Workshop.Master> Masters { get; set; }
+
+    /// <summary>
+    /// Услуги
+    /// </summary>
+    public virtual DbSet<Models.Workshop.Service> Services { get; set; }
+
+    /// <summary>
+    /// Заказы на услуги
+    /// </summary>
+    public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
+
+  #endregion
+
 }
