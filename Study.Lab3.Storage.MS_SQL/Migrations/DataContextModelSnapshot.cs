@@ -1259,6 +1259,104 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("TeacherSubjects");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Master", b =>
+                {
+                    b.Property<Guid>("IsnMaster")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Specialization")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("IsnMaster");
+
+                    b.ToTable("Masters");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Service", b =>
+                {
+                    b.Property<Guid>("IsnService")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("IsnService");
+
+                    b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.ServiceOrder", b =>
+                {
+                    b.Property<Guid>("IsnServiceOrder")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("CustomerPhone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<Guid>("IsnMaster")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnService")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("TotalPrice")
+                        .HasColumnType("float");
+
+                    b.HasKey("IsnServiceOrder");
+
+                    b.HasIndex("IsnMaster");
+
+                    b.HasIndex("IsnService");
+
+                    b.ToTable("ServiceOrders");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyAppointment", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.BeautySalon.BeautyClient", "BeautyClient")
@@ -1690,6 +1788,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.ServiceOrder", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Workshop.Master", "Master")
+                        .WithMany("ServiceOrders")
+                        .HasForeignKey("IsnMaster")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Workshop.Service", "Service")
+                        .WithMany("ServiceOrders")
+                        .HasForeignKey("IsnService")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Master");
+
+                    b.Navigation("Service");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyClient", b =>
                 {
                     b.Navigation("BeautyAppointments");
@@ -1841,6 +1958,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Author");
 
                     b.Navigation("TeacherSubjects");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Master", b =>
+                {
+                    b.Navigation("ServiceOrders");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Service", b =>
+                {
+                    b.Navigation("ServiceOrders");
                 });
 #pragma warning restore 612, 618
         }
