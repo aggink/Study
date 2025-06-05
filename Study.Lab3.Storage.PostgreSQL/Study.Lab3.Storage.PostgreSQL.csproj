@@ -17,4 +17,8 @@
 	  <ProjectReference Include="..\Study.Lab3.Storage\Study.Lab3.Storage.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
+
 </Project>
