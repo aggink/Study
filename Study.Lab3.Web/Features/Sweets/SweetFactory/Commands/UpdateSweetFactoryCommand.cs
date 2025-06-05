@@ -12,7 +12,7 @@ namespace Study.Lab3.Web.Features.Sweets.SweetFactories.Commands;
 /// <summary>
 /// Обновление таблицы сладостей
 /// </summary>
-public sealed class UpdateSweetFactoryCommand : IRequest<long>
+public sealed class UpdateSweetFactoryCommand : IRequest<Guid>
 {
     /// <summary>
     /// Данные сладости
@@ -22,7 +22,7 @@ public sealed class UpdateSweetFactoryCommand : IRequest<long>
     public UpdateSweetFactoryDto SweetFactory { get; init; }
 }
 
-public sealed class UpdateSweetFactoryCommandHandler : IRequestHandler<UpdateSweetFactoryCommand, long>
+public sealed class UpdateSweetFactoryCommandHandler : IRequestHandler<UpdateSweetFactoryCommand, Guid>
 {
     private readonly DataContext _dataContext;
 
@@ -31,7 +31,7 @@ public sealed class UpdateSweetFactoryCommandHandler : IRequestHandler<UpdateSwe
         _dataContext = dataContext;
     }
 
-    public async Task<long> Handle(UpdateSweetFactoryCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(UpdateSweetFactoryCommand request, CancellationToken cancellationToken)
     {
         var sweetfactory = await _dataContext.SweetFactories
                            .FirstOrDefaultAsync(c => c.ID == request.SweetFactory.ID, cancellationToken)

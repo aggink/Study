@@ -11,7 +11,7 @@ namespace Study.Lab3.Web.Features.Sweets.Sweets.Commands;
 /// <summary>
 /// Обновление таблицы сладостей
 /// </summary>
-public sealed class UpdateSweetCommand : IRequest<long>
+public sealed class UpdateSweetCommand : IRequest<Guid>
 {
     /// <summary>
     /// Данные сладости
@@ -21,7 +21,7 @@ public sealed class UpdateSweetCommand : IRequest<long>
     public UpdateSweetDto Sweet { get; init; }
 }
 
-public sealed class UpdateSweetCommandHandler : IRequestHandler<UpdateSweetCommand, long>
+public sealed class UpdateSweetCommandHandler : IRequestHandler<UpdateSweetCommand, Guid>
 {
     private readonly DataContext _dataContext;
 
@@ -30,7 +30,7 @@ public sealed class UpdateSweetCommandHandler : IRequestHandler<UpdateSweetComma
         _dataContext = dataContext;
     }
 
-    public async Task<long> Handle(UpdateSweetCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(UpdateSweetCommand request, CancellationToken cancellationToken)
     {
         var sweet = await _dataContext.Sweets
                            .FirstOrDefaultAsync(c => c.ID == request.Sweet.ID, cancellationToken)

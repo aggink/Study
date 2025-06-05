@@ -8,9 +8,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Commands;
 
-
-
-
 /// <summary>
 /// Удаление элемента из SweetType
 /// </summary>

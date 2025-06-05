@@ -5,7 +5,6 @@ namespace Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
 
 public sealed record CreateSweetFactoryDto
 {
-    
     /// <summary>
     /// Название фабрики
     /// </summary>

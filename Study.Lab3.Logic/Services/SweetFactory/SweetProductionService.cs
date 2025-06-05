@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace Study.Lab3.Logic.Services.Sweets
 {
-    internal class SweetProductionService : ISweetProductionService
+    public sealed class SweetProductionService : ISweetProductionService
     {
         public async Task CreateOrUpdateSweetProductionValidateAndThrowAsync(
-        DataContext dataContext,
+            DataContext dataContext,
             SweetProduction sweetproduction,
             CancellationToken cancellationToken = default)
         {

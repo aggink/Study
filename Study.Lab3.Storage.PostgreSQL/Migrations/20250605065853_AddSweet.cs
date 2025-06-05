@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -14,7 +15,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SweetFactories",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     Address = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
                     Volume = table.Column<long>(type: "bigint", nullable: false)
@@ -28,7 +29,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SweetTypes",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
@@ -40,9 +41,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "Sweets",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    SweetTypeID = table.Column<long>(type: "bigint", nullable: false),
+                    SweetTypeID = table.Column<Guid>(type: "uuid", nullable: false),
                     Ingredients = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
@@ -60,9 +61,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SweetProductions",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
-                    SweetID = table.Column<long>(type: "bigint", nullable: false),
-                    SweetFactoryID = table.Column<long>(type: "bigint", nullable: false)
+                    ID = table.Column<Guid>(type: "uuid", nullable: false),
+                    SweetID = table.Column<Guid>(type: "uuid", nullable: false),
+                    SweetFactoryID = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -85,8 +86,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SweetSweetFactory",
                 columns: table => new
                 {
-                    SweetFactoriesID = table.Column<long>(type: "bigint", nullable: false),
-                    SweetsID = table.Column<long>(type: "bigint", nullable: false)
+                    SweetFactoriesID = table.Column<Guid>(type: "uuid", nullable: false),
+                    SweetsID = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {

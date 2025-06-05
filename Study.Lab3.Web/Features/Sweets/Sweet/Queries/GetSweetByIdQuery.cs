@@ -18,7 +18,7 @@ public sealed class GetSweetByIdQuery : IRequest<SweetDto>
     /// </summary>
     [Required]
     [FromQuery]
-    public  Int64 ID { get; init; }
+    public Guid ID { get; init; }
 }
 
 public sealed class GetSweetByIdQueryHandler : IRequestHandler<GetSweetByIdQuery, SweetDto>

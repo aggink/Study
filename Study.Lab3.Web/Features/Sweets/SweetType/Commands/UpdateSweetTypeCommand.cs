@@ -9,13 +9,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Commands;
 
-
-
-
 /// <summary>
 /// Обновление таблицы сладостей
 /// </summary>
-public sealed class UpdateSweetTypeCommand : IRequest<long>
+public sealed class UpdateSweetTypeCommand : IRequest<Guid>
 {
     /// <summary>
     /// Данные сладости
@@ -25,7 +22,7 @@ public sealed class UpdateSweetTypeCommand : IRequest<long>
     public UpdateSweetTypeDto SweetType { get; init; }
 }
 
-public sealed class UpdateSweetTypeCommandHandler : IRequestHandler<UpdateSweetTypeCommand, long>
+public sealed class UpdateSweetTypeCommandHandler : IRequestHandler<UpdateSweetTypeCommand, Guid>
 {
     private readonly DataContext _dataContext;
 
@@ -34,7 +31,7 @@ public sealed class UpdateSweetTypeCommandHandler : IRequestHandler<UpdateSweetT
         _dataContext = dataContext;
     }
 
-    public async Task<long> Handle(UpdateSweetTypeCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(UpdateSweetTypeCommand request, CancellationToken cancellationToken)
     {
         var sweettype = await _dataContext.SweetTypes
                            .FirstOrDefaultAsync(c => c.ID == request.SweetType.ID, cancellationToken)

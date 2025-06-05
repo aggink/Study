@@ -11,5 +11,4 @@ public sealed record CreateSweetTypeDto
     [Required]
     [MaxLength(ModelConstants.SweetType.MaxNameLenght)]
     public string Name { get; init; }
-
 }

@@ -8,6 +8,7 @@ using Study.Lab3.Web.Features.Sweets.SweetTypes.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Queries;
+
 /// <summary>
 /// Получение сладости по идентификатору
 /// </summary>
@@ -18,7 +19,7 @@ public sealed class GetSweetTypeByIdQuery : IRequest<SweetTypeDto>
     /// </summary>
     [Required]
     [FromQuery]
-    public  Int64 ID { get; init; }
+    public Guid ID { get; init; }
 }
 
 public sealed class GetSweetTypeByIdQueryHandler : IRequestHandler<GetSweetTypeByIdQuery, SweetTypeDto>

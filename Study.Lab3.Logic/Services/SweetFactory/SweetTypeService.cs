@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Study.Lab3.Logic.Services.Sweets
 {
-    internal class SweetTypeService : ISweetTypeService
+    public sealed class SweetTypeService : ISweetTypeService
     {
         public async Task CreateOrUpdateSweetTypeValidateAndThrowAsync(
         DataContext dataContext,

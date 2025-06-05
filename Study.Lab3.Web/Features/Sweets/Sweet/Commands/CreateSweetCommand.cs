@@ -12,7 +12,7 @@ namespace Study.Lab3.Web.Features.Sweets.Sweets.Commands;
 /// <summary>
 /// Создание клиента
 /// </summary>
-public sealed class CreateSweetCommand : IRequest<long>
+public sealed class CreateSweetCommand : IRequest<Guid>
 {
     /// <summary>
     /// Данные записи
@@ -22,7 +22,7 @@ public sealed class CreateSweetCommand : IRequest<long>
     public CreateSweetDto Sweet { get; init; }
 }
 
-public sealed class CreateSweetCommandHandler : IRequestHandler<CreateSweetCommand, long>
+public sealed class CreateSweetCommandHandler : IRequestHandler<CreateSweetCommand, Guid>
 {
     private readonly DataContext _dataContext;
 
@@ -31,7 +31,7 @@ public sealed class CreateSweetCommandHandler : IRequestHandler<CreateSweetComma
         _dataContext = dataContext;
     }
 
-    public async Task<long> Handle(CreateSweetCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateSweetCommand request, CancellationToken cancellationToken)
     {
         // Проверка уникальности 
         if (await _dataContext.Sweets.AnyAsync(c => c.Name == request.Sweet.Name, cancellationToken))
@@ -42,7 +42,7 @@ public sealed class CreateSweetCommandHandler : IRequestHandler<CreateSweetComma
             Name = request.Sweet.Name,
             SweetTypeID = request.Sweet.SweetTypeID,
             Ingredients = request.Sweet.Ingredients,
-            SweetFactories = new List<SweetFactory>(),
+            SweetProductions = new List<SweetProduction>(),
         };
 
         await _dataContext.Sweets.AddAsync(sweet, cancellationToken);

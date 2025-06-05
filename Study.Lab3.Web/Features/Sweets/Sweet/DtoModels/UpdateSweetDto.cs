@@ -9,7 +9,7 @@ public sealed record UpdateSweetDto
     /// Идентификатор Сладости
     /// </summary>
     [Required]
-    public Int64 ID { get; init; }
+    public Guid ID { get; init; }
     
     /// <summary>
     /// Имя
@@ -22,7 +22,7 @@ public sealed record UpdateSweetDto
     /// Идентификатор Типа Сладости
     /// </summary>
     [Required]
-    public Int64 SweetTypeID { get; init; }
+    public Guid SweetTypeID { get; init; }
 
     /// <summary>
     /// Ингридиенты

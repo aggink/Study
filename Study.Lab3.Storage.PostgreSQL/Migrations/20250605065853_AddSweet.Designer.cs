@@ -12,8 +12,8 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250604211418_AddSweet1")]
-    partial class AddSweet1
+    [Migration("20250605065853_AddSweet")]
+    partial class AddSweet
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -332,11 +332,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
                 {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    b.Property<Guid>("ID")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Ingredients")
                         .IsRequired()
@@ -348,8 +345,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
 
-                    b.Property<long>("SweetTypeID")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("SweetTypeID")
+                        .HasColumnType("uuid");
 
                     b.HasKey("ID");
 
@@ -360,11 +357,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetFactory", b =>
                 {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    b.Property<Guid>("ID")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -386,17 +380,14 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetProduction", b =>
                 {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("ID")
+                        .HasColumnType("uuid");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    b.Property<Guid>("SweetFactoryID")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("SweetFactoryID")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("SweetID")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("SweetID")
+                        .HasColumnType("uuid");
 
                     b.HasKey("ID");
 
@@ -409,11 +400,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetType", b =>
                 {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("ID"));
+                    b.Property<Guid>("ID")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -787,11 +775,11 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("SweetSweetFactory", b =>
                 {
-                    b.Property<long>("SweetFactoriesID")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("SweetFactoriesID")
+                        .HasColumnType("uuid");
 
-                    b.Property<long>("SweetsID")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("SweetsID")
+                        .HasColumnType("uuid");
 
                     b.HasKey("SweetFactoriesID", "SweetsID");
 

@@ -13,7 +13,7 @@ namespace Study.Lab3.Web.Features.Sweets.SweetFactories.Commands;
 /// <summary>
 /// Создание клиента
 /// </summary>
-public sealed class CreateSweetFactoryCommand : IRequest<long>
+public sealed class CreateSweetFactoryCommand : IRequest<Guid>
 {
     /// <summary>
     /// Данные записи
@@ -23,7 +23,7 @@ public sealed class CreateSweetFactoryCommand : IRequest<long>
     public CreateSweetFactoryDto SweetFactory { get; init; }
 }
 
-public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSweetFactoryCommand, long>
+public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSweetFactoryCommand, Guid>
 {
     private readonly DataContext _dataContext;
 
@@ -32,7 +32,7 @@ public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSwe
         _dataContext = dataContext;
     }
 
-    public async Task<long> Handle(CreateSweetFactoryCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateSweetFactoryCommand request, CancellationToken cancellationToken)
     {
         // Проверка уникальности 
         if (await _dataContext.SweetFactories.AnyAsync(c => c.Name == request.SweetFactory.Name, cancellationToken))
@@ -43,8 +43,7 @@ public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSwe
             Name = request.SweetFactory.Name,
             Address = request.SweetFactory.Adress,
             Volume = request.SweetFactory.Volume,
-            //Sweet = new List<Sweet>(),
-            //Sweet = new Sweet()
+            SweetProductions = new List<SweetProduction>(),
         };
 
         await _dataContext.SweetFactories.AddAsync(sweetfactory, cancellationToken);

@@ -17,7 +17,7 @@ namespace Study.Lab3.Logic.Extensions.Sweets
         /// </summary>
         /// <param name="Sweet">конфета</param>
         /// <returns>Название конфеты</returns>
-        public static bool IsNatural(Sweet sweet)
+        public static bool IsNatural(this Sweet sweet)
         {
             return sweet.Ingredients.Contains("Natural ingedients");
         }

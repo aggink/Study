@@ -20,7 +20,7 @@ public sealed class GetSweetProductionByIdQuery : IRequest<SweetProductionDto>
     /// </summary>
     [Required]
     [FromQuery]
-    public  Int64 FactoryID { get; init; }
+    public Guid FactoryID { get; init; }
 }
 
 public sealed class GetSweetProductionByIdQueryHandler : IRequestHandler<GetSweetProductionByIdQuery, SweetProductionDto>

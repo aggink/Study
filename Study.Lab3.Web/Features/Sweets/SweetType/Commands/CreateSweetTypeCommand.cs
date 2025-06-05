@@ -14,7 +14,7 @@ namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Commands;
 /// <summary>
 /// Создание таблицы SweetProduction
 /// </summary>
-public sealed class CreateSweetTypeCommand : IRequest<long>
+public sealed class CreateSweetTypeCommand : IRequest<Guid>
 {
     /// <summary>
     /// Данные записи
@@ -24,7 +24,7 @@ public sealed class CreateSweetTypeCommand : IRequest<long>
     public CreateSweetTypeDto SweetType { get; init; }
 }
 
-public sealed class CreateSweetTypeCommandHandler : IRequestHandler<CreateSweetTypeCommand, long>
+public sealed class CreateSweetTypeCommandHandler : IRequestHandler<CreateSweetTypeCommand, Guid>
 {
     private readonly DataContext _dataContext;
 
@@ -33,7 +33,7 @@ public sealed class CreateSweetTypeCommandHandler : IRequestHandler<CreateSweetT
         _dataContext = dataContext;
     }
 
-    public async Task<long> Handle(CreateSweetTypeCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateSweetTypeCommand request, CancellationToken cancellationToken)
     {
         // Проверка уникальности 
         if (await _dataContext.SweetTypes.AnyAsync(c => c.Name == request.SweetType.Name, cancellationToken))

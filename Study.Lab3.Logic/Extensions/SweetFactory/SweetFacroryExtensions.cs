@@ -15,9 +15,9 @@ namespace Study.Lab3.Logic.Extensions.Sweets
         /// <summary>
         /// Получить фабрики с Российским адресом 
         /// </summary>
-        /// <param name="student">Студент</param>
+        /// <param name="factory">Фабрики</param>
         /// <returns>Название фабрики</returns>
-        public static bool IsAddressCorrect(SweetFactory sweetfactory)
+        public static bool IsAddressCorrect(this SweetFactory sweetfactory)
         {
             return sweetfactory.Address.Contains("Russian Federation");
         }

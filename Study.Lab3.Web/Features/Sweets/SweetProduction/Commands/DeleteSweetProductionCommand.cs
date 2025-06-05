@@ -8,8 +8,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetProductions.Commands;
 
-
-
 /// <summary>
 /// Удаление элемента из SweetProduction
 /// </summary>

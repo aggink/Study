@@ -17,7 +17,7 @@ public sealed class DeleteSweetCommand : IRequest
     /// </summary>
     [Required]
     [FromQuery]
-    public Int64 ID { get; init; }
+    public Guid ID { get; init; }
 }
 
 public sealed class DeleteSweetCommandHandler : IRequestHandler<DeleteSweetCommand>
