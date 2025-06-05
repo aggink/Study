@@ -1,16 +1,21 @@
-﻿using System.Diagnostics;
+﻿using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.neijrr;
-using Study.Lab2.Logic.Interfaces;
+using System.Diagnostics;
 
 namespace Study.Lab2.Logic.neijrr;
 
-public class neijrrService(IServerRequestService serverRequestService = null) : IRunService
+public class neijrrService : IRunService
 {
-    private readonly IServerRequestService _serverRequestService = serverRequestService ?? new ServerRequestService(
-        "https://jsonplaceholder.typicode.com/"
-    );
-
     private readonly Random rnd = new();
+
+    private readonly IServerRequestService _serverRequestService;
+
+    public neijrrService(IServerRequestService serverRequestService = null)
+    {
+        _serverRequestService = serverRequestService ?? new ServerRequestService(
+        "https://jsonplaceholder.typicode.com/"
+        );
+    }
 
     public void RunTask()
     {
