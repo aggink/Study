@@ -388,4 +388,89 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPartValue = 500;
     }
+    
+    public static class Master
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Специализация"
+        /// </summary>
+        public const int Specialization = 200;
+    }
+
+    public static class Service
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная цена услуги
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена услуги
+        /// </summary>
+        public const double MaxPrice = 999999.99;
+
+        /// <summary>
+        /// Минимальная длительность в минутах
+        /// </summary>
+        public const int MinDuration = 5;
+
+        /// <summary>
+        /// Максимальная длительность в минутах
+        /// </summary>
+        public const int MaxDuration = 10080; // неделя
+    }
+
+    public static class ServiceOrder
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя клиента"
+        /// </summary>
+        public const int CustomerName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон клиента"
+        /// </summary>
+        public const int CustomerPhone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная итоговая стоимость
+        /// </summary>
+        public const double MinTotalPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная итоговая стоимость
+        /// </summary>
+        public const double MaxTotalPrice = 999999.99;
+    }
+
 }
