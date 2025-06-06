@@ -24,6 +24,7 @@ using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
+namespace Study.Lab2.Logic.SuperSalad007;
 
 public static class Program
 {
@@ -126,6 +127,8 @@ public static class Program
                 return new freaxdService();
             case ("idb-23-03", 6):
                 return new neijrrService();
+            case ("idb-23-03", 5):
+                return new SuperSalad007Service();
             default:
                 throw new NotSupportedException();
         }
