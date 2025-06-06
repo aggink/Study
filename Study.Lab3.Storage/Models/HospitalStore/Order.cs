@@ -16,12 +16,14 @@ public class Order
     /// Идентификатор пациента
     /// </summary>
     [Required]
+    [ForeignKey(nameof(Patient))]
     public Guid IsnPatient { get; set; }
 
     /// <summary>
     /// Идентификатор продукта
     /// </summary>
     [Required]
+    [ForeignKey(nameof(Product))]
     public Guid IsnProduct { get; set; }
 
     /// <summary>
@@ -29,4 +31,8 @@ public class Order
     /// </summary>
     [Required, Range(ModelConstants.Order.QuantityMin, ModelConstants.Order.QuantityMax)]
     public int Quantity { get; set; }
+
+    public virtual Patient Patient { get; set; }
+
+    public virtual Product Product { get; set; }
 }
