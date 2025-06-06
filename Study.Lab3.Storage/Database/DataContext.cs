@@ -16,6 +16,22 @@ public class DataContext : DbContext
 {
     public DataContext(DbContextOptions options) : base(options)
     {
+
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        foreach (var foreignKey in modelBuilder.Model.GetEntityTypes()
+            .SelectMany(e => e.GetForeignKeys()))
+        {
+            // Только для обязательных (not nullable) внешних ключей
+            if (!foreignKey.IsRequired)
+                continue;
+
+            foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
+        }
+
+        base.OnModelCreating(modelBuilder);
     }
 
     #region University
@@ -243,12 +259,12 @@ public class DataContext : DbContext
     /// Клиенты
     /// </summary>
     public virtual DbSet<ShelterCustomer> ShelterCustomers { get; set; }
-    
+
     /// <summary>
     /// Коты с приюта
     /// </summary>
     public virtual DbSet<Cat> Cats { get; set; }
-    
+
     /// <summary>
     /// Заказ на усыновление кота
     /// </summary>
@@ -296,6 +312,6 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
 
-  #endregion
+    #endregion
 
 }
