@@ -1,4 +1,4 @@
-﻿using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.alkeivi;
 using Study.Lab2.Logic.brnvika;
