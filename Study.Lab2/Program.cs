@@ -132,10 +132,6 @@ public static class Program
                 return new SuperSalad007Service();
             case ("idb-23-02", 11):
                 return new ChaspixService();
-            case ("idb-23-03", 3):
-                return new TaipanoService();
-            case ("idb-23-03", 21):
-                return new p0se1d0nService();
             default:
                 throw new NotSupportedException();
         }
