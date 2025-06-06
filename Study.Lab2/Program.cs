@@ -8,7 +8,6 @@ using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.freaxd;
 using Study.Lab2.Logic.gegemonTV;
 using Study.Lab2.Logic.Interfaces;
-using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
@@ -78,8 +77,6 @@ public static class Program
         {
             case ("assistant", 1):
                 return new AssistantService();
-            case ("SuperSalad007", 5):
-                return new SuperSaladService();
             case ("idb-23-02", 15):
                 return new XynthhService();
             case ("idb-23-02", 4):
