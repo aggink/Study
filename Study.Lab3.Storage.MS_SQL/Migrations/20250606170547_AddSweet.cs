@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Study.Lab3.Storage.PostgreSQL.Migrations
+namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     /// <inheritdoc />
     public partial class AddSweet : Migration
@@ -15,9 +15,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SweetFactories",
                 columns: table => new
                 {
-                    IsnSweetFactory = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    Address = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    IsnSweetFactory = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     Volume = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -29,8 +29,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SweetTypes",
                 columns: table => new
                 {
-                    IsnSweetType = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
+                    IsnSweetType = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,10 +41,10 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "Sweets",
                 columns: table => new
                 {
-                    IsnSweet = table.Column<Guid>(type: "uuid", nullable: false),
-                    IsnSweetType = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    Ingredients = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false)
+                    IsnSweet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSweetType = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Ingredients = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,16 +54,16 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         column: x => x.IsnSweetType,
                         principalTable: "SweetTypes",
                         principalColumn: "IsnSweetType",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "SweetProductions",
                 columns: table => new
                 {
-                    IsnSweetProduction = table.Column<Guid>(type: "uuid", nullable: false),
-                    IsnSweet = table.Column<Guid>(type: "uuid", nullable: false),
-                    IsnSweetFactory = table.Column<Guid>(type: "uuid", nullable: false)
+                    IsnSweetProduction = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSweet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSweetFactory = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,13 +73,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         column: x => x.IsnSweetFactory,
                         principalTable: "SweetFactories",
                         principalColumn: "IsnSweetFactory",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_SweetProductions_Sweets_IsnSweet",
                         column: x => x.IsnSweet,
                         principalTable: "Sweets",
                         principalColumn: "IsnSweet",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

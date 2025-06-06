@@ -17,7 +17,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -1661,7 +1661,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasOne("Study.Lab3.Storage.Models.Sweets.SweetType", "SweetType")
                         .WithMany("Sweets")
                         .HasForeignKey("IsnSweetType")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("SweetType");
@@ -1672,13 +1672,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasOne("Study.Lab3.Storage.Models.Sweets.Sweet", "Sweet")
                         .WithMany("SweetProductions")
                         .HasForeignKey("IsnSweet")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.Sweets.SweetFactory", "SweetFactory")
                         .WithMany("SweetProductions")
                         .HasForeignKey("IsnSweetFactory")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Sweet");
