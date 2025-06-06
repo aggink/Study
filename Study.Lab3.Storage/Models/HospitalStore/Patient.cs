@@ -29,4 +29,7 @@ public class Patient
     /// </summary>
     [Required, MaxLength(ModelConstants.Patient.PhoneMaxLength)]
     public string Phone { get; set; }
+
+    [InverseProperty(nameof(Order.Patient))]
+    public virtual ICollection<Order> Orders { get; set; }
 }
