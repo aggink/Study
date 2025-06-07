@@ -1,0 +1,36 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Study.Lab3.Storage.Models.Messenger;
+
+/// <summary>
+/// Сообщение
+/// </summary>
+public class Post
+{
+    /// <summary>
+    /// Идентификатор
+    /// </summary>
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public Guid Id { get; set; }
+
+    /// <summary>
+    /// Идентификатор пользователя
+    /// </summary>
+    [Required, ForeignKey(nameof(User))]
+    public Guid UserId { get; set; }
+
+    /// <summary>
+    /// Сообщение
+    /// </summary>
+    [Required]
+    public string Message { get; set; }
+
+    public virtual User User { get; set; }
+
+    /// <summary>
+    /// Вложенные изображения
+    /// </summary>
+    [InverseProperty(nameof(ImageEmbed.Post))]
+    public virtual ICollection<ImageEmbed> ImageEmbeds { get; set; }
+}
