@@ -27,6 +27,9 @@ using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
 namespace Study.Lab2.Logic.SuperSalad007;
 
+using Study.Lab2.Logic.KirillPoroshin;
+using Study.Lab2.Logic.Jki749;
+using Study.Lab2.Logic.alexmark1612;
 public static class Program
 {
     /// <summary>
@@ -110,6 +113,8 @@ public static class Program
                 return new jki749Service();
             case ("idb-23-03", 12):
                 return new alkeiviService();
+            case ("idb-23-03", 13):
+                return new alexmark1612Service();
             case ("idb-23-02", 10):
                 return new PresvyatoyKabachokService();
             case ("idb-23-03", 20):
