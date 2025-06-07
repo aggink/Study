@@ -14,6 +14,7 @@ using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.KirillPoroshin;
 using Study.Lab2.Logic.Jki749;
+using Study.Lab2.Logic.cocobara;
 public static class Program
 {
     /// <summary>
@@ -93,6 +94,8 @@ public static class Program
                 return new jki749Service();
             case ("idb-23-03", 12):
                 return new alkeiviService();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
             default:
                 throw new NotSupportedException();
         }
