@@ -1,6 +1,6 @@
 ﻿namespace Study.Lab2.Logic.Interfaces.eldarovskiy;
 
-public interface IRequstService : IDisposable
+public interface IRequestService : IDisposable
 {
     /// <summary>
     /// Отправить запрос к сервису

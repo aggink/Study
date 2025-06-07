@@ -3,7 +3,7 @@ using System.Text.Json.Nodes;
 
 namespace Study.Lab2.Logic.eldarovskiy;
 
-public class RequestService : IRequstService
+public class RequestService : IRequestService
 {
     private readonly HttpClient _httpClient;
 
