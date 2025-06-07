@@ -1,22 +1,25 @@
-﻿using Study.Lab2.Logic.Interfaces;
-using Study.Lab2.Logic.Interfaces.eldarovskiy;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Study.Lab2.Logic.Interfaces.Dronio1337;
 
-namespace Study.Lab2.Logic.eldarovskiy;
-
-public class eldarovskiyService : IRunService
+namespace Study.Lab2.Logic.Dronio1337;
+public class Dronio1337Service : IRunService
 {
     private readonly IRequstService _requestHandler;
     private string[] _apiUrls = new string[3];
 
-    public eldarovskiyService()
+    public Dronio1337Service()
     {
         _requestHandler = new RequestService(new HttpClient());
         SetupApis(); // Переносим инициализацию URL в конструктор
     }
 
     public void RunTask()
-    {   
+    {
         Console.WriteLine("Инициализация запросов...\n");
         Console.WriteLine("\nСтарт синхронных запросов...\n");
         var timer = Stopwatch.StartNew();
@@ -49,7 +52,7 @@ public class eldarovskiyService : IRunService
 
         try
         {
-            var tasks = _apiUrls.Select((url, index) => 
+            var tasks = _apiUrls.Select((url, index) =>
             {
                 Console.WriteLine($"Запрос {index + 1}: {url}"); // Добавляем вывод URL
                 return _requestHandler.FetchDataAsync(url, cancellationToken);
@@ -70,41 +73,31 @@ public class eldarovskiyService : IRunService
 
     private void SetupApis()
     {
-        SetupWeatherApi();
-        SetupNasaApi();
-        SetupUniversityApi();
+        SetupRandomUserApi();
+        SetupJsonPlaceholderApi();
+        SetupCatFactsApi();
     }
 
-    private void SetupWeatherApi()
+    private void SetupRandomUserApi()
     {
-        Console.Write("WeatherAPI - получение данных о текущей погоде в выбранном городе.\n\n");
-        Console.Write("Город для прогноза: ");
-        string city = Console.ReadLine();
-        _apiUrls[0] = $"http://api.weatherapi.com/v1/current.json?key=75723b4740b94a519bd114249251005&q={city}";
+        Console.Write("RandomUser API - получение случайного пользователя.\n\n");
+        _apiUrls[0] = "https://randomuser.me/api/";
         PrintSeparator();
     }
 
-    private void SetupNasaApi()
+    private void SetupJsonPlaceholderApi()
     {
-        Console.Write("NASA APOD API - получение астрономической картинки дня.\n\n");
-        Console.Write("Год (****): ");
-        string year = Console.ReadLine();
-        Console.Write("Месяц (**): ");
-        string month = Console.ReadLine();
-        Console.Write("День (**): ");
-        string day = Console.ReadLine();
-        _apiUrls[1] = $"https://api.nasa.gov/planetary/apod?api_key=WvVHdwoc2g3ZFW4vjIUucePQqPRLfaCKHn04eY4H&date={year}-{month}-{day}";
+        Console.Write("JSONPlaceholder API - получение фейковых данных.\n\n");
+        Console.Write("Выберите тип данных (posts, users, comments): ");
+        string dataType = Console.ReadLine();
+        _apiUrls[1] = $"https://jsonplaceholder.typicode.com/{dataType}";
         PrintSeparator();
     }
 
-    private void SetupUniversityApi()
+    private void SetupCatFactsApi()
     {
-        Console.Write("Universities API (HipoLabs) - поиск информации об университетах по стране и названию.\n\n");
-        Console.Write("Страна: ");
-        string country = Console.ReadLine();
-        Console.Write("Университет: ");
-        string name = Console.ReadLine();
-        _apiUrls[2] = $"http://universities.hipolabs.com/search?country={country}&name={name}";
+        Console.Write("Cat Facts API - получение случайного факта о кошках.\n\n");
+        _apiUrls[2] = "https://catfact.ninja/fact";
         PrintSeparator();
     }
 
@@ -134,7 +127,7 @@ public class eldarovskiyService : IRunService
         Console.ResetColor();
     }
 
-    private void PrintSeparator() => 
+    private void PrintSeparator() =>
         Console.WriteLine("\n" + new string('~', 100));
 
     public void Dispose() => _requestHandler.Dispose();

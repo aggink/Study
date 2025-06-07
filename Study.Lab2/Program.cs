@@ -25,6 +25,7 @@ using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
+using Study.Lab2.Logic.Dronio1337;
 namespace Study.Lab2.Logic.SuperSalad007;
 
 public static class Program
@@ -32,12 +33,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 5;
 
     public static async Task Main()
     {
@@ -132,6 +133,8 @@ public static class Program
                 return new SuperSalad007Service();
             case ("idb-23-02", 11):
                 return new ChaspixService();
+            case ("idb-23-02", 5):
+                return new Dronio1337Service();
             default:
                 throw new NotSupportedException();
         }

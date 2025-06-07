@@ -1,7 +1,7 @@
-﻿using Study.Lab2.Logic.Interfaces.eldarovskiy;
+﻿using Study.Lab2.Logic.Interfaces.Dronio1337;
 using System.Text.Json.Nodes;
 
-namespace Study.Lab2.Logic.eldarovskiy;
+namespace Study.Lab2.Logic.Dronio1337;
 
 public class RequestService : IRequstService
 {
