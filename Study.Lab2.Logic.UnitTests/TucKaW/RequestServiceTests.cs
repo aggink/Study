@@ -30,7 +30,7 @@ public class RequestServiceTests
         {
             Data = new List<string>
             {
-                "ФК Барселона выиграла свой первый титул чемпиона Испании в сезоне 1928-29."
+                "ФК Барселона выиграла свой первый титул чемпиона Испании в сезоне 1928-1929."
             }
         };
         var json = JsonSerializer.Serialize(data);
