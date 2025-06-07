@@ -1,7 +1,8 @@
-﻿using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.alkeivi;
 using Study.Lab2.Logic.brnvika;
+using Study.Lab2.Logic.chaspix;
 using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.chirique_online;
 using Study.Lab2.Logic.danaky1;
@@ -21,9 +22,9 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
+using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
-using Study.Lab2.Logic.xynthh;
 namespace Study.Lab2.Logic.SuperSalad007;
 
 public static class Program
@@ -129,6 +130,8 @@ public static class Program
                 return new neijrrService();
             case ("idb-23-03", 5):
                 return new SuperSalad007Service();
+            case ("idb-23-02", 11):
+                return new ChaspixService();
             default:
                 throw new NotSupportedException();
         }

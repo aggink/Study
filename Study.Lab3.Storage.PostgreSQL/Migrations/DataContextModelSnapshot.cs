@@ -17,7 +17,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -798,6 +798,89 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("ShelterCustomers");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
+                {
+                    b.Property<Guid>("IsnSweet")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Ingredients")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<Guid>("IsnSweetType")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("IsnSweet");
+
+                    b.HasIndex("IsnSweetType");
+
+                    b.ToTable("Sweets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetFactory", b =>
+                {
+                    b.Property<Guid>("IsnSweetFactory")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<long>("Volume")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("IsnSweetFactory");
+
+                    b.ToTable("SweetFactories");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetProduction", b =>
+                {
+                    b.Property<Guid>("IsnSweetProduction")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSweet")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSweetFactory")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("IsnSweetProduction");
+
+                    b.HasIndex("IsnSweet");
+
+                    b.HasIndex("IsnSweetFactory");
+
+                    b.ToTable("SweetProductions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetType", b =>
+                {
+                    b.Property<Guid>("IsnSweetType")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("IsnSweetType");
+
+                    b.ToTable("SweetTypes");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
                     b.Property<Guid>("IsnAnnouncement")
@@ -1573,6 +1656,36 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Sweets.SweetType", "SweetType")
+                        .WithMany("Sweets")
+                        .HasForeignKey("IsnSweetType")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("SweetType");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetProduction", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Sweets.Sweet", "Sweet")
+                        .WithMany("SweetProductions")
+                        .HasForeignKey("IsnSweet")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Sweets.SweetFactory", "SweetFactory")
+                        .WithMany("SweetProductions")
+                        .HasForeignKey("IsnSweetFactory")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Sweet");
+
+                    b.Navigation("SweetFactory");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Teacher", "Teacher")
@@ -1923,6 +2036,21 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
                 {
                     b.Navigation("Adoptions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
+                {
+                    b.Navigation("SweetProductions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetFactory", b =>
+                {
+                    b.Navigation("SweetProductions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetType", b =>
+                {
+                    b.Navigation("Sweets");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>

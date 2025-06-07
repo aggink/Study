@@ -8,6 +8,7 @@ using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.University;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
+using Study.Lab3.Storage.Models.Sweets;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -268,6 +269,30 @@ public class DataContext : DbContext
     /// Заказ на усыновление кота
     /// </summary>
     public virtual DbSet<Adoption> Adoptions { get; set; }
+
+    #endregion
+
+    #region SweetFactory
+
+    /// <summary>
+    /// Конфеты
+    /// </summary>
+    public virtual DbSet<Sweet> Sweets { get; set; }
+
+    /// <summary>
+    /// Конфетная фабрика
+    /// </summary>
+    public virtual DbSet<SweetFactory> SweetFactories { get; set; }
+
+    /// <summary>
+    /// Тип конфет
+    /// </summary>
+    public virtual DbSet<SweetType> SweetTypes { get; set; }
+
+    /// <summary>
+    /// Sweet Production
+    /// </summary>
+    public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
     #region Workshop
