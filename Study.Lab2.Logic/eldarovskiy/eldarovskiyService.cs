@@ -6,7 +6,7 @@ namespace Study.Lab2.Logic.eldarovskiy;
 
 public class eldarovskiyService : IRunService
 {
-    private readonly IRequstService _requestHandler;
+    private readonly IRequestService _requestHandler;
     private string[] _apiUrls = new string[3];
 
     public eldarovskiyService()
