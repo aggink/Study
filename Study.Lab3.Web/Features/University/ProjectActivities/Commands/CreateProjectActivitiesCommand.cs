@@ -41,7 +41,7 @@ public sealed class CreateProjectActivitiesCommandHandler : IRequestHandler<Crea
             IsnProjectActivities = Guid.NewGuid(),
             IsnStudent = request.ProjectActivities.IsnStudent,
             IsnSubject = request.ProjectActivities.IsnSubject,
-            ParticipantsCount = request.ProjectActivities.ParticipantsCount,
+            PerformancesCount = request.ProjectActivities.ParticipantsCount,
             ProjectActivitiesDate = request.ProjectActivities.ProjectActivitiesDate
         };
 

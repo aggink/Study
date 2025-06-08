@@ -32,7 +32,7 @@ public class ProjectActivities
     /// </summary>
     [Required]
     [Range(ModelConstants.ProjectActivities.MinPerformancesValue, ModelConstants.ProjectActivities.MaxPerformancesValue)]
-    public int ParticipantsCount { get; set; }
+    public int PerformancesCount { get; set; }
 
     /// <summary>
     /// Дата выступлений

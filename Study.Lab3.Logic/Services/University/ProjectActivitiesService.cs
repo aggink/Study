@@ -24,7 +24,7 @@ public sealed class ProjectActivitiesService : IProjectActivitiesService
             throw new BusinessLogicException($"Научная деятельность по предмету с идентификатором \"{projectactivities.IsnSubject}\" не существует");
         }
 
-        if (projectactivities.ParticipantsCount < ModelConstants.ProjectActivities.MinPerformancesValue || projectactivities.ParticipantsCount > ModelConstants.ProjectActivities.MaxPerformancesValue)
+        if (projectactivities.PerformancesCount < ModelConstants.ProjectActivities.MinPerformancesValue || projectactivities.PerformancesCount > ModelConstants.ProjectActivities.MaxPerformancesValue)
         {
             throw new BusinessLogicException($"Количество участников должно быть от {ModelConstants.ProjectActivities.MinPerformancesValue} до {ModelConstants.ProjectActivities.MaxPerformancesValue}");
         }

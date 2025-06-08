@@ -30,7 +30,7 @@ public sealed class GetListProjectActivitiesQueryHandler : IRequestHandler<GetLi
                 IsnProjectActivities = x.IsnProjectActivities,
                 IsnStudent = x.IsnStudent,
                 IsnSubject = x.IsnSubject,
-                ParticipantsCount = x.ParticipantsCount,
+                PerformancesCount = x.PerformancesCount,
                 ProjectActivitiesDate = x.ProjectActivitiesDate
             })
             .OrderByDescending(x => x.ProjectActivitiesDate)
