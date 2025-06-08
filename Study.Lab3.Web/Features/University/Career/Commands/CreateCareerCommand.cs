@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Storage.Models.University;
-using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+using Study.Lab3.Web.Features.University.Career.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheCareer.Commands;
+namespace Study.Lab3.Web.Features.University.Career.Commands;
 
 /// <summary>
 /// Создание карьеры
@@ -36,7 +35,7 @@ public sealed class CreateCareerCommandHandler : IRequestHandler<CreateCareerCom
 
     public async Task<Guid> Handle(CreateCareerCommand request, CancellationToken cancellationToken)
     {
-        var career = new Career
+        var career = new Storage.Models.University.Career
         {
             IsnCareer = Guid.NewGuid(),
             IsnStudent = request.Career.IsnStudent,

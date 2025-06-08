@@ -1,7 +1,7 @@
 using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
+namespace Study.Lab3.Web.Features.Sweets.SweetFactory.DtoModels;
 
 public sealed record UpdateSweetFactoryDto
 {
@@ -10,12 +10,12 @@ public sealed record UpdateSweetFactoryDto
     /// </summary>
     [Required]
     public Guid IsnSweetFactory { get; init; }
-    
+
     /// <summary>
     /// Имя
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants. SweetFactory.MaxNameLenght)]
+    [MaxLength(ModelConstants.SweetFactory.MaxNameLenght)]
     public string Name { get; init; }
 
     /// <summary>
@@ -29,5 +29,5 @@ public sealed record UpdateSweetFactoryDto
     /// Ингридиенты
     /// </summary>
     [Required]
-    public Int64 Volume { get; init; }
+    public long Volume { get; init; }
 }

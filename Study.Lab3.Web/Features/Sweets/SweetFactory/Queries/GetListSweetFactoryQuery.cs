@@ -2,10 +2,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetFactory.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetFactories.Queries;
+namespace Study.Lab3.Web.Features.Sweets.SweetFactory.Queries;
 
 /// <summary>
 /// Получение списка фабрик

@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
+namespace Study.Lab3.Web.Features.Sweets.SweetFactory.DtoModels;
 
 public sealed record SweetFactoryDto
 {
@@ -6,7 +6,7 @@ public sealed record SweetFactoryDto
     /// Идентификатор фабрики
     /// </summary>
     public Guid IsnSweetFactory { get; init; }
-    
+
     /// <summary>
     /// Имя
     /// </summary>
@@ -20,5 +20,5 @@ public sealed record SweetFactoryDto
     /// <summary>
     /// Объём продукции
     /// </summary>
-    public Int64 Volume { get; init; }
+    public long Volume { get; init; }
 }

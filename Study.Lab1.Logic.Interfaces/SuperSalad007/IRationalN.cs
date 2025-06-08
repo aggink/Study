@@ -1,4 +1,4 @@
-﻿namespace Study.Lab1.Logic.Interfaces.SuperSalad007.Task1;
+﻿namespace Study.Lab1.Logic.Interfaces.SuperSalad007;
 
 public interface IRationalN
 {

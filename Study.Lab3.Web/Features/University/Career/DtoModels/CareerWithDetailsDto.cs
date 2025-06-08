@@ -1,4 +1,4 @@
-﻿namespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+﻿namespace Study.Lab3.Web.Features.University.Career.DtoModels;
 
 public sealed record CareerWithDetailsDto
 {
