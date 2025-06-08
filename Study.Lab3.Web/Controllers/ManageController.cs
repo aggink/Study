@@ -57,6 +57,9 @@ using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
 using Study.Lab3.Web.Features.University.TheProfcom.Commands;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.Queries;
+using Study.Lab3.Web.Features.University.TheProjectActivities.Commands;
+using Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
+using Study.Lab3.Web.Features.University.TheProjectActivities.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1536,5 +1539,75 @@ public class ManageController : Controller
             return NotFound();
         return Ok(result);
     }
+    #endregion
+
+    #region ProjectActivitiesActivity
+
+    /// <summary>
+    /// Создание проектной деятельности
+    /// </summary>
+    [HttpPost(nameof(CreateProjectActivities), Name = nameof(CreateProjectActivities))]
+    public async Task<ActionResult<Guid>> CreateProjectActivities([FromBody] CreateProjectActivitiesCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование проектной деятельности
+    /// </summary>
+    [HttpPost(nameof(UpdateProjectActivities), Name = nameof(UpdateProjectActivities))]
+    public async Task<ActionResult<Guid>> UpdateProjectActivities([FromBody] UpdateProjectActivitiesCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление проектной деятельности
+    /// </summary>
+    [HttpPost(nameof(DeleteProjectActivities), Name = nameof(DeleteProjectActivities))]
+    public async Task<ActionResult> DeleteProjectActivities([FromQuery] DeleteProjectActivitiesCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение выступлений по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetProjectActivitiesByIsn), Name = nameof(GetProjectActivitiesByIsn))]
+    public async Task<ActionResult<ProjectActivitiesDto>> GetProjectActivitiesByIsn([FromQuery] GetProjectActivitiesByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение выступлений с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetProjectActivitiesWithDetails), Name = nameof(GetProjectActivitiesWithDetails))]
+    public async Task<ActionResult<ProjectActivitiesWithDetailsDto>> GetProjectActivitiesWithDetails([FromQuery] GetProjectActivitiesWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка выступлений
+    /// </summary>
+    [HttpGet(nameof(GetListProjectActivities), Name = nameof(GetListProjectActivities))]
+    public async Task<ActionResult<ProjectActivitiesDto[]>> GetListProjectActivities([FromQuery] GetListProjectActivitiesQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
     #endregion
 }

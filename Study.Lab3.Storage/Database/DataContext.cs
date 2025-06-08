@@ -142,6 +142,11 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Career> Career { get; set; }
 
+    /// <summary>
+    /// Учителя
+    /// </summary>
+    public virtual DbSet<ProjectActivities> TheProjectActivities { get; set; }
+
     #endregion
 
     #region Cinema

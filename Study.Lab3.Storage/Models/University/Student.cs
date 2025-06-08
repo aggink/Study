@@ -87,4 +87,10 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(Career.Student))]
     public virtual ICollection<Career> Careers { get; set; }
+
+    /// <summary>
+    /// Связь с проектной деятельностью
+    /// </summary>
+    [InverseProperty(nameof(ProjectActivities.Student))]
+    public virtual ICollection<ProjectActivities> ProjectActivitiess { get; set; }
 }

@@ -1047,4 +1047,17 @@ public static class ModelConstants
         /// </summary>
         public const double MaxPrice = 1000000;
     }
+
+    public static class ProjectActivities
+    {
+        /// <summary>
+        /// Минимально допустимое количество выступлений.
+        /// </summary>
+        public const int MinPerformancesValue = 10;
+
+        /// <summary>
+        /// Максимально допустимое количество выступлений.
+        /// </summary>
+        public const int MaxPerformancesValue = 20;
+    }
 }
