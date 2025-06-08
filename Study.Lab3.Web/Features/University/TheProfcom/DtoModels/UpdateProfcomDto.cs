@@ -5,22 +5,28 @@ namespace Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 
 public sealed record UpdateProfcomDto
 {
-    /// <summary>
-    /// Идентификатор профкома
-    /// </summary>
-    [Required]
-    public Guid IsnProfcom { get; init; }
+	/// <summary>
+	/// Идентификатор профкома
+	/// </summary>
+	[Required]
+	public Guid IsnProfcom { get; init; }
 
-    /// <summary>
-    /// Значение количества участников
-    /// </summary>
-    [Required]
-    [Range(ModelConstants.Profcom.MinPartValue, ModelConstants.Profcom.MaxPartValue)]
-    public int ParticipantsCount { get; init; }
+	/// <summary>
+	/// Значение количества участников
+	/// </summary>
+	[Required]
+	[Range(ModelConstants.Profcom.MinPartValue, ModelConstants.Profcom.MaxPartValue)]
+	public int ParticipantsCount { get; init; }
 
-    /// <summary>
-    /// Дата проведения научной встречи
-    /// </summary>
-    [Required]
-    public DateTime ProfcomDate { get; init; }
+	/// <summary>
+	/// Дата проведения научной встречи
+	/// </summary>
+	[Required]
+	public DateTime ProfcomDate { get; init; }
+
+	/// <summary>
+	/// Место проведения
+	/// </summary>
+	[Required]
+	public string Audience { get; init; }
 }

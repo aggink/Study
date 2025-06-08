@@ -1197,7 +1197,10 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<DateTime>("ProfcomDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.HasKey("IsnProfcom");
+					b.Property<string>("Audience")
+						.HasColumnType("char");
+
+					b.HasKey("IsnProfcom");
 
                     b.HasIndex("IsnStudent");
 

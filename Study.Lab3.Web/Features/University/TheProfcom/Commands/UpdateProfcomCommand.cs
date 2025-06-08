@@ -14,41 +14,42 @@ namespace Study.Lab3.Web.Features.University.TheProfcom.Commands;
 /// </summary>
 public sealed class UpdateProfcomCommand : IRequest<Guid>
 {
-    /// <summary>
-    /// Данные профкома
-    /// </summary>
-    [Required]
-    [FromBody]
-    public UpdateProfcomDto Profcom { get; init; }
+	/// <summary>
+	/// Данные профкома
+	/// </summary>
+	[Required]
+	[FromBody]
+	public UpdateProfcomDto Profcom { get; init; }
 }
 
 public sealed class UpdateProfcomCommandHandler : IRequestHandler<UpdateProfcomCommand, Guid>
 {
-    private readonly DataContext _dataContext;
-    private readonly IProfcomService _profcomService;
+	private readonly DataContext _dataContext;
+	private readonly IProfcomService _profcomService;
 
-    public UpdateProfcomCommandHandler(
-        DataContext dataContext,
-        IProfcomService profcomService)
-    {
-        _dataContext = dataContext;
-        _profcomService = profcomService;
-    }
+	public UpdateProfcomCommandHandler(
+		DataContext dataContext,
+		IProfcomService profcomService)
+	{
+		_dataContext = dataContext;
+		_profcomService = profcomService;
+	}
 
-    public async Task<Guid> Handle(UpdateProfcomCommand request, CancellationToken cancellationToken)
-    {
-        var profcom = await _dataContext.TheProfcom
-            .Include(x => x.Subject)
-            .FirstOrDefaultAsync(x => x.IsnProfcom == request.Profcom.IsnProfcom, cancellationToken)
-                ?? throw new BusinessLogicException($"Научной встречи с идентификатором \"{request.Profcom.IsnProfcom}\" не существует");
+	public async Task<Guid> Handle(UpdateProfcomCommand request, CancellationToken cancellationToken)
+	{
+		var profcom = await _dataContext.TheProfcom
+			.Include(x => x.Subject)
+			.FirstOrDefaultAsync(x => x.IsnProfcom == request.Profcom.IsnProfcom, cancellationToken)
+				?? throw new BusinessLogicException($"Научной встречи с идентификатором \"{request.Profcom.IsnProfcom}\" не существует");
 
-        profcom.ParticipantsCount = request.Profcom.ParticipantsCount;
-        profcom.ProfcomDate = request.Profcom.ProfcomDate;
+		profcom.ParticipantsCount = request.Profcom.ParticipantsCount;
+		profcom.ProfcomDate = request.Profcom.ProfcomDate;
+		profcom.Audience = request.Profcom.Audience;
 
-        await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(
-            _dataContext, profcom, cancellationToken);
+		await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(
+			_dataContext, profcom, cancellationToken);
 
-        await _dataContext.SaveChangesAsync(cancellationToken);
-        return profcom.IsnProfcom;
-    }
+		await _dataContext.SaveChangesAsync(cancellationToken);
+		return profcom.IsnProfcom;
+	}
 }
