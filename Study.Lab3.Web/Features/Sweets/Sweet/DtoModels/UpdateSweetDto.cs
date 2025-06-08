@@ -1,7 +1,7 @@
 using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
+namespace Study.Lab3.Web.Features.Sweets.Sweet.DtoModels;
 
 public sealed record UpdateSweetDto
 {
@@ -10,12 +10,12 @@ public sealed record UpdateSweetDto
     /// </summary>
     [Required]
     public Guid IsnSweet { get; init; }
-    
+
     /// <summary>
     /// Имя
     /// </summary>
     [Required]
-    [MaxLength(ModelConstants. Sweet.MaxNameLenght)]
+    [MaxLength(ModelConstants.Sweet.MaxNameLenght)]
     public string Name { get; init; }
 
     /// <summary>

@@ -1,7 +1,7 @@
 ﻿using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+namespace Study.Lab3.Web.Features.University.Career.DtoModels;
 
 public sealed record UpdateCareerDto
 {
