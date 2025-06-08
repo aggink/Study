@@ -1,9 +1,15 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+<<<<<<< HEAD
 using Study.Lab3.Web.Features.University.TheKvn.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.TheKvn.Queries;
+=======
+using Study.Lab3.Web.Features.University.Kvn.DtoModels;
+
+namespace Study.Lab3.Web.Features.University.Kvn.Queries;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 /// <summary>
 /// ѕолучение списка количеств участников

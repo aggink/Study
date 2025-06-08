@@ -8,7 +8,11 @@ public class RationalNumber : IRationalNumber
 
     public int Denominator { get; }
 
+<<<<<<< HEAD
     public RationalNumber(int numerator, int denominator) 
+=======
+    public RationalNumber(int numerator, int denominator)
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
     {
         if (denominator == 0)
             throw new DivideByZeroException("Знаменатель не может быть равен нулю");

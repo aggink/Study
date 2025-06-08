@@ -1,11 +1,17 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+<<<<<<< HEAD
 using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
 using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
 using Study.Lab3.Web.Features.Sweets.SweetTypes.DtoModels;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Queries;
+=======
+using Study.Lab3.Web.Features.Sweets.SweetType.DtoModels;
+
+namespace Study.Lab3.Web.Features.Sweets.SweetType.Queries;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 /// <summary>
 /// Получение списка фабрик

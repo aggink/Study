@@ -3,12 +3,19 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+<<<<<<< HEAD
 using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
 using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetProductions.Queries;
+=======
+using Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
+using System.ComponentModel.DataAnnotations;
+
+namespace Study.Lab3.Web.Features.Sweets.SweetProduction.Queries;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 /// <summary>
 /// Получение по идентификатору фабрики

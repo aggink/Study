@@ -6,7 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 namespace Study.Lab3.Logic.Interfaces.Services.Sweets
+=======
+namespace Study.Lab3.Logic.Interfaces.Services.SweetFactory
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 {
     public interface ISweetService
     {

@@ -1,10 +1,17 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+<<<<<<< HEAD
 using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheSportclub.Queries;
+=======
+using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
+using System.ComponentModel.DataAnnotations;
+
+namespace Study.Lab3.Web.Features.University.Sportclub.Queries;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 /// <summary>
 /// Получить количество участников с деталями

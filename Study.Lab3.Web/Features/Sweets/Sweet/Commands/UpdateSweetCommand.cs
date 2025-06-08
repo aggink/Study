@@ -3,10 +3,17 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+<<<<<<< HEAD
 using Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.Sweets.Commands;
+=======
+using Study.Lab3.Web.Features.Sweets.Sweet.DtoModels;
+using System.ComponentModel.DataAnnotations;
+
+namespace Study.Lab3.Web.Features.Sweets.Sweet.Commands;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 /// <summary>
 /// Обновление таблицы сладостей

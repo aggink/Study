@@ -3,10 +3,17 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+<<<<<<< HEAD
 using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheCareer.Queries;
+=======
+using Study.Lab3.Web.Features.University.Career.DtoModels;
+using System.ComponentModel.DataAnnotations;
+
+namespace Study.Lab3.Web.Features.University.Career.Queris;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 /// <summary>
 /// Получить количество участников по идентификатору

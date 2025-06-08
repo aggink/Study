@@ -1,6 +1,10 @@
 ﻿using CoreLib.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Study.Lab3.Logic.Interfaces.Services.Sweets;
+=======
+using Study.Lab3.Logic.Interfaces.Services.SweetFactory;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.Sweets;
 using System;
@@ -9,7 +13,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+<<<<<<< HEAD
 namespace Study.Lab3.Logic.Services.Sweets
+=======
+namespace Study.Lab3.Logic.Services.SweetFactory
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 {
     public sealed class SweetTypeService : ISweetTypeService
     {

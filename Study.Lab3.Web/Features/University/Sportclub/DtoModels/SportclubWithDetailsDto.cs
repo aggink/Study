@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿namespace Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
+=======
+﻿namespace Study.Lab3.Web.Features.University.Sportclub.DtoModels;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 public sealed record SportclubWithDetailsDto
 {

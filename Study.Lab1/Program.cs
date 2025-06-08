@@ -1,8 +1,13 @@
-﻿using Study.Lab1.Logic.alkeivi;
+﻿using Study.Lab1.Logic.alexmark1612;
+using Study.Lab1.Logic.alkeivi;
 using Study.Lab1.Logic.Assistant;
 using Study.Lab1.Logic.brnvika;
 using Study.Lab1.Logic.Cherryy;
 using Study.Lab1.Logic.chirique_online;
+using Study.Lab1.Logic.cocobara;
+using Study.Lab1.Logic.Crocodile17;
+using Study.Lab1.Logic.danaky1;
+using Study.Lab1.Logic.Dronio1337;
 using Study.Lab1.Logic.eldarovskiy;
 using Study.Lab1.Logic.freaxd;
 using Study.Lab1.Logic.gegemonTV;
@@ -14,22 +19,29 @@ using Study.Lab1.Logic.kinkiss1;
 using Study.Lab1.Logic.love100rubb;
 using Study.Lab1.Logic.lsokol14l;
 using Study.Lab1.Logic.mansurgh;
+using Study.Lab1.Logic.mariabyrrrrak;
 using Study.Lab1.Logic.neijrr;
+using Study.Lab1.Logic.p0se1d0nov;
 using Study.Lab1.Logic.poigko;
 using Study.Lab1.Logic.poroshok;
 using Study.Lab1.Logic.PresvyatoyKabachok;
 using Study.Lab1.Logic.Pro100futa;
 using Study.Lab1.Logic.Selestz;
 using Study.Lab1.Logic.SlavicSquat;
-using Study.Lab1.Logic.xynthh;
-using Study.Lab1.Logic.p0se1d0nov;
+using Study.Lab1.Logic.SuperSalad007;
 using Study.Lab1.Logic.Taipano;
 using Study.Lab1.Logic.TucKaW;
-using Study.Lab1.Logic.danaky1;
+using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.yamisakimei;
+<<<<<<< HEAD
 using Study.Lab1.Logic.alexmark1612;
 using Study.Lab1.Logic.Dronio1337;
 using Study.Lab1.Logic.cocobara;
+=======
+using Study.Lab1.Logic.Bonnemort;
+using Study.Lab1.Logic.chaspix;
+using Study.Lab1.Logic.SuperSalad007;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 public static class Program
 {
@@ -134,10 +146,29 @@ public static class Program
                 return new danaky1Service();
             case ("idb-23-03", 8):
                 return new yamisakimeiService();
+<<<<<<< HEAD
                 case("idb-23-02", 5):
                 return new Dronio1337Service();
             case ("idb-23-02", 13):
                 return new cocobaraService();
+=======
+            case ("idb-23-03", 13):
+                return new alexmark1612Service();
+            case ("idb-23-02", 5):
+                return new Dronio1337Service();
+            case ("idb-23-02", 18):
+                return new BonnemortService();
+            case ("idb-23-03", 20):
+                return new mariabyrrrrakService();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
+            case ("idb-23-03", 19):
+                return new Crocodile17Service();
+            case ("idb-23-03", 5):
+                return new SuperSalad007Service();
+            case ("idb-23-02",11):
+                return new chaspixService();
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
             default:
                 throw new NotSupportedException();
         }

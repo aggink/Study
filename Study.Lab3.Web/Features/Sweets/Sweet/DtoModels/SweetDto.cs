@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 namespace Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
+=======
+namespace Study.Lab3.Web.Features.Sweets.Sweet.DtoModels;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 public sealed record SweetDto
 {
@@ -6,7 +10,11 @@ public sealed record SweetDto
     /// Идентификатор сладости
     /// </summary>
     public Guid IsnSweet { get; init; }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
     /// <summary>
     /// Имя
     /// </summary>

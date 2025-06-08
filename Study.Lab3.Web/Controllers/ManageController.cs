@@ -1,5 +1,21 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Study.Lab3.Web.Features.Library.AuthorBooks.Commands;
+using Study.Lab3.Web.Features.Library.AuthorBooks.DtoModels;
+using Study.Lab3.Web.Features.Library.AuthorBooks.Queries;
+using Study.Lab3.Web.Features.Library.Authors.Commands;
+using Study.Lab3.Web.Features.Library.Authors.DtoModels;
+using Study.Lab3.Web.Features.Library.Authors.Queries;
+using Study.Lab3.Web.Features.Library.Books.Commands;
+using Study.Lab3.Web.Features.Library.Books.DtoModels;
+using Study.Lab3.Web.Features.Library.Books.Queries;
+using Study.Lab3.Web.Features.Shelter.Adoptions.Commands;
+using Study.Lab3.Web.Features.Shelter.Cats.Commands;
+using Study.Lab3.Web.Features.Shelter.Cats.DtoModels;
+using Study.Lab3.Web.Features.Shelter.Cats.Queries;
+using Study.Lab3.Web.Features.Shelter.Customers.Commands;
+using Study.Lab3.Web.Features.Shelter.Customers.DtoModels;
+using Study.Lab3.Web.Features.Shelter.Customers.Queries;
 using Study.Lab3.Web.Features.University.Announcements.Commands;
 using Study.Lab3.Web.Features.University.Announcements.DtoModels;
 using Study.Lab3.Web.Features.University.Announcements.Queries;
@@ -24,6 +40,9 @@ using Study.Lab3.Web.Features.University.Groups.Queries;
 using Study.Lab3.Web.Features.University.Materials.Commands;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
 using Study.Lab3.Web.Features.University.Materials.Queries;
+using Study.Lab3.Web.Features.University.Sportclub.Commands;
+using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
+using Study.Lab3.Web.Features.University.Sportclub.Queries;
 using Study.Lab3.Web.Features.University.Students.Commands;
 using Study.Lab3.Web.Features.University.Students.DtoModels;
 using Study.Lab3.Web.Features.University.Students.Queries;
@@ -35,6 +54,9 @@ using Study.Lab3.Web.Features.University.Teachers.Queries;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Commands;
 using Study.Lab3.Web.Features.University.TeacherSubjects.DtoModels;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
+using Study.Lab3.Web.Features.University.TheProfcom.Commands;
+using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
+using Study.Lab3.Web.Features.University.TheProfcom.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1009,5 +1031,510 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    #endregion
+
+    #region Book
+
+    /// <summary>
+    /// Создание книги
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор книги</returns>
+    [HttpPost(nameof(CreateBook), Name = nameof(CreateBook))]
+    public async Task<ActionResult<Guid>> CreateBook(CreateBookCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование данных книги
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор книги</returns>
+    [HttpPost(nameof(UpdateBook), Name = nameof(UpdateBook))]
+    public async Task<ActionResult<Guid>> UpdateBook(UpdateBookCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление книги
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    [HttpPost(nameof(DeleteBook), Name = nameof(DeleteBook))]
+    public async Task<ActionResult<Guid>> DeleteBook(DeleteBookCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение списка книг
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список групп</returns>
+    [HttpGet(nameof(GetListBooks), Name = nameof(GetListBooks))]
+    public async Task<ActionResult<BookItemDto[]>> GetListBooks([FromQuery] GetListBooksQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение данных книг
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Данные группы</returns>
+    [HttpGet(nameof(GetBookByIsn), Name = nameof(GetBookByIsn))]
+    public async Task<ActionResult<BookDto>> GetBookByIsn(GetBookByIsnQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение список книг с авторами
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список книг с авторами</returns>
+    [HttpGet(nameof(GetListBooksWithAuthors), Name = nameof(GetListBooksWithAuthors))]
+    public async Task<ActionResult<BookWithAuthorsItemDto[]>> GetListBooksWithAuthors(
+        [FromQuery] GetListBooksWithAuthorsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region ProfcomActivity
+
+    /// <summary>
+    /// Создание профкома
+    /// </summary>
+    [HttpPost(nameof(CreateProfcom), Name = nameof(CreateProfcom))]
+    public async Task<ActionResult<Guid>> CreateProfcom([FromBody] CreateProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование профкома
+    /// </summary>
+    [HttpPost(nameof(UpdateProfcom), Name = nameof(UpdateProfcom))]
+    public async Task<ActionResult<Guid>> UpdateProfcom([FromBody] UpdateProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление профкома
+    /// </summary>
+    [HttpPost(nameof(DeleteProfcom), Name = nameof(DeleteProfcom))]
+    public async Task<ActionResult> DeleteProfcom([FromQuery] DeleteProfcomCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение научной деятельности по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetProfcomByIsn), Name = nameof(GetProfcomByIsn))]
+    public async Task<ActionResult<ProfcomDto>> GetProfcomByIsn([FromQuery] GetProfcomByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение научной деятельности с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetProfcomWithDetails), Name = nameof(GetProfcomWithDetails))]
+    public async Task<ActionResult<ProfcomWithDetailsDto>> GetProfcomWithDetails([FromQuery] GetProfcomWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка научной деятельности
+    /// </summary>
+    [HttpGet(nameof(GetListProfcom), Name = nameof(GetListProfcom))]
+    public async Task<ActionResult<ProfcomDto[]>> GetListProfcom([FromQuery] GetListProfcomQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Author
+
+    /// <summary>
+    /// Создание автора
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор автора</returns>
+    [HttpPost(nameof(CreateAuthor), Name = nameof(CreateAuthor))]
+    public async Task<ActionResult<Guid>> CreateAuthor(CreateAuthorCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование данных автора
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор автора</returns>
+    [HttpPost(nameof(UpdateAuthor), Name = nameof(UpdateAuthor))]
+    public async Task<ActionResult<Guid>> UpdateAuthor(UpdateAuthorCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление автора
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    [HttpPost(nameof(DeleteAuthor), Name = nameof(DeleteAuthor))]
+    public async Task<ActionResult<Guid>> DeleteAuthor(DeleteAuthorCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение списка авторов
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список авторов</returns>
+    [HttpGet(nameof(GetListAuthors), Name = nameof(GetListAuthors))]
+    public async Task<ActionResult<AuthorItemDto[]>> GetListAuthors([FromQuery] GetListAuthorsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение данных автора
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Данные автора</returns>
+    [HttpGet(nameof(GetAuthorByIsn), Name = nameof(GetAuthorByIsn))]
+    public async Task<ActionResult<AuthorDto>> GetAuthorByIsn(GetAuthorByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Добавить книгу с автором
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    [HttpPost(nameof(AddBookAndAuthor), Name = nameof(AddBookAndAuthor))]
+    public async Task<ActionResult> AddBookAndAuthor(AddBookAndAuthorCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Удалить книгу с автором
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    [HttpPost(nameof(DeleteBookAndAuthor), Name = nameof(DeleteBookAndAuthor))]
+    public async Task<ActionResult> DeleteBookAndAuthor(DeleteBookAndAuthorCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    #endregion
+
+    #region AuthorBook
+
+    /// <summary>
+    /// Привязать книгу к автору
+    /// </summary>
+    [HttpPost(nameof(CreateAuthorBook), Name = nameof(CreateAuthorBook))]
+    public async Task<ActionResult> CreateAuthorBook(CreateAuthorBookCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Отвязать книгу от автора
+    /// </summary>
+    [HttpPost(nameof(DeleteAuthorBook), Name = nameof(DeleteAuthorBook))]
+    public async Task<ActionResult> DeleteAuthorBook(DeleteAuthorBookCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение списка книг автора
+    /// </summary>
+    [HttpGet(nameof(GetBooksByAuthor), Name = nameof(GetBooksByAuthor))]
+    public async Task<ActionResult<AuthorBookWithDetailsDto[]>> GetBooksByAuthor(
+        [FromQuery] GetBooksByAuthorQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка авторов книги
+    /// </summary>
+    [HttpGet(nameof(GetAuthorsByBook), Name = nameof(GetAuthorsByBook))]
+    public async Task<ActionResult<AuthorBookWithDetailsDto[]>> GetAuthorsByBook(
+        [FromQuery] GetAuthorsByBookQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Sportclub
+    /// <summary>
+    /// Создание спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(CreateSportclub), Name = nameof(CreateSportclub))]
+
+    public async Task<ActionResult<Guid>> CreateSportclub([FromBody] CreateSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(UpdateSportclub), Name = nameof(UpdateSportclub))]
+    public async Task<ActionResult<Guid>> UpdateSportclub([FromBody] UpdateSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(DeleteSportclub), Name = nameof(DeleteSportclub))]
+    public async Task<ActionResult> DeleteSportclub([FromQuery] DeleteSportclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetSportclubByIsn), Name = nameof(GetSportclubByIsn))]
+    public async Task<ActionResult<SportclubDto>> GetSportclubByIsn([FromQuery] GetSportclubByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetSportclubWithDetails), Name = nameof(GetSportclubWithDetails))]
+    public async Task<ActionResult<SportclubWithDetailsDto>> GetSportclubWithDetails([FromQuery] GetSportclubWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка соревновательной деятельности
+    /// </summary>
+    [HttpGet(nameof(GetListSportclub), Name = nameof(GetListSportclub))]
+    public async Task<ActionResult<SportclubDto[]>> GetListSportclub([FromQuery] GetListSportclubQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region ShelterCustomer
+
+    /// <summary>
+    /// Получение покупателя по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetShelterCustomerById), Name = nameof(GetShelterCustomerById))]
+    public async Task<ActionResult<ShelterCustomerDto>> GetShelterCustomerById([FromQuery] GetShelterCustomerByIdQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        if (result == null)
+            return NotFound();
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка покупателей приюта
+    /// </summary>
+    [HttpGet(nameof(GetShelterListCustomers), Name = nameof(GetShelterListCustomers))]
+    public async Task<ActionResult<ShelterCustomerDto[]>> GetShelterListCustomers([FromQuery] GetShelterListCustomersQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Создание покупателя
+    /// </summary>
+    [HttpPost(nameof(CreateShelterCustomer), Name = nameof(CreateShelterCustomer))]
+    public async Task<ActionResult<Guid>> CreateShelterCustomer(CreateShelterCustomerCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление покупателя
+    /// </summary>
+    [HttpPost(nameof(DeleteShelterCustomer), Name = nameof(DeleteShelterCustomer))]
+    public async Task<ActionResult> DeleteShelterCustomer(DeleteShelterCustomerCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Обновление покупателя
+    /// </summary>
+    [HttpPost(nameof(UpdateShelterCustomer), Name = nameof(UpdateShelterCustomer))]
+    public async Task<ActionResult<Guid>> UpdateShelterCustomer(UpdateShelterCustomerCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Adoption
+
+    /// <summary>
+    /// Создание усыновления
+    /// </summary>
+    [HttpPost(nameof(CreateAdoption), Name = nameof(CreateAdoption))]
+    public async Task<ActionResult<Guid>> CreateAdoption(CreateAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование усыновления
+    /// </summary>
+    [HttpPost(nameof(UpdateAdoption), Name = nameof(UpdateAdoption))]
+    public async Task<ActionResult<Guid>> UpdateAdoption(UpdateAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление усыновления
+    /// </summary>
+    [HttpPost(nameof(DeleteAdoption), Name = nameof(DeleteAdoption))]
+    public async Task<ActionResult> DeleteAdoption(DeleteAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    #endregion
+
+    #region Cat
+    // Получение списка котов
+    [HttpGet(nameof(GetListCats), Name = nameof(GetListCats))]
+    public async Task<ActionResult<CatDto[]>> GetListCats([FromQuery] GetListCatsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    // Создание кота
+    [HttpPost(nameof(CreateCat), Name = nameof(CreateCat))]
+    public async Task<ActionResult<Guid>> CreateCat(CreateCatCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    // Обновление кота
+    [HttpPost(nameof(UpdateCat), Name = nameof(UpdateCat))]
+    public async Task<ActionResult<Guid>> UpdateCat(UpdateCatCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    // Удаление кота
+    [HttpPost(nameof(DeleteCat), Name = nameof(DeleteCat))]
+    public async Task<ActionResult> DeleteCat(DeleteCatCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение кота по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetCatById), Name = nameof(GetCatById))]
+    public async Task<ActionResult<CatDto>> GetCatById([FromQuery] GetCatByIdQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        if (result == null)
+            return NotFound();
+        return Ok(result);
+    }
     #endregion
 }

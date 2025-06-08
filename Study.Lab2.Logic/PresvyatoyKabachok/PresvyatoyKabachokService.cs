@@ -5,13 +5,26 @@ using System.Text.Json;
 
 namespace Study.Lab2.Logic.PresvyatoyKabachok;
 
+<<<<<<< HEAD
+=======
+/// <summary>
+/// Реализация задания «HTTP-запросы» для PresvyatoyKabachok.
+/// Делает три запроса: шутка Чака Норриса, совет дня и факт о котиках.
+/// </summary>
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 public sealed class PresvyatoyKabachokService : IRunService
 {
     private readonly string[] _urls =
     {
+<<<<<<< HEAD
         "https://official-joke-api.appspot.com/random_joke",  // setup + punchline
         "https://randomuser.me/api/?inc=name,gender,email",   // случайный пользователь
         "https://catfact.ninja/fact"                          // факт о кошках
+=======
+        "https://api.chucknorris.io/jokes/random",   // joke.value
+        "https://api.adviceslip.com/advice",         // slip.advice
+        "https://catfact.ninja/fact"                 // fact
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
     };
 
     private readonly IRequestService _requestService;
@@ -89,6 +102,7 @@ public sealed class PresvyatoyKabachokService : IRunService
                 using var doc = JsonDocument.Parse(raw);
                 var root = doc.RootElement;
 
+<<<<<<< HEAD
                 string text = root.TryGetProperty("setup", out var setup)
                                ? $"{setup.GetString()}\n{root.GetProperty("punchline").GetString()}" // Шутка
                                : root.TryGetProperty("results", out var results) // RandomUser.me
@@ -96,6 +110,15 @@ public sealed class PresvyatoyKabachokService : IRunService
                                  : root.TryGetProperty("fact", out var fact)
                                    ? fact.GetString()! // Факт о кошках
                                    : root.ToString();
+=======
+                string text = root.TryGetProperty("value", out var cn)
+                              ? cn.GetString()!
+                              : root.TryGetProperty("slip", out var slip) && slip.TryGetProperty("advice", out var advice)
+                                ? advice.GetString()!
+                                : root.TryGetProperty("fact", out var fact)
+                                  ? fact.GetString()!
+                                  : root.ToString();
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
                 Console.WriteLine(text);
             }
@@ -109,6 +132,7 @@ public sealed class PresvyatoyKabachokService : IRunService
         }
     }
 
+<<<<<<< HEAD
     private static string FormatUserInfo(JsonElement user)
     {
         var name = user.GetProperty("name");
@@ -119,3 +143,7 @@ public sealed class PresvyatoyKabachokService : IRunService
 
     public void Dispose() => _requestService.Dispose();
 }
+=======
+    public void Dispose() => _requestService.Dispose();
+}
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 namespace Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
+=======
+namespace Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 
 public sealed record SweetProductionDto

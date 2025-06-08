@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿namespace Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+=======
+﻿namespace Study.Lab3.Web.Features.University.Career.DtoModels;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 public sealed record CareerDto
 {

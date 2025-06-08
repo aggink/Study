@@ -1,5 +1,6 @@
 ﻿using CoreLib.Common.Extensions;
 using Microsoft.EntityFrameworkCore;
+<<<<<<< HEAD
 using Study.Lab3.Logic.Interfaces.Services.Sweets;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.Sweets;
@@ -11,12 +12,22 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Study.Lab3.Logic.Services.Sweets
+=======
+using Study.Lab3.Logic.Interfaces.Services.SweetFactory;
+using Study.Lab3.Storage.Database;
+
+namespace Study.Lab3.Logic.Services.SweetFactory
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 {
     public sealed class SweetFactoryService : ISweetFactoryService
     {
         public async Task CreateOrUpdateSweetFactoryValidateAndThrowAsync(
         DataContext dataContext,
+<<<<<<< HEAD
         SweetFactory sweetfactory,
+=======
+        Storage.Models.Sweets.SweetFactory sweetfactory,
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
         CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrWhiteSpace(sweetfactory.Name))
@@ -28,7 +39,11 @@ namespace Study.Lab3.Logic.Services.Sweets
 
         public async Task CanDeleteAndThrowAsync(
             DataContext dataContext,
+<<<<<<< HEAD
             SweetFactory sweetfactory,
+=======
+            Storage.Models.Sweets.SweetFactory sweetfactory,
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
             CancellationToken cancellationToken = default)
         {
             if (!await dataContext.SweetFactories.AnyAsync(x => x.IsnSweetFactory == sweetfactory.IsnSweetFactory, cancellationToken))

@@ -13,7 +13,11 @@ public class RationalNumberTests
 
         var result = A + B;
 
+<<<<<<< HEAD
         Assert.That(result.Numerator, Is.EqualTo(11)); 
+=======
+        Assert.That(result.Numerator, Is.EqualTo(11));
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
         Assert.That(result.Denominator, Is.EqualTo(6));
     }
 
@@ -226,4 +230,8 @@ public class RationalNumberTests
         Assert.That(A > B, Is.False);
         Assert.That(A >= B, Is.False);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117

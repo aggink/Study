@@ -3,10 +3,17 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+<<<<<<< HEAD
 using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Sweets.SweetProductions.Commands;
+=======
+using Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
+using System.ComponentModel.DataAnnotations;
+
+namespace Study.Lab3.Web.Features.Sweets.SweetProduction.Commands;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 /// <summary>
 /// Удаление элемента из SweetProduction
@@ -39,7 +46,11 @@ public sealed class DeleteSweetProductionCommandHandler : IRequestHandler<Delete
 
         // Удаление записи
         _dataContext.SweetProductions.Remove(sweetproduction);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

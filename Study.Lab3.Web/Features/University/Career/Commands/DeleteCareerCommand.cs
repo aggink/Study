@@ -6,7 +6,11 @@ using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
+<<<<<<< HEAD
 namespace Study.Lab3.Web.Features.University.TheCareer.Commands;
+=======
+namespace Study.Lab3.Web.Features.University.Career.Commands;
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
 
 /// <summary>
 /// ”даление карьеры

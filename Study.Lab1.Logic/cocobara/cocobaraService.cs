@@ -47,7 +47,11 @@ public class cocobaraService : IRunService
 
     public void RunTask2()
     {
+<<<<<<< HEAD
         throw new NotImplementedException(); 
+=======
+        throw new NotImplementedException();
+>>>>>>> 047df7a98a474bbf79c1e63ef959da231cb59117
     }
 
     public void RunTask3()
