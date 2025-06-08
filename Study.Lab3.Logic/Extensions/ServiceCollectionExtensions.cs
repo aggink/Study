@@ -66,5 +66,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMasterService, MasterService>();
         services.AddSingleton<IServiceService, ServiceService>();
         services.AddSingleton<IServiceOrderService, ServiceOrderService>();
+        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
     }
 }

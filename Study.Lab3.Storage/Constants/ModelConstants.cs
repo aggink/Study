@@ -930,4 +930,17 @@ public static class ModelConstants
         /// </summary>
         public const int MaxNameLenght = 256;
     }
+
+    public static class ProjectActivities
+    {
+        /// <summary>
+        /// Минимально допустимое количество выступлений.
+        /// </summary>
+        public const int MinPerformancesValue = 10;
+
+        /// <summary>
+        /// Максимально допустимое количество выступлений.
+        /// </summary>
+        public const int MaxPerformancesValue = 20;
+    }
 }
