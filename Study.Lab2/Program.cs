@@ -26,6 +26,7 @@ using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.yamisakimei;
+using Study.Lab2.Logic.alexmark1612;
 namespace Study.Lab2.Logic.SuperSalad007;
 
 public static class Program
@@ -135,6 +136,8 @@ public static class Program
                 return new ChaspixService();
             case ("idb-23-03", 8):
                 return new yamisakimeiService();
+            case ("idb-23-03", 13):
+                return new alexmark1612Service();
             default:
                 throw new NotSupportedException();
         }
