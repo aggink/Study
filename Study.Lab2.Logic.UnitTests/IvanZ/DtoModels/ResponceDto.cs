@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Study.Lab2.Logic.UnitTests.alkeivi.DtoModels;
+namespace Study.Lab2.Logic.UnitTests.IvanZ.DtoModels;
 
 public sealed record ResponseDto
 {
