@@ -1,4 +1,4 @@
-﻿namespace Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
+﻿namespace Study.Lab3.Web.Features.University.Sportclub.DtoModels;
 
 public sealed record SportclubDto
 {

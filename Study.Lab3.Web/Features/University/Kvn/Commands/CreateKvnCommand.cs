@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Storage.Models.University;
-using Study.Lab3.Web.Features.University.TheKvn.DtoModels;
+using Study.Lab3.Web.Features.University.Kvn.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheKvn.Commands;
+namespace Study.Lab3.Web.Features.University.Kvn.Commands;
 
 /// <summary>
 /// Создание квн
@@ -36,7 +35,7 @@ public sealed class CreateKvnCommandHandler : IRequestHandler<CreateKvnCommand, 
 
     public async Task<Guid> Handle(CreateKvnCommand request, CancellationToken cancellationToken)
     {
-        var kvn = new Kvn
+        var kvn = new Storage.Models.University.Kvn
         {
             IsnKvn = Guid.NewGuid(),
             IsnStudent = request.Kvn.IsnStudent,

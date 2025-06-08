@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.Sweets.Commands;
+namespace Study.Lab3.Web.Features.Sweets.Sweet.Commands;
 
 /// <summary>
 /// Удаление сладости
