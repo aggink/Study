@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
+using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
@@ -258,6 +259,7 @@ public class DataContext : DbContext
     public virtual DbSet<BeautyAppointment> BeautyAppointment { get; set; }
 
     #endregion
+    
     #region Shelter
 
     /// <summary>
@@ -300,6 +302,7 @@ public class DataContext : DbContext
     public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
+    
     #region Workshop
 
     /// <summary>
@@ -316,6 +319,25 @@ public class DataContext : DbContext
     /// Заказы на услуги
     /// </summary>
     public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
+
+    #endregion
+    
+    #region Fitness
+
+    /// <summary>
+    /// Участники фитнес-центра
+    /// </summary>
+    public virtual DbSet<FitnessMember> Members { get; set; }
+
+    /// <summary>
+    /// Тренеры фитнес-центра
+    /// </summary>
+    public virtual DbSet<FitnessTrainer> Trainers { get; set; }
+
+    /// <summary>
+    /// Оборудование фитнес-центра
+    /// </summary>
+    public virtual DbSet<FitnessEquipment> Equipments { get; set; }
 
     #endregion
 
