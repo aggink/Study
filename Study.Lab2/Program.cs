@@ -25,6 +25,7 @@ using Study.Lab2.Logic.Selestz;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
+using Study.Lab2.Logic.yamisakimei;
 namespace Study.Lab2.Logic.SuperSalad007;
 
 public static class Program
@@ -132,6 +133,8 @@ public static class Program
                 return new SuperSalad007Service();
             case ("idb-23-02", 11):
                 return new ChaspixService();
+            case ("idb-23-03", 8):
+                return new yamisakimeiService();
             default:
                 throw new NotSupportedException();
         }
