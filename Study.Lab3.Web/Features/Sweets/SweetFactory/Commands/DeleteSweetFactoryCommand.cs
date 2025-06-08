@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetFactories.Commands;
+namespace Study.Lab3.Web.Features.Sweets.SweetFactory.Commands;
 
 
 /// <summary>
@@ -38,7 +38,7 @@ public sealed class DeleteSweetFactoryCommandHandler : IRequestHandler<DeleteSwe
 
         // Удаление записи
         _dataContext.SweetFactories.Remove(sweetfactory);
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

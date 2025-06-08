@@ -2,10 +2,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
+using Study.Lab3.Web.Features.Sweets.Sweet.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.Sweets.Queries;
+namespace Study.Lab3.Web.Features.Sweets.Sweet.Queries;
 
 /// <summary>
 /// Получение списка клиентов

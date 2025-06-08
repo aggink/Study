@@ -3,10 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetProductions.Commands;
+namespace Study.Lab3.Web.Features.Sweets.SweetProduction.Commands;
 
 
 

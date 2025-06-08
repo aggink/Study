@@ -10,7 +10,6 @@ using Study.Lab3.Web.Features.Library.Books.Commands;
 using Study.Lab3.Web.Features.Library.Books.DtoModels;
 using Study.Lab3.Web.Features.Library.Books.Queries;
 using Study.Lab3.Web.Features.Shelter.Adoptions.Commands;
-using Study.Lab3.Web.Features.Shelter.Adoptions.DtoModels;
 using Study.Lab3.Web.Features.Shelter.Cats.Commands;
 using Study.Lab3.Web.Features.Shelter.Cats.DtoModels;
 using Study.Lab3.Web.Features.Shelter.Cats.Queries;
@@ -41,6 +40,9 @@ using Study.Lab3.Web.Features.University.Groups.Queries;
 using Study.Lab3.Web.Features.University.Materials.Commands;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
 using Study.Lab3.Web.Features.University.Materials.Queries;
+using Study.Lab3.Web.Features.University.Sportclub.Commands;
+using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
+using Study.Lab3.Web.Features.University.Sportclub.Queries;
 using Study.Lab3.Web.Features.University.Students.Commands;
 using Study.Lab3.Web.Features.University.Students.DtoModels;
 using Study.Lab3.Web.Features.University.Students.Queries;
@@ -55,15 +57,6 @@ using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
 using Study.Lab3.Web.Features.University.TheProfcom.Commands;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.Queries;
-using Study.Lab3.Web.Features.University.TheSportclub.Commands;
-using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
-using Study.Lab3.Web.Features.University.TheSportclub.Queries;
-using Study.Lab3.Web.Features.University.TheKvn.Commands;
-using Study.Lab3.Web.Features.University.TheKvn.DtoModels;
-using Study.Lab3.Web.Features.University.TheKvn.Queries;
-using Study.Lab3.Web.Features.University.TheCareer.Commands;
-using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
-using Study.Lab3.Web.Features.University.TheCareer.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1119,7 +1112,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
-    
+
     #endregion
 
     #region ProfcomActivity
@@ -1408,7 +1401,7 @@ public class ManageController : Controller
     }
 
     #endregion
-    
+
     #region ShelterCustomer
 
     /// <summary>
@@ -1462,11 +1455,11 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     #endregion
-    
+
     #region Adoption
-    
+
     /// <summary>
     /// Создание усыновления
     /// </summary>
@@ -1476,7 +1469,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     /// <summary>
     /// Редактирование усыновления
     /// </summary>
@@ -1486,7 +1479,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     /// <summary>
     /// Удаление усыновления
     /// </summary>
@@ -1496,9 +1489,9 @@ public class ManageController : Controller
         await _mediator.Send(command, cancellationToken);
         return Ok();
     }
-    
+
     #endregion
-    
+
     #region Cat
     // Получение списка котов
     [HttpGet(nameof(GetListCats), Name = nameof(GetListCats))]
@@ -1507,7 +1500,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
-    
+
     // Создание кота
     [HttpPost(nameof(CreateCat), Name = nameof(CreateCat))]
     public async Task<ActionResult<Guid>> CreateCat(CreateCatCommand command, CancellationToken cancellationToken)
@@ -1515,7 +1508,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     // Обновление кота
     [HttpPost(nameof(UpdateCat), Name = nameof(UpdateCat))]
     public async Task<ActionResult<Guid>> UpdateCat(UpdateCatCommand command, CancellationToken cancellationToken)
@@ -1523,7 +1516,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     // Удаление кота
     [HttpPost(nameof(DeleteCat), Name = nameof(DeleteCat))]
     public async Task<ActionResult> DeleteCat(DeleteCatCommand command, CancellationToken cancellationToken)
@@ -1531,7 +1524,7 @@ public class ManageController : Controller
         await _mediator.Send(command, cancellationToken);
         return Ok();
     }
-    
+
     /// <summary>
     /// Получение кота по идентификатору
     /// </summary>

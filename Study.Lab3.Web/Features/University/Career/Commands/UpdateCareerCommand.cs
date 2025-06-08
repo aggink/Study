@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+using Study.Lab3.Web.Features.University.Career.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheCareer.Commands;
+namespace Study.Lab3.Web.Features.University.Career.Commands;
 
 /// <summary>
 /// Редактирование карьеры
