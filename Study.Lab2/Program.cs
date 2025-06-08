@@ -1,6 +1,6 @@
-using Study.Lab2.Logic.Assistant;
-using Study.Lab2.Logic.Interfaces;
+using Study.Lab2.Logic.alexmark1612;
 using Study.Lab2.Logic.alkeivi;
+using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.chaspix;
 using Study.Lab2.Logic.Cherryy;
@@ -9,6 +9,7 @@ using Study.Lab2.Logic.danaky1;
 using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.freaxd;
 using Study.Lab2.Logic.gegemonTV;
+using Study.Lab2.Logic.IvanZ;
 using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
@@ -22,11 +23,18 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
-using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
+<<<<<<< HEAD
 using Study.Lab2.Logic.Dronio1337;
 namespace Study.Lab2.Logic.SuperSalad007;
+=======
+using Study.Lab2.Logic.xynthh;
+using Study.Lab2.Logic.yamisakimei;
+
+namespace Study.Lab2;
+>>>>>>> master
 
 public static class Program
 {
@@ -133,8 +141,17 @@ public static class Program
                 return new SuperSalad007Service();
             case ("idb-23-02", 11):
                 return new ChaspixService();
+<<<<<<< HEAD
             case ("idb-23-02", 5):
                 return new Dronio1337Service();
+=======
+            case ("idb-23-03", 8):
+                return new yamisakimeiService();
+            case ("idb-23-03", 13):
+                return new alexmark1612Service();
+            case ("idb-23-03", 7):
+                return new IvanZService();
+>>>>>>> master
             default:
                 throw new NotSupportedException();
         }
