@@ -7,7 +7,7 @@ namespace Study.Lab2.Logic.UnitTests.cocobara;
 
 [TestFixture]
 public class RequestServiceTests
-{
+{ 
     [Test]
     public void FetchData_ReturnsContent_On200()
     {

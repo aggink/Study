@@ -8,7 +8,7 @@ using Study.Lab2.Logic.chirique_online;
 using Study.Lab2.Logic.danaky1;
 using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.freaxd;
-using Study.Lab2.Logic.gegemonTV;
+using Study.Lab2.Logic.gegemonTV; 
 using Study.Lab2.Logic.IvanZ;
 using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.katty;

@@ -1,6 +1,6 @@
 ﻿namespace Study.Lab2.Logic.Interfaces.cocobara;
 
-public interface IRequestService : IDisposable
+public interface IRequestService : IDisposable 
 {
     string FetchData(string url);
 

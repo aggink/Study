@@ -1,6 +1,6 @@
 ﻿using Study.Lab2.Logic.Interfaces.cocobara;
 
-namespace Study.Lab2.Logic.cocobara;
+namespace Study.Lab2.Logic.cocobara; 
 
 public class RequestService : IRequestService
 {
