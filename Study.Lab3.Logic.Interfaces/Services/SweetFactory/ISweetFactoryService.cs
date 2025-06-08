@@ -1,12 +1,6 @@
 ﻿using Study.Lab3.Storage.Database;
-using Study.Lab3.Storage.Models.Sweets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Study.Lab3.Logic.Interfaces.Services.Sweets
+namespace Study.Lab3.Logic.Interfaces.Services.SweetFactory
 {
     public interface ISweetFactoryService
     {
@@ -18,7 +12,7 @@ namespace Study.Lab3.Logic.Interfaces.Services.Sweets
         /// <param name="cancellationToken">Токен отмены</param>
         Task CreateOrUpdateSweetFactoryValidateAndThrowAsync(
             DataContext dataContext,
-            SweetFactory sweetfactory,
+            Storage.Models.Sweets.SweetFactory sweetfactory,
             CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -29,7 +23,7 @@ namespace Study.Lab3.Logic.Interfaces.Services.Sweets
         /// <param name="cancellationToken">Токен отмены</param>
         Task CanDeleteAndThrowAsync(
             DataContext dataContext,
-            SweetFactory sweetfactory,
+            Storage.Models.Sweets.SweetFactory sweetfactory,
             CancellationToken cancellationToken = default);
     }
 }

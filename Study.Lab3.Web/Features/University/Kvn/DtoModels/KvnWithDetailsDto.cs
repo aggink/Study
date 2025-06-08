@@ -1,4 +1,4 @@
-﻿namespace Study.Lab3.Web.Features.University.TheKvn.DtoModels;
+﻿namespace Study.Lab3.Web.Features.University.Kvn.DtoModels;
 
 public sealed record KvnWithDetailsDto
 {

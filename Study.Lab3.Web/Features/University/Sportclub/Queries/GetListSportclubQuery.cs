@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
+using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
 
-namespace Study.Lab3.Web.Features.University.TheSportclub.Queries;
+namespace Study.Lab3.Web.Features.University.Sportclub.Queries;
 
 /// <summary>
 /// ѕолучение списка количеств участников

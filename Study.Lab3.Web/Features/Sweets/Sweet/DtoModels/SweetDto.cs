@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
+namespace Study.Lab3.Web.Features.Sweets.Sweet.DtoModels;
 
 public sealed record SweetDto
 {
@@ -6,7 +6,7 @@ public sealed record SweetDto
     /// Идентификатор сладости
     /// </summary>
     public Guid IsnSweet { get; init; }
-    
+
     /// <summary>
     /// Имя
     /// </summary>
