@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Study.Lab2.Logic.Interfaces.Dronio1337;
 
 namespace Study.Lab2.Logic.Dronio1337;
+
 public class Dronio1337Service : IRunService
 {
     private readonly IRequstService _requestHandler;
