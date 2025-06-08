@@ -28,6 +28,8 @@ using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
+using Study.Lab2.Logic.cocobara;
+
 
 namespace Study.Lab2;
 
@@ -36,12 +38,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 13;
 
     public static async Task Main()
     {
@@ -142,6 +144,8 @@ public static class Program
                 return new alexmark1612Service();
             case ("idb-23-03", 7):
                 return new IvanZService();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
             default:
                 throw new NotSupportedException();
         }
