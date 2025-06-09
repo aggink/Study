@@ -1060,4 +1060,17 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPerformancesValue = 20;
     }
+
+    public static class CyberSport
+    {
+        /// <summary>
+        /// Минимально допустимое количество очков для прохождения в след. этап.
+        /// </summary>
+        public const int MinPointsValue = 100;
+
+        /// <summary>
+        /// Максимально допустимое количество очков для прохождения в след. этап.
+        /// </summary>
+        public const int MaxPointsValue = 900;
+    }
 }
