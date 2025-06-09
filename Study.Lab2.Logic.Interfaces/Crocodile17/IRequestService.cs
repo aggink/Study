@@ -1,4 +1,5 @@
 ﻿namespace Study.Lab2.Logic.Interfaces.Crocodile17;
+
 public interface IRequestService : IDisposable
 {
     string FetchData(string url);

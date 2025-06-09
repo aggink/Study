@@ -25,6 +25,11 @@ public class RequestServiceTests
     /// <summary>
     /// Тест для синхронного метода FetchData. Проверяет, что метод возвращает правильный ответ при успешном запросе.
     /// </summary>
+    [TearDown]
+    public void Dispose()
+    {
+        _requestService?.Dispose();
+    }
     [Test]
     public void FetchData_Success_ReturnsResponse()
     {
@@ -181,10 +186,5 @@ public class RequestServiceTests
     /// <summary>
     /// Освобождение ресурсов, реализует IDisposable.
     /// </summary>
-    [TearDown]
-    public void Dispose()
-    {
-        _requestService?.Dispose();
-    }
 }
 
