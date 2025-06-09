@@ -1,6 +1,6 @@
 ﻿using Study.Lab2.Logic.Interfaces.Jki749;
 
-namespace Study.Lab2.Logic.Services.Jki749;
+namespace Study.Lab2.Logic.Jki749;
 
 public class RequestService : IRequestService, IDisposable
 {

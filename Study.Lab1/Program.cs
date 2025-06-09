@@ -34,7 +34,9 @@ using Study.Lab1.Logic.TucKaW;
 using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.yamisakimei;
 using Study.Lab1.Logic.Bonnemort;
+using Study.Lab1.Logic.chaspix;
 using Study.Lab1.Logic.SuperSalad007;
+using Study.Lab1.Logic.Maxtir23;
 
 public static class Program
 {
@@ -153,6 +155,10 @@ public static class Program
                 return new Crocodile17Service();
             case ("idb-23-03", 5):
                 return new SuperSalad007Service();
+            case ("idb-23-02",11):
+                return new chaspixService();
+            case ("idb-23-03", 18):
+                return new Maxtir23();
             default:
                 throw new NotSupportedException();
         }

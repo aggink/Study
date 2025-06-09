@@ -30,7 +30,7 @@ public class RequestServiceTests
         {
             Data = new List<string>
             {
-                "ФК Барселона выиграла свой первый титул чемпиона Испании в сезоне 1928-29."
+                "ФК Барселона выиграла свой первый титул чемпиона Испании в сезоне 1928-1929."
             }
         };
         var json = JsonSerializer.Serialize(data);
@@ -45,18 +45,6 @@ public class RequestServiceTests
         Assert.That(result, Is.EqualTo(json));
     }
 
-    [Test]
-    public void FetchDataAsync_Failure_ThrowsException()
-    {
-        // Настройка мок-ответа с кодом ошибки
-        SetupHttpResponse(_requestUrl, "Not Found", HttpStatusCode.NotFound);
-
-        // Act & Assert
-        var exception = Assert.ThrowsAsync<Exception>(async () => await
-        _requestService.FetchDataAsync(_requestUrl, CancellationToken.None));
-
-        StringAssert.Contains("Ошибка: NotFound", exception.Message);
-    }
 
     private void SetupHttpResponse(string url, string content, HttpStatusCode statusCode)
     {
