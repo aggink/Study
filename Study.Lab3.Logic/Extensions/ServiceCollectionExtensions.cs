@@ -94,7 +94,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMaterialService, MaterialService>();
         services.AddSingleton<IProfcomService, ProfcomService>();
         services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
-        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
         services.AddSingleton<ISportclubService, SportclubService>();
         services.AddSingleton<ISubjectService, SubjectService>();
         services.AddSingleton<ITeacherService, TeacherService>();
