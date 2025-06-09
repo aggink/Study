@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250608215321_Labs")]
+    partial class Labs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1283,29 +1286,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
-                {
-                    b.Property<Guid>("IsnStudentLab")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnLab")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnStudentLab");
-
-                    b.HasIndex("IsnLab");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.ToTable("StudentLab");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
                     b.Property<Guid>("IsnSubject")
@@ -1921,25 +1901,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .IsRequired();
 
                     b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Labs", "Labs")
-                        .WithMany()
-                        .HasForeignKey("IsnLab")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Labs");
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.SubjectGroup", b =>

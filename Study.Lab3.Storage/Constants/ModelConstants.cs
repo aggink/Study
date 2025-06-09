@@ -41,6 +41,14 @@ public static class ModelConstants
         public const int Name = 20;
     }
 
+    public static class Labs
+    {
+        /// <summary>
+        /// Максимальная длина поля "Наименование"
+        /// </summary>
+        public const int Name = 20;
+    }
+
     public static class Subject
     {
         /// <summary>
@@ -381,7 +389,7 @@ public static class ModelConstants
         /// Максимальный вес кота (в кг)
         /// </summary>
         public const double WeightMax = 15.0;
-        
+
         /// <summary>
         /// Ссылка на фотографию кота
         /// </summary>
@@ -621,7 +629,7 @@ public static class ModelConstants
         /// Максимальная длина описания блюда
         /// </summary>
         public const int Description = 1000;
-        
+
         /// <summary>
         /// Максимальная длина категории
         /// </summary>
@@ -664,7 +672,7 @@ public static class ModelConstants
         /// Максимальная длина телефона клиента
         /// </summary>
         public const int CustomerPhone = 20;
-        
+
         /// <summary>
         /// Максимальная длина статуса
         /// </summary>
@@ -698,7 +706,7 @@ public static class ModelConstants
         /// </summary>
         public const int SpecialRequests = 500;
     }
-    
+
     public static class BeautyClient
     {
         /// <summary>
@@ -786,7 +794,7 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPartValue = 100;
     }
-    
+
     public static class Master
     {
         /// <summary>
