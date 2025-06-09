@@ -1293,6 +1293,21 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("TheKvn");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
+                {
+                    b.Property<Guid>("IsnLab")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IsnLab");
+
+                    b.ToTable("Labs");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
                 {
                     b.Property<Guid>("IsnMaterial")
@@ -1441,6 +1456,29 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnGroup");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
+                {
+                    b.Property<Guid>("IsnStudentLab")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnLab")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnStudentLab");
+
+                    b.HasIndex("IsnLab");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.ToTable("StudentLab");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -2077,6 +2115,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .IsRequired();
 
                     b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Labs", "Labs")
+                        .WithMany()
+                        .HasForeignKey("IsnLab")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Labs");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.SubjectGroup", b =>

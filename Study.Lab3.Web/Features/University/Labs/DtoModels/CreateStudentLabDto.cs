@@ -9,8 +9,10 @@ public sealed record CreateStudentLabDto
     /// </summary>
     [Required]
     public Guid IsnStudent { get; init; }
+
     [Required]
     public Guid IsnLab { get; init; }
+
     [Required]
     public int Value { get; init; }
 }

@@ -20,4 +20,7 @@ public class Labs
     /// </summary>
     [Required, MaxLength(ModelConstants.Labs.Name)]
     public string Name { get; set; }
+
+    [InverseProperty(nameof(StudentLab.Labs))]
+    public virtual ICollection<StudentLab> StudentLabs { get; set; }
 }
