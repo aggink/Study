@@ -1,4 +1,4 @@
-﻿namespace Study.Lab1.Logic.Maxtir23_.Task1;
+﻿namespace Study.Lab1.Logic.Maxtir23.Task1;
 
 public class RationalNumber
 {
