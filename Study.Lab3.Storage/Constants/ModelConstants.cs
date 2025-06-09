@@ -173,7 +173,6 @@ public static class ModelConstants
         /// Максимальное количество баллов за экзамен
         /// </summary>
         public const int MaxScore = 100;
-
     }
 
     public static class Author
@@ -476,7 +475,6 @@ public static class ModelConstants
         /// Максимальная длина кода билета
         /// </summary>
         public const int TicketCodeLength = 50;
-
     }
 
     public static class Profcom
@@ -544,7 +542,6 @@ public static class ModelConstants
         /// Максимальная цена товара (в рублях)
         /// </summary>
         public const int PriceMax = 1000000;
-
     }
 
     public static class Kvn
@@ -577,6 +574,7 @@ public static class ModelConstants
         /// </summary>
         public const int Status = 50;
     }
+
     public static class Restaurant
     {
         /// <summary>
@@ -937,5 +935,137 @@ public static class ModelConstants
         /// Максимальное наименование типа конфеты
         /// </summary>
         public const int MaxNameLenght = 256;
+    }
+
+    public static class FitnessMember
+    {
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int SurName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Отчество"
+        /// </summary>
+        public const int PatronymicName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Номер телефона"
+        /// </summary>
+        public const int PhoneNumber = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 255;
+    }
+
+    public static class FitnessTrainer
+    {
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int SurName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Отчество"
+        /// </summary>
+        public const int PatronymicName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Номер телефона"
+        /// </summary>
+        public const int PhoneNumber = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 255;
+
+        /// <summary>
+        /// Максимальная длина поля "Сертификации"
+        /// </summary>
+        public const int Certifications = 1000;
+
+        /// <summary>
+        /// Минимальный опыт работы в годах
+        /// </summary>
+        public const int MinExperience = 0;
+
+        /// <summary>
+        /// Максимальный опыт работы в годах
+        /// </summary>
+        public const int MaxExperience = 50;
+
+        /// <summary>
+        /// Минимальная почасовая ставка
+        /// </summary>
+        public const double MinHourlyRate = 0;
+
+        /// <summary>
+        /// Максимальная почасовая ставка
+        /// </summary>
+        public const double MaxHourlyRate = 10000;
+    }
+
+    public static class FitnessEquipment
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Производитель"
+        /// </summary>
+        public const int Manufacturer = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Модель"
+        /// </summary>
+        public const int Model = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Серийный номер"
+        /// </summary>
+        public const int SerialNumber = 50;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double MinPrice = 0;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double MaxPrice = 1000000;
+    }
+
+    public static class ProjectActivities
+    {
+        /// <summary>
+        /// Минимально допустимое количество выступлений.
+        /// </summary>
+        public const int MinPerformancesValue = 10;
+
+        /// <summary>
+        /// Максимально допустимое количество выступлений.
+        /// </summary>
+        public const int MaxPerformancesValue = 20;
     }
 }

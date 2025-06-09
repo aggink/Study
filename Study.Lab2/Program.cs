@@ -1,3 +1,4 @@
+using Study.Lab2.Logic.alexmark1612;
 using Study.Lab2.Logic.alkeivi;
 using Study.Lab2.Logic.Assistant;
 using Study.Lab2.Logic.brnvika;
@@ -22,11 +23,13 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
+using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
-namespace Study.Lab2.Logic.SuperSalad007;
+
+namespace Study.Lab2;
 
 public static class Program
 {
@@ -135,6 +138,8 @@ public static class Program
                 return new ChaspixService();
             case ("idb-23-03", 8):
                 return new yamisakimeiService();
+            case ("idb-23-03", 13):
+                return new alexmark1612Service();
             case ("idb-23-03", 7):
                 return new IvanZService();
             default:

@@ -3,10 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.Sweets.SweetTypes.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetType.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Commands;
+namespace Study.Lab3.Web.Features.Sweets.SweetType.Commands;
 
 /// <summary>
 /// Удаление элемента из SweetType
@@ -38,7 +38,7 @@ public sealed class DeleteSweetTypeCommandHandler : IRequestHandler<DeleteSweetT
 
         // Удаление записи
         _dataContext.SweetTypes.Remove(sweettype);
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

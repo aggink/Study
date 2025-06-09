@@ -1,14 +1,13 @@
-using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.IvanZ;
 using System.Diagnostics;
 
 namespace Study.Lab2.Logic.IvanZ;
 
-public class alkeiviService : IRunService
+public class IvanZService : IRunService
 {
     private readonly IRequestService _requestService;
 
-    public alkeiviService()
+    public IvanZService()
     {
         _requestService = new RequestService(new HttpClient());
     }

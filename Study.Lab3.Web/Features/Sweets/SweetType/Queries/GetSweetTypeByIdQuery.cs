@@ -3,11 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetTypes.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetType.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetTypes.Queries;
+namespace Study.Lab3.Web.Features.Sweets.SweetType.Queries;
 
 /// <summary>
 /// Получение сладости по идентификатору

@@ -1,11 +1,4 @@
-﻿using Study.Lab3.Storage.Models.Sweets;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Study.Lab3.Logic.Extensions.Sweets
+﻿namespace Study.Lab3.Logic.Extensions.SweetFactory
 {
     /// <summary>
     /// Нахождение,находящихся в России, фабрики
@@ -17,7 +10,7 @@ namespace Study.Lab3.Logic.Extensions.Sweets
         /// </summary>
         /// <param name="factory">Фабрики</param>
         /// <returns>Название фабрики</returns>
-        public static bool IsAddressCorrect(this SweetFactory sweetfactory)
+        public static bool IsAddressCorrect(this Storage.Models.Sweets.SweetFactory sweetfactory)
         {
             return sweetfactory.Address.Contains("Russian Federation");
         }
