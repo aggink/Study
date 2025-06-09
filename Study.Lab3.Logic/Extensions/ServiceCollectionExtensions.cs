@@ -96,13 +96,13 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ISportclubService, SportclubService>();
         services.AddSingleton<IKvnService, KvnService>();
         services.AddSingleton<ICareerService, CareerService>();
+        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
         #endregion
 
         #region Workshop
         services.AddSingleton<IMasterService, MasterService>();
         services.AddSingleton<IServiceService, ServiceService>();
         services.AddSingleton<IServiceOrderService, ServiceOrderService>();
-        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
         #endregion
     }
 }

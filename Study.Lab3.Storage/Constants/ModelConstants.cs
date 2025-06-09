@@ -724,7 +724,6 @@ public static class ModelConstants
 
     #region SweetFactory
 
-
     public static class SweetFactory
     {
         /// <summary>

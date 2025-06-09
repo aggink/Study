@@ -6,7 +6,6 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.Messenger;
 
 namespace Study.Lab3.Logic.Services.Messenger;
-
 public sealed class ImageService : IImageService
 {
     public async Task CreateImageValidateAndThrowAsync(

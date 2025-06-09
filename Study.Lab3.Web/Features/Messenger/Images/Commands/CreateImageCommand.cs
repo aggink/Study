@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.Messenger;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.Messenger;
