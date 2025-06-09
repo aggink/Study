@@ -5,10 +5,10 @@ using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
+using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.University;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
-using Study.Lab3.Storage.Models.Sweets;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -314,4 +314,25 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region Formula1
+    /// <summary>
+    /// Гонщики
+    /// </summary>
+    public virtual DbSet<Models.Formula1.Driver> Drivers { get; set; }
+
+    /// <summary>
+    /// Команды
+    /// </summary>
+    public virtual DbSet<Models.Formula1.Team> Teams { get; set; }
+
+    /// <summary>
+    /// Гонки
+    /// </summary>
+    public virtual DbSet<Models.Formula1.GrandPrix> GrandPrixes { get; set; }
+
+    /// <summary>
+    /// Связь таблиц гонщики - гран-при
+    /// </summary>
+    public virtual DbSet<Models.Formula1.DriverGrandPrix> RaceResults { get; set; }
+    #endregion
 }

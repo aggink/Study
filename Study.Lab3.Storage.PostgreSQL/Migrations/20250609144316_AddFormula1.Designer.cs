@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,13 +12,15 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250609144316_AddFormula1")]
+    partial class AddFormula1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -51,7 +54,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnBeautyService");
 
-                    b.ToTable("BeautyAppointment", (string)null);
+                    b.ToTable("BeautyAppointment");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyClient", b =>
@@ -81,7 +84,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnClient");
 
-                    b.ToTable("BeautyClient", (string)null);
+                    b.ToTable("BeautyClient");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyService", b =>
@@ -107,7 +110,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnService");
 
-                    b.ToTable("BeautyService", (string)null);
+                    b.ToTable("BeautyService");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
@@ -145,7 +148,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnCustomer");
 
-                    b.ToTable("Customers", (string)null);
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Genre", b =>
@@ -160,7 +163,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnGenre");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Hall", b =>
@@ -190,7 +193,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnHall");
 
-                    b.ToTable("Halls", (string)null);
+                    b.ToTable("Halls");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Movie", b =>
@@ -231,7 +234,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnMovie");
 
-                    b.ToTable("Movies", (string)null);
+                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.MovieGenre", b =>
@@ -246,7 +249,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnGenre");
 
-                    b.ToTable("MovieGenres", (string)null);
+                    b.ToTable("MovieGenres");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Seat", b =>
@@ -273,7 +276,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnHall");
 
-                    b.ToTable("Seats", (string)null);
+                    b.ToTable("Seats");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
@@ -305,7 +308,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnMovie");
 
-                    b.ToTable("Sessions", (string)null);
+                    b.ToTable("Sessions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Ticket", b =>
@@ -343,7 +346,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSession");
 
-                    b.ToTable("Tickets", (string)null);
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Driver", b =>
@@ -375,7 +378,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnTeam");
 
-                    b.ToTable("Drivers", (string)null);
+                    b.ToTable("Drivers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.DriverGrandPrix", b =>
@@ -405,7 +408,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnDriver", "IsnGrandPrix");
 
-                    b.ToTable("RaceResults", (string)null);
+                    b.ToTable("RaceResults");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.GrandPrix", b =>
@@ -432,7 +435,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnGrandPrix");
 
-                    b.ToTable("GrandPrixes", (string)null);
+                    b.ToTable("GrandPrixes");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Team", b =>
@@ -459,7 +462,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("GrandPrixIsnGrandPrix");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
@@ -482,7 +485,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnProduct");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Patient", b =>
@@ -507,7 +510,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnPatient");
 
-                    b.ToTable("Patients", (string)null);
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Product", b =>
@@ -530,7 +533,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnProduct");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.AuthorBooks", b =>
@@ -547,7 +550,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnAuthor", "IsnBook");
 
-                    b.ToTable("AuthorBooks", (string)null);
+                    b.ToTable("AuthorBooks");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Authors", b =>
@@ -581,7 +584,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnTeacher")
                         .IsUnique();
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
@@ -599,7 +602,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnBook");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
@@ -629,7 +632,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnRestaurant");
 
-                    b.ToTable("Menus", (string)null);
+                    b.ToTable("Menus");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.MenuItem", b =>
@@ -667,7 +670,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnMenu");
 
-                    b.ToTable("MenuItems", (string)null);
+                    b.ToTable("MenuItems");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.OrderItem", b =>
@@ -700,7 +703,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnOrder");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Restaurant", b =>
@@ -735,7 +738,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnRestaurant");
 
-                    b.ToTable("Restaurants", (string)null);
+                    b.ToTable("Restaurants");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.RestaurantOrder", b =>
@@ -781,7 +784,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnRestaurant");
 
-                    b.ToTable("RestaurantOrders", (string)null);
+                    b.ToTable("RestaurantOrders");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Adoption", b =>
@@ -812,7 +815,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnCustomer");
 
-                    b.ToTable("Adoptions", (string)null);
+                    b.ToTable("Adoptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Cat", b =>
@@ -872,7 +875,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnCat");
 
-                    b.ToTable("Cats", (string)null);
+                    b.ToTable("Cats");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
@@ -911,7 +914,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnCustomer");
 
-                    b.ToTable("ShelterCustomers", (string)null);
+                    b.ToTable("ShelterCustomers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
@@ -936,7 +939,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSweetType");
 
-                    b.ToTable("Sweets", (string)null);
+                    b.ToTable("Sweets");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetFactory", b =>
@@ -959,7 +962,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnSweetFactory");
 
-                    b.ToTable("SweetFactories", (string)null);
+                    b.ToTable("SweetFactories");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetProduction", b =>
@@ -979,7 +982,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSweetFactory");
 
-                    b.ToTable("SweetProductions", (string)null);
+                    b.ToTable("SweetProductions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.SweetType", b =>
@@ -994,7 +997,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnSweetType");
 
-                    b.ToTable("SweetTypes", (string)null);
+                    b.ToTable("SweetTypes");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
@@ -1025,7 +1028,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnTeacher");
 
-                    b.ToTable("Announcements", (string)null);
+                    b.ToTable("Announcements");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.AnnouncementGroup", b =>
@@ -1042,7 +1045,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnAnnouncement", "IsnGroup");
 
-                    b.ToTable("AnnouncementGroups", (string)null);
+                    b.ToTable("AnnouncementGroups");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Assignment", b =>
@@ -1076,7 +1079,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("Assignments", (string)null);
+                    b.ToTable("Assignments");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
@@ -1102,7 +1105,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("Career", (string)null);
+                    b.ToTable("Career");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
@@ -1138,7 +1141,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("Exams", (string)null);
+                    b.ToTable("Exams");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.ExamRegistration", b =>
@@ -1164,7 +1167,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnStudent");
 
-                    b.ToTable("ExamRegistrations", (string)null);
+                    b.ToTable("ExamRegistrations");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.ExamResult", b =>
@@ -1190,7 +1193,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnExamRegistration")
                         .IsUnique();
 
-                    b.ToTable("ExamResults", (string)null);
+                    b.ToTable("ExamResults");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Grade", b =>
@@ -1216,7 +1219,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("Grades", (string)null);
+                    b.ToTable("Grades");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Group", b =>
@@ -1231,7 +1234,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnGroup");
 
-                    b.ToTable("Groups", (string)null);
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Kvn", b =>
@@ -1257,7 +1260,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheKvn", (string)null);
+                    b.ToTable("TheKvn");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
@@ -1293,7 +1296,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("Materials", (string)null);
+                    b.ToTable("Materials");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
@@ -1319,7 +1322,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheProfcom", (string)null);
+                    b.ToTable("TheProfcom");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
@@ -1345,7 +1348,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("Sportclub", (string)null);
+                    b.ToTable("Sportclub");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
@@ -1381,7 +1384,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnGroup");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -1396,7 +1399,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnSubject");
 
-                    b.ToTable("Subjects", (string)null);
+                    b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.SubjectGroup", b =>
@@ -1413,7 +1416,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject", "IsnGroup");
 
-                    b.ToTable("SubjectsGroups", (string)null);
+                    b.ToTable("SubjectsGroups");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Teacher", b =>
@@ -1441,7 +1444,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnTeacher");
 
-                    b.ToTable("Teachers", (string)null);
+                    b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.TeacherSubject", b =>
@@ -1458,7 +1461,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnTeacher", "IsnSubject");
 
-                    b.ToTable("TeacherSubjects", (string)null);
+                    b.ToTable("TeacherSubjects");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Master", b =>
@@ -1488,7 +1491,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnMaster");
 
-                    b.ToTable("Masters", (string)null);
+                    b.ToTable("Masters");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Service", b =>
@@ -1513,7 +1516,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnService");
 
-                    b.ToTable("Services", (string)null);
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.ServiceOrder", b =>
@@ -1556,7 +1559,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnService");
 
-                    b.ToTable("ServiceOrders", (string)null);
+                    b.ToTable("ServiceOrders");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyAppointment", b =>

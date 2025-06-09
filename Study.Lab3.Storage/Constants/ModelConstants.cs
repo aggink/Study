@@ -381,7 +381,7 @@ public static class ModelConstants
         /// Максимальный вес кота (в кг)
         /// </summary>
         public const double WeightMax = 15.0;
-        
+
         /// <summary>
         /// Ссылка на фотографию кота
         /// </summary>
@@ -621,7 +621,7 @@ public static class ModelConstants
         /// Максимальная длина описания блюда
         /// </summary>
         public const int Description = 1000;
-        
+
         /// <summary>
         /// Максимальная длина категории
         /// </summary>
@@ -664,7 +664,7 @@ public static class ModelConstants
         /// Максимальная длина телефона клиента
         /// </summary>
         public const int CustomerPhone = 20;
-        
+
         /// <summary>
         /// Максимальная длина статуса
         /// </summary>
@@ -698,7 +698,7 @@ public static class ModelConstants
         /// </summary>
         public const int SpecialRequests = 500;
     }
-    
+
     public static class BeautyClient
     {
         /// <summary>
@@ -786,7 +786,7 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPartValue = 100;
     }
-    
+
     public static class Master
     {
         /// <summary>
@@ -929,5 +929,92 @@ public static class ModelConstants
         /// Максимальное наименование типа конфеты
         /// </summary>
         public const int MaxNameLenght = 256;
+    }
+
+    public static class Driver
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя гонщика"
+        /// </summary>
+        public const int Name = 255;
+
+        /// <summary>
+        /// Минимальное значение возраста
+        /// </summary>
+        public const int AgeMin = 1;
+
+        /// <summary>
+        /// Максимальное значение возраста
+        /// </summary>
+        public const int AgeMax = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Страна происхождения"
+        /// </summary>
+        public const int CountryOfOrigin = 255;
+    }
+
+    public class GrandPrix
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название гран-при"
+        /// </summary>
+        public const int Name = 255;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя победителя"
+        /// </summary>
+        public const int Winner = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Название трассы"
+        /// </summary>
+        public const int Circuit = 255;
+    }
+
+    public class Team
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название команды"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Минимальный год создания команды
+        /// </summary>
+        public const int MinYearOfCreation = 1930;
+
+        /// <summary>
+        /// Максимальный год создания команды
+        /// </summary>
+        public const int MaxYearOfCreation = 2025;
+
+        /// <summary>
+        /// Максимальная длина поля "Поставщик двигателей для команды"
+        /// </summary>
+        public const int EngineSupplier = 255;
+    }
+
+    public class DriverGrandPrix
+    {
+        /// <summary>
+        /// Минимальное значение для поля "Место по результатам гонки"
+        /// </summary>
+        public const int MinPosition = 1;
+
+        /// <summary>
+        /// Максимальное значение для поля "Место по результатам гонки"
+        /// </summary>
+        public const int MaxPosition = 20;
+
+        /// <summary>
+        /// Минимальное значение для поля "Количество заработаннных в гонке очков"
+        /// </summary>
+        public const int MinPointsEarned = 0;
+
+        /// <summary>
+        /// Максимальное значение для поля "Количество заработаннных в гонке очков"
+        /// </summary>
+        public const int MaxPointsEarned = 25;
     }
 }

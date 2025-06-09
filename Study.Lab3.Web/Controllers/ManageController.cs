@@ -1,5 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Study.Lab3.Web.Features.Formula1.Drivers.Commands;
+using Study.Lab3.Web.Features.Formula1.Drivers.DtoModels;
+using Study.Lab3.Web.Features.Formula1.Drivers.Queries;
+using Study.Lab3.Web.Features.Formula1.Teams.Commands;
+using Study.Lab3.Web.Features.Formula1.Teams.DtoModels;
+using Study.Lab3.Web.Features.Formula1.Teams.Queries;
 using Study.Lab3.Web.Features.Library.AuthorBooks.Commands;
 using Study.Lab3.Web.Features.Library.AuthorBooks.DtoModels;
 using Study.Lab3.Web.Features.Library.AuthorBooks.Queries;
@@ -1534,6 +1540,144 @@ public class ManageController : Controller
         var result = await _mediator.Send(query, cancellationToken);
         if (result == null)
             return NotFound();
+        return Ok(result);
+    }
+    #endregion
+
+    #region Formula1
+    /// <summary>
+    /// Создание гонщика
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор гонщика</returns>
+    [HttpPost(nameof(CreateDriver), Name = nameof(CreateDriver))]
+    public async Task<ActionResult<Guid>> CreateDriver(CreateDriverCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование гонщика
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор гонщика</returns>
+    [HttpPost(nameof(UpdateDriver), Name = nameof(UpdateDriver))]
+    public async Task<ActionResult<Guid>> UpdateDriver(UpdateDriverCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление гонщика
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор гонщика</returns>
+    [HttpPost(nameof(DeleteDriver), Name = nameof(DeleteDriver))]
+    public async Task<ActionResult<Guid>> DeleteDriver(DeleteDriverCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение списка гонщиков
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список гонщиков</returns>
+    [HttpGet(nameof(GetListDrivers), Name = nameof(GetListDrivers))]
+    public async Task<ActionResult<DriverItemDto[]>> GetListDrivers([FromQuery] GetListDriversQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение данных гонщика
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Данные гонщика</returns>
+    [HttpGet(nameof(GetDriverByIsn), Name = nameof(GetDriverByIsn))]
+    public async Task<ActionResult<DriverDto>> GetDriverByIsn(GetDriverByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Создание команды
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор команды</returns>
+    [HttpPost(nameof(CreateTeam), Name = nameof(CreateTeam))]
+    public async Task<ActionResult<Guid>> CreateTeam(CreateTeamCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование данных команды
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Идентификатор команды</returns>
+    [HttpPost(nameof(UpdateTeam), Name = nameof(UpdateTeam))]
+    public async Task<ActionResult<Guid>> UpdateTeam(UpdateTeamCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление команды
+    /// </summary>
+    /// <param name="command">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    [HttpPost(nameof(DeleteTeam), Name = nameof(DeleteTeam))]
+    public async Task<ActionResult<Guid>> DeleteTeam(DeleteTeamCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение списка команд
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Список команд</returns>
+    [HttpGet(nameof(GetListTeams), Name = nameof(GetListTeams))]
+    public async Task<ActionResult<TeamItemDto[]>> GetListTeams([FromQuery] GetListTeamsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение данных команды
+    /// </summary>
+    /// <param name="query">Dto запроса</param>
+    /// <param name="cancellationToken">Токен отмены</param>
+    /// <returns>Данные команды</returns>
+    [HttpGet(nameof(GetTeamByIsn), Name = nameof(GetTeamByIsn))]
+    public async Task<ActionResult<TeamDto>> GetTeamByIsn(GetTeamByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
     #endregion
