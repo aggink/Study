@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
+using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Messenger;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
-using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.University;
@@ -147,6 +147,15 @@ public class DataContext : DbContext
     /// Учителя
     /// </summary>
     public virtual DbSet<ProjectActivities> TheProjectActivities { get; set; }
+
+    /// <summary>
+    /// Лабы
+    /// </summary>
+    public virtual DbSet<Labs> Labs { get; set; }
+    /// <summary>
+    /// Оценки студентов по лабам Лабы
+    /// </summary>
+    public virtual DbSet<StudentLab> StudentLab { get; set; }
 
     #endregion
 

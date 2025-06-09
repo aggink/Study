@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250609103030_StudentLab")]
+    partial class StudentLab
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -632,111 +635,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnBook");
 
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
-                {
-                    b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<byte[]>("Data")
-                        .IsRequired()
-                        .HasColumnType("bytea");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<Guid>("IsnUploader")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Isn");
-
-                    b.HasIndex("IsnUploader");
-
-                    b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
-                {
-                    b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnImage")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnPost")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Isn");
-
-                    b.HasIndex("IsnImage");
-
-                    b.HasIndex("IsnPost");
-
-                    b.ToTable("ImageEmbeds");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
-                {
-                    b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnUser")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Isn");
-
-                    b.HasIndex("IsnUser");
-
-                    b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
-                {
-                    b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("AboutMe")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("character varying(254)");
-
-                    b.Property<Guid?>("IsnProfilePicture")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(16)
-                        .HasColumnType("character varying(16)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Website")
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.HasKey("Isn");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("IsnProfilePicture");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
@@ -1902,56 +1800,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "Uploader")
-                        .WithMany()
-                        .HasForeignKey("IsnUploader")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Uploader");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "Image")
-                        .WithMany("ImageEmbeds")
-                        .HasForeignKey("IsnImage")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Post", "Post")
-                        .WithMany("ImageEmbeds")
-                        .HasForeignKey("IsnPost")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Image");
-
-                    b.Navigation("Post");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "User")
-                        .WithMany("Posts")
-                        .HasForeignKey("IsnUser")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "ProfilePicture")
-                        .WithMany()
-                        .HasForeignKey("IsnProfilePicture");
-
-                    b.Navigation("ProfilePicture");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
@@ -2409,21 +2257,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
                 {
                     b.Navigation("AuthorBook");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
-                {
-                    b.Navigation("ImageEmbeds");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
-                {
-                    b.Navigation("ImageEmbeds");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
-                {
-                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>

@@ -7,8 +7,8 @@ using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.Messenger;
 using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.University;
-using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Interfaces.Services.Workshop;
+using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.Fitness;
 using Study.Lab3.Logic.Services.HospitalStore;
@@ -81,22 +81,24 @@ public static class ServiceCollectionExtensions
         #endregion
 
         #region University
+        services.AddSingleton<IAnnouncementService, AnnouncementService>();
+        services.AddSingleton<IAssignmentService, AssignmentService>();
+        services.AddSingleton<ICareerService, CareerService>();
+        services.AddSingleton<IExamRegistrationService, ExamRegistrationService>();
+        services.AddSingleton<IExamResultService, ExamResultService>();
+        services.AddSingleton<IExamService, ExamService>();
+        services.AddSingleton<IGradeService, GradeService>();
         services.AddSingleton<IGroupService, GroupService>();
+        services.AddSingleton<IKvnService, KvnService>();
+        services.AddSingleton<ILabService, LabService>();
+        services.AddSingleton<IMaterialService, MaterialService>();
+        services.AddSingleton<IProfcomService, ProfcomService>();
+        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
+        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
+        services.AddSingleton<ISportclubService, SportclubService>();
         services.AddSingleton<ISubjectService, SubjectService>();
         services.AddSingleton<ITeacherService, TeacherService>();
         services.AddSingleton<ITeacherSubjectService, TeacherSubjectService>();
-        services.AddSingleton<IGradeService, GradeService>();
-        services.AddSingleton<IAssignmentService, AssignmentService>();
-        services.AddSingleton<IMaterialService, MaterialService>();
-        services.AddSingleton<IAnnouncementService, AnnouncementService>();
-        services.AddSingleton<IExamService, ExamService>();
-        services.AddSingleton<IExamRegistrationService, ExamRegistrationService>();
-        services.AddSingleton<IExamResultService, ExamResultService>();
-        services.AddSingleton<IProfcomService, ProfcomService>();
-        services.AddSingleton<ISportclubService, SportclubService>();
-        services.AddSingleton<IKvnService, KvnService>();
-        services.AddSingleton<ICareerService, CareerService>();
-        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
         #endregion
 
         #region Workshop
