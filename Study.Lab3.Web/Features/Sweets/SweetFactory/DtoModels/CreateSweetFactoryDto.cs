@@ -1,7 +1,7 @@
 using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
+namespace Study.Lab3.Web.Features.Sweets.SweetFactory.DtoModels;
 
 public sealed record CreateSweetFactoryDto
 {
@@ -23,5 +23,5 @@ public sealed record CreateSweetFactoryDto
     /// Объём производства
     /// </summary>
     [Required]
-    public Int64 Volume { get; init; }
+    public long Volume { get; init; }
 }

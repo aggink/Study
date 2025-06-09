@@ -1,7 +1,7 @@
 ﻿using Moq;
 using Moq.Protected;
 using Study.Lab2.Logic.Interfaces.Jki749;
-using Study.Lab2.Logic.Services.Jki749;
+using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.UnitTests.Jki749.DtoModels;
 using System.Net;
 using System.Text.Json;

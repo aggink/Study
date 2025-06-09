@@ -1,7 +1,7 @@
 ﻿using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
+namespace Study.Lab3.Web.Features.University.Sportclub.DtoModels;
 
 public sealed record UpdateSportclubDto
 {

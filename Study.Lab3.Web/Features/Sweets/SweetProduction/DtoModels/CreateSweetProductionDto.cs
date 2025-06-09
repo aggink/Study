@@ -1,7 +1,7 @@
 using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
+namespace Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
 
 public sealed record CreateSweetProductionDto
 {
