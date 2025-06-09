@@ -38,16 +38,16 @@ public sealed class UpdateImageEmbedCommandHandler : IRequestHandler<UpdateImage
     public async Task<Guid> Handle(UpdateImageEmbedCommand request, CancellationToken cancellationToken)
     {
         var embed = await _dataContext.ImageEmbeds
-                       .FirstOrDefaultAsync(x => x.Id == request.Embed.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Вставка {request.Embed.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.Embed.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Вставка {request.Embed.Isn} не существует");
 
-        if (request.Embed.PostId is not null) embed.PostId = (Guid)request.Embed.PostId;
-        if (request.Embed.ImageId is not null) embed.ImageId = (Guid)request.Embed.ImageId;
+        if (request.Embed.IsnPost is not null) embed.IsnPost = (Guid)request.Embed.IsnPost;
+        if (request.Embed.IsnImage is not null) embed.IsnImage = (Guid)request.Embed.IsnImage;
 
         await _imageEmbedService.UpdateImageEmbedValidateAndThrowAsync(_dataContext, embed, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return embed.Id;
+        return embed.Isn;
     }
 }

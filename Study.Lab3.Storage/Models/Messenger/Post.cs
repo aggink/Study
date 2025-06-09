@@ -12,21 +12,21 @@ public class Post
     /// Идентификатор
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public Guid Isn { get; set; }
 
     /// <summary>
     /// Идентификатор пользователя
     /// </summary>
     [Required, ForeignKey(nameof(User))]
-    public Guid UserId { get; set; }
+    public Guid IsnUser { get; set; }
+
+    public virtual User User { get; set; }
 
     /// <summary>
     /// Сообщение
     /// </summary>
     [Required]
     public string Message { get; set; }
-
-    public virtual User User { get; set; }
 
     /// <summary>
     /// Вложенные изображения

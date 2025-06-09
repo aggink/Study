@@ -11,38 +11,38 @@ namespace Study.Lab3.Web.Features.Messenger.ImageEmbeds.Queries;
 /// <summary>
 /// Получение прикрепления по идентификатору
 /// </summary>
-public sealed class GetImageEmbedListByPostIdQuery : IRequest<ImageEmbedDto[]>
+public sealed class GetImageEmbedListByIsnImageQuery : IRequest<ImageEmbedDto[]>
 {
     /// <summary>
     /// Идентификатор
     /// </summary>
     [Required, FromRoute]
-    public Guid PostId { get; init; }
+    public Guid IsnImage { get; init; }
 }
 
-public sealed class GetImageEmbedListByPostIdQueryHandler : IRequestHandler<GetImageEmbedListByPostIdQuery, ImageEmbedDto[]>
+public sealed class GetImageEmbedListByIsnImageQueryHandler : IRequestHandler<GetImageEmbedListByIsnImageQuery, ImageEmbedDto[]>
 {
     private readonly DataContext _dataContext;
 
-    public GetImageEmbedListByPostIdQueryHandler(DataContext dataContext)
+    public GetImageEmbedListByIsnImageQueryHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
 
-    public async Task<ImageEmbedDto[]> Handle(GetImageEmbedListByPostIdQuery request, CancellationToken cancellationToken)
+    public async Task<ImageEmbedDto[]> Handle(GetImageEmbedListByIsnImageQuery request, CancellationToken cancellationToken)
     {
         var embeds = await _dataContext.ImageEmbeds
-                       .AsNoTracking().Where(x => x.PostId == request.PostId).ToListAsync(cancellationToken)
-                   ?? throw new BusinessLogicException($"Прикреплений к сообщению {request.PostId} не существует");
+                       .AsNoTracking().Where(x => x.IsnImage == request.IsnImage).ToListAsync(cancellationToken)
+                   ?? throw new BusinessLogicException($"Прикреплений с изображением {request.IsnImage} не существует");
 
         var embedsDto = new ImageEmbedDto[embeds.Count];
         for (int i = 0; i < embeds.Count; i++)
         {
             embedsDto[i] = new ImageEmbedDto
             {
-                Id = embeds[i].Id,
-                PostId = embeds[i].PostId,
-                ImageId = embeds[i].ImageId
+                Isn = embeds[i].Isn,
+                IsnPost = embeds[i].IsnPost,
+                IsnImage = embeds[i].IsnImage
             };
         }
         return embedsDto;

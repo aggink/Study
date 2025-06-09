@@ -13,14 +13,14 @@ public sealed class PostService : IPostService
         Post post,
         CancellationToken cancellationToken = default)
     {
-        #region Id
-        if (await dataContext.Posts.AnyAsync(x => x.Id == post.Id, cancellationToken))
-            throw new BusinessLogicException($"Сообщение {post.Id} уже существует");
+        #region Isn
+        if (await dataContext.Posts.AnyAsync(x => x.Isn == post.Isn, cancellationToken))
+            throw new BusinessLogicException($"Сообщение {post.Isn} уже существует");
         #endregion
 
         #region UserId
-        if (!await dataContext.Users.AnyAsync(x => x.Id == post.UserId, cancellationToken))
-            throw new BusinessLogicException($"Пользователь {post.UserId} не существует");
+        if (!await dataContext.Users.AnyAsync(x => x.Isn == post.IsnUser, cancellationToken))
+            throw new BusinessLogicException($"Пользователь {post.IsnUser} не существует");
         #endregion
 
         #region Message

@@ -16,7 +16,7 @@ public sealed class DeleteUserCommand : IRequest
     /// Идентификатор
     /// </summary>
     [Required, FromBody]
-    public Guid Id { get; init; }
+    public Guid Isn { get; init; }
 }
 
 public sealed class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
@@ -31,8 +31,8 @@ public sealed class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand
     public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _dataContext.Users
-                       .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Пользователь {request.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Пользователь {request.Isn} не существует");
 
         _dataContext.Users.Remove(user);
         await _dataContext.SaveChangesAsync(cancellationToken);

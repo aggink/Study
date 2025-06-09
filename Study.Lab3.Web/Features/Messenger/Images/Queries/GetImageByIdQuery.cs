@@ -11,36 +11,36 @@ namespace Study.Lab3.Web.Features.Messenger.Images.Queries;
 /// <summary>
 /// Получение изображения по идентификатору
 /// </summary>
-public sealed class GetImageByIdQuery : IRequest<ImageDto>
+public sealed class GetImageByIsnQuery : IRequest<ImageDto>
 {
     /// <summary>
     /// Идентификатор
     /// </summary>
     [Required, FromRoute]
-    public Guid Id { get; init; }
+    public Guid Isn { get; init; }
 }
 
-public sealed class GetImageByIdQueryHandler : IRequestHandler<GetImageByIdQuery, ImageDto>
+public sealed class GetImageByIsnQueryHandler : IRequestHandler<GetImageByIsnQuery, ImageDto>
 {
     private readonly DataContext _dataContext;
 
-    public GetImageByIdQueryHandler(DataContext dataContext)
+    public GetImageByIsnQueryHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
 
-    public async Task<ImageDto> Handle(GetImageByIdQuery request, CancellationToken cancellationToken)
+    public async Task<ImageDto> Handle(GetImageByIsnQuery request, CancellationToken cancellationToken)
     {
         var post = await _dataContext.Images
                        .AsNoTracking()
-                       .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Изображение {request.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Изображение {request.Isn} не существует");
 
         return new ImageDto
         {
-            Id = post.Id,
+            Isn = post.Isn,
             Description = post.Description,
-            UploaderId = post.UploaderId,
+            IsnUploader = post.IsnUploader,
             Data = post.Data
         };
     }

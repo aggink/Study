@@ -32,9 +32,9 @@ public sealed class GetImageEmbedListQueryHandler : IRequestHandler<GetImageEmbe
         {
             usersDto[i] = new ImageEmbedDto
             {
-                Id = users[i].Id,
-                PostId = users[i].PostId,
-                ImageId = users[i].ImageId
+                Isn = users[i].Isn,
+                IsnPost = users[i].IsnPost,
+                IsnImage = users[i].IsnImage
             };
         }
         return usersDto;

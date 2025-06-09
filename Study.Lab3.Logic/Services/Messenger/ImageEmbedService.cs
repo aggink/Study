@@ -13,26 +13,26 @@ public sealed class ImageEmbedService : IImageEmbedService
         ImageEmbed embed,
         CancellationToken cancellationToken = default)
     {
-        #region Id
-        if (await dataContext.ImageEmbeds.AnyAsync(x => x.Id == embed.Id, cancellationToken))
-            throw new BusinessLogicException($"Внедрение {embed.Id} уже существует");
+        #region Isn
+        if (await dataContext.ImageEmbeds.AnyAsync(x => x.Isn == embed.Isn, cancellationToken))
+            throw new BusinessLogicException($"Внедрение {embed.Isn} уже существует");
         #endregion
 
-        #region PostId
-        if (!await dataContext.Posts.AnyAsync(x => x.Id == embed.PostId, cancellationToken))
-            throw new BusinessLogicException($"Сообщение {embed.PostId} не существует");
+        #region PostIsn
+        if (!await dataContext.Posts.AnyAsync(x => x.Isn == embed.IsnPost, cancellationToken))
+            throw new BusinessLogicException($"Сообщение {embed.IsnPost} не существует");
         #endregion
 
-        #region ImageId
-        if (!await dataContext.Images.AnyAsync(x => x.Id == embed.ImageId, cancellationToken))
-            throw new BusinessLogicException($"Изображение {embed.ImageId} не существует");
+        #region ImageIsn
+        if (!await dataContext.Images.AnyAsync(x => x.Isn == embed.IsnImage, cancellationToken))
+            throw new BusinessLogicException($"Изображение {embed.IsnImage} не существует");
         #endregion
 
         // Проверка на дубликат
         if (await dataContext.ImageEmbeds.AnyAsync(
-                x => x.PostId == embed.PostId && x.ImageId == embed.ImageId, cancellationToken
+                x => x.IsnPost == embed.IsnPost && x.IsnImage == embed.IsnImage, cancellationToken
         ))
-            throw new BusinessLogicException($"Внедрение {embed.PostId}:{embed.ImageId} уже существует");
+            throw new BusinessLogicException($"Вложение {embed.IsnPost}:{embed.IsnImage} уже существует");
     }
 
     public async Task UpdateImageEmbedValidateAndThrowAsync(
@@ -40,20 +40,20 @@ public sealed class ImageEmbedService : IImageEmbedService
         ImageEmbed embed,
         CancellationToken cancellationToken = default)
     {
-        #region PostId
-        if (!await dataContext.Posts.AnyAsync(x => x.Id == embed.PostId, cancellationToken))
-            throw new BusinessLogicException($"Сообщение {embed.PostId} не существует");
+        #region PostIsn
+        if (!await dataContext.Posts.AnyAsync(x => x.Isn == embed.IsnPost, cancellationToken))
+            throw new BusinessLogicException($"Сообщение {embed.IsnPost} не существует");
         #endregion
 
-        #region ImageId
-        if (!await dataContext.Images.AnyAsync(x => x.Id == embed.ImageId, cancellationToken))
-            throw new BusinessLogicException($"Изображение {embed.ImageId} не существует");
+        #region ImageIsn
+        if (!await dataContext.Images.AnyAsync(x => x.Isn == embed.IsnImage, cancellationToken))
+            throw new BusinessLogicException($"Изображение {embed.IsnImage} не существует");
         #endregion
 
         // Проверка на дубликат
         if (await dataContext.ImageEmbeds.AnyAsync(
-                x => x.PostId == embed.PostId && x.ImageId == embed.ImageId, cancellationToken
+                x => x.IsnPost == embed.IsnPost && x.IsnImage == embed.IsnImage, cancellationToken
         ))
-            throw new BusinessLogicException($"Внедрение {embed.PostId}:{embed.ImageId} уже существует");
+            throw new BusinessLogicException($"Вложение {embed.IsnPost}:{embed.IsnImage} уже существует");
     }
 }

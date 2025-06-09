@@ -11,37 +11,37 @@ namespace Study.Lab3.Web.Features.Messenger.Posts.Queries;
 /// <summary>
 /// Получение сообщения по идентификатору
 /// </summary>
-public sealed class GetPostListByUserIdQuery : IRequest<PostDto[]>
+public sealed class GetPostListByIsnUserQuery : IRequest<PostDto[]>
 {
     /// <summary>
     /// Идентификатор
     /// </summary>
     [Required, FromRoute]
-    public Guid UserId { get; init; }
+    public Guid IsnUser { get; init; }
 }
 
-public sealed class GetPostListByUserIdQueryHandler : IRequestHandler<GetPostListByUserIdQuery, PostDto[]>
+public sealed class GetPostListByIsnUserQueryHandler : IRequestHandler<GetPostListByIsnUserQuery, PostDto[]>
 {
     private readonly DataContext _dataContext;
 
-    public GetPostListByUserIdQueryHandler(DataContext dataContext)
+    public GetPostListByIsnUserQueryHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
 
-    public async Task<PostDto[]> Handle(GetPostListByUserIdQuery request, CancellationToken cancellationToken)
+    public async Task<PostDto[]> Handle(GetPostListByIsnUserQuery request, CancellationToken cancellationToken)
     {
         var posts = await _dataContext.Posts
-                       .AsNoTracking().Where(x => x.UserId == request.UserId).ToListAsync(cancellationToken)
-                   ?? throw new BusinessLogicException($"Постов от пользователя {request.UserId} не существует");
+                       .AsNoTracking().Where(x => x.IsnUser == request.IsnUser).ToListAsync(cancellationToken)
+                   ?? throw new BusinessLogicException($"Постов от пользователя {request.IsnUser} не существует");
 
         var postsDto = new PostDto[posts.Count];
         for (int i = 0; i < posts.Count; i++)
         {
             postsDto[i] = new PostDto
             {
-                Id = posts[i].Id,
-                UserId = posts[i].UserId,
+                Isn = posts[i].Isn,
+                IsnUser = posts[i].IsnUser,
                 Message = posts[i].Message
             };
         }

@@ -14,9 +14,9 @@ public sealed class ImageService : IImageService
         Image image,
         CancellationToken cancellationToken = default)
     {
-        #region Id
-        if (await dataContext.Images.AnyAsync(x => x.Id == image.Id, cancellationToken))
-            throw new BusinessLogicException($"Изображение {image.Id} уже существует");
+        #region Isn
+        if (await dataContext.Images.AnyAsync(x => x.Isn == image.Isn, cancellationToken))
+            throw new BusinessLogicException($"Изображение {image.Isn} уже существует");
         #endregion
 
         #region Description
@@ -24,9 +24,9 @@ public sealed class ImageService : IImageService
             throw new BusinessLogicException("Описание слишком длинное");
         #endregion
 
-        #region UploaderId
-        if (!await dataContext.Users.AnyAsync(x => x.Id == image.UploaderId, cancellationToken))
-            throw new BusinessLogicException($"Пользователь {image.UploaderId} не существует");
+        #region UploaderIsn
+        if (!await dataContext.Users.AnyAsync(x => x.Isn == image.IsnUploader, cancellationToken))
+            throw new BusinessLogicException($"Пользователь {image.IsnUploader} не существует");
         #endregion
 
         #region Data

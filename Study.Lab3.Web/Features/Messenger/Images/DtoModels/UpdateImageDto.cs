@@ -1,6 +1,5 @@
 using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Web.Features.Messenger.Images.DtoModels;
 
@@ -9,8 +8,8 @@ public sealed record UpdateImageDto
     /// <summary>
     /// Идентификатор
     /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; init; }
+    [Required]
+    public Guid Isn { get; init; }
 
     /// <summary>
     /// Описание изображения

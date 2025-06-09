@@ -37,19 +37,19 @@ public sealed class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand
     public async Task<Guid> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _dataContext.Users
-                       .FirstOrDefaultAsync(x => x.Id == request.User.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Пользователь {request.User.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.User.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Пользователь {request.User.Isn} не существует");
 
+        if (request.User.IsnProfilePicture is not null) user.IsnProfilePicture = request.User.IsnProfilePicture;
         if (request.User.Email is not null) user.Email = request.User.Email;
         if (request.User.Username is not null) user.Username = request.User.Username;
         if (request.User.Phone is not null) user.Phone = request.User.Phone;
         if (request.User.Website is not null) user.Website = request.User.Website;
         if (request.User.AboutMe is not null) user.AboutMe = request.User.AboutMe;
-        if (request.User.ProfilePicture is not null) user.ProfilePictureId = request.User.ProfilePicture;
 
         await _userService.UpdateUserValidateAndThrowAsync(_dataContext, user, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
-        return user.Id;
+        return user.Isn;
     }
 }

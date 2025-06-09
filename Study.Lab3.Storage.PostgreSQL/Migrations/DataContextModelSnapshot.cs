@@ -636,7 +636,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Isn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -648,60 +648,60 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<Guid>("UploaderId")
+                    b.Property<Guid>("IsnUploader")
                         .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.HasKey("Isn");
 
-                    b.HasIndex("UploaderId");
+                    b.HasIndex("IsnUploader");
 
                     b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Isn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ImageId")
+                    b.Property<Guid>("IsnImage")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("PostId")
+                    b.Property<Guid>("IsnPost")
                         .HasColumnType("uuid");
 
-                    b.HasKey("Id");
+                    b.HasKey("Isn");
 
-                    b.HasIndex("ImageId");
+                    b.HasIndex("IsnImage");
 
-                    b.HasIndex("PostId");
+                    b.HasIndex("IsnPost");
 
                     b.ToTable("ImageEmbeds");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Isn")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnUser")
                         .HasColumnType("uuid");
 
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                    b.HasKey("Isn");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
+                    b.HasIndex("IsnUser");
 
                     b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("Isn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -713,12 +713,12 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(254)
                         .HasColumnType("character varying(254)");
 
+                    b.Property<Guid?>("IsnProfilePicture")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Phone")
                         .HasMaxLength(16)
                         .HasColumnType("character varying(16)");
-
-                    b.Property<Guid?>("ProfilePictureId")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -729,12 +729,12 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Isn");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.HasIndex("ProfilePictureId");
+                    b.HasIndex("IsnProfilePicture");
 
                     b.ToTable("Users");
                 });
@@ -1868,8 +1868,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "Uploader")
                         .WithMany()
-                        .HasForeignKey("UploaderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IsnUploader")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Uploader");
@@ -1879,14 +1879,14 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "Image")
                         .WithMany("ImageEmbeds")
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IsnImage")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.Messenger.Post", "Post")
                         .WithMany("ImageEmbeds")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IsnPost")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Image");
@@ -1898,8 +1898,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IsnUser")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1909,7 +1909,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "ProfilePicture")
                         .WithMany()
-                        .HasForeignKey("ProfilePictureId");
+                        .HasForeignKey("IsnProfilePicture");
 
                     b.Navigation("ProfilePicture");
                 });

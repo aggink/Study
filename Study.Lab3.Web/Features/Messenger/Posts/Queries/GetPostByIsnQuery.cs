@@ -11,34 +11,34 @@ namespace Study.Lab3.Web.Features.Messenger.Posts.Queries;
 /// <summary>
 /// Получение сообщения по идентификатору
 /// </summary>
-public sealed class GetPostByIdQuery : IRequest<PostDto>
+public sealed class GetPostByIsnQuery : IRequest<PostDto>
 {
     /// <summary>
     /// Идентификатор
     /// </summary>
     [Required, FromRoute]
-    public Guid Id { get; init; }
+    public Guid Isn { get; init; }
 }
 
-public sealed class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, PostDto>
+public sealed class GetPostByIsnQueryHandler : IRequestHandler<GetPostByIsnQuery, PostDto>
 {
     private readonly DataContext _dataContext;
 
-    public GetPostByIdQueryHandler(DataContext dataContext)
+    public GetPostByIsnQueryHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
 
-    public async Task<PostDto> Handle(GetPostByIdQuery request, CancellationToken cancellationToken)
+    public async Task<PostDto> Handle(GetPostByIsnQuery request, CancellationToken cancellationToken)
     {
         var post = await _dataContext.Posts
-                       .AsNoTracking().FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Сообщение {request.Id} не существует");
+                       .AsNoTracking().FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Сообщение {request.Isn} не существует");
 
         return new PostDto
         {
-            Id = post.Id,
-            UserId = post.UserId,
+            Isn = post.Isn,
+            IsnUser = post.IsnUser,
             Message = post.Message
         };
     }

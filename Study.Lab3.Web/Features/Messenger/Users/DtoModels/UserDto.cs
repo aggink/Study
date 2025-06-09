@@ -1,7 +1,5 @@
 using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Study.Lab3.Storage.Models.Messenger;
 
 namespace Study.Lab3.Web.Features.Messenger.Users.DtoModels;
 
@@ -10,8 +8,13 @@ public sealed record UserDto
     /// <summary>
     /// Идентификатор пользователя
     /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; init; }
+    [Required]
+    public Guid Isn { get; init; }
+
+    /// <summary>
+    /// Аватар пользователя
+    /// </summary>
+    public Guid? IsnProfilePicture { get; init; }
 
     /// <summary>
     /// Почтовый адрес пользователя
@@ -41,10 +44,4 @@ public sealed record UserDto
     /// Секция "о мне"
     /// </summary>
     public string AboutMe { get; init; }
-
-    /// <summary>
-    /// Аватар пользователя
-    /// </summary>
-    [ForeignKey(nameof(User.ProfilePicture))]
-    public Guid? ProfilePictureId { get; init; }
 }

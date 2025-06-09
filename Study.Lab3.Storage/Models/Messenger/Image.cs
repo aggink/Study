@@ -13,7 +13,15 @@ public class Image
     /// Идентификатор
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public Guid Isn { get; set; }
+
+    /// <summary>
+    /// Идентификатор автора
+    /// </summary>
+    [Required, ForeignKey(nameof(Uploader))]
+    public Guid IsnUploader { get; set; }
+
+    public virtual User Uploader { get; set; }
 
     /// <summary>
     /// Описание изображения
@@ -22,18 +30,10 @@ public class Image
     public string Description { get; set; }
 
     /// <summary>
-    /// Идентификатор автора
-    /// </summary>
-    [Required, ForeignKey(nameof(Uploader))]
-    public Guid UploaderId { get; set; }
-
-    /// <summary>
     /// Массив байтов изображения
     /// </summary>
     [Required]
     public byte[] Data { get; set; }
-
-    public virtual User Uploader { get; set; }
 
     /// <summary>
     /// Вложения

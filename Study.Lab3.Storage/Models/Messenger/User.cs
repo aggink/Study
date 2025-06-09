@@ -15,7 +15,15 @@ public class User
     /// Идентификатор пользователя
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public Guid Id { get; set; }
+    public Guid Isn { get; set; }
+
+    /// <summary>
+    /// Аватар пользователя
+    /// </summary>
+    [ForeignKey(nameof(ProfilePicture))]
+    public Guid? IsnProfilePicture { get; set; }
+
+    public virtual Image? ProfilePicture { get; set; }
 
     /// <summary>
     /// Почтовый адрес пользователя
@@ -45,14 +53,6 @@ public class User
     /// Секция "о мне"
     /// </summary>
     public string AboutMe { get; set; }
-
-    /// <summary>
-    /// Аватар пользователя
-    /// </summary>
-    [ForeignKey(nameof(ProfilePicture))]
-    public Guid? ProfilePictureId { get; set; }
-
-    public virtual Image? ProfilePicture { get; set; }
 
     /// <summary>
     /// Сообщения пользователя

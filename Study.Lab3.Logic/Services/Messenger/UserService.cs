@@ -14,9 +14,9 @@ public sealed class UserService : IUserService
         User user,
         CancellationToken cancellationToken = default)
     {
-        #region Id
-        if (await dataContext.Users.AnyAsync(x => x.Id == user.Id, cancellationToken))
-            throw new BusinessLogicException($"Пользователь {user.Id} уже существует");
+        #region Isn
+        if (await dataContext.Users.AnyAsync(x => x.Isn == user.Isn, cancellationToken))
+            throw new BusinessLogicException($"Пользователь {user.Isn} уже существует");
         #endregion
 
         #region Email
@@ -46,9 +46,9 @@ public sealed class UserService : IUserService
         #endregion
 
         #region ProfilePicture
-        if (await Task.Run(() => { return user.ProfilePictureId is not null; })
-            && !await dataContext.Images.AnyAsync(x => x.Id == user.ProfilePictureId))
-            throw new BusinessLogicException($"Изображение {user.ProfilePictureId} не существует");
+        if (await Task.Run(() => { return user.IsnProfilePicture is not null; })
+            && !await dataContext.Images.AnyAsync(x => x.Isn == user.IsnProfilePicture))
+            throw new BusinessLogicException($"Изображение {user.IsnProfilePicture} не существует");
         #endregion
     }
 
@@ -61,7 +61,7 @@ public sealed class UserService : IUserService
         if (await Task.Run(() => { return user.Email.Length > ModelConstants.User.Email; }))
             throw new BusinessLogicException("Почтовый адрес слишком длинный");
 
-        if (await dataContext.Users.AnyAsync(x => x.Email == user.Email && x.Id != user.Id, cancellationToken))
+        if (await dataContext.Users.AnyAsync(x => x.Email == user.Email && x.Isn != user.Isn, cancellationToken))
             throw new BusinessLogicException($"Пользователь с почтовым адресом \"{user.Email}\" уже существует");
         #endregion
 
@@ -81,9 +81,9 @@ public sealed class UserService : IUserService
         #endregion
 
         #region ProfilePicture
-        if (await Task.Run(() => { return user.ProfilePictureId is not null; })
-            && !await dataContext.Images.AnyAsync(x => x.Id == user.ProfilePictureId))
-            throw new BusinessLogicException($"Изображение {user.ProfilePictureId} не существует");
+        if (await Task.Run(() => { return user.IsnProfilePicture is not null; })
+            && !await dataContext.Images.AnyAsync(x => x.Isn == user.IsnProfilePicture))
+            throw new BusinessLogicException($"Изображение {user.IsnProfilePicture} не существует");
         #endregion
     }
 }

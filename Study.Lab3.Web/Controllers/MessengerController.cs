@@ -73,8 +73,8 @@ public class MessengerController : Controller
     /// <summary>
     /// Получение пользователя по идентификатору
     /// </summary>
-    [HttpGet("users/{Id}")]
-    public async Task<ActionResult<UserDto>> GetUserById(GetUserByIdQuery query, CancellationToken cancellationToken)
+    [HttpGet("users/{Isn}")]
+    public async Task<ActionResult<UserDto>> GetUserById(GetUserByIsnQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
 
@@ -160,8 +160,8 @@ public class MessengerController : Controller
     /// <summary>
     /// Получение сообщения по идентификатору
     /// </summary>
-    [HttpGet("posts/{Id}")]
-    public async Task<ActionResult<PostDto>> GetPostById(GetPostByIdQuery query, CancellationToken cancellationToken)
+    [HttpGet("posts/{Isn}")]
+    public async Task<ActionResult<PostDto>> GetPostByIsn(GetPostByIsnQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
 
@@ -174,8 +174,8 @@ public class MessengerController : Controller
     /// <summary>
     /// Получение сообщений по идентификатору пользователя
     /// </summary>
-    [HttpGet("posts/user_id/{UserId}")]
-    public async Task<ActionResult<PostDto[]>> GetPostListByUserId(GetPostListByUserIdQuery query, CancellationToken cancellationToken)
+    [HttpGet("posts/isn_user/{IsnUser}")]
+    public async Task<ActionResult<PostDto[]>> GetPostListByIsnUser(GetPostListByIsnUserQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
 
@@ -233,8 +233,8 @@ public class MessengerController : Controller
     /// <summary>
     /// Получение изображения по идентификатору
     /// </summary>
-    [HttpGet("images/{Id}")]
-    public async Task<ActionResult<ImageDto>> GetImageById(GetImageByIdQuery query, CancellationToken cancellationToken)
+    [HttpGet("images/{Isn}")]
+    public async Task<ActionResult<ImageDto>> GetImageByIsn(GetImageByIsnQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
 
@@ -292,8 +292,8 @@ public class MessengerController : Controller
     /// <summary>
     /// Получение вставок по идентификатору сообщения
     /// </summary>
-    [HttpGet("image_embeds/post_id/{PostId}")]
-    public async Task<ActionResult<ImageEmbedDto[]>> GetImageEmbedListByPostId(GetImageEmbedListByPostIdQuery query, CancellationToken cancellationToken)
+    [HttpGet("image_embeds/isn_post/{IsnPost}")]
+    public async Task<ActionResult<ImageEmbedDto[]>> GetImageEmbedListByIsnPost(GetImageEmbedListByIsnPostQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
 
@@ -306,8 +306,8 @@ public class MessengerController : Controller
     /// <summary>
     /// Получение вставок по идентификатору изображения
     /// </summary>
-    [HttpGet("image_embeds/image_id/{ImageId}")]
-    public async Task<ActionResult<ImageEmbedDto[]>> GetImageEmbedListByImageId(GetImageEmbedListByImageIdQuery query, CancellationToken cancellationToken)
+    [HttpGet("image_embeds/isn_image/{IsnImage}")]
+    public async Task<ActionResult<ImageEmbedDto[]>> GetImageEmbedListByIsnImage(GetImageEmbedListByIsnImageQuery query, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
 

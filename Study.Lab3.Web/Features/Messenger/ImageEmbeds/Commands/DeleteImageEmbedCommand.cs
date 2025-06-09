@@ -16,7 +16,7 @@ public sealed class DeleteImageEmbedCommand : IRequest
     /// Идентификатор поста
     /// </summary>
     [Required, FromBody]
-    public Guid Id { get; init; }
+    public Guid Isn { get; init; }
 }
 
 public sealed class DeleteImageEmbedCommandHandler : IRequestHandler<DeleteImageEmbedCommand>
@@ -31,8 +31,8 @@ public sealed class DeleteImageEmbedCommandHandler : IRequestHandler<DeleteImage
     public async Task Handle(DeleteImageEmbedCommand request, CancellationToken cancellationToken)
     {
         var embed = await _dataContext.ImageEmbeds
-                       .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Прикрепление {request.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Прикрепление {request.Isn} не существует");
 
         _dataContext.ImageEmbeds.Remove(embed);
         await _dataContext.SaveChangesAsync(cancellationToken);

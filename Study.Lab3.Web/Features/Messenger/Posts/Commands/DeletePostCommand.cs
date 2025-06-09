@@ -16,7 +16,7 @@ public sealed class DeletePostCommand : IRequest
     /// Идентификатор
     /// </summary>
     [Required, FromBody]
-    public Guid Id { get; init; }
+    public Guid Isn { get; init; }
 }
 
 public sealed class DeletePostCommandHandler : IRequestHandler<DeletePostCommand>
@@ -31,8 +31,8 @@ public sealed class DeletePostCommandHandler : IRequestHandler<DeletePostCommand
     public async Task Handle(DeletePostCommand request, CancellationToken cancellationToken)
     {
         var post = await _dataContext.Posts
-                       .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Пост {request.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Пост {request.Isn} не существует");
 
         _dataContext.Posts.Remove(post);
         await _dataContext.SaveChangesAsync(cancellationToken);

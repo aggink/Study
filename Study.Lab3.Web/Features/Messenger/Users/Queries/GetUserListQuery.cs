@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.Messenger.Users.DtoModels;
 namespace Study.Lab3.Web.Features.Messenger.Users.Queries;
 
 /// <summary>
-/// Получение пользователя по имени
+/// Получение списка пользователей
 /// </summary>
 public sealed class GetUserListQuery : IRequest<UserDto[]>
 {
@@ -32,13 +32,13 @@ public sealed class GetUserListQueryHandler : IRequestHandler<GetUserListQuery, 
         {
             usersDto[i] = new UserDto
             {
-                Id = users[i].Id,
+                Isn = users[i].Isn,
+                IsnProfilePicture = users[i].IsnProfilePicture,
                 Email = users[i].Email,
                 Username = users[i].Username,
                 Phone = users[i].Phone,
                 Website = users[i].Website,
-                AboutMe = users[i].AboutMe,
-                ProfilePictureId = users[i].ProfilePictureId
+                AboutMe = users[i].AboutMe
             };
         }
         return usersDto;

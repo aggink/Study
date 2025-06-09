@@ -16,7 +16,7 @@ public sealed class DeleteImageCommand : IRequest
     /// Идентификатор
     /// </summary>
     [Required, FromBody]
-    public Guid Id { get; init; }
+    public Guid Isn { get; init; }
 }
 
 public sealed class DeleteImageCommandHandler : IRequestHandler<DeleteImageCommand>
@@ -31,8 +31,8 @@ public sealed class DeleteImageCommandHandler : IRequestHandler<DeleteImageComma
     public async Task Handle(DeleteImageCommand request, CancellationToken cancellationToken)
     {
         var image = await _dataContext.Images
-                       .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Изображение {request.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Изображение {request.Isn} не существует");
 
         _dataContext.Images.Remove(image);
         await _dataContext.SaveChangesAsync(cancellationToken);

@@ -11,40 +11,40 @@ namespace Study.Lab3.Web.Features.Messenger.Users.Queries;
 /// <summary>
 /// Получение пользователя по идентификатору
 /// </summary>
-public sealed class GetUserByIdQuery : IRequest<UserDto>
+public sealed class GetUserByIsnQuery : IRequest<UserDto>
 {
     /// <summary>
     /// Идентификатор
     /// </summary>
     [Required, FromRoute]
-    public Guid Id { get; init; }
+    public Guid Isn { get; init; }
 }
 
-public sealed class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>
+public sealed class GetUserByIsnQueryHandler : IRequestHandler<GetUserByIsnQuery, UserDto>
 {
     private readonly DataContext _dataContext;
 
-    public GetUserByIdQueryHandler(DataContext dataContext)
+    public GetUserByIsnQueryHandler(DataContext dataContext)
     {
         _dataContext = dataContext;
     }
 
-    public async Task<UserDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+    public async Task<UserDto> Handle(GetUserByIsnQuery request, CancellationToken cancellationToken)
     {
         var user = await _dataContext.Users
                        .AsNoTracking()
-                       .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Пользователь {request.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Пользователь {request.Isn} не существует");
 
         return new UserDto
         {
-            Id = user.Id,
+            Isn = user.Isn,
+            IsnProfilePicture = user.IsnProfilePicture,
             Email = user.Email,
             Username = user.Username,
             Phone = user.Phone,
             Website = user.Website,
-            AboutMe = user.AboutMe,
-            ProfilePictureId = user.ProfilePictureId
+            AboutMe = user.AboutMe
         };
     }
 }

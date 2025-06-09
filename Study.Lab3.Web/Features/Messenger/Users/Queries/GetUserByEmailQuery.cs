@@ -38,13 +38,13 @@ public sealed class GetUserByEmailQueryHandler : IRequestHandler<GetUserByEmailQ
 
         return new UserDto
         {
-            Id = user.Id,
+            Isn = user.Isn,
+            IsnProfilePicture = user.IsnProfilePicture,
             Email = user.Email,
             Username = user.Username,
             Phone = user.Phone,
             Website = user.Website,
-            AboutMe = user.AboutMe,
-            ProfilePictureId = user.ProfilePictureId
+            AboutMe = user.AboutMe
         };
     }
 }
