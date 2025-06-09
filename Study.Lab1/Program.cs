@@ -36,6 +36,7 @@ using Study.Lab1.Logic.yamisakimei;
 using Study.Lab1.Logic.Bonnemort;
 using Study.Lab1.Logic.chaspix;
 using Study.Lab1.Logic.SuperSalad007;
+using Study.Lab1.Logic.Maxtir23_;
 
 public static class Program
 {
@@ -47,12 +48,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-03";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 18;
 
     public static void Main()
     {
@@ -156,6 +157,8 @@ public static class Program
                 return new SuperSalad007Service();
             case ("idb-23-02",11):
                 return new chaspixService();
+            case ("idb-23-03", 18):
+                return new Maxtir23Service();
             default:
                 throw new NotSupportedException();
         }
