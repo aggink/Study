@@ -41,6 +41,11 @@ public class Profcom
 	public DateTime ProfcomDate { get; set; }
 
 	/// <summary>
+	/// Место проведения
+	/// </summary>
+	public string Audience { get; set; }
+
+	/// <summary>
 	/// Студент
 	/// </summary>
 	public virtual Student Student { get; set; }
@@ -49,9 +54,4 @@ public class Profcom
 	/// Предмет
 	/// </summary>
 	public virtual Subject Subject { get; set; }
-
-	/// <summary>
-	/// Место проведения
-	/// </summary>
-	public virtual string Audience { get; set; }
 }

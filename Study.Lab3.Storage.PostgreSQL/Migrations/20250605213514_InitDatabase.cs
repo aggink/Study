@@ -1068,6 +1068,28 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 						principalColumn: "IsnExamRegistration",
 						onDelete: ReferentialAction.Restrict);
 				});
+			migrationBuilder.CreateTable(
+				name: "Audience",
+				columns: table => new
+				{
+					IsnStudent = table.Column<Guid>(type: "uuid", nullable: false),
+					IsnSubject = table.Column<Guid>(type: "uuid", nullable: false),
+				},
+				constraints: table =>
+				{
+					table.ForeignKey(
+						name: "FK_TheProfcom_Students_IsnStudent",
+						column: x => x.IsnStudent,
+						principalTable: "Students",
+						principalColumn: "IsnStudent",
+						onDelete: ReferentialAction.Restrict);
+					table.ForeignKey(
+						name: "FK_TheProfcom_Subjects_IsnSubject",
+						column: x => x.IsnSubject,
+						principalTable: "Subjects",
+						principalColumn: "IsnSubject",
+						onDelete: ReferentialAction.Restrict);
+				});
 
 			migrationBuilder.CreateIndex(
 				name: "IX_Adoptions_IsnCat",
@@ -1310,6 +1332,15 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 				name: "IX_Tickets_IsnSession",
 				table: "Tickets",
 				column: "IsnSession");
+
+			migrationBuilder.CreateIndex(
+				name: "IX_Assignments_IsnSubject",
+				table: "Audience",
+				column: "IsnSubject");
+			migrationBuilder.CreateIndex(
+				name: "IX_Assignments_IsnStudent",
+				table: "Audience",
+				column: "IsnStudent");
 		}
 
 		/// <inheritdoc />
