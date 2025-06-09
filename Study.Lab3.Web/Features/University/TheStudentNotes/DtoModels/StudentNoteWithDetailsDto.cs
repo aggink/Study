@@ -4,6 +4,5 @@ public sealed class StudentNoteWithDetailsDto
 {
     public Guid IsnNote { get; init; }
     public Guid IsnStudent { get; init; }
-    public string StudentFullName { get; init; }
     public string Text { get; init; }
 }

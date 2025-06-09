@@ -37,6 +37,11 @@ public sealed class CreateStudentNoteCommandHandler : IRequestHandler<CreateStud
 
     public async Task<Guid> Handle(CreateStudentNoteCommand request, CancellationToken cancellationToken)
     {
+        var student = new Student
+        {
+
+        };
+
         var note = new StudentNote
         {
             IsnNote = Guid.NewGuid(),
