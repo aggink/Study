@@ -10,7 +10,6 @@ using Study.Lab3.Web.Features.Library.Books.Commands;
 using Study.Lab3.Web.Features.Library.Books.DtoModels;
 using Study.Lab3.Web.Features.Library.Books.Queries;
 using Study.Lab3.Web.Features.Shelter.Adoptions.Commands;
-using Study.Lab3.Web.Features.Shelter.Adoptions.DtoModels;
 using Study.Lab3.Web.Features.Shelter.Cats.Commands;
 using Study.Lab3.Web.Features.Shelter.Cats.DtoModels;
 using Study.Lab3.Web.Features.Shelter.Cats.Queries;
@@ -52,18 +51,15 @@ using Study.Lab3.Web.Features.University.Teachers.Queries;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Commands;
 using Study.Lab3.Web.Features.University.TeacherSubjects.DtoModels;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
+using Study.Lab3.Web.Features.University.TheAttendanceLog.Commands;
+using Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
+using Study.Lab3.Web.Features.University.TheAttendanceLog.Queries;
 using Study.Lab3.Web.Features.University.TheProfcom.Commands;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.Queries;
 using Study.Lab3.Web.Features.University.TheSportclub.Commands;
 using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
 using Study.Lab3.Web.Features.University.TheSportclub.Queries;
-using Study.Lab3.Web.Features.University.TheKvn.Commands;
-using Study.Lab3.Web.Features.University.TheKvn.DtoModels;
-using Study.Lab3.Web.Features.University.TheKvn.Queries;
-using Study.Lab3.Web.Features.University.TheCareer.Commands;
-using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
-using Study.Lab3.Web.Features.University.TheCareer.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1119,7 +1115,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
-    
+
     #endregion
 
     #region ProfcomActivity
@@ -1408,7 +1404,7 @@ public class ManageController : Controller
     }
 
     #endregion
-    
+
     #region ShelterCustomer
 
     /// <summary>
@@ -1462,11 +1458,11 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     #endregion
-    
+
     #region Adoption
-    
+
     /// <summary>
     /// Создание усыновления
     /// </summary>
@@ -1476,7 +1472,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     /// <summary>
     /// Редактирование усыновления
     /// </summary>
@@ -1486,7 +1482,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     /// <summary>
     /// Удаление усыновления
     /// </summary>
@@ -1496,9 +1492,9 @@ public class ManageController : Controller
         await _mediator.Send(command, cancellationToken);
         return Ok();
     }
-    
+
     #endregion
-    
+
     #region Cat
     // Получение списка котов
     [HttpGet(nameof(GetListCats), Name = nameof(GetListCats))]
@@ -1507,7 +1503,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
-    
+
     // Создание кота
     [HttpPost(nameof(CreateCat), Name = nameof(CreateCat))]
     public async Task<ActionResult<Guid>> CreateCat(CreateCatCommand command, CancellationToken cancellationToken)
@@ -1515,7 +1511,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     // Обновление кота
     [HttpPost(nameof(UpdateCat), Name = nameof(UpdateCat))]
     public async Task<ActionResult<Guid>> UpdateCat(UpdateCatCommand command, CancellationToken cancellationToken)
@@ -1523,7 +1519,7 @@ public class ManageController : Controller
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
-    
+
     // Удаление кота
     [HttpPost(nameof(DeleteCat), Name = nameof(DeleteCat))]
     public async Task<ActionResult> DeleteCat(DeleteCatCommand command, CancellationToken cancellationToken)
@@ -1531,7 +1527,7 @@ public class ManageController : Controller
         await _mediator.Send(command, cancellationToken);
         return Ok();
     }
-    
+
     /// <summary>
     /// Получение кота по идентификатору
     /// </summary>
@@ -1543,5 +1539,64 @@ public class ManageController : Controller
             return NotFound();
         return Ok(result);
     }
+    #endregion
+
+    #region AttendanceLog
+
+    /// <summary>
+    /// Создание посещения
+    /// </summary>
+    [HttpPost(nameof(CreateAttendanceLog), Name = nameof(CreateAttendanceLog))]
+    public async Task<ActionResult<Guid>> CreateAttendanceLog([FromBody] CreateAttendanceLogCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование посещения
+    /// </summary>
+    [HttpPost(nameof(UpdateAttendanceLog), Name = nameof(UpdateAttendanceLog))]
+    public async Task<ActionResult<Guid>> UpdateAttendanceLog([FromBody] UpdateAttendanceLogCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление посещения
+    /// </summary>
+    [HttpPost(nameof(DeleteAttendanceLog), Name = nameof(DeleteAttendanceLog))]
+    public async Task<ActionResult> DeleteAttendanceLog([FromQuery] DeleteAttendanceLogCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение посещения по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetAttendanceLogByIsn), Name = nameof(GetAttendanceLogByIsn))]
+    public async Task<ActionResult<AttendanceLogDto>> GetAttendanceLogByIsn([FromQuery] GetAttendanceLogByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка посещений
+    /// </summary>
+    [HttpGet(nameof(GetListAttendanceLog), Name = nameof(GetListAttendanceLog))]
+    public async Task<ActionResult<AttendanceLogDto[]>> GetListAttendanceLog([FromQuery] GetListAttendanceLogQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
     #endregion
 }

@@ -5,10 +5,10 @@ using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
+using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.University;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
-using Study.Lab3.Storage.Models.Sweets;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -140,6 +140,11 @@ public class DataContext : DbContext
     /// Карьера
     /// </summary>
     public virtual DbSet<Career> Career { get; set; }
+
+    /// <summary>
+    /// Посещение
+    /// </summary>
+    public virtual DbSet<AttendanceLog> TheAttendanceLog { get; set; }
 
     #endregion
 
