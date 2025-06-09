@@ -68,5 +68,6 @@ namespace Study.Lab3.Logic.Services.University
                 throw new BusinessLogicException("Нельзя удалить научную работу, на которую есть ссылки в других работах");
             }
         }
+        
     }
 }

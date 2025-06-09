@@ -12,7 +12,8 @@ namespace Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
         public int PageCount { get; init; }
         public DateTime PublicationDate { get; init; }
         public WorkReferenceDto[] References { get; init; }
-    }
+        public bool IsPublished { get; init; }
+}
 
     public record StudentDto1
     {

@@ -41,4 +41,5 @@ namespace Study.Lab3.Storage.Models.University
         public Student Student { get; set; }
         public Subject Subject { get; set; }
     }
+    
 }
