@@ -1068,4 +1068,11 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPerformancesValue = 20;
     }
+    public static class ScientificWork
+    {
+        public const int MinPageCount = 5;
+        public const int MaxPageCount = 500;
+        public const int TitleMaxLength = 200;
+        public const int DescriptionMaxLength = 1000;
+    }
 }
