@@ -536,6 +536,34 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 				});
 
 			migrationBuilder.CreateTable(
+				name: "MiniPigAdoptions",
+				columns: table => new
+				{
+					IsnAdoption = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+					IsnMiniPig = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+					IsnCustomer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+					Price = table.Column<int>(type: "int", nullable: false),
+					AdoptionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+				},
+				constraints: table =>
+				{
+					table.PrimaryKey("PK_Adoptions", x => x.IsnAdoption);
+					table.ForeignKey(
+						name: "FK_Adoptions_MiniPigs_IsnMiniPig",
+						column: x => x.IsnMiniPig,
+						principalTable: "MiniPigs",
+						principalColumn: "IsnMiniPig",
+						onDelete: ReferentialAction.Restrict);
+					table.ForeignKey(
+						name: "FK_Adoptions_ShelterCustomers_IsnCustomer",
+						column: x => x.IsnCustomer,
+						principalTable: "ShelterCustomers",
+						principalColumn: "IsnCustomer",
+						onDelete: ReferentialAction.Restrict);
+				});
+
+			migrationBuilder.CreateTable(
 				name: "Assignments",
 				columns: table => new
 				{
@@ -1017,10 +1045,39 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 						onDelete: ReferentialAction.Restrict);
 				});
 
+			migrationBuilder.CreateTable(
+				name: "MiniPigs",
+				columns: table => new
+				{
+					IsnMiniPig = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+					Nickname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+					BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+					Breed = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+					IsVaccinated = table.Column<bool>(type: "bit", nullable: false),
+					IsSterilized = table.Column<bool>(type: "bit", nullable: false),
+					Color = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+					MedicalHistory = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+					PhotoUrl = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+					ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					IsAvailableForAdoption = table.Column<bool>(type: "bit", nullable: false),
+					Age = table.Column<int>(type: "int", nullable: false),
+					Weight = table.Column<int>(type: "int", nullable: false)
+				},
+				constraints: table =>
+				{
+					table.PrimaryKey("PK_MiniPigs", x => x.IsnMiniPig);
+				});
+
 			migrationBuilder.CreateIndex(
 				name: "IX_Adoptions_IsnCat",
 				table: "Adoptions",
 				column: "IsnCat");
+
+			migrationBuilder.CreateIndex(
+				name: "IX_Adoptions_IsnMiniPig",
+				table: "Adoptions",
+				column: "IsnMiniPig");
 
 			migrationBuilder.CreateIndex(
 				name: "IX_Adoptions_IsnCustomer",
@@ -1318,6 +1375,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
 			migrationBuilder.DropTable(
 				name: "Cats");
+
+			migrationBuilder.DropTable(
+				name: "MiniPigs");
 
 			migrationBuilder.DropTable(
 				name: "ShelterCustomers");

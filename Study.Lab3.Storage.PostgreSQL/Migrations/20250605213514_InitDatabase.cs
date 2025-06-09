@@ -78,6 +78,30 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 				});
 
 			migrationBuilder.CreateTable(
+				name: "MiniPigs",
+				columns: table => new
+				{
+					IsnMiniPig = table.Column<Guid>(type: "uuid", nullable: false),
+					Nickname = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+					BirthDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+					Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+					Breed = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+					IsVaccinated = table.Column<bool>(type: "boolean", nullable: false),
+					IsSterilized = table.Column<bool>(type: "boolean", nullable: false),
+					Color = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+					MedicalHistory = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
+					PhotoUrl = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+					ArrivalDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+					IsAvailableForAdoption = table.Column<bool>(type: "boolean", nullable: false),
+					Age = table.Column<int>(type: "integer", nullable: false),
+					Weight = table.Column<int>(type: "integer", nullable: false)
+				},
+				constraints: table =>
+				{
+					table.PrimaryKey("PK_MiniPigs", x => x.IsnMiniPig);
+				});
+
+			migrationBuilder.CreateTable(
 				name: "Customers",
 				columns: table => new
 				{
@@ -526,6 +550,34 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 						column: x => x.IsnCat,
 						principalTable: "Cats",
 						principalColumn: "IsnCat",
+						onDelete: ReferentialAction.Restrict);
+					table.ForeignKey(
+						name: "FK_Adoptions_ShelterCustomers_IsnCustomer",
+						column: x => x.IsnCustomer,
+						principalTable: "ShelterCustomers",
+						principalColumn: "IsnCustomer",
+						onDelete: ReferentialAction.Restrict);
+				});
+
+			migrationBuilder.CreateTable(
+				name: "MiniPigAdoptions",
+				columns: table => new
+				{
+					IsnAdoption = table.Column<Guid>(type: "uuid", nullable: false),
+					IsnMiniPig = table.Column<Guid>(type: "uuid", nullable: false),
+					IsnCustomer = table.Column<Guid>(type: "uuid", nullable: false),
+					Price = table.Column<int>(type: "integer", nullable: false),
+					AdoptionDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+					Status = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+				},
+				constraints: table =>
+				{
+					table.PrimaryKey("PK_Adoptions", x => x.IsnAdoption);
+					table.ForeignKey(
+						name: "FK_Adoptions_MiniPigs_IsnMiniPig",
+						column: x => x.IsnMiniPig,
+						principalTable: "MiniPigs",
+						principalColumn: "IsnMiniPig",
 						onDelete: ReferentialAction.Restrict);
 					table.ForeignKey(
 						name: "FK_Adoptions_ShelterCustomers_IsnCustomer",
@@ -1023,6 +1075,11 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 				column: "IsnCat");
 
 			migrationBuilder.CreateIndex(
+				name: "IX_Adoptions_IsnMiniPig",
+				table: "MiniPigAdoptions",
+				column: "IsnMiniPig");
+
+			migrationBuilder.CreateIndex(
 				name: "IX_Adoptions_IsnCustomer",
 				table: "Adoptions",
 				column: "IsnCustomer");
@@ -1317,6 +1374,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
 			migrationBuilder.DropTable(
 				name: "Cats");
+
+			migrationBuilder.DropTable(
+				name: "MiniPigs");
 
 			migrationBuilder.DropTable(
 				name: "ShelterCustomers");

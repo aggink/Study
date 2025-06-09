@@ -679,7 +679,10 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<Guid>("IsnCat")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("IsnCustomer")
+					b.Property<Guid>("IsnMiniPig")
+					   .HasColumnType("uuid");
+
+					b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Price")
@@ -694,7 +697,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnCat");
 
-                    b.HasIndex("IsnCustomer");
+					b.HasIndex("IsnMiniPig");
+
+					b.HasIndex("IsnCustomer");
 
                     b.ToTable("Adoptions");
                 });
@@ -759,7 +764,67 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Cats");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
+			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+			{
+				b.Property<Guid>("IsnMiniPig")
+					.HasColumnType("uuid");
+
+				b.Property<int>("Age")
+					.HasColumnType("integer");
+
+				b.Property<DateTime>("ArrivalDate")
+					.HasColumnType("timestamp with time zone");
+
+				b.Property<DateTime>("BirthDate")
+					.HasColumnType("timestamp with time zone");
+
+				b.Property<string>("Breed")
+					.IsRequired()
+					.HasMaxLength(100)
+					.HasColumnType("character varying(100)");
+
+				b.Property<string>("Color")
+					.IsRequired()
+					.HasMaxLength(20)
+					.HasColumnType("character varying(20)");
+
+				b.Property<string>("Description")
+					.HasMaxLength(500)
+					.HasColumnType("character varying(500)");
+
+				b.Property<bool>("IsAvailableForAdoption")
+					.HasColumnType("boolean");
+
+				b.Property<bool>("IsSterilized")
+					.HasColumnType("boolean");
+
+				b.Property<bool>("IsVaccinated")
+					.HasColumnType("boolean");
+
+				b.Property<string>("MedicalHistory")
+					.IsRequired()
+					.HasMaxLength(1000)
+					.HasColumnType("character varying(1000)");
+
+				b.Property<string>("Nickname")
+					.IsRequired()
+					.HasMaxLength(100)
+					.HasColumnType("character varying(100)");
+
+				b.Property<string>("PhotoUrl")
+					.IsRequired()
+					.HasMaxLength(100)
+					.HasColumnType("character varying(100)");
+
+				b.Property<int>("Weight")
+					.HasColumnType("integer");
+
+				b.HasKey("IsnMiniPig");
+
+				b.ToTable("MiniPigss");
+			});
+
+			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
                 {
                     b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uuid");

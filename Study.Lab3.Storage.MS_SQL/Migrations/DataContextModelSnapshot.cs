@@ -680,7 +680,10 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Property<Guid>("IsnCat")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("IsnCustomer")
+					b.Property<Guid>("IsnMiniPig")
+					   .HasColumnType("uniqueidentifier");
+
+					b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Price")
@@ -695,7 +698,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasIndex("IsnCat");
 
-                    b.HasIndex("IsnCustomer");
+					b.HasIndex("IsnMiniPig");
+
+					b.HasIndex("IsnCustomer");
 
                     b.ToTable("Adoptions");
                 });
@@ -760,7 +765,67 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Cats");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
+			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+			{
+				b.Property<Guid>("IsnMiniPig")
+					.HasColumnType("uniqueidentifier");
+
+				b.Property<int>("Age")
+					.HasColumnType("int");
+
+				b.Property<DateTime>("ArrivalDate")
+					.HasColumnType("datetime2");
+
+				b.Property<DateTime>("BirthDate")
+					.HasColumnType("datetime2");
+
+				b.Property<string>("Breed")
+					.IsRequired()
+					.HasMaxLength(100)
+					.HasColumnType("nvarchar(100)");
+
+				b.Property<string>("Color")
+					.IsRequired()
+					.HasMaxLength(20)
+					.HasColumnType("nvarchar(20)");
+
+				b.Property<string>("Description")
+					.HasMaxLength(500)
+					.HasColumnType("nvarchar(500)");
+
+				b.Property<bool>("IsAvailableForAdoption")
+					.HasColumnType("bit");
+
+				b.Property<bool>("IsSterilized")
+					.HasColumnType("bit");
+
+				b.Property<bool>("IsVaccinated")
+					.HasColumnType("bit");
+
+				b.Property<string>("MedicalHistory")
+					.IsRequired()
+					.HasMaxLength(1000)
+					.HasColumnType("nvarchar(1000)");
+
+				b.Property<string>("Nickname")
+					.IsRequired()
+					.HasMaxLength(100)
+					.HasColumnType("nvarchar(100)");
+
+				b.Property<string>("PhotoUrl")
+					.IsRequired()
+					.HasMaxLength(100)
+					.HasColumnType("nvarchar(100)");
+
+				b.Property<int>("Weight")
+					.HasColumnType("int");
+
+				b.HasKey("IsnMiniPig");
+
+				b.ToTable("MiniPigs");
+			});
+
+			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
                 {
                     b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uniqueidentifier");
