@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Study.Lab3.Logic.Extensions.Sweets
+namespace Study.Lab3.Logic.Extensions.SweetFactory
 {
     /// <summary>
     /// Нахождение нужных конфет по составу

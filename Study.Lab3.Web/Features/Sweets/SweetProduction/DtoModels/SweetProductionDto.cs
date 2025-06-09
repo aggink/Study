@@ -1,4 +1,4 @@
-namespace Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
+namespace Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
 
 
 public sealed record SweetProductionDto

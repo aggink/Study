@@ -1,6 +1,6 @@
 ﻿using Study.Lab1.Logic.SlavicSquat.Task1;
 
-namespace Study.Lab1.Logic.UnitTests.SlavicSquat.Task1;
+namespace Study.Lab1.Logic.UnitTests.lsokol14l.SlavicSquat;
 
 [TestFixture]
 public class RationalNumberTests

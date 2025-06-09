@@ -1,10 +1,9 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetProductions.Queries;
+namespace Study.Lab3.Web.Features.Sweets.SweetProduction.Queries;
 
 /// <summary>
 /// Получение списка фабрик
@@ -31,7 +30,7 @@ public sealed class GetListSweetProductionQueryHandler : IRequestHandler<GetList
             .Select(c => new SweetProductionDto
             {
                 IsnFactory = c.IsnSweetFactory,
-                IsnSweet= c.IsnSweet,
+                IsnSweet = c.IsnSweet,
             })
             .ToArrayAsync(cancellationToken);
     }
