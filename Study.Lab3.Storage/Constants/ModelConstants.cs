@@ -41,6 +41,14 @@ public static class ModelConstants
         public const int Name = 20;
     }
 
+    public static class Labs
+    {
+        /// <summary>
+        /// Максимальная длина поля "Наименование"
+        /// </summary>
+        public const int Name = 20;
+    }
+
     public static class Subject
     {
         /// <summary>
