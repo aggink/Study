@@ -41,6 +41,14 @@ public static class ModelConstants
         public const int Name = 20;
     }
 
+    public static class Labs
+    {
+        /// <summary>
+        /// Максимальная длина поля "Наименование"
+        /// </summary>
+        public const int Name = 20;
+    }
+
     public static class Subject
     {
         /// <summary>
@@ -1051,5 +1059,16 @@ public static class ModelConstants
     public static class StudentNote
     {
         public const int MaxTextLength = 500;
+    public static class ProjectActivities
+    {
+        /// <summary>
+        /// Минимально допустимое количество выступлений.
+        /// </summary>
+        public const int MinPerformancesValue = 10;
+
+        /// <summary>
+        /// Максимально допустимое количество выступлений.
+        /// </summary>
+        public const int MaxPerformancesValue = 20;
     }
 }

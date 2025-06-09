@@ -6,8 +6,8 @@ using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
 using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.University;
-using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Interfaces.Services.Workshop;
+using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.Fitness;
 using Study.Lab3.Logic.Services.HospitalStore;
@@ -68,9 +68,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMasterService, MasterService>();
         services.AddSingleton<IServiceService, ServiceService>();
         services.AddSingleton<IServiceOrderService, ServiceOrderService>();
+        services.AddSingleton<ILabService, LabService>();
         services.AddSingleton<IFitnessMemberService, FitnessMemberService>();
         services.AddSingleton<IFitnessTrainerService, FitnessTrainerService>();
         services.AddSingleton<IFitnessEquipmentService, FitnessEquipmentService>();
         services.AddSingleton<IStudentNoteService, StudentNoteService>();
+        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
     }
 }
