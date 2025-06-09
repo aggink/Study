@@ -80,4 +80,10 @@ public class Subject
     /// </summary>
     [InverseProperty(nameof(ProjectActivities.Subject))]
     public virtual ICollection<ProjectActivities> ProjectActivitiess { get; set; }
+
+    /// <summary>
+    /// Связь с киберспортом
+    /// </summary>
+    [InverseProperty(nameof(CyberSport.Subject))]
+    public virtual ICollection<CyberSport> CyberSports { get; set; }
 }

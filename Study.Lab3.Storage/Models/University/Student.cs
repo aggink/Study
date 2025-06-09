@@ -63,7 +63,7 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(Grade.Student))]
     public virtual ICollection<Grade> Grades { get; set; }
-    
+
     /// <summary>
     /// Список регистраций студента на экзамены
     /// </summary>
@@ -93,4 +93,10 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(ProjectActivities.Student))]
     public virtual ICollection<ProjectActivities> ProjectActivitiess { get; set; }
+
+    /// <summary>
+    /// Связь с киберспортом
+    /// </summary>
+    [InverseProperty(nameof(CyberSport.Student))]
+    public virtual ICollection<CyberSport> CyberSports { get; set; }
 }
