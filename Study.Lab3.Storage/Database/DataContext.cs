@@ -143,6 +143,9 @@ public class DataContext : DbContext
     public virtual DbSet<Career> Career { get; set; }
 
     /// <summary>
+    /// Заметки
+    /// </summary>
+    public virtual DbSet<StudentNote> StudentNotes { get; set; }
     /// Учителя
     /// </summary>
     public virtual DbSet<ProjectActivities> TheProjectActivities { get; set; }

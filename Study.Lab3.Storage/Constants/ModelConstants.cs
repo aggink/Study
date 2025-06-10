@@ -1069,6 +1069,10 @@ public static class ModelConstants
         public const double MaxPrice = 1000000;
     }
 
+    public static class StudentNote
+    {
+        public const int MaxTextLength = 500;
+    }
     public static class ProjectActivities
     {
         /// <summary>

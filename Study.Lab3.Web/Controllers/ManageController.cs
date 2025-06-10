@@ -43,6 +43,7 @@ using Study.Lab3.Web.Features.University.Materials.Queries;
 using Study.Lab3.Web.Features.University.Sportclub.Commands;
 using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
 using Study.Lab3.Web.Features.University.Sportclub.Queries;
+using Study.Lab3.Web.Features.University.StudentNotes.Commands;
 using Study.Lab3.Web.Features.University.Students.Commands;
 using Study.Lab3.Web.Features.University.Students.DtoModels;
 using Study.Lab3.Web.Features.University.Students.Queries;
@@ -63,6 +64,9 @@ using Study.Lab3.Web.Features.University.TheProfcom.Queries;
 using Study.Lab3.Web.Features.University.TheProjectActivities.Commands;
 using Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
 using Study.Lab3.Web.Features.University.TheProjectActivities.Queries;
+using Study.Lab3.Web.Features.University.TheStudentNotes.Commands;
+using Study.Lab3.Web.Features.University.TheStudentNotes.DtoModels;
+using Study.Lab3.Web.Features.University.TheStudentNotes.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1671,5 +1675,65 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    #endregion
+
+    #region StudentNotes
+
+    [HttpGet(nameof(GetListStudentNotes), Name = nameof(GetListStudentNotes))]
+    public async Task<ActionResult<StudentNoteDto[]>> GetListStudentNotes(
+            [FromQuery] GetListStudentNotesQuery query,
+            CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Создать новую заметку
+    /// </summary>
+    [HttpPost(nameof(CreateStudentNote), Name = nameof(CreateStudentNote))]
+    public async Task<ActionResult<Guid>> CreateStudentNote(
+        CreateStudentNoteCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Обновить существующую заметку
+    /// </summary>
+    [HttpPost(nameof(UpdateStudentNote), Name = nameof(UpdateStudentNote))]
+    public async Task<ActionResult<Guid>> UpdateStudentNote(
+        UpdateStudentNoteCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удалить заметку
+    /// </summary>
+    [HttpPost(nameof(DeleteStudentNote), Name = nameof(DeleteStudentNote))]
+    public async Task<ActionResult> DeleteStudentNote(
+        DeleteStudentNoteCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получить заметку по ID студента (1:1 отношение)
+    /// </summary>
+    [HttpGet(nameof(GetStudentNoteByStudentId), Name = nameof(GetStudentNoteByStudentId))]
+    public async Task<ActionResult<StudentNoteDto>> GetStudentNoteByStudentId(
+        [FromQuery] GetStudentNoteByStudentIdQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return result != null ? Ok(result) : NotFound();
+    }
     #endregion
 }
