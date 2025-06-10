@@ -1059,6 +1059,7 @@ public static class ModelConstants
     public static class StudentNote
     {
         public const int MaxTextLength = 500;
+    }
     public static class ProjectActivities
     {
         /// <summary>

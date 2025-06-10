@@ -12,10 +12,15 @@ public class StudentNote
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid IsnNote { get; set; }
 
-    [ForeignKey("Student")]
+    [ForeignKey(nameof(Student))]
     public Guid IsnStudent { get; set; }
 
     [Required]
     [MaxLength(500)]
     public string Text { get; set; }
+
+    /// <summary>
+    /// Студент
+    /// </summary>
+    public virtual Student Student { get; set; }
 }
