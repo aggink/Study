@@ -1950,13 +1950,13 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.CyberSport", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("CyberSports")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("CyberSports")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2320,6 +2320,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 {
                     b.Navigation("Careers");
 
+                    b.Navigation("CyberSports");
+
                     b.Navigation("ExamRegistrations");
 
                     b.Navigation("Grades");
@@ -2336,6 +2338,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Assignments");
 
                     b.Navigation("Careers");
+
+                    b.Navigation("CyberSports");
 
                     b.Navigation("Exams");
 
