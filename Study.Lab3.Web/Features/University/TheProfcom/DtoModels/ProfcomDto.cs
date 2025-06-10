@@ -1,5 +1,5 @@
 ﻿namespace Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
-
+//хихи хаха
 public sealed record ProfcomDto
 {
 	/// <summary>

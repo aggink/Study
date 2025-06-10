@@ -4,7 +4,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.TheProfcom.Queries;
-
+//хихи хаха
 /// <summary>
 /// Получение списка количеств участников
 /// </summary>
