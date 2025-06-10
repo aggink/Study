@@ -22,7 +22,18 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StudentNotes", x => x.IsnNote);
+                    table.ForeignKey(
+                        name: "FK_StudentNotes_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentNotes_IsnStudent",
+                table: "StudentNotes",
+                column: "IsnStudent");
         }
 
         /// <inheritdoc />

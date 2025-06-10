@@ -12,7 +12,7 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250610234351_AddStudentNotes")]
+    [Migration("20250610235558_AddStudentNotes")]
     partial class AddStudentNotes
     {
         /// <inheritdoc />
