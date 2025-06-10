@@ -1111,6 +1111,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Assignments", (string)null);
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
+                {
+                    b.Property<Guid>("IsnAttendanceLog")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("IsPresent")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("SubjectDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnAttendanceLog");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("TheAttendanceLog");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
                 {
                     b.Property<Guid>("IsnCareer")
@@ -1953,6 +1979,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
 
                     b.Navigation("Subject");
                 });
