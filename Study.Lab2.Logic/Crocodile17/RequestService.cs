@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Study.Lab2.Logic.Maxtir23;
-using Study.Lab2.Logic.Interfaces.Maxtir23;
+﻿using Study.Lab2.Logic.Interfaces.Crocodile17;
 
-namespace Study.Lab2.Logic.Maxtir23;
+namespace Study.Lab2.Logic.Crocodile17;
 
 public class RequestService : IRequestService
 {
@@ -22,7 +16,7 @@ public class RequestService : IRequestService
         var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();
         if (!response.IsSuccessStatusCode)
         {
-            throw new Exception($"Mistake: {response.StatusCode} - {response.ReasonPhrase} !!!");
+            throw new Exception($"[ERROR]: {response.StatusCode} - {response.ReasonPhrase}");
         }
 
         using (var stream = response.Content.ReadAsStream())
@@ -37,7 +31,7 @@ public class RequestService : IRequestService
         var response = await _httpClient.GetAsync(url, cancellationToken);
         if (!response.IsSuccessStatusCode)
         {
-            throw new Exception($"Mistake: {response.StatusCode} - {response.ReasonPhrase} !!!");
+            throw new Exception($"[ERROR]: {response.StatusCode} - {response.ReasonPhrase}");
         }
 
         return await response.Content.ReadAsStringAsync(cancellationToken);
