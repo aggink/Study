@@ -148,6 +148,10 @@ public class DataContext : DbContext
     public virtual DbSet<ProjectActivities> TheProjectActivities { get; set; }
 
     /// <summary>
+    /// Киберспорт
+    /// </summary>
+    public virtual DbSet<CyberSport> CyberSport { get; set; }
+
     /// Лабы
     /// </summary>
     public virtual DbSet<Labs> Labs { get; set; }
@@ -155,6 +159,7 @@ public class DataContext : DbContext
     /// Оценки студентов по лабам Лабы
     /// </summary>
     public virtual DbSet<StudentLab> StudentLab { get; set; }
+
 
     #endregion
 
@@ -268,7 +273,7 @@ public class DataContext : DbContext
     public virtual DbSet<BeautyAppointment> BeautyAppointment { get; set; }
 
     #endregion
-    
+
     #region Shelter
 
     /// <summary>
@@ -311,7 +316,7 @@ public class DataContext : DbContext
     public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
-    
+
     #region Workshop
 
     /// <summary>
@@ -330,7 +335,7 @@ public class DataContext : DbContext
     public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
 
     #endregion
-    
+
     #region Fitness
 
     /// <summary>

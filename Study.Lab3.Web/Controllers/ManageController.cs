@@ -22,6 +22,9 @@ using Study.Lab3.Web.Features.University.Announcements.Queries;
 using Study.Lab3.Web.Features.University.Assignments.Commands;
 using Study.Lab3.Web.Features.University.Assignments.DtoModels;
 using Study.Lab3.Web.Features.University.Assignments.Queries;
+using Study.Lab3.Web.Features.University.CyberSport.Commands;
+using Study.Lab3.Web.Features.University.CyberSport.DtoModels;
+using Study.Lab3.Web.Features.University.CyberSport.Queries;
 using Study.Lab3.Web.Features.University.ExamRegistrations.Commands;
 using Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
 using Study.Lab3.Web.Features.University.ExamRegistrations.Queries;
@@ -1609,5 +1612,75 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    #endregion
+
+    #region CyberSport
+
+    /// <summary>
+    /// Создание киберспорта
+    /// </summary>
+    [HttpPost(nameof(CreateCyberSport), Name = nameof(CreateCyberSport))]
+
+    public async Task<ActionResult<Guid>> CreateCyberSport([FromBody] CreateCyberSportCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование киберспорта
+    /// </summary>
+    [HttpPost(nameof(UpdateCyberSport), Name = nameof(UpdateCyberSport))]
+    public async Task<ActionResult<Guid>> UpdateCyberSport([FromBody] UpdateCyberSportCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление киберспорта
+    /// </summary>
+    [HttpPost(nameof(DeleteCyberSport), Name = nameof(DeleteCyberSport))]
+    public async Task<ActionResult> DeleteCyberSport([FromQuery] DeleteCyberSportCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение игры по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetCyberSportByIsn), Name = nameof(GetCyberSportByIsn))]
+    public async Task<ActionResult<CyberSportDto>> GetCyberSportByIsn([FromQuery] GetCyberSportByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение игры с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetCyberSportWithDetails), Name = nameof(GetCyberSportWithDetails))]
+    public async Task<ActionResult<CyberSportWithDetailsDto>> GetCyberSportWithDetails([FromQuery] GetCyberSportWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка игр
+    /// </summary>
+    [HttpGet(nameof(GetListCyberSport), Name = nameof(GetListCyberSport))]
+    public async Task<ActionResult<CyberSportDto[]>> GetListCyberSport([FromQuery] GetListCyberSportQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
     #endregion
 }
