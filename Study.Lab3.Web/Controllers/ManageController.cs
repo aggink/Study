@@ -40,9 +40,9 @@ using Study.Lab3.Web.Features.University.Groups.Queries;
 using Study.Lab3.Web.Features.University.Materials.Commands;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
 using Study.Lab3.Web.Features.University.Materials.Queries;
-using Study.Lab3.Web.Features.University.Sportclub.Commands;
-using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
-using Study.Lab3.Web.Features.University.Sportclub.Queries;
+using Study.Lab3.Web.Features.University.Chessclub.Commands;
+using Study.Lab3.Web.Features.University.Chessclub.DtoModels;
+using Study.Lab3.Web.Features.University.Chessclub.Queries;
 using Study.Lab3.Web.Features.University.Students.Commands;
 using Study.Lab3.Web.Features.University.Students.DtoModels;
 using Study.Lab3.Web.Features.University.Students.Queries;
@@ -60,6 +60,10 @@ using Study.Lab3.Web.Features.University.TheProfcom.Queries;
 using Study.Lab3.Web.Features.University.TheProjectActivities.Commands;
 using Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
 using Study.Lab3.Web.Features.University.TheProjectActivities.Queries;
+using Study.Lab3.Web.Features.University.Sportclub.Commands;
+using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
+using Study.Lab3.Web.Features.University.Sportclub.Queries;
+using Study.Lab3.Web.Features.University.Chesscllub.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1603,6 +1607,76 @@ public class ManageController : Controller
     /// </summary>
     [HttpGet(nameof(GetListProjectActivities), Name = nameof(GetListProjectActivities))]
     public async Task<ActionResult<ProjectActivitiesDto[]>> GetListProjectActivities([FromQuery] GetListProjectActivitiesQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region Chessclub
+    /// <summary>
+    /// Создание шахматного клуба
+    /// </summary>
+    [HttpPost(nameof(CreateChessclub), Name = nameof(CreateChessclub))]
+
+    public async Task<ActionResult<Guid>> CreateChessclub([FromBody] CreateChessclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование шахматного клуба
+    /// </summary>
+    [HttpPost(nameof(UpdateChessclub), Name = nameof(UpdateChessclub))]
+    public async Task<ActionResult<Guid>> UpdateChessclub([FromBody] UpdateChessclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление шахматного клуба
+    /// </summary>
+    [HttpPost(nameof(DeleteChessclub), Name = nameof(DeleteChessclub))]
+    public async Task<ActionResult> DeleteChessclub([FromQuery] DeleteChessclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetChessclubByIsn), Name = nameof(GetChessclubByIsn))]
+    public async Task<ActionResult<ChessclubDto>> GetChessclubByIsn([FromQuery] GetChessclubByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetChessclubWithDetails), Name = nameof(GetChessclubWithDetails))]
+    public async Task<ActionResult<ChessclubWithDetailsDto>> GetChessclubWithDetails([FromQuery] GetChessclubWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка соревновательной деятельности
+    /// </summary>
+    [HttpGet(nameof(GetListChessclub), Name = nameof(GetListChessclub))]
+    public async Task<ActionResult<ChessclubDto[]>> GetListChessclub([FromQuery] GetListChesscllubQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);

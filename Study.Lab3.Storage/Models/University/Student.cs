@@ -73,8 +73,8 @@ public class Student
     /// <summary>
     /// Связь с таблицей студента - спортивный клуб
     /// </summary>
-    [InverseProperty(nameof(Sportclub.Student))]
-    public virtual ICollection<Sportclub> Sportclubs { get; set; }
+    [InverseProperty(nameof(Chessclub.Student))]
+    public virtual ICollection<Chessclub> Chessclubs { get; set; }
 
     /// <summary>
     /// Связь с квн

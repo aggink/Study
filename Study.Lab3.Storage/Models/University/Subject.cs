@@ -60,8 +60,8 @@ public class Subject
     /// <summary>
     /// Соревнования по виду спорта
     /// </summary>
-    [InverseProperty(nameof(Sportclub.Subject))]
-    public virtual ICollection<Sportclub> Sportclubs { get; set; }
+    [InverseProperty(nameof(Chessclub.Subject))]
+    public virtual ICollection<Chessclub> Chessclubs { get; set; }
 
     /// <summary>
     /// Связь с квн

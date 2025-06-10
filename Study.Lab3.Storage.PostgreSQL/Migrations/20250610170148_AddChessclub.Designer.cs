@@ -12,7 +12,7 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250610090837_AddChessclub")]
+    [Migration("20250610170148_AddChessclub")]
     partial class AddChessclub
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -1990,13 +1990,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Chessclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("Chessclubs")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Chessclubs")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2137,13 +2137,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("Sportclubs")
+                        .WithMany()
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany("Sportclubs")
+                        .WithMany()
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2384,6 +2384,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.Navigation("Careers");
 
+                    b.Navigation("Chessclubs");
+
                     b.Navigation("ExamRegistrations");
 
                     b.Navigation("Grades");
@@ -2391,8 +2393,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Kvns");
 
                     b.Navigation("ProjectActivitiess");
-
-                    b.Navigation("Sportclubs");
 
                     b.Navigation("StudentLabs");
                 });
@@ -2402,6 +2402,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Assignments");
 
                     b.Navigation("Careers");
+
+                    b.Navigation("Chessclubs");
 
                     b.Navigation("Exams");
 
@@ -2414,8 +2416,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Materials");
 
                     b.Navigation("ProjectActivitiess");
-
-                    b.Navigation("Sportclubs");
 
                     b.Navigation("TeacherSubjects");
                 });
