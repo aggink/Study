@@ -5,7 +5,6 @@ using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.Formula1;
 
-
 /// <summary>
 /// Гонщик
 /// </summary>

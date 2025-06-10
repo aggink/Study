@@ -31,9 +31,7 @@ namespace Study.Lab3.Storage.Models.Formula1
         /// Поставщик двигателей для команды
         /// </summary>
         [MaxLength(ModelConstants.Team.EngineSupplier)]
-        public string EngineSupplier { get; set; }
-
-        public virtual GrandPrix GrandPrix { get; set; }
+        public string EngineSupplier { get; set; }        
 
         [InverseProperty(nameof(Driver.Team))]
         public virtual ICollection<Driver> Drivers { get; set; }
