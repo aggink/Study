@@ -99,4 +99,8 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(CyberSport.Student))]
     public virtual ICollection<CyberSport> CyberSports { get; set; }
+
+    [InverseProperty(nameof(StudentLab.Student))]
+    public virtual ICollection<StudentLab> StudentLabs { get; set; }
+
 }

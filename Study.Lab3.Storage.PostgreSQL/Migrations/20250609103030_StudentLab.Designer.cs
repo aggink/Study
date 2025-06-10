@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250609103030_StudentLab")]
+    partial class StudentLab
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1137,32 +1140,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Career");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.CyberSport", b =>
-                {
-                    b.Property<Guid>("IsnCyberSport")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CyberSportDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("PointsCount")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnCyberSport");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.HasIndex("IsnSubject");
-
-                    b.ToTable("CyberSport");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
                 {
                     b.Property<Guid>("IsnExam")
@@ -1975,25 +1952,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
                         .WithMany("Careers")
-                        .HasForeignKey("IsnSubject")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Subject");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.CyberSport", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();

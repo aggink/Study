@@ -10,8 +10,8 @@ namespace Study.Lab3.Storage.PostgreSQL;
 /// </summary>
 public class PostgreSqlContextFactory : IDesignTimeDbContextFactory<DataContext>
 {
-    private const string DbConnectionString = "Host=localhost:5432;Database=postgres;Username=postgres;Password=5488;CommandTimeout=20;Timeout=40;Include Error Detail=True";
-
+    private const string DbConnectionString = "Host=localhost:5432;Database=Study;Username=postgres;Password=qwerty;CommandTimeout=20;Timeout=40;Include Error Detail=True";
+    
     public DataContext CreateDbContext(string[] args)
     {
         var optionBuilder = new DbContextOptionsBuilder<DataContext>();
