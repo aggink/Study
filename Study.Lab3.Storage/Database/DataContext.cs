@@ -156,6 +156,11 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<StudentLab> StudentLab { get; set; }
 
+    /// <summary>
+    /// Шахматный клуб
+    /// </summary>
+    public virtual DbSet<Chessclub> Chessclub { get; set; }
+
     #endregion
 
     #region Cinema

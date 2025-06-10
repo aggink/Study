@@ -1068,4 +1068,17 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPerformancesValue = 20;
     }
+
+    public static class Chessclub
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinPersonValue = 2;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxPersonValue = 100;
+    }
 }
