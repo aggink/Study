@@ -17,7 +17,7 @@ public sealed class GetImageEmbedListByImageIdQuery : IRequest<ImageEmbedDto[]>
     /// Идентификатор
     /// </summary>
     [Required, FromRoute]
-    public Guid ImageId { get; init; }
+    public Guid IsnImage { get; init; }
 }
 
 public sealed class GetImageEmbedListByImageIdQueryHandler : IRequestHandler<GetImageEmbedListByImageIdQuery, ImageEmbedDto[]>
@@ -32,17 +32,17 @@ public sealed class GetImageEmbedListByImageIdQueryHandler : IRequestHandler<Get
     public async Task<ImageEmbedDto[]> Handle(GetImageEmbedListByImageIdQuery request, CancellationToken cancellationToken)
     {
         var embeds = await _dataContext.ImageEmbeds
-                       .AsNoTracking().Where(x => x.ImageId == request.ImageId).ToListAsync(cancellationToken)
-                   ?? throw new BusinessLogicException($"Прикреплений с изображением {request.ImageId} не существует");
+                       .AsNoTracking().Where(x => x.IsnImage == request.IsnImage).ToListAsync(cancellationToken)
+                   ?? throw new BusinessLogicException($"Прикреплений с изображением {request.IsnImage} не существует");
 
         var embedsDto = new ImageEmbedDto[embeds.Count];
         for (int i = 0; i < embeds.Count; i++)
         {
             embedsDto[i] = new ImageEmbedDto
             {
-                Id = embeds[i].Id,
-                PostId = embeds[i].PostId,
-                ImageId = embeds[i].ImageId
+                Isn = embeds[i].Isn,
+                IsnPost = embeds[i].IsnPost,
+                IsnImage = embeds[i].IsnImage
             };
         }
         return embedsDto;
