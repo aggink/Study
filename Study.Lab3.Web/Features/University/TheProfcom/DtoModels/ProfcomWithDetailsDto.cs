@@ -36,9 +36,4 @@ public sealed record ProfcomWithDetailsDto
 	/// Дата проведения научной встречи
 	/// </summary>
 	public DateTime ProfcomDate { get; init; }
-
-	/// <summary>
-	/// Место проведения
-	/// </summary>
-	public string Audience { get; init; }
 }

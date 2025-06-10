@@ -43,7 +43,6 @@ public sealed class CreateProfcomCommandHandler : IRequestHandler<CreateProfcomC
 			IsnSubject = request.Profcom.IsnSubject,
 			ParticipantsCount = request.Profcom.ParticipantsCount,
 			ProfcomDate = request.Profcom.ProfcomDate,
-			Audience = request.Profcom.Audience
 		};
 
 		await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(

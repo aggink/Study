@@ -58,12 +58,6 @@ public sealed class ProfcomService : IProfcomService
 				throw new BusinessLogicException("Нельзя изменить количество участников, зарегистрированных более месяца назад");
 			}
 		}
-
-		if (profcom.Audience == null)
-		{
-			throw new BusinessLogicException("Не указана аудитория для мероприятия");
-
-		}
 	}
 
 	public async Task CanDeleteAndThrowAsync(

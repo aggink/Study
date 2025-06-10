@@ -1425,9 +1425,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<DateTime>("ProfcomDate")
                         .HasColumnType("timestamp with time zone");
 
-					b.Property<string>("Audience")
-						.HasColumnType("char");
-
 					b.HasKey("IsnProfcom");
 
                     b.HasIndex("IsnStudent");
@@ -2451,7 +2448,12 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.Navigation("ServiceOrders");
                 });
+
+			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+			{
+				b.Navigation("Adoptions");
+			});
 #pragma warning restore 612, 618
-        }
+		}
     }
 }

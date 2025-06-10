@@ -41,7 +41,6 @@ public sealed class GetProfcomWithDetailsQueryHandler : IRequestHandler<GetProfc
 				SubjectName = profcom.Subject.Name,
 				ParticipantsCount = profcom.ParticipantsCount,
 				ProfcomDate = profcom.ProfcomDate,
-				Audience = profcom.Audience,
 			})
 			.FirstOrDefaultAsync(cancellationToken);
 	}

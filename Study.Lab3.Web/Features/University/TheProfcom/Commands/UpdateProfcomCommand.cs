@@ -44,7 +44,6 @@ public sealed class UpdateProfcomCommandHandler : IRequestHandler<UpdateProfcomC
 
 		profcom.ParticipantsCount = request.Profcom.ParticipantsCount;
 		profcom.ProfcomDate = request.Profcom.ProfcomDate;
-		profcom.Audience = request.Profcom.Audience;
 
 		await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(
 			_dataContext, profcom, cancellationToken);

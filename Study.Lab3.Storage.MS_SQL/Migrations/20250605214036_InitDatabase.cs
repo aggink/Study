@@ -316,7 +316,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 					PatronymicName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
 					Sex = table.Column<int>(type: "int", nullable: false),
 					Age = table.Column<int>(type: "int", nullable: false),
-					Audience = table.Column<string>(type: "string", nullable: false)
 				},
 				constraints: table =>
 				{
@@ -843,7 +842,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 					IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
 					ParticipantsCount = table.Column<int>(type: "int", nullable: false),
 					ProfcomDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-					Audience = table.Column<string>(type: "string", nullable: false),
 				},
 				constraints: table =>
 				{
@@ -1069,26 +1067,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 				constraints: table =>
 				{
 					table.PrimaryKey("PK_MiniPigs", x => x.IsnMiniPig);
-				});
-			migrationBuilder.CreateTable(
-				name: "Audience",
-				columns: table => new
-				{
-					IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-					IsnGroup = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-					IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-					Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
-				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_Subjects", x => x.IsnSubject);
-					table.PrimaryKey("PK_Students", x => x.IsnStudent);
-					table.ForeignKey(
-						name: "FK_Students_Groups_IsnGroup",
-						column: x => x.IsnGroup,
-						principalTable: "Groups",
-						principalColumn: "IsnGroup",
-						onDelete: ReferentialAction.Restrict);
 				});
 
 			migrationBuilder.CreateIndex(
@@ -1333,14 +1311,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 				name: "IX_Tickets_IsnSession",
 				table: "Tickets",
 				column: "IsnSession");
-			migrationBuilder.CreateIndex(
-				name: "IX__IsnStudent",
-				table: "Audition",
-				column: "IsnStudent");
-			migrationBuilder.CreateIndex(
-				name: "IX__IsnSubject",
-				table: "Audition",
-				column: "IsnSubject");
 		}
 
 		/// <inheritdoc />
@@ -1486,8 +1456,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
 			migrationBuilder.DropTable(
 				name: "Restaurants");
-			migrationBuilder.DropTable(
-				name: "Audience");
 		}
 	}
 }

@@ -865,7 +865,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 					IsnSubject = table.Column<Guid>(type: "uuid", nullable: false),
 					ParticipantsCount = table.Column<int>(type: "integer", nullable: false),
 					ProfcomDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-					Audience = table.Column<string>(type: "char", nullable: false),
 				},
 				constraints: table =>
 				{
@@ -1066,28 +1065,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 						column: x => x.IsnExamRegistration,
 						principalTable: "ExamRegistrations",
 						principalColumn: "IsnExamRegistration",
-						onDelete: ReferentialAction.Restrict);
-				});
-			migrationBuilder.CreateTable(
-				name: "Audience",
-				columns: table => new
-				{
-					IsnStudent = table.Column<Guid>(type: "uuid", nullable: false),
-					IsnSubject = table.Column<Guid>(type: "uuid", nullable: false),
-				},
-				constraints: table =>
-				{
-					table.ForeignKey(
-						name: "FK_TheProfcom_Students_IsnStudent",
-						column: x => x.IsnStudent,
-						principalTable: "Students",
-						principalColumn: "IsnStudent",
-						onDelete: ReferentialAction.Restrict);
-					table.ForeignKey(
-						name: "FK_TheProfcom_Subjects_IsnSubject",
-						column: x => x.IsnSubject,
-						principalTable: "Subjects",
-						principalColumn: "IsnSubject",
 						onDelete: ReferentialAction.Restrict);
 				});
 
@@ -1332,15 +1309,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 				name: "IX_Tickets_IsnSession",
 				table: "Tickets",
 				column: "IsnSession");
-
-			migrationBuilder.CreateIndex(
-				name: "IX_Assignments_IsnSubject",
-				table: "Audience",
-				column: "IsnSubject");
-			migrationBuilder.CreateIndex(
-				name: "IX_Assignments_IsnStudent",
-				table: "Audience",
-				column: "IsnStudent");
 		}
 
 		/// <inheritdoc />

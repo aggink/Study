@@ -1425,8 +1425,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.Property<DateTime>("ProfcomDate")
                         .HasColumnType("datetime2");
-                    b.Property<string>("Audience")
-                        .HasColumnType("string");
 
                     b.HasKey("IsnProfcom");
 

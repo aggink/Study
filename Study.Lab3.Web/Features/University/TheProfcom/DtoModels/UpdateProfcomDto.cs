@@ -23,10 +23,4 @@ public sealed record UpdateProfcomDto
 	/// </summary>
 	[Required]
 	public DateTime ProfcomDate { get; init; }
-
-	/// <summary>
-	/// Место проведения
-	/// </summary>
-	[Required]
-	public string Audience { get; init; }
 }

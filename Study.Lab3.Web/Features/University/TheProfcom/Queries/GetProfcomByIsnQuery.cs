@@ -44,7 +44,6 @@ public sealed class GetProfcomByIsnQueryHandler : IRequestHandler<GetProfcomByIs
 			IsnSubject = profcom.IsnSubject,
 			ParticipantsCount = profcom.ParticipantsCount,
 			ProfcomDate = profcom.ProfcomDate,
-			Audience = profcom.Audience
 		};
 	}
 }

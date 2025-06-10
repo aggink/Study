@@ -32,7 +32,6 @@ public sealed class GetListProfcomQueryHandler : IRequestHandler<GetListProfcomQ
 				IsnSubject = x.IsnSubject,
 				ParticipantsCount = x.ParticipantsCount,
 				ProfcomDate = x.ProfcomDate,
-				Audience = x.Audience
 			})
 			.OrderByDescending(x => x.ProfcomDate)
 			.ToArrayAsync(cancellationToken);
