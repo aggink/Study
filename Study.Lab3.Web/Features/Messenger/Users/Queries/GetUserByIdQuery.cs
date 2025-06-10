@@ -17,7 +17,7 @@ public sealed class GetUserByIdQuery : IRequest<UserDto>
     /// Идентификатор
     /// </summary>
     [Required, FromRoute]
-    public Guid Id { get; init; }
+    public Guid Isn { get; init; }
 }
 
 public sealed class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>
@@ -33,18 +33,18 @@ public sealed class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, 
     {
         var user = await _dataContext.Users
                        .AsNoTracking()
-                       .FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken)
-                   ?? throw new BusinessLogicException($"Пользователь {request.Id} не существует");
+                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                   ?? throw new BusinessLogicException($"Пользователь {request.Isn} не существует");
 
         return new UserDto
         {
-            Id = user.Id,
+            Isn = user.Isn,
             Email = user.Email,
             Username = user.Username,
             Phone = user.Phone,
             Website = user.Website,
             AboutMe = user.AboutMe,
-            ProfilePictureId = user.ProfilePictureId
+            IsnProfilePicture = user.IsnProfilePicture
         };
     }
 }
