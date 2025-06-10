@@ -937,6 +937,19 @@ public static class ModelConstants
         public const int MaxNameLenght = 256;
     }
 
+    public static class AttendanceLog
+    {
+        /// <summary>
+        /// Минимально 0 как отсутствие студента
+        /// </summary>
+        public const int MinPresentValue = 0;
+
+        /// <summary>
+        /// Максимально 1 как присутствие студента
+        /// </summary>
+        public const int MaxPresentValue = 1;
+    }
+
     public static class FitnessMember
     {
         /// <summary>

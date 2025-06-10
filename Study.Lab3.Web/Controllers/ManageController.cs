@@ -54,6 +54,9 @@ using Study.Lab3.Web.Features.University.Teachers.Queries;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Commands;
 using Study.Lab3.Web.Features.University.TeacherSubjects.DtoModels;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
+using Study.Lab3.Web.Features.University.TheAttendanceLog.Commands;
+using Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
+using Study.Lab3.Web.Features.University.TheAttendanceLog.Queries;
 using Study.Lab3.Web.Features.University.TheProfcom.Commands;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.Queries;
@@ -1603,6 +1606,65 @@ public class ManageController : Controller
     /// </summary>
     [HttpGet(nameof(GetListProjectActivities), Name = nameof(GetListProjectActivities))]
     public async Task<ActionResult<ProjectActivitiesDto[]>> GetListProjectActivities([FromQuery] GetListProjectActivitiesQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
+    #region AttendanceLog
+
+    /// <summary>
+    /// Создание посещения
+    /// </summary>
+    [HttpPost(nameof(CreateAttendanceLog), Name = nameof(CreateAttendanceLog))]
+    public async Task<ActionResult<Guid>> CreateAttendanceLog([FromBody] CreateAttendanceLogCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование посещения
+    /// </summary>
+    [HttpPost(nameof(UpdateAttendanceLog), Name = nameof(UpdateAttendanceLog))]
+    public async Task<ActionResult<Guid>> UpdateAttendanceLog([FromBody] UpdateAttendanceLogCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление посещения
+    /// </summary>
+    [HttpPost(nameof(DeleteAttendanceLog), Name = nameof(DeleteAttendanceLog))]
+    public async Task<ActionResult> DeleteAttendanceLog([FromQuery] DeleteAttendanceLogCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение посещения по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetAttendanceLogByIsn), Name = nameof(GetAttendanceLogByIsn))]
+    public async Task<ActionResult<AttendanceLogDto>> GetAttendanceLogByIsn([FromQuery] GetAttendanceLogByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка посещений
+    /// </summary>
+    [HttpGet(nameof(GetListAttendanceLog), Name = nameof(GetListAttendanceLog))]
+    public async Task<ActionResult<AttendanceLogDto[]>> GetListAttendanceLog([FromQuery] GetListAttendanceLogQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
