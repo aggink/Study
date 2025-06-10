@@ -63,9 +63,6 @@ using Study.Lab3.Web.Features.University.TheProfcom.Queries;
 using Study.Lab3.Web.Features.University.TheProjectActivities.Commands;
 using Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
 using Study.Lab3.Web.Features.University.TheProjectActivities.Queries;
-using Study.Lab3.Web.Features.University.TheSportclub.Commands;
-using Study.Lab3.Web.Features.University.TheSportclub.DtoModels;
-using Study.Lab3.Web.Features.University.TheSportclub.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 

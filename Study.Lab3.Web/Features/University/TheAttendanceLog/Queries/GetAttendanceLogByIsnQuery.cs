@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheAttendanceLog.Queries;
 
 /// <summary>
-/// Получить факт посещения по идентификатору
+/// РџРѕР»СѓС‡РёС‚СЊ С„Р°РєС‚ РїРѕСЃРµС‰РµРЅРёСЏ РїРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ
 /// </summary>
 public sealed class GetAttendanceLogByIsnQuery : IRequest<AttendanceLogDto>
 {
     /// <summary>
-    /// Идентификатор факта посещения
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ С„Р°РєС‚Р° РїРѕСЃРµС‰РµРЅРёСЏ
     /// </summary>
     [Required]
     [FromQuery]
@@ -35,7 +35,7 @@ public sealed class GetAttendanceLogByIsnQueryHandler : IRequestHandler<GetAtten
         var attendanceLog = await _dataContext.TheAttendanceLog
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnAttendanceLog == request.IsnAttendanceLog, cancellationToken)
-                ?? throw new BusinessLogicException($"Факт посещения с идентификатором \"{request.IsnAttendanceLog}\" не существует");
+                ?? throw new BusinessLogicException($"Р¤Р°РєС‚ РїРѕСЃРµС‰РµРЅРёСЏ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnAttendanceLog}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         return new AttendanceLogDto
         {

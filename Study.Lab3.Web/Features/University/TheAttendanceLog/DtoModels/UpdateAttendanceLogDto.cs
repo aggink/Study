@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+п»їusing Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
@@ -6,19 +6,19 @@ namespace Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
 public sealed record UpdateAttendanceLogDto
 {
     /// <summary>
-    /// Идентификатор посещаемости
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё
     /// </summary>
     [Required]
     public Guid IsnAttendanceLog { get; init; }
 
     /// <summary>
-    /// Дата занятия
+    /// Р”Р°С‚Р° Р·Р°РЅСЏС‚РёСЏ
     /// </summary>
     [Required]
     public DateTime SubjectDate { get; init; }
 
     /// <summary>
-    /// Отметка посещения
+    /// РћС‚РјРµС‚РєР° РїРѕСЃРµС‰РµРЅРёСЏ
     /// </summary>
     [Required]
     [Range(ModelConstants.AttendanceLog.MinPresentValue, ModelConstants.AttendanceLog.MaxPresentValue)]

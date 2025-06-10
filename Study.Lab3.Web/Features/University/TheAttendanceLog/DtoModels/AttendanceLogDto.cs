@@ -1,29 +1,29 @@
-namespace Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
+п»їnamespace Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
 
 public sealed record AttendanceLogDto
 {
     /// <summary>
-    /// Идентификатор посещаемости
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё
     /// </summary>
     public Guid IsnAttendanceLog { get; init; }
 
     /// <summary>
-    /// Идентификатор студента
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СѓРґРµРЅС‚Р°
     /// </summary>
     public Guid IsnStudent { get; init; }
 
     /// <summary>
-    /// Идентификатор предмета
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїСЂРµРґРјРµС‚Р°
     /// </summary>
     public Guid IsnSubject { get; init; }
 
     /// <summary>
-    /// Дата занятия
+    /// Р”Р°С‚Р° Р·Р°РЅСЏС‚РёСЏ
     /// </summary>
     public DateTime SubjectDate { get; init; }
 
     /// <summary>
-    /// Отметка посещения
+    /// РћС‚РјРµС‚РєР° РїРѕСЃРµС‰РµРЅРёСЏ
     /// </summary>
     public int IsPresent { get; init; }
 }

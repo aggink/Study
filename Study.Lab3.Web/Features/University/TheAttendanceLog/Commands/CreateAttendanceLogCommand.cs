@@ -1,4 +1,4 @@
-using MediatR;
+п»їusing MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheAttendanceLog.Commands;
 
 /// <summary>
-/// Создание посещаемости
+/// РЎРѕР·РґР°РЅРёРµ РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё
 /// </summary>
 public sealed class CreateAttendanceLogCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Данные посещаемости
+    /// Р”Р°РЅРЅС‹Рµ РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё
     /// </summary>
     [Required]
     [FromBody]

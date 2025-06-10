@@ -1,4 +1,4 @@
-using MediatR;
+п»їusing MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
@@ -6,7 +6,7 @@ using Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
 namespace Study.Lab3.Web.Features.University.TheAttendanceLog.Queries;
 
 /// <summary>
-/// Получение списка посещений
+/// РџРѕР»СѓС‡РµРЅРёРµ СЃРїРёСЃРєР° РїРѕСЃРµС‰РµРЅРёР№
 /// </summary>
 public sealed class GetListAttendanceLogQuery : IRequest<AttendanceLogDto[]>
 {

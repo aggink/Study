@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +10,12 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.TheAttendanceLog.Commands;
 
 /// <summary>
-/// Редактирование посещения
+/// Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РїРѕСЃРµС‰РµРЅРёСЏ
 /// </summary>
 public sealed class UpdateAttendanceLogCommand : IRequest<Guid>
 {
     /// <summary>
-    /// Данные посещаемости
+    /// Р”Р°РЅРЅС‹Рµ РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё
     /// </summary>
     [Required]
     [FromBody]
@@ -40,7 +40,7 @@ public sealed class UpdateAttendanceLogCommandHandler : IRequestHandler<UpdateAt
         var attendanceLog = await _dataContext.TheAttendanceLog
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnAttendanceLog == request.AttendanceLog.IsnAttendanceLog, cancellationToken)
-                ?? throw new BusinessLogicException($"Посещение с идентификатором \"{request.AttendanceLog.IsnAttendanceLog}\" не существует");
+                ?? throw new BusinessLogicException($"РџРѕСЃРµС‰РµРЅРёРµ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.AttendanceLog.IsnAttendanceLog}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         attendanceLog.IsPresent = request.AttendanceLog.IsPresent;
         attendanceLog.SubjectDate = request.AttendanceLog.SubjectDate;

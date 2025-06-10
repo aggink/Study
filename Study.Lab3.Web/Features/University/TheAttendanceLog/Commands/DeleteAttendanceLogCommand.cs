@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +10,12 @@ namespace Study.Lab3.Web.Features.University.TheAttendanceLog.Commands;
 
 
 /// <summary>
-/// Удаление посещения
+/// РЈРґР°Р»РµРЅРёРµ РїРѕСЃРµС‰РµРЅРёСЏ
 /// </summary>
 public sealed class DeleteAttendanceLogCommand : IRequest
 {
     /// <summary>
-    /// Идентификатор посещаемости
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё
     /// </summary>
     [Required]
     [FromQuery]
@@ -40,7 +40,7 @@ public sealed class DeleteAttendanceLogCommandHandler : IRequestHandler<DeleteAt
         var attendanceLog = await _dataContext.TheAttendanceLog
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnAttendanceLog == request.IsnAttendanceLog, cancellationToken)
-                ?? throw new BusinessLogicException($"Посещение с идентификатором \"{request.IsnAttendanceLog}\" не существует");
+                ?? throw new BusinessLogicException($"РџРѕСЃРµС‰РµРЅРёРµ СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnAttendanceLog}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
 
         _dataContext.TheAttendanceLog.Remove(attendanceLog);

@@ -1,29 +1,29 @@
-using System.ComponentModel.DataAnnotations;
+п»їusing System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
 
 public sealed record CreateAttendanceLogDto
 {
     /// <summary>
-    /// Идентификатор студента
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃС‚СѓРґРµРЅС‚Р°
     /// </summary>
     [Required]
     public Guid IsnStudent { get; init; }
 
     /// <summary>
-    /// Идентификатор предмета
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РїСЂРµРґРјРµС‚Р°
     /// </summary>
     [Required]
     public Guid IsnSubject { get; init; }
 
     /// <summary>
-    /// Дата посещения
+    /// Р”Р°С‚Р° РїРѕСЃРµС‰РµРЅРёСЏ
     /// </summary>
     [Required]
     public DateTime SubjectDate { get; init; }
 
     /// <summary>
-    /// Отметка посещаемости
+    /// РћС‚РјРµС‚РєР° РїРѕСЃРµС‰Р°РµРјРѕСЃС‚Рё
     /// </summary>
     [Required]
     public int IsPresent { get; init; }
