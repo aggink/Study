@@ -1,7 +1,7 @@
 ﻿using Study.Example.Interfaces;
 using Study.Example.Tasks;
 
-var task = "Task1";
+var task = "Task17";
 
 IRunnable runnable = task switch
 {
@@ -18,6 +18,9 @@ IRunnable runnable = task switch
     nameof(Task11) => new Task11(),
     nameof(Task12) => new Task12(),
     nameof(Task13) => new Task13(),
+    nameof(Task15) => new Task15(),
+    nameof(Task16) => new Task16(),
+    nameof(Task17) => new Task17(),
     _ => null
 };
 
@@ -29,4 +32,7 @@ IRunnableAsync runnable2 = task switch
     _ => null
 };
 
-await runnable2?.RunAsync();
+if (runnable2 != null)
+{
+    await runnable2.RunAsync();
+}
