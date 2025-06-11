@@ -10,7 +10,7 @@ namespace Study.Lab3.Storage.Models.University
         public int Id { get; set; }
 
 
-        [ForeignKey(nameof(IsnReference))]
+        [ForeignKey(nameof(ScientificWork))]
         public Guid IsnReference { get; set; }
 
         [Required]
