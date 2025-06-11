@@ -13,12 +13,10 @@ public sealed record UpdateImageEmbedDto
     /// <summary>
     /// Идентификатор сообщения
     /// </summary>
-    [Required]
     public Guid? IsnPost { get; init; }
 
     /// <summary>
     /// Идентификатор изображения
     /// </summary>
-    [Required]
     public Guid? IsnImage { get; init; }
 }
