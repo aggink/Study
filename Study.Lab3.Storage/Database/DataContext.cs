@@ -1,15 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
+using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
+using Study.Lab3.Storage.Models.Messenger;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
+using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.University;
-using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
-using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -276,7 +277,7 @@ public class DataContext : DbContext
     public virtual DbSet<BeautyAppointment> BeautyAppointment { get; set; }
 
     #endregion
-    
+
     #region Shelter
 
     /// <summary>
@@ -319,7 +320,7 @@ public class DataContext : DbContext
     public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
-    
+
     #region Workshop
 
     /// <summary>
@@ -338,7 +339,7 @@ public class DataContext : DbContext
     public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
 
     #endregion
-    
+
     #region Fitness
 
     /// <summary>
@@ -358,4 +359,27 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region Messenger
+
+    /// <summary>
+    /// Пользователи
+    /// </summary>
+    public virtual DbSet<User> Users { get; set; }
+
+    /// <summary>
+    /// Сообщения
+    /// </summary>
+    public virtual DbSet<Post> Posts { get; set; }
+
+    /// <summary>
+    /// Изображения
+    /// </summary>
+    public virtual DbSet<Image> Images { get; set; }
+
+    /// <summary>
+    /// Вложения
+    /// </summary>
+    public virtual DbSet<ImageEmbed> ImageEmbeds { get; set; }
+
+    #endregion
 }

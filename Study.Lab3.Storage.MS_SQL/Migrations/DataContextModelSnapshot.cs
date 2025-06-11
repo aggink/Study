@@ -635,6 +635,111 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
+                {
+                    b.Property<Guid>("Isn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Data")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid>("IsnUploader")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Isn");
+
+                    b.HasIndex("IsnUploader");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
+                {
+                    b.Property<Guid>("Isn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnImage")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnPost")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Isn");
+
+                    b.HasIndex("IsnImage");
+
+                    b.HasIndex("IsnPost");
+
+                    b.ToTable("ImageEmbeds");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
+                {
+                    b.Property<Guid>("Isn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Isn");
+
+                    b.HasIndex("IsnUser");
+
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
+                {
+                    b.Property<Guid>("Isn")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AboutMe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(254)
+                        .HasColumnType("nvarchar(254)");
+
+                    b.Property<Guid?>("IsnProfilePicture")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Isn");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IsnProfilePicture");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
                 {
                     b.Property<Guid>("IsnMenu")
@@ -1844,6 +1949,56 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "Uploader")
+                        .WithMany()
+                        .HasForeignKey("IsnUploader")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Uploader");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "Image")
+                        .WithMany("ImageEmbeds")
+                        .HasForeignKey("IsnImage")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Post", "Post")
+                        .WithMany("ImageEmbeds")
+                        .HasForeignKey("IsnPost")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Image");
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("IsnUser")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "ProfilePicture")
+                        .WithMany()
+                        .HasForeignKey("IsnProfilePicture");
+
+                    b.Navigation("ProfilePicture");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
@@ -2331,6 +2486,21 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
                 {
                     b.Navigation("AuthorBook");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
+                {
+                    b.Navigation("ImageEmbeds");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
+                {
+                    b.Navigation("ImageEmbeds");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
+                {
+                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
