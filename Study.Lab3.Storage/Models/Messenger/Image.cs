@@ -35,6 +35,9 @@ public class Image
 
     public virtual User Uploader { get; set; }
 
+    [InverseProperty(nameof(User.ProfilePicture))]
+    public virtual User Profile { get; set; }
+
     /// <summary>
     /// Вложения
     /// </summary>

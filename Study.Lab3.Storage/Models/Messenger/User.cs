@@ -52,7 +52,10 @@ public class User
     /// </summary>
     public string AboutMe { get; set; }
 
-    public virtual Image? ProfilePicture { get; set; }
+    public virtual Image ProfilePicture { get; set; }
+
+    [InverseProperty(nameof(Image.Uploader))]
+    public virtual ICollection<Image> Images { get; set; }
 
     /// <summary>
     /// Сообщения пользователя
