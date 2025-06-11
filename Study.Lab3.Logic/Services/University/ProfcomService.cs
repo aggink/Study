@@ -6,7 +6,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Storage.Models.University;
 
 namespace Study.Lab3.Logic.Services.University;
-//хихи хаха
+
 public sealed class ProfcomService : IProfcomService
 {
 	public async Task CreateOrUpdateProfcomValidateAndThrowAsync(

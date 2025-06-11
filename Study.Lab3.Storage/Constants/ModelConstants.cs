@@ -1,5 +1,5 @@
 ﻿namespace Study.Lab3.Storage.Constants;
-//хихи хаха
+
 /// <summary>
 /// Ограничения для моделей
 /// </summary>

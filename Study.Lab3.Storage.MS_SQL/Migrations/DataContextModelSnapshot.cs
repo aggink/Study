@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
-//хихи хаха
+
 #nullable disable
 
 namespace Study.Lab3.Storage.MS_SQL.Migrations

@@ -8,7 +8,7 @@ using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheProfcom.Commands;
-//хихи хаха
+
 /// <summary>
 /// Редактирование профкома
 /// </summary>
@@ -42,6 +42,8 @@ public sealed class UpdateProfcomCommandHandler : IRequestHandler<UpdateProfcomC
 			.FirstOrDefaultAsync(x => x.IsnProfcom == request.Profcom.IsnProfcom, cancellationToken)
 				?? throw new BusinessLogicException($"Научной встречи с идентификатором \"{request.Profcom.IsnProfcom}\" не существует");
 
+		profcom.IsnStudent = request.Profcom.IsnStudent;
+		profcom.IsnSubject = request.Profcom.IsnSubject;
 		profcom.ParticipantsCount = request.Profcom.ParticipantsCount;
 		profcom.ProfcomDate = request.Profcom.ProfcomDate;
 

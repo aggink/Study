@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Shelter.MiniPigs.DtoModels;
 
-public class CreateMiniPigDto
+public sealed record CreateMiniPigDto
 {
 	[Required]
 	[MaxLength(ModelConstants.MiniPig.Nickname)]

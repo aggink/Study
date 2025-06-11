@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Shelter.MiniPigs.DtoModels;
 
-public class UpdateMiniPigDto
+public sealed record UpdateMiniPigDto
 {
 	[Required]
 	public Guid IsnMiniPig { get; init; }

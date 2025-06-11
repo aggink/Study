@@ -7,7 +7,7 @@ using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.TheProfcom.Queries;
-//хихи хаха
+
 /// <summary>
 /// Получить количество участников по идентификатору
 /// </summary>

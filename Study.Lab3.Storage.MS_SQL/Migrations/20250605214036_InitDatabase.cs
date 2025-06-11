@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-//хихи хаха
+
 #nullable disable
 
 namespace Study.Lab3.Storage.MS_SQL.Migrations
