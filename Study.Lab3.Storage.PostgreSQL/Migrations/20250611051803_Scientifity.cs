@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />
-    public partial class SCientifiti : Migration
+    public partial class Scientifity : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -877,18 +877,18 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SCIENTIFIC_WORKS",
                 columns: table => new
                 {
-                    IsnScientificWork = table.Column<Guid>(type: "uuid", nullable: false),
                     IsnStudent = table.Column<Guid>(type: "uuid", nullable: false),
                     IsnSubject = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     PageCount = table.Column<int>(type: "integer", nullable: false),
                     PublicationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IsPublished = table.Column<bool>(type: "boolean", nullable: false)
+                    IsPublished = table.Column<bool>(type: "boolean", nullable: false),
+                    IsnScientificWork = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SCIENTIFIC_WORKS", x => x.IsnScientificWork);
+                    table.PrimaryKey("PK_SCIENTIFIC_WORKS", x => x.IsnStudent);
                     table.ForeignKey(
                         name: "FK_SCIENTIFIC_WORKS_Students_IsnStudent",
                         column: x => x.IsnStudent,
@@ -953,6 +953,52 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         column: x => x.IsnStudent,
                         principalTable: "Students",
                         principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentNotes",
+                columns: table => new
+                {
+                    IsnNote = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uuid", nullable: false),
+                    Text = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentNotes", x => x.IsnNote);
+                    table.ForeignKey(
+                        name: "FK_StudentNotes_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TheAttendanceLog",
+                columns: table => new
+                {
+                    IsnAttendanceLog = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uuid", nullable: false),
+                    SubjectDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsPresent = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TheAttendanceLog", x => x.IsnAttendanceLog);
+                    table.ForeignKey(
+                        name: "FK_TheAttendanceLog_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TheAttendanceLog_Subjects_IsnSubject",
+                        column: x => x.IsnSubject,
+                        principalTable: "Subjects",
+                        principalColumn: "IsnSubject",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -1206,17 +1252,17 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     IsnReference = table.Column<Guid>(type: "uuid", nullable: false),
                     IsnScientificWork = table.Column<Guid>(type: "uuid", nullable: false),
                     ReferencedWorkId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ReferenceDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ScientificWorkIsnScientificWork = table.Column<Guid>(type: "uuid", nullable: true)
+                    ReferenceDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_WorkReferences", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WorkReferences_SCIENTIFIC_WORKS_ScientificWorkIsnScientific~",
-                        column: x => x.ScientificWorkIsnScientificWork,
+                        name: "FK_WorkReferences_SCIENTIFIC_WORKS_IsnScientificWork",
+                        column: x => x.IsnScientificWork,
                         principalTable: "SCIENTIFIC_WORKS",
-                        principalColumn: "IsnScientificWork");
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1412,11 +1458,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 column: "IsnRestaurant");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SCIENTIFIC_WORKS_IsnStudent",
-                table: "SCIENTIFIC_WORKS",
-                column: "IsnStudent");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_SCIENTIFIC_WORKS_IsnSubject",
                 table: "SCIENTIFIC_WORKS",
                 column: "IsnSubject");
@@ -1467,6 +1508,11 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 column: "IsnStudent");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StudentNotes_IsnStudent",
+                table: "StudentNotes",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Students_IsnGroup",
                 table: "Students",
                 column: "IsnGroup");
@@ -1505,6 +1551,16 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "IX_TeacherSubjects_IsnTeacher_IsnSubject",
                 table: "TeacherSubjects",
                 columns: new[] { "IsnTeacher", "IsnSubject" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TheAttendanceLog_IsnStudent",
+                table: "TheAttendanceLog",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TheAttendanceLog_IsnSubject",
+                table: "TheAttendanceLog",
+                column: "IsnSubject");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TheKvn_IsnStudent",
@@ -1552,9 +1608,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 column: "IsnSession");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WorkReferences_ScientificWorkIsnScientificWork",
+                name: "IX_WorkReferences_IsnScientificWork",
                 table: "WorkReferences",
-                column: "ScientificWorkIsnScientificWork");
+                column: "IsnScientificWork");
         }
 
         /// <inheritdoc />
@@ -1612,6 +1668,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "StudentLab");
 
             migrationBuilder.DropTable(
+                name: "StudentNotes");
+
+            migrationBuilder.DropTable(
                 name: "SubjectsGroups");
 
             migrationBuilder.DropTable(
@@ -1619,6 +1678,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             migrationBuilder.DropTable(
                 name: "TeacherSubjects");
+
+            migrationBuilder.DropTable(
+                name: "TheAttendanceLog");
 
             migrationBuilder.DropTable(
                 name: "TheKvn");

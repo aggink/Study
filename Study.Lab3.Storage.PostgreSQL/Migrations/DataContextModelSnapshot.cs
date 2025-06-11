@@ -1423,7 +1423,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.ScientificWork", b =>
                 {
-                    b.Property<Guid>("IsnScientificWork")
+                    b.Property<Guid>("IsnStudent")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
@@ -1433,7 +1433,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<bool>("IsPublished")
                         .HasColumnType("boolean");
 
-                    b.Property<Guid>("IsnStudent")
+                    b.Property<Guid>("IsnScientificWork")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("IsnSubject")
@@ -1449,9 +1449,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("IsnScientificWork");
-
-                    b.HasIndex("IsnStudent");
+                    b.HasKey("IsnStudent");
 
                     b.HasIndex("IsnSubject");
 
@@ -1660,12 +1658,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<Guid>("ReferencedWorkId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("ScientificWorkIsnScientificWork")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ScientificWorkIsnScientificWork");
+                    b.HasIndex("IsnScientificWork");
 
                     b.ToTable("WorkReferences");
                 });
@@ -2339,7 +2334,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.ScientificWork", "ScientificWork")
                         .WithMany()
-                        .HasForeignKey("ScientificWorkIsnScientificWork");
+                        .HasForeignKey("IsnScientificWork")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("ScientificWork");
                 });

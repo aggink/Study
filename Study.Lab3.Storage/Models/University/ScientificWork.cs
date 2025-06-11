@@ -31,7 +31,7 @@ namespace Study.Lab3.Storage.Models.University
 
         public bool IsPublished { get; set; }
 
-
-    }
+        public Guid IsnScientificWork { get; set; }
+}
     
 }
