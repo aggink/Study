@@ -1053,6 +1053,11 @@ public static class ModelConstants
         public const int MaxPerformancesValue = 20;
     }
 
+    public static class StudentNote
+    {
+        public const int MaxTextLength = 500;
+    }
+
     #endregion
 
     #region Workshop

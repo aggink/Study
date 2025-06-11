@@ -83,6 +83,7 @@ public static class ServiceCollectionExtensions
         #region University
         services.AddSingleton<IAnnouncementService, AnnouncementService>();
         services.AddSingleton<IAssignmentService, AssignmentService>();
+        services.AddSingleton<IAttendanceLogService, AttendanceLogService>();
         services.AddSingleton<ICareerService, CareerService>();
         services.AddSingleton<IExamRegistrationService, ExamRegistrationService>();
         services.AddSingleton<IExamResultService, ExamResultService>();

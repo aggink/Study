@@ -144,6 +144,9 @@ public class DataContext : DbContext
     public virtual DbSet<Career> Career { get; set; }
 
     /// <summary>
+    /// Заметки
+    /// </summary>
+    public virtual DbSet<StudentNote> StudentNotes { get; set; }
     /// Учителя
     /// </summary>
     public virtual DbSet<ProjectActivities> TheProjectActivities { get; set; }
@@ -156,6 +159,11 @@ public class DataContext : DbContext
     /// Оценки студентов по лабам Лабы
     /// </summary>
     public virtual DbSet<StudentLab> StudentLab { get; set; }
+
+    /// <summary>
+    /// Посещение
+    /// </summary>
+    public virtual DbSet<AttendanceLog> TheAttendanceLog { get; set; }
 
     #endregion
 

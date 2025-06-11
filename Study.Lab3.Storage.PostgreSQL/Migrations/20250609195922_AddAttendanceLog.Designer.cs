@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,13 +12,15 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250609195922_AddAttendanceLog")]
+    partial class AddAttendanceLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -346,154 +349,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Tickets");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessEquipment", b =>
-                {
-                    b.Property<Guid>("IsnEquipment")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
-
-                    b.Property<DateTime?>("LastMaintenanceDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Manufacturer")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<DateTime>("PurchaseDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<decimal>("PurchasePrice")
-                        .HasColumnType("numeric");
-
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnEquipment");
-
-                    b.ToTable("Equipments");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessMember", b =>
-                {
-                    b.Property<Guid>("IsnMember")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("MembershipEndDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("MembershipStartDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("MembershipType")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("PatronymicName")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("SurName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.HasKey("IsnMember");
-
-                    b.ToTable("Members");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessTrainer", b =>
-                {
-                    b.Property<Guid>("IsnTrainer")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Certifications")
-                        .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<int>("ExperienceYears")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("HourlyRate")
-                        .HasColumnType("numeric");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("PatronymicName")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<int>("Specialization")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("SurName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.HasKey("IsnTrainer");
-
-                    b.ToTable("Trainers");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
                 {
                     b.Property<Guid>("IsnOrder")
@@ -632,111 +487,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnBook");
 
                     b.ToTable("Books");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
-                {
-                    b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<byte[]>("Data")
-                        .IsRequired()
-                        .HasColumnType("bytea");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<Guid>("IsnUploader")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Isn");
-
-                    b.HasIndex("IsnUploader");
-
-                    b.ToTable("Images");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
-                {
-                    b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnImage")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnPost")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Isn");
-
-                    b.HasIndex("IsnImage");
-
-                    b.HasIndex("IsnPost");
-
-                    b.ToTable("ImageEmbeds");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
-                {
-                    b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnUser")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Isn");
-
-                    b.HasIndex("IsnUser");
-
-                    b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
-                {
-                    b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("AboutMe")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("character varying(254)");
-
-                    b.Property<Guid?>("IsnProfilePicture")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(16)
-                        .HasColumnType("character varying(16)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Website")
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.HasKey("Isn");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
-
-                    b.HasIndex("IsnProfilePicture");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
@@ -1423,21 +1173,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("TheKvn");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
-                {
-                    b.Property<Guid>("IsnLab")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.HasKey("IsnLab");
-
-                    b.ToTable("Labs");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
                 {
                     b.Property<Guid>("IsnMaterial")
@@ -1500,32 +1235,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("TheProfcom");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ProjectActivities", b =>
-                {
-                    b.Property<Guid>("IsnProjectActivities")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("PerformancesCount")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("ProjectActivitiesDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("IsnProjectActivities");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.HasIndex("IsnSubject");
-
-                    b.ToTable("TheProjectActivities");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.Property<Guid>("IsnSportclub")
@@ -1586,49 +1295,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnGroup");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
-                {
-                    b.Property<Guid>("IsnStudentLab")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnLab")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Value")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnStudentLab");
-
-                    b.HasIndex("IsnLab");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.ToTable("StudentLab");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
-                {
-                    b.Property<Guid>("IsnNote")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
-                    b.HasKey("IsnNote");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.ToTable("StudentNotes");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -1948,56 +1614,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "Uploader")
-                        .WithMany()
-                        .HasForeignKey("IsnUploader")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Uploader");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "Image")
-                        .WithMany("ImageEmbeds")
-                        .HasForeignKey("IsnImage")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Post", "Post")
-                        .WithMany("ImageEmbeds")
-                        .HasForeignKey("IsnPost")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Image");
-
-                    b.Navigation("Post");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "User")
-                        .WithMany("Posts")
-                        .HasForeignKey("IsnUser")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "ProfilePicture")
-                        .WithMany()
-                        .HasForeignKey("IsnProfilePicture");
-
-                    b.Navigation("ProfilePicture");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
@@ -2143,13 +1759,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("AttendanceLogs")
+                        .WithMany()
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany("AttendanceLogs")
+                        .WithMany()
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2287,25 +1903,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ProjectActivities", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("ProjectActivitiess")
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany("ProjectActivitiess")
-                        .HasForeignKey("IsnSubject")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
@@ -2334,36 +1931,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .IsRequired();
 
                     b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Labs", "Labs")
-                        .WithMany("StudentLabs")
-                        .HasForeignKey("IsnLab")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("StudentLabs")
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Labs");
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("Notes")
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.SubjectGroup", b =>
@@ -2487,21 +2054,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("AuthorBook");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
-                {
-                    b.Navigation("ImageEmbeds");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
-                {
-                    b.Navigation("ImageEmbeds");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
-                {
-                    b.Navigation("Posts");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
                 {
                     b.Navigation("MenuItems");
@@ -2573,15 +2125,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("SubjectGroups");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
-                {
-                    b.Navigation("StudentLabs");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
-                    b.Navigation("AttendanceLogs");
-
                     b.Navigation("Careers");
 
                     b.Navigation("ExamRegistrations");
@@ -2590,20 +2135,12 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.Navigation("Kvns");
 
-                    b.Navigation("Notes");
-
-                    b.Navigation("ProjectActivitiess");
-
                     b.Navigation("Sportclubs");
-
-                    b.Navigation("StudentLabs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
                     b.Navigation("Assignments");
-
-                    b.Navigation("AttendanceLogs");
 
                     b.Navigation("Careers");
 
@@ -2616,8 +2153,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Kvns");
 
                     b.Navigation("Materials");
-
-                    b.Navigation("ProjectActivitiess");
 
                     b.Navigation("Sportclubs");
 
