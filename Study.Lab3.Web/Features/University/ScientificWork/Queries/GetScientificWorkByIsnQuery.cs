@@ -23,14 +23,13 @@ public class GetScientificWorkByIsnQueryHandler
         CancellationToken cancellationToken)
     {
         var scientificWork = await _context.ScientificWorks
-            .AsNoTracking() // Оптимизация: отключаем отслеживание изменений
+            .AsNoTracking()
             .FirstOrDefaultAsync(sw => sw.IsnScientificWork == request.IsnScientificWork,
                 cancellationToken);
 
         if (scientificWork == null)
         {
             throw new Exception($"Scientific work with ID {request.IsnScientificWork} not found.");
-            // Или вернуть null, если предпочтительнее: return null;
         }
 
         return new ScientificWorkDto

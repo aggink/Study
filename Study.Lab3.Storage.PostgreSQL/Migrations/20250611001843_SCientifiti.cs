@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />
-    public partial class Scientific : Migration
+    public partial class SCientifiti : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -876,30 +877,30 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "SCIENTIFIC_WORKS",
                 columns: table => new
                 {
-                    ISN_SCIENTIFIC_WORK = table.Column<Guid>(type: "uuid", nullable: false),
-                    ISN_STUDENT = table.Column<Guid>(type: "uuid", nullable: false),
-                    ISN_SUBJECT = table.Column<Guid>(type: "uuid", nullable: false),
-                    TITLE = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    DESCRIPTION = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
-                    PAGE_COUNT = table.Column<int>(type: "integer", nullable: false),
-                    PUBLICATION_DATE = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IS_PUBLISHED = table.Column<bool>(type: "boolean", nullable: false),
-                    StudentIsnStudent = table.Column<Guid>(type: "uuid", nullable: true),
-                    SubjectIsnSubject = table.Column<Guid>(type: "uuid", nullable: true)
+                    IsnScientificWork = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uuid", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    PageCount = table.Column<int>(type: "integer", nullable: false),
+                    PublicationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    IsPublished = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SCIENTIFIC_WORKS", x => x.ISN_SCIENTIFIC_WORK);
+                    table.PrimaryKey("PK_SCIENTIFIC_WORKS", x => x.IsnScientificWork);
                     table.ForeignKey(
-                        name: "FK_SCIENTIFIC_WORKS_Students_StudentIsnStudent",
-                        column: x => x.StudentIsnStudent,
+                        name: "FK_SCIENTIFIC_WORKS_Students_IsnStudent",
+                        column: x => x.IsnStudent,
                         principalTable: "Students",
-                        principalColumn: "IsnStudent");
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_SCIENTIFIC_WORKS_Subjects_SubjectIsnSubject",
-                        column: x => x.SubjectIsnSubject,
+                        name: "FK_SCIENTIFIC_WORKS_Subjects_IsnSubject",
+                        column: x => x.IsnSubject,
                         principalTable: "Subjects",
-                        principalColumn: "IsnSubject");
+                        principalColumn: "IsnSubject",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -1197,23 +1198,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "WORK_REFERENCES",
+                name: "WorkReferences",
                 columns: table => new
                 {
-                    ISN_REFERENCE = table.Column<Guid>(type: "uuid", nullable: false),
-                    ISN_SCIENTIFIC_WORK = table.Column<Guid>(type: "uuid", nullable: false),
-                    REFERENCED_WORK_ID = table.Column<Guid>(type: "uuid", nullable: false),
-                    REFERENCE_DATE = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    IsnReference = table.Column<Guid>(type: "uuid", nullable: false),
+                    IsnScientificWork = table.Column<Guid>(type: "uuid", nullable: false),
+                    ReferencedWorkId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ReferenceDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ScientificWorkIsnScientificWork = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WORK_REFERENCES", x => x.ISN_REFERENCE);
+                    table.PrimaryKey("PK_WorkReferences", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WORK_REFERENCES_SCIENTIFIC_WORKS_ScientificWorkIsnScientifi~",
+                        name: "FK_WorkReferences_SCIENTIFIC_WORKS_ScientificWorkIsnScientific~",
                         column: x => x.ScientificWorkIsnScientificWork,
                         principalTable: "SCIENTIFIC_WORKS",
-                        principalColumn: "ISN_SCIENTIFIC_WORK");
+                        principalColumn: "IsnScientificWork");
                 });
 
             migrationBuilder.CreateTable(
@@ -1409,14 +1412,14 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 column: "IsnRestaurant");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SCIENTIFIC_WORKS_StudentIsnStudent",
+                name: "IX_SCIENTIFIC_WORKS_IsnStudent",
                 table: "SCIENTIFIC_WORKS",
-                column: "StudentIsnStudent");
+                column: "IsnStudent");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SCIENTIFIC_WORKS_SubjectIsnSubject",
+                name: "IX_SCIENTIFIC_WORKS_IsnSubject",
                 table: "SCIENTIFIC_WORKS",
-                column: "SubjectIsnSubject");
+                column: "IsnSubject");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Seats_IsnHall",
@@ -1549,8 +1552,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 column: "IsnSession");
 
             migrationBuilder.CreateIndex(
-                name: "IX_WORK_REFERENCES_ScientificWorkIsnScientificWork",
-                table: "WORK_REFERENCES",
+                name: "IX_WorkReferences_ScientificWorkIsnScientificWork",
+                table: "WorkReferences",
                 column: "ScientificWorkIsnScientificWork");
         }
 
@@ -1633,7 +1636,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "Trainers");
 
             migrationBuilder.DropTable(
-                name: "WORK_REFERENCES");
+                name: "WorkReferences");
 
             migrationBuilder.DropTable(
                 name: "Cats");

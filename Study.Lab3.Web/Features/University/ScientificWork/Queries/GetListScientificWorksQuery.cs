@@ -27,7 +27,6 @@ public class GetListScientificWorksQueryHandler
     {
         var query = _context.ScientificWorks.AsQueryable();
 
-        // Фильтрация по параметрам (если они указаны)
         if (request.IsnStudent.HasValue)
             query = query.Where(sw => sw.IsnStudent == request.IsnStudent);
 

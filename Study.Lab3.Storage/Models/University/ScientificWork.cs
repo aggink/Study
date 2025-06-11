@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Study.Lab3.Storage.Models.University
 {
@@ -7,39 +8,34 @@ namespace Study.Lab3.Storage.Models.University
     public class ScientificWork
     {
         [Key]
-        [Column("ISN_SCIENTIFIC_WORK")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid IsnScientificWork { get; set; }
 
-        [Column("ISN_STUDENT")]
-        [Required]
+        [ForeignKey(nameof(Student))]
         public Guid IsnStudent { get; set; }
 
-        [Column("ISN_SUBJECT")]
-        [Required]
+        [ForeignKey(nameof(Subject))]
         public Guid IsnSubject { get; set; }
 
-        [Column("TITLE")]
         [Required]
-        [MaxLength(200)]
         public string Title { get; set; }
 
-        [Column("DESCRIPTION")]
-        [MaxLength(1000)]
         public string? Description { get; set; }
 
-        [Column("PAGE_COUNT")]
         [Required]
         public int PageCount { get; set; }
 
-        [Column("PUBLICATION_DATE")]
         [Required]
         public DateTime PublicationDate { get; set; }
 
-        [Column("IS_PUBLISHED")]
         public bool IsPublished { get; set; }
 
+        [ForeignKey(nameof(IsnStudent))]
         public Student Student { get; set; }
+        
+        [ForeignKey("IsnSubject")]
         public Subject Subject { get; set; }
+
     }
     
 }

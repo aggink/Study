@@ -2,7 +2,8 @@ using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
-    public record ScientificWorkDto
+
+public sealed record ScientificWorkDto
     {
         public Guid IsnScientificWork { get; init; }
         public Guid IsnStudent { get; init; }

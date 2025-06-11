@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace Study.Lab3.Web.Features.University.ScientificWork.Commands;
+
 public record UpdateScientificWorkCommand : IRequest<Guid>
     {
         public Guid IsnScientificWork { get; init; }
@@ -36,7 +37,6 @@ public class UpdateScientificWorkCommandHandler : IRequestHandler<UpdateScientif
             throw new Exception($"Scientific work with ID {request.IsnScientificWork} not found.");
         }
 
-        // Обновляем поля
         scientificWork.Title = request.Title;
         scientificWork.Description = request.Description;
         scientificWork.PageCount = request.PageCount;

@@ -1,7 +1,7 @@
 using MediatR;
-using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
-using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
+using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
 
 
 namespace Study.Lab3.Web.Features.University.ScientificWork.Queries;
@@ -25,8 +25,8 @@ public class GetScientificWorkWithDetailsQueryHandler
     {
         var scientificWork = await _context.ScientificWorks
             .AsNoTracking()
-            .Include(sw => sw.Student) // Подгружаем данные об авторе
-            .Include(sw => sw.Subject) // Подгружаем данные о предмете
+            .Include(sw => sw.Student) 
+            .Include(sw => sw.Subject)
             .FirstOrDefaultAsync(sw => sw.IsnScientificWork == request.IsnScientificWork,
                 cancellationToken);
 

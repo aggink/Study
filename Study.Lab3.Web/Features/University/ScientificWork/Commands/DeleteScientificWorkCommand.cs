@@ -8,13 +8,9 @@ using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Web.Features.University.ScientificWork.Commands;
-//public record DeleteScientificWorkCommand : IRequest<Unit>
-//    {
-//        public Guid IsnScientificWork { get; init; }
-//}
 
  public record DeleteScientificWorkCommand(Guid IsnScientificWork) : IRequest<bool>;
-    // Ключевая часть: ": IRequest<bool>"
+
 public class DeleteScientificWorkCommandHandler : IRequestHandler<DeleteScientificWorkCommand, bool >
 {
     private readonly DataContext _context;
@@ -31,7 +27,7 @@ public class DeleteScientificWorkCommandHandler : IRequestHandler<DeleteScientif
 
         if (scientificWork == null)
         {
-            return false; // или throw new Exception("Not found");
+            return false;
         }
 
         _context.ScientificWorks.Remove(scientificWork);

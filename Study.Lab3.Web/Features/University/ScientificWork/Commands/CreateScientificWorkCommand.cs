@@ -6,13 +6,7 @@ namespace Study.Lab3.Web.Features.University.ScientificWork.Commands;
 
 public record CreateScientificWorkCommand : IRequest<Guid>
 {
-    public Guid IsnStudent { get; init; }
-    public Guid IsnSubject { get; init; }
-    public string Title { get; init; }
-    public string Description { get; init; }
-    public int PageCount { get; init; }
-    public DateTime PublicationDate { get; init; }
-    public bool IsPublished { get; init; }
+    public CreateScientificWorkDto ScientificWorkDto { get; init; }
 }
 public class CreateScientificWorkCommandHandler : IRequestHandler<CreateScientificWorkCommand, Guid>
 {
@@ -25,16 +19,17 @@ public class CreateScientificWorkCommandHandler : IRequestHandler<CreateScientif
 
     public async Task<Guid> Handle(CreateScientificWorkCommand request, CancellationToken cancellationToken)
     {
+        var dto = request.ScientificWorkDto;
         var scientificWork = new Storage.Models.University.ScientificWork
         {
-            IsnScientificWork = Guid.NewGuid(), // Primary key
-            IsnStudent = request.IsnStudent,
-            IsnSubject = request.IsnSubject,
-            Title = request.Title,
-            Description = request.Description,
-            PageCount = request.PageCount,
-            PublicationDate = request.PublicationDate,
-            IsPublished = request.IsPublished
+            IsnScientificWork = Guid.NewGuid(),
+            IsnStudent = request.ScientificWorkDto.IsnStudent,  // Доступ через DTO
+            IsnSubject = request.ScientificWorkDto.IsnSubject,
+            Title = request.ScientificWorkDto.Title,
+            Description = request.ScientificWorkDto.Description,
+            PageCount = request.ScientificWorkDto.PageCount,
+            PublicationDate = request.ScientificWorkDto.PublicationDate,
+            IsPublished = request.ScientificWorkDto.IsPublished
         };
 
         _context.ScientificWorks.Add(scientificWork);

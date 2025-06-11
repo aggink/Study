@@ -160,6 +160,7 @@ public class DataContext : DbContext
     /// Научная работа
     /// </summary>
     public DbSet<ScientificWork> ScientificWorks { get; set; }
+
     public DbSet<WorkReference> WorkReferences { get; set; }
 
 

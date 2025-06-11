@@ -12,8 +12,8 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250609210319_Scientific")]
-    partial class Scientific
+    [Migration("20250611001843_SCientifiti")]
+    partial class SCientifiti
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1402,51 +1402,35 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.Property<Guid>("IsnScientificWork")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("ISN_SCIENTIFIC_WORK");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)")
-                        .HasColumnName("DESCRIPTION");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsPublished")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IS_PUBLISHED");
+                        .HasColumnType("boolean");
 
                     b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid")
-                        .HasColumnName("ISN_STUDENT");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uuid")
-                        .HasColumnName("ISN_SUBJECT");
+                        .HasColumnType("uuid");
 
                     b.Property<int>("PageCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("PAGE_COUNT");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("PublicationDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("PUBLICATION_DATE");
-
-                    b.Property<Guid?>("StudentIsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("SubjectIsnSubject")
-                        .HasColumnType("uuid");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)")
-                        .HasColumnName("TITLE");
+                        .HasColumnType("text");
 
                     b.HasKey("IsnScientificWork");
 
-                    b.HasIndex("StudentIsnStudent");
+                    b.HasIndex("IsnStudent");
 
-                    b.HasIndex("SubjectIsnSubject");
+                    b.HasIndex("IsnSubject");
 
                     b.ToTable("SCIENTIFIC_WORKS");
                 });
@@ -1615,31 +1599,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.WorkReference", b =>
                 {
-                    b.Property<Guid>("IsnReference")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid")
-                        .HasColumnName("ISN_REFERENCE");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("IsnReference")
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("IsnScientificWork")
-                        .HasColumnType("uuid")
-                        .HasColumnName("ISN_SCIENTIFIC_WORK");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("ReferenceDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("REFERENCE_DATE");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("ReferencedWorkId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("REFERENCED_WORK_ID");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid?>("ScientificWorkIsnScientificWork")
                         .HasColumnType("uuid");
 
-                    b.HasKey("IsnReference");
+                    b.HasKey("Id");
 
                     b.HasIndex("ScientificWorkIsnScientificWork");
 
-                    b.ToTable("WORK_REFERENCES");
+                    b.ToTable("WorkReferences");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Master", b =>
@@ -2175,11 +2160,15 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("StudentIsnStudent");
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
                         .WithMany()
-                        .HasForeignKey("SubjectIsnSubject");
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Student");
 

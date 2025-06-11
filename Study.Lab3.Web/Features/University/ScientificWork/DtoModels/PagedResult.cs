@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 
 namespace Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
-    public record PagedResult<T>
+
+public record PagedResult<T>
     {
         public IEnumerable<T> Items { get; init; }
         public int TotalCount { get; init; }

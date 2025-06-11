@@ -25,7 +25,6 @@ public class GetPagedScientificWorksQueryHandler
         GetPagedScientificWorksQuery request,
         CancellationToken cancellationToken)
     {
-        // Базовый запрос с фильтрацией (если нужно)
         var query = _context.ScientificWorks.AsQueryable();
 
         // Сортировка
@@ -37,10 +36,10 @@ public class GetPagedScientificWorksQueryHandler
             "PublicationDate" => request.SortDescending
                 ? query.OrderByDescending(sw => sw.PublicationDate)
                 : query.OrderBy(sw => sw.PublicationDate),
-            _ => query // Сортировка по умолчанию
+            _ => query 
         };
 
-        // Пагинация
+    
         var totalItems = await query.CountAsync(cancellationToken);
         var items = await query
             .Skip((request.PageNumber - 1) * request.PageSize)
