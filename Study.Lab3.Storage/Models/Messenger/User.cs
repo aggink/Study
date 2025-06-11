@@ -23,8 +23,6 @@ public class User
     [ForeignKey(nameof(ProfilePicture))]
     public Guid? IsnProfilePicture { get; set; }
 
-    public virtual Image? ProfilePicture { get; set; }
-
     /// <summary>
     /// Почтовый адрес пользователя
     /// </summary>
@@ -53,6 +51,8 @@ public class User
     /// Секция "о мне"
     /// </summary>
     public string AboutMe { get; set; }
+
+    public virtual Image? ProfilePicture { get; set; }
 
     /// <summary>
     /// Сообщения пользователя

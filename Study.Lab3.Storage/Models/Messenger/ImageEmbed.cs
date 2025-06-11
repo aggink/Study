@@ -20,13 +20,13 @@ public class ImageEmbed
     [Required, ForeignKey(nameof(Post))]
     public Guid IsnPost { get; set; }
 
-    public virtual Post Post { get; set; }
-
     /// <summary>
     /// Идентификатор изображения
     /// </summary>
     [Required, ForeignKey(nameof(Image))]
     public Guid IsnImage { get; set; }
+
+    public virtual Post Post { get; set; }
 
     public virtual Image Image { get; set; }
 }

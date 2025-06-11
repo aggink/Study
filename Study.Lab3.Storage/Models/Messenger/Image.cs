@@ -21,8 +21,6 @@ public class Image
     [Required, ForeignKey(nameof(Uploader))]
     public Guid IsnUploader { get; set; }
 
-    public virtual User Uploader { get; set; }
-
     /// <summary>
     /// Описание изображения
     /// </summary>
@@ -34,6 +32,8 @@ public class Image
     /// </summary>
     [Required]
     public byte[] Data { get; set; }
+
+    public virtual User Uploader { get; set; }
 
     /// <summary>
     /// Вложения

@@ -20,13 +20,13 @@ public class Post
     [Required, ForeignKey(nameof(User))]
     public Guid IsnUser { get; set; }
 
-    public virtual User User { get; set; }
-
     /// <summary>
     /// Сообщение
     /// </summary>
     [Required]
     public string Message { get; set; }
+
+    public virtual User User { get; set; }
 
     /// <summary>
     /// Вложенные изображения
