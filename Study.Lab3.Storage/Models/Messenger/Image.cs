@@ -12,7 +12,7 @@ public class Image
     /// <summary>
     /// Идентификатор
     /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid Isn { get; set; }
 
     /// <summary>

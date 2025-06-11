@@ -14,7 +14,7 @@ public class User
     /// <summary>
     /// Идентификатор пользователя
     /// </summary>
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid Isn { get; set; }
 
     /// <summary>

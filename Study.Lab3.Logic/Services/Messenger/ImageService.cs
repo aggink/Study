@@ -20,7 +20,7 @@ public sealed class ImageService : IImageService
         #endregion
 
         #region Description
-        if (await Task.Run(() => { return image.Description.Length > ModelConstants.Image.Description; }))
+        if (image.Description.Length > ModelConstants.Image.Description)
             throw new BusinessLogicException("Описание слишком длинное");
         #endregion
 
@@ -30,7 +30,7 @@ public sealed class ImageService : IImageService
         #endregion
 
         #region Data
-        if (await Task.Run(() => { return image.Data.Length == 0; }))
+        if (image.Data.Length == 0)
             throw new BusinessLogicException("Изображение пустое");
         #endregion
     }
@@ -41,12 +41,12 @@ public sealed class ImageService : IImageService
         CancellationToken cancellationToken = default)
     {
         #region Description
-        if (await Task.Run(() => { return image.Description.Length > ModelConstants.Image.Description; }))
+        if (image.Description.Length > ModelConstants.Image.Description)
             throw new BusinessLogicException("Описание слишком длинное");
         #endregion
 
         #region Data
-        if (await Task.Run(() => { return image.Data.Length == 0; }))
+        if (image.Data.Length == 0)
             throw new BusinessLogicException("Изображение пустое");
         #endregion
     }

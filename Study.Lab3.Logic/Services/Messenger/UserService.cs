@@ -20,7 +20,7 @@ public sealed class UserService : IUserService
         #endregion
 
         #region Email
-        if (await Task.Run(() => { return user.Email.Length > ModelConstants.User.Email; }))
+        if (user.Email.Length > ModelConstants.User.Email)
             throw new BusinessLogicException("Почтовый адрес слишком длинный");
 
         if (await dataContext.Users.AnyAsync(x => x.Email == user.Email, cancellationToken))
@@ -28,25 +28,25 @@ public sealed class UserService : IUserService
         #endregion
 
         #region Username
-        if (await Task.Run(() => { return string.IsNullOrWhiteSpace(user.Username); }))
+        if (string.IsNullOrWhiteSpace(user.Username))
             throw new BusinessLogicException("Имя пользователя не указано");
 
-        if (await Task.Run(() => { return user.Username.Length > ModelConstants.User.Username; }))
+        if (user.Username.Length > ModelConstants.User.Username)
             throw new BusinessLogicException("Имя пользователя слишком длинное");
         #endregion
 
         #region Phone
-        if (await Task.Run(() => { return user.Phone.Length > ModelConstants.User.Phone; }))
+        if (user.Phone.Length > ModelConstants.User.Phone)
             throw new BusinessLogicException("Номер телефона слишком длинный");
         #endregion
 
         #region Website
-        if (await Task.Run(() => { return user.Website.Length > ModelConstants.User.Website; }))
+        if (user.Website.Length > ModelConstants.User.Website)
             throw new BusinessLogicException("Ссылка на персональный сайт слишком длинная");
         #endregion
 
         #region ProfilePicture
-        if (await Task.Run(() => { return user.IsnProfilePicture is not null; })
+        if (user.IsnProfilePicture is not null
             && !await dataContext.Images.AnyAsync(x => x.Isn == user.IsnProfilePicture))
             throw new BusinessLogicException($"Изображение {user.IsnProfilePicture} не существует");
         #endregion
@@ -58,7 +58,7 @@ public sealed class UserService : IUserService
         CancellationToken cancellationToken)
     {
         #region Email
-        if (await Task.Run(() => { return user.Email.Length > ModelConstants.User.Email; }))
+        if (user.Email.Length > ModelConstants.User.Email)
             throw new BusinessLogicException("Почтовый адрес слишком длинный");
 
         if (await dataContext.Users.AnyAsync(x => x.Email == user.Email && x.Isn != user.Isn, cancellationToken))
@@ -66,22 +66,22 @@ public sealed class UserService : IUserService
         #endregion
 
         #region Username
-        if (await Task.Run(() => { return user.Username.Length > ModelConstants.User.Username; }))
+        if (user.Username.Length > ModelConstants.User.Username)
             throw new BusinessLogicException("Имя пользователя слишком длинное");
         #endregion
 
         #region Phone
-        if (await Task.Run(() => { return user.Phone.Length > ModelConstants.User.Phone; }))
+        if (user.Phone.Length > ModelConstants.User.Phone)
             throw new BusinessLogicException("Номер телефона слишком длинный");
         #endregion
 
         #region Website
-        if (await Task.Run(() => { return user.Website.Length > ModelConstants.User.Website; }))
+        if (user.Website.Length > ModelConstants.User.Website)
             throw new BusinessLogicException("Ссылка на персональный сайт слишком длинная");
         #endregion
 
         #region ProfilePicture
-        if (await Task.Run(() => { return user.IsnProfilePicture is not null; })
+        if (user.IsnProfilePicture is not null
             && !await dataContext.Images.AnyAsync(x => x.Isn == user.IsnProfilePicture))
             throw new BusinessLogicException($"Изображение {user.IsnProfilePicture} не существует");
         #endregion

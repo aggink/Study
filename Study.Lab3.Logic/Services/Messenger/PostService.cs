@@ -24,7 +24,7 @@ public sealed class PostService : IPostService
         #endregion
 
         #region Message
-        if (await Task.Run(() => { return string.IsNullOrWhiteSpace(post.Message); }))
+        if (string.IsNullOrWhiteSpace(post.Message))
             throw new BusinessLogicException("Не указано сообщение");
         #endregion
     }
@@ -35,7 +35,7 @@ public sealed class PostService : IPostService
         CancellationToken cancellationToken = default)
     {
         #region Message
-        if (await Task.Run(() => { return string.IsNullOrWhiteSpace(post.Message); }))
+        if (string.IsNullOrWhiteSpace(post.Message))
             throw new BusinessLogicException("Не указано сообщение");
         #endregion
     }
