@@ -5,7 +5,7 @@ namespace Study.Lab1.Logic.Kotsutaki;
 
 public class KotsutakiService : IRunService
 {
-   public void RunTask1()
+    public void RunTask1()
     {
         var A = new RationalNumber(1, 2);
         var B = new RationalNumber(3, 4);

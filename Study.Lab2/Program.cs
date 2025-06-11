@@ -14,6 +14,7 @@ using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
 using Study.Lab2.Logic.KirillPoroshin;
+using Study.Lab2.Logic.Kotsutaki;
 using Study.Lab2.Logic.love100rubb;
 using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.mariabyrrrrak;
@@ -29,6 +30,7 @@ using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
 
+
 namespace Study.Lab2;
 
 public static class Program
@@ -36,12 +38,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "assistant";
+    private const string GROUP_NAME = "idb-23-02";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 1;
+    private const int PERSON_NUMBER = 9;
 
     public static async Task Main()
     {
@@ -142,6 +144,8 @@ public static class Program
                 return new alexmark1612Service();
             case ("idb-23-03", 7):
                 return new IvanZService();
+            case ("idb-23-02", 9):
+                return new KotsutakiService();
             default:
                 throw new NotSupportedException();
         }
