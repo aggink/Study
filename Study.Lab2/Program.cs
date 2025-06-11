@@ -15,6 +15,7 @@ using Study.Lab2.Logic.Jki749;
 using Study.Lab2.Logic.katty;
 using Study.Lab2.Logic.kinkiss1;
 using Study.Lab2.Logic.KirillPoroshin;
+using Study.Lab2.Logic.Kotsutaki;
 using Study.Lab2.Logic.love100rubb;
 using Study.Lab2.Logic.lsokol14l;
 using Study.Lab2.Logic.mariabyrrrrak;
@@ -29,6 +30,7 @@ using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
 using Study.Lab2.Logic.SuperSalad007;
+
 
 namespace Study.Lab2;
 
@@ -145,6 +147,8 @@ public static class Program
                 return new IvanZService();
             case ("idb-23-03", 19):
                 return new Crocodile17Service();
+            case ("idb-23-02", 9):
+                return new KotsutakiService();
             default:
                 throw new NotSupportedException();
         }
