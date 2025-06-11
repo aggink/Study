@@ -537,6 +537,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 				{
 					IsnAdoption = table.Column<Guid>(type: "uuid", nullable: false),
 					IsnCat = table.Column<Guid>(type: "uuid", nullable: false),
+					IsnMiniPig = table.Column<Guid>(type: "uuid", nullable: false),
 					IsnCustomer = table.Column<Guid>(type: "uuid", nullable: false),
 					Price = table.Column<int>(type: "integer", nullable: false),
 					AdoptionDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -550,6 +551,12 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 						column: x => x.IsnCat,
 						principalTable: "Cats",
 						principalColumn: "IsnCat",
+						onDelete: ReferentialAction.Restrict);
+					table.ForeignKey(
+						name: "FK_Adoptions_MiniPigs_IsnMiniPig",
+						column: x => x.IsnMiniPig,
+						principalTable: "MiniPigs",
+						principalColumn: "IsnMiniPig",
 						onDelete: ReferentialAction.Restrict);
 					table.ForeignKey(
 						name: "FK_Adoptions_ShelterCustomers_IsnCustomer",

@@ -969,7 +969,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
 				b.HasKey("IsnMiniPig");
 
-				b.ToTable("MiniPigss");
+				b.ToTable("MiniPigs");
 			});
 
 			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
