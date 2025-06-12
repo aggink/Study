@@ -40,6 +40,9 @@ using Study.Lab3.Web.Features.University.Groups.Queries;
 using Study.Lab3.Web.Features.University.Materials.Commands;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
 using Study.Lab3.Web.Features.University.Materials.Queries;
+using Study.Lab3.Web.Features.University.Pingpongclub.Commands;
+using Study.Lab3.Web.Features.University.Pingpongclub.DtoModels;
+using Study.Lab3.Web.Features.University.Pingpongclub.Queries;
 using Study.Lab3.Web.Features.University.Sportclub.Commands;
 using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
 using Study.Lab3.Web.Features.University.Sportclub.Queries;
@@ -1610,4 +1613,75 @@ public class ManageController : Controller
     }
 
     #endregion
+
+    #region Pingpongclub
+    /// <summary>
+    /// Создание спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(CreatePingpongclub), Name = nameof(CreatePingpongclub))]
+
+    public async Task<ActionResult<Guid>> CreatePingpongclub([FromBody] CreatePingpongclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(UpdatePingpongclub), Name = nameof(UpdatePingpongclub))]
+    public async Task<ActionResult<Guid>> UpdatePingpongclub([FromBody] UpdatePingpongclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление спортивного клуба
+    /// </summary>
+    [HttpPost(nameof(DeletePingpongclub), Name = nameof(DeletePingpongclub))]
+    public async Task<ActionResult> DeletePingpongclub([FromQuery] DeletePingpongclubCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetPingpongclubByIsn), Name = nameof(GetPingpongclubByIsn))]
+    public async Task<ActionResult<PingpongclubDto>> GetPingpongclubByIsn([FromQuery] GetPingpongclubByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение соревновательной деятельности с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetPingpongclubWithDetails), Name = nameof(GetPingpongclubWithDetails))]
+    public async Task<ActionResult<PingpongclubWithDetailsDto>> GetPingpongclubWithDetails([FromQuery] GetPingpongclubWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка соревновательной деятельности
+    /// </summary>
+    [HttpGet(nameof(GetListPingpongclub), Name = nameof(GetListPingpongclub))]
+    public async Task<ActionResult<PingpongclubDto[]>> GetListPingpongclub([FromQuery] GetListPingpongclubQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
+
 }

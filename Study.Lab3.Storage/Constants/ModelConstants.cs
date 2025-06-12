@@ -1068,4 +1068,17 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPerformancesValue = 20;
     }
+
+    public static class Pingpongclub
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinParticipantValue = 4;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxParticipantValue = 102;
+    }
 }

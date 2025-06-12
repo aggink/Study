@@ -156,6 +156,11 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<StudentLab> StudentLab { get; set; }
 
+    /// <summary>
+    /// Спортивный клуб
+    /// </summary>
+    public virtual DbSet<Pingpongclub> Pingpongclub { get; set; }
+
     #endregion
 
     #region Cinema
@@ -268,7 +273,7 @@ public class DataContext : DbContext
     public virtual DbSet<BeautyAppointment> BeautyAppointment { get; set; }
 
     #endregion
-    
+
     #region Shelter
 
     /// <summary>
@@ -311,7 +316,7 @@ public class DataContext : DbContext
     public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
-    
+
     #region Workshop
 
     /// <summary>
@@ -330,7 +335,7 @@ public class DataContext : DbContext
     public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
 
     #endregion
-    
+
     #region Fitness
 
     /// <summary>

@@ -73,5 +73,6 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IFitnessTrainerService, FitnessTrainerService>();
         services.AddSingleton<IFitnessEquipmentService, FitnessEquipmentService>();
         services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
+        services.AddSingleton<IPingpongclubService, PingpongclubService>();
     }
 }

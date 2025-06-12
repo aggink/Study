@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Enums.University;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.University;
 
@@ -96,4 +96,10 @@ public class Student
 
     [InverseProperty(nameof(StudentLab.Student))]
     public virtual ICollection<StudentLab> StudentLabs { get; set; }
+
+    /// <summary>
+    /// Связь с таблицей студента - спортивный клуб
+    /// </summary>
+    [InverseProperty(nameof(Pingpongclub.Student))]
+    public virtual ICollection<Pingpongclub> Pingpongclubs { get; set; }
 }
