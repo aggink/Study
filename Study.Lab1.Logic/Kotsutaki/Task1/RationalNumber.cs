@@ -14,6 +14,7 @@ public class RationalNumber : IRationalNumber
         {
             throw new DivideByZeroException("Знаменатель не может быть равен нулю");
         }
+
         if (denominator < 0)
         {
             numerator = -numerator;

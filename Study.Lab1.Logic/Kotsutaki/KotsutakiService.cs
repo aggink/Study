@@ -58,6 +58,7 @@ public class KotsutakiService : IRunService
                       $"d >= b : {D >= B}\n"
             );
     }
+
     public void RunTask2()
     {
         throw new NotImplementedException();
