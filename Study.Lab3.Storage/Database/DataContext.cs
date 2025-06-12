@@ -1,14 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
+using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
+using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.University;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
-using Study.Lab3.Storage.Models.Sweets;
 
 namespace Study.Lab3.Storage.Database;
 
@@ -141,6 +142,28 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Career> Career { get; set; }
 
+    /// <summary>
+    /// Заметки
+    /// </summary>
+    public virtual DbSet<StudentNote> StudentNotes { get; set; }
+    /// Учителя
+    /// </summary>
+    public virtual DbSet<ProjectActivities> TheProjectActivities { get; set; }
+
+    /// <summary>
+    /// Лабы
+    /// </summary>
+    public virtual DbSet<Labs> Labs { get; set; }
+    /// <summary>
+    /// Оценки студентов по лабам Лабы
+    /// </summary>
+    public virtual DbSet<StudentLab> StudentLab { get; set; }
+
+    /// <summary>
+    /// Посещение
+    /// </summary>
+    public virtual DbSet<AttendanceLog> TheAttendanceLog { get; set; }
+
     #endregion
 
     #region Cinema
@@ -253,6 +276,7 @@ public class DataContext : DbContext
     public virtual DbSet<BeautyAppointment> BeautyAppointment { get; set; }
 
     #endregion
+    
     #region Shelter
 
     /// <summary>
@@ -295,6 +319,7 @@ public class DataContext : DbContext
     public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
+    
     #region Workshop
 
     /// <summary>
@@ -311,6 +336,25 @@ public class DataContext : DbContext
     /// Заказы на услуги
     /// </summary>
     public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
+
+    #endregion
+    
+    #region Fitness
+
+    /// <summary>
+    /// Участники фитнес-центра
+    /// </summary>
+    public virtual DbSet<FitnessMember> Members { get; set; }
+
+    /// <summary>
+    /// Тренеры фитнес-центра
+    /// </summary>
+    public virtual DbSet<FitnessTrainer> Trainers { get; set; }
+
+    /// <summary>
+    /// Оборудование фитнес-центра
+    /// </summary>
+    public virtual DbSet<FitnessEquipment> Equipments { get; set; }
 
     #endregion
 

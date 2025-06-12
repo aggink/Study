@@ -17,7 +17,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -344,6 +344,154 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnSession");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessEquipment", b =>
+                {
+                    b.Property<Guid>("IsnEquipment")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<DateTime?>("LastMaintenanceDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<decimal>("PurchasePrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnEquipment");
+
+                    b.ToTable("Equipments");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessMember", b =>
+                {
+                    b.Property<Guid>("IsnMember")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("MembershipEndDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("MembershipStartDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("MembershipType")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PatronymicName")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnMember");
+
+                    b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessTrainer", b =>
+                {
+                    b.Property<Guid>("IsnTrainer")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Certifications")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<int>("ExperienceYears")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("HourlyRate")
+                        .HasColumnType("numeric");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PatronymicName")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int>("Specialization")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnTrainer");
+
+                    b.ToTable("Trainers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
@@ -963,6 +1111,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Assignments");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
+                {
+                    b.Property<Guid>("IsnAttendanceLog")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("IsPresent")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("SubjectDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnAttendanceLog");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("TheAttendanceLog");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
                 {
                     b.Property<Guid>("IsnCareer")
@@ -1144,6 +1318,21 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("TheKvn");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
+                {
+                    b.Property<Guid>("IsnLab")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("IsnLab");
+
+                    b.ToTable("Labs");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Material", b =>
                 {
                     b.Property<Guid>("IsnMaterial")
@@ -1206,6 +1395,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("TheProfcom");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ProjectActivities", b =>
+                {
+                    b.Property<Guid>("IsnProjectActivities")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("PerformancesCount")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ProjectActivitiesDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnProjectActivities");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("TheProjectActivities");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.Property<Guid>("IsnSportclub")
@@ -1266,6 +1481,49 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnGroup");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
+                {
+                    b.Property<Guid>("IsnStudentLab")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnLab")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnStudentLab");
+
+                    b.HasIndex("IsnLab");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.ToTable("StudentLab");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
+                {
+                    b.Property<Guid>("IsnNote")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.HasKey("IsnNote");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.ToTable("StudentNotes");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -1727,6 +1985,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("AttendanceLogs")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("AttendanceLogs")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
@@ -1855,6 +2132,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ProjectActivities", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("ProjectActivitiess")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("ProjectActivitiess")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
@@ -1883,6 +2179,36 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .IsRequired();
 
                     b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Labs", "Labs")
+                        .WithMany("StudentLabs")
+                        .HasForeignKey("IsnLab")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("StudentLabs")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Labs");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Notes")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.SubjectGroup", b =>
@@ -2077,8 +2403,15 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("SubjectGroups");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
+                {
+                    b.Navigation("StudentLabs");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
+                    b.Navigation("AttendanceLogs");
+
                     b.Navigation("Careers");
 
                     b.Navigation("ExamRegistrations");
@@ -2087,12 +2420,20 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.Navigation("Kvns");
 
+                    b.Navigation("Notes");
+
+                    b.Navigation("ProjectActivitiess");
+
                     b.Navigation("Sportclubs");
+
+                    b.Navigation("StudentLabs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
                     b.Navigation("Assignments");
+
+                    b.Navigation("AttendanceLogs");
 
                     b.Navigation("Careers");
 
@@ -2105,6 +2446,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Kvns");
 
                     b.Navigation("Materials");
+
+                    b.Navigation("ProjectActivitiess");
 
                     b.Navigation("Sportclubs");
 
