@@ -1073,6 +1073,7 @@ public static class ModelConstants
     {
         public const int MaxTextLength = 500;
     }
+
     public static class ProjectActivities
     {
         /// <summary>
@@ -1084,5 +1085,145 @@ public static class ModelConstants
         /// Максимально допустимое количество выступлений.
         /// </summary>
         public const int MaxPerformancesValue = 20;
+    }
+    
+    public static class Tour
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Максимальная длина поля "Страна"
+        /// </summary>
+        public const int Country = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Город"
+        /// </summary>
+        public const int City = 100;
+
+        /// <summary>
+        /// Минимальная цена тура
+        /// </summary>
+        public const double MinPrice = 0;
+
+        /// <summary>
+        /// Максимальная цена тура
+        /// </summary>
+        public const double MaxPrice = 999999;
+
+        /// <summary>
+        /// Минимальная продолжительность тура в днях
+        /// </summary>
+        public const int MinDuration = 1;
+
+        /// <summary>
+        /// Максимальная продолжительность тура в днях
+        /// </summary>
+        public const int MaxDuration = 365;
+
+        /// <summary>
+        /// Минимальное количество участников
+        /// </summary>
+        public const int MinParticipants = 1;
+
+        /// <summary>
+        /// Максимальное количество участников
+        /// </summary>
+        public const int MaxParticipants = 100;
+    }
+
+    public static class Hotel
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Максимальная длина поля "Адрес"
+        /// </summary>
+        public const int Address = 500;
+
+        /// <summary>
+        /// Максимальная длина поля "Страна"
+        /// </summary>
+        public const int Country = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Город"
+        /// </summary>
+        public const int City = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 100;
+
+        /// <summary>
+        /// Минимальное значение для стоимости за ночь.
+        /// </summary>
+        public const int PricePerNightMin = 0;
+
+        /// <summary>
+        /// Максимальное значение для стоимости за ночь.
+        /// </summary>
+        public const int PricePerNightMax = 1000000;
+    }
+
+
+    public static class TravelCustomer
+    {
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int SurName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Отчество"
+        /// </summary>
+        public const int PatronymicName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Номер паспорта"
+        /// </summary>
+        public const int PassportNumber = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Адрес"
+        /// </summary>
+        public const int Address = 500;
     }
 }
