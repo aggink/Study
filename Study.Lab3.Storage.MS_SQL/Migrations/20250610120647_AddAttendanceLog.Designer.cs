@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
 
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250610120647_AddAttendanceLog")]
+    partial class AddAttendanceLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1507,26 +1510,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("StudentLab");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
-                {
-                    b.Property<Guid>("IsnNote")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.HasKey("IsnNote");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.ToTable("StudentNotes");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
                     b.Property<Guid>("IsnSubject")
@@ -2201,17 +2184,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("Notes")
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.SubjectGroup", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Group", "Group")
@@ -2420,8 +2392,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Grades");
 
                     b.Navigation("Kvns");
-
-                    b.Navigation("Notes");
 
                     b.Navigation("ProjectActivitiess");
 

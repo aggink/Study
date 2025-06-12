@@ -98,6 +98,17 @@ public class Student
     public virtual ICollection<StudentLab> StudentLabs { get; set; }
 
     /// <summary>
+    /// Связь с заметками студента
+    /// </summary>
+    [InverseProperty(nameof(StudentNote.Student))]
+    public virtual ICollection<StudentNote> Notes { get; set; }
+  
+    /// Связь с посещениями
+    /// </summary>
+    [InverseProperty(nameof(AttendanceLog.Student))]
+    public virtual ICollection<AttendanceLog> AttendanceLogs { get; set; }
+
+    /// <summary>
     /// Связь с таблицей студента - спортивный клуб
     /// </summary>
     [InverseProperty(nameof(Pingpongclub.Student))]

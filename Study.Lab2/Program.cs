@@ -5,6 +5,7 @@ using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.chaspix;
 using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.chirique_online;
+using Study.Lab2.Logic.Crocodile17;
 using Study.Lab2.Logic.danaky1;
 using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.freaxd;
@@ -23,11 +24,11 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
-using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
+using Study.Lab2.Logic.SuperSalad007;
 
 namespace Study.Lab2;
 
@@ -142,6 +143,8 @@ public static class Program
                 return new alexmark1612Service();
             case ("idb-23-03", 7):
                 return new IvanZService();
+            case ("idb-23-03", 19):
+                return new Crocodile17Service();
             default:
                 throw new NotSupportedException();
         }
