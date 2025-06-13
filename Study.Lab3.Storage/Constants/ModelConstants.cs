@@ -1085,4 +1085,108 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPerformancesValue = 20;
     }
+
+    public static class Game
+    {
+        /// <summary>
+        /// Максимальная длина названия игры
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина описания игры
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная цена игры
+        /// </summary>
+        public const double MinPrice = 0;
+
+        /// <summary>
+        /// Максимальная цена игры
+        /// </summary>
+        public const double MaxPrice = 99999.99;
+
+        /// <summary>
+        /// Максимальная длина жанра
+        /// </summary>
+        public const int Genre = 100;
+
+        /// <summary>
+        /// Максимальная длина возрастного рейтинга
+        /// </summary>
+        public const int AgeRating = 10;
+    }
+
+    public static class Developer
+    {
+        /// <summary>
+        /// Максимальная длина названия компании
+        /// </summary>
+        public const int CompanyName = 150;
+
+        /// <summary>
+        /// Максимальная длина названия страны
+        /// </summary>
+        public const int Country = 100;
+
+        /// <summary>
+        /// Максимальная длина веб-сайта
+        /// </summary>
+        public const int Website = 200;
+
+        /// <summary>
+        /// Максимальная длина email
+        /// </summary>
+        public const int ContactEmail = 100;
+
+        /// <summary>
+        /// Максимальная длина описания компании
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Минимальный год основания компании
+        /// </summary>
+        public const int MinFoundedYear = 1900;
+    }
+
+    public static class Platform
+    {
+        /// <summary>
+        /// Максимальная длина названия платформы
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина названия производителя
+        /// </summary>
+        public const int Manufacturer = 100;
+
+        /// <summary>
+        /// Максимальная длина типа платформы
+        /// </summary>
+        public const int Type = 50;
+
+        /// <summary>
+        /// Максимальная длина описания платформы
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Минимальное поколение платформы
+        /// </summary>
+        public const int MinGeneration = 1;
+
+        /// <summary>
+        /// Максимальное поколение платформы
+        /// </summary>
+        public const int MaxGeneration = 20;
+
+        /// <summary>
+        /// Минимальный год выпуска платформы
+        /// </summary>
+        public const int MinReleaseYear = 1970;
+    }
 }
