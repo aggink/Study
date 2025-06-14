@@ -1152,7 +1152,7 @@ public static class ModelConstants
         /// </summary>
         public const int MaxParticipantValue = 102;
     }
-    
+
     public static class Tour
     {
         /// <summary>

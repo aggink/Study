@@ -374,9 +374,9 @@ public class DataContext : DbContext
     #region TravelAgency
 
     public virtual DbSet<Tour> Tours { get; set; }
-    
+
     public virtual DbSet<Hotel> Hotels { get; set; }
-    
+
     public virtual DbSet<TravelCustomer> TravelCustomers { get; set; }
 
     #endregion
