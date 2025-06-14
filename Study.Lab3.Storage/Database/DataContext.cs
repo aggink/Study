@@ -8,6 +8,7 @@ using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
+using Study.Lab3.Storage.Models.TravelAgency;
 using Study.Lab3.Storage.Models.University;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
@@ -370,6 +371,17 @@ public class DataContext : DbContext
     public virtual DbSet<FitnessEquipment> FitnessEquipments { get; set; }
 
     #endregion
+
+    #region TravelAgency
+
+    public virtual DbSet<Tour> Tours { get; set; }
+
+    public virtual DbSet<Hotel> Hotels { get; set; }
+
+    public virtual DbSet<TravelCustomer> TravelCustomers { get; set; }
+
+    #endregion
+
 
     #region GameStore
 
