@@ -494,6 +494,128 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Trainers");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
+                {
+                    b.Property<Guid>("IsnDeveloper")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("ContactEmail")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("FoundedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("IsnDeveloper");
+
+                    b.ToTable("Developers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Game", b =>
+                {
+                    b.Property<Guid>("IsnGame")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AgeRating")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("IsnDeveloper")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("IsnGame");
+
+                    b.HasIndex("IsnDeveloper");
+
+                    b.ToTable("Games");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Platform", b =>
+                {
+                    b.Property<Guid>("IsnPlatform")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int?>("Generation")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("SupportsOnlineGaming")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IsnPlatform");
+
+                    b.ToTable("Platforms");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
                 {
                     b.Property<Guid>("IsnOrder")
@@ -2044,6 +2166,15 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Session");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Game", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.GameStore.Developer", "Developer")
+                        .WithMany("Games")
+                        .HasForeignKey("IsnDeveloper");
+
+                    b.Navigation("Developer");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.HospitalStore.Patient", "Patient")
@@ -2585,6 +2716,11 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
                 {
                     b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
+                {
+                    b.Navigation("Games");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Patient", b =>

@@ -2,6 +2,7 @@
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.Fitness;
+using Study.Lab3.Logic.Interfaces.Services.GameStore;
 using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
 using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.Restaurants;
@@ -11,6 +12,7 @@ using Study.Lab3.Logic.Interfaces.Services.Workshop;
 using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.Fitness;
+using Study.Lab3.Logic.Services.GameStore;
 using Study.Lab3.Logic.Services.HospitalStore;
 using Study.Lab3.Logic.Services.Library;
 using Study.Lab3.Logic.Services.Restaurants;
@@ -79,6 +81,9 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
         services.AddSingleton<IPingpongclubService, PingpongclubService>();
         services.AddSingleton<IAttendanceLogService, AttendanceLogService>();
+        services.AddSingleton<IGameService, GameService>();
+        services.AddSingleton<IDeveloperService, DeveloperService>();
+        services.AddSingleton<IPlatformService, PlatformService>();
         services.AddSingleton<ITourService, TourService>();
         services.AddSingleton<ITravelCustomerService, TravelCustomerService>();
         services.AddSingleton<IHotelService, HotelService>();

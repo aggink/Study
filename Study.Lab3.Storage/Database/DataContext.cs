@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
+using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
@@ -378,6 +379,26 @@ public class DataContext : DbContext
     public virtual DbSet<Hotel> Hotels { get; set; }
 
     public virtual DbSet<TravelCustomer> TravelCustomers { get; set; }
+
+    #endregion
+
+
+    #region GameStore
+
+    /// <summary>
+    /// Игры
+    /// </summary>
+    public virtual DbSet<Game> Games { get; set; }
+
+    /// <summary>
+    /// Разработчики игр
+    /// </summary>
+    public virtual DbSet<Developer> Developers { get; set; }
+
+    /// <summary>
+    /// Игровые платформы
+    /// </summary>
+    public virtual DbSet<Platform> Platforms { get; set; }
 
     #endregion
 
