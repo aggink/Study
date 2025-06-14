@@ -23,7 +23,7 @@ public sealed class GetListProjectActivitiesQueryHandler : IRequestHandler<GetLi
 
     public async Task<ProjectActivitiesDto[]> Handle(GetListProjectActivitiesQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.TheProjectActivities
+        return await _dataContext.ProjectActivities
             .AsNoTracking()
             .Select(x => new ProjectActivitiesDto
             {

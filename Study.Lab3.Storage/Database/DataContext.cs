@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
@@ -15,6 +15,7 @@ namespace Study.Lab3.Storage.Database;
 
 public class DataContext : DbContext
 {
+
     public DataContext(DbContextOptions options) : base(options)
     {
 
@@ -125,7 +126,7 @@ public class DataContext : DbContext
     /// <summary>
     /// Профком
     /// </summary>
-    public virtual DbSet<Profcom> TheProfcom { get; set; }
+    public virtual DbSet<Profcom> Profcoms { get; set; }
 
     /// <summary>
     /// Спортивный клуб
@@ -135,7 +136,7 @@ public class DataContext : DbContext
     /// <summary>
     /// Квн
     /// </summary>
-    public virtual DbSet<Kvn> TheKvn { get; set; }
+    public virtual DbSet<Kvn> Kvns { get; set; }
 
     /// <summary>
     /// Карьера
@@ -148,14 +149,15 @@ public class DataContext : DbContext
     public virtual DbSet<StudentNote> StudentNotes { get; set; }
     /// Учителя
     /// </summary>
-    public virtual DbSet<ProjectActivities> TheProjectActivities { get; set; }
+    public virtual DbSet<ProjectActivities> ProjectActivities { get; set; }
 
     /// <summary>
     /// Лабы
     /// </summary>
     public virtual DbSet<Labs> Labs { get; set; }
+
     /// <summary>
-    /// Оценки студентов по лабам Лабы
+    /// Оценки студентов по лабам
     /// </summary>
     public virtual DbSet<StudentLab> StudentLab { get; set; }
 
@@ -290,6 +292,11 @@ public class DataContext : DbContext
     public virtual DbSet<Cat> Cats { get; set; }
 
     /// <summary>
+    /// Мини пиги с приюта
+    /// </summary>
+    public virtual DbSet<MiniPig> MiniPigs { get; set; }
+
+    /// <summary>
     /// Заказ на усыновление кота
     /// </summary>
     public virtual DbSet<Adoption> Adoptions { get; set; }
@@ -354,8 +361,7 @@ public class DataContext : DbContext
     /// <summary>
     /// Оборудование фитнес-центра
     /// </summary>
-    public virtual DbSet<FitnessEquipment> Equipments { get; set; }
+    public virtual DbSet<FitnessEquipment> FitnessEquipments { get; set; }
 
     #endregion
-
 }

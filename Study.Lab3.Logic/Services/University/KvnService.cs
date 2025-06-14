@@ -34,7 +34,7 @@ public sealed class KvnService : IKvnService
             throw new BusinessLogicException("Нельзя провести мероприятие будущим числом");
         }
 
-        var existingKvn = await dataContext.TheKvn
+        var existingKvn = await dataContext.Kvns
             .FirstOrDefaultAsync(x =>
                 x.IsnStudent == kvn.IsnStudent &&
                 x.IsnSubject == kvn.IsnSubject &&
@@ -49,7 +49,7 @@ public sealed class KvnService : IKvnService
 
         if (kvn.IsnKvn != Guid.Empty)
         {
-            var originalKvn = await dataContext.TheKvn
+            var originalKvn = await dataContext.Kvns
                 .FirstOrDefaultAsync(x => x.IsnKvn == kvn.IsnKvn, cancellationToken);
 
             if (originalKvn != null &&
@@ -71,7 +71,7 @@ public sealed class KvnService : IKvnService
             throw new BusinessLogicException("Нельзя отменить выступление, проведенное более месяца назад");
         }
 
-        var hasMeeting = await dataContext.TheKvn
+        var hasMeeting = await dataContext.Kvns
             .AnyAsync(x =>
                 x.IsnStudent == kvn.IsnStudent &&
                 x.IsnSubject == kvn.IsnSubject &&

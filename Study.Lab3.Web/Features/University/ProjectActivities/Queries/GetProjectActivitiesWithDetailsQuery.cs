@@ -29,7 +29,7 @@ public sealed class GetProjectActivitiesWithDetailsQueryHandler : IRequestHandle
 
     public async Task<ProjectActivitiesWithDetailsDto> Handle(GetProjectActivitiesWithDetailsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.TheProjectActivities
+        return await _dataContext.ProjectActivities
             .AsNoTracking()
             .Where(x => x.IsnProjectActivities == request.IsnProjectActivities)
             .Select(projectactivities => new ProjectActivitiesWithDetailsDto

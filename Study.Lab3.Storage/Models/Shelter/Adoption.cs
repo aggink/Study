@@ -1,7 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Study.Lab3.Storage.Constants;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
-using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.Shelter;
 
@@ -13,6 +12,9 @@ public class Adoption
 
     [ForeignKey(nameof(Cat))]
     public Guid IsnCat { get; set; }
+
+    [ForeignKey(nameof(MiniPig))]
+    public Guid IsnMiniPig { get; set; }
 
     [Required]
     [ForeignKey(nameof(Customer))]
@@ -39,4 +41,9 @@ public class Adoption
     /// Кот
     /// </summary>
     public virtual Cat Cat { get; set; }
+
+    /// <summary>
+    /// Мини пиг
+    /// </summary>
+    public virtual MiniPig MiniPig { get; set; }
 }

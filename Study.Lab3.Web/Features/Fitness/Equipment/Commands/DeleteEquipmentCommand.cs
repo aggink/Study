@@ -36,14 +36,14 @@ public sealed class DeleteEquipmentCommandHandler : IRequestHandler<DeleteEquipm
 
     public async Task Handle(DeleteEquipmentCommand request, CancellationToken cancellationToken)
     {
-        var equipment = await _dataContext.Equipments
+        var equipment = await _dataContext.FitnessEquipments
                             .FirstOrDefaultAsync(x => x.IsnEquipment == request.IsnEquipment, cancellationToken)
                         ?? throw new BusinessLogicException($"Оборудование с идентификатором \"{request.IsnEquipment}\" не существует");
 
         await _equipmentService.CanDeleteAndThrowAsync(
             _dataContext, equipment, cancellationToken);
 
-        _dataContext.Equipments.Remove(equipment);
+        _dataContext.FitnessEquipments.Remove(equipment);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

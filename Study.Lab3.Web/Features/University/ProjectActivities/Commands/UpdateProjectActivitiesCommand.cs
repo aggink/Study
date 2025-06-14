@@ -37,7 +37,7 @@ public sealed class UpdateProjectActivitiesCommandHandler : IRequestHandler<Upda
 
     public async Task<Guid> Handle(UpdateProjectActivitiesCommand request, CancellationToken cancellationToken)
     {
-        var projectactivities = await _dataContext.TheProjectActivities
+        var projectactivities = await _dataContext.ProjectActivities
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnProjectActivities == request.ProjectActivities.IsnProjectActivities, cancellationToken)
                 ?? throw new BusinessLogicException($"Выступлений с идентификатором \"{request.ProjectActivities.IsnProjectActivities}\" не существует");

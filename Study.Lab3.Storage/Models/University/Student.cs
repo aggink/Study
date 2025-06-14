@@ -107,4 +107,10 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(AttendanceLog.Student))]
     public virtual ICollection<AttendanceLog> AttendanceLogs { get; set; }
+
+    /// <summary>
+    /// Оценки
+    /// </summary>
+    [InverseProperty(nameof(Profcom.Student))]
+    public virtual ICollection<Profcom> Profcoms { get; set; }
 }
