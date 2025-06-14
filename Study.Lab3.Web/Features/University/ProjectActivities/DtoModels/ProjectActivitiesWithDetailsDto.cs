@@ -1,4 +1,4 @@
-﻿namespace Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
+﻿namespace Study.Lab3.Web.Features.University.ProjectActivities.DtoModels;
 
 public sealed record ProjectActivitiesWithDetailsDto
 {

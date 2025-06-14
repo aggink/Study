@@ -76,6 +76,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IFitnessEquipmentService, FitnessEquipmentService>();
         services.AddSingleton<IStudentNoteService, StudentNoteService>();
         services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
+        services.AddSingleton<IPingpongclubService, PingpongclubService>();
         services.AddSingleton<IAttendanceLogService, AttendanceLogService>();
         services.AddSingleton<IGameService, GameService>();
         services.AddSingleton<IDeveloperService, DeveloperService>();

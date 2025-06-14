@@ -36,7 +36,7 @@ public sealed class DeleteKvnCommandHandler : IRequestHandler<DeleteKvnCommand>
 
     public async Task Handle(DeleteKvnCommand request, CancellationToken cancellationToken)
     {
-        var kvn = await _dataContext.TheKvn
+        var kvn = await _dataContext.Kvns
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnKvn == request.IsnKvn, cancellationToken)
                 ?? throw new BusinessLogicException($"Выступления с идентификатором \"{request.IsnKvn}\" не существует");
@@ -44,7 +44,7 @@ public sealed class DeleteKvnCommandHandler : IRequestHandler<DeleteKvnCommand>
         await _kvnService.CanDeleteAndThrowAsync(
             _dataContext, kvn, cancellationToken);
 
-        _dataContext.TheKvn.Remove(kvn);
+        _dataContext.Kvns.Remove(kvn);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

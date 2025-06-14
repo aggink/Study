@@ -10,14 +10,14 @@ public sealed record CreateExamResultDto
     /// </summary>
     [Required]
     public Guid IsnExamRegistration { get; init; }
-    
+
     /// <summary>
     /// Полученный балл
     /// </summary>
     [Required]
     [Range(ModelConstants.ExamResult.MinScore, ModelConstants.ExamResult.MaxScore)]
     public int Score { get; init; }
-    
+
     /// <summary>
     /// Комментарии к результату
     /// </summary>

@@ -10,7 +10,7 @@ public class XynthhService : IRunService
 
     // Идентификаторы для запросов
     private const int JsonPlaceholderUserId = 1;
-    private const int ReqResUserId          = 2;
+    private const int ReqResUserId = 2;
     private const int JsonPlaceholderPostId = 3;
 
     public XynthhService()

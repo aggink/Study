@@ -8,7 +8,7 @@ public sealed record NumberFactResponseDto
     public string Text { get; init; }
 
     [JsonPropertyName("number")]
-    [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)] 
+    [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
     public int Number { get; init; }
 
     [JsonPropertyName("type")]

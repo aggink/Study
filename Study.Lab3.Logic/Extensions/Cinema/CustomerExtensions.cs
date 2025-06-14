@@ -30,7 +30,7 @@ public static class CustomerExtensions
 
         var today = DateTime.Today;
         var age = today.Year - customer.BirthDate.Value.Year;
-        
+
         if (customer.BirthDate.Value.Date > today.AddYears(-age))
             age--;
 
@@ -46,7 +46,7 @@ public static class CustomerExtensions
     public static bool CanWatchMovie(this Customer customer, int ageRating)
     {
         var age = customer.GetAge();
-        
+
         // Если возраст не указан, предполагаем, что это взрослый
         if (!age.HasValue)
             return true;

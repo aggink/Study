@@ -77,9 +77,9 @@ public sealed class BuyTicketCommandHandler : IRequestHandler<BuyTicketCommand, 
         // Проверка, что место не занято
         var existingTicket = await _dataContext.Tickets
             .FirstOrDefaultAsync(
-                t => t.IsnSession == request.Ticket.IsnSession && 
-                     t.IsnSeat == request.Ticket.IsnSeat && 
-                     t.Status == TicketStatus.Active, 
+                t => t.IsnSession == request.Ticket.IsnSession &&
+                     t.IsnSeat == request.Ticket.IsnSeat &&
+                     t.Status == TicketStatus.Active,
                 cancellationToken);
 
         if (existingTicket != null)
@@ -106,7 +106,7 @@ public sealed class BuyTicketCommandHandler : IRequestHandler<BuyTicketCommand, 
 
         await _dataContext.Tickets.AddAsync(ticket, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
-        
+
         return ticket.IsnTicket;
     }
 
@@ -115,14 +115,14 @@ public sealed class BuyTicketCommandHandler : IRequestHandler<BuyTicketCommand, 
         string input = $"{sessionId}-{seatId}-{customerId}-{DateTime.UtcNow.Ticks}";
         using var md5 = MD5.Create();
         byte[] hashBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
-        
+
         // Преобразуем байты в строку и берем первые 10 символов
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < hashBytes.Length; i++)
         {
             sb.Append(hashBytes[i].ToString("X2"));
         }
-        
+
         return sb.ToString().Substring(0, 10);
     }
 

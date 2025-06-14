@@ -10,21 +10,21 @@ public sealed record UpdateCustomerDto
     /// </summary>
     [Required]
     public Guid IsnCustomer { get; init; }
-    
+
     /// <summary>
     /// Имя
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.Customer.FirstName)]
     public string FirstName { get; init; }
-    
+
     /// <summary>
     /// Фамилия
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.Customer.LastName)]
     public string LastName { get; init; }
-    
+
     /// <summary>
     /// Email
     /// </summary>
@@ -32,19 +32,19 @@ public sealed record UpdateCustomerDto
     [MaxLength(ModelConstants.Customer.Email)]
     [EmailAddress]
     public string Email { get; init; }
-    
+
     /// <summary>
     /// Телефон
     /// </summary>
     [MaxLength(ModelConstants.Customer.Phone)]
     [Phone]
     public string Phone { get; init; }
-    
+
     /// <summary>
     /// Дата рождения
     /// </summary>
     public DateTime? BirthDate { get; init; }
-    
+
     /// <summary>
     /// Активен ли клиент
     /// </summary>

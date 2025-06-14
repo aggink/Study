@@ -5,7 +5,7 @@ using Study.Lab3.Web.Features.Fitness.Member.DtoModels;
 
 namespace Study.Lab3.Web.Features.Fitness.Member.Queries;
 
-public class GetListMembersQuery: IRequest<MemberDto[]>
+public class GetListMembersQuery : IRequest<MemberDto[]>
 {
 }
 

@@ -9,8 +9,8 @@ namespace Study.Lab2.Logic.UnitTests.xynthh;
 public class RequestServiceTests
 {
     private Mock<HttpMessageHandler> _mockHttpMessageHandler;
-    private HttpClient               _httpClient;
-    private RequestService           _requestService;
+    private HttpClient _httpClient;
+    private RequestService _requestService;
 
     [SetUp]
     public void Setup()

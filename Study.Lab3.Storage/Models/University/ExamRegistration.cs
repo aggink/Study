@@ -36,17 +36,17 @@ public class ExamRegistration
     /// </summary>
     [Required]
     public RegistrationStatus Status { get; set; }
-    
+
     /// <summary>
     /// Навигационное свойство, указывающее на связанный экзамен
     /// </summary>
     public virtual Exam Exam { get; set; }
-    
+
     /// <summary>
     /// Навигационное свойство, указывающее на связанного студента
     /// </summary>
     public virtual Student Student { get; set; }
-    
+
     /// <summary>
     /// Навигационное свойство, указывающее на результат экзамена
     /// </summary>

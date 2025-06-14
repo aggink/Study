@@ -8,12 +8,12 @@ public class UpdateCatDto
 {
     [Required]
     public Guid IsnCat { get; init; }
- 
+
     [Required]
     [MaxLength(ModelConstants.Cat.Nickname)]
-    
+
     public string Nickname { get; init; }
-    
+
     public DateTime? BirthDate { get; init; }
 
     [MaxLength(ModelConstants.Cat.Description)]
@@ -50,7 +50,7 @@ public class UpdateCatDto
     [Required]
     [Range(ModelConstants.Cat.AgeMin, ModelConstants.Cat.AgeMax)]
     public int Age { get; init; }
-        
+
     [Required]
     [Range(ModelConstants.Cat.WeightMin, ModelConstants.Cat.WeightMax)]
     public int Weight { get; init; }

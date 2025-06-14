@@ -43,7 +43,7 @@ public sealed class UpdateOrderItemCommandHandler : IRequestHandler<UpdateOrderI
                         ?? throw new BusinessLogicException($"Позиция заказа с идентификатором \"{request.OrderItem.IsnOrderItem}\" не существует");
 
         var oldTotalPrice = orderItem.TotalPrice;
-        
+
         orderItem.Quantity = request.OrderItem.Quantity;
         orderItem.SpecialRequests = request.OrderItem.SpecialRequests;
 
