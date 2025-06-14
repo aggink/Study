@@ -1,11 +1,6 @@
-﻿using Study.Lab3.Storage.Constants;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.University;
 

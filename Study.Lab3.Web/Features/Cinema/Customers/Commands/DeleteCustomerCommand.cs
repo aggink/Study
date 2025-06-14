@@ -50,7 +50,7 @@ public sealed class DeleteCustomerCommandHandler : IRequestHandler<DeleteCustome
 
         // Удаляем клиента
         _dataContext.Customers.Remove(customer);
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

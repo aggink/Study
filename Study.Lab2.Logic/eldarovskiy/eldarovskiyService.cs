@@ -16,7 +16,7 @@ public class eldarovskiyService : IRunService
     }
 
     public void RunTask()
-    {   
+    {
         Console.WriteLine("Инициализация запросов...\n");
         Console.WriteLine("\nСтарт синхронных запросов...\n");
         var timer = Stopwatch.StartNew();
@@ -49,7 +49,7 @@ public class eldarovskiyService : IRunService
 
         try
         {
-            var tasks = _apiUrls.Select((url, index) => 
+            var tasks = _apiUrls.Select((url, index) =>
             {
                 Console.WriteLine($"Запрос {index + 1}: {url}"); // Добавляем вывод URL
                 return _requestHandler.FetchDataAsync(url, cancellationToken);
@@ -134,7 +134,7 @@ public class eldarovskiyService : IRunService
         Console.ResetColor();
     }
 
-    private void PrintSeparator() => 
+    private void PrintSeparator() =>
         Console.WriteLine("\n" + new string('~', 100));
 
     public void Dispose() => _requestHandler.Dispose();

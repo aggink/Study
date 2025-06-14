@@ -10,19 +10,19 @@ public sealed record CreateSessionDto
     /// </summary>
     [Required]
     public Guid IsnMovie { get; init; }
-    
+
     /// <summary>
     /// Идентификатор зала
     /// </summary>
     [Required]
     public Guid IsnHall { get; init; }
-    
+
     /// <summary>
     /// Время начала сеанса
     /// </summary>
     [Required]
     public DateTime StartTime { get; init; }
-    
+
     /// <summary>
     /// Базовая цена билета
     /// </summary>

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -5,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.Workshop;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.Workshop.Masters.DtoModels;
-using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Workshop.Masters.Commands;
 

@@ -49,10 +49,10 @@ public sealed class DeleteSessionCommandHandler : IRequestHandler<DeleteSessionC
 
         // Удаление всех билетов на сеанс
         _dataContext.Tickets.RemoveRange(session.Tickets);
-        
+
         // Удаление сеанса
         _dataContext.Sessions.Remove(session);
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

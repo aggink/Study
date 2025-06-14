@@ -1086,6 +1086,72 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPerformancesValue = 20;
     }
+
+    public static class MiniPig
+    {
+        /// <summary>
+        /// Максимальная длина клички мини пига
+        /// </summary>
+        public const int Nickname = 100;
+
+        /// <summary>
+        /// Максимальная длина описания мини пига
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Максимальная длина названия породы
+        /// </summary>
+        public const int Breed = 100;
+
+        /// <summary>
+        /// Максимальная длина названия окраса
+        /// </summary>
+        public const int Color = 20;
+
+        /// <summary>
+        /// Максимальная длина истории болезней
+        /// </summary>
+        public const int MedicalHistory = 1000;
+
+        /// <summary>
+        /// Минимальный возраст мини пига (в годах)
+        /// </summary>
+        public const int AgeMin = 0;
+
+        /// <summary>
+        /// Максимальный возраст мини пига (в годах)
+        /// </summary>
+        public const int AgeMax = 20;
+
+        /// <summary>
+        /// Минимальный вес мини пига (в кг)
+        /// </summary>
+        public const double WeightMin = 10.0;
+
+        /// <summary>
+        /// Максимальный вес мини пига (в кг)
+        /// </summary>
+        public const double WeightMax = 120.0;
+
+        /// <summary>
+        /// Ссылка на фотографию мини пига
+        /// </summary>
+        public const int PhotoUrl = 100;
+    }
+
+    public static class Pingpongclub
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinParticipantValue = 4;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxParticipantValue = 102;
+    }
     
     public static class Tour
     {

@@ -20,19 +20,19 @@ public class p0se1d0nService : IRunService
         Rational add_rational = r1 + r2;
         Rational sub_rational = r1 - r2;
 
-        Console.WriteLine($"Rational 1: { r1.ToString()}\n");
-        Console.WriteLine($"Rational 2: { r2.ToString()}\n");
-        Console.WriteLine($"Multiplication: { multiplication_rational.ToString()}\n");
-        Console.WriteLine($"Division: { division_rational.ToString()}\n");
-        Console.WriteLine($"Add: { add_rational.ToString()}\n");
+        Console.WriteLine($"Rational 1: {r1.ToString()}\n");
+        Console.WriteLine($"Rational 2: {r2.ToString()}\n");
+        Console.WriteLine($"Multiplication: {multiplication_rational.ToString()}\n");
+        Console.WriteLine($"Division: {division_rational.ToString()}\n");
+        Console.WriteLine($"Add: {add_rational.ToString()}\n");
         Console.WriteLine($"Sub: {sub_rational.ToString()}\n");
 
-        Console.WriteLine($"r1 > r2: { r1 > r2}\n");
-        Console.WriteLine($"r1 < r2: { r1 < r2}\n");
-        Console.WriteLine($"r1 >= r2: { r1 >= r2}\n");
-        Console.WriteLine($"r1 <= r2: { r1 <= r2}\n");
-        Console.WriteLine($"r1 == r2: { r1 == r2}\n");
-        Console.WriteLine($"r1 != r2: { r1 != r2}\n"); 
+        Console.WriteLine($"r1 > r2: {r1 > r2}\n");
+        Console.WriteLine($"r1 < r2: {r1 < r2}\n");
+        Console.WriteLine($"r1 >= r2: {r1 >= r2}\n");
+        Console.WriteLine($"r1 <= r2: {r1 <= r2}\n");
+        Console.WriteLine($"r1 == r2: {r1 == r2}\n");
+        Console.WriteLine($"r1 != r2: {r1 != r2}\n");
     }
 
     public void RunTask2()

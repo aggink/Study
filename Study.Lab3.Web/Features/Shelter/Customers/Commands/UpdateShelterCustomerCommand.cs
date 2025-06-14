@@ -38,7 +38,7 @@ public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateShelter
                            $"Клиент с идентификатором \"{request.ShelterCustomer.IsnCustomer}\" не существует");
 
         // Проверка уникальности email
-        if (customer.Email != request.ShelterCustomer.Email && 
+        if (customer.Email != request.ShelterCustomer.Email &&
             await _dataContext.Customers.AnyAsync(c => c.Email == request.ShelterCustomer.Email, cancellationToken))
             throw new BusinessLogicException($"Клиент с email \"{request.ShelterCustomer.Email}\" уже существует");
 
@@ -48,7 +48,7 @@ public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateShelter
         customer.PhoneNumber = request.ShelterCustomer.PhoneNumber;
         customer.Description = request.ShelterCustomer.Description;
         customer.Address = request.ShelterCustomer.Address;
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
         return customer.IsnCustomer;
     }

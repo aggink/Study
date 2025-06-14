@@ -1,6 +1,5 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Study.Lab3.Web.Features.University.Groups.Commands;
 using Study.Lab3.Web.Features.University.Labs.Commands;
 using Study.Lab3.Web.Features.University.Labs.DtoModels;
 using Study.Lab3.Web.Features.University.Labs.Queries;

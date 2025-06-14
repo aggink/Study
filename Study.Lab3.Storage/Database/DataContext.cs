@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
@@ -16,6 +16,7 @@ namespace Study.Lab3.Storage.Database;
 
 public class DataContext : DbContext
 {
+
     public DataContext(DbContextOptions options) : base(options)
     {
 
@@ -126,7 +127,7 @@ public class DataContext : DbContext
     /// <summary>
     /// Профком
     /// </summary>
-    public virtual DbSet<Profcom> TheProfcom { get; set; }
+    public virtual DbSet<Profcom> Profcoms { get; set; }
 
     /// <summary>
     /// Спортивный клуб
@@ -136,7 +137,7 @@ public class DataContext : DbContext
     /// <summary>
     /// Квн
     /// </summary>
-    public virtual DbSet<Kvn> TheKvn { get; set; }
+    public virtual DbSet<Kvn> Kvns { get; set; }
 
     /// <summary>
     /// Карьера
@@ -149,14 +150,15 @@ public class DataContext : DbContext
     public virtual DbSet<StudentNote> StudentNotes { get; set; }
     /// Учителя
     /// </summary>
-    public virtual DbSet<ProjectActivities> TheProjectActivities { get; set; }
+    public virtual DbSet<ProjectActivities> ProjectActivities { get; set; }
 
     /// <summary>
     /// Лабы
     /// </summary>
     public virtual DbSet<Labs> Labs { get; set; }
+
     /// <summary>
-    /// Оценки студентов по лабам Лабы
+    /// Оценки студентов по лабам
     /// </summary>
     public virtual DbSet<StudentLab> StudentLab { get; set; }
 
@@ -164,6 +166,11 @@ public class DataContext : DbContext
     /// Посещение
     /// </summary>
     public virtual DbSet<AttendanceLog> TheAttendanceLog { get; set; }
+
+    /// <summary>
+    /// Спортивный клуб
+    /// </summary>
+    public virtual DbSet<Pingpongclub> Pingpongclub { get; set; }
 
     #endregion
 
@@ -277,7 +284,7 @@ public class DataContext : DbContext
     public virtual DbSet<BeautyAppointment> BeautyAppointment { get; set; }
 
     #endregion
-    
+
     #region Shelter
 
     /// <summary>
@@ -289,6 +296,11 @@ public class DataContext : DbContext
     /// Коты с приюта
     /// </summary>
     public virtual DbSet<Cat> Cats { get; set; }
+
+    /// <summary>
+    /// Мини пиги с приюта
+    /// </summary>
+    public virtual DbSet<MiniPig> MiniPigs { get; set; }
 
     /// <summary>
     /// Заказ на усыновление кота
@@ -320,7 +332,7 @@ public class DataContext : DbContext
     public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
-    
+
     #region Workshop
 
     /// <summary>
@@ -339,7 +351,7 @@ public class DataContext : DbContext
     public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
 
     #endregion
-    
+
     #region Fitness
 
     /// <summary>
@@ -355,7 +367,7 @@ public class DataContext : DbContext
     /// <summary>
     /// Оборудование фитнес-центра
     /// </summary>
-    public virtual DbSet<FitnessEquipment> Equipments { get; set; }
+    public virtual DbSet<FitnessEquipment> FitnessEquipments { get; set; }
 
     #endregion
 
