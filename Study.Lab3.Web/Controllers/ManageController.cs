@@ -16,6 +16,10 @@ using Study.Lab3.Web.Features.Shelter.Cats.Queries;
 using Study.Lab3.Web.Features.Shelter.Customers.Commands;
 using Study.Lab3.Web.Features.Shelter.Customers.DtoModels;
 using Study.Lab3.Web.Features.Shelter.Customers.Queries;
+using Study.Lab3.Web.Features.Shelter.MiniPigAdoptions.Commands;
+using Study.Lab3.Web.Features.Shelter.MiniPigs.Commands;
+using Study.Lab3.Web.Features.Shelter.MiniPigs.DtoModels;
+using Study.Lab3.Web.Features.Shelter.MiniPigs.Queries;
 using Study.Lab3.Web.Features.University.Announcements.Commands;
 using Study.Lab3.Web.Features.University.Announcements.DtoModels;
 using Study.Lab3.Web.Features.University.Announcements.Queries;
@@ -1734,6 +1738,87 @@ public class ManageController : Controller
     {
         var result = await _mediator.Send(query, cancellationToken);
         return result != null ? Ok(result) : NotFound();
+    }
+    #endregion
+
+
+    #region MiniPigAdoption
+
+    /// <summary>
+    /// Создание усыновления
+    /// </summary>
+    [HttpPost(nameof(CreateMiniPigAdoption), Name = nameof(CreateMiniPigAdoption))]
+    public async Task<ActionResult<Guid>> CreateMiniPigAdoption(CreateMiniPigAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование усыновления
+    /// </summary>
+    [HttpPost(nameof(UpdateMiniPigAdoption), Name = nameof(UpdateMiniPigAdoption))]
+    public async Task<ActionResult<Guid>> UpdateMiniPigAdoption(UpdateMiniPigAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление усыновления
+    /// </summary>
+    [HttpPost(nameof(DeleteMiniPigAdoption), Name = nameof(DeleteMiniPigAdoption))]
+    public async Task<ActionResult> DeleteMiniPigAdoption(DeleteMiniPigAdoptionCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    #endregion
+
+    #region MiniPig
+    // Получение списка мини пигов
+    [HttpGet(nameof(GetListMiniPigs), Name = nameof(GetListMiniPigs))]
+    public async Task<ActionResult<MiniPigDto[]>> GetListMiniPigs([FromQuery] GetListMiniPigsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    // Создание мини пига
+    [HttpPost(nameof(CreateMiniPig), Name = nameof(CreateMiniPig))]
+    public async Task<ActionResult<Guid>> CreateMiniPig(CreateMiniPigCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    // Обновление мини пига
+    [HttpPost(nameof(UpdateMiniPig), Name = nameof(UpdateMiniPig))]
+    public async Task<ActionResult<Guid>> UpdateMiniPig(UpdateMiniPigCommand command, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    // Удаление мини пига
+    [HttpPost(nameof(DeleteMiniPig), Name = nameof(DeleteMiniPig))]
+    public async Task<ActionResult> DeleteMiniPig(DeleteMiniPigCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение мини пига по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetMiniPigById), Name = nameof(GetMiniPigById))]
+    public async Task<ActionResult<MiniPigDto>> GetMiniPigById([FromQuery] GetMiniPigByIdQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        if (result == null)
+            return NotFound();
+        return Ok(result);
     }
     #endregion
 }

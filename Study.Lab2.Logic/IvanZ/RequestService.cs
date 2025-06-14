@@ -10,12 +10,12 @@ public class RequestService : IRequestService
     {
         _httpClient = httpClient;
     }
-    
+
     public void Dispose()
     {
         _httpClient?.Dispose();
     }
-    
+
     public string FetchData(string url)
     {
         var response = _httpClient.GetAsync(url).GetAwaiter().GetResult();

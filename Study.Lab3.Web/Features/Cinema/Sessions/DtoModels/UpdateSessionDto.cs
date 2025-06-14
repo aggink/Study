@@ -10,20 +10,20 @@ public sealed record UpdateSessionDto
     /// </summary>
     [Required]
     public Guid IsnSession { get; init; }
-    
+
     /// <summary>
     /// Время начала сеанса
     /// </summary>
     [Required]
     public DateTime StartTime { get; init; }
-    
+
     /// <summary>
     /// Базовая цена билета
     /// </summary>
     [Required]
     [Range(ModelConstants.Session.MinPrice, ModelConstants.Session.MaxPrice)]
     public decimal BasePrice { get; init; }
-    
+
     /// <summary>
     /// Активен ли сеанс
     /// </summary>

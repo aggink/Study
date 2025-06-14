@@ -32,7 +32,7 @@ public sealed class GetProjectActivitiesByIsnQueryHandler : IRequestHandler<GetP
 
     public async Task<ProjectActivitiesDto> Handle(GetProjectActivitiesByIsnQuery request, CancellationToken cancellationToken)
     {
-        var projectactivities = await _dataContext.TheProjectActivities
+        var projectactivities = await _dataContext.ProjectActivities
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnProjectActivities == request.IsnProjectActivities, cancellationToken)
                 ?? throw new BusinessLogicException($"Количества участников с идентификатором \"{request.IsnProjectActivities}\" не существует");

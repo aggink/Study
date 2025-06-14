@@ -34,7 +34,7 @@ public sealed class ProjectActivitiesService : IProjectActivitiesService
             throw new BusinessLogicException("Нельзя провести мероприятие будущим числом");
         }
 
-        var existingProjectActivities = await dataContext.TheProjectActivities
+        var existingProjectActivities = await dataContext.ProjectActivities
             .FirstOrDefaultAsync(x =>
                 x.IsnStudent == projectactivities.IsnStudent &&
                 x.IsnSubject == projectactivities.IsnSubject &&
@@ -49,7 +49,7 @@ public sealed class ProjectActivitiesService : IProjectActivitiesService
 
         if (projectactivities.IsnProjectActivities != Guid.Empty)
         {
-            var originalProjectActivities = await dataContext.TheProjectActivities
+            var originalProjectActivities = await dataContext.ProjectActivities
                 .FirstOrDefaultAsync(x => x.IsnProjectActivities == projectactivities.IsnProjectActivities, cancellationToken);
 
             if (originalProjectActivities != null &&
@@ -71,7 +71,7 @@ public sealed class ProjectActivitiesService : IProjectActivitiesService
             throw new BusinessLogicException("Нельзя удалить научную встречу, проведенную более месяца назад");
         }
 
-        var hasMeeting = await dataContext.TheProjectActivities
+        var hasMeeting = await dataContext.ProjectActivities
             .AnyAsync(x =>
                 x.IsnStudent == projectactivities.IsnStudent &&
                 x.IsnSubject == projectactivities.IsnSubject &&

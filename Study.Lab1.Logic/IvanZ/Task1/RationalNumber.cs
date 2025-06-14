@@ -4,16 +4,16 @@ public class RationalNumber
 {
     public int Numerator { get; }
     public int Denominator { get; }
-      
+
     public RationalNumber(int numerator, int denominator)
     {
         if (denominator == 0)
-        throw new DivideByZeroException("Denominator can't be zero");
+            throw new DivideByZeroException("Denominator can't be zero");
 
         if (denominator < 0)
         {
-        numerator = -numerator;
-        denominator = -denominator;
+            numerator = -numerator;
+            denominator = -denominator;
         }
 
         int nod = NOD(Math.Abs(numerator), Math.Abs(denominator));
@@ -30,57 +30,57 @@ public class RationalNumber
     {
         return new RationalNumber(a.Numerator * b.Denominator + b.Numerator * a.Denominator, a.Denominator * b.Denominator);
     }
-      
+
     public static RationalNumber operator -(RationalNumber a, RationalNumber b)
     {
         return new RationalNumber(a.Numerator * b.Denominator - b.Numerator * a.Denominator, a.Denominator * b.Denominator);
     }
-      
+
     public static RationalNumber operator *(RationalNumber a, RationalNumber b)
     {
         return new RationalNumber(a.Numerator * b.Numerator, a.Denominator * b.Denominator);
     }
-      
+
     public static RationalNumber operator /(RationalNumber a, RationalNumber b)
     {
         return new RationalNumber(a.Numerator * b.Denominator, a.Denominator * b.Numerator);
     }
-      
+
     public static RationalNumber operator -(RationalNumber a)
     {
         return new RationalNumber(-a.Numerator, a.Denominator);
     }
-      
+
     public static bool operator ==(RationalNumber a, RationalNumber b)
     {
         return (a.Numerator == b.Numerator) && (a.Denominator == b.Denominator);
     }
-      
+
     public static bool operator !=(RationalNumber a, RationalNumber b)
     {
         return !(a == b);
     }
-      
+
     public static bool operator <(RationalNumber a, RationalNumber b)
     {
         return a.Numerator * b.Denominator < b.Numerator * a.Denominator;
     }
-      
+
     public static bool operator <=(RationalNumber a, RationalNumber b)
     {
         return a.Numerator * b.Denominator <= b.Numerator * a.Denominator;
     }
-      
+
     public static bool operator >(RationalNumber a, RationalNumber b)
     {
         return !(a <= b);
     }
-      
-    public static bool operator >=(RationalNumber a, RationalNumber  b)
+
+    public static bool operator >=(RationalNumber a, RationalNumber b)
     {
-       	return !(a < b);
+        return !(a < b);
     }
-      
+
     private static int NOD(int a, int b)
     {
         while (b != 0)
@@ -91,5 +91,19 @@ public class RationalNumber
         }
         return a;
     }
-	
-}; 
+
+    public override bool Equals(object obj)
+    {
+        if (ReferenceEquals(this, obj))
+        {
+            return true;
+        }
+
+        if (ReferenceEquals(obj, null))
+        {
+            return false;
+        }
+
+        throw new NotImplementedException();
+    }
+}

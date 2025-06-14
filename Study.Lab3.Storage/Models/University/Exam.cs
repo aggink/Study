@@ -58,7 +58,7 @@ public class Exam
     [Required]
     [Range(ModelConstants.Exam.MinScore, ModelConstants.Exam.MaxScore)]
     public int PassingScore { get; set; }
-    
+
     /// <summary>
     /// Навигационное свойство, представляющее связь с предметом экзамена
     /// </summary>

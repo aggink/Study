@@ -54,7 +54,7 @@ public sealed class CreateEquipmentCommandHandler : IRequestHandler<CreateEquipm
         await _equipmentService.CreateOrUpdateEquipmentValidateAndThrowAsync(
             _dataContext, equipment, cancellationToken);
 
-        await _dataContext.Equipments.AddAsync(equipment, cancellationToken);
+        await _dataContext.FitnessEquipments.AddAsync(equipment, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return equipment.IsnEquipment;

@@ -51,7 +51,7 @@ public sealed class CreateExamResultCommandHandler : IRequestHandler<CreateExamR
             _dataContext, result, cancellationToken);
 
         await _dataContext.ExamResults.AddAsync(result, cancellationToken);
-        
+
         // Обновляем статус регистрации на "Completed"
         var registration = await _dataContext.ExamRegistrations
             .FirstOrDefaultAsync(x => x.IsnExamRegistration == request.Result.IsnExamRegistration, cancellationToken);
@@ -59,7 +59,7 @@ public sealed class CreateExamResultCommandHandler : IRequestHandler<CreateExamR
         {
             registration.Status = RegistrationStatus.Completed;
         }
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return result.IsnExamResult;
