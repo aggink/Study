@@ -2,15 +2,15 @@
 
 public sealed record AdoptionDto
 {
-	public Guid IsnAdoption { get; init; }
+    public Guid IsnAdoption { get; init; }
 
-	public int Price { get; init; }
+    public int Price { get; init; }
 
-	public Guid IsnCustomer { get; init; }
+    public Guid IsnCustomer { get; init; }
 
-	public Guid IsnMiniPig { get; init; }
+    public Guid IsnMiniPig { get; init; }
 
-	public DateTime AdoptionDate { get; init; }
+    public DateTime AdoptionDate { get; init; }
 
-	public string Status { get; init; }
+    public string Status { get; init; }
 }

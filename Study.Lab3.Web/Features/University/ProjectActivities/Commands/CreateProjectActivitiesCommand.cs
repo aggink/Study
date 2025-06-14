@@ -48,7 +48,7 @@ public sealed class CreateProjectActivitiesCommandHandler : IRequestHandler<Crea
         await _projectactivitiesService.CreateOrUpdateProjectActivitiesValidateAndThrowAsync(
             _dataContext, projectactivities, cancellationToken);
 
-        await _dataContext.TheProjectActivities.AddAsync(projectactivities, cancellationToken);
+        await _dataContext.ProjectActivities.AddAsync(projectactivities, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return projectactivities.IsnProjectActivities;

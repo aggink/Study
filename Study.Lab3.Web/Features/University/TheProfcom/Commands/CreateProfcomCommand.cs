@@ -13,44 +13,44 @@ namespace Study.Lab3.Web.Features.University.TheProfcom.Commands;
 /// </summary>
 public sealed class CreateProfcomCommand : IRequest<Guid>
 {
-	/// <summary>
-	/// Данные профкома
-	/// </summary>
-	[Required]
-	[FromBody]
-	public CreateProfcomDto Profcom { get; init; }
+    /// <summary>
+    /// Данные профкома
+    /// </summary>
+    [Required]
+    [FromBody]
+    public CreateProfcomDto Profcom { get; init; }
 }
 
 public sealed class CreateProfcomCommandHandler : IRequestHandler<CreateProfcomCommand, Guid>
 {
-	private readonly DataContext _dataContext;
-	private readonly IProfcomService _profcomService;
+    private readonly DataContext _dataContext;
+    private readonly IProfcomService _profcomService;
 
-	public CreateProfcomCommandHandler(
-		DataContext dataContext,
-		IProfcomService profcomService)
-	{
-		_dataContext = dataContext;
-		_profcomService = profcomService;
-	}
+    public CreateProfcomCommandHandler(
+        DataContext dataContext,
+        IProfcomService profcomService)
+    {
+        _dataContext = dataContext;
+        _profcomService = profcomService;
+    }
 
-	public async Task<Guid> Handle(CreateProfcomCommand request, CancellationToken cancellationToken)
-	{
-		var profcom = new Profcom
-		{
-			IsnProfcom = Guid.NewGuid(),
-			IsnStudent = request.Profcom.IsnStudent,
-			IsnSubject = request.Profcom.IsnSubject,
-			ParticipantsCount = request.Profcom.ParticipantsCount,
-			ProfcomDate = request.Profcom.ProfcomDate,
-		};
+    public async Task<Guid> Handle(CreateProfcomCommand request, CancellationToken cancellationToken)
+    {
+        var profcom = new Profcom
+        {
+            IsnProfcom = Guid.NewGuid(),
+            IsnStudent = request.Profcom.IsnStudent,
+            IsnSubject = request.Profcom.IsnSubject,
+            ParticipantsCount = request.Profcom.ParticipantsCount,
+            ProfcomDate = request.Profcom.ProfcomDate,
+        };
 
-		await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(
-			_dataContext, profcom, cancellationToken);
+        await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(
+            _dataContext, profcom, cancellationToken);
 
-		await _dataContext.TheProfcom.AddAsync(profcom, cancellationToken);
-		await _dataContext.SaveChangesAsync(cancellationToken);
+        await _dataContext.Profcoms.AddAsync(profcom, cancellationToken);
+        await _dataContext.SaveChangesAsync(cancellationToken);
 
-		return profcom.IsnProfcom;
-	}
+        return profcom.IsnProfcom;
+    }
 }

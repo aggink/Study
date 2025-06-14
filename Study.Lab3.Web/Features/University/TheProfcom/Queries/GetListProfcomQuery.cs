@@ -14,26 +14,26 @@ public sealed class GetListProfcomQuery : IRequest<ProfcomDto[]>
 
 public sealed class GetListProfcomQueryHandler : IRequestHandler<GetListProfcomQuery, ProfcomDto[]>
 {
-	private readonly DataContext _dataContext;
+    private readonly DataContext _dataContext;
 
-	public GetListProfcomQueryHandler(DataContext dataContext)
-	{
-		_dataContext = dataContext;
-	}
+    public GetListProfcomQueryHandler(DataContext dataContext)
+    {
+        _dataContext = dataContext;
+    }
 
-	public async Task<ProfcomDto[]> Handle(GetListProfcomQuery request, CancellationToken cancellationToken)
-	{
-		return await _dataContext.TheProfcom
-			.AsNoTracking()
-			.Select(x => new ProfcomDto
-			{
-				IsnProfcom = x.IsnProfcom,
-				IsnStudent = x.IsnStudent,
-				IsnSubject = x.IsnSubject,
-				ParticipantsCount = x.ParticipantsCount,
-				ProfcomDate = x.ProfcomDate,
-			})
-			.OrderByDescending(x => x.ProfcomDate)
-			.ToArrayAsync(cancellationToken);
-	}
+    public async Task<ProfcomDto[]> Handle(GetListProfcomQuery request, CancellationToken cancellationToken)
+    {
+        return await _dataContext.Profcoms
+            .AsNoTracking()
+            .Select(x => new ProfcomDto
+            {
+                IsnProfcom = x.IsnProfcom,
+                IsnStudent = x.IsnStudent,
+                IsnSubject = x.IsnSubject,
+                ParticipantsCount = x.ParticipantsCount,
+                ProfcomDate = x.ProfcomDate,
+            })
+            .OrderByDescending(x => x.ProfcomDate)
+            .ToArrayAsync(cancellationToken);
+    }
 }

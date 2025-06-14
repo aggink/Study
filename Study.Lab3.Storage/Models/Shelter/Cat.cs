@@ -26,7 +26,7 @@ public class Cat
     [MaxLength(ModelConstants.Cat.Breed)]
     public string Breed { get; set; }
 
-    [Required] 
+    [Required]
     public bool IsVaccinated { get; set; }
 
     [Required]
@@ -44,10 +44,10 @@ public class Cat
     [MaxLength(ModelConstants.Cat.PhotoUrl)]
     public string PhotoUrl { get; set; }
 
-    [Required] 
+    [Required]
     public DateTime ArrivalDate { get; set; }
 
-    [Required] 
+    [Required]
     public bool IsAvailableForAdoption { get; set; }
 
     [Required]

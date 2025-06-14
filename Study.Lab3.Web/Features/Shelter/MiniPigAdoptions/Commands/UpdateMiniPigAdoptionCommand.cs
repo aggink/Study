@@ -13,38 +13,38 @@ namespace Study.Lab3.Web.Features.Shelter.MiniPigAdoptions.Commands;
 /// </summary>
 public sealed class UpdateMiniPigAdoptionCommand : IRequest<Guid>
 {
-	/// <summary>
-	/// Данные усыновления
-	/// </summary>
-	[Required]
-	[FromBody]
-	public UpdateMiniPigAdoptionDto Adoption { get; init; }
+    /// <summary>
+    /// Данные усыновления
+    /// </summary>
+    [Required]
+    [FromBody]
+    public UpdateMiniPigAdoptionDto Adoption { get; init; }
 }
 
 public sealed class UpdateMiniPigAdoptionCommandHandler : IRequestHandler<UpdateMiniPigAdoptionCommand, Guid>
 {
-	private readonly DataContext _dataContext;
+    private readonly DataContext _dataContext;
 
-	public UpdateMiniPigAdoptionCommandHandler(DataContext dataContext)
-	{
-		_dataContext = dataContext;
-	}
+    public UpdateMiniPigAdoptionCommandHandler(DataContext dataContext)
+    {
+        _dataContext = dataContext;
+    }
 
-	public async Task<Guid> Handle(UpdateMiniPigAdoptionCommand request, CancellationToken cancellationToken)
-	{
-		var adoption = await _dataContext.Adoptions
-			.FirstOrDefaultAsync(a => a.IsnAdoption == request.Adoption.IsnAdoption, cancellationToken)
-			?? throw new BusinessLogicException($"Усыновление с идентификатором \"{request.Adoption.IsnAdoption}\" не существует");
+    public async Task<Guid> Handle(UpdateMiniPigAdoptionCommand request, CancellationToken cancellationToken)
+    {
+        var adoption = await _dataContext.Adoptions
+            .FirstOrDefaultAsync(a => a.IsnAdoption == request.Adoption.IsnAdoption, cancellationToken)
+            ?? throw new BusinessLogicException($"Усыновление с идентификатором \"{request.Adoption.IsnAdoption}\" не существует");
 
-		adoption.Price = request.Adoption.Price;
-		adoption.IsnCustomer = request.Adoption.IsnCustomer;
-		adoption.IsnMiniPig = request.Adoption.IsnMiniPig;
-		adoption.AdoptionDate = request.Adoption.AdoptionDate;
-		adoption.Status = request.Adoption.Status;
+        adoption.Price = request.Adoption.Price;
+        adoption.IsnCustomer = request.Adoption.IsnCustomer;
+        adoption.IsnMiniPig = request.Adoption.IsnMiniPig;
+        adoption.AdoptionDate = request.Adoption.AdoptionDate;
+        adoption.Status = request.Adoption.Status;
 
-		_dataContext.Adoptions.Update(adoption);
-		await _dataContext.SaveChangesAsync(cancellationToken);
+        _dataContext.Adoptions.Update(adoption);
+        await _dataContext.SaveChangesAsync(cancellationToken);
 
-		return adoption.IsnAdoption;
-	}
+        return adoption.IsnAdoption;
+    }
 }

@@ -1,6 +1,6 @@
 namespace Study.Lab2.Logic.Interfaces.chaspix;
 
-public interface IRequestService: IDisposable
+public interface IRequestService : IDisposable
 {
     /// <summary>
     /// Синхронное выполнение HTTP-запроса

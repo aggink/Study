@@ -47,7 +47,7 @@ public sealed class CreateKvnCommandHandler : IRequestHandler<CreateKvnCommand, 
         await _kvnService.CreateOrUpdateKvnValidateAndThrowAsync(
             _dataContext, kvn, cancellationToken);
 
-        await _dataContext.TheKvn.AddAsync(kvn, cancellationToken);
+        await _dataContext.Kvns.AddAsync(kvn, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return kvn.IsnKvn;

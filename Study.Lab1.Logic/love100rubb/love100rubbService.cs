@@ -30,9 +30,9 @@ namespace Study.Lab1.Logic.love100rubb
                 $" -d = {-d}\n" +
                 $" -e = {-e}\n" +
                 $"a > b: {a > b}\n" +
-                $"b < a: {b < a}\n"+
-                $"b <= c: {b <= c}\n"+
-                $"d <= b: {d <= b}\n"+
+                $"b < a: {b < a}\n" +
+                $"b <= c: {b <= c}\n" +
+                $"d <= b: {d <= b}\n" +
                 $"d >= a: {d >= a}\n"
                 );
         }

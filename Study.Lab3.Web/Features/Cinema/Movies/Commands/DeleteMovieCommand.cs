@@ -47,10 +47,10 @@ public sealed class DeleteMovieCommandHandler : IRequestHandler<DeleteMovieComma
 
         // Удаляем связи с жанрами
         _dataContext.MovieGenres.RemoveRange(movie.MovieGenres);
-        
+
         // Удаляем фильм
         _dataContext.Movies.Remove(movie);
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

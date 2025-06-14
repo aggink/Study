@@ -13,47 +13,47 @@ namespace Study.Lab3.Web.Features.Shelter.MiniPigs.Queries;
 /// </summary>
 public sealed class GetMiniPigByIdQuery : IRequest<MiniPigDto>
 {
-	/// <summary>
-	/// Идентификатор минии пига
-	/// </summary>
-	[Required]
-	[FromQuery]
-	public Guid IsnMiniPig { get; init; }
+    /// <summary>
+    /// Идентификатор минии пига
+    /// </summary>
+    [Required]
+    [FromQuery]
+    public Guid IsnMiniPig { get; init; }
 }
 
 public sealed class GetMiniPigByIdQueryHandler : IRequestHandler<GetMiniPigByIdQuery, MiniPigDto>
 {
-	private readonly DataContext _dataContext;
+    private readonly DataContext _dataContext;
 
-	public GetMiniPigByIdQueryHandler(DataContext dataContext)
-	{
-		_dataContext = dataContext;
-	}
+    public GetMiniPigByIdQueryHandler(DataContext dataContext)
+    {
+        _dataContext = dataContext;
+    }
 
-	public async Task<MiniPigDto> Handle(GetMiniPigByIdQuery request, CancellationToken cancellationToken)
-	{
-		var minipig = await _dataContext.MiniPigs
-					  .AsNoTracking()
-					  .FirstOrDefaultAsync(c => c.IsnMiniPig == request.IsnMiniPig, cancellationToken)
-				  ?? throw new BusinessLogicException(
-					  $"Мини пиг с идентификатором \"{request.IsnMiniPig}\" не существует");
+    public async Task<MiniPigDto> Handle(GetMiniPigByIdQuery request, CancellationToken cancellationToken)
+    {
+        var minipig = await _dataContext.MiniPigs
+                      .AsNoTracking()
+                      .FirstOrDefaultAsync(c => c.IsnMiniPig == request.IsnMiniPig, cancellationToken)
+                  ?? throw new BusinessLogicException(
+                      $"Мини пиг с идентификатором \"{request.IsnMiniPig}\" не существует");
 
-		return new MiniPigDto
-		{
-			IsnMiniPig = minipig.IsnMiniPig,
-			Nickname = minipig.Nickname,
-			BirthDate = minipig.BirthDate,
-			Description = minipig.Description,
-			Breed = minipig.Breed,
-			IsVaccinated = minipig.IsVaccinated,
-			IsSterilized = minipig.IsSterilized,
-			Color = minipig.Color,
-			MedicalHistory = minipig.MedicalHistory,
-			PhotoUrl = minipig.PhotoUrl,
-			ArrivalDate = minipig.ArrivalDate,
-			IsAvailableForAdoption = minipig.IsAvailableForAdoption,
-			Age = minipig.Age,
-			Weight = minipig.Weight
-		};
-	}
+        return new MiniPigDto
+        {
+            IsnMiniPig = minipig.IsnMiniPig,
+            Nickname = minipig.Nickname,
+            BirthDate = minipig.BirthDate,
+            Description = minipig.Description,
+            Breed = minipig.Breed,
+            IsVaccinated = minipig.IsVaccinated,
+            IsSterilized = minipig.IsSterilized,
+            Color = minipig.Color,
+            MedicalHistory = minipig.MedicalHistory,
+            PhotoUrl = minipig.PhotoUrl,
+            ArrivalDate = minipig.ArrivalDate,
+            IsAvailableForAdoption = minipig.IsAvailableForAdoption,
+            Age = minipig.Age,
+            Weight = minipig.Weight
+        };
+    }
 }

@@ -4,12 +4,12 @@ namespace Study.Lab2.Logic.xynthh;
 
 public class ServerRequestService : IServerRequestService
 {
-    private readonly IRequestService    _requestService;
+    private readonly IRequestService _requestService;
     private readonly IResponseProcessor _responseProcessor;
 
     // Базовые URL для API
     private const string JsonPlaceholderBaseUrl = "https://jsonplaceholder.typicode.com";
-    private const string ReqResBaseUrl          = "https://reqres.in/api";
+    private const string ReqResBaseUrl = "https://reqres.in/api";
 
     // Заголовки для разных API
     private readonly Dictionary<string, string> _reqresHeaders;

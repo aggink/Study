@@ -34,13 +34,13 @@ public class MenuItem
     /// </summary>
     [MaxLength(ModelConstants.MenuItem.Description)]
     public string Description { get; set; }
-    
+
     /// <summary>
     /// Категория блюда
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.MenuItem.Category)]
-    public string  Category { get; set; }
+    public string Category { get; set; }
 
     /// <summary>
     /// Цена

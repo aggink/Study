@@ -22,7 +22,7 @@ public class RationalTests
         Assert.That(rational.Numerator, Is.EqualTo(-1));
         Assert.That(rational.Denominator, Is.EqualTo(2));
     }
-  
+
 
     [Test]
     public void Equality_Operator_ReturnsTrueForEqualFractions()

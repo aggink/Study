@@ -392,7 +392,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasKey("IsnEquipment");
 
-                    b.ToTable("Equipments");
+                    b.ToTable("FitnessEquipments");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessMember", b =>
@@ -827,10 +827,10 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<Guid>("IsnCat")
                         .HasColumnType("uuid");
 
-					b.Property<Guid>("IsnMiniPig")
-					   .HasColumnType("uuid");
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
 
-					b.Property<Guid>("IsnCustomer")
+                    b.Property<Guid>("IsnMiniPig")
                         .HasColumnType("uuid");
 
                     b.Property<int>("Price")
@@ -845,9 +845,9 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnCat");
 
-					b.HasIndex("IsnMiniPig");
+                    b.HasIndex("IsnCustomer");
 
-					b.HasIndex("IsnCustomer");
+                    b.HasIndex("IsnMiniPig");
 
                     b.ToTable("Adoptions");
                 });
@@ -912,67 +912,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Cats");
                 });
 
-			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
-			{
-				b.Property<Guid>("IsnMiniPig")
-					.HasColumnType("uuid");
-
-				b.Property<int>("Age")
-					.HasColumnType("integer");
-
-				b.Property<DateTime>("ArrivalDate")
-					.HasColumnType("timestamp with time zone");
-
-				b.Property<DateTime>("BirthDate")
-					.HasColumnType("timestamp with time zone");
-
-				b.Property<string>("Breed")
-					.IsRequired()
-					.HasMaxLength(100)
-					.HasColumnType("character varying(100)");
-
-				b.Property<string>("Color")
-					.IsRequired()
-					.HasMaxLength(20)
-					.HasColumnType("character varying(20)");
-
-				b.Property<string>("Description")
-					.HasMaxLength(500)
-					.HasColumnType("character varying(500)");
-
-				b.Property<bool>("IsAvailableForAdoption")
-					.HasColumnType("boolean");
-
-				b.Property<bool>("IsSterilized")
-					.HasColumnType("boolean");
-
-				b.Property<bool>("IsVaccinated")
-					.HasColumnType("boolean");
-
-				b.Property<string>("MedicalHistory")
-					.IsRequired()
-					.HasMaxLength(1000)
-					.HasColumnType("character varying(1000)");
-
-				b.Property<string>("Nickname")
-					.IsRequired()
-					.HasMaxLength(100)
-					.HasColumnType("character varying(100)");
-
-				b.Property<string>("PhotoUrl")
-					.IsRequired()
-					.HasMaxLength(100)
-					.HasColumnType("character varying(100)");
-
-				b.Property<int>("Weight")
-					.HasColumnType("integer");
-
-				b.HasKey("IsnMiniPig");
-
-				b.ToTable("MiniPigs");
-			});
-
-			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.Customer", b =>
                 {
                     b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uuid");
@@ -1009,6 +949,66 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnCustomer");
 
                     b.ToTable("ShelterCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+                {
+                    b.Property<Guid>("IsnMiniPig")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Breed")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool>("IsAvailableForAdoption")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsSterilized")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsVaccinated")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("MedicalHistory")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnMiniPig");
+
+                    b.ToTable("MiniPigs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
@@ -1174,6 +1174,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnSubject");
 
                     b.ToTable("Assignments");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
+                {
+                    b.Property<Guid>("IsnAttendanceLog")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("IsPresent")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("SubjectDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnAttendanceLog");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("TheAttendanceLog");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
@@ -1354,7 +1380,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheKvn");
+                    b.ToTable("Kvns");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
@@ -1425,13 +1451,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<DateTime>("ProfcomDate")
                         .HasColumnType("timestamp with time zone");
 
-					b.HasKey("IsnProfcom");
+                    b.HasKey("IsnProfcom");
 
                     b.HasIndex("IsnStudent");
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheProfcom");
+                    b.ToTable("Profcoms");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.ProjectActivities", b =>
@@ -1457,7 +1483,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheProjectActivities");
+                    b.ToTable("ProjectActivities");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
@@ -1543,6 +1569,26 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnStudent");
 
                     b.ToTable("StudentLab");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
+                {
+                    b.Property<Guid>("IsnNote")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.HasKey("IsnNote");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.ToTable("StudentNotes");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -1928,9 +1974,17 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Study.Lab3.Storage.Models.Shelter.MiniPig", "MiniPig")
+                        .WithMany("Adoptions")
+                        .HasForeignKey("IsnMiniPig")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Cat");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("MiniPig");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
@@ -2000,6 +2054,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("AttendanceLogs")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("AttendanceLogs")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
 
                     b.Navigation("Subject");
                 });
@@ -2116,13 +2189,13 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("Profcoms")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Profcoms")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2184,18 +2257,29 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Labs", "Labs")
-                        .WithMany()
+                        .WithMany("StudentLabs")
                         .HasForeignKey("IsnLab")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("StudentLabs")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Labs");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Notes")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Student");
                 });
@@ -2353,6 +2437,11 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Adoptions");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+                {
+                    b.Navigation("Adoptions");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
                 {
                     b.Navigation("SweetProductions");
@@ -2392,8 +2481,15 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("SubjectGroups");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
+                {
+                    b.Navigation("StudentLabs");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
+                    b.Navigation("AttendanceLogs");
+
                     b.Navigation("Careers");
 
                     b.Navigation("ExamRegistrations");
@@ -2402,14 +2498,22 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.Navigation("Kvns");
 
+                    b.Navigation("Notes");
+
+                    b.Navigation("Profcoms");
+
                     b.Navigation("ProjectActivitiess");
 
                     b.Navigation("Sportclubs");
+
+                    b.Navigation("StudentLabs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
                     b.Navigation("Assignments");
+
+                    b.Navigation("AttendanceLogs");
 
                     b.Navigation("Careers");
 
@@ -2422,6 +2526,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Kvns");
 
                     b.Navigation("Materials");
+
+                    b.Navigation("Profcoms");
 
                     b.Navigation("ProjectActivitiess");
 
@@ -2448,12 +2554,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 {
                     b.Navigation("ServiceOrders");
                 });
-
-			modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
-			{
-				b.Navigation("Adoptions");
-			});
 #pragma warning restore 612, 618
-		}
+        }
     }
 }
