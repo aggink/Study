@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Storage.Models.University;
-using Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
+using Study.Lab3.Web.Features.University.ProjectActivities.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheProjectActivities.Commands;
+namespace Study.Lab3.Web.Features.University.ProjectActivities.Commands;
 
 /// <summary>
 /// Создание проектной деятельности
@@ -36,7 +35,7 @@ public sealed class CreateProjectActivitiesCommandHandler : IRequestHandler<Crea
 
     public async Task<Guid> Handle(CreateProjectActivitiesCommand request, CancellationToken cancellationToken)
     {
-        var projectactivities = new ProjectActivities
+        var projectactivities = new Storage.Models.University.ProjectActivities
         {
             IsnProjectActivities = Guid.NewGuid(),
             IsnStudent = request.ProjectActivities.IsnStudent,
@@ -48,7 +47,7 @@ public sealed class CreateProjectActivitiesCommandHandler : IRequestHandler<Crea
         await _projectactivitiesService.CreateOrUpdateProjectActivitiesValidateAndThrowAsync(
             _dataContext, projectactivities, cancellationToken);
 
-        await _dataContext.TheProjectActivities.AddAsync(projectactivities, cancellationToken);
+        await _dataContext.ProjectActivities.AddAsync(projectactivities, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return projectactivities.IsnProjectActivities;

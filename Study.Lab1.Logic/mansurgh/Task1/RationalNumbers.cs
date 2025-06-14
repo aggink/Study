@@ -1,7 +1,7 @@
 namespace Study.Lab1.Logic.mansurgh.Task1;
 
 public class RationalNumber
-{   
+{
     public int Numerator { get; private set; }
     public int Denominator { get; private set; }
 
@@ -50,9 +50,9 @@ public class RationalNumber
         return HashCode.Combine(Numerator, Denominator);
     }
 
-#region Operators
+    #region Operators
 
-    public static RationalNumber operator+ (RationalNumber a, RationalNumber b)
+    public static RationalNumber operator +(RationalNumber a, RationalNumber b)
     {
         int newNumerator = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
         int newDenominator = a.Denominator * b.Denominator;
@@ -60,7 +60,7 @@ public class RationalNumber
         return new RationalNumber(newNumerator, newDenominator);
     }
 
-    public static RationalNumber operator- (RationalNumber a, RationalNumber b)
+    public static RationalNumber operator -(RationalNumber a, RationalNumber b)
     {
         int newNumerator = a.Numerator * b.Denominator - b.Numerator * a.Denominator;
         int newDenominator = a.Denominator * b.Denominator;
@@ -68,7 +68,7 @@ public class RationalNumber
         return new RationalNumber(newNumerator, newDenominator);
     }
 
-    public static RationalNumber operator* (RationalNumber a, RationalNumber b)
+    public static RationalNumber operator *(RationalNumber a, RationalNumber b)
     {
         int newNumerator = a.Numerator * b.Numerator;
         int newDenominator = a.Denominator * b.Denominator;
@@ -76,7 +76,7 @@ public class RationalNumber
         return new RationalNumber(newNumerator, newDenominator);
     }
 
-    public static RationalNumber operator/ (RationalNumber a, RationalNumber b)
+    public static RationalNumber operator /(RationalNumber a, RationalNumber b)
     {
         if (b.Numerator == 0)
             throw new DivideByZeroException("Нельзя делить на ноль");
@@ -96,7 +96,7 @@ public class RationalNumber
 
     public static bool operator !=(RationalNumber a, RationalNumber b)
     {
-        return !(a == b);  
+        return !(a == b);
     }
 
     public static bool operator <(RationalNumber a, RationalNumber b)
@@ -124,7 +124,7 @@ public class RationalNumber
         return new RationalNumber(-a.Numerator, a.Denominator);
     }
 
-#endregion
+    #endregion
 
     private static int Gcd(int a, int b)
     {
@@ -135,5 +135,5 @@ public class RationalNumber
             a = temp;
         }
         return a;
-    }   
+    }
 }

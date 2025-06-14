@@ -11,14 +11,14 @@ public class IvanZService : IRunService
         RationalNumber b = new RationalNumber(5, 13);
         RationalNumber c = new RationalNumber(23, 23);
         RationalNumber d = new RationalNumber(12, 85);
- 	RationalNumber sum = a + b;
+        RationalNumber sum = a + b;
         RationalNumber sub = a - c;
         RationalNumber multi = b * d;
         RationalNumber div = c / d;
-           
+
         Console.WriteLine($"a: {a.ToString()}\n");
         Console.WriteLine($"b: {b.ToString()}\n");
-	Console.WriteLine($"c: {c.ToString()}\n");
+        Console.WriteLine($"c: {c.ToString()}\n");
         Console.WriteLine($"d: {d.ToString()}\n");
         Console.WriteLine($"Multi: {multi.ToString()}\n");
         Console.WriteLine($"Div: {div.ToString()}\n");

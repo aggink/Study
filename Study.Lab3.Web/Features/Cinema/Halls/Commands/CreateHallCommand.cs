@@ -52,10 +52,10 @@ public sealed class CreateHallCommandHandler : IRequestHandler<CreateHallCommand
             _dataContext, hall, cancellationToken);
 
         await _dataContext.Halls.AddAsync(hall, cancellationToken);
-        
+
         // Генерация мест в зале
         await _hallService.GenerateSeatsForHallAsync(_dataContext, hall, cancellationToken);
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
         return hall.IsnHall;
     }

@@ -55,7 +55,7 @@ public sealed class UpdateSessionCommandHandler : IRequestHandler<UpdateSessionC
         // Проверка, что сеанс не пересекается с другими сеансами в этом зале
         var overlappingSessions = await _dataContext.Sessions
             .Where(s => s.IsnHall == session.IsnHall && s.IsnSession != session.IsnSession)
-            .Where(s => 
+            .Where(s =>
                 (s.StartTime <= request.Session.StartTime && s.EndTime > request.Session.StartTime) ||
                 (s.StartTime < endTime && s.EndTime >= endTime) ||
                 (s.StartTime >= request.Session.StartTime && s.EndTime <= endTime))

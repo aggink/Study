@@ -45,5 +45,5 @@ public class SweetFactory
     /// </summary>
 
     [InverseProperty(nameof(SweetProduction.SweetFactory))]
-    public virtual ICollection<SweetProduction> SweetProductions{ get; set; }
+    public virtual ICollection<SweetProduction> SweetProductions { get; set; }
 }

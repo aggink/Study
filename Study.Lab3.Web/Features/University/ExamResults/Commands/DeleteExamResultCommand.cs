@@ -44,7 +44,7 @@ public sealed class DeleteExamResultCommandHandler : IRequestHandler<DeleteExamR
 
         await _resultService.CanDeleteAndThrowAsync(
             _dataContext, result, cancellationToken);
-        
+
         _dataContext.ExamResults.Remove(result);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }

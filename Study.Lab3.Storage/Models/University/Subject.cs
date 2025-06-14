@@ -88,6 +88,12 @@ public class Subject
     public virtual ICollection<AttendanceLog> AttendanceLogs { get; set; }
 
     /// <summary>
+    /// Оценки
+    /// </summary>
+    [InverseProperty(nameof(Profcom.Subject))]
+    public virtual ICollection<Profcom> Profcoms { get; set; }
+
+    /// <summary>
     /// Соревнования по виду спорта
     /// </summary>
     [InverseProperty(nameof(Pingpongclub.Subject))]
