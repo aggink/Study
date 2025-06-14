@@ -44,7 +44,7 @@ public sealed class HallService : IHallService
 
         // Проверка на наличие будущих сеансов
         var hasFutureSessions = await dataContext.Sessions
-            .AnyAsync(x => x.IsnHall == hall.IsnHall && 
+            .AnyAsync(x => x.IsnHall == hall.IsnHall &&
                           x.StartTime > DateTime.UtcNow,
                       cancellationToken);
 
@@ -77,7 +77,7 @@ public sealed class HallService : IHallService
             for (int number = 1; number <= hall.SeatsPerRow; number++)
             {
                 var seatType = row <= vipRows ? SeatType.VIP : SeatType.Standard;
-                
+
                 // Каждое 10-е место для инвалидов
                 if (number % 10 == 0)
                 {

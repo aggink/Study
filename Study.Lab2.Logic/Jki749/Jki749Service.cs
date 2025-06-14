@@ -1,6 +1,4 @@
-﻿using Study.Lab2.Logic.Interfaces;
-using Study.Lab2.Logic.Interfaces.Jki749;
-using Study.Lab2.Logic.Services.Jki749;
+﻿using Study.Lab2.Logic.Interfaces.Jki749;
 using System.Diagnostics;
 
 namespace Study.Lab2.Logic.Jki749;

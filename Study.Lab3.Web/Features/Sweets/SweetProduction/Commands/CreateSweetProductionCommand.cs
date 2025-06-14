@@ -3,12 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Storage.Models.Sweets;
-using Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetProductions.Commands;
+namespace Study.Lab3.Web.Features.Sweets.SweetProduction.Commands;
 
 /// <summary>
 /// Создание таблицы SweetProduction
@@ -35,20 +33,20 @@ public sealed class CreateSweetProductionCommandHandler : IRequestHandler<Create
     public async Task<Guid> Handle(CreateSweetProductionCommand request, CancellationToken cancellationToken)
     {
         // Проверка уникальности 
-        if (await _dataContext.SweetProductions.AnyAsync(c => c.IsnSweetFactory == request.SweetProduction.IsnFactory &&  
-            c.IsnSweet == request.SweetProduction.IsnSweet , cancellationToken))
+        if (await _dataContext.SweetProductions.AnyAsync(c => c.IsnSweetFactory == request.SweetProduction.IsnFactory &&
+            c.IsnSweet == request.SweetProduction.IsnSweet, cancellationToken))
             throw new BusinessLogicException($"Запись с индентификатором \"{request.SweetProduction.IsnFactory}\" уже существует");
 
-        var sweetproduction = new SweetProduction
+        var sweetProduction = new Storage.Models.Sweets.SweetProduction
         {
             IsnSweetProduction = Guid.NewGuid(),
             IsnSweetFactory = request.SweetProduction.IsnFactory,
             IsnSweet = request.SweetProduction.IsnSweet
         };
 
-        await _dataContext.SweetProductions.AddAsync(sweetproduction, cancellationToken);
+        await _dataContext.SweetProductions.AddAsync(sweetProduction, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
-        
-        return sweetproduction.IsnSweetProduction;
+
+        return sweetProduction.IsnSweetProduction;
     }
 }

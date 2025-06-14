@@ -74,4 +74,16 @@ public class Subject
     /// </summary>
     [InverseProperty(nameof(Career.Subject))]
     public virtual ICollection<Career> Careers { get; set; }
+
+    /// <summary>
+    /// Связь с проектной деятельностью
+    /// </summary>
+    [InverseProperty(nameof(ProjectActivities.Subject))]
+    public virtual ICollection<ProjectActivities> ProjectActivitiess { get; set; }
+
+    /// <summary>
+    /// Связь с посещениями
+    /// </summary>
+    [InverseProperty(nameof(AttendanceLog.Subject))]
+    public virtual ICollection<AttendanceLog> AttendanceLogs { get; set; }
 }

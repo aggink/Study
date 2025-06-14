@@ -7,9 +7,9 @@ namespace Study.Lab2.Logic.UnitTests.xynthh;
 [TestFixture]
 public class ServerRequestServiceTests
 {
-    private Mock<IRequestService>    _mockRequestService;
+    private Mock<IRequestService> _mockRequestService;
     private Mock<IResponseProcessor> _mockResponseProcessor;
-    private ServerRequestService     _serverRequestService;
+    private ServerRequestService _serverRequestService;
 
     [SetUp]
     public void Setup()

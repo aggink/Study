@@ -1,17 +1,17 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Study.Lab3.Web.Features.Sweets.SweetFactories.Commands;
-using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetFactories.Queries;
-using Study.Lab3.Web.Features.Sweets.Sweets.Commands;
-using Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
-using Study.Lab3.Web.Features.Sweets.Sweets.Queries;
-using Study.Lab3.Web.Features.Sweets.SweetTypes.Commands;
-using Study.Lab3.Web.Features.Sweets.SweetTypes.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetTypes.Queries;
-using Study.Lab3.Web.Features.Sweets.SweetProductions.Commands;
-using Study.Lab3.Web.Features.Sweets.SweetProductions.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetProductions.Queries;
+using Study.Lab3.Web.Features.Sweets.SweetType.Commands;
+using Study.Lab3.Web.Features.Sweets.SweetFactory.Commands;
+using Study.Lab3.Web.Features.Sweets.Sweet.Queries;
+using Study.Lab3.Web.Features.Sweets.Sweet.Commands;
+using Study.Lab3.Web.Features.Sweets.SweetProduction.Commands;
+using Study.Lab3.Web.Features.Sweets.SweetType.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetType.Queries;
+using Study.Lab3.Web.Features.Sweets.SweetProduction.Queries;
+using Study.Lab3.Web.Features.Sweets.SweetFactory.Queries;
+using Study.Lab3.Web.Features.Sweets.SweetFactory.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetProduction.DtoModels;
+using Study.Lab3.Web.Features.Sweets.Sweet.DtoModels;
 
 namespace Study.Lab3.Web.Controllers;
 

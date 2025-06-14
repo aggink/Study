@@ -1,7 +1,7 @@
 ﻿using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheKvn.DtoModels;
+namespace Study.Lab3.Web.Features.University.Kvn.DtoModels;
 
 public sealed record UpdateKvnDto
 {

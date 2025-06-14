@@ -3,12 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Storage.Models.Sweets;
-using Study.Lab3.Web.Features.Sweets.Sweets.DtoModels;
-using Study.Lab3.Web.Features.Sweets.SweetFactories.DtoModels;
+using Study.Lab3.Web.Features.Sweets.SweetFactory.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.Sweets.SweetFactories.Commands;
+namespace Study.Lab3.Web.Features.Sweets.SweetFactory.Commands;
 
 /// <summary>
 /// Создание клиента
@@ -38,18 +36,18 @@ public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSwe
         if (await _dataContext.SweetFactories.AnyAsync(c => c.Name == request.SweetFactory.Name, cancellationToken))
             throw new BusinessLogicException($"Запись с индентификатором \"{request.SweetFactory.Name}\" уже существует");
 
-        var sweetfactory = new SweetFactory
+        var sweetFactory = new Storage.Models.Sweets.SweetFactory
         {
             IsnSweetFactory = Guid.NewGuid(),
             Name = request.SweetFactory.Name,
             Address = request.SweetFactory.Adress,
             Volume = request.SweetFactory.Volume,
-            SweetProductions = new List<SweetProduction>(),
+            SweetProductions = new List<Storage.Models.Sweets.SweetProduction>(),
         };
 
-        await _dataContext.SweetFactories.AddAsync(sweetfactory, cancellationToken);
+        await _dataContext.SweetFactories.AddAsync(sweetFactory, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
-        
-        return sweetfactory.IsnSweetFactory;
+
+        return sweetFactory.IsnSweetFactory;
     }
 }

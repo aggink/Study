@@ -1,6 +1,6 @@
-﻿using Study.Lab2.Logic.Interfaces;
+﻿using System.Diagnostics;
+using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.gegemonTV;
-using System.Diagnostics;
 
 namespace Study.Lab2.Logic.gegemonTV;
 

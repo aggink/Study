@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.University.TheCareer.DtoModels;
+using Study.Lab3.Web.Features.University.Career.DtoModels;
 
-namespace Study.Lab3.Web.Features.University.TheCareer.Queries;
+namespace Study.Lab3.Web.Features.University.Career.Queris;
 
 /// <summary>
 /// Њолучение списка количеств участников

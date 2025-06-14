@@ -49,7 +49,7 @@ public sealed class ServiceOrderService : IServiceOrderService
             var existingOrder = await dataContext.ServiceOrders
                 .FirstOrDefaultAsync(x => x.IsnServiceOrder == serviceOrder.IsnServiceOrder, cancellationToken);
 
-            if (existingOrder != null && existingOrder.Status == OrderStatus.Completed && 
+            if (existingOrder != null && existingOrder.Status == OrderStatus.Completed &&
                 serviceOrder.Status != OrderStatus.Completed)
                 throw new BusinessLogicException("Нельзя изменить статус завершенного заказа");
         }
@@ -74,7 +74,7 @@ public sealed class ServiceOrderService : IServiceOrderService
 
     private static bool IsValidPhone(string phone)
     {
-        return phone.All(c => char.IsDigit(c) || c == '+' || c == '-' || c == '(' || c == ')' || c == ' ') 
+        return phone.All(c => char.IsDigit(c) || c == '+' || c == '-' || c == '(' || c == ')' || c == ' ')
                && phone.Any(char.IsDigit);
     }
 }

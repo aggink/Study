@@ -12,7 +12,7 @@ namespace Study.Lab1.Logic.SuperSalad007.Task1
     {
         public int NumeratorPart { get; }
 
-        public int DenominatorPart { get;}
+        public int DenominatorPart { get; }
 
         public FracNumber(int NumeratorPart, int DenominatorPart)
         {
@@ -60,7 +60,7 @@ namespace Study.Lab1.Logic.SuperSalad007.Task1
         public static FracNumber operator +(FracNumber op1, FracNumber op2)
         {
             int DenominatorPart = op1.DenominatorPart * op2.DenominatorPart;
-            int NumeratorPart = op1.NumeratorPart* op2.DenominatorPart + op2.NumeratorPart * op1.DenominatorPart;
+            int NumeratorPart = op1.NumeratorPart * op2.DenominatorPart + op2.NumeratorPart * op1.DenominatorPart;
             return new FracNumber(NumeratorPart, DenominatorPart);
         }
 
@@ -73,7 +73,7 @@ namespace Study.Lab1.Logic.SuperSalad007.Task1
 
         public static FracNumber operator *(FracNumber op1, FracNumber op2)
         {
-            int DenominatorPart = op1.DenominatorPart*op2.DenominatorPart;
+            int DenominatorPart = op1.DenominatorPart * op2.DenominatorPart;
             int NumeratorPart = op1.NumeratorPart * op2.NumeratorPart;
             return new FracNumber(NumeratorPart, DenominatorPart);
         }
@@ -94,7 +94,7 @@ namespace Study.Lab1.Logic.SuperSalad007.Task1
 
         public static bool operator !=(FracNumber op1, FracNumber op2) => !(op1 == op2);
 
-        public static bool operator >= (FracNumber op1, FracNumber op2)
+        public static bool operator >=(FracNumber op1, FracNumber op2)
         {
             if (ReferenceEquals(op1, null) || ReferenceEquals(op2, null))
                 return false;
