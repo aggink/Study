@@ -1,5 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Models.BeautySalon;
+using Study.Lab3.Storage.Models.CarService;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.HospitalStore;
@@ -367,6 +369,25 @@ public class DataContext : DbContext
     /// Оборудование фитнес-центра
     /// </summary>
     public virtual DbSet<FitnessEquipment> FitnessEquipments { get; set; }
+
+    #endregion
+
+    #region CarService
+
+    /// <summary>
+    /// Машина
+    /// </summary>
+    public virtual DbSet<Car> Cars { get; set; }
+    
+    /// <summary>
+    /// Владелец
+    /// </summary>
+    public virtual DbSet<Owner> Owners { get; set; }
+    
+    /// <summary>
+    /// Запись Обслуживания
+    /// </summary>
+    public virtual DbSet<ServiceRecord> ServiceRecords { get; set; }
 
     #endregion
 }

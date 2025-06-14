@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
+using Study.Lab3.Logic.Interfaces.Services.CarService;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.Fitness;
 using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
@@ -8,6 +9,7 @@ using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Logic.Interfaces.Services.Workshop;
 using Study.Lab3.Logic.Services.BeautySalon;
+using Study.Lab3.Logic.Services.CarService;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.Fitness;
 using Study.Lab3.Logic.Services.HospitalStore;
@@ -76,5 +78,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
         services.AddSingleton<IPingpongclubService, PingpongclubService>();
         services.AddSingleton<IAttendanceLogService, AttendanceLogService>();
+        services.AddSingleton<ICarService, CarService>();
+        services.AddSingleton<IOwnerService, OwnerService>();
+        services.AddSingleton<IServiceRecordService, ServiceRecordService>();
     }
 }
