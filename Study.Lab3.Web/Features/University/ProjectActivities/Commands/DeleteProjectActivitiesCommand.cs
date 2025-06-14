@@ -6,7 +6,7 @@ using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheProjectActivities.Commands;
+namespace Study.Lab3.Web.Features.University.ProjectActivities.Commands;
 
 /// <summary>
 /// Удаление проектной деятельности

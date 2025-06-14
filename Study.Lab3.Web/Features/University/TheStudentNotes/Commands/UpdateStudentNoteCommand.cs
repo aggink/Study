@@ -7,7 +7,7 @@ using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.University.TheStudentNotes.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.StudentNotes.Commands;
+namespace Study.Lab3.Web.Features.University.TheStudentNotes.Commands;
 
 /// <summary>
 /// Обновление заметки студента

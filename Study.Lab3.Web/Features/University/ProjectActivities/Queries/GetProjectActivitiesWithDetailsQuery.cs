@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
+using Study.Lab3.Web.Features.University.ProjectActivities.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheProjectActivities.Queries;
+namespace Study.Lab3.Web.Features.University.ProjectActivities.Queries;
 
 /// <summary>
 /// Получить количество выступлений с деталями
