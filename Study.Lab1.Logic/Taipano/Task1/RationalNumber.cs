@@ -121,5 +121,10 @@ namespace Study.Lab1.Logic.Taipano.Task1
 
             throw new NotImplementedException();
         }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -97,6 +97,27 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FitnessEquipments",
+                columns: table => new
+                {
+                    IsnEquipment = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Manufacturer = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SerialNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PurchasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    LastMaintenanceDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FitnessEquipments", x => x.IsnEquipment);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Genres",
                 columns: table => new
                 {
@@ -138,6 +159,18 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Labs",
+                columns: table => new
+                {
+                    IsnLab = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Labs", x => x.IsnLab);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Masters",
                 columns: table => new
                 {
@@ -150,6 +183,51 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Masters", x => x.IsnMaster);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Members",
+                columns: table => new
+                {
+                    IsnMember = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SurName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    PatronymicName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MembershipType = table.Column<int>(type: "int", nullable: false),
+                    MembershipStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MembershipEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Members", x => x.IsnMember);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MiniPigs",
+                columns: table => new
+                {
+                    IsnMiniPig = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nickname = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Breed = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IsVaccinated = table.Column<bool>(type: "bit", nullable: false),
+                    IsSterilized = table.Column<bool>(type: "bit", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    MedicalHistory = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    PhotoUrl = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsAvailableForAdoption = table.Column<bool>(type: "bit", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Weight = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MiniPigs", x => x.IsnMiniPig);
                 });
 
             migrationBuilder.CreateTable(
@@ -262,6 +340,32 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SweetFactories",
+                columns: table => new
+                {
+                    IsnSweetFactory = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Volume = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SweetFactories", x => x.IsnSweetFactory);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SweetTypes",
+                columns: table => new
+                {
+                    IsnSweetType = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SweetTypes", x => x.IsnSweetType);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Teachers",
                 columns: table => new
                 {
@@ -274,6 +378,27 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teachers", x => x.IsnTeacher);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trainers",
+                columns: table => new
+                {
+                    IsnTrainer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SurName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    PatronymicName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Specialization = table.Column<int>(type: "int", nullable: false),
+                    ExperienceYears = table.Column<int>(type: "int", nullable: false),
+                    Certifications = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    HourlyRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trainers", x => x.IsnTrainer);
                 });
 
             migrationBuilder.CreateTable(
@@ -514,6 +639,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 {
                     IsnAdoption = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsnCat = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnMiniPig = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsnCustomer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
                     AdoptionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -527,6 +653,12 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         column: x => x.IsnCat,
                         principalTable: "Cats",
                         principalColumn: "IsnCat",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Adoptions_MiniPigs_IsnMiniPig",
+                        column: x => x.IsnMiniPig,
+                        principalTable: "MiniPigs",
+                        principalColumn: "IsnMiniPig",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Adoptions_ShelterCustomers_IsnCustomer",
@@ -627,6 +759,26 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         column: x => x.IsnSubject,
                         principalTable: "Subjects",
                         principalColumn: "IsnSubject",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sweets",
+                columns: table => new
+                {
+                    IsnSweet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSweetType = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    Ingredients = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sweets", x => x.IsnSweet);
+                    table.ForeignKey(
+                        name: "FK_Sweets_SweetTypes_IsnSweetType",
+                        column: x => x.IsnSweetType,
+                        principalTable: "SweetTypes",
+                        principalColumn: "IsnSweetType",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -752,6 +904,114 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Kvns",
+                columns: table => new
+                {
+                    IsnKvn = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParticipantsCount = table.Column<int>(type: "int", nullable: false),
+                    KvnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Kvns", x => x.IsnKvn);
+                    table.ForeignKey(
+                        name: "FK_Kvns_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Kvns_Subjects_IsnSubject",
+                        column: x => x.IsnSubject,
+                        principalTable: "Subjects",
+                        principalColumn: "IsnSubject",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pingpongclub",
+                columns: table => new
+                {
+                    IsnPingpongclub = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParticipantsCount = table.Column<int>(type: "int", nullable: false),
+                    PingpongclubDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pingpongclub", x => x.IsnPingpongclub);
+                    table.ForeignKey(
+                        name: "FK_Pingpongclub_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Pingpongclub_Subjects_IsnSubject",
+                        column: x => x.IsnSubject,
+                        principalTable: "Subjects",
+                        principalColumn: "IsnSubject",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Profcoms",
+                columns: table => new
+                {
+                    IsnProfcom = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParticipantsCount = table.Column<int>(type: "int", nullable: false),
+                    ProfcomDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Profcoms", x => x.IsnProfcom);
+                    table.ForeignKey(
+                        name: "FK_Profcoms_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Profcoms_Subjects_IsnSubject",
+                        column: x => x.IsnSubject,
+                        principalTable: "Subjects",
+                        principalColumn: "IsnSubject",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjectActivities",
+                columns: table => new
+                {
+                    IsnProjectActivities = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PerformancesCount = table.Column<int>(type: "int", nullable: false),
+                    ProjectActivitiesDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectActivities", x => x.IsnProjectActivities);
+                    table.ForeignKey(
+                        name: "FK_ProjectActivities_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ProjectActivities_Subjects_IsnSubject",
+                        column: x => x.IsnSubject,
+                        principalTable: "Subjects",
+                        principalColumn: "IsnSubject",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sportclub",
                 columns: table => new
                 {
@@ -779,53 +1039,71 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TheKvn",
+                name: "StudentLab",
                 columns: table => new
                 {
-                    IsnKvn = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnStudentLab = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ParticipantsCount = table.Column<int>(type: "int", nullable: false),
-                    KvnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    IsnLab = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Value = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TheKvn", x => x.IsnKvn);
+                    table.PrimaryKey("PK_StudentLab", x => x.IsnStudentLab);
                     table.ForeignKey(
-                        name: "FK_TheKvn_Students_IsnStudent",
+                        name: "FK_StudentLab_Labs_IsnLab",
+                        column: x => x.IsnLab,
+                        principalTable: "Labs",
+                        principalColumn: "IsnLab",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_StudentLab_Students_IsnStudent",
                         column: x => x.IsnStudent,
                         principalTable: "Students",
                         principalColumn: "IsnStudent",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TheKvn_Subjects_IsnSubject",
-                        column: x => x.IsnSubject,
-                        principalTable: "Subjects",
-                        principalColumn: "IsnSubject",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TheProfcom",
+                name: "StudentNotes",
                 columns: table => new
                 {
-                    IsnProfcom = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnNote = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ParticipantsCount = table.Column<int>(type: "int", nullable: false),
-                    ProfcomDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Text = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TheProfcom", x => x.IsnProfcom);
+                    table.PrimaryKey("PK_StudentNotes", x => x.IsnNote);
                     table.ForeignKey(
-                        name: "FK_TheProfcom_Students_IsnStudent",
+                        name: "FK_StudentNotes_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TheAttendanceLog",
+                columns: table => new
+                {
+                    IsnAttendanceLog = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SubjectDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsPresent = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TheAttendanceLog", x => x.IsnAttendanceLog);
+                    table.ForeignKey(
+                        name: "FK_TheAttendanceLog_Students_IsnStudent",
                         column: x => x.IsnStudent,
                         principalTable: "Students",
                         principalColumn: "IsnStudent",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_TheProfcom_Subjects_IsnSubject",
+                        name: "FK_TheAttendanceLog_Subjects_IsnSubject",
                         column: x => x.IsnSubject,
                         principalTable: "Subjects",
                         principalColumn: "IsnSubject",
@@ -916,6 +1194,31 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         column: x => x.IsnStudent,
                         principalTable: "Students",
                         principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SweetProductions",
+                columns: table => new
+                {
+                    IsnSweetProduction = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSweet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSweetFactory = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SweetProductions", x => x.IsnSweetProduction);
+                    table.ForeignKey(
+                        name: "FK_SweetProductions_SweetFactories_IsnSweetFactory",
+                        column: x => x.IsnSweetFactory,
+                        principalTable: "SweetFactories",
+                        principalColumn: "IsnSweetFactory",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_SweetProductions_Sweets_IsnSweet",
+                        column: x => x.IsnSweet,
+                        principalTable: "Sweets",
+                        principalColumn: "IsnSweet",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -1028,6 +1331,11 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 column: "IsnCustomer");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Adoptions_IsnMiniPig",
+                table: "Adoptions",
+                column: "IsnMiniPig");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AnnouncementGroups_IsnAnnouncement_IsnGroup",
                 table: "AnnouncementGroups",
                 columns: new[] { "IsnAnnouncement", "IsnGroup" });
@@ -1116,6 +1424,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 column: "IsnSubject");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Kvns_IsnStudent",
+                table: "Kvns",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Kvns_IsnSubject",
+                table: "Kvns",
+                column: "IsnSubject");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Materials_IsnSubject",
                 table: "Materials",
                 column: "IsnSubject");
@@ -1154,6 +1472,36 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "IX_Orders_IsnProduct",
                 table: "Orders",
                 column: "IsnProduct");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pingpongclub_IsnStudent",
+                table: "Pingpongclub",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pingpongclub_IsnSubject",
+                table: "Pingpongclub",
+                column: "IsnSubject");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Profcoms_IsnStudent",
+                table: "Profcoms",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Profcoms_IsnSubject",
+                table: "Profcoms",
+                column: "IsnSubject");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectActivities_IsnStudent",
+                table: "ProjectActivities",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProjectActivities_IsnSubject",
+                table: "ProjectActivities",
+                column: "IsnSubject");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RestaurantOrders_IsnRestaurant",
@@ -1196,6 +1544,21 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 column: "IsnSubject");
 
             migrationBuilder.CreateIndex(
+                name: "IX_StudentLab_IsnLab",
+                table: "StudentLab",
+                column: "IsnLab");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentLab_IsnStudent",
+                table: "StudentLab",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentNotes_IsnStudent",
+                table: "StudentNotes",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Students_IsnGroup",
                 table: "Students",
                 column: "IsnGroup");
@@ -1211,6 +1574,21 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 columns: new[] { "IsnSubject", "IsnGroup" });
 
             migrationBuilder.CreateIndex(
+                name: "IX_SweetProductions_IsnSweet",
+                table: "SweetProductions",
+                column: "IsnSweet");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SweetProductions_IsnSweetFactory",
+                table: "SweetProductions",
+                column: "IsnSweetFactory");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Sweets_IsnSweetType",
+                table: "Sweets",
+                column: "IsnSweetType");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TeacherSubjects_IsnSubject",
                 table: "TeacherSubjects",
                 column: "IsnSubject");
@@ -1221,23 +1599,13 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 columns: new[] { "IsnTeacher", "IsnSubject" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TheKvn_IsnStudent",
-                table: "TheKvn",
+                name: "IX_TheAttendanceLog_IsnStudent",
+                table: "TheAttendanceLog",
                 column: "IsnStudent");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TheKvn_IsnSubject",
-                table: "TheKvn",
-                column: "IsnSubject");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TheProfcom_IsnStudent",
-                table: "TheProfcom",
-                column: "IsnStudent");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TheProfcom_IsnSubject",
-                table: "TheProfcom",
+                name: "IX_TheAttendanceLog_IsnSubject",
+                table: "TheAttendanceLog",
                 column: "IsnSubject");
 
             migrationBuilder.CreateIndex(
@@ -1281,10 +1649,19 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "ExamResults");
 
             migrationBuilder.DropTable(
+                name: "FitnessEquipments");
+
+            migrationBuilder.DropTable(
                 name: "Grades");
 
             migrationBuilder.DropTable(
+                name: "Kvns");
+
+            migrationBuilder.DropTable(
                 name: "Materials");
+
+            migrationBuilder.DropTable(
+                name: "Members");
 
             migrationBuilder.DropTable(
                 name: "MovieGenres");
@@ -1296,28 +1673,49 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
+                name: "Pingpongclub");
+
+            migrationBuilder.DropTable(
+                name: "Profcoms");
+
+            migrationBuilder.DropTable(
+                name: "ProjectActivities");
+
+            migrationBuilder.DropTable(
                 name: "ServiceOrders");
 
             migrationBuilder.DropTable(
                 name: "Sportclub");
 
             migrationBuilder.DropTable(
+                name: "StudentLab");
+
+            migrationBuilder.DropTable(
+                name: "StudentNotes");
+
+            migrationBuilder.DropTable(
                 name: "SubjectsGroups");
+
+            migrationBuilder.DropTable(
+                name: "SweetProductions");
 
             migrationBuilder.DropTable(
                 name: "TeacherSubjects");
 
             migrationBuilder.DropTable(
-                name: "TheKvn");
-
-            migrationBuilder.DropTable(
-                name: "TheProfcom");
+                name: "TheAttendanceLog");
 
             migrationBuilder.DropTable(
                 name: "Tickets");
 
             migrationBuilder.DropTable(
+                name: "Trainers");
+
+            migrationBuilder.DropTable(
                 name: "Cats");
+
+            migrationBuilder.DropTable(
+                name: "MiniPigs");
 
             migrationBuilder.DropTable(
                 name: "ShelterCustomers");
@@ -1362,6 +1760,15 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "Services");
 
             migrationBuilder.DropTable(
+                name: "Labs");
+
+            migrationBuilder.DropTable(
+                name: "SweetFactories");
+
+            migrationBuilder.DropTable(
+                name: "Sweets");
+
+            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
@@ -1381,6 +1788,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Menus");
+
+            migrationBuilder.DropTable(
+                name: "SweetTypes");
 
             migrationBuilder.DropTable(
                 name: "Halls");

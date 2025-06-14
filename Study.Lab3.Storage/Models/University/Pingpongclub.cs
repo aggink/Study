@@ -4,13 +4,13 @@ using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.University;
 
-public class Sportclub
+public class Pingpongclub
 {
     /// <summary>
     /// Идентификатор спортивного клуба
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid IsnSportclub { get; set; }
+    public Guid IsnPingpongclub { get; set; }
 
     /// <summary>
     /// Идентификатор студента
@@ -28,14 +28,14 @@ public class Sportclub
     /// Значение количества участников
     /// </summary>
     [Required]
-    [Range(ModelConstants.Sportclub.MinParticipantValue, ModelConstants.Sportclub.MaxParticipantValue)]
+    [Range(ModelConstants.Pingpongclub.MinParticipantValue, ModelConstants.Pingpongclub.MaxParticipantValue)]
     public int ParticipantsCount { get; set; }
 
     /// <summary>
     /// Дата соревнований
     /// </summary>
     [Required]
-    public DateTime SportclubDate { get; set; }
+    public DateTime PingpongclubDate { get; set; }
 
     /// <summary>
     /// Студент

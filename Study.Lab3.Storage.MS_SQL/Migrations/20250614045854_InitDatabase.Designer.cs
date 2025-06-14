@@ -12,8 +12,8 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250609103114_StudentLab")]
-    partial class StudentLab
+    [Migration("20250614045854_InitDatabase")]
+    partial class InitDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -395,7 +395,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasKey("IsnEquipment");
 
-                    b.ToTable("Equipments");
+                    b.ToTable("FitnessEquipments");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessMember", b =>
@@ -834,6 +834,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("IsnMiniPig")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
@@ -847,6 +850,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnCat");
 
                     b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnMiniPig");
 
                     b.ToTable("Adoptions");
                 });
@@ -948,6 +953,66 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasKey("IsnCustomer");
 
                     b.ToTable("ShelterCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+                {
+                    b.Property<Guid>("IsnMiniPig")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Breed")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsAvailableForAdoption")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSterilized")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVaccinated")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MedicalHistory")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnMiniPig");
+
+                    b.ToTable("MiniPigs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
@@ -1113,6 +1178,32 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnSubject");
 
                     b.ToTable("Assignments");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
+                {
+                    b.Property<Guid>("IsnAttendanceLog")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("IsPresent")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("SubjectDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnAttendanceLog");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("TheAttendanceLog");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Career", b =>
@@ -1293,7 +1384,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheKvn");
+                    b.ToTable("Kvns");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
@@ -1347,6 +1438,32 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Materials");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Pingpongclub", b =>
+                {
+                    b.Property<Guid>("IsnPingpongclub")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PingpongclubDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnPingpongclub");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Pingpongclub");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
                 {
                     b.Property<Guid>("IsnProfcom")
@@ -1370,7 +1487,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheProfcom");
+                    b.ToTable("Profcoms");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.ProjectActivities", b =>
@@ -1396,7 +1513,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheProjectActivities");
+                    b.ToTable("ProjectActivities");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
@@ -1482,6 +1599,26 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnStudent");
 
                     b.ToTable("StudentLab");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
+                {
+                    b.Property<Guid>("IsnNote")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("IsnNote");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.ToTable("StudentNotes");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
@@ -1867,9 +2004,17 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Study.Lab3.Storage.Models.Shelter.MiniPig", "MiniPig")
+                        .WithMany("Adoptions")
+                        .HasForeignKey("IsnMiniPig")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Cat");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("MiniPig");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
@@ -1939,6 +2084,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.AttendanceLog", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("AttendanceLogs")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("AttendanceLogs")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
 
                     b.Navigation("Subject");
                 });
@@ -2052,16 +2216,35 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Pingpongclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("Pingpongclubs")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Pingpongclubs")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Profcoms")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("Profcoms")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2123,18 +2306,29 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentLab", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Labs", "Labs")
-                        .WithMany()
+                        .WithMany("StudentLabs")
                         .HasForeignKey("IsnLab")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("StudentLabs")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Labs");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.StudentNote", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Notes")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Student");
                 });
@@ -2292,6 +2486,11 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Adoptions");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+                {
+                    b.Navigation("Adoptions");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
                 {
                     b.Navigation("SweetProductions");
@@ -2331,8 +2530,15 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("SubjectGroups");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
+                {
+                    b.Navigation("StudentLabs");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Student", b =>
                 {
+                    b.Navigation("AttendanceLogs");
+
                     b.Navigation("Careers");
 
                     b.Navigation("ExamRegistrations");
@@ -2341,14 +2547,24 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.Navigation("Kvns");
 
+                    b.Navigation("Notes");
+
+                    b.Navigation("Pingpongclubs");
+
+                    b.Navigation("Profcoms");
+
                     b.Navigation("ProjectActivitiess");
 
                     b.Navigation("Sportclubs");
+
+                    b.Navigation("StudentLabs");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Subject", b =>
                 {
                     b.Navigation("Assignments");
+
+                    b.Navigation("AttendanceLogs");
 
                     b.Navigation("Careers");
 
@@ -2361,6 +2577,10 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Kvns");
 
                     b.Navigation("Materials");
+
+                    b.Navigation("Pingpongclubs");
+
+                    b.Navigation("Profcoms");
 
                     b.Navigation("ProjectActivitiess");
 

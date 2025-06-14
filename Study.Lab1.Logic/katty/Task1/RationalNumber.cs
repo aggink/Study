@@ -130,4 +130,9 @@ public class RationalNumber
 
         throw new NotImplementedException();
     }
+
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
+    }
 }
