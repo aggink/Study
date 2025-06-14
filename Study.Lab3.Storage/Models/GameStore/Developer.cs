@@ -1,6 +1,6 @@
+using Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.GameStore;
 
@@ -63,5 +63,5 @@ public class Developer
     /// Игры этого разработчика
     /// </summary>
     [InverseProperty(nameof(Game.Developer))]
-    public virtual ICollection<Game> Games { get; set; } = new List<Game>();
+    public virtual ICollection<Game> Games { get; set; }
 }
