@@ -1,7 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Study.Lab3.Storage.Constants;
-using Study.Lab3.Storage.Models.Shelter;
+﻿using Study.Lab3.Storage.Constants;
+using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Shelter.Adoptions.DtoModels;
 
