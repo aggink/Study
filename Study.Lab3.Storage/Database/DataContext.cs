@@ -4,11 +4,13 @@ using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.CarService;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
+using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
+using Study.Lab3.Storage.Models.TravelAgency;
 using Study.Lab3.Storage.Models.University;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
@@ -390,4 +392,35 @@ public class DataContext : DbContext
     public virtual DbSet<ServiceRecord> ServiceRecords { get; set; }
 
     #endregion
+
+    #region TravelAgency
+
+    public virtual DbSet<Tour> Tours { get; set; }
+
+    public virtual DbSet<Hotel> Hotels { get; set; }
+
+    public virtual DbSet<TravelCustomer> TravelCustomers { get; set; }
+
+    #endregion
+
+
+    #region GameStore
+
+    /// <summary>
+    /// Игры
+    /// </summary>
+    public virtual DbSet<Game> Games { get; set; }
+
+    /// <summary>
+    /// Разработчики игр
+    /// </summary>
+    public virtual DbSet<Developer> Developers { get; set; }
+
+    /// <summary>
+    /// Игровые платформы
+    /// </summary>
+    public virtual DbSet<Platform> Platforms { get; set; }
+
+    #endregion
+
 }
