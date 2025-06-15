@@ -1,4 +1,4 @@
-﻿namespace Study.Lab3.Storage.Constants;
+namespace Study.Lab3.Storage.Constants;
 
 /// <summary>
 /// Ограничения для моделей
@@ -1475,6 +1475,5 @@ public static class ModelConstants
         /// </summary>
         public const int MinReleaseYear = 1970;
     }
-
     #endregion
 }

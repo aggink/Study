@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.Fitness;

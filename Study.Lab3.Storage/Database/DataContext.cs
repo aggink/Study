@@ -383,6 +383,24 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region GameStore
+
+    /// <summary>
+    /// Игры
+    /// </summary>
+    public virtual DbSet<Game> Games { get; set; }
+
+    /// <summary>
+    /// Разработчики игр
+    /// </summary>
+    public virtual DbSet<Developer> Developers { get; set; }
+
+    /// <summary>
+    /// Игровые платформы
+    /// </summary>
+    public virtual DbSet<Platform> Platforms { get; set; }
+
+    #endregion
 
     #region GameStore
 
