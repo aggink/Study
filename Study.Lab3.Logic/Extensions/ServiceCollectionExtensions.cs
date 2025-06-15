@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
+using Study.Lab3.Logic.Interfaces.Services.CarService;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.Fitness;
 using Study.Lab3.Logic.Interfaces.Services.GameStore;
@@ -10,6 +11,7 @@ using Study.Lab3.Logic.Interfaces.Services.TravelAgency;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Logic.Interfaces.Services.Workshop;
 using Study.Lab3.Logic.Services.BeautySalon;
+using Study.Lab3.Logic.Services.CarService;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.Fitness;
 using Study.Lab3.Logic.Services.GameStore;
@@ -87,5 +89,8 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITourService, TourService>();
         services.AddSingleton<ITravelCustomerService, TravelCustomerService>();
         services.AddSingleton<IHotelService, HotelService>();
+        services.AddSingleton<ICarService, CarService>();
+        services.AddSingleton<IOwnerService, OwnerService>();
+        services.AddSingleton<IServiceRecordService, ServiceRecordService>();
     }
 }
