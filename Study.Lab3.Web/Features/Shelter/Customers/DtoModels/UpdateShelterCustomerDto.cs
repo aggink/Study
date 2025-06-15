@@ -15,7 +15,7 @@ public sealed record UpdateShelterCustomerDto
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Name)]
     public string LastName { get; init; }
-    
+
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Description)]
     public string Description { get; init; }

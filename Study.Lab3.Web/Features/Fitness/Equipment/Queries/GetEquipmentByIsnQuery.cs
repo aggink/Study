@@ -32,7 +32,7 @@ public sealed class GetEquipmentByIsnQueryHandler : IRequestHandler<GetEquipment
 
     public async Task<EquipmentDto> Handle(GetEquipmentByIsnQuery request, CancellationToken cancellationToken)
     {
-        var equipment = await _dataContext.Equipments
+        var equipment = await _dataContext.FitnessEquipments
                             .AsNoTracking()
                             .FirstOrDefaultAsync(x => x.IsnEquipment == request.IsnEquipment, cancellationToken)
                         ?? throw new BusinessLogicException($"Оборудование с идентификатором \"{request.IsnEquipment}\" не существует");

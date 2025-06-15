@@ -392,7 +392,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasKey("IsnEquipment");
 
-                    b.ToTable("Equipments");
+                    b.ToTable("FitnessEquipments");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessMember", b =>
@@ -492,6 +492,128 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasKey("IsnTrainer");
 
                     b.ToTable("Trainers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
+                {
+                    b.Property<Guid>("IsnDeveloper")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("ContactEmail")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("FoundedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("IsnDeveloper");
+
+                    b.ToTable("Developers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Game", b =>
+                {
+                    b.Property<Guid>("IsnGame")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AgeRating")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("IsnDeveloper")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("IsnGame");
+
+                    b.HasIndex("IsnDeveloper");
+
+                    b.ToTable("Games");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Platform", b =>
+                {
+                    b.Property<Guid>("IsnPlatform")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int?>("Generation")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("SupportsOnlineGaming")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IsnPlatform");
+
+                    b.ToTable("Platforms");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
@@ -936,6 +1058,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Property<Guid>("IsnCustomer")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("IsnMiniPig")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
@@ -949,6 +1074,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnCat");
 
                     b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnMiniPig");
 
                     b.ToTable("Adoptions");
                 });
@@ -1052,6 +1179,66 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("ShelterCustomers");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+                {
+                    b.Property<Guid>("IsnMiniPig")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Breed")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsAvailableForAdoption")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSterilized")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsVaccinated")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MedicalHistory")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnMiniPig");
+
+                    b.ToTable("MiniPigs");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
                 {
                     b.Property<Guid>("IsnSweet")
@@ -1133,6 +1320,162 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasKey("IsnSweetType");
 
                     b.ToTable("SweetTypes");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.TravelAgency.Hotel", b =>
+                {
+                    b.Property<Guid>("IsnHotel")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("HasPool")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasSpa")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("HasWiFi")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<decimal>("PricePerNight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("StarRating")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnHotel");
+
+                    b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.TravelAgency.Tour", b =>
+                {
+                    b.Property<Guid>("IsnTour")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MaxParticipants")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnTour");
+
+                    b.ToTable("Tours");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.TravelAgency.TravelCustomer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsVip")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PassportNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("PatronymicName")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SurName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("TravelCustomers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Announcement", b =>
@@ -1421,7 +1764,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheKvn");
+                    b.ToTable("Kvns");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Labs", b =>
@@ -1475,6 +1818,32 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Materials");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Pingpongclub", b =>
+                {
+                    b.Property<Guid>("IsnPingpongclub")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PingpongclubDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnPingpongclub");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Pingpongclub");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
                 {
                     b.Property<Guid>("IsnProfcom")
@@ -1498,7 +1867,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheProfcom");
+                    b.ToTable("Profcoms");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.ProjectActivities", b =>
@@ -1524,7 +1893,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.HasIndex("IsnSubject");
 
-                    b.ToTable("TheProjectActivities");
+                    b.ToTable("ProjectActivities");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
@@ -1902,6 +2271,15 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Session");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Game", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.GameStore.Developer", "Developer")
+                        .WithMany("Games")
+                        .HasForeignKey("IsnDeveloper");
+
+                    b.Navigation("Developer");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.HospitalStore.Patient", "Patient")
@@ -2065,9 +2443,17 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Study.Lab3.Storage.Models.Shelter.MiniPig", "MiniPig")
+                        .WithMany("Adoptions")
+                        .HasForeignKey("IsnMiniPig")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("Cat");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("MiniPig");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
@@ -2269,16 +2655,35 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Pingpongclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany()
+                        .WithMany("Pingpongclubs")
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany()
+                        .WithMany("Pingpongclubs")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Profcom", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Profcoms")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("Profcoms")
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2468,6 +2873,11 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Tickets");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
+                {
+                    b.Navigation("Games");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Patient", b =>
                 {
                     b.Navigation("Orders");
@@ -2535,6 +2945,11 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Adoptions");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Shelter.MiniPig", b =>
+                {
+                    b.Navigation("Adoptions");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Sweets.Sweet", b =>
                 {
                     b.Navigation("SweetProductions");
@@ -2593,6 +3008,10 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.Navigation("Notes");
 
+                    b.Navigation("Pingpongclubs");
+
+                    b.Navigation("Profcoms");
+
                     b.Navigation("ProjectActivitiess");
 
                     b.Navigation("Sportclubs");
@@ -2617,6 +3036,10 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Kvns");
 
                     b.Navigation("Materials");
+
+                    b.Navigation("Pingpongclubs");
+
+                    b.Navigation("Profcoms");
 
                     b.Navigation("ProjectActivitiess");
 

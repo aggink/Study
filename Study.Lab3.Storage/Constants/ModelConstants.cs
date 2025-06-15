@@ -720,6 +720,59 @@ public static class ModelConstants
         public const int Email = 255;
     }
 
+    public static class MiniPig
+    {
+        /// <summary>
+        /// Максимальная длина клички мини пига
+        /// </summary>
+        public const int Nickname = 100;
+
+        /// <summary>
+        /// Максимальная длина описания мини пига
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Максимальная длина названия породы
+        /// </summary>
+        public const int Breed = 100;
+
+        /// <summary>
+        /// Максимальная длина названия окраса
+        /// </summary>
+        public const int Color = 20;
+
+        /// <summary>
+        /// Максимальная длина истории болезней
+        /// </summary>
+        public const int MedicalHistory = 1000;
+
+        /// <summary>
+        /// Минимальный возраст мини пига (в годах)
+        /// </summary>
+        public const int AgeMin = 0;
+
+        /// <summary>
+        /// Максимальный возраст мини пига (в годах)
+        /// </summary>
+        public const int AgeMax = 20;
+
+        /// <summary>
+        /// Минимальный вес мини пига (в кг)
+        /// </summary>
+        public const double WeightMin = 10.0;
+
+        /// <summary>
+        /// Максимальный вес мини пига (в кг)
+        /// </summary>
+        public const double WeightMax = 120.0;
+
+        /// <summary>
+        /// Ссылка на фотографию мини пига
+        /// </summary>
+        public const int PhotoUrl = 100;
+    }
+
     #endregion
 
     #region SweetFactory
@@ -781,6 +834,149 @@ public static class ModelConstants
         /// Максимальное наименование типа конфеты
         /// </summary>
         public const int MaxNameLenght = 256;
+    }
+
+    #endregion
+
+    #region TravelAgency
+
+    public static class Tour
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Максимальная длина поля "Страна"
+        /// </summary>
+        public const int Country = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Город"
+        /// </summary>
+        public const int City = 100;
+
+        /// <summary>
+        /// Минимальная цена тура
+        /// </summary>
+        public const double MinPrice = 0;
+
+        /// <summary>
+        /// Максимальная цена тура
+        /// </summary>
+        public const double MaxPrice = 999999;
+
+        /// <summary>
+        /// Минимальная продолжительность тура в днях
+        /// </summary>
+        public const int MinDuration = 1;
+
+        /// <summary>
+        /// Максимальная продолжительность тура в днях
+        /// </summary>
+        public const int MaxDuration = 365;
+
+        /// <summary>
+        /// Минимальное количество участников
+        /// </summary>
+        public const int MinParticipants = 1;
+
+        /// <summary>
+        /// Максимальное количество участников
+        /// </summary>
+        public const int MaxParticipants = 100;
+    }
+
+    public static class Hotel
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 2000;
+
+        /// <summary>
+        /// Максимальная длина поля "Адрес"
+        /// </summary>
+        public const int Address = 500;
+
+        /// <summary>
+        /// Максимальная длина поля "Страна"
+        /// </summary>
+        public const int Country = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Город"
+        /// </summary>
+        public const int City = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 100;
+
+        /// <summary>
+        /// Минимальное значение для стоимости за ночь.
+        /// </summary>
+        public const int PricePerNightMin = 0;
+
+        /// <summary>
+        /// Максимальное значение для стоимости за ночь.
+        /// </summary>
+        public const int PricePerNightMax = 1000000;
+    }
+
+    public static class TravelCustomer
+    {
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int SurName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Отчество"
+        /// </summary>
+        public const int PatronymicName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Номер паспорта"
+        /// </summary>
+        public const int PassportNumber = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Адрес"
+        /// </summary>
+        public const int Address = 500;
     }
 
     #endregion
@@ -909,6 +1105,19 @@ public static class ModelConstants
         /// Максимальная длина типа материала
         /// </summary>
         public const int Type = 50;
+    }
+
+    public static class Pingpongclub
+    {
+        /// <summary>
+        /// Минимально допустимое количество участников.
+        /// </summary>
+        public const int MinParticipantValue = 4;
+
+        /// <summary>
+        /// Максимально допустимое количество участников.
+        /// </summary>
+        public const int MaxParticipantValue = 102;
     }
 
     public static class Announcement
@@ -1157,6 +1366,114 @@ public static class ModelConstants
         /// Максимальная итоговая стоимость
         /// </summary>
         public const double MaxTotalPrice = 999999.99;
+    }
+
+    #endregion
+
+    #region GameStore
+
+    public static class Game
+    {
+        /// <summary>
+        /// Максимальная длина названия игры
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина описания игры
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная цена игры
+        /// </summary>
+        public const double MinPrice = 0;
+
+        /// <summary>
+        /// Максимальная цена игры
+        /// </summary>
+        public const double MaxPrice = 99999.99;
+
+        /// <summary>
+        /// Максимальная длина жанра
+        /// </summary>
+        public const int Genre = 100;
+
+        /// <summary>
+        /// Максимальная длина возрастного рейтинга
+        /// </summary>
+        public const int AgeRating = 10;
+    }
+
+    public static class Developer
+    {
+        /// <summary>
+        /// Максимальная длина названия компании
+        /// </summary>
+        public const int CompanyName = 150;
+
+        /// <summary>
+        /// Максимальная длина названия страны
+        /// </summary>
+        public const int Country = 100;
+
+        /// <summary>
+        /// Максимальная длина веб-сайта
+        /// </summary>
+        public const int Website = 200;
+
+        /// <summary>
+        /// Максимальная длина email
+        /// </summary>
+        public const int ContactEmail = 100;
+
+        /// <summary>
+        /// Максимальная длина описания компании
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Минимальный год основания компании
+        /// </summary>
+        public const int MinFoundedYear = 1900;
+    }
+
+    public static class Platform
+    {
+        /// <summary>
+        /// Максимальная длина названия платформы
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина названия производителя
+        /// </summary>
+        public const int Manufacturer = 100;
+
+        /// <summary>
+        /// Максимальная длина типа платформы
+        /// </summary>
+        public const int Type = 50;
+
+        /// <summary>
+        /// Максимальная длина описания платформы
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Минимальное поколение платформы
+        /// </summary>
+        public const int MinGeneration = 1;
+
+        /// <summary>
+        /// Максимальное поколение платформы
+        /// </summary>
+        public const int MaxGeneration = 20;
+
+        /// <summary>
+        /// Минимальный год выпуска платформы
+        /// </summary>
+        public const int MinReleaseYear = 1970;
     }
 
     #endregion

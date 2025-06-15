@@ -18,7 +18,7 @@ public class SweetProduction
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
     public Guid IsnSweetProduction { get; set; }
-    
+
     /// <summary>
     /// Идентификатор конфеты
     /// </summary>

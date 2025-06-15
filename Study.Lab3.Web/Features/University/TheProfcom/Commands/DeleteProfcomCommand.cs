@@ -36,7 +36,7 @@ public sealed class DeleteProfcomCommandHandler : IRequestHandler<DeleteProfcomC
 
     public async Task Handle(DeleteProfcomCommand request, CancellationToken cancellationToken)
     {
-        var profcom = await _dataContext.TheProfcom
+        var profcom = await _dataContext.Profcoms
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnProfcom == request.IsnProfcom, cancellationToken)
                 ?? throw new BusinessLogicException($"Научной встречи с идентификатором \"{request.IsnProfcom}\" не существует");
@@ -44,7 +44,7 @@ public sealed class DeleteProfcomCommandHandler : IRequestHandler<DeleteProfcomC
         await _profcomService.CanDeleteAndThrowAsync(
             _dataContext, profcom, cancellationToken);
 
-        _dataContext.TheProfcom.Remove(profcom);
+        _dataContext.Profcoms.Remove(profcom);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

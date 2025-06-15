@@ -37,7 +37,7 @@ public sealed class UpdateKvnCommandHandler : IRequestHandler<UpdateKvnCommand, 
 
     public async Task<Guid> Handle(UpdateKvnCommand request, CancellationToken cancellationToken)
     {
-        var profcom = await _dataContext.TheKvn
+        var profcom = await _dataContext.Kvns
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnKvn == request.Kvn.IsnKvn, cancellationToken)
                 ?? throw new BusinessLogicException($"Выступления с идентификатором \"{request.Kvn.IsnKvn}\" не существует");

@@ -53,7 +53,7 @@ public sealed class TicketService : ITicketService
 
         // Проверка, что место не занято
         var seatTaken = await dataContext.Tickets
-            .AnyAsync(x => x.IsnSession == ticket.IsnSession && 
+            .AnyAsync(x => x.IsnSession == ticket.IsnSession &&
                           x.IsnSeat == ticket.IsnSeat &&
                           x.Status != TicketStatus.Cancelled,
                       cancellationToken);
@@ -63,10 +63,10 @@ public sealed class TicketService : ITicketService
 
         // Расчет цены билета
         ticket.Price = CalculateTicketPrice(session.BasePrice, seat);
-        
+
         // Генерация кода билета
         ticket.TicketCode = GenerateTicketCode();
-        
+
         // Установка даты покупки и статуса
         ticket.PurchaseDate = DateTime.UtcNow;
         ticket.Status = TicketStatus.Active;

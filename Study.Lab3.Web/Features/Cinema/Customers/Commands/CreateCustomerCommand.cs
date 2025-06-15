@@ -52,7 +52,7 @@ public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateCustome
 
         await _dataContext.Customers.AddAsync(customer, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
-        
+
         return customer.IsnCustomer;
     }
 }

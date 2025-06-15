@@ -36,15 +36,15 @@ public sealed class CreateSweetTypeCommandHandler : IRequestHandler<CreateSweetT
         if (await _dataContext.SweetTypes.AnyAsync(c => c.Name == request.SweetType.Name, cancellationToken))
             throw new BusinessLogicException($"Запись с индентификатором \"{request.SweetType.Name}\" уже существует");
 
-        var sweettype = new Storage.Models.Sweets.SweetType
+        var sweetType = new Storage.Models.Sweets.SweetType
         {
             IsnSweetType = Guid.NewGuid(),
             Name = request.SweetType.Name
         };
 
-        await _dataContext.SweetTypes.AddAsync(sweettype, cancellationToken);
+        await _dataContext.SweetTypes.AddAsync(sweetType, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return sweettype.IsnSweetType;
+        return sweetType.IsnSweetType;
     }
 }

@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
+using Study.Lab3.Web.Features.University.ProjectActivities.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheProjectActivities.Commands;
+namespace Study.Lab3.Web.Features.University.ProjectActivities.Commands;
 
 /// <summary>
 /// Редактирование проектной деятельности
@@ -37,7 +37,7 @@ public sealed class UpdateProjectActivitiesCommandHandler : IRequestHandler<Upda
 
     public async Task<Guid> Handle(UpdateProjectActivitiesCommand request, CancellationToken cancellationToken)
     {
-        var projectactivities = await _dataContext.TheProjectActivities
+        var projectactivities = await _dataContext.ProjectActivities
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnProjectActivities == request.ProjectActivities.IsnProjectActivities, cancellationToken)
                 ?? throw new BusinessLogicException($"Выступлений с идентификатором \"{request.ProjectActivities.IsnProjectActivities}\" не существует");

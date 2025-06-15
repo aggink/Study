@@ -1,6 +1,6 @@
 namespace Study.Lab2.Logic.Interfaces.chaspix;
 
-public interface IServerRequestService: IDisposable
+public interface IServerRequestService : IDisposable
 {
     /// <summary>
     /// Получить случайный пост от JSONPlaceholder

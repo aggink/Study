@@ -15,11 +15,11 @@ public class chaspixService : IRunService
             var d = new RationalNumber(8, 2);
             var e = new RationalNumber(-12, -3);
 
-            var sum = a + b; 
-            var difference = a - b; 
-            var product = a * b; 
-            var quotient = a / b; 
-            var areEqual = a == b; 
+            var sum = a + b;
+            var difference = a - b;
+            var product = a * b;
+            var quotient = a / b;
+            var areEqual = a == b;
 
             Console.Write($"a: {a}, b: {b}, c:5/10\n" +
                           $"a + b = {sum}\n" +
