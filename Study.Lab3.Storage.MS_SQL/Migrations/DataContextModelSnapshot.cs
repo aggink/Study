@@ -760,7 +760,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
                 {
                     b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<byte[]>("Data")
@@ -784,7 +783,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
                 {
                     b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IsnImage")
@@ -805,7 +803,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
                 {
                     b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IsnUser")
@@ -825,7 +822,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
                 {
                     b.Property<Guid>("Isn")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("AboutMe")
@@ -857,7 +853,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.HasIndex("IsnProfilePicture");
+                    b.HasIndex("IsnProfilePicture")
+                        .IsUnique()
+                        .HasFilter("[IsnProfilePicture] IS NOT NULL");
 
                     b.ToTable("Users");
                 });
@@ -2330,7 +2328,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "Uploader")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("IsnUploader")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -2371,8 +2369,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "ProfilePicture")
-                        .WithMany()
-                        .HasForeignKey("IsnProfilePicture");
+                        .WithOne("Profile")
+                        .HasForeignKey("Study.Lab3.Storage.Models.Messenger.User", "IsnProfilePicture");
 
                     b.Navigation("ProfilePicture");
                 });
@@ -2901,6 +2899,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
                 {
                     b.Navigation("ImageEmbeds");
+
+                    b.Navigation("Profile");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
@@ -2910,6 +2910,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
                 {
+                    b.Navigation("Images");
+
                     b.Navigation("Posts");
                 });
 
