@@ -17,7 +17,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -108,6 +108,127 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnService");
 
                     b.ToTable("BeautyService");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
+                {
+                    b.Property<Guid>("IsnCar")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<Guid>("IsnOwner")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("LicensePlate")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Mileage")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("VinNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnCar");
+
+                    b.HasIndex("IsnOwner")
+                        .IsUnique();
+
+                    b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Owner", b =>
+                {
+                    b.Property<Guid>("IsnOwner")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("SecondName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("IsnOwner");
+
+                    b.ToTable("Owners");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.ServiceRecord", b =>
+                {
+                    b.Property<Guid>("IsnServiceRecord")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("CarLicensePlate")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<double>("Cost")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<bool>("IsCompleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("MechanicName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("ServiceDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ServiceType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnServiceRecord");
+
+                    b.ToTable("ServiceRecords");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
@@ -1811,6 +1932,17 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("BeautyService");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.CarService.Owner", "Owner")
+                        .WithOne("Car")
+                        .HasForeignKey("Study.Lab3.Storage.Models.CarService.Car", "IsnOwner")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Owner");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.MovieGenre", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Cinema.Genre", "Genre")
@@ -2394,6 +2526,11 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyService", b =>
                 {
                     b.Navigation("BeautyAppointments");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Owner", b =>
+                {
+                    b.Navigation("Car");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Customer", b =>
