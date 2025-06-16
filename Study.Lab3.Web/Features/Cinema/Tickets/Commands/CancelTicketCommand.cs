@@ -49,7 +49,7 @@ public sealed class CancelTicketCommandHandler : IRequestHandler<CancelTicketCom
 
         // Отмена билета
         ticket.Status = TicketStatus.Cancelled;
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

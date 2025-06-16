@@ -29,7 +29,7 @@ public sealed class GetKvnWithDetailsQueryHandler : IRequestHandler<GetKvnWithDe
 
     public async Task<KvnWithDetailsDto> Handle(GetKvnWithDetailsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.TheKvn
+        return await _dataContext.Kvns
             .AsNoTracking()
             .Where(x => x.IsnKvn == request.IsnKvn)
             .Select(kvn => new KvnWithDetailsDto

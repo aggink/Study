@@ -32,7 +32,7 @@ public class TaipanoService : IRunService
 
         try
         {
-            
+
 
             for (int i = 0; i < Urls.Length; i++)
             {
@@ -88,7 +88,7 @@ public class TaipanoService : IRunService
                 tasks[i] = _requestService.FetchDataAsync(Urls[i], cancellationToken);
             }
 
-            List<string> responses = new List<string>(); 
+            List<string> responses = new List<string>();
             responses.AddRange(await Task.WhenAll(tasks));
 
             Console.ForegroundColor = ConsoleColor.Green;

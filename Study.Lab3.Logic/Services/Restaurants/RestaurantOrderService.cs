@@ -38,7 +38,7 @@ public sealed class RestaurantOrderService : IRestaurantOrderService
         if (restaurantOrder.Status.Length > ModelConstants.RestaurantOrder.Status)
             throw new BusinessLogicException($"Статус не может превышать {ModelConstants.RestaurantOrder.Status} символов");
 
-        if (restaurantOrder.TableNumber.HasValue && 
+        if (restaurantOrder.TableNumber.HasValue &&
             (restaurantOrder.TableNumber < ModelConstants.RestaurantOrder.MinTableNumber || restaurantOrder.TableNumber > ModelConstants.RestaurantOrder.MaxTableNumber))
             throw new BusinessLogicException($"Номер стола должен быть от {ModelConstants.RestaurantOrder.MinTableNumber} до {ModelConstants.RestaurantOrder.MaxTableNumber}");
 

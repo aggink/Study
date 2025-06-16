@@ -75,7 +75,7 @@ public sealed class MasterService : IMasterService
 
     private static bool IsValidPhone(string phone)
     {
-        return phone.All(c => char.IsDigit(c) || c == '+' || c == '-' || c == '(' || c == ')' || c == ' ') 
+        return phone.All(c => char.IsDigit(c) || c == '+' || c == '-' || c == '(' || c == ')' || c == ' ')
                && phone.Any(char.IsDigit);
     }
 }

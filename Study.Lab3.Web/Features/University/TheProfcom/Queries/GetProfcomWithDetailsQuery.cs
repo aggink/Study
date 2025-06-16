@@ -29,7 +29,7 @@ public sealed class GetProfcomWithDetailsQueryHandler : IRequestHandler<GetProfc
 
     public async Task<ProfcomWithDetailsDto> Handle(GetProfcomWithDetailsQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.TheProfcom
+        return await _dataContext.Profcoms
             .AsNoTracking()
             .Where(x => x.IsnProfcom == request.IsnProfcom)
             .Select(profcom => new ProfcomWithDetailsDto

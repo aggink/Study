@@ -2,9 +2,9 @@
 
 namespace Study.Lab2.Logic.alexmark1612
 {
-public class RequestService : IRequestService
-{
-    private readonly HttpClient _httpClient;
+    public class RequestService : IRequestService
+    {
+        private readonly HttpClient _httpClient;
 
         public RequestService(HttpClient httpClient)
         {

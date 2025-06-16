@@ -32,7 +32,7 @@ public sealed class GetKvnByIsnQueryHandler : IRequestHandler<GetKvnByIsnQuery, 
 
     public async Task<KvnDto> Handle(GetKvnByIsnQuery request, CancellationToken cancellationToken)
     {
-        var kvn = await _dataContext.TheKvn
+        var kvn = await _dataContext.Kvns
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnKvn == request.IsnKvn, cancellationToken)
                 ?? throw new BusinessLogicException($"Количества участников с идентификатором \"{request.IsnKvn}\" не существует");
