@@ -5,6 +5,7 @@ using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
+using Study.Lab3.Storage.Models.Messenger;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
@@ -382,7 +383,6 @@ public class DataContext : DbContext
 
     #endregion
 
-
     #region GameStore
 
     /// <summary>
@@ -402,4 +402,27 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region Messenger
+
+    /// <summary>
+    /// Пользователи
+    /// </summary>
+    public virtual DbSet<User> Users { get; set; }
+
+    /// <summary>
+    /// Сообщения
+    /// </summary>
+    public virtual DbSet<Post> Posts { get; set; }
+
+    /// <summary>
+    /// Изображения
+    /// </summary>
+    public virtual DbSet<Image> Images { get; set; }
+
+    /// <summary>
+    /// Вложения
+    /// </summary>
+    public virtual DbSet<ImageEmbed> ImageEmbeds { get; set; }
+
+    #endregion
 }

@@ -18,13 +18,13 @@ public sealed class DeveloperService : IDeveloperService
 
         if (developer.CompanyName.Length > 150)
             throw new BusinessLogicException("Название компании не может превышать 150 символов");
-        
+
         if (string.IsNullOrWhiteSpace(developer.Country))
             throw new BusinessLogicException("Страна не может быть пустой");
 
         if (developer.Country.Length > 100)
             throw new BusinessLogicException("Название страны не может превышать 100 символов");
-        
+
         if (developer.FoundedDate.HasValue)
         {
             if (developer.FoundedDate.Value > DateTime.UtcNow)
@@ -33,7 +33,7 @@ public sealed class DeveloperService : IDeveloperService
             if (developer.FoundedDate.Value < new DateTime(1900, 1, 1))
                 throw new BusinessLogicException("Дата основания не может быть раньше 1900 года");
         }
-        
+
         if (!string.IsNullOrWhiteSpace(developer.ContactEmail))
         {
             if (developer.ContactEmail.Length > 100)
@@ -42,7 +42,7 @@ public sealed class DeveloperService : IDeveloperService
             if (!IsValidEmail(developer.ContactEmail))
                 throw new BusinessLogicException("Некорректный формат email");
         }
-        
+
         if (!string.IsNullOrWhiteSpace(developer.Website))
         {
             if (developer.Website.Length > 200)
@@ -51,7 +51,7 @@ public sealed class DeveloperService : IDeveloperService
             if (!IsValidUrl(developer.Website))
                 throw new BusinessLogicException("Некорректный формат URL веб-сайта");
         }
-        
+
         var existingDeveloper = await dataContext.Developers
             .FirstOrDefaultAsync(x => x.CompanyName == developer.CompanyName && x.IsnDeveloper != developer.IsnDeveloper, cancellationToken);
 
@@ -66,7 +66,7 @@ public sealed class DeveloperService : IDeveloperService
     {
         if (!await dataContext.Developers.AnyAsync(x => x.IsnDeveloper == developer.IsnDeveloper, cancellationToken))
             throw new BusinessLogicException($"Разработчик с идентификатором \"{developer.IsnDeveloper}\" не существует");
-        
+
         if (await dataContext.Games.AnyAsync(x => x.IsnDeveloper == developer.IsnDeveloper, cancellationToken))
             throw new BusinessLogicException("Невозможно удалить разработчика, так как у него есть игры");
     }

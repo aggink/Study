@@ -12,8 +12,8 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250614233344_TravelAgency")]
-    partial class TravelAgency
+    [Migration("20250616114733_InitDatabase")]
+    partial class InitDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -497,6 +497,128 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Trainers");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
+                {
+                    b.Property<Guid>("IsnDeveloper")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("ContactEmail")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("FoundedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("IsnDeveloper");
+
+                    b.ToTable("Developers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Game", b =>
+                {
+                    b.Property<Guid>("IsnGame")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AgeRating")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Genre")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("IsnDeveloper")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("IsnGame");
+
+                    b.HasIndex("IsnDeveloper");
+
+                    b.ToTable("Games");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Platform", b =>
+                {
+                    b.Property<Guid>("IsnPlatform")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int?>("Generation")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ReleaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("SupportsOnlineGaming")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IsnPlatform");
+
+                    b.ToTable("Platforms");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
                 {
                     b.Property<Guid>("IsnOrder")
@@ -636,6 +758,109 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasKey("IsnBook");
 
                     b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
+                {
+                    b.Property<Guid>("IsnImage")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Data")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid>("IsnUploader")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IsnImage");
+
+                    b.HasIndex("IsnUploader");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
+                {
+                    b.Property<Guid>("IsnImageEmbed")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnImage")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnPost")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IsnImageEmbed");
+
+                    b.HasIndex("IsnImage");
+
+                    b.HasIndex("IsnPost");
+
+                    b.ToTable("ImageEmbeds");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
+                {
+                    b.Property<Guid>("IsnPost")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IsnPost");
+
+                    b.HasIndex("IsnUser");
+
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
+                {
+                    b.Property<Guid>("IsnUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AboutMe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(254)
+                        .HasColumnType("nvarchar(254)");
+
+                    b.Property<Guid?>("IsnProfilePicture")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Website")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("IsnUser");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IsnProfilePicture")
+                        .IsUnique()
+                        .HasFilter("[IsnProfilePicture] IS NOT NULL");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
@@ -2047,6 +2272,15 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Session");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Game", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.GameStore.Developer", "Developer")
+                        .WithMany("Games")
+                        .HasForeignKey("IsnDeveloper");
+
+                    b.Navigation("Developer");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.HospitalStore.Patient", "Patient")
@@ -2092,6 +2326,56 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasForeignKey("Study.Lab3.Storage.Models.Library.Authors", "IsnTeacher");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "Uploader")
+                        .WithMany("Images")
+                        .HasForeignKey("IsnUploader")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Uploader");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.ImageEmbed", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "Image")
+                        .WithMany("ImageEmbeds")
+                        .HasForeignKey("IsnImage")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Post", "Post")
+                        .WithMany("ImageEmbeds")
+                        .HasForeignKey("IsnPost")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Image");
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.User", "User")
+                        .WithMany("Posts")
+                        .HasForeignKey("IsnUser")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Messenger.Image", "ProfilePicture")
+                        .WithOne("Profile")
+                        .HasForeignKey("Study.Lab3.Storage.Models.Messenger.User", "IsnProfilePicture");
+
+                    b.Navigation("ProfilePicture");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
@@ -2590,6 +2874,11 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Tickets");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
+                {
+                    b.Navigation("Games");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Patient", b =>
                 {
                     b.Navigation("Orders");
@@ -2608,6 +2897,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Library.Books", b =>
                 {
                     b.Navigation("AuthorBook");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Image", b =>
+                {
+                    b.Navigation("ImageEmbeds");
+
+                    b.Navigation("Profile");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.Post", b =>
+                {
+                    b.Navigation("ImageEmbeds");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Messenger.User", b =>
+                {
+                    b.Navigation("Images");
+
+                    b.Navigation("Posts");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
