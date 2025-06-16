@@ -14,17 +14,17 @@ public sealed class ImageEmbedService : IImageEmbedService
         CancellationToken cancellationToken = default)
     {
         #region Isn
-        if (await dataContext.ImageEmbeds.AnyAsync(x => x.Isn == embed.Isn, cancellationToken))
-            throw new BusinessLogicException($"Внедрение {embed.Isn} уже существует");
+        if (await dataContext.ImageEmbeds.AnyAsync(x => x.IsnImageEmbed == embed.IsnImageEmbed, cancellationToken))
+            throw new BusinessLogicException($"Внедрение {embed.IsnImageEmbed} уже существует");
         #endregion
 
         #region PostIsn
-        if (!await dataContext.Posts.AnyAsync(x => x.Isn == embed.IsnPost, cancellationToken))
+        if (!await dataContext.Posts.AnyAsync(x => x.IsnPost == embed.IsnPost, cancellationToken))
             throw new BusinessLogicException($"Сообщение {embed.IsnPost} не существует");
         #endregion
 
         #region ImageIsn
-        if (!await dataContext.Images.AnyAsync(x => x.Isn == embed.IsnImage, cancellationToken))
+        if (!await dataContext.Images.AnyAsync(x => x.IsnImage == embed.IsnImage, cancellationToken))
             throw new BusinessLogicException($"Изображение {embed.IsnImage} не существует");
         #endregion
 
@@ -41,12 +41,12 @@ public sealed class ImageEmbedService : IImageEmbedService
         CancellationToken cancellationToken = default)
     {
         #region PostIsn
-        if (!await dataContext.Posts.AnyAsync(x => x.Isn == embed.IsnPost, cancellationToken))
+        if (!await dataContext.Posts.AnyAsync(x => x.IsnPost == embed.IsnPost, cancellationToken))
             throw new BusinessLogicException($"Сообщение {embed.IsnPost} не существует");
         #endregion
 
         #region ImageIsn
-        if (!await dataContext.Images.AnyAsync(x => x.Isn == embed.IsnImage, cancellationToken))
+        if (!await dataContext.Images.AnyAsync(x => x.IsnImage == embed.IsnImage, cancellationToken))
             throw new BusinessLogicException($"Изображение {embed.IsnImage} не существует");
         #endregion
 

@@ -31,7 +31,7 @@ public sealed class DeletePostCommandHandler : IRequestHandler<DeletePostCommand
     public async Task Handle(DeletePostCommand request, CancellationToken cancellationToken)
     {
         var post = await _dataContext.Posts
-                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnPost == request.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Пост {request.Isn} не существует");
 
         _dataContext.Posts.Remove(post);

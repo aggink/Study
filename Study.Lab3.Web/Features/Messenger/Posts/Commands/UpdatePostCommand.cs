@@ -37,7 +37,7 @@ public sealed class UpdatePostCommandHandler : IRequestHandler<UpdatePostCommand
     public async Task<Guid> Handle(UpdatePostCommand request, CancellationToken cancellationToken)
     {
         var post = await _dataContext.Posts
-                       .FirstOrDefaultAsync(x => x.Isn == request.Post.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnPost == request.Post.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Пост {request.Post.Isn} не существует");
 
         post.Message = request.Post.Message;
@@ -45,6 +45,6 @@ public sealed class UpdatePostCommandHandler : IRequestHandler<UpdatePostCommand
         await _postService.UpdatePostValidateAndThrowAsync(_dataContext, post, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
-        return post.Isn;
+        return post.IsnPost;
     }
 }

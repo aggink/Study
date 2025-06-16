@@ -38,7 +38,7 @@ public sealed class UpdateImageEmbedCommandHandler : IRequestHandler<UpdateImage
     public async Task<Guid> Handle(UpdateImageEmbedCommand request, CancellationToken cancellationToken)
     {
         var embed = await _dataContext.ImageEmbeds
-                       .FirstOrDefaultAsync(x => x.Isn == request.Embed.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnImageEmbed == request.Embed.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Вставка {request.Embed.Isn} не существует");
 
         if (request.Embed.IsnPost is not null) embed.IsnPost = (Guid)request.Embed.IsnPost;
@@ -48,6 +48,6 @@ public sealed class UpdateImageEmbedCommandHandler : IRequestHandler<UpdateImage
 
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return embed.Isn;
+        return embed.IsnImageEmbed;
     }
 }

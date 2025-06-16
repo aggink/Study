@@ -32,12 +32,12 @@ public sealed class GetPostByIsnQueryHandler : IRequestHandler<GetPostByIsnQuery
     public async Task<PostDto> Handle(GetPostByIsnQuery request, CancellationToken cancellationToken)
     {
         var post = await _dataContext.Posts
-                       .AsNoTracking().FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                       .AsNoTracking().FirstOrDefaultAsync(x => x.IsnPost == request.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Сообщение {request.Isn} не существует");
 
         return new PostDto
         {
-            Isn = post.Isn,
+            Isn = post.IsnPost,
             IsnUser = post.IsnUser,
             Message = post.Message
         };

@@ -31,7 +31,7 @@ public sealed class DeleteImageCommandHandler : IRequestHandler<DeleteImageComma
     public async Task Handle(DeleteImageCommand request, CancellationToken cancellationToken)
     {
         var image = await _dataContext.Images
-                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnImage == request.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Изображение {request.Isn} не существует");
 
         _dataContext.Images.Remove(image);

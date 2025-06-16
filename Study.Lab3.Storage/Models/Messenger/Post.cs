@@ -12,7 +12,7 @@ public class Post
     /// Идентификатор
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid Isn { get; set; }
+    public Guid IsnPost { get; set; }
 
     /// <summary>
     /// Идентификатор пользователя
@@ -26,6 +26,9 @@ public class Post
     [Required]
     public string Message { get; set; }
 
+    /// <summary>
+    /// Пользователь
+    /// </summary>
     public virtual User User { get; set; }
 
     /// <summary>

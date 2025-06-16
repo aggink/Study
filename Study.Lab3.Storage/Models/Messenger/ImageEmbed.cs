@@ -12,7 +12,7 @@ public class ImageEmbed
     /// Идентификатор
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid Isn { get; set; }
+    public Guid IsnImageEmbed { get; set; }
 
     /// <summary>
     /// Идентификатор сообщения
@@ -26,7 +26,13 @@ public class ImageEmbed
     [Required, ForeignKey(nameof(Image))]
     public Guid IsnImage { get; set; }
 
+    /// <summary>
+    /// Сообщение
+    /// </summary>
     public virtual Post Post { get; set; }
 
+    /// <summary>
+    /// Изображение
+    /// </summary>
     public virtual Image Image { get; set; }
 }

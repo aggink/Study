@@ -37,7 +37,7 @@ public sealed class UpdateImageCommandHandler : IRequestHandler<UpdateImageComma
     public async Task<Guid> Handle(UpdateImageCommand request, CancellationToken cancellationToken)
     {
         var image = await _dataContext.Images
-                       .FirstOrDefaultAsync(x => x.Isn == request.Image.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnImage == request.Image.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Изображение {request.Image.Isn} не существует");
 
         if (request.Image.Description is not null) image.Description = request.Image.Description;
@@ -46,6 +46,6 @@ public sealed class UpdateImageCommandHandler : IRequestHandler<UpdateImageComma
         await _imageService.UpdateImageValidateAndThrowAsync(_dataContext, image, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
-        return image.Isn;
+        return image.IsnImage;
     }
 }

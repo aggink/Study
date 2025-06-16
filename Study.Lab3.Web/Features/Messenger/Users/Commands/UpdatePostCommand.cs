@@ -37,7 +37,7 @@ public sealed class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand
     public async Task<Guid> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _dataContext.Users
-                       .FirstOrDefaultAsync(x => x.Isn == request.User.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnUser == request.User.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Пользователь {request.User.Isn} не существует");
 
         if (request.User.IsnProfilePicture is not null) user.IsnProfilePicture = request.User.IsnProfilePicture;
@@ -50,6 +50,6 @@ public sealed class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand
         await _userService.UpdateUserValidateAndThrowAsync(_dataContext, user, cancellationToken);
 
         await _dataContext.SaveChangesAsync(cancellationToken);
-        return user.Isn;
+        return user.IsnUser;
     }
 }

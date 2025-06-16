@@ -32,7 +32,7 @@ public sealed class GetImageListQueryHandler : IRequestHandler<GetImageListQuery
         {
             imagesDto[i] = new ImageDto
             {
-                Isn = images[i].Isn,
+                Isn = images[i].IsnImage,
                 Description = images[i].Description,
                 IsnUploader = images[i].IsnUploader,
                 Data = images[i].Data

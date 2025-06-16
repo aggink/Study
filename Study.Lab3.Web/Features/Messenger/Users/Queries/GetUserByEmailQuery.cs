@@ -38,7 +38,7 @@ public sealed class GetUserByEmailQueryHandler : IRequestHandler<GetUserByEmailQ
 
         return new UserDto
         {
-            Isn = user.Isn,
+            Isn = user.IsnUser,
             IsnProfilePicture = user.IsnProfilePicture,
             Email = user.Email,
             Username = user.Username,

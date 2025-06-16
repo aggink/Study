@@ -37,7 +37,7 @@ public sealed class CreatePostCommandHandler : IRequestHandler<CreateImageComman
     {
         var image = new Image
         {
-            Isn = Guid.NewGuid(),
+            IsnImage = Guid.NewGuid(),
             Description = request.Image.Description,
             IsnUploader = request.Image.IsnUploader,
             Data = request.Image.Data
@@ -48,6 +48,6 @@ public sealed class CreatePostCommandHandler : IRequestHandler<CreateImageComman
         await _dataContext.Images.AddAsync(image, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return image.Isn;
+        return image.IsnImage;
     }
 }

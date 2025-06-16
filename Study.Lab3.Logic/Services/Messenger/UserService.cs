@@ -15,8 +15,8 @@ public sealed class UserService : IUserService
         CancellationToken cancellationToken = default)
     {
         #region Isn
-        if (await dataContext.Users.AnyAsync(x => x.Isn == user.Isn, cancellationToken))
-            throw new BusinessLogicException($"Пользователь {user.Isn} уже существует");
+        if (await dataContext.Users.AnyAsync(x => x.IsnUser == user.IsnUser, cancellationToken))
+            throw new BusinessLogicException($"Пользователь {user.IsnUser} уже существует");
         #endregion
 
         #region Email
@@ -47,7 +47,7 @@ public sealed class UserService : IUserService
 
         #region ProfilePicture
         if (user.IsnProfilePicture is not null
-            && !await dataContext.Images.AnyAsync(x => x.Isn == user.IsnProfilePicture))
+            && !await dataContext.Images.AnyAsync(x => x.IsnImage == user.IsnProfilePicture))
             throw new BusinessLogicException($"Изображение {user.IsnProfilePicture} не существует");
         #endregion
     }
@@ -61,7 +61,7 @@ public sealed class UserService : IUserService
         if (user.Email.Length > ModelConstants.User.Email)
             throw new BusinessLogicException("Почтовый адрес слишком длинный");
 
-        if (await dataContext.Users.AnyAsync(x => x.Email == user.Email && x.Isn != user.Isn, cancellationToken))
+        if (await dataContext.Users.AnyAsync(x => x.Email == user.Email && x.IsnUser != user.IsnUser, cancellationToken))
             throw new BusinessLogicException($"Пользователь с почтовым адресом \"{user.Email}\" уже существует");
         #endregion
 
@@ -82,7 +82,7 @@ public sealed class UserService : IUserService
 
         #region ProfilePicture
         if (user.IsnProfilePicture is not null
-            && !await dataContext.Images.AnyAsync(x => x.Isn == user.IsnProfilePicture))
+            && !await dataContext.Images.AnyAsync(x => x.IsnImage == user.IsnProfilePicture))
             throw new BusinessLogicException($"Изображение {user.IsnProfilePicture} не существует");
         #endregion
     }

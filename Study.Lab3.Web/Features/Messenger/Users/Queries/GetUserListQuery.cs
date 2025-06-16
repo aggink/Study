@@ -32,7 +32,7 @@ public sealed class GetUserListQueryHandler : IRequestHandler<GetUserListQuery, 
         {
             usersDto[i] = new UserDto
             {
-                Isn = users[i].Isn,
+                Isn = users[i].IsnUser,
                 IsnProfilePicture = users[i].IsnProfilePicture,
                 Email = users[i].Email,
                 Username = users[i].Username,

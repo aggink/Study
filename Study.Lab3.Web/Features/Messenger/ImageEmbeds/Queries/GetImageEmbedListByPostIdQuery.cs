@@ -40,7 +40,7 @@ public sealed class GetImageEmbedListByPostIdQueryHandler : IRequestHandler<GetI
         {
             embedsDto[i] = new ImageEmbedDto
             {
-                Isn = embeds[i].Isn,
+                Isn = embeds[i].IsnImageEmbed,
                 IsnPost = embeds[i].IsnPost,
                 IsnImage = embeds[i].IsnImage
             };

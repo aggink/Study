@@ -40,7 +40,7 @@ public sealed class GetPostListByUserIdQueryHandler : IRequestHandler<GetPostLis
         {
             postsDto[i] = new PostDto
             {
-                Isn = posts[i].Isn,
+                Isn = posts[i].IsnPost,
                 IsnUser = posts[i].IsnUser,
                 Message = posts[i].Message
             };

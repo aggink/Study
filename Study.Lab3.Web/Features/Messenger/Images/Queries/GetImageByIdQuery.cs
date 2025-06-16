@@ -33,12 +33,12 @@ public sealed class GetImageByIsnQueryHandler : IRequestHandler<GetImageByIsnQue
     {
         var post = await _dataContext.Images
                        .AsNoTracking()
-                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnImage == request.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Изображение {request.Isn} не существует");
 
         return new ImageDto
         {
-            Isn = post.Isn,
+            Isn = post.IsnImage,
             Description = post.Description,
             IsnUploader = post.IsnUploader,
             Data = post.Data

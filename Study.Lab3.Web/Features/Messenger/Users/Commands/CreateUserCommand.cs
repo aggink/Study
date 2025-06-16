@@ -37,7 +37,7 @@ public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand
     {
         var user = new User
         {
-            Isn = Guid.NewGuid(),
+            IsnUser = Guid.NewGuid(),
             IsnProfilePicture = request.User.ProfilePicture,
             Email = request.User.Email,
             Username = request.User.Username,
@@ -51,6 +51,6 @@ public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand
         await _dataContext.Users.AddAsync(user, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return user.Isn;
+        return user.IsnUser;
     }
 }

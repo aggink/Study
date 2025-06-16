@@ -31,7 +31,7 @@ public sealed class DeleteImageEmbedCommandHandler : IRequestHandler<DeleteImage
     public async Task Handle(DeleteImageEmbedCommand request, CancellationToken cancellationToken)
     {
         var embed = await _dataContext.ImageEmbeds
-                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnImageEmbed == request.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Прикрепление {request.Isn} не существует");
 
         _dataContext.ImageEmbeds.Remove(embed);

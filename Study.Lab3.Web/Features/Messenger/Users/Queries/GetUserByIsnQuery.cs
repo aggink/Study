@@ -33,12 +33,12 @@ public sealed class GetUserByIsnQueryHandler : IRequestHandler<GetUserByIsnQuery
     {
         var user = await _dataContext.Users
                        .AsNoTracking()
-                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnUser == request.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Пользователь {request.Isn} не существует");
 
         return new UserDto
         {
-            Isn = user.Isn,
+            Isn = user.IsnUser,
             IsnProfilePicture = user.IsnProfilePicture,
             Email = user.Email,
             Username = user.Username,

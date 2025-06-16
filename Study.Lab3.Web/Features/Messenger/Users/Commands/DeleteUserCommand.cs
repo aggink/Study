@@ -31,7 +31,7 @@ public sealed class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand
     public async Task Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _dataContext.Users
-                       .FirstOrDefaultAsync(x => x.Isn == request.Isn, cancellationToken)
+                       .FirstOrDefaultAsync(x => x.IsnUser == request.Isn, cancellationToken)
                    ?? throw new BusinessLogicException($"Пользователь {request.Isn} не существует");
 
         _dataContext.Users.Remove(user);

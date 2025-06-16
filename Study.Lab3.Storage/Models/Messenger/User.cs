@@ -15,7 +15,7 @@ public class User
     /// Идентификатор пользователя
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid Isn { get; set; }
+    public Guid IsnUser { get; set; }
 
     /// <summary>
     /// Аватар пользователя
@@ -52,8 +52,14 @@ public class User
     /// </summary>
     public string AboutMe { get; set; }
 
+    /// <summary>
+    /// Фоно профиля
+    /// </summary>
     public virtual Image ProfilePicture { get; set; }
 
+    /// <summary>
+    /// Изображения
+    /// </summary>
     [InverseProperty(nameof(Image.Uploader))]
     public virtual ICollection<Image> Images { get; set; }
 

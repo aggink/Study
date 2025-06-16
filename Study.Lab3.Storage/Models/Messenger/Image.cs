@@ -13,7 +13,7 @@ public class Image
     /// Идентификатор
     /// </summary>
     [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid Isn { get; set; }
+    public Guid IsnImage { get; set; }
 
     /// <summary>
     /// Идентификатор автора
@@ -33,8 +33,14 @@ public class Image
     [Required]
     public byte[] Data { get; set; }
 
+    /// <summary>
+    /// Автор
+    /// </summary>
     public virtual User Uploader { get; set; }
 
+    /// <summary>
+    /// Профиль пользователя
+    /// </summary>
     [InverseProperty(nameof(User.ProfilePicture))]
     public virtual User Profile { get; set; }
 

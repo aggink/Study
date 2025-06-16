@@ -37,7 +37,7 @@ public sealed class CreateImageEmbedCommandHandler : IRequestHandler<CreateImage
     {
         var embed = new ImageEmbed
         {
-            Isn = Guid.NewGuid(),
+            IsnImageEmbed = Guid.NewGuid(),
             IsnPost = request.ImageEmbed.IsnPost,
             IsnImage = request.ImageEmbed.IsnImage,
         };
@@ -47,6 +47,6 @@ public sealed class CreateImageEmbedCommandHandler : IRequestHandler<CreateImage
         await _dataContext.ImageEmbeds.AddAsync(embed, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return embed.Isn;
+        return embed.IsnImageEmbed;
     }
 }

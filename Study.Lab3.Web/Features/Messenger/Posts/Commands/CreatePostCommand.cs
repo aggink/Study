@@ -37,7 +37,7 @@ public sealed class CreatePostCommandHandler : IRequestHandler<CreatePostCommand
     {
         var post = new Post
         {
-            Isn = Guid.NewGuid(),
+            IsnPost = Guid.NewGuid(),
             IsnUser = request.Post.IsnUser,
             Message = request.Post.Message
         };
@@ -47,6 +47,6 @@ public sealed class CreatePostCommandHandler : IRequestHandler<CreatePostCommand
         await _dataContext.Posts.AddAsync(post, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return post.Isn;
+        return post.IsnPost;
     }
 }
