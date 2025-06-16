@@ -22,9 +22,12 @@ public class RequestServiceTests
         _requestService = new RequestService(httpClient);
     }
 
-    
+    [TearDown]
+    public void Dispose()
+    {
+        _requestService?.Dispose();
+    }
 
-    
 
     [Test]
     public void FetchData_Success_ReturnsMoonPhaseResponse()
@@ -102,11 +105,7 @@ public class RequestServiceTests
         StringAssert.Contains("400 - Bad Request", exception.Message);
     }
 
-    [TearDown]
-    public void Dispose()
-    {
-        _requestService?.Dispose();
-    }
+   
     [Test]
     public void FetchData_Success_ReturnsNasaApodResponse()
     {

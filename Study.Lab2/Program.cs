@@ -31,19 +31,17 @@ using Study.Lab2.Logic.yamisakimei;
 using Study.Lab2.Logic.Bonnemort;
 namespace Study.Lab2.Logic.SuperSalad007;
 
-namespace Study.Lab2;
-
 public static class Program
 {
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "idb-23-02";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 18;
+    private const int PERSON_NUMBER = 1;
 
     public static async Task Main()
     {

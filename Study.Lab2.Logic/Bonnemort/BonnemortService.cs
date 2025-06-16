@@ -11,6 +11,7 @@ public class BonnemortService : IRunService
     public BonnemortService()
     {
         _requestService = new RequestService(new HttpClient());
+
     }
 
     private string[] Urls = new string[3];
