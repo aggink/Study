@@ -6,3 +6,4 @@ public interface IRequestService : IDisposable
 
     Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default);
 }
+ 

@@ -28,7 +28,7 @@ using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
-using Study.Lab2.Logic.cocobara;
+using Study.Lab2.Logic.cocobara; 
 
 
 namespace Study.Lab2;

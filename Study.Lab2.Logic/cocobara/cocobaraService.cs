@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text.Json;
 
 namespace Study.Lab2.Logic.cocobara;
-
+ 
 public sealed class cocobaraService : IRunService
 {
     private readonly string[] _urls =
