@@ -40,7 +40,7 @@ public sealed class CreateSweetFactoryCommandHandler : IRequestHandler<CreateSwe
         {
             IsnSweetFactory = Guid.NewGuid(),
             Name = request.SweetFactory.Name,
-            Address = request.SweetFactory.Adress,
+            Address = request.SweetFactory.Address,
             Volume = request.SweetFactory.Volume,
             SweetProductions = new List<Storage.Models.Sweets.SweetProduction>(),
         };
