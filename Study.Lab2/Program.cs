@@ -29,10 +29,8 @@ using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
 using Study.Lab2.Logic.SuperSalad007;
-
-namespace Study.Lab2;
 using Study.Lab2.Logic.Bonnemort;
-namespace Study.Lab2.Logic.SuperSalad007;
+using Study.Lab2.Logic.eduardvafin56;
 
 public static class Program
 {
@@ -149,6 +147,8 @@ public static class Program
                 return new Crocodile17Service();
             case ("idb-23-02", 18):
                 return new BonnemortService();
+            case ("idb-23-02", 7):
+                return new Eduardvafin56Service();
             default:
                 throw new NotSupportedException();
         }
