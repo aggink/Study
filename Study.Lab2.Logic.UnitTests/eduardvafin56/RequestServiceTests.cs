@@ -1,7 +1,9 @@
 using System.Net;
+using System.Text.Json;
 using Moq;
 using Moq.Protected;
 using Study.Lab2.Logic.eduardvafin56;
+using Study.Lab2.Logic.eduardvafin56.DtoModels;
 
 namespace Study.Lab2.Logic.UnitTests.eduardvafin56;
 
@@ -10,6 +12,7 @@ public class RequestServiceTests
 {
     private RequestService _requestService;
     private Mock<HttpMessageHandler> _httpMessageHandlerMock;
+    private readonly JsonSerializerOptions _jsonOptions = new() { WriteIndented = true };
 
     [SetUp]
     public void Setup()
@@ -24,18 +27,20 @@ public class RequestServiceTests
     {
         _requestService?.Dispose();
     }
-[Test]
+
+    [Test]
     public void FetchData_Success_ReturnsPostResponse()
     {
         // Arrange
-        var expectedResponse = """
+        var postDto = new PostDto
         {
-            "userId": 1,
-            "id": 1,
-            "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-            "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-        }
-        """;
+            UserId = 1,
+            Id = 1,
+            Title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+            Body =
+                "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+        };
+        var expectedResponse = JsonSerializer.Serialize(postDto, _jsonOptions);
         var requestUrl = "https://jsonplaceholder.typicode.com/posts/1";
 
         SetupHttpResponse(requestUrl, expectedResponse, HttpStatusCode.OK);
@@ -53,14 +58,14 @@ public class RequestServiceTests
     public void FetchData_Success_ReturnsUserResponse()
     {
         // Arrange
-        var expectedResponse = """
+        var userDto = new UserDto
         {
-            "id": 1,
-            "name": "Leanne Graham",
-            "username": "Bret",
-            "email": "Sincere@april.biz"
-        }
-        """;
+            Id = 1,
+            Name = "Leanne Graham",
+            Username = "Bret",
+            Email = "Sincere@april.biz"
+        };
+        var expectedResponse = JsonSerializer.Serialize(userDto, _jsonOptions);
         var requestUrl = "https://jsonplaceholder.typicode.com/users/1";
 
         SetupHttpResponse(requestUrl, expectedResponse, HttpStatusCode.OK);
@@ -78,15 +83,16 @@ public class RequestServiceTests
     public void FetchData_Success_ReturnsCommentResponse()
     {
         // Arrange
-        var expectedResponse = """
+        var commentDto = new CommentDto
         {
-            "postId": 1,
-            "id": 1,
-            "name": "id labore ex et quam laborum",
-            "email": "Eliseo@gardner.biz",
-            "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
-        }
-        """;
+            PostId = 1,
+            Id = 1,
+            Name = "id labore ex et quam laborum",
+            Email = "Eliseo@gardner.biz",
+            Body =
+                "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+        };
+        var expectedResponse = JsonSerializer.Serialize(commentDto, _jsonOptions);
         var requestUrl = "https://jsonplaceholder.typicode.com/comments/1";
 
         SetupHttpResponse(requestUrl, expectedResponse, HttpStatusCode.OK);
@@ -128,14 +134,15 @@ public class RequestServiceTests
     public async Task FetchDataAsync_Success_ReturnsPostResponse()
     {
         // Arrange
-        var expectedResponse = """
+        var postDto = new PostDto
         {
-            "userId": 1,
-            "id": 1,
-            "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-            "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-        }
-        """;
+            UserId = 1,
+            Id = 1,
+            Title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+            Body =
+                "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+        };
+        var expectedResponse = JsonSerializer.Serialize(postDto, _jsonOptions);
         var requestUrl = "https://jsonplaceholder.typicode.com/posts/1";
         using var cancellationTokenSource = new CancellationTokenSource();
 
@@ -153,14 +160,14 @@ public class RequestServiceTests
     public async Task FetchDataAsync_Success_ReturnsUserResponse()
     {
         // Arrange
-        var expectedResponse = """
+        var userDto = new UserDto
         {
-            "id": 1,
-            "name": "Leanne Graham",
-            "username": "Bret",
-            "email": "Sincere@april.biz"
-        }
-        """;
+            Id = 1,
+            Name = "Leanne Graham",
+            Username = "Bret",
+            Email = "Sincere@april.biz"
+        };
+        var expectedResponse = JsonSerializer.Serialize(userDto, _jsonOptions);
         var requestUrl = "https://jsonplaceholder.typicode.com/users/1";
         using var cancellationTokenSource = new CancellationTokenSource();
 
@@ -183,7 +190,7 @@ public class RequestServiceTests
         SetupHttpResponse(requestUrl, "Not Found", HttpStatusCode.NotFound);
 
         // Act & Assert
-        var exception = Assert.ThrowsAsync<Exception>(async () => 
+        var exception = Assert.ThrowsAsync<Exception>(async () =>
             await _requestService.FetchDataAsync(requestUrl, cancellationTokenSource.Token));
         StringAssert.Contains("NotFound", exception.Message);
     }
@@ -197,7 +204,7 @@ public class RequestServiceTests
         SetupHttpResponse(requestUrl, "Bad Request", HttpStatusCode.BadRequest);
 
         // Act & Assert
-        var exception = Assert.ThrowsAsync<Exception>(async () => 
+        var exception = Assert.ThrowsAsync<Exception>(async () =>
             await _requestService.FetchDataAsync(requestUrl, cancellationTokenSource.Token));
         StringAssert.Contains("BadRequest", exception.Message);
     }
