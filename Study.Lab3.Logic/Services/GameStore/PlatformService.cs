@@ -48,8 +48,8 @@ public sealed class PlatformService : IPlatformService
         }
 
         var existingPlatform = await dataContext.Platforms
-            .FirstOrDefaultAsync(x => x.Name == platform.Name && 
-                                      x.Manufacturer == platform.Manufacturer && 
+            .FirstOrDefaultAsync(x => x.Name == platform.Name &&
+                                      x.Manufacturer == platform.Manufacturer &&
                                       x.IsnPlatform != platform.IsnPlatform, cancellationToken);
 
         if (existingPlatform != null)

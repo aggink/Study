@@ -5,6 +5,7 @@ using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
+using Study.Lab3.Storage.Models.Messenger;
 using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
@@ -399,6 +400,30 @@ public class DataContext : DbContext
     /// Игровые платформы
     /// </summary>
     public virtual DbSet<Platform> Platforms { get; set; }
+
+    #endregion
+
+    #region Messenger
+
+    /// <summary>
+    /// Пользователи
+    /// </summary>
+    public virtual DbSet<User> Users { get; set; }
+
+    /// <summary>
+    /// Сообщения
+    /// </summary>
+    public virtual DbSet<Post> Posts { get; set; }
+
+    /// <summary>
+    /// Изображения
+    /// </summary>
+    public virtual DbSet<Image> Images { get; set; }
+
+    /// <summary>
+    /// Вложения
+    /// </summary>
+    public virtual DbSet<ImageEmbed> ImageEmbeds { get; set; }
 
     #endregion
 
