@@ -31,6 +31,7 @@ using Study.Lab2.Logic.yamisakimei;
 using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Bonnemort;
 using Study.Lab2.Logic.eduardvafin56;
+using Study.Lab2.Logic.fableslots;
 
 public static class Program
 {
@@ -149,6 +150,8 @@ public static class Program
                 return new BonnemortService();
             case ("idb-23-02", 7):
                 return new Eduardvafin56Service();
+            case ("idb-23-02", 14):
+                return new fableslotsService();
             default:
                 throw new NotSupportedException();
         }
