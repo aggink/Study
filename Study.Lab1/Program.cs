@@ -39,6 +39,7 @@ using Study.Lab1.Logic.eduardvafin56;
 using Study.Lab1.Logic.Kotsutaki;
 using Study.Lab1.Logic.SuperSalad007;
 using Study.Lab1.Logic.Maxtir23;
+using Study.Lab1.Logic.baldfromazzers;
 
 public static class Program
 {
@@ -165,6 +166,8 @@ public static class Program
                 return new KotsutakiService();
             case ("idb-23-02", 7):
                 return new Eduardvafin56Service();
+            case ("idb-23-02", 22):
+                return new baldfromazzersService();
             default:
                 throw new NotSupportedException();
         }
