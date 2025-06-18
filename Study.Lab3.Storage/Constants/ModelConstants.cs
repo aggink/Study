@@ -1476,4 +1476,137 @@ public static class ModelConstants
         public const int MinReleaseYear = 1970;
     }
     #endregion
+
+    #region CoffeeShop
+
+    public static class Coffee
+    {
+        /// <summary>
+        /// Максимальная длина названия кофе
+        /// </summary>
+        public const int Name = 100;
+
+        /// <summary>
+        /// Максимальная длина описания кофе
+        /// </summary>
+        public const int Description = 500;
+
+        /// <summary>
+        /// Минимальная цена кофе
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена кофе
+        /// </summary>
+        public const double MaxPrice = 9999.99;
+
+        /// <summary>
+        /// Минимальный размер порции в мл
+        /// </summary>
+        public const int MinSize = 50;
+
+        /// <summary>
+        /// Максимальный размер порции в мл
+        /// </summary>
+        public const int MaxSize = 1000;
+
+        /// <summary>
+        /// Минимальное содержание кофеина в мг
+        /// </summary>
+        public const int MinCaffeine = 0;
+
+        /// <summary>
+        /// Максимальное содержание кофеина в мг
+        /// </summary>
+        public const int MaxCaffeine = 500;
+    }
+
+    public static class CoffeeShop
+    {
+        /// <summary>
+        /// Максимальная длина названия кофейни
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина адреса
+        /// </summary>
+        public const int Address = 500;
+
+        /// <summary>
+        /// Максимальная длина телефона
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина email
+        /// </summary>
+        public const int Email = 100;
+
+        /// <summary>
+        /// Максимальная длина времени работы
+        /// </summary>
+        public const int WorkingHours = 100;
+
+        /// <summary>
+        /// Минимальный рейтинг
+        /// </summary>
+        public const double MinRating = 0.0;
+
+        /// <summary>
+        /// Максимальный рейтинг
+        /// </summary>
+        public const double MaxRating = 5.0;
+    }
+
+    public static class Barista
+    {
+        /// <summary>
+        /// Максимальная длина имени
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина фамилии
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина телефона
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина email
+        /// </summary>
+        public const int Email = 100;
+
+        /// <summary>
+        /// Минимальный опыт работы в годах
+        /// </summary>
+        public const int MinExperience = 0;
+
+        /// <summary>
+        /// Максимальный опыт работы в годах
+        /// </summary>
+        public const int MaxExperience = 50;
+
+        /// <summary>
+        /// Максимальная длина специализации
+        /// </summary>
+        public const int Specialization = 200;
+
+        /// <summary>
+        /// Минимальная зарплата
+        /// </summary>
+        public const double MinSalary = 0;
+
+        /// <summary>
+        /// Максимальная зарплата
+        /// </summary>
+        public const double MaxSalary = 999999.99;
+    }
+
+    #endregion
 }

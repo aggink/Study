@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
+using Study.Lab3.Logic.Interfaces.Services.CoffeeShop;
 using Study.Lab3.Logic.Interfaces.Services.Fitness;
 using Study.Lab3.Logic.Interfaces.Services.GameStore;
 using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
@@ -12,6 +13,7 @@ using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Logic.Interfaces.Services.Workshop;
 using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Services.Cinema;
+using Study.Lab3.Logic.Services.CoffeeShop;
 using Study.Lab3.Logic.Services.Fitness;
 using Study.Lab3.Logic.Services.GameStore;
 using Study.Lab3.Logic.Services.HospitalStore;
@@ -125,6 +127,12 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMasterService, MasterService>();
         services.AddSingleton<IServiceService, ServiceService>();
         services.AddSingleton<IServiceOrderService, ServiceOrderService>();
+        #endregion
+
+        #region CoffeeShop
+        services.AddSingleton<ICoffeeService, CoffeeService>();
+        services.AddSingleton<ICoffeeShopService, CoffeeShopService>();
+        services.AddSingleton<IBaristaService, BaristaService>();
         #endregion
     }
 }
