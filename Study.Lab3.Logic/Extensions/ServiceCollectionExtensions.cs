@@ -5,6 +5,7 @@ using Study.Lab3.Logic.Interfaces.Services.Fitness;
 using Study.Lab3.Logic.Interfaces.Services.GameStore;
 using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
 using Study.Lab3.Logic.Interfaces.Services.Library;
+using Study.Lab3.Logic.Interfaces.Services.Photography;
 using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.TravelAgency;
 using Study.Lab3.Logic.Interfaces.Services.University;
@@ -15,6 +16,7 @@ using Study.Lab3.Logic.Services.Fitness;
 using Study.Lab3.Logic.Services.GameStore;
 using Study.Lab3.Logic.Services.HospitalStore;
 using Study.Lab3.Logic.Services.Library;
+using Study.Lab3.Logic.Services.Photography;
 using Study.Lab3.Logic.Services.Restaurants;
 using Study.Lab3.Logic.Services.TravelAgency;
 using Study.Lab3.Logic.Services.University;
@@ -87,5 +89,9 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ITourService, TourService>();
         services.AddSingleton<ITravelCustomerService, TravelCustomerService>();
         services.AddSingleton<IHotelService, HotelService>();
+        services.AddSingleton<IPhotographyClientService, PhotographyClientService>();
+        services.AddSingleton<IPhotographyEquipmentService, PhotographyEquipmentService>();
+        services.AddSingleton<IPhotographySessionService, PhotographySessionService>();
+
     }
 }
