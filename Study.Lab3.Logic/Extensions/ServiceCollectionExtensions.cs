@@ -128,22 +128,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IServiceService, ServiceService>();
         services.AddSingleton<IServiceOrderService, ServiceOrderService>();
         #endregion
-        services.AddSingleton<ILabService, LabService>();
-        services.AddSingleton<IFitnessMemberService, FitnessMemberService>();
-        services.AddSingleton<IFitnessTrainerService, FitnessTrainerService>();
-        services.AddSingleton<IFitnessEquipmentService, FitnessEquipmentService>();
-        services.AddSingleton<IStudentNoteService, StudentNoteService>();
-        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
-        services.AddSingleton<IPingpongclubService, PingpongclubService>();
-        services.AddSingleton<IAttendanceLogService, AttendanceLogService>();
-        services.AddSingleton<IGameService, GameService>();
-        services.AddSingleton<IDeveloperService, DeveloperService>();
-        services.AddSingleton<IPlatformService, PlatformService>();
-        services.AddSingleton<ITourService, TourService>();
-        services.AddSingleton<ITravelCustomerService, TravelCustomerService>();
-        services.AddSingleton<IHotelService, HotelService>();
+        
+        #region CarService
         services.AddSingleton<ICarService, CarService>();
         services.AddSingleton<IOwnerService, OwnerService>();
         services.AddSingleton<IServiceRecordService, ServiceRecordService>();
+        #endregion
     }
 }
