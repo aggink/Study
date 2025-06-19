@@ -6,6 +6,7 @@ using Study.Lab3.Logic.Interfaces.Services.Fitness;
 using Study.Lab3.Logic.Interfaces.Services.GameStore;
 using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
 using Study.Lab3.Logic.Interfaces.Services.Library;
+using Study.Lab3.Logic.Interfaces.Services.Photography;
 using Study.Lab3.Logic.Interfaces.Services.Messenger;
 using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.TravelAgency;
@@ -18,6 +19,7 @@ using Study.Lab3.Logic.Services.Fitness;
 using Study.Lab3.Logic.Services.GameStore;
 using Study.Lab3.Logic.Services.HospitalStore;
 using Study.Lab3.Logic.Services.Library;
+using Study.Lab3.Logic.Services.Photography;
 using Study.Lab3.Logic.Services.Messenger;
 using Study.Lab3.Logic.Services.Restaurants;
 using Study.Lab3.Logic.Services.TravelAgency;
@@ -127,6 +129,12 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMasterService, MasterService>();
         services.AddSingleton<IServiceService, ServiceService>();
         services.AddSingleton<IServiceOrderService, ServiceOrderService>();
+        #endregion
+
+        #region Photography
+        services.AddSingleton<IPhotographyClientService, PhotographyClientService>();
+        services.AddSingleton<IPhotographyEquipmentService, PhotographyEquipmentService>();
+        services.AddSingleton<IPhotographySessionService, PhotographySessionService>();
         #endregion
 
         #region CoffeeShop

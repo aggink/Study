@@ -1475,6 +1475,120 @@ public static class ModelConstants
         /// </summary>
         public const int MinReleaseYear = 1970;
     }
+   
+    #endregion
+
+    #region Photography
+
+    public static class PhotographyClient
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 255;
+
+        /// <summary>
+        /// Максимальная длина поля "Комментарии"
+        /// </summary>
+        public const int Notes = 1000;
+    }
+
+    public static class PhotographyEquipment
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Бренд"
+        /// </summary>
+        public const int Brand = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Модель"
+        /// </summary>
+        public const int Model = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Серийный номер"
+        /// </summary>
+        public const int SerialNumber = 50;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная цена оборудования
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена оборудования
+        /// </summary>
+        public const double MaxPrice = 1000000.0;
+    }
+
+    public static class PhotographySession
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Местоположение"
+        /// </summary>
+        public const int Location = 300;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя фотографа"
+        /// </summary>
+        public const int PhotographerName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная продолжительность фотосессии в минутах
+        /// </summary>
+        public const int MinDuration = 15;
+
+        /// <summary>
+        /// Максимальная продолжительность фотосессии в минутах
+        /// </summary>
+        public const int MaxDuration = 720; // 12 часов
+
+        /// <summary>
+        /// Минимальная стоимость фотосессии
+        /// </summary>
+        public const double MinPrice = 100.0;
+
+        /// <summary>
+        /// Максимальная стоимость фотосессии
+        /// </summary>
+        public const double MaxPrice = 100000.0;
+    }
+
     #endregion
 
     #region CoffeeShop
