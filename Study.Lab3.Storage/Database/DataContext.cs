@@ -6,6 +6,7 @@ using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Messenger;
+using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
@@ -424,5 +425,24 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<ImageEmbed> ImageEmbeds { get; set; }
 
+    #endregion
+
+    #region Photography
+    
+    /// <summary>
+    /// Клиенты фотостудии
+    /// </summary>
+    public virtual DbSet<PhotographyClient> PhotographyClients { get; set; }
+
+    /// <summary>
+    /// Оборудование фотостудии
+    /// </summary>
+    public virtual DbSet<PhotographyEquipment> PhotographyEquipments { get; set; }
+
+    /// <summary>
+    /// Фотосессии
+    /// </summary>
+    public virtual DbSet<PhotographySession> PhotographySessions { get; set; }
+    
     #endregion
 }
