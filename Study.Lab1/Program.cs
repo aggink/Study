@@ -35,8 +35,13 @@ using Study.Lab1.Logic.xynthh;
 using Study.Lab1.Logic.yamisakimei;
 using Study.Lab1.Logic.Bonnemort;
 using Study.Lab1.Logic.chaspix;
+using Study.Lab1.Logic.eduardvafin56;
+using Study.Lab1.Logic.Kotsutaki;
 using Study.Lab1.Logic.SuperSalad007;
 using Study.Lab1.Logic.Maxtir23;
+using Study.Lab1.Logic.fableslots;
+
+using Study.Lab1.Logic.baldfromazzers;
 
 public static class Program
 {
@@ -159,6 +164,14 @@ public static class Program
                 return new chaspixService();
             case ("idb-23-03", 18):
                 return new Maxtir23();
+            case ("idb-23-02", 9):
+                return new KotsutakiService();
+            case ("idb-23-02", 7):
+                return new Eduardvafin56Service();
+            case ("idb-23-02", 14):
+                return new fableslotsService();
+            case ("idb-23-02", 22):
+                return new baldfromazzersService();
             default:
                 throw new NotSupportedException();
         }

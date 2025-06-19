@@ -158,4 +158,9 @@ public class RationalNumber : IRationalNumber
 
         throw new NotImplementedException();
     }
+
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
+    }
 }

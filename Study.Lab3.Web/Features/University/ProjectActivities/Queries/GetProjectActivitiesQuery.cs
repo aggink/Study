@@ -3,10 +3,10 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
-using Study.Lab3.Web.Features.University.TheProjectActivities.DtoModels;
+using Study.Lab3.Web.Features.University.ProjectActivities.DtoModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheProjectActivities.Queries;
+namespace Study.Lab3.Web.Features.University.ProjectActivities.Queries;
 
 /// <summary>
 /// Получить количество выступлений по идентификатору
@@ -32,7 +32,7 @@ public sealed class GetProjectActivitiesByIsnQueryHandler : IRequestHandler<GetP
 
     public async Task<ProjectActivitiesDto> Handle(GetProjectActivitiesByIsnQuery request, CancellationToken cancellationToken)
     {
-        var projectactivities = await _dataContext.TheProjectActivities
+        var projectactivities = await _dataContext.ProjectActivities
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnProjectActivities == request.IsnProjectActivities, cancellationToken)
                 ?? throw new BusinessLogicException($"Количества участников с идентификатором \"{request.IsnProjectActivities}\" не существует");

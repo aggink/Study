@@ -1,6 +1,6 @@
-﻿using Study.Lab3.Storage.Constants;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Study.Lab3.Storage.Constants;
 
 namespace Study.Lab3.Storage.Models.University;
 
@@ -90,4 +90,15 @@ public class Subject
 
     [InverseProperty(nameof(ScientificWork.Subject))]
     public virtual ICollection<ScientificWork> ScientificWorks { get; set; }
+    /// <summary>
+    /// Оценки
+    /// </summary>
+    [InverseProperty(nameof(Profcom.Subject))]
+    public virtual ICollection<Profcom> Profcoms { get; set; }
+
+    /// <summary>
+    /// Соревнования по виду спорта
+    /// </summary>
+    [InverseProperty(nameof(Pingpongclub.Subject))]
+    public virtual ICollection<Pingpongclub> Pingpongclubs { get; set; }
 }

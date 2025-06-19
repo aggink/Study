@@ -172,6 +172,11 @@ public class Rational
 
         throw new NotImplementedException();
     }
+
+    public override int GetHashCode()
+    {
+        throw new NotImplementedException();
+    }
     #endregion
 }
 

@@ -23,7 +23,7 @@ public sealed class GetListEquipmentQueryHandler : IRequestHandler<GetListEquipm
 
     public async Task<EquipmentDto[]> Handle(GetListEquipmentQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.Equipments
+        return await _dataContext.FitnessEquipments
             .AsNoTracking()
             .Select(x => new EquipmentDto
             {

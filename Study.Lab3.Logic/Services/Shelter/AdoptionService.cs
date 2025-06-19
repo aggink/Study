@@ -26,6 +26,13 @@ public class AdoptionService : IAdoptionService
         {
             throw new BusinessLogicException($"Кот с идентификатором \"{adoption.IsnCat}\" не найден");
         }
+
+        if (!await dataContext.MiniPigs.AnyAsync(
+                x => x.IsnMiniPig == adoption.IsnMiniPig,
+                cancellationToken))
+        {
+            throw new BusinessLogicException($"Мини пиг с идентификатором \"{adoption.IsnMiniPig}\" не найден");
+        }
     }
 
 

@@ -1,0 +1,49 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Study.Lab3.Storage.Constants;
+
+namespace Study.Lab3.Storage.Models.University;
+
+public class Pingpongclub
+{
+    /// <summary>
+    /// Идентификатор спортивного клуба
+    /// </summary>
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public Guid IsnPingpongclub { get; set; }
+
+    /// <summary>
+    /// Идентификатор студента
+    /// </summary>
+    [ForeignKey(nameof(Student))]
+    public Guid IsnStudent { get; set; }
+
+    /// <summary>
+    /// Идентификатор соревнований
+    /// </summary>
+    [ForeignKey(nameof(Subject))]
+    public Guid IsnSubject { get; set; }
+
+    /// <summary>
+    /// Значение количества участников
+    /// </summary>
+    [Required]
+    [Range(ModelConstants.Pingpongclub.MinParticipantValue, ModelConstants.Pingpongclub.MaxParticipantValue)]
+    public int ParticipantsCount { get; set; }
+
+    /// <summary>
+    /// Дата соревнований
+    /// </summary>
+    [Required]
+    public DateTime PingpongclubDate { get; set; }
+
+    /// <summary>
+    /// Студент
+    /// </summary>
+    public virtual Student Student { get; set; }
+
+    /// <summary>
+    /// Соревнования
+    /// </summary>
+    public virtual Subject Subject { get; set; }
+}
