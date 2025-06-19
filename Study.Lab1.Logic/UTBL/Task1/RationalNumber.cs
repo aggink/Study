@@ -1,4 +1,4 @@
-using Study.Lab1.Logic.Interfaces.UTBL.Task1;
+п»їusing Study.Lab1.Logic.Interfaces.UTBL.Task1;
 
 namespace Study.Lab1.Logic.UTBL.Task1;
 
@@ -12,10 +12,10 @@ public class RationalNumber : IRationalNumber
     {
         if (denominator == 0)
         {
-            throw new DivideByZeroException("Знаменатель не должен быть равен нулю.");
+            throw new DivideByZeroException("Р—РЅР°РјРµРЅР°С‚РµР»СЊ РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°РІРµРЅ РЅСѓР»СЋ.");
         }
 
-        // Нормализуем знак: если знаменатель отрицательный – меняем знаки
+        // РќРѕСЂРјР°Р»РёР·СѓРµРј Р·РЅР°Рє: РµСЃР»Рё Р·РЅР°РјРµРЅР°С‚РµР»СЊ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Р№ вЂ“ РјРµРЅСЏРµРј Р·РЅР°РєРё
         if (denominator < 0)
         {
             numerator = -numerator;
@@ -24,14 +24,14 @@ public class RationalNumber : IRationalNumber
 
         var gcd = ComputeGCD(numerator, denominator);
 
-        // На всякий случай убеждаемся, что НОД положительный
+        // РќР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№ СѓР±РµР¶РґР°РµРјСЃСЏ, С‡С‚Рѕ РќРћР” РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Р№
         gcd = Math.Abs(gcd);
 
         Numerator = numerator / gcd;
         Denominator = denominator / gcd;
     }
 
-    // Метод для вычисления наибольшего общего делителя
+    // РњРµС‚РѕРґ РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РЅР°РёР±РѕР»СЊС€РµРіРѕ РѕР±С‰РµРіРѕ РґРµР»РёС‚РµР»СЏ
     private static int ComputeGCD(int a, int b)
     {
         a = Math.Abs(a);
@@ -47,7 +47,7 @@ public class RationalNumber : IRationalNumber
         return a;
     }
 
-    #region Перегрузка арифметических операторов
+    #region РџРµСЂРµРіСЂСѓР·РєР° Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРёС… РѕРїРµСЂР°С‚РѕСЂРѕРІ
 
     public static RationalNumber operator +(RationalNumber r1, RationalNumber r2)
     {
@@ -77,7 +77,7 @@ public class RationalNumber : IRationalNumber
         return new RationalNumber(numerator, denominator);
     }
 
-    // Унарный минус
+    // РЈРЅР°СЂРЅС‹Р№ РјРёРЅСѓСЃ
     public static RationalNumber operator -(RationalNumber r)
     {
         return new RationalNumber(-r.Numerator, r.Denominator);
@@ -85,7 +85,7 @@ public class RationalNumber : IRationalNumber
 
     #endregion
 
-    #region Перегрузка операторов сравнения
+    #region РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂРѕРІ СЃСЂР°РІРЅРµРЅРёСЏ
 
     public static bool operator ==(RationalNumber r1, RationalNumber r2)
     {
@@ -125,7 +125,7 @@ public class RationalNumber : IRationalNumber
 
     #endregion
 
-    #region Переопределённые методы
+    #region РџРµСЂРµРѕРїСЂРµРґРµР»С‘РЅРЅС‹Рµ РјРµС‚РѕРґС‹
 
     public override string ToString() =>
         Denominator == 1 ? Numerator.ToString() : $"{Numerator}/{Denominator}";
