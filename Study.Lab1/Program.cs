@@ -40,7 +40,7 @@ using Study.Lab1.Logic.Kotsutaki;
 using Study.Lab1.Logic.SuperSalad007;
 using Study.Lab1.Logic.Maxtir23;
 using Study.Lab1.Logic.fableslots;
-using Study.Lab1.Logic.UTBL;
+
 
 
 public static class Program
@@ -170,8 +170,6 @@ public static class Program
                 return new Eduardvafin56Service();
             case ("idb-23-02", 14):
                 return new fableslotsService();
-            case ("idb-23-02", 16):
-                return new UTBLService();
             default:
                 throw new NotSupportedException();
         }
