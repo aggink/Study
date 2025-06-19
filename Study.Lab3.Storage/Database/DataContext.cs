@@ -282,7 +282,7 @@ public class DataContext : DbContext
     public virtual DbSet<BeautyAppointment> BeautyAppointment { get; set; }
 
     #endregion
-    
+
     #region Shelter
 
     /// <summary>
@@ -325,7 +325,7 @@ public class DataContext : DbContext
     public virtual DbSet<SweetProduction> SweetProductions { get; set; }
 
     #endregion
-    
+
     #region Workshop
 
     /// <summary>
@@ -344,7 +344,7 @@ public class DataContext : DbContext
     public virtual DbSet<Models.Workshop.ServiceOrder> ServiceOrders { get; set; }
 
     #endregion
-    
+
     #region Fitness
 
     /// <summary>

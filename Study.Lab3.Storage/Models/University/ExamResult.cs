@@ -37,7 +37,7 @@ public class ExamResult
     /// </summary>
     [MaxLength(ModelConstants.ExamResult.Comments)]
     public string Comments { get; set; }
-    
+
     /// <summary>
     /// Навигационное свойство для связи с регистрацией на экзамен.
     /// </summary>

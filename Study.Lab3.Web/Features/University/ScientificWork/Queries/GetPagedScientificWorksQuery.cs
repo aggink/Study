@@ -4,15 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
 
 namespace Study.Lab3.Web.Features.University.ScientificWork.Queries;
-    public record GetPagedScientificWorksQuery : IRequest<PagedResult<ScientificWorkDto>>
-    {
-        public int PageNumber { get; init; } = 1;
-        public int PageSize { get; init; } = 10;
-        public string SortBy { get; init; } = "PublicationDate";
-        public bool SortDescending { get; init; } = true;
-    }
+public record GetPagedScientificWorksQuery : IRequest<PagedResult<ScientificWorkDto>>
+{
+    public int PageNumber { get; init; } = 1;
+    public int PageSize { get; init; } = 10;
+    public string SortBy { get; init; } = "PublicationDate";
+    public bool SortDescending { get; init; } = true;
+}
+
 public class GetPagedScientificWorksQueryHandler
-        : IRequestHandler<GetPagedScientificWorksQuery, PagedResult<ScientificWorkDto>>
+    : IRequestHandler<GetPagedScientificWorksQuery, PagedResult<ScientificWorkDto>>
 {
     private readonly DataContext _context;
 
@@ -36,10 +37,10 @@ public class GetPagedScientificWorksQueryHandler
             "PublicationDate" => request.SortDescending
                 ? query.OrderByDescending(sw => sw.PublicationDate)
                 : query.OrderBy(sw => sw.PublicationDate),
-            _ => query 
+            _ => query
         };
 
-    
+
         var totalItems = await query.CountAsync(cancellationToken);
         var items = await query
             .Skip((request.PageNumber - 1) * request.PageSize)
@@ -53,7 +54,6 @@ public class GetPagedScientificWorksQueryHandler
                 Description = sw.Description,
                 PageCount = sw.PageCount,
                 PublicationDate = sw.PublicationDate,
-                IsPublished = sw.IsPublished
             })
             .ToListAsync(cancellationToken);
 

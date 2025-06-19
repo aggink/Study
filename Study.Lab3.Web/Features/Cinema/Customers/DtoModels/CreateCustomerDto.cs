@@ -11,14 +11,14 @@ public sealed record CreateCustomerDto
     [Required]
     [MaxLength(ModelConstants.Customer.FirstName)]
     public string FirstName { get; init; }
-    
+
     /// <summary>
     /// Фамилия
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.Customer.LastName)]
     public string LastName { get; init; }
-    
+
     /// <summary>
     /// Email
     /// </summary>
@@ -26,14 +26,14 @@ public sealed record CreateCustomerDto
     [MaxLength(ModelConstants.Customer.Email)]
     [EmailAddress]
     public string Email { get; init; }
-    
+
     /// <summary>
     /// Телефон
     /// </summary>
     [MaxLength(ModelConstants.Customer.Phone)]
     [Phone]
     public string Phone { get; init; }
-    
+
     /// <summary>
     /// Дата рождения
     /// </summary>

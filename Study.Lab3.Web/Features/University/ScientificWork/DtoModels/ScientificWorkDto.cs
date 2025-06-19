@@ -4,13 +4,13 @@ using System.ComponentModel.DataAnnotations;
 namespace Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
 
 public sealed record ScientificWorkDto
-    {
-        public Guid IsnScientificWork { get; init; }
-        public Guid IsnStudent { get; init; }
-        public Guid IsnSubject { get; init; }
-        public string Title { get; init; }
-        public string Description { get; init; }
-        public int PageCount { get; init; }
-        public DateTime PublicationDate { get; init; }
-        public bool IsPublished { get; init; }
-    }
+{
+    public Guid IsnScientificWork { get; init; }
+    public Guid IsnStudent { get; init; }
+    public Guid IsnSubject { get; init; }
+    public string Title { get; init; }
+    public string Description { get; init; }
+    public int PageCount { get; init; }
+    public DateTime PublicationDate { get; init; }
+    public bool IsPublished { get; init; }
+}

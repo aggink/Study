@@ -1,4 +1,4 @@
-public record CreateScientificWorkDto
+public sealed record CreateScientificWorkDto
 {
     public Guid IsnStudent { get; init; }
     public Guid IsnSubject { get; init; }

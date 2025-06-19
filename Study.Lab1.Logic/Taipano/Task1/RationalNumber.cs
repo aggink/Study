@@ -81,7 +81,7 @@ namespace Study.Lab1.Logic.Taipano.Task1
             return left.CompareTo(right) > 0;
         }
 
-        public static bool operator >=(RationalNumber left, RationalNumber  right)
+        public static bool operator >=(RationalNumber left, RationalNumber right)
         {
             return left.CompareTo(right) >= 0;
         }
@@ -105,6 +105,21 @@ namespace Study.Lab1.Logic.Taipano.Task1
                 a = temp;
             }
             return a;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(obj, null))
+            {
+                return false;
+            }
+
+            throw new NotImplementedException();
         }
     }
 }

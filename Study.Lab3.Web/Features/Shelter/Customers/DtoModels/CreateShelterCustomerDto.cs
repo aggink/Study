@@ -11,28 +11,28 @@ public sealed record CreateShelterCustomerDto
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Name)]
     public string Name { get; init; }
-    
+
     /// <summary>
     /// Фамилия
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Name)]
     public string LastName { get; init; }
-    
+
     /// <summary>
     /// Email
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Email)]
     public string Email { get; init; }
-    
+
     /// <summary>
     /// Телефон
     /// </summary>
     [MaxLength(ModelConstants.ShelterCustomer.PhoneNumber)]
     [Phone]
     public string PhoneNumber { get; init; }
-    
+
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Address)]
     public string Address { get; init; }

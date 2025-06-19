@@ -23,7 +23,7 @@ public interface IServiceService
     /// <param name="service">Услуга</param>
     /// <param name="cancellationToken">Токен отмены</param>
     Task CanDeleteAndThrowAsync(
-        DataContext dataContext,  
+        DataContext dataContext,
         Service service,
         CancellationToken cancellationToken = default);
 }

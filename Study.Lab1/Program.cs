@@ -155,7 +155,7 @@ public static class Program
                 return new Crocodile17Service();
             case ("idb-23-03", 5):
                 return new SuperSalad007Service();
-            case ("idb-23-02",11):
+            case ("idb-23-02", 11):
                 return new chaspixService();
             case ("idb-23-03", 18):
                 return new Maxtir23();

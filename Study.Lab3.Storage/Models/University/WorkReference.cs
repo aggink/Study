@@ -9,9 +9,6 @@ namespace Study.Lab3.Storage.Models.University
     {
         public int Id { get; set; }
 
-        [ForeignKey(nameof(IsnScientificWork))]
-        public ScientificWork ScientificWork { get; set; }
-
         public Guid IsnReference { get; set; }
 
         [Required]
@@ -23,8 +20,7 @@ namespace Study.Lab3.Storage.Models.University
         [Required]
         public DateTime ReferenceDate { get; set; }
 
-        
-
-        
+        [ForeignKey(nameof(IsnScientificWork))]
+        public ScientificWork ScientificWork { get; set; }
     }
 }

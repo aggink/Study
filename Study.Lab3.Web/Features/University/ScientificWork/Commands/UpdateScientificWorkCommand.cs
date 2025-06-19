@@ -11,13 +11,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Study.Lab3.Web.Features.University.ScientificWork.Commands;
 
 public record UpdateScientificWorkCommand : IRequest<Guid>
-    {
-        public Guid IsnScientificWork { get; init; }
-        public string Title { get; init; }
-        public string Description { get; init; }
-        public int PageCount { get; init; }
-        public bool IsPublished { get; init; }
-    }
+{
+    public Guid IsnScientificWork { get; init; }
+    public string Title { get; init; }
+    public string Description { get; init; }
+    public int PageCount { get; init; }
+    public bool IsPublished { get; init; }
+}
+
 public class UpdateScientificWorkCommandHandler : IRequestHandler<UpdateScientificWorkCommand, Guid>
 {
     private readonly DataContext _context;
@@ -40,7 +41,6 @@ public class UpdateScientificWorkCommandHandler : IRequestHandler<UpdateScientif
         scientificWork.Title = request.Title;
         scientificWork.Description = request.Description;
         scientificWork.PageCount = request.PageCount;
-        scientificWork.IsPublished = request.IsPublished;
 
         _context.ScientificWorks.Update(scientificWork);
         await _context.SaveChangesAsync(cancellationToken);

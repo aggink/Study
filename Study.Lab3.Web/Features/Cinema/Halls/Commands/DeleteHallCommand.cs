@@ -47,10 +47,10 @@ public sealed class DeleteHallCommandHandler : IRequestHandler<DeleteHallCommand
 
         // Удаляем места
         _dataContext.Seats.RemoveRange(hall.Seats);
-        
+
         // Удаляем зал
         _dataContext.Halls.Remove(hall);
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

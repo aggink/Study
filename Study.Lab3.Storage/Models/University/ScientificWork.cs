@@ -2,36 +2,30 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Study.Lab3.Storage.Models.University
+namespace Study.Lab3.Storage.Models.University;
+
+public class ScientificWork
 {
-    [Table("SCIENTIFIC_WORKS")]
-    public class ScientificWork
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid IsnStudent { get; set; }
-        [ForeignKey(nameof(IsnStudent))]
-        public Student Student { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public Guid IsnScientificWork { get; set; }
 
+    public Guid IsnStudent { get; set; }
 
-        public Guid IsnSubject { get; set; }
-        [ForeignKey("IsnSubject")]
-        public Subject Subject { get; set; }
+    public Guid IsnSubject { get; set; }
 
-        [Required]
-        public string Title { get; set; }
+    [Required]
+    public string Title { get; set; }
 
-        public string? Description { get; set; }
+    public string Description { get; set; }
 
-        [Required]
-        public int PageCount { get; set; }
+    [Required]
+    public int PageCount { get; set; }
 
-        [Required]
-        public DateTime PublicationDate { get; set; }
+    [Required]
+    public DateTime PublicationDate { get; set; }
 
-        public bool IsPublished { get; set; }
+    public virtual Student Student { get; set; }
+    public virtual Subject Subject { get; set; }
 
-        public Guid IsnScientificWork { get; set; }
-}
-    
 }

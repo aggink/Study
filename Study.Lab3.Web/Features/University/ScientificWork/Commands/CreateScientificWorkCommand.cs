@@ -8,6 +8,7 @@ public record CreateScientificWorkCommand : IRequest<Guid>
 {
     public CreateScientificWorkDto ScientificWorkDto { get; init; }
 }
+
 public class CreateScientificWorkCommandHandler : IRequestHandler<CreateScientificWorkCommand, Guid>
 {
     private readonly DataContext _context;
@@ -23,13 +24,12 @@ public class CreateScientificWorkCommandHandler : IRequestHandler<CreateScientif
         var scientificWork = new Storage.Models.University.ScientificWork
         {
             IsnScientificWork = Guid.NewGuid(),
-            IsnStudent = request.ScientificWorkDto.IsnStudent,  // Доступ через DTO
+            IsnStudent = request.ScientificWorkDto.IsnStudent,
             IsnSubject = request.ScientificWorkDto.IsnSubject,
             Title = request.ScientificWorkDto.Title,
             Description = request.ScientificWorkDto.Description,
             PageCount = request.ScientificWorkDto.PageCount,
             PublicationDate = request.ScientificWorkDto.PublicationDate,
-            IsPublished = request.ScientificWorkDto.IsPublished
         };
 
         _context.ScientificWorks.Add(scientificWork);

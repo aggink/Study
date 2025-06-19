@@ -5,15 +5,15 @@ using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
 
 
 namespace Study.Lab3.Web.Features.University.ScientificWork.Queries;
-    public record GetScientificWorkByIsnQuery : IRequest<ScientificWorkDto>
-    {
-        public Guid IsnScientificWork { get; init; }
-    }
+
+public record GetScientificWorkByIsnQuery : IRequest<ScientificWorkDto>
+{
+    public Guid IsnScientificWork { get; init; }
+}
 public class GetScientificWorkByIsnQueryHandler
-        : IRequestHandler<GetScientificWorkByIsnQuery, ScientificWorkDto>
+    : IRequestHandler<GetScientificWorkByIsnQuery, ScientificWorkDto>
 {
     private readonly DataContext _context;
-
     public GetScientificWorkByIsnQueryHandler(DataContext context)
     {
         _context = context;
@@ -42,7 +42,6 @@ public class GetScientificWorkByIsnQueryHandler
             Description = scientificWork.Description,
             PageCount = scientificWork.PageCount,
             PublicationDate = scientificWork.PublicationDate,
-            IsPublished = scientificWork.IsPublished
         };
     }
 }

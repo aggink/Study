@@ -9,9 +9,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Web.Features.University.ScientificWork.Commands;
 
- public record DeleteScientificWorkCommand(Guid IsnScientificWork) : IRequest<bool>;
+public record DeleteScientificWorkCommand(Guid IsnScientificWork) : IRequest<bool>;
 
-public class DeleteScientificWorkCommandHandler : IRequestHandler<DeleteScientificWorkCommand, bool >
+public class DeleteScientificWorkCommandHandler : IRequestHandler<DeleteScientificWorkCommand, bool>
 {
     private readonly DataContext _context;
 

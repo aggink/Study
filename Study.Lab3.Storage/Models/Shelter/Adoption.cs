@@ -9,21 +9,21 @@ public class Adoption
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid IsnAdoption  { get; set; }
-    
-    [ForeignKey(nameof(Cat))] 
+    public Guid IsnAdoption { get; set; }
+
+    [ForeignKey(nameof(Cat))]
     public Guid IsnCat { get; set; }
 
     [Required]
     [ForeignKey(nameof(Customer))]
     public Guid IsnCustomer { get; set; }
-    
+
     [Required]
     [Range(ModelConstants.Adoption.PriceMin, ModelConstants.Adoption.PriceMax)]
     public int Price { get; set; }
-    
 
-    [Required] 
+
+    [Required]
     public DateTime AdoptionDate { get; set; }
 
     [Required]
