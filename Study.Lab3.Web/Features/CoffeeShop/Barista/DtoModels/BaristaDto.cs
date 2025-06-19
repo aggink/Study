@@ -3,7 +3,7 @@ namespace Study.Lab3.Web.Features.CoffeeShop.Barista.DtoModels;
 /// <summary>
 /// DTO бариста
 /// </summary>
-sealed record BaristaDto
+public sealed record BaristaDto
 {
     /// <summary>
     /// Идентификатор бариста
