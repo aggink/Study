@@ -1,4 +1,4 @@
-namespace Study.Lab3.Storage.Constants;
+﻿namespace Study.Lab3.Storage.Constants;
 
 /// <summary>
 /// Ограничения для моделей
@@ -1590,4 +1590,53 @@ public static class ModelConstants
     }
 
     #endregion
+
+    public static class Car
+    {
+        public const int Brand = 50;
+
+        public const int Model = 50;
+
+        public const int MinYear = 1900;
+
+        public const int MaxYear = 2025;
+
+        public const int MinMileage = 0;
+
+        public const int MaxMileage = 1000000;
+
+        public const int Color = 50;
+
+        public const int LicensePlate = 50;
+
+        public const int VinNumber = 50;
+    }
+
+    public static class Owner
+    {
+        public const int FirstName = 50;
+
+        public const int SecondName = 50;
+
+        public const int PhoneNumber = 20;
+
+        public const int Email = 50;
+
+        public const int Address = 500;
+    }
+
+    public static class ServiceRecord
+    {
+        public const int CarLicensePlate = 50;
+
+        public const int ServiceType = 100;
+
+        public const int Description = 1000;
+
+        public const int MechanicName = 100;
+
+        public const int MinCost = 0;
+
+        public const int MaxCost = 1000000;
+    }
 }
