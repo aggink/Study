@@ -1,6 +1,7 @@
 using Study.Lab2.Logic.alexmark1612;
 using Study.Lab2.Logic.alkeivi;
 using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.baldfromazzers;
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.chaspix;
 using Study.Lab2.Logic.Cherryy;
@@ -152,6 +153,8 @@ public static class Program
                 return new Eduardvafin56Service();
             case ("idb-23-02", 16):
                 return new UTBLService();
+            case ("idb-23-02", 22):
+                return new baldfromazzersService();
             default:
                 throw new NotSupportedException();
         }
