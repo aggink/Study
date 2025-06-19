@@ -1,5 +1,6 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
+using Study.Lab3.Storage.Models.CarService;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.GameStore;
@@ -7,6 +8,7 @@ using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Messenger;
 using Study.Lab3.Storage.Models.MusicStore;
+using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
@@ -374,6 +376,25 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region CarService
+
+    /// <summary>
+    /// Машина
+    /// </summary>
+    public virtual DbSet<Car> Cars { get; set; }
+
+    /// <summary>
+    /// Владелец
+    /// </summary>
+    public virtual DbSet<Owner> Owners { get; set; }
+
+    /// <summary>
+    /// Запись Обслуживания
+    /// </summary>
+    public virtual DbSet<ServiceRecord> ServiceRecords { get; set; }
+
+    #endregion
+
     #region TravelAgency
 
     public virtual DbSet<Tour> Tours { get; set; }
@@ -424,6 +445,25 @@ public class DataContext : DbContext
     /// Вложения
     /// </summary>
     public virtual DbSet<ImageEmbed> ImageEmbeds { get; set; }
+
+    #endregion
+
+    #region Photography
+
+    /// <summary>
+    /// Клиенты фотостудии
+    /// </summary>
+    public virtual DbSet<PhotographyClient> PhotographyClients { get; set; }
+
+    /// <summary>
+    /// Оборудование фотостудии
+    /// </summary>
+    public virtual DbSet<PhotographyEquipment> PhotographyEquipments { get; set; }
+
+    /// <summary>
+    /// Фотосессии
+    /// </summary>
+    public virtual DbSet<PhotographySession> PhotographySessions { get; set; }
 
     #endregion
 
