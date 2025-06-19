@@ -1,4 +1,4 @@
-using Study.Lab2.Logic.Interfaces;
+п»їusing Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.UTBL;
 using System.Diagnostics;
 
@@ -12,13 +12,13 @@ public class UTBLService : IRunService
     public UTBLService()
     {
         _requestHandler = new RequestService(new HttpClient());
-        SetupApis(); // Переносим инициализацию URL в конструктор
+        SetupApis(); // РџРµСЂРµРЅРѕСЃРёРј РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ URL РІ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     }
 
     public void RunTask()
     {
-        Console.WriteLine("Инициализация запросов...\n");
-        Console.WriteLine("\nСтарт синхронных запросов...\n");
+        Console.WriteLine("РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Р·Р°РїСЂРѕСЃРѕРІ...\n");
+        Console.WriteLine("\nРЎС‚Р°СЂС‚ СЃРёРЅС…СЂРѕРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ...\n");
         var timer = Stopwatch.StartNew();
 
         try
@@ -26,7 +26,7 @@ public class UTBLService : IRunService
             var responses = new List<string>();
             for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine($"Запрос {i + 1}: {_apiUrls[i]}");
+                Console.WriteLine($"Р—Р°РїСЂРѕСЃ {i + 1}: {_apiUrls[i]}");
                 responses.Add(_requestHandler.FetchData(_apiUrls[i]));
             }
 
@@ -34,7 +34,7 @@ public class UTBLService : IRunService
         }
         catch (Exception ex)
         {
-            ShowError($"Ошибка: {ex.Message}");
+            ShowError($"РћС€РёР±РєР°: {ex.Message}");
         }
         finally
         {
@@ -44,14 +44,14 @@ public class UTBLService : IRunService
 
     public async Task RunTaskAsync(CancellationToken cancellationToken = default)
     {
-        Console.WriteLine("\nЗапуск асинхронных запросов...\n");
+        Console.WriteLine("\nР—Р°РїСѓСЃРє Р°СЃРёРЅС…СЂРѕРЅРЅС‹С… Р·Р°РїСЂРѕСЃРѕРІ...\n");
         var timer = Stopwatch.StartNew();
 
         try
         {
             var tasks = _apiUrls.Select((url, index) =>
             {
-                Console.WriteLine($"Запрос {index + 1}: {url}"); // Добавляем вывод URL
+                Console.WriteLine($"Р—Р°РїСЂРѕСЃ {index + 1}: {url}"); // Р”РѕР±Р°РІР»СЏРµРј РІС‹РІРѕРґ URL
                 return _requestHandler.FetchDataAsync(url, cancellationToken);
             }).ToArray();
 
@@ -60,7 +60,7 @@ public class UTBLService : IRunService
         }
         catch (Exception ex)
         {
-            ShowError($"Ошибка: {ex.Message}");
+            ShowError($"РћС€РёР±РєР°: {ex.Message}");
         }
         finally
         {
@@ -77,8 +77,8 @@ public class UTBLService : IRunService
 
     private void SetupWeatherApi()
     {
-        Console.Write("WeatherAPI - получение данных о текущей погоде в выбранном городе.\n\n");
-        Console.Write("Город для прогноза: ");
+        Console.Write("WeatherAPI - РїРѕР»СѓС‡РµРЅРёРµ РґР°РЅРЅС‹С… Рѕ С‚РµРєСѓС‰РµР№ РїРѕРіРѕРґРµ РІ РІС‹Р±СЂР°РЅРЅРѕРј РіРѕСЂРѕРґРµ.\n\n");
+        Console.Write("Р“РѕСЂРѕРґ РґР»СЏ РїСЂРѕРіРЅРѕР·Р°: ");
         string city = Console.ReadLine();
         _apiUrls[0] = $"http://api.weatherapi.com/v1/current.json?key=75723b4740b94a519bd114249251005&q={city}";
         PrintSeparator();
@@ -86,12 +86,12 @@ public class UTBLService : IRunService
 
     private void SetupNasaApi()
     {
-        Console.Write("NASA APOD API - получение астрономической картинки дня.\n\n");
-        Console.Write("Год (****): ");
+        Console.Write("NASA APOD API - РїРѕР»СѓС‡РµРЅРёРµ Р°СЃС‚СЂРѕРЅРѕРјРёС‡РµСЃРєРѕР№ РєР°СЂС‚РёРЅРєРё РґРЅСЏ.\n\n");
+        Console.Write("Р“РѕРґ (****): ");
         string year = Console.ReadLine();
-        Console.Write("Месяц (**): ");
+        Console.Write("РњРµСЃСЏС† (**): ");
         string month = Console.ReadLine();
-        Console.Write("День (**): ");
+        Console.Write("Р”РµРЅСЊ (**): ");
         string day = Console.ReadLine();
         _apiUrls[1] = $"https://api.nasa.gov/planetary/apod?api_key=WvVHdwoc2g3ZFW4vjIUucePQqPRLfaCKHn04eY4H&date={year}-{month}-{day}";
         PrintSeparator();
@@ -99,10 +99,10 @@ public class UTBLService : IRunService
 
     private void SetupUniversityApi()
     {
-        Console.Write("Universities API (HipoLabs) - поиск информации об университетах по стране и названию.\n\n");
-        Console.Write("Страна: ");
+        Console.Write("Universities API (HipoLabs) - РїРѕРёСЃРє РёРЅС„РѕСЂРјР°С†РёРё РѕР± СѓРЅРёРІРµСЂСЃРёС‚РµС‚Р°С… РїРѕ СЃС‚СЂР°РЅРµ Рё РЅР°Р·РІР°РЅРёСЋ.\n\n");
+        Console.Write("РЎС‚СЂР°РЅР°: ");
         string country = Console.ReadLine();
-        Console.Write("Университет: ");
+        Console.Write("РЈРЅРёРІРµСЂСЃРёС‚РµС‚: ");
         string name = Console.ReadLine();
         _apiUrls[2] = $"http://universities.hipolabs.com/search?country={country}&name={name}";
         PrintSeparator();
@@ -111,19 +111,19 @@ public class UTBLService : IRunService
     private void ShowSuccess(IEnumerable<string> responses, long time)
     {
         Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("\nВсе ответы получены!");
+        Console.WriteLine("\nР’СЃРµ РѕС‚РІРµС‚С‹ РїРѕР»СѓС‡РµРЅС‹!");
         Console.ResetColor();
 
         int counter = 1;
         foreach (var response in responses)
         {
-            Console.WriteLine($"\nОтвет {counter}:\n{response}");
+            Console.WriteLine($"\nРћС‚РІРµС‚ {counter}:\n{response}");
             PrintSeparator();
             counter++;
         }
 
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine($"\nВремя выполнения: {time} мс");
+        Console.WriteLine($"\nР’СЂРµРјСЏ РІС‹РїРѕР»РЅРµРЅРёСЏ: {time} РјСЃ");
         Console.ResetColor();
     }
 

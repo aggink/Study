@@ -1,19 +1,19 @@
-namespace Study.Lab2.Logic.Interfaces.UTBL;
+п»їnamespace Study.Lab2.Logic.Interfaces.UTBL;
 
 public interface IRequestService : IDisposable
 {
 	/// <summary>
-	/// Отправить запрос к сервису
+	/// РћС‚РїСЂР°РІРёС‚СЊ Р·Р°РїСЂРѕСЃ Рє СЃРµСЂРІРёСЃСѓ
 	/// </summary>
-	/// <param name="url">Веб-адрес</param>
-	/// <returns>Ответ от сервиса</returns>
+	/// <param name="url">Р’РµР±-Р°РґСЂРµСЃ</param>
+	/// <returns>РћС‚РІРµС‚ РѕС‚ СЃРµСЂРІРёСЃР°</returns>
 	string FetchData(string url);
 
 	/// <summary>
-	/// Отправить запрос к сервису
+	/// РћС‚РїСЂР°РІРёС‚СЊ Р·Р°РїСЂРѕСЃ Рє СЃРµСЂРІРёСЃСѓ
 	/// </summary>
-	/// <param name="url">Веб-адрес</param>
-	/// <param name="cancellationToken">Токен отмены</param>
-	/// <returns>Ответ от сервиса</returns>
+	/// <param name="url">Р’РµР±-Р°РґСЂРµСЃ</param>
+	/// <param name="cancellationToken">РўРѕРєРµРЅ РѕС‚РјРµРЅС‹</param>
+	/// <returns>РћС‚РІРµС‚ РѕС‚ СЃРµСЂРІРёСЃР°</returns>
 	Task<string> FetchDataAsync(string url, CancellationToken cancellationToken = default);
 }

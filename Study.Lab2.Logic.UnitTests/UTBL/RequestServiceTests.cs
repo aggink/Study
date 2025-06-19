@@ -1,4 +1,4 @@
-using System.Net;
+п»їusing System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,7 +15,7 @@ public class RequestServiceTests
     [Test]
     public void FetchData_ReturnsJsonString_OnSuccess()
     {
-        // Arrange: подготовим хэндлер, возвращающий код 200 и простой JSON
+        // Arrange: РїРѕРґРіРѕС‚РѕРІРёРј С…СЌРЅРґР»РµСЂ, РІРѕР·РІСЂР°С‰Р°СЋС‰РёР№ РєРѕРґ 200 Рё РїСЂРѕСЃС‚РѕР№ JSON
         var handlerMock = new Mock<HttpMessageHandler>();
         handlerMock
             .Protected()
@@ -39,7 +39,7 @@ public class RequestServiceTests
         var result = svc.FetchData("http://test");
 
         // Assert
-        Assert.That(result, Is.EqualTo("{\"foo\":123}"));
+        Assert.That(result, Is.EqualTo("{\"bar\":456}"));
     }
 
     [Test]
