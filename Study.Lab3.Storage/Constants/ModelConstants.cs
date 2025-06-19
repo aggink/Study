@@ -1744,4 +1744,14 @@ public static class ModelConstants
 
         public const int MaxCost = 1000000;
     }
+
+
+    public static class ScientificWork
+    {
+        public const int MinPageCount = 5;
+        public const int MaxPageCount = 500;
+        public const int TitleMaxLength = 200;
+        public const int DescriptionMaxLength = 1000;
+    }
+}
 }
