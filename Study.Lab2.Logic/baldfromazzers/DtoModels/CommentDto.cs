@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Study.Lab2.Logic.baldfromazzers.DtoModels;
 
-sealed record CommentDto
+public sealed record CommentDto
 {
     [JsonPropertyName("postId")]
     public int PostId { get; init; }
@@ -20,4 +20,3 @@ sealed record CommentDto
     public string Body { get; init; }
 
 }
-//==

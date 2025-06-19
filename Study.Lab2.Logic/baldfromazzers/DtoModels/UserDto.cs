@@ -2,18 +2,18 @@ using System.Text.Json.Serialization;
 
 namespace Study.Lab2.Logic.baldfromazzers.DtoModels;
 
-public class UserDto
+public sealed record UserDto
 {
     [JsonPropertyName("id")]
-    public int Id { get; set; }
+    public int Id { get; init; }
     
     [JsonPropertyName("name")]
-    public string Name { get; set; }
+    public string Name { get; init; }
     
     [JsonPropertyName("username")]
-    public string Username { get; set; }
+    public string Username { get; init; }
     
     [JsonPropertyName("email")]
-    public string Email { get; set; }
+    public string Email { get; init; }
 
 }
