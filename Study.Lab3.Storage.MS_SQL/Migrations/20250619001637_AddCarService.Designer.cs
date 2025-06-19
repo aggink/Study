@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Study.Lab3.Storage.Database;
 
@@ -11,13 +12,15 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250619001637_AddCarService")]
+    partial class AddCarService
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -465,125 +468,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasIndex("IsnSession");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.Barista", b =>
-                {
-                    b.Property<Guid>("IsnBarista")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("HireDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<double?>("Salary")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Specialization")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("IsnBarista");
-
-                    b.ToTable("Baristas");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.Coffee", b =>
-                {
-                    b.Property<Guid>("IsnCoffee")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("CaffeineContent")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.HasKey("IsnCoffee");
-
-                    b.ToTable("Coffee");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.CoffeeShop", b =>
-                {
-                    b.Property<Guid>("IsnCoffeeShop")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<DateTime>("OpeningDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<double?>("Rating")
-                        .HasColumnType("float");
-
-                    b.Property<string>("WorkingHours")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("IsnCoffeeShop");
-
-                    b.ToTable("CoffeeShops");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessEquipment", b =>
@@ -1098,118 +982,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasFilter("[IsnProfilePicture] IS NOT NULL");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.MusicStore.MusicAlbum", b =>
-                {
-                    b.Property<Guid>("IsnAlbum")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("ReleaseYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("IsnAlbum");
-
-                    b.ToTable("MusicAlbums");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.MusicStore.MusicArtist", b =>
-                {
-                    b.Property<Guid>("IsnArtist")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ArtistType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Biography")
-                        .HasMaxLength(2000)
-                        .HasColumnType("nvarchar(2000)");
-
-                    b.Property<int?>("BirthYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Genre")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.HasKey("IsnArtist");
-
-                    b.ToTable("MusicArtists");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.MusicStore.MusicCustomer", b =>
-                {
-                    b.Property<Guid>("IsnCustomer")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PreferredGenre")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("RegistrationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("IsnCustomer");
-
-                    b.ToTable("MusicCustomers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Photography.PhotographyClient", b =>
