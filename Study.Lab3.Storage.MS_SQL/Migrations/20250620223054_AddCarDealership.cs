@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     /// <inheritdoc />
-    public partial class CarDealership : Migration
+    public partial class AddCarDealership : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
