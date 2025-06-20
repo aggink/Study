@@ -1,4 +1,4 @@
-namespace Study.Lab3.Storage.Constants;
+﻿namespace Study.Lab3.Storage.Constants;
 
 /// <summary>
 /// Ограничения для моделей
@@ -218,7 +218,6 @@ public static class ModelConstants
         /// Максимальная длина кода билета
         /// </summary>
         public const int TicketCodeLength = 50;
-
     }
 
     #endregion
@@ -400,7 +399,6 @@ public static class ModelConstants
         /// Максимальная цена товара (в рублях)
         /// </summary>
         public const int PriceMax = 1000000;
-
     }
 
     #endregion
@@ -1476,4 +1474,274 @@ public static class ModelConstants
         public const int MinReleaseYear = 1970;
     }
     #endregion
+    
+    #region MusicStore
+
+    public static class MusicAlbum
+    {
+        /// <summary>
+        /// Максимальная длина названия альбома
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина жанра
+        /// </summary>
+        public const int Genre = 100;
+
+        /// <summary>
+        /// Минимальный год выпуска
+        /// </summary>
+        public const int MinReleaseYear = 1900;
+
+        /// <summary>
+        /// Максимальный год выпуска
+        /// </summary>
+        public const int MaxReleaseYear = 2030;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double MinPrice = 0;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double MaxPrice = 10000;
+
+        /// <summary>
+        /// Минимальная продолжительность в минутах
+        /// </summary>
+        public const int MinDuration = 1;
+
+        /// <summary>
+        /// Максимальная продолжительность в минутах
+        /// </summary>
+        public const int MaxDuration = 300;
+    }
+
+    public static class MusicArtist
+    {
+        /// <summary>
+        /// Максимальная длина имени исполнителя
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина страны
+        /// </summary>
+        public const int Country = 100;
+
+        /// <summary>
+        /// Максимальная длина жанра
+        /// </summary>
+        public const int Genre = 100;
+
+        /// <summary>
+        /// Максимальная длина биографии
+        /// </summary>
+        public const int Biography = 2000;
+
+        /// <summary>
+        /// Минимальный год рождения/основания
+        /// </summary>
+        public const int MinBirthYear = 1800;
+
+        /// <summary>
+        /// Максимальный год рождения/основания
+        /// </summary>
+        public const int MaxBirthYear = 2020;
+    }
+
+    public static class MusicCustomer
+    {
+        /// <summary>
+        /// Максимальная длина имени
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина фамилии
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина email
+        /// </summary>
+        public const int Email = 255;
+
+        /// <summary>
+        /// Максимальная длина телефона
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина предпочитаемого жанра
+        /// </summary>
+        public const int PreferredGenre = 100;
+    }
+    
+    #endregion
+
+    #region Photography
+
+    public static class PhotographyClient
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 255;
+
+        /// <summary>
+        /// Максимальная длина поля "Комментарии"
+        /// </summary>
+        public const int Notes = 1000;
+    }
+
+    public static class PhotographyEquipment
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Бренд"
+        /// </summary>
+        public const int Brand = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Модель"
+        /// </summary>
+        public const int Model = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Серийный номер"
+        /// </summary>
+        public const int SerialNumber = 50;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная цена оборудования
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена оборудования
+        /// </summary>
+        public const double MaxPrice = 1000000.0;
+    }
+
+    public static class PhotographySession
+    {
+        /// <summary>
+        /// Максимальная длина поля "Название"
+        /// </summary>
+        public const int Title = 200;
+
+        /// <summary>
+        /// Максимальная длина поля "Местоположение"
+        /// </summary>
+        public const int Location = 300;
+
+        /// <summary>
+        /// Максимальная длина поля "Имя фотографа"
+        /// </summary>
+        public const int PhotographerName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Описание"
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальная продолжительность фотосессии в минутах
+        /// </summary>
+        public const int MinDuration = 15;
+
+        /// <summary>
+        /// Максимальная продолжительность фотосессии в минутах
+        /// </summary>
+        public const int MaxDuration = 720; // 12 часов
+
+        /// <summary>
+        /// Минимальная стоимость фотосессии
+        /// </summary>
+        public const double MinPrice = 100.0;
+
+        /// <summary>
+        /// Максимальная стоимость фотосессии
+        /// </summary>
+        public const double MaxPrice = 100000.0;
+    }
+
+    #endregion
+
+    public static class Car
+    {
+        public const int Brand = 50;
+
+        public const int Model = 50;
+
+        public const int MinYear = 1900;
+
+        public const int MaxYear = 2025;
+
+        public const int MinMileage = 0;
+
+        public const int MaxMileage = 1000000;
+
+        public const int Color = 50;
+
+        public const int LicensePlate = 50;
+
+        public const int VinNumber = 50;
+    }
+
+    public static class Owner
+    {
+        public const int FirstName = 50;
+
+        public const int SecondName = 50;
+
+        public const int PhoneNumber = 20;
+
+        public const int Email = 50;
+
+        public const int Address = 500;
+    }
+
+    public static class ServiceRecord
+    {
+        public const int CarLicensePlate = 50;
+
+        public const int ServiceType = 100;
+
+        public const int Description = 1000;
+
+        public const int MechanicName = 100;
+
+        public const int MinCost = 0;
+
+        public const int MaxCost = 1000000;
+    }
 }
