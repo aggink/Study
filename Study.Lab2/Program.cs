@@ -155,8 +155,6 @@ public static class Program
                 return new Eduardvafin56Service();
             case ("idb-23-02", 22):
                 return new baldfromazzersService();
-            case ("idb-23-02", 13):
-                return new cocobaraService();
             case ("idb-23-02", 14):
                 return new fableslotsService();
             default:
