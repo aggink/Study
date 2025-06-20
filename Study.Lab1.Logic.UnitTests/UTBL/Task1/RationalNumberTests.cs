@@ -1,4 +1,4 @@
-using Study.Lab1.Logic.UTBL.Task1;
+п»їusing Study.Lab1.Logic.UTBL.Task1;
 
 namespace Study.Lab1.Logic.UnitTests.UTBL.Task1;
 
@@ -9,8 +9,8 @@ public class RationalNumberTests
     public void ValidConstructor_ReducesFractionProperly()
     {
         var r = new RationalNumber(4, 6);
-        Assert.That(r.Numerator, Is.EqualTo(2), "Числитель не сокращён правильно.");
-        Assert.That(r.Denominator, Is.EqualTo(3), "Знаменатель не сокращён правильно.");
+        Assert.That(r.Numerator, Is.EqualTo(2), "Р§РёСЃР»РёС‚РµР»СЊ РЅРµ СЃРѕРєСЂР°С‰С‘РЅ РїСЂР°РІРёР»СЊРЅРѕ.");
+        Assert.That(r.Denominator, Is.EqualTo(3), "Р—РЅР°РјРµРЅР°С‚РµР»СЊ РЅРµ СЃРѕРєСЂР°С‰С‘РЅ РїСЂР°РІРёР»СЊРЅРѕ.");
     }
 
     [Test]
@@ -26,7 +26,7 @@ public class RationalNumberTests
         var r2 = new RationalNumber(1, 3);
         var sum = r1 + r2;
         var expected = new RationalNumber(5, 6);
-        Assert.That(sum, Is.EqualTo(expected), "Операция сложения выполнена неверно.");
+        Assert.That(sum, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ СЃР»РѕР¶РµРЅРёСЏ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -36,7 +36,7 @@ public class RationalNumberTests
         var r2 = new RationalNumber(1, 3);
         var diff = r1 - r2;
         var expected = new RationalNumber(1, 6);
-        Assert.That(diff, Is.EqualTo(expected), "Операция вычитания выполнена неверно.");
+        Assert.That(diff, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ РІС‹С‡РёС‚Р°РЅРёСЏ РІС‹РїРѕР»РЅРµРЅР° РЅРµРІРµСЂРЅРѕ.");
     }
 
     [Test]
@@ -46,7 +46,7 @@ public class RationalNumberTests
         var r2 = new RationalNumber(1, 3);
         var product = r1 * r2;
         var expected = new RationalNumber(1, 6);
-        Assert.That(product, Is.EqualTo(expected), "Операция умножения не даёт ожидаемый результат.");
+        Assert.That(product, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ СѓРјРЅРѕР¶РµРЅРёСЏ РЅРµ РґР°С‘С‚ РѕР¶РёРґР°РµРјС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚.");
     }
 
     [Test]
@@ -56,7 +56,7 @@ public class RationalNumberTests
         var r2 = new RationalNumber(1, 3);
         var quotient = r1 / r2;
         var expected = new RationalNumber(3, 2);
-        Assert.That(quotient, Is.EqualTo(expected), "Операция деления не даёт ожидаемый результат.");
+        Assert.That(quotient, Is.EqualTo(expected), "РћРїРµСЂР°С†РёСЏ РґРµР»РµРЅРёСЏ РЅРµ РґР°С‘С‚ РѕР¶РёРґР°РµРјС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚.");
     }
 
     [Test]
@@ -64,7 +64,7 @@ public class RationalNumberTests
     {
         var r1 = new RationalNumber(1, 2);
         var r2 = new RationalNumber(2, 4);
-        Assert.IsTrue(r1 == r2, "Оператор равенства не распознаёт эквивалентные дроби.");
+        Assert.IsTrue(r1 == r2, "РћРїРµСЂР°С‚РѕСЂ СЂР°РІРµРЅСЃС‚РІР° РЅРµ СЂР°СЃРїРѕР·РЅР°С‘С‚ СЌРєРІРёРІР°Р»РµРЅС‚РЅС‹Рµ РґСЂРѕР±Рё.");
     }
 
     [Test]
@@ -72,14 +72,14 @@ public class RationalNumberTests
     {
         var r1 = new RationalNumber(1, 2);
         var r2 = new RationalNumber(1, 3);
-        Assert.IsTrue(r1 != r2, "Оператор неравенства неверно определяет разные дроби.");
+        Assert.IsTrue(r1 != r2, "РћРїРµСЂР°С‚РѕСЂ РЅРµСЂР°РІРµРЅСЃС‚РІР° РЅРµРІРµСЂРЅРѕ РѕРїСЂРµРґРµР»СЏРµС‚ СЂР°Р·РЅС‹Рµ РґСЂРѕР±Рё.");
     }
 
     [Test]
     public void ToStringMethod_ReturnsExpectedRepresentation()
     {
         var r = new RationalNumber(1, 2);
-        Assert.That(r.ToString(), Is.EqualTo("1/2"), "Метод ToString возвращает неверное представление дроби.");
+        Assert.That(r.ToString(), Is.EqualTo("1/2"), "РњРµС‚РѕРґ ToString РІРѕР·РІСЂР°С‰Р°РµС‚ РЅРµРІРµСЂРЅРѕРµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РґСЂРѕР±Рё.");
     }
 
     [Test]
@@ -87,7 +87,7 @@ public class RationalNumberTests
     {
         var r1 = new RationalNumber(1, 2);
         var r2 = new RationalNumber(2, 4);
-        Assert.IsTrue(r1.Equals(r2), "Метод Equals не распознаёт эквивалентные объектные дроби.");
+        Assert.IsTrue(r1.Equals(r2), "РњРµС‚РѕРґ Equals РЅРµ СЂР°СЃРїРѕР·РЅР°С‘С‚ СЌРєРІРёРІР°Р»РµРЅС‚РЅС‹Рµ РѕР±СЉРµРєС‚РЅС‹Рµ РґСЂРѕР±Рё.");
     }
 
     [Test]
@@ -95,6 +95,6 @@ public class RationalNumberTests
     {
         var r1 = new RationalNumber(1, 2);
         var r2 = new RationalNumber(2, 4);
-        Assert.That(r1.GetHashCode(), Is.EqualTo(r2.GetHashCode()), "Метод GetHashCode не возвращает одинаковые значения для эквивалентных дробей.");
+        Assert.That(r1.GetHashCode(), Is.EqualTo(r2.GetHashCode()), "РњРµС‚РѕРґ GetHashCode РЅРµ РІРѕР·РІСЂР°С‰Р°РµС‚ РѕРґРёРЅР°РєРѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ СЌРєРІРёРІР°Р»РµРЅС‚РЅС‹С… РґСЂРѕР±РµР№.");
     }
 }
