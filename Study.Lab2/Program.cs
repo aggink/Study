@@ -157,6 +157,7 @@ public static class Program
                 return new baldfromazzersService();
             case ("idb-23-02", 14):
                 return new fableslotsService();
+            
             default:
                 throw new NotSupportedException();
         }
