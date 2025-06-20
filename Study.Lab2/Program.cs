@@ -159,7 +159,6 @@ public static class Program
                 return new cocobaraService();
             case ("idb-23-02", 14):
                 return new fableslotsService();
-            
             default:
                 throw new NotSupportedException();
         }
