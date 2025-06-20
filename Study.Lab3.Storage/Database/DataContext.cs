@@ -7,6 +7,7 @@ using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Messenger;
+using Study.Lab3.Storage.Models.Museum;
 using Study.Lab3.Storage.Models.MusicStore;
 using Study.Lab3.Storage.Models.PetShop;
 using Study.Lab3.Storage.Models.Photography;
@@ -524,5 +525,24 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<PetToy> PetToys { get; set; }
 
+    #endregion
+
+    #region Museum
+    
+    /// <summary>
+    /// Экспонаты музея
+    /// </summary>
+    public virtual DbSet<MuseumExhibit> MuseumExhibits { get; set; }
+
+    /// <summary>
+    /// Детальная информация об экспонатах
+    /// </summary>
+    public virtual DbSet<MuseumExhibitDetails> MuseumExhibitDetails { get; set; }
+
+    /// <summary>
+    /// Посетители музея
+    /// </summary>
+    public virtual DbSet<MuseumVisitor> MuseumVisitors { get; set; }
+    
     #endregion
 }
