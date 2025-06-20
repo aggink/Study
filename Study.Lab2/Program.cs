@@ -32,6 +32,7 @@ using Study.Lab2.Logic.yamisakimei;
 using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Bonnemort;
 using Study.Lab2.Logic.eduardvafin56;
+using Study.Lab2.Logic.mansurgh;
 
 public static class Program
 {
@@ -152,6 +153,8 @@ public static class Program
                 return new Eduardvafin56Service();
             case ("idb-23-02", 22):
                 return new baldfromazzersService();
+            case ("idb-23-02", 1):
+                return new mansurghService();
             default:
                 throw new NotSupportedException();
         }
