@@ -1473,8 +1473,9 @@ public static class ModelConstants
         /// </summary>
         public const int MinReleaseYear = 1970;
     }
+
     #endregion
-    
+
     #region MusicStore
 
     public static class MusicAlbum
@@ -1580,7 +1581,7 @@ public static class ModelConstants
         /// </summary>
         public const int PreferredGenre = 100;
     }
-    
+
     #endregion
 
     #region Photography
@@ -1829,6 +1830,9 @@ public static class ModelConstants
 
     #endregion
 
+    
+    #region CarService
+    
     public static class Car
     {
         public const int Brand = 50;
@@ -1877,4 +1881,134 @@ public static class ModelConstants
 
         public const int MaxCost = 1000000;
     }
+    
+    #endregion
+
+    #region PetShop
+
+    public static class Pet
+    {
+        /// <summary>
+        /// Максимальная длина клички
+        /// </summary>
+        public const int Name = 50;
+
+        /// <summary>
+        /// Максимальная длина породы
+        /// </summary>
+        public const int Breed = 100;
+
+        /// <summary>
+        /// Минимальный возраст в месяцах
+        /// </summary>
+        public const int AgeMin = 1;
+
+        /// <summary>
+        /// Максимальный возраст в месяцах
+        /// </summary>
+        public const int AgeMax = 300;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double PriceMin = 0.01;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double PriceMax = 1000000;
+
+        /// <summary>
+        /// Максимальная длина описания
+        /// </summary>
+        public const int Description = 1000;
+    }
+
+    public static class PetFood
+    {
+        /// <summary>
+        /// Максимальная длина названия
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина бренда
+        /// </summary>
+        public const int Brand = 100;
+
+        /// <summary>
+        /// Минимальный вес в граммах
+        /// </summary>
+        public const int WeightMin = 10;
+
+        /// <summary>
+        /// Максимальный вес в граммах
+        /// </summary>
+        public const int WeightMax = 50000;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double PriceMin = 0.01;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double PriceMax = 50000;
+
+        /// <summary>
+        /// Максимальная длина состава
+        /// </summary>
+        public const int Ingredients = 2000;
+
+        /// <summary>
+        /// Минимальное количество в наличии
+        /// </summary>
+        public const int StockMin = 0;
+
+        /// <summary>
+        /// Максимальное количество в наличии
+        /// </summary>
+        public const int StockMax = 10000;
+    }
+
+    public static class PetToy
+    {
+        /// <summary>
+        /// Максимальная длина названия
+        /// </summary>
+        public const int Name = 200;
+
+        /// <summary>
+        /// Максимальная длина цвета
+        /// </summary>
+        public const int Color = 50;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double PriceMin = 0.01;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double PriceMax = 10000;
+
+        /// <summary>
+        /// Максимальная длина описания
+        /// </summary>
+        public const int Description = 1000;
+
+        /// <summary>
+        /// Минимальное количество в наличии
+        /// </summary>
+        public const int StockMin = 0;
+
+        /// <summary>
+        /// Максимальное количество в наличии
+        /// </summary>
+        public const int StockMax = 1000;
+    }
+
+    #endregion
 }

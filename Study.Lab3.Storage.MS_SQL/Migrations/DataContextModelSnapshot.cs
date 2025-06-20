@@ -1212,6 +1212,130 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("MusicCustomers");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.Pet", b =>
+                {
+                    b.Property<Guid>("IsnPet")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AgeInMonths")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Breed")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Species")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnPet");
+
+                    b.ToTable("Pets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.PetFood", b =>
+                {
+                    b.Property<Guid>("IsnPetFood")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Ingredients")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("StockQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TargetSpecies")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WeightInGrams")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnPetFood");
+
+                    b.ToTable("PetFoods");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.PetToy", b =>
+                {
+                    b.Property<Guid>("IsnPetToy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AgeGroup")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<bool>("IsSafe")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Material")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TargetSpecies")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnPetToy");
+
+                    b.ToTable("PetToys");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Photography.PhotographyClient", b =>
                 {
                     b.Property<Guid>("IsnPhotographyClient")
