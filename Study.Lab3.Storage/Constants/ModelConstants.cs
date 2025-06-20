@@ -1744,4 +1744,102 @@ public static class ModelConstants
 
         public const int MaxCost = 1000000;
     }
+
+    #region Pharmacy
+
+    public static class PharmacyMedication
+    {
+        /// <summary>
+        /// Максимальная длина названия медикамента
+        /// </summary>
+        public const int NameMaxLength = 100;
+
+        /// <summary>
+        /// Максимальная длина описания медикамента
+        /// </summary>
+        public const int DescriptionMaxLength = 500;
+
+        /// <summary>
+        /// Максимальная длина названия производителя
+        /// </summary>
+        public const int ManufacturerMaxLength = 100;
+
+        /// <summary>
+        /// Минимальная цена медикамента
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена медикамента
+        /// </summary>
+        public const double MaxPrice = 100000;
+
+        /// <summary>
+        /// Минимальное количество на складе
+        /// </summary>
+        public const int MinQuantity = 0;
+
+        /// <summary>
+        /// Максимальное количество на складе
+        /// </summary>
+        public const int MaxQuantity = 10000;
+    }
+
+    public static class PharmacyCustomer
+    {
+        /// <summary>
+        /// Максимальная длина имени клиента
+        /// </summary>
+        public const int FirstNameMaxLength = 50;
+
+        /// <summary>
+        /// Максимальная длина фамилии клиента
+        /// </summary>
+        public const int LastNameMaxLength = 50;
+
+        /// <summary>
+        /// Максимальная длина номера телефона
+        /// </summary>
+        public const int PhoneMaxLength = 15;
+
+        /// <summary>
+        /// Максимальная длина адреса электронной почты
+        /// </summary>
+        public const int EmailMaxLength = 100;
+
+        /// <summary>
+        /// Максимальная длина адреса
+        /// </summary>
+        public const int AddressMaxLength = 200;
+    }
+
+    public static class Prescription
+    {
+        /// <summary>
+        /// Максимальная длина номера рецепта
+        /// </summary>
+        public const int NumberMaxLength = 20;
+
+        /// <summary>
+        /// Максимальная длина имени врача
+        /// </summary>
+        public const int DoctorNameMaxLength = 100;
+
+        /// <summary>
+        /// Минимальное количество единиц
+        /// </summary>
+        public const int MinDosage = 1;
+
+        /// <summary>
+        /// Максимальное количество единиц
+        /// </summary>
+        public const int MaxDosage = 100;
+
+        /// <summary>
+        /// Максимальная длина инструкций по применению
+        /// </summary>
+        public const int InstructionsMaxLength = 300;
+    }
+
+    #endregion
 }

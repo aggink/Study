@@ -17,7 +17,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -1089,6 +1089,132 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnCustomer");
 
                     b.ToTable("MusicCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<bool>("HasInsurance")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("PharmacyCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", b =>
+                {
+                    b.Property<Guid>("IsnMedication")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("QuantityInStock")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ReceiptDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("RequiresPrescription")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("IsnMedication");
+
+                    b.ToTable("PharmacyMedications");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.Prescription", b =>
+                {
+                    b.Property<Guid>("IsnPrescription")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("DoctorName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Dosage")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Instructions")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnMedication")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("IssueDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("PrescriptionNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("IsnPrescription");
+
+                    b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnMedication");
+
+                    b.ToTable("Prescriptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Photography.PhotographyClient", b =>
@@ -2749,6 +2875,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("ProfilePicture");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.Prescription", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", "Customer")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("IsnCustomer")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", "Medication")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("IsnMedication")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Medication");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
@@ -3292,6 +3437,16 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Images");
 
                     b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", b =>
+                {
+                    b.Navigation("Prescriptions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", b =>
+                {
+                    b.Navigation("Prescriptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>

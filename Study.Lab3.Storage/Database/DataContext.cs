@@ -8,6 +8,7 @@ using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Messenger;
 using Study.Lab3.Storage.Models.MusicStore;
+using Study.Lab3.Storage.Models.Pharmacy;
 using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
@@ -484,5 +485,24 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<MusicCustomer> MusicCustomers { get; set; }
 
+    #endregion
+    
+    #region Pharmacy
+    
+    /// <summary>
+    /// Медикаменты в аптеке
+    /// </summary>
+    public virtual DbSet<PharmacyMedication> PharmacyMedications { get; set; }
+    
+    /// <summary>
+    /// Клиенты аптеки
+    /// </summary>
+    public virtual DbSet<PharmacyCustomer> PharmacyCustomers { get; set; }
+    
+    /// <summary>
+    /// Рецепты на медикаменты
+    /// </summary>
+    public virtual DbSet<Prescription> Prescriptions { get; set; }
+    
     #endregion
 }

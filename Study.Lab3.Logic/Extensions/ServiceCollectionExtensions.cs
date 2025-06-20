@@ -9,6 +9,7 @@ using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.Photography;
 using Study.Lab3.Logic.Interfaces.Services.Messenger;
 using Study.Lab3.Logic.Interfaces.Services.MusicStore;
+using Study.Lab3.Logic.Interfaces.Services.Pharmacy;
 using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.TravelAgency;
 using Study.Lab3.Logic.Interfaces.Services.University;
@@ -23,6 +24,7 @@ using Study.Lab3.Logic.Services.Library;
 using Study.Lab3.Logic.Services.Photography;
 using Study.Lab3.Logic.Services.Messenger;
 using Study.Lab3.Logic.Services.MusicStore;
+using Study.Lab3.Logic.Services.Pharmacy;
 using Study.Lab3.Logic.Services.Restaurants;
 using Study.Lab3.Logic.Services.TravelAgency;
 using Study.Lab3.Logic.Services.University;
@@ -149,6 +151,12 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMusicAlbumService, MusicAlbumService>();
         services.AddSingleton<IMusicArtistService, MusicArtistService>();
         services.AddSingleton<IMusicCustomerService, MusicCustomerService>();
+        #endregion
+
+        #region Pharmacy
+        services.AddSingleton<IPharmacyCustomerService, PharmacyCustomerService>();
+        services.AddSingleton<IPharmacyMedicationService, PharmacyMedicationService>();
+        services.AddSingleton<IPrescriptionService, PrescriptionService>();
         #endregion
     }
 }
