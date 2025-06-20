@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
+using Study.Lab3.Storage.Models.CarDealership;
 using Study.Lab3.Storage.Models.CarService;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
@@ -483,6 +484,25 @@ public class DataContext : DbContext
     /// Покупатели музыкального магазина
     /// </summary>
     public virtual DbSet<MusicCustomer> MusicCustomers { get; set; }
+
+    #endregion
+    
+    #region CarDealership
+
+    /// <summary>
+    /// Клиенты автосалона
+    /// </summary>
+    public virtual DbSet<CarDealershipCustomer> CarDealershipCustomers { get; set; }
+
+    /// <summary>
+    /// Автомобили
+    /// </summary>
+    public virtual DbSet<Vehicle> Vehicles { get; set; }
+
+    /// <summary>
+    /// Продажи автомобилей
+    /// </summary>
+    public virtual DbSet<CarDealershipSale> CarDealershipSales { get; set; }
 
     #endregion
 }
