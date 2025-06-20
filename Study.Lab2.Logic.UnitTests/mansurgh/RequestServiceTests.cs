@@ -6,6 +6,7 @@ using Moq;
 using Moq.Protected;
 using NUnit.Framework;
 using Study.Lab2.Logic.mansurgh;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.UnitTests.mansurgh;
 
@@ -27,7 +28,7 @@ public class RequestServiceTests
                 new HttpResponseMessage
                 {
                     StatusCode = HttpStatusCode.OK,
-                    Content = new StringContent("{\"foo\":123}"),
+                    Content = new StringContent(JsonSerializer.Serialize(new { foo = 123 })),
                 }
             );
 
