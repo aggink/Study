@@ -33,6 +33,7 @@ using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Bonnemort;
 using Study.Lab2.Logic.eduardvafin56;
 
+
 public static class Program
 {
     /// <summary>
