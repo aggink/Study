@@ -42,6 +42,7 @@ using Study.Lab1.Logic.Maxtir23;
 using Study.Lab1.Logic.fableslots;
 using Study.Lab1.Logic.UTBL;
 
+using Study.Lab1.Logic.baldfromazzers;
 
 public static class Program
 {
@@ -172,6 +173,8 @@ public static class Program
                 return new fableslotsService();
             case ("idb-23-02", 16):
                 return new UTBLService();
+            case ("idb-23-02", 22):
+                return new baldfromazzersService();
             default:
                 throw new NotSupportedException();
         }
