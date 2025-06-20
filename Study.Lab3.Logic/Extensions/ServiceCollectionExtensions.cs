@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
+using Study.Lab3.Logic.Interfaces.Services.CarDealership;
 using Study.Lab3.Logic.Interfaces.Services.CarService;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
 using Study.Lab3.Logic.Interfaces.Services.CoffeeShop;
@@ -18,6 +19,7 @@ using Study.Lab3.Logic.Interfaces.Services.TravelAgency;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Logic.Interfaces.Services.Workshop;
 using Study.Lab3.Logic.Services.BeautySalon;
+using Study.Lab3.Logic.Services.CarDealership;
 using Study.Lab3.Logic.Services.CarService;
 using Study.Lab3.Logic.Services.Cinema;
 using Study.Lab3.Logic.Services.CoffeeShop;
@@ -180,6 +182,12 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IPharmacyCustomerService, PharmacyCustomerService>();
         services.AddSingleton<IPharmacyMedicationService, PharmacyMedicationService>();
         services.AddSingleton<IPrescriptionService, PrescriptionService>();
+        #endregion
+
+        #region CarDealership
+        services.AddScoped<ICarDealershipCustomerService, CarDealershipCustomerService>();
+        services.AddScoped<IVehicleService, VehicleService>();
+        services.AddScoped<ICarDealershipSaleService, CarDealershipSaleService>();
         #endregion
     }
 }

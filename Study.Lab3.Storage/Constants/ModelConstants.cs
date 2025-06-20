@@ -2147,4 +2147,117 @@ public static class ModelConstants
     }
 
     #endregion
+
+    #region CarDealership
+
+    public static class CarDealershipCustomer
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 255;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Адрес"
+        /// </summary>
+        public const int Address = 500;
+
+        /// <summary>
+        /// Максимальная длина поля "Номер паспорта"
+        /// </summary>
+        public const int PassportNumber = 20;
+    }
+
+    public static class Vehicle
+    {
+        /// <summary>
+        /// Максимальная длина поля "Марка"
+        /// </summary>
+        public const int Brand = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Модель"
+        /// </summary>
+        public const int Model = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Цвет"
+        /// </summary>
+        public const int Color = 50;
+
+        /// <summary>
+        /// Максимальная длина поля "VIN номер"
+        /// </summary>
+        public const int VinNumber = 50;
+
+        /// <summary>
+        /// Минимальный год выпуска
+        /// </summary>
+        public const int MinYear = 1900;
+
+        /// <summary>
+        /// Максимальный год выпуска
+        /// </summary>
+        public const int MaxYear = 2030;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double MinPrice = 0;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double MaxPrice = 10000000;
+
+        /// <summary>
+        /// Минимальный пробег
+        /// </summary>
+        public const int MinMileage = 0;
+
+        /// <summary>
+        /// Максимальный пробег
+        /// </summary>
+        public const int MaxMileage = 1000000;
+    }
+
+    public static class CarDealershipSale
+    {
+        /// <summary>
+        /// Минимальная сумма скидки
+        /// </summary>
+        public const double MinDiscount = 0;
+
+        /// <summary>
+        /// Максимальная сумма скидки
+        /// </summary>
+        public const double MaxDiscount = 100000;
+
+        /// <summary>
+        /// Минимальная итоговая цена
+        /// </summary>
+        public const double MinFinalPrice = 0;
+
+        /// <summary>
+        /// Максимальная итоговая цена
+        /// </summary>
+        public const double MaxFinalPrice = 10000000;
+    }
+
+    #endregion
 }

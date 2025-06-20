@@ -110,6 +110,124 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("BeautyService");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PassportNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("CarDealershipCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipSale", b =>
+                {
+                    b.Property<Guid>("IsnSale")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Discount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FinalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnVehicle")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnSale");
+
+                    b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnVehicle");
+
+                    b.ToTable("CarDealershipSales");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.Vehicle", b =>
+                {
+                    b.Property<Guid>("IsnVehicle")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Mileage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("VinNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnVehicle");
+
+                    b.ToTable("Vehicles");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
                 {
                     b.Property<Guid>("IsnCar")
@@ -3057,6 +3175,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("BeautyService");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipSale", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", "Customer")
+                        .WithMany("Sales")
+                        .HasForeignKey("IsnCustomer")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.CarDealership.Vehicle", "Vehicle")
+                        .WithMany("Sales")
+                        .HasForeignKey("IsnVehicle")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Vehicle");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.CarService.Owner", "Owner")
@@ -3740,6 +3877,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyService", b =>
                 {
                     b.Navigation("BeautyAppointments");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.Vehicle", b =>
+                {
+                    b.Navigation("Sales");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Owner", b =>
