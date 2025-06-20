@@ -34,6 +34,7 @@ using Study.Lab2.Logic.Bonnemort;
 using Study.Lab2.Logic.cocobara;
 using Study.Lab2.Logic.eduardvafin56;
 
+
 public static class Program
 {
     /// <summary>

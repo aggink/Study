@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250620195203_AddCoffeeShop")]
+    partial class AddCoffeeShop
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1208,130 +1211,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnCustomer");
 
                     b.ToTable("MusicCustomers");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.Pet", b =>
-                {
-                    b.Property<Guid>("IsnPet")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("AgeInMonths")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("ArrivalDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Breed")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("double precision");
-
-                    b.Property<int>("Species")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnPet");
-
-                    b.ToTable("Pets");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.PetFood", b =>
-                {
-                    b.Property<Guid>("IsnPetFood")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Ingredients")
-                        .HasMaxLength(2000)
-                        .HasColumnType("character varying(2000)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("double precision");
-
-                    b.Property<int>("StockQuantity")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TargetSpecies")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("WeightInGrams")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnPetFood");
-
-                    b.ToTable("PetFoods");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.PetToy", b =>
-                {
-                    b.Property<Guid>("IsnPetToy")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("AgeGroup")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Color")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
-
-                    b.Property<bool>("IsSafe")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("Material")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("double precision");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StockQuantity")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TargetSpecies")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnPetToy");
-
-                    b.ToTable("PetToys");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Photography.PhotographyClient", b =>

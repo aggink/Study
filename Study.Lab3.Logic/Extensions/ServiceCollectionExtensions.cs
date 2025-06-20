@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Study.Lab3.Logic.Interfaces.Services.BeautySalon;
 using Study.Lab3.Logic.Interfaces.Services.CarService;
 using Study.Lab3.Logic.Interfaces.Services.Cinema;
+using Study.Lab3.Logic.Interfaces.Services.CoffeeShop;
 using Study.Lab3.Logic.Interfaces.Services.Fitness;
 using Study.Lab3.Logic.Interfaces.Services.GameStore;
 using Study.Lab3.Logic.Interfaces.Services.HospitalStore;
@@ -9,6 +10,7 @@ using Study.Lab3.Logic.Interfaces.Services.Library;
 using Study.Lab3.Logic.Interfaces.Services.Photography;
 using Study.Lab3.Logic.Interfaces.Services.Messenger;
 using Study.Lab3.Logic.Interfaces.Services.MusicStore;
+using Study.Lab3.Logic.Interfaces.Services.PetShop;
 using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.TravelAgency;
 using Study.Lab3.Logic.Interfaces.Services.University;
@@ -16,6 +18,7 @@ using Study.Lab3.Logic.Interfaces.Services.Workshop;
 using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Services.CarService;
 using Study.Lab3.Logic.Services.Cinema;
+using Study.Lab3.Logic.Services.CoffeeShop;
 using Study.Lab3.Logic.Services.Fitness;
 using Study.Lab3.Logic.Services.GameStore;
 using Study.Lab3.Logic.Services.HospitalStore;
@@ -23,6 +26,7 @@ using Study.Lab3.Logic.Services.Library;
 using Study.Lab3.Logic.Services.Photography;
 using Study.Lab3.Logic.Services.Messenger;
 using Study.Lab3.Logic.Services.MusicStore;
+using Study.Lab3.Logic.Services.PetShop;
 using Study.Lab3.Logic.Services.Restaurants;
 using Study.Lab3.Logic.Services.TravelAgency;
 using Study.Lab3.Logic.Services.University;
@@ -149,6 +153,18 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMusicAlbumService, MusicAlbumService>();
         services.AddSingleton<IMusicArtistService, MusicArtistService>();
         services.AddSingleton<IMusicCustomerService, MusicCustomerService>();
+        #endregion
+
+        #region CoffeeShop
+        services.AddSingleton<ICoffeeService, CoffeeService>();
+        services.AddSingleton<ICoffeeShopService, CoffeeShopService>();
+        services.AddSingleton<IBaristaService, BaristaService>();
+        #endregion
+
+        #region PetShop
+        services.AddSingleton<IPetService, PetService>();
+        services.AddSingleton<IPetFoodService, PetFoodService>();
+        services.AddSingleton<IPetToyService, PetToyService>();
         #endregion
     }
 }
