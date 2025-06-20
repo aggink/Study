@@ -36,6 +36,7 @@ using Study.Lab2.Logic.eduardvafin56;
 using Study.Lab2.Logic.fableslots; 
 
 
+
 public static class Program
 {
     /// <summary>
