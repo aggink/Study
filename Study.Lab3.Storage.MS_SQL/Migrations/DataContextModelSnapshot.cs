@@ -17,7 +17,7 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -979,6 +979,136 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .HasFilter("[IsnProfilePicture] IS NOT NULL");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibit", b =>
+                {
+                    b.Property<Guid>("IsnMuseumExhibit")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AcquisitionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<double>("EstimatedValue")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("IsnMuseumExhibit");
+
+                    b.ToTable("MuseumExhibits");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibitDetails", b =>
+                {
+                    b.Property<Guid>("IsnMuseumExhibitDetails")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Condition")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("CreationYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Creator")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Dimensions")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("HistoricalPeriod")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("IsnMuseumExhibit")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Material")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Origin")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double?>("Weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("IsnMuseumExhibitDetails");
+
+                    b.HasIndex("IsnMuseumExhibit")
+                        .IsUnique();
+
+                    b.ToTable("MuseumExhibitDetails");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumVisitor", b =>
+                {
+                    b.Property<Guid>("IsnMuseumVisitor")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsMember")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("MembershipNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<double>("TicketPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TicketType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("VisitDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnMuseumVisitor");
+
+                    b.ToTable("MuseumVisitors");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.MusicStore.MusicAlbum", b =>
@@ -2751,6 +2881,17 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("ProfilePicture");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibitDetails", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Museum.MuseumExhibit", "Exhibit")
+                        .WithOne("Details")
+                        .HasForeignKey("Study.Lab3.Storage.Models.Museum.MuseumExhibitDetails", "IsnMuseumExhibit")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Exhibit");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Restaurants.Restaurant", "Restaurant")
@@ -3294,6 +3435,11 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Images");
 
                     b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibit", b =>
+                {
+                    b.Navigation("Details");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>

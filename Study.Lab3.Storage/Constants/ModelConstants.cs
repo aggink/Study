@@ -1744,4 +1744,42 @@ public static class ModelConstants
 
         public const int MaxCost = 1000000;
     }
+
+    #region Museum
+
+    public static class MuseumExhibit
+    {
+        public const int Name = 100;
+        public const int Description = 500;
+        public const int Location = 100;
+        public const int Status = 50;
+        public const int MaxEstimatedValue = 1000000;
+        public const int MinEstimatedValue = 0;
+    }
+
+    public static class MuseumExhibitDetails
+    {
+        public const int Origin = 200;
+        public const int Creator = 100;
+        public const int Material = 100;
+        public const int Dimensions = 50;
+        public const int HistoricalPeriod = 100;
+        public const int Condition = 50;
+        public const int MaxWeight = 1000000;
+        public const int MinWeight = 0;
+    }
+    
+    public static class MuseumVisitor
+    {
+        public const int FirstName = 100;
+        public const int LastName = 100;
+        public const int Email = 255;
+        public const int Phone = 20;
+        public const int TicketType = 50;
+        public const double MinTicketPrice = 0;
+        public const double MaxTicketPrice = 1000;
+        public const int MembershipNumber = 50;
+    }
+
+    #endregion
 }
