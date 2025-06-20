@@ -449,7 +449,7 @@ public class DataContext : DbContext
     #endregion
 
     #region Photography
-
+    
     /// <summary>
     /// Клиенты фотостудии
     /// </summary>
@@ -483,6 +483,26 @@ public class DataContext : DbContext
     /// Покупатели музыкального магазина
     /// </summary>
     public virtual DbSet<MusicCustomer> MusicCustomers { get; set; }
+
+    
+    #endregion
+
+    #region CoffeeShop
+
+    /// <summary>
+    /// Кофе
+    /// </summary>
+    public virtual DbSet<Models.CoffeeShop.Coffee> Coffee { get; set; }
+
+    /// <summary>
+    /// Кофейни
+    /// </summary>
+    public virtual DbSet<Models.CoffeeShop.CoffeeShop> CoffeeShops { get; set; }
+
+    /// <summary>
+    /// Бариста
+    /// </summary>
+    public virtual DbSet<Models.CoffeeShop.Barista> Baristas { get; set; }
 
     #endregion
 }

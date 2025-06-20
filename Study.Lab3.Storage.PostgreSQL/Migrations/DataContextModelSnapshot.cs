@@ -467,6 +467,125 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Tickets");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.Barista", b =>
+                {
+                    b.Property<Guid>("IsnBarista")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<double?>("Salary")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Specialization")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("IsnBarista");
+
+                    b.ToTable("Baristas");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.Coffee", b =>
+                {
+                    b.Property<Guid>("IsnCoffee")
+                        .HasColumnType("uuid");
+
+                    b.Property<int?>("CaffeineContent")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnCoffee");
+
+                    b.ToTable("Coffee");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.CoffeeShop", b =>
+                {
+                    b.Property<Guid>("IsnCoffeeShop")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<DateTime>("OpeningDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<double?>("Rating")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("WorkingHours")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnCoffeeShop");
+
+                    b.ToTable("CoffeeShops");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessEquipment", b =>
                 {
                     b.Property<Guid>("IsnEquipment")
