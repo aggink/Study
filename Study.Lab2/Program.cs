@@ -39,12 +39,12 @@ public static class Program
     /// <summary>
     /// Название группы
     /// </summary>
-    private const string GROUP_NAME = "idb-23-02";
+    private const string GROUP_NAME = "assistant";
 
     /// <summary>
     /// Порядковый номер
     /// </summary>
-    private const int PERSON_NUMBER = 14;
+    private const int PERSON_NUMBER = 1;
 
     public static async Task Main()
     {
