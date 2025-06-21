@@ -38,6 +38,8 @@ using Study.Lab3.Logic.Services.TravelAgency;
 using Study.Lab3.Logic.Services.University;
 using Study.Lab3.Logic.Services.Workshop;
 using CustomerService = Study.Lab3.Logic.Services.Cinema.CustomerService;
+using Study.Lab3.Logic.Interfaces.Services.AsianComics;
+using Study.Lab3.Logic.Services.AsianComics;
 
 
 namespace Study.Lab3.Logic.Extensions;
@@ -188,6 +190,12 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICarDealershipCustomerService, CarDealershipCustomerService>();
         services.AddScoped<IVehicleService, VehicleService>();
         services.AddScoped<ICarDealershipSaleService, CarDealershipSaleService>();
+        #endregion
+
+        #region AsianComics
+        services.AddSingleton<IMangaService, MangaService>();
+        services.AddSingleton<IManhvaService, ManhvaService>();
+        services.AddSingleton<IManhuaService, ManhuaService>();
         #endregion
     }
 }
