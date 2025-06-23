@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Models.BeautySalon;
+using Study.Lab3.Storage.Models.CarDealership;
 using Study.Lab3.Storage.Models.CarService;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
@@ -10,6 +11,7 @@ using Study.Lab3.Storage.Models.Messenger;
 using Study.Lab3.Storage.Models.Museum;
 using Study.Lab3.Storage.Models.MusicStore;
 using Study.Lab3.Storage.Models.PetShop;
+using Study.Lab3.Storage.Models.Pharmacy;
 using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
@@ -544,5 +546,43 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<MuseumVisitor> MuseumVisitors { get; set; }
     
+    #endregion
+    
+    #region Pharmacy
+    
+    /// <summary>
+    /// Медикаменты в аптеке
+    /// </summary>
+    public virtual DbSet<PharmacyMedication> PharmacyMedications { get; set; }
+    
+    /// <summary>
+    /// Клиенты аптеки
+    /// </summary>
+    public virtual DbSet<PharmacyCustomer> PharmacyCustomers { get; set; }
+    
+    /// <summary>
+    /// Рецепты на медикаменты
+    /// </summary>
+    public virtual DbSet<Prescription> Prescriptions { get; set; }
+    
+    #endregion
+    
+    #region CarDealership
+
+    /// <summary>
+    /// Клиенты автосалона
+    /// </summary>
+    public virtual DbSet<CarDealershipCustomer> CarDealershipCustomers { get; set; }
+
+    /// <summary>
+    /// Автомобили
+    /// </summary>
+    public virtual DbSet<Vehicle> Vehicles { get; set; }
+
+    /// <summary>
+    /// Продажи автомобилей
+    /// </summary>
+    public virtual DbSet<CarDealershipSale> CarDealershipSales { get; set; }
+
     #endregion
 }

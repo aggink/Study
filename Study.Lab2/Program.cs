@@ -31,6 +31,7 @@ using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
 using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Bonnemort;
+using Study.Lab2.Logic.cocobara;
 using Study.Lab2.Logic.eduardvafin56;
 using Study.Lab2.Logic.mansurgh;
 using Study.Lab2.Logic.fableslots;
@@ -109,7 +110,80 @@ public static class Program
             case ("idb-23-02", 22): return new baldfromazzersService();
             case ("idb-23-02", 1): return new mansurghService();
             case ("idb-23-02", 14): return new fableslotsService();
-            default: throw new NotSupportedException();
+            case ("assistant", 1):
+                return new AssistantService();
+            case ("idb-23-02", 15):
+                return new XynthhService();
+            case ("idb-23-02", 4):
+                return new brnvikaService();
+            case ("idb-23-02", 23):
+                return new SelestzService();
+            case ("idb-23-02", 2):
+                return new eldarovskiyService();
+            case ("idb-23-02", 6):
+                return new kinkiss1Service();
+            case ("idb-23-02", 19):
+                return new lsokol14lService();
+            case ("idb-23-02", 17):
+                return new KattyHttpService();
+            case ("idb-23-03", 10):
+                return new poigkoService();
+            case ("idb-23-02", 24):
+                return new CherryyService();
+            case ("idb-23-03", 17):
+                return new KirillPoroshinService();
+            case ("idb-23-03", 3):
+                return new TaipanoService();
+            case ("idb-23-03", 21):
+                return new p0se1d0nService();
+            case ("idb-23-03", 2):
+                return new love100rubbService();
+            case ("idb-23-03", 22):
+                return new jki749Service();
+            case ("idb-23-03", 12):
+                return new alkeiviService();
+            case ("idb-23-02", 10):
+                return new PresvyatoyKabachokService();
+            case ("idb-23-03", 20):
+                return new mariabyrrrrakService();
+            case ("idb-23-03", 15):
+                return new gegemonTVService();
+            case ("idb-23-03", 23):
+                return new Pro100futaService();
+            case ("idb-23-02", 12):
+                return new chiriqueOnlineService();
+            case ("idb-23-03", 9):
+                return new TucKaWService();
+            case ("idb-23-03", 1):
+                return new danaky1Service();
+            case ("idb-23-03", 16):
+                return new freaxdService();
+            case ("idb-23-03", 6):
+                return new neijrrService();
+            case ("idb-23-03", 5):
+                return new SuperSalad007Service();
+            case ("idb-23-02", 11):
+                return new ChaspixService();
+            case ("idb-23-03", 8):
+                return new yamisakimeiService();
+            case ("idb-23-03", 13):
+                return new alexmark1612Service();
+            case ("idb-23-03", 7):
+                return new IvanZService();
+            case ("idb-23-03", 19):
+                return new Crocodile17Service();
+            case ("idb-23-02", 18):
+                return new BonnemortService();
+            case ("idb-23-02", 7):
+                return new Eduardvafin56Service();
+            case ("idb-23-02", 22):
+                return new baldfromazzersService();
+            case ("idb-23-02", 14):
+                return new fableslotsService();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
+            default:
+                throw new NotSupportedException();
         }
     }
 }

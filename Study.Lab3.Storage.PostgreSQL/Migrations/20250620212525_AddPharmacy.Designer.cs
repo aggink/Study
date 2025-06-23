@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250620212525_AddPharmacy")]
+    partial class AddPharmacy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,124 +111,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnService");
 
                     b.ToTable("BeautyService");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", b =>
-                {
-                    b.Property<Guid>("IsnCustomer")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Address")
-                        .HasMaxLength(500)
-                        .HasColumnType("character varying(500)");
-
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("PassportNumber")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<string>("Phone")
-                        .HasMaxLength(20)
-                        .HasColumnType("character varying(20)");
-
-                    b.Property<DateTime>("RegistrationDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("IsnCustomer");
-
-                    b.ToTable("CarDealershipCustomers");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipSale", b =>
-                {
-                    b.Property<Guid>("IsnSale")
-                        .HasColumnType("uuid");
-
-                    b.Property<double>("Discount")
-                        .HasColumnType("double precision");
-
-                    b.Property<double>("FinalPrice")
-                        .HasColumnType("double precision");
-
-                    b.Property<Guid>("IsnCustomer")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnVehicle")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("SaleDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("IsnSale");
-
-                    b.HasIndex("IsnCustomer");
-
-                    b.HasIndex("IsnVehicle");
-
-                    b.ToTable("CarDealershipSales");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.Vehicle", b =>
-                {
-                    b.Property<Guid>("IsnVehicle")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("ArrivalDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("Mileage")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("double precision");
-
-                    b.Property<string>("VinNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.Property<int>("Year")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IsnVehicle");
-
-                    b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
@@ -3173,25 +3058,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("BeautyService");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipSale", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", "Customer")
-                        .WithMany("Sales")
-                        .HasForeignKey("IsnCustomer")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.CarDealership.Vehicle", "Vehicle")
-                        .WithMany("Sales")
-                        .HasForeignKey("IsnVehicle")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Vehicle");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.CarService.Owner", "Owner")
@@ -3875,16 +3741,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyService", b =>
                 {
                     b.Navigation("BeautyAppointments");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", b =>
-                {
-                    b.Navigation("Sales");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.Vehicle", b =>
-                {
-                    b.Navigation("Sales");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Owner", b =>

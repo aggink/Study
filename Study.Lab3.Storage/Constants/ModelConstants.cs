@@ -1830,9 +1830,9 @@ public static class ModelConstants
 
     #endregion
 
-    
+
     #region CarService
-    
+
     public static class Car
     {
         public const int Brand = 50;
@@ -1881,7 +1881,7 @@ public static class ModelConstants
 
         public const int MaxCost = 1000000;
     }
-    
+
     #endregion
 
     #region PetShop
@@ -2035,7 +2035,7 @@ public static class ModelConstants
         public const int MaxWeight = 1000000;
         public const int MinWeight = 0;
     }
-    
+
     public static class MuseumVisitor
     {
         public const int FirstName = 100;
@@ -2046,6 +2046,217 @@ public static class ModelConstants
         public const double MinTicketPrice = 0;
         public const double MaxTicketPrice = 1000;
         public const int MembershipNumber = 50;
+    }
+
+    #endregion
+
+    #region Pharmacy
+
+    public static class PharmacyMedication
+    {
+        /// <summary>
+        /// Максимальная длина названия медикамента
+        /// </summary>
+        public const int NameMaxLength = 100;
+
+        /// <summary>
+        /// Максимальная длина описания медикамента
+        /// </summary>
+        public const int DescriptionMaxLength = 500;
+
+        /// <summary>
+        /// Максимальная длина названия производителя
+        /// </summary>
+        public const int ManufacturerMaxLength = 100;
+
+        /// <summary>
+        /// Минимальная цена медикамента
+        /// </summary>
+        public const double MinPrice = 0.01;
+
+        /// <summary>
+        /// Максимальная цена медикамента
+        /// </summary>
+        public const double MaxPrice = 100000;
+
+        /// <summary>
+        /// Минимальное количество на складе
+        /// </summary>
+        public const int MinQuantity = 0;
+
+        /// <summary>
+        /// Максимальное количество на складе
+        /// </summary>
+        public const int MaxQuantity = 10000;
+    }
+
+    public static class PharmacyCustomer
+    {
+        /// <summary>
+        /// Максимальная длина имени клиента
+        /// </summary>
+        public const int FirstNameMaxLength = 50;
+
+        /// <summary>
+        /// Максимальная длина фамилии клиента
+        /// </summary>
+        public const int LastNameMaxLength = 50;
+
+        /// <summary>
+        /// Максимальная длина номера телефона
+        /// </summary>
+        public const int PhoneMaxLength = 15;
+
+        /// <summary>
+        /// Максимальная длина адреса электронной почты
+        /// </summary>
+        public const int EmailMaxLength = 100;
+
+        /// <summary>
+        /// Максимальная длина адреса
+        /// </summary>
+        public const int AddressMaxLength = 200;
+    }
+
+    public static class Prescription
+    {
+        /// <summary>
+        /// Максимальная длина номера рецепта
+        /// </summary>
+        public const int NumberMaxLength = 20;
+
+        /// <summary>
+        /// Максимальная длина имени врача
+        /// </summary>
+        public const int DoctorNameMaxLength = 100;
+
+        /// <summary>
+        /// Минимальное количество единиц
+        /// </summary>
+        public const int MinDosage = 1;
+
+        /// <summary>
+        /// Максимальное количество единиц
+        /// </summary>
+        public const int MaxDosage = 100;
+
+        /// <summary>
+        /// Максимальная длина инструкций по применению
+        /// </summary>
+        public const int InstructionsMaxLength = 300;
+    }
+
+    #endregion
+
+    #region CarDealership
+
+    public static class CarDealershipCustomer
+    {
+        /// <summary>
+        /// Максимальная длина поля "Имя"
+        /// </summary>
+        public const int FirstName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Фамилия"
+        /// </summary>
+        public const int LastName = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Email"
+        /// </summary>
+        public const int Email = 255;
+
+        /// <summary>
+        /// Максимальная длина поля "Телефон"
+        /// </summary>
+        public const int Phone = 20;
+
+        /// <summary>
+        /// Максимальная длина поля "Адрес"
+        /// </summary>
+        public const int Address = 500;
+
+        /// <summary>
+        /// Максимальная длина поля "Номер паспорта"
+        /// </summary>
+        public const int PassportNumber = 20;
+    }
+
+    public static class Vehicle
+    {
+        /// <summary>
+        /// Максимальная длина поля "Марка"
+        /// </summary>
+        public const int Brand = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Модель"
+        /// </summary>
+        public const int Model = 100;
+
+        /// <summary>
+        /// Максимальная длина поля "Цвет"
+        /// </summary>
+        public const int Color = 50;
+
+        /// <summary>
+        /// Максимальная длина поля "VIN номер"
+        /// </summary>
+        public const int VinNumber = 50;
+
+        /// <summary>
+        /// Минимальный год выпуска
+        /// </summary>
+        public const int MinYear = 1900;
+
+        /// <summary>
+        /// Максимальный год выпуска
+        /// </summary>
+        public const int MaxYear = 2030;
+
+        /// <summary>
+        /// Минимальная цена
+        /// </summary>
+        public const double MinPrice = 0;
+
+        /// <summary>
+        /// Максимальная цена
+        /// </summary>
+        public const double MaxPrice = 10000000;
+
+        /// <summary>
+        /// Минимальный пробег
+        /// </summary>
+        public const int MinMileage = 0;
+
+        /// <summary>
+        /// Максимальный пробег
+        /// </summary>
+        public const int MaxMileage = 1000000;
+    }
+
+    public static class CarDealershipSale
+    {
+        /// <summary>
+        /// Минимальная сумма скидки
+        /// </summary>
+        public const double MinDiscount = 0;
+
+        /// <summary>
+        /// Максимальная сумма скидки
+        /// </summary>
+        public const double MaxDiscount = 100000;
+
+        /// <summary>
+        /// Минимальная итоговая цена
+        /// </summary>
+        public const double MinFinalPrice = 0;
+
+        /// <summary>
+        /// Максимальная итоговая цена
+        /// </summary>
+        public const double MaxFinalPrice = 10000000;
     }
 
     #endregion

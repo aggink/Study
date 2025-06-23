@@ -110,6 +110,124 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("BeautyService");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PassportNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("CarDealershipCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipSale", b =>
+                {
+                    b.Property<Guid>("IsnSale")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Discount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FinalPrice")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnVehicle")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnSale");
+
+                    b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnVehicle");
+
+                    b.ToTable("CarDealershipSales");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.Vehicle", b =>
+                {
+                    b.Property<Guid>("IsnVehicle")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Mileage")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("VinNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnVehicle");
+
+                    b.ToTable("Vehicles");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
                 {
                     b.Property<Guid>("IsnCar")
@@ -1464,6 +1582,132 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.HasKey("IsnPetToy");
 
                     b.ToTable("PetToys");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("HasInsurance")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("PharmacyCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", b =>
+                {
+                    b.Property<Guid>("IsnMedication")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("QuantityInStock")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReceiptDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("RequiresPrescription")
+                        .HasColumnType("bit");
+
+                    b.HasKey("IsnMedication");
+
+                    b.ToTable("PharmacyMedications");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.Prescription", b =>
+                {
+                    b.Property<Guid>("IsnPrescription")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DoctorName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Dosage")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Instructions")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnMedication")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("IssueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PrescriptionNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("IsnPrescription");
+
+                    b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnMedication");
+
+                    b.ToTable("Prescriptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Photography.PhotographyClient", b =>
@@ -2931,6 +3175,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("BeautyService");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipSale", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", "Customer")
+                        .WithMany("Sales")
+                        .HasForeignKey("IsnCustomer")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.CarDealership.Vehicle", "Vehicle")
+                        .WithMany("Sales")
+                        .HasForeignKey("IsnVehicle")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Vehicle");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.CarService.Owner", "Owner")
@@ -3133,6 +3396,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         .IsRequired();
 
                     b.Navigation("Exhibit");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.Prescription", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", "Customer")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("IsnCustomer")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", "Medication")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("IsnMedication")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Medication");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
@@ -3597,6 +3879,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("BeautyAppointments");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.Vehicle", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Owner", b =>
                 {
                     b.Navigation("Car");
@@ -3683,6 +3975,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibit", b =>
                 {
                     b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", b =>
+                {
+                    b.Navigation("Prescriptions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", b =>
+                {
+                    b.Navigation("Prescriptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
