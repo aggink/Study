@@ -7,6 +7,7 @@ using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Messenger;
+using Study.Lab3.Storage.Models.Bookshop;
 using Study.Lab3.Storage.Models.MusicStore;
 using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
@@ -485,4 +486,24 @@ public class DataContext : DbContext
     public virtual DbSet<MusicCustomer> MusicCustomers { get; set; }
 
     #endregion
+
+    #region Bookshop
+
+    /// <summary>
+    /// Книги книжного магазина
+    /// </summary>
+    public virtual DbSet<BookshopBook> BookshopBooks { get; set; }
+
+    /// <summary>
+    /// Авторы книжного магазина
+    /// </summary>
+    public virtual DbSet<BookshopAuthor> BookshopAuthors { get; set; }
+
+    /// <summary>
+    /// Жанры книжного магазина
+    /// </summary>
+    public virtual DbSet<BookshopGenre> BookshopGenres { get; set; }
+
+    #endregion
+
 }
