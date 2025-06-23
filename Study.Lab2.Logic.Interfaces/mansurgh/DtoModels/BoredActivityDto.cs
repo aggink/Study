@@ -1,8 +1,9 @@
 namespace Study.Lab2.Logic.Interfaces.mansurgh.DtoModels;
 
-public class BoredActivityDto
+public sealed record BoredActivityDto
 {
-    public string? Activity { get; set; }
-    public string? Type { get; set; }
-    public int? Participants { get; set; }
+    public string Activity { get; init; }
+    public string Type { get; init; }
+    public int Participants { get; init; }
+    public double Price { get; init; }
 }
