@@ -1,6 +1,8 @@
 using Study.Lab2.Logic.Interfaces;
 using Study.Lab2.Logic.Interfaces.mansurgh;
+using Study.Lab2.Logic.Interfaces.mansurgh.DtoModels;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace Study.Lab2.Logic.mansurgh;
 
@@ -22,11 +24,11 @@ public class mansurghService : IRunService
 
         try
         {
-            var responses = new List<string>();
+            HttpResponseDto[] responses = new HttpResponseDto[3];
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine($"Запрос {i + 1}: {_apiUrls[i]}");
-                responses.Add(_requestHandler.FetchData(_apiUrls[i]));
+                responses[i] = _requestHandler.FetchData(_apiUrls[i]);
             }
 
             ShowSuccess(responses, timer.ElapsedMilliseconds);
@@ -48,11 +50,12 @@ public class mansurghService : IRunService
 
         try
         {
-            var tasks = _apiUrls.Select((url, index) =>
+            Task<HttpResponseDto>[] tasks = new Task<HttpResponseDto>[3];
+            for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine($"Запрос {index + 1}: {url}");
-                return _requestHandler.FetchDataAsync(url, cancellationToken);
-            }).ToArray();
+                Console.WriteLine($"Запрос {i + 1}: {_apiUrls[i]}");
+                tasks[i] = _requestHandler.FetchDataAsync(_apiUrls[i], cancellationToken);
+            }
 
             var responses = await Task.WhenAll(tasks);
             ShowSuccess(responses, timer.ElapsedMilliseconds);
@@ -96,7 +99,7 @@ public class mansurghService : IRunService
         PrintSeparator();
     }
 
-    private void ShowSuccess(IEnumerable<string> responses, long time)
+    private void ShowSuccess(IEnumerable<HttpResponseDto> responses, long time)
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine("\nВсе ответы получены!\n");
@@ -105,7 +108,7 @@ public class mansurghService : IRunService
         int count = 1;
         foreach (var r in responses)
         {
-            Console.WriteLine($"Ответ {count++}:\n{r}");
+            Console.WriteLine($"Ответ {count++} (HTTP {r.StatusCode}):\n{r.Text}");
             PrintSeparator();
         }
 
