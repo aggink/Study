@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Models.AsianComics;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.CarDealership;
 using Study.Lab3.Storage.Models.CarService;
@@ -583,6 +584,25 @@ public class DataContext : DbContext
     /// Продажи автомобилей
     /// </summary>
     public virtual DbSet<CarDealershipSale> CarDealershipSales { get; set; }
+
+    #endregion
+
+    #region AsianComics
+
+    /// <summary>
+    /// манга
+    /// </summary>
+    public virtual DbSet<Manga> Manga { get; set; }
+
+    /// <summary>
+    /// манхва
+    /// </summary>
+    public virtual DbSet<Manhva> Manhva { get; set; }
+
+    /// <summary>
+    /// маньхуа
+    /// </summary>
+    public virtual DbSet<Manhua> Manhua { get; set; }
 
     #endregion
 }
