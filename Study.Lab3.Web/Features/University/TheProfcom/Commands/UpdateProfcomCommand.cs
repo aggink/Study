@@ -37,11 +37,13 @@ public sealed class UpdateProfcomCommandHandler : IRequestHandler<UpdateProfcomC
 
     public async Task<Guid> Handle(UpdateProfcomCommand request, CancellationToken cancellationToken)
     {
-        var profcom = await _dataContext.TheProfcom
+        var profcom = await _dataContext.Profcoms
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnProfcom == request.Profcom.IsnProfcom, cancellationToken)
                 ?? throw new BusinessLogicException($"Научной встречи с идентификатором \"{request.Profcom.IsnProfcom}\" не существует");
 
+        profcom.IsnStudent = request.Profcom.IsnStudent;
+        profcom.IsnSubject = request.Profcom.IsnSubject;
         profcom.ParticipantsCount = request.Profcom.ParticipantsCount;
         profcom.ProfcomDate = request.Profcom.ProfcomDate;
 

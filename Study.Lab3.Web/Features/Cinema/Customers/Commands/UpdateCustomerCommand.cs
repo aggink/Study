@@ -38,7 +38,7 @@ public sealed class UpdateCustomerCommandHandler : IRequestHandler<UpdateCustome
                            $"Клиент с идентификатором \"{request.Customer.IsnCustomer}\" не существует");
 
         // Проверка уникальности email
-        if (customer.Email != request.Customer.Email && 
+        if (customer.Email != request.Customer.Email &&
             await _dataContext.Customers.AnyAsync(c => c.Email == request.Customer.Email, cancellationToken))
             throw new BusinessLogicException($"Клиент с email \"{request.Customer.Email}\" уже существует");
 

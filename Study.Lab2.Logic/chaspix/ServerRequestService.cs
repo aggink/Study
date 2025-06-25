@@ -4,7 +4,7 @@ using System.Text.Json;
 
 namespace Study.Lab2.Logic.chaspix;
 
-public class ServerRequestService: IServerRequestService
+public class ServerRequestService : IServerRequestService
 {
     private readonly IRequestService _requestService;
     private readonly IResponseProcessor _responseProcessor;
@@ -21,7 +21,7 @@ public class ServerRequestService: IServerRequestService
     {
         var postId = _random.Next(1, 101);
         var url = $"https://jsonplaceholder.typicode.com/posts/{postId}";
-        
+
         var response = _requestService.FetchData(url);
 
         if (_responseProcessor.HasError(response))
@@ -39,8 +39,8 @@ public class ServerRequestService: IServerRequestService
                 Content = post.Body.Length > 100 ? post.Body.Substring(0, 100) + "..." : post.Body
             };
 
-            return JsonSerializer.Serialize(formattedPost, new JsonSerializerOptions 
-            { 
+            return JsonSerializer.Serialize(formattedPost, new JsonSerializerOptions
+            {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
@@ -54,7 +54,7 @@ public class ServerRequestService: IServerRequestService
     public string GetWeatherInfo(string city)
     {
         var url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=demo&units=metric&lang=ru&appid={WeatherApiKey}";
-        
+
         try
         {
             var response = _requestService.FetchData(url);
@@ -78,8 +78,8 @@ public class ServerRequestService: IServerRequestService
                 WindSpeed = $"{root.GetProperty("wind").GetProperty("speed").GetDecimal()} m/s"
             };
 
-            return JsonSerializer.Serialize(weatherInfo, new JsonSerializerOptions 
-            { 
+            return JsonSerializer.Serialize(weatherInfo, new JsonSerializerOptions
+            {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
@@ -96,8 +96,8 @@ public class ServerRequestService: IServerRequestService
                 Note = "Demo data due to API unavailability"
             };
 
-            return JsonSerializer.Serialize(mockWeather, new JsonSerializerOptions 
-            { 
+            return JsonSerializer.Serialize(mockWeather, new JsonSerializerOptions
+            {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
@@ -107,7 +107,7 @@ public class ServerRequestService: IServerRequestService
     public string GetCatFact()
     {
         var url = "https://catfact.ninja/fact";
-        
+
         var response = _requestService.FetchData(url);
 
         if (_responseProcessor.HasError(response))
@@ -124,8 +124,8 @@ public class ServerRequestService: IServerRequestService
                 Category = "Amazing Animals"
             };
 
-            return JsonSerializer.Serialize(formattedFact, new JsonSerializerOptions 
-            { 
+            return JsonSerializer.Serialize(formattedFact, new JsonSerializerOptions
+            {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
@@ -140,7 +140,7 @@ public class ServerRequestService: IServerRequestService
     {
         var postId = _random.Next(1, 101);
         var url = $"https://jsonplaceholder.typicode.com/posts/{postId}";
-        
+
         var response = await _requestService.FetchDataAsync(url, null, cancellationToken);
 
         if (_responseProcessor.HasError(response))
@@ -158,8 +158,8 @@ public class ServerRequestService: IServerRequestService
                 Content = post.Body.Length > 100 ? post.Body.Substring(0, 100) + "..." : post.Body
             };
 
-            return JsonSerializer.Serialize(formattedPost, new JsonSerializerOptions 
-            { 
+            return JsonSerializer.Serialize(formattedPost, new JsonSerializerOptions
+            {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
@@ -173,7 +173,7 @@ public class ServerRequestService: IServerRequestService
     public async Task<string> GetWeatherInfoAsync(string city, CancellationToken cancellationToken = default)
     {
         var url = $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=demo&units=metric&lang=ru&appid={WeatherApiKey}";
-        
+
         try
         {
             var response = await _requestService.FetchDataAsync(url, null, cancellationToken);
@@ -197,8 +197,8 @@ public class ServerRequestService: IServerRequestService
                 WindSpeed = $"{root.GetProperty("wind").GetProperty("speed").GetDecimal()} m/s"
             };
 
-            return JsonSerializer.Serialize(weatherInfo, new JsonSerializerOptions 
-            { 
+            return JsonSerializer.Serialize(weatherInfo, new JsonSerializerOptions
+            {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
@@ -219,8 +219,8 @@ public class ServerRequestService: IServerRequestService
                 Note = "Demo data due to API unavailability"
             };
 
-            return JsonSerializer.Serialize(mockWeather, new JsonSerializerOptions 
-            { 
+            return JsonSerializer.Serialize(mockWeather, new JsonSerializerOptions
+            {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });
@@ -230,7 +230,7 @@ public class ServerRequestService: IServerRequestService
     public async Task<string> GetCatFactAsync(CancellationToken cancellationToken = default)
     {
         var url = "https://catfact.ninja/fact";
-        
+
         var response = await _requestService.FetchDataAsync(url, null, cancellationToken);
 
         if (_responseProcessor.HasError(response))
@@ -247,8 +247,8 @@ public class ServerRequestService: IServerRequestService
                 Category = "Amazing Animals"
             };
 
-            return JsonSerializer.Serialize(formattedFact, new JsonSerializerOptions 
-            { 
+            return JsonSerializer.Serialize(formattedFact, new JsonSerializerOptions
+            {
                 WriteIndented = true,
                 Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
             });

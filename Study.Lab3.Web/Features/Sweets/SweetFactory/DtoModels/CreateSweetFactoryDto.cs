@@ -17,7 +17,7 @@ public sealed record CreateSweetFactoryDto
     /// </summary>
     [Required]
     [MaxLength(ModelConstants.SweetFactory.MaxAddressLenght)]
-    public string Adress { get; init; }
+    public string Address { get; init; }
 
     /// <summary>
     /// Объём производства

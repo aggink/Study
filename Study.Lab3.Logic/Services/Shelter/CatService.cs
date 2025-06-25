@@ -44,7 +44,7 @@ public sealed class CatService : ICatService
 
         if (string.IsNullOrEmpty(cat.PhotoUrl))
             throw new BusinessLogicException("Необходимо указать URL фотографии кота");
-        
+
         if (await dataContext.Cats.AnyAsync(
                 x => x.PhotoUrl == cat.PhotoUrl && x.IsnCat != cat.IsnCat,
                 cancellationToken))
@@ -61,6 +61,6 @@ public sealed class CatService : ICatService
         {
             throw new BusinessLogicException("Возраст кота должен быть в диапазоне от 0 до 30 лет");
         }
-        
+
     }
 }

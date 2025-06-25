@@ -4,7 +4,7 @@ namespace Study.Lab1.Logic.Bonnemort.Task1;
 
 public class RationalNumber : IRationalNumber
 {
-    public int Numerator { get; } 
+    public int Numerator { get; }
 
     public int Denominator { get; }
 

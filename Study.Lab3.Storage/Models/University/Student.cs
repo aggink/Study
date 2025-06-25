@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Constants;
 using Study.Lab3.Storage.Enums.University;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Study.Lab3.Storage.Models.University;
 
@@ -63,7 +63,7 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(Grade.Student))]
     public virtual ICollection<Grade> Grades { get; set; }
-    
+
     /// <summary>
     /// Список регистраций студента на экзамены
     /// </summary>
@@ -87,4 +87,36 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(Career.Student))]
     public virtual ICollection<Career> Careers { get; set; }
+
+    /// <summary>
+    /// Связь с проектной деятельностью
+    /// </summary>
+    [InverseProperty(nameof(ProjectActivities.Student))]
+    public virtual ICollection<ProjectActivities> ProjectActivitiess { get; set; }
+
+    [InverseProperty(nameof(StudentLab.Student))]
+    public virtual ICollection<StudentLab> StudentLabs { get; set; }
+
+    /// <summary>
+    /// Связь с заметками студента
+    /// </summary>
+    [InverseProperty(nameof(StudentNote.Student))]
+    public virtual ICollection<StudentNote> Notes { get; set; }
+
+    /// Связь с посещениями
+    /// </summary>
+    [InverseProperty(nameof(AttendanceLog.Student))]
+    public virtual ICollection<AttendanceLog> AttendanceLogs { get; set; }
+
+    /// <summary>
+    /// Оценки
+    /// </summary>
+    [InverseProperty(nameof(Profcom.Student))]
+    public virtual ICollection<Profcom> Profcoms { get; set; }
+
+    /// <summary>
+    /// Связь с таблицей студента - спортивный клуб
+    /// </summary>
+    [InverseProperty(nameof(Pingpongclub.Student))]
+    public virtual ICollection<Pingpongclub> Pingpongclubs { get; set; }
 }
