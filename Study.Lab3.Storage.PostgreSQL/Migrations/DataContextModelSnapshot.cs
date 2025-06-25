@@ -1685,7 +1685,124 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Property<bool>("IsUsed")
                         .HasColumnType("boolean");
 
+ tasks/idb-23-03/10/add-lab-3
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Driver", b =>
+                {
+                    b.Property<Guid>("IsnDriver")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CountryOfOrigin")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<Guid?>("GrandPrixIsnGrandPrix")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnTeam")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.HasKey("IsnDriver");
+
+                    b.HasIndex("GrandPrixIsnGrandPrix");
+
+                    b.HasIndex("IsnTeam");
+
+                    b.ToTable("Drivers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.DriverGrandPrix", b =>
+                {
+                    b.Property<Guid>("IsnDriver")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnGrandPrix")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("DidNotFinish")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("PointsEarned")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StartPosition")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnDriver", "IsnGrandPrix");
+
+                    b.HasIndex("IsnGrandPrix")
+                        .IsUnique();
+
+                    b.HasIndex("IsnDriver", "IsnGrandPrix");
+
+                    b.ToTable("RaceResults");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.GrandPrix", b =>
+                {
+                    b.Property<Guid>("IsnGrandPrix")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Circuit")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Winner")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnGrandPrix");
+
+                    b.ToTable("GrandPrixes");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Team", b =>
+                {
+                    b.Property<Guid>("IsnTeam")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("EngineSupplier")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("YearOfCreation")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnTeam");
+
+                    b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
+                {
+                    b.Property<Guid>("IsnOrder")
+
                     b.Property<Guid>("IsnCustomer")
+ master
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("IsnMedication")
@@ -3279,6 +3396,42 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Session");
                 });
 
+ tasks/idb-23-03/10/add-lab-3
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Driver", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Formula1.GrandPrix", "GrandPrix")
+                        .WithMany("Drivers")
+                        .HasForeignKey("GrandPrixIsnGrandPrix");
+
+                    b.HasOne("Study.Lab3.Storage.Models.Formula1.Team", "Team")
+                        .WithMany("Drivers")
+                        .HasForeignKey("IsnTeam")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("GrandPrix");
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.DriverGrandPrix", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Formula1.GrandPrix", "GrandPrix")
+                        .WithMany("DriverGrandPrixes")
+                        .HasForeignKey("IsnDriver")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Formula1.Driver", "Driver")
+                        .WithOne("GrandPrixDrivers")
+                        .HasForeignKey("Study.Lab3.Storage.Models.Formula1.DriverGrandPrix", "IsnGrandPrix")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Driver");
+
+                    b.Navigation("GrandPrix");
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Game", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.GameStore.Developer", "Developer")
@@ -3286,6 +3439,7 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasForeignKey("IsnDeveloper");
 
                     b.Navigation("Developer");
+ master
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
@@ -3926,9 +4080,27 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Tickets");
                 });
 
+ tasks/idb-23-03/10/add-lab-3
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Driver", b =>
+                {
+                    b.Navigation("GrandPrixDrivers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.GrandPrix", b =>
+                {
+                    b.Navigation("DriverGrandPrixes");
+
+                    b.Navigation("Drivers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Team", b =>
+                {
+                    b.Navigation("Drivers");
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
                 {
                     b.Navigation("Games");
+ master
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Patient", b =>

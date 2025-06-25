@@ -16,7 +16,10 @@ using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
+ tasks/idb-23-03/10/add-lab-3
+
 using Study.Lab3.Storage.Models.TravelAgency;
+ master
 using Study.Lab3.Storage.Models.University;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
@@ -361,6 +364,30 @@ public class DataContext : DbContext
 
     #endregion
 
+ tasks/idb-23-03/10/add-lab-3
+    #region Formula1
+    /// <summary>
+    /// Гонщики
+    /// </summary>
+    public virtual DbSet<Models.Formula1.Driver> Drivers { get; set; }
+
+    /// <summary>
+    /// Команды
+    /// </summary>
+    public virtual DbSet<Models.Formula1.Team> Teams { get; set; }
+
+    /// <summary>
+    /// Гонки
+    /// </summary>
+    public virtual DbSet<Models.Formula1.GrandPrix> GrandPrixes { get; set; }
+
+    /// <summary>
+    /// Связь таблиц гонщики - гран-при
+    /// </summary>
+    public virtual DbSet<Models.Formula1.DriverGrandPrix> RaceResults { get; set; }
+    #endregion
+}
+
     #region Fitness
 
     /// <summary>
@@ -586,3 +613,4 @@ public class DataContext : DbContext
 
     #endregion
 }
+ master
