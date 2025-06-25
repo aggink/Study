@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Study.Lab3.Storage.PostgreSQL.Migrations
+namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     /// <inheritdoc />
     public partial class AddFormula1 : Migration
@@ -15,10 +15,10 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "GrandPrixes",
                 columns: table => new
                 {
-                    IsnGrandPrix = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Winner = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Circuit = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    IsnGrandPrix = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Winner = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Circuit = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     Date = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
@@ -30,32 +30,26 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "Teams",
                 columns: table => new
                 {
-                    IsnTeam = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    YearOfCreation = table.Column<int>(type: "integer", nullable: false),
-                    EngineSupplier = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    GrandPrixIsnGrandPrix = table.Column<Guid>(type: "uuid", nullable: true)
+                    IsnTeam = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    YearOfCreation = table.Column<int>(type: "int", nullable: false),
+                    EngineSupplier = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teams", x => x.IsnTeam);
-                    table.ForeignKey(
-                        name: "FK_Teams_GrandPrixes_GrandPrixIsnGrandPrix",
-                        column: x => x.GrandPrixIsnGrandPrix,
-                        principalTable: "GrandPrixes",
-                        principalColumn: "IsnGrandPrix");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Drivers",
                 columns: table => new
                 {
-                    IsnDriver = table.Column<Guid>(type: "uuid", nullable: false),
-                    IsnTeam = table.Column<Guid>(type: "uuid", nullable: false),
-                    Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Age = table.Column<int>(type: "integer", nullable: false),
-                    CountryOfOrigin = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    GrandPrixIsnGrandPrix = table.Column<Guid>(type: "uuid", nullable: true)
+                    IsnDriver = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnTeam = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    CountryOfOrigin = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    GrandPrixIsnGrandPrix = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,12 +71,12 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "RaceResults",
                 columns: table => new
                 {
-                    IsnDriver = table.Column<Guid>(type: "uuid", nullable: false),
-                    IsnGrandPrix = table.Column<Guid>(type: "uuid", nullable: false),
-                    StartPosition = table.Column<int>(type: "integer", nullable: false),
-                    Position = table.Column<int>(type: "integer", nullable: false),
-                    PointsEarned = table.Column<int>(type: "integer", nullable: false),
-                    DidNotFinish = table.Column<bool>(type: "boolean", nullable: false)
+                    IsnDriver = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnGrandPrix = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StartPosition = table.Column<int>(type: "int", nullable: false),
+                    Position = table.Column<int>(type: "int", nullable: false),
+                    PointsEarned = table.Column<int>(type: "int", nullable: false),
+                    DidNotFinish = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,11 +115,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 table: "RaceResults",
                 column: "IsnGrandPrix",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teams_GrandPrixIsnGrandPrix",
-                table: "Teams",
-                column: "GrandPrixIsnGrandPrix");
         }
 
         /// <inheritdoc />
@@ -138,10 +127,10 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                 name: "Drivers");
 
             migrationBuilder.DropTable(
-                name: "Teams");
+                name: "GrandPrixes");
 
             migrationBuilder.DropTable(
-                name: "GrandPrixes");
+                name: "Teams");
         }
     }
 }

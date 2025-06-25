@@ -11,7 +11,6 @@ namespace Study.Lab3.Storage.Models.Formula1;
 [Index(nameof(IsnTeam))]
 public class Driver
 {
-
     /// <summary>
     /// Идентификатор гонщика
     /// </summary>

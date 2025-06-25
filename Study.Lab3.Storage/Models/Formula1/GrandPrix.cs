@@ -45,11 +45,11 @@ namespace Study.Lab3.Storage.Models.Formula1
         [InverseProperty(nameof(Driver.GrandPrix))]
         public virtual ICollection<Driver> Drivers { get; set; }
 
-        /// <summary>
-        /// Гран-при
-        /// </summary>
-        [InverseProperty(nameof(Team.GrandPrix))]
-        public virtual ICollection<Team> Teams { get; set; }
+        ///// <summary>
+        ///// Гран-при
+        ///// </summary>
+        //[InverseProperty(nameof(Team))]
+        //public virtual ICollection<Team> Teams { get; set; }
 
         /// <summary>
         /// Связь с таблицей гонщики-гран-при

@@ -12,7 +12,7 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250609144316_AddFormula1")]
+    [Migration("20250625083758_AddFormula1")]
     partial class AddFormula1
     {
         /// <inheritdoc />
@@ -447,9 +447,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
 
-                    b.Property<Guid?>("GrandPrixIsnGrandPrix")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -459,8 +456,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("IsnTeam");
-
-                    b.HasIndex("GrandPrixIsnGrandPrix");
 
                     b.ToTable("Teams");
                 });
@@ -1693,15 +1688,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("GrandPrix");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Team", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.Formula1.GrandPrix", "GrandPrix")
-                        .WithMany("Teams")
-                        .HasForeignKey("GrandPrixIsnGrandPrix");
-
-                    b.Navigation("GrandPrix");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.HospitalStore.Order", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.HospitalStore.Patient", "Patient")
@@ -2160,8 +2146,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("DriverGrandPrixes");
 
                     b.Navigation("Drivers");
-
-                    b.Navigation("Teams");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Team", b =>
