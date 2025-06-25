@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +29,7 @@ public sealed class DeleteManhvaCommandHandler : IRequestHandler<DeleteManhvaCom
     public async Task Handle(DeleteManhvaCommand request, CancellationToken cancellationToken)
     {
         var manhva = await _dataContext.Manhva.FirstOrDefaultAsync(x => x.IsnBook == request.IsnBook, cancellationToken)
-             ?? throw new BusinessLogicException($"Манги с идентификатором \"{request.IsnBook}\" не существует");
+             ?? throw new BusinessLogicException($"РњР°РЅРіРё СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnBook}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         _dataContext.Manhva.Remove(manhva);
 

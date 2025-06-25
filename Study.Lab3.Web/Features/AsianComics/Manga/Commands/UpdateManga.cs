@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +30,7 @@ public sealed class UpdateMangaCommandHandler : IRequestHandler<UpdateMangaComma
     public async Task<Guid> Handle(UpdateMangaCommand request, CancellationToken cancellationToken)
     {
         var manga = await _dataContext.Manga.FirstOrDefaultAsync(x => x.IsnBook == request.Manga.IsnBook, cancellationToken)
-             ?? throw new BusinessLogicException($"Книги с идентификатором \"{request.Manga.IsnBook}\" не существует");
+             ?? throw new BusinessLogicException($"РљРЅРёРіРё СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.Manga.IsnBook}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         manga.Title = request.Manga.Title;
         manga.PublicationYear = request.Manga.PublicationYear;

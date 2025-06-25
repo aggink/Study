@@ -1,19 +1,19 @@
-namespace Study.Lab3.Web.Features.AsianComics.Manhua.DtoModels;
+п»їnamespace Study.Lab3.Web.Features.AsianComics.Manhua.DtoModels;
 
 public sealed record ManhuaDto
 {
     /// <summary>
-    /// Идентификатор манги
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РјР°РЅРіРё
     /// </summary>
     public Guid IsnBook { get; init; }
 
     /// <summary>
-    /// Название манги
+    /// РќР°Р·РІР°РЅРёРµ РјР°РЅРіРё
     /// </summary>
     public string Title { get; init; }
 
     /// <summary>
-    /// Год издания
+    /// Р“РѕРґ РёР·РґР°РЅРёСЏ
     /// </summary>
     public int PublicationYear { get; init; }
 }

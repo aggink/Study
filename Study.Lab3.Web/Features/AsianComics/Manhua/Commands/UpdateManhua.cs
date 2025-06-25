@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,7 +30,7 @@ public sealed class UpdateManhuaCommandHandler : IRequestHandler<UpdateManhuaCom
     public async Task<Guid> Handle(UpdateManhuaCommand request, CancellationToken cancellationToken)
     {
         var manhua = await _dataContext.Manhua.FirstOrDefaultAsync(x => x.IsnBook == request.Manhua.IsnBook, cancellationToken)
-             ?? throw new BusinessLogicException($"Книги с идентификатором \"{request.Manhua.IsnBook}\" не существует");
+             ?? throw new BusinessLogicException($"РљРЅРёРіРё СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.Manhua.IsnBook}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         manhua.Title = request.Manhua.Title;
         manhua.PublicationYear = request.Manhua.PublicationYear;

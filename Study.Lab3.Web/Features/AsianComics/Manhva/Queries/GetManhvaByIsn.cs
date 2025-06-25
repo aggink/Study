@@ -1,4 +1,4 @@
-using CoreLib.Common.Extensions;
+п»їusing CoreLib.Common.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +29,7 @@ public sealed class GetManhvaByIsnQueryHandler : IRequestHandler<GetManhvaByIsnQ
         var manhva = await _dataContext.Manhva
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnBook == request.IsnBook, cancellationToken)
-                ?? throw new BusinessLogicException($"Манги с идентификатором \"{request.IsnBook}\" не существует");
+                ?? throw new BusinessLogicException($"РњР°РЅРіРё СЃ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј \"{request.IsnBook}\" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚");
 
         return new ManhvaDto
         {

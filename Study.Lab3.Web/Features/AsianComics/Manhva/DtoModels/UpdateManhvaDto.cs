@@ -1,4 +1,4 @@
-using Study.Lab3.Storage.Constants;
+п»їusing Study.Lab3.Storage.Constants;
 using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.AsianComics.Manhva.DtoModels;
@@ -6,19 +6,19 @@ namespace Study.Lab3.Web.Features.AsianComics.Manhva.DtoModels;
 public sealed record UpdateManhvaDto
 {
     /// <summary>
-    /// Идентификатор манги
+    /// РРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РјР°РЅРіРё
     /// </summary>
     [Required]
     public Guid IsnBook { get; init; }
 
     /// <summary>
-    /// Название манги
+    /// РќР°Р·РІР°РЅРёРµ РјР°РЅРіРё
     /// </summary>
     [Required, MaxLength(ModelConstants.AsianComicsConstants.Title)]
     public string Title { get; init; }
 
     /// <summary>
-    /// Год издания
+    /// Р“РѕРґ РёР·РґР°РЅРёСЏ
     /// </summary>
     [Required, Range(ModelConstants.AsianComicsConstants.MinYear, ModelConstants.AsianComicsConstants.MaxYear)]
     public int PublicationYear { get; init; }
