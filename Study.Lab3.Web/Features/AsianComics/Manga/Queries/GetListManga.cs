@@ -23,13 +23,13 @@ public sealed class GetListMangasQueryHandler : IRequestHandler<GetListMangaQuer
     {
         return await _dataContext.Manga
             .AsNoTracking()
+            .OrderBy(x => x.Title)
             .Select(x => new MangaDto
             {
                 IsnBook = x.IsnBook,
                 Title = x.Title,
                 PublicationYear = x.PublicationYear
             })
-            .OrderBy(x => x.Title)
             .ToArrayAsync(cancellationToken);
     }
 }

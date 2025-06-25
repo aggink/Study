@@ -23,13 +23,13 @@ public sealed class GetListManhvasQueryHandler : IRequestHandler<GetListManhvaQu
     {
         return await _dataContext.Manhva
             .AsNoTracking()
+            .OrderBy(x => x.Title)
             .Select(x => new ManhvaDto
             {
                 IsnBook = x.IsnBook,
                 Title = x.Title,
                 PublicationYear = x.PublicationYear
             })
-            .OrderBy(x => x.Title)
             .ToArrayAsync(cancellationToken);
     }
 }
