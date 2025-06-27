@@ -44,6 +44,7 @@ using Study.Lab1.Logic.UTBL;
 
 using Study.Lab1.Logic.baldfromazzers;
 
+
 public static class Program
 {
     /// <summary>
