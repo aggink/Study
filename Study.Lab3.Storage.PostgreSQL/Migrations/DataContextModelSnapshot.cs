@@ -110,6 +110,124 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("BeautyService");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PassportNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("CarDealershipCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipSale", b =>
+                {
+                    b.Property<Guid>("IsnSale")
+                        .HasColumnType("uuid");
+
+                    b.Property<double>("Discount")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("FinalPrice")
+                        .HasColumnType("double precision");
+
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnVehicle")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnSale");
+
+                    b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnVehicle");
+
+                    b.ToTable("CarDealershipSales");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.Vehicle", b =>
+                {
+                    b.Property<Guid>("IsnVehicle")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Mileage")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("VinNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnVehicle");
+
+                    b.ToTable("Vehicles");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
                 {
                     b.Property<Guid>("IsnCar")
@@ -465,6 +583,125 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnSession");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.Barista", b =>
+                {
+                    b.Property<Guid>("IsnBarista")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<double?>("Salary")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Specialization")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("IsnBarista");
+
+                    b.ToTable("Baristas");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.Coffee", b =>
+                {
+                    b.Property<Guid>("IsnCoffee")
+                        .HasColumnType("uuid");
+
+                    b.Property<int?>("CaffeineContent")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnCoffee");
+
+                    b.ToTable("Coffee");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CoffeeShop.CoffeeShop", b =>
+                {
+                    b.Property<Guid>("IsnCoffeeShop")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<DateTime>("OpeningDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<double?>("Rating")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("WorkingHours")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnCoffeeShop");
+
+                    b.ToTable("CoffeeShops");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessEquipment", b =>
@@ -979,6 +1216,136 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibit", b =>
+                {
+                    b.Property<Guid>("IsnMuseumExhibit")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("AcquisitionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<double>("EstimatedValue")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("IsnMuseumExhibit");
+
+                    b.ToTable("MuseumExhibits");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibitDetails", b =>
+                {
+                    b.Property<Guid>("IsnMuseumExhibitDetails")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Condition")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int?>("CreationYear")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Creator")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Dimensions")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("HistoricalPeriod")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<Guid>("IsnMuseumExhibit")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Material")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Origin")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<double?>("Weight")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("IsnMuseumExhibitDetails");
+
+                    b.HasIndex("IsnMuseumExhibit")
+                        .IsUnique();
+
+                    b.ToTable("MuseumExhibitDetails");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumVisitor", b =>
+                {
+                    b.Property<Guid>("IsnMuseumVisitor")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<bool>("IsMember")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("MembershipNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<double>("TicketPrice")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("TicketType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime>("VisitDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnMuseumVisitor");
+
+                    b.ToTable("MuseumVisitors");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.MusicStore.MusicAlbum", b =>
                 {
                     b.Property<Guid>("IsnAlbum")
@@ -1089,6 +1456,256 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnCustomer");
 
                     b.ToTable("MusicCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.Pet", b =>
+                {
+                    b.Property<Guid>("IsnPet")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AgeInMonths")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ArrivalDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Breed")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("Species")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnPet");
+
+                    b.ToTable("Pets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.PetFood", b =>
+                {
+                    b.Property<Guid>("IsnPetFood")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Ingredients")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("StockQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TargetSpecies")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WeightInGrams")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnPetFood");
+
+                    b.ToTable("PetFoods");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.PetShop.PetToy", b =>
+                {
+                    b.Property<Guid>("IsnPetToy")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AgeGroup")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Color")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<bool>("IsSafe")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Material")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("Size")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StockQuantity")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("TargetSpecies")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnPetToy");
+
+                    b.ToTable("PetToys");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", b =>
+                {
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<bool>("HasInsurance")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
+
+                    b.Property<DateTime>("RegistrationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("IsnCustomer");
+
+                    b.ToTable("PharmacyCustomers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", b =>
+                {
+                    b.Property<Guid>("IsnMedication")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("QuantityInStock")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ReceiptDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("RequiresPrescription")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("IsnMedication");
+
+                    b.ToTable("PharmacyMedications");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.Prescription", b =>
+                {
+                    b.Property<Guid>("IsnPrescription")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("DoctorName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Dosage")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Instructions")
+                        .HasMaxLength(300)
+                        .HasColumnType("character varying(300)");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IsnCustomer")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnMedication")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("IssueDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("PrescriptionNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("IsnPrescription");
+
+                    b.HasIndex("IsnCustomer");
+
+                    b.HasIndex("IsnMedication");
+
+                    b.ToTable("Prescriptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Photography.PhotographyClient", b =>
@@ -2556,6 +3173,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("BeautyService");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipSale", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", "Customer")
+                        .WithMany("Sales")
+                        .HasForeignKey("IsnCustomer")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.CarDealership.Vehicle", "Vehicle")
+                        .WithMany("Sales")
+                        .HasForeignKey("IsnVehicle")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Vehicle");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Car", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.CarService.Owner", "Owner")
@@ -2747,6 +3383,36 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                         .HasForeignKey("Study.Lab3.Storage.Models.Messenger.User", "IsnProfilePicture");
 
                     b.Navigation("ProfilePicture");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibitDetails", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Museum.MuseumExhibit", "Exhibit")
+                        .WithOne("Details")
+                        .HasForeignKey("Study.Lab3.Storage.Models.Museum.MuseumExhibitDetails", "IsnMuseumExhibit")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Exhibit");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.Prescription", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", "Customer")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("IsnCustomer")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", "Medication")
+                        .WithMany("Prescriptions")
+                        .HasForeignKey("IsnMedication")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Medication");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
@@ -3211,6 +3877,16 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("BeautyAppointments");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.CarDealershipCustomer", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.CarDealership.Vehicle", b =>
+                {
+                    b.Navigation("Sales");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.CarService.Owner", b =>
                 {
                     b.Navigation("Car");
@@ -3292,6 +3968,21 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Images");
 
                     b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Museum.MuseumExhibit", b =>
+                {
+                    b.Navigation("Details");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyCustomer", b =>
+                {
+                    b.Navigation("Prescriptions");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Pharmacy.PharmacyMedication", b =>
+                {
+                    b.Navigation("Prescriptions");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
