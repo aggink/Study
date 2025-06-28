@@ -1,6 +1,6 @@
 ﻿using Study.Lab1.Logic.fableslots.Task1;
 
-namespace Study.Lab1.Logic.UnitTests.fableslots.Task1;
+namespace Study.Lab1.Logic.UnitTests.fablelsots.Task1;
 
 [TestFixture]
 public class RationalNumberTests
