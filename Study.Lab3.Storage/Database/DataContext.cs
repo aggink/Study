@@ -7,7 +7,13 @@ using Study.Lab3.Storage.Models.Fitness;
 using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
-using Study.Lab3.Storage.Models.Messenger;
+using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using Study.Lab3.Storage.Database;
+using Study.Lab3.Storage.Models.Bookshop;
 using Study.Lab3.Storage.Models.Museum;
 using Study.Lab3.Storage.Models.MusicStore;
 using Study.Lab3.Storage.Models.PetShop;
@@ -585,4 +591,24 @@ public class DataContext : DbContext
     public virtual DbSet<CarDealershipSale> CarDealershipSales { get; set; }
 
     #endregion
+
+    #region Bookshop
+
+    /// <summary>
+    /// Книги книжного магазина
+    /// </summary>
+    public virtual DbSet<BookshopBook> BookshopBooks { get; set; }
+
+    /// <summary>
+    /// Авторы книжного магазина
+    /// </summary>
+    public virtual DbSet<BookshopAuthor> BookshopAuthors { get; set; }
+
+    /// <summary>
+    /// Жанры книжного магазина
+    /// </summary>
+    public virtual DbSet<BookshopGenre> BookshopGenres { get; set; }
+
+    #endregion
+
 }

@@ -18,6 +18,8 @@ using Study.Lab3.Logic.Interfaces.Services.Restaurants;
 using Study.Lab3.Logic.Interfaces.Services.TravelAgency;
 using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Logic.Interfaces.Services.Workshop;
+using Study.Lab3.Logic.Interfaces.Services.Bookshop;
+using Study.Lab3.Logic.Services.Bookshop;
 using Study.Lab3.Logic.Services.BeautySalon;
 using Study.Lab3.Logic.Services.CarDealership;
 using Study.Lab3.Logic.Services.CarService;
@@ -57,6 +59,12 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IBeautyClientService, BeautyClientService>();
         services.AddSingleton<IBeautyServiceService, BeautyServiceService>();
         services.AddSingleton<IBeautyAppointmentService, BeautyAppointmentService>();
+        #endregion
+
+        #region Bookshop
+        services.AddScoped<IBookshopGenreService,  BookshopGenreService>();
+        services.AddScoped<IBookshopAuthorService, BookshopAuthorService>();
+        services.AddScoped<IBookshopBookService,   BookshopBookService>();
         #endregion
 
         #region Cinema
