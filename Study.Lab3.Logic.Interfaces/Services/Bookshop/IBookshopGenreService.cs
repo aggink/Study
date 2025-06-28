@@ -4,5 +4,9 @@ namespace Study.Lab3.Logic.Interfaces.Services.Bookshop;
 
 public interface IBookshopGenreService
 {
-    IEnumerable<BookshopGenre> GetAll();
+    Task<IEnumerable<BookshopGenre>> GetAllAsync(CancellationToken ct = default);
+    Task<BookshopGenre?>            GetByIdAsync(int genreId, CancellationToken ct = default);
+    Task<BookshopGenre>             CreateAsync (BookshopGenre entity, CancellationToken ct = default);
+    Task<BookshopGenre?>            UpdateAsync (BookshopGenre entity, CancellationToken ct = default);
+    Task<bool>                      DeleteAsync (int genreId,   CancellationToken ct = default);
 }

@@ -3,7 +3,5 @@ using Study.Lab3.Web.Features.Bookshop.BookshopBooks.DtoModels;
 
 namespace Study.Lab3.Web.Features.Bookshop.BookshopBooks.Queries;
 
-public class GetBookshopBookByIdQuery : IRequest<BookshopBookDto>
-{
-    public int Id { get; set; }
-}
+public sealed record GetBookshopBookByIdQuery(int BookId)
+        : IRequest<BookshopBookDto?>;

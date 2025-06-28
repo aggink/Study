@@ -1,8 +1,14 @@
-namespace Study.Lab3.Storage.Models.Bookshop
+using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+
+namespace Study.Lab3.Storage.Models.Bookshop;
+
+public sealed class BookshopGenre
 {
-    public class BookshopGenre
-    {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-    }
+    [Key]
+    public int GenreId { get; set; }
+
+    public string Name { get; set; }
+
+    public ICollection<BookshopBook> Books { get; set; } = new List<BookshopBook>();
 }

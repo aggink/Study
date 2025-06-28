@@ -1,12 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Study.Lab3.Web.Features.Bookshop.BookshopBooks.Queries;
+using Microsoft.AspNetCore.Mvc;
 using Study.Lab3.Web.Features.Bookshop.BookshopBooks.Commands;
-using Study.Lab3.Web.Features.Bookshop.BookshopAuthor.Queries;
+using Study.Lab3.Web.Features.Bookshop.BookshopBooks.Queries;
 using Study.Lab3.Web.Features.Bookshop.BookshopAuthor.Commands;
-using Study.Lab3.Web.Features.Bookshop.BookshopGenre.Queries;
+using Study.Lab3.Web.Features.Bookshop.BookshopAuthor.Queries;
 using Study.Lab3.Web.Features.Bookshop.BookshopGenre.Commands;
-
+using Study.Lab3.Web.Features.Bookshop.BookshopGenre.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -15,120 +14,68 @@ namespace Study.Lab3.Web.Controllers;
 public class BookshopController : ControllerBase
 {
     private readonly IMediator _mediator;
+    public BookshopController(IMediator mediator) => _mediator = mediator;
 
-    public BookshopController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
-    // BOOKS
+    // ---------- BOOK ----------
     [HttpGet("books")]
-    public async Task<IActionResult> GetBooks()
-    {
-        var result = await _mediator.Send(new GetBookshopBooksQuery());
-        return Ok(result);
-    }
+    public async Task<IActionResult> GetBooks() =>
+        Ok(await _mediator.Send(new GetBookshopBooksQuery()));
 
-    [HttpGet("books/{id}")]
-    public async Task<IActionResult> GetBookById(int id)
-    {
-        var result = await _mediator.Send(new GetBookshopBookByIdQuery { Id = id });
-        return Ok(result);
-    }
+    [HttpGet("books/{id:int}")]
+    public async Task<IActionResult> GetBook(int id) =>
+        Ok(await _mediator.Send(new GetBookshopBookByIdQuery(id)));
 
     [HttpPost("books")]
-    public async Task<IActionResult> CreateBook([FromBody] CreateBookshopBookCommand command)
-    {
-        var result = await _mediator.Send(command);
-        return Ok(result);
-    }
+    public async Task<IActionResult> CreateBook([FromBody] CreateBookshopBookCommand cmd) =>
+        Ok(await _mediator.Send(cmd));
 
-    [HttpPut("books/{id}")]
-    public async Task<IActionResult> UpdateBook(int id, [FromBody] UpdateBookshopBookCommand command)
-    {
-        command.Id = id;
-        var result = await _mediator.Send(command);
-        return Ok(result);
-    }
+    [HttpPut("books/{id:int}")]
+    public async Task<IActionResult> UpdateBook(int id, [FromBody] UpdateBookshopBookCommand cmd)
+    { cmd.BookId = id;  return Ok(await _mediator.Send(cmd)); }
 
-    [HttpDelete("books/{id}")]
-    public async Task<IActionResult> DeleteBook(int id)
-    {
-        var result = await _mediator.Send(new DeleteBookshopBookCommand { Id = id });
-        return Ok(result);
-    }
+    [HttpDelete("books/{id:int}")]
+    public async Task<IActionResult> DeleteBook(int id) =>
+        Ok(await _mediator.Send(new DeleteBookshopBookCommand(id)));
 
-    // AUTHORS
+    // ---------- AUTHOR ----------
     [HttpGet("authors")]
-    public async Task<IActionResult> GetAuthors()
-    {
-        var result = await _mediator.Send(new GetBookshopAuthorsQuery());
-        return Ok(result);
-    }
+    public async Task<IActionResult> GetAuthors() =>
+        Ok(await _mediator.Send(new GetBookshopAuthorsQuery()));
 
-    [HttpGet("authors/{id}")]
-    public async Task<IActionResult> GetAuthorById(int id)
-    {
-        var result = await _mediator.Send(new GetBookshopAuthorByIdQuery { Id = id });
-        return Ok(result);
-    }
+    [HttpGet("authors/{id:int}")]
+    public async Task<IActionResult> GetAuthor(int id) =>
+        Ok(await _mediator.Send(new GetBookshopAuthorByIdQuery(id)));
 
     [HttpPost("authors")]
-    public async Task<IActionResult> CreateAuthor([FromBody] CreateBookshopAuthorCommand command)
-    {
-        var result = await _mediator.Send(command);
-        return Ok(result);
-    }
+    public async Task<IActionResult> CreateAuthor([FromBody] CreateBookshopAuthorCommand cmd) =>
+        Ok(await _mediator.Send(cmd));
 
-    [HttpPut("authors/{id}")]
-    public async Task<IActionResult> UpdateAuthor(int id, [FromBody] UpdateBookshopAuthorCommand command)
-    {
-        command.Id = id;
-        var result = await _mediator.Send(command);
-        return Ok(result);
-    }
+    [HttpPut("authors/{id:int}")]
+    public async Task<IActionResult> UpdateAuthor(int id, [FromBody] UpdateBookshopAuthorCommand cmd)
+    { cmd.AuthorId = id; return Ok(await _mediator.Send(cmd)); }
 
-    [HttpDelete("authors/{id}")]
-    public async Task<IActionResult> DeleteAuthor(int id)
-    {
-        var result = await _mediator.Send(new DeleteBookshopAuthorCommand { Id = id });
-        return Ok(result);
-    }
+    [HttpDelete("authors/{id:int}")]
+    public async Task<IActionResult> DeleteAuthor(int id) =>
+        Ok(await _mediator.Send(new DeleteBookshopAuthorCommand(id)));
 
-    // GENRES
+    // ---------- GENRE ----------
     [HttpGet("genres")]
-    public async Task<IActionResult> GetGenres()
-    {
-        var result = await _mediator.Send(new GetBookshopGenresQuery());
-        return Ok(result);
-    }
+    public async Task<IActionResult> GetGenres() =>
+        Ok(await _mediator.Send(new GetBookshopGenresQuery()));
 
-    [HttpGet("genres/{id}")]
-    public async Task<IActionResult> GetGenreById(int id)
-    {
-        var result = await _mediator.Send(new GetBookshopGenreByIdQuery { Id = id });
-        return Ok(result);
-    }
+    [HttpGet("genres/{id:int}")]
+    public async Task<IActionResult> GetGenre(int id) =>
+        Ok(await _mediator.Send(new GetBookshopGenreByIdQuery(id)));
 
     [HttpPost("genres")]
-    public async Task<IActionResult> CreateGenre([FromBody] CreateBookshopGenreCommand command)
-    {
-        var result = await _mediator.Send(command);
-        return Ok(result);
-    }
+    public async Task<IActionResult> CreateGenre([FromBody] CreateBookshopGenreCommand cmd) =>
+        Ok(await _mediator.Send(cmd));
 
-    [HttpPut("genres/{id}")]
-    public async Task<IActionResult> UpdateGenre(int id, [FromBody] UpdateBookshopGenreCommand command)
-    {
-        command.Id = id;
-        var result = await _mediator.Send(command);
-        return Ok(result);
-    }
+    [HttpPut("genres/{id:int}")]
+    public async Task<IActionResult> UpdateGenre(int id, [FromBody] UpdateBookshopGenreCommand cmd)
+    { cmd.GenreId = id;  return Ok(await _mediator.Send(cmd)); }
 
-    [HttpDelete("genres/{id}")]
-    public async Task<IActionResult> DeleteGenre(int id)
-    {
-        var result = await _mediator.Send(new DeleteBookshopGenreCommand { Id = id });
-        return Ok(result);
-    }
+    [HttpDelete("genres/{id:int}")]
+    public async Task<IActionResult> DeleteGenre(int id) =>
+        Ok(await _mediator.Send(new DeleteBookshopGenreCommand(id)));
 }

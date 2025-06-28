@@ -1,28 +1,26 @@
 using MediatR;
-using Study.Lab3.Web.Features.Bookshop.BookshopAuthor.DtoModels;
 using Study.Lab3.Logic.Interfaces.Services.Bookshop;
+using DbAuthor = Study.Lab3.Storage.Models.Bookshop.BookshopAuthor;
+using Study.Lab3.Web.Features.Bookshop.BookshopAuthor.DtoModels;
 
 namespace Study.Lab3.Web.Features.Bookshop.BookshopAuthor.Commands;
 
-public class CreateBookshopAuthorCommandHandler : IRequestHandler<CreateBookshopAuthorCommand, BookshopAuthorDto>
+public sealed class CreateBookshopAuthorCommandHandler
+    : IRequestHandler<CreateBookshopAuthorCommand, BookshopAuthorDto>
 {
-    private readonly IBookshopAuthorService _authorService;
+    private readonly IBookshopAuthorService _svc;
+    public CreateBookshopAuthorCommandHandler(IBookshopAuthorService svc) => _svc = svc;
 
-    public CreateBookshopAuthorCommandHandler(IBookshopAuthorService authorService)
+    public async Task<BookshopAuthorDto> Handle(CreateBookshopAuthorCommand req, CancellationToken ct)
     {
-        _authorService = authorService;
-    }
-
-    public Task<BookshopAuthorDto> Handle(CreateBookshopAuthorCommand request, CancellationToken cancellationToken)
-    {
-        // Временная заглушка
-        var newAuthor = new BookshopAuthorDto
+        var entity = new DbAuthor
         {
-            Id = new Random().Next(1000, 9999),
-            Name = request.Name,
-            BirthYear = request.BirthYear
+            Name      = req.Name ?? string.Empty,
+            BirthYear = req.BirthYear
         };
 
-        return Task.FromResult(newAuthor);
+        entity = await _svc.CreateAsync(entity, ct);
+
+        return new BookshopAuthorDto(entity.AuthorId, entity.Name, entity.BirthYear);
     }
 }

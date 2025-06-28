@@ -1,27 +1,18 @@
 using MediatR;
-using Study.Lab3.Web.Features.Bookshop.BookshopGenre.DtoModels;
 using Study.Lab3.Logic.Interfaces.Services.Bookshop;
-using Study.Lab3.Storage.Models.Bookshop;
+using Study.Lab3.Web.Features.Bookshop.BookshopGenre.DtoModels;
 
 namespace Study.Lab3.Web.Features.Bookshop.BookshopGenre.Queries;
 
-public class GetBookshopGenresQueryHandler : IRequestHandler<GetBookshopGenresQuery, IEnumerable<BookshopGenreDto>>
+public sealed class GetBookshopGenresQueryHandler
+    : IRequestHandler<GetBookshopGenresQuery, IEnumerable<BookshopGenreDto>>
 {
-    private readonly IBookshopGenreService _genreService;
+    private readonly IBookshopGenreService _svc;
+    public GetBookshopGenresQueryHandler(IBookshopGenreService svc) => _svc = svc;
 
-    public GetBookshopGenresQueryHandler(IBookshopGenreService genreService)
+    public async Task<IEnumerable<BookshopGenreDto>> Handle(GetBookshopGenresQuery _, CancellationToken ct)
     {
-        _genreService = genreService;
-    }
-
-    public Task<IEnumerable<BookshopGenreDto>> Handle(GetBookshopGenresQuery request, CancellationToken cancellationToken)
-    {
-        var genres = _genreService.GetAll().Select(g => new BookshopGenreDto
-        {
-            Id = g.Id,
-            Name = g.Name
-        });
-
-        return Task.FromResult(genres);
+        var list = await _svc.GetAllAsync(ct);
+        return list.Select(g => new BookshopGenreDto(g.GenreId, g.Name));
     }
 }

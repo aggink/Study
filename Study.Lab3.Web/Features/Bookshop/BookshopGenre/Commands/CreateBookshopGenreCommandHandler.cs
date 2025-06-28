@@ -1,26 +1,22 @@
 using MediatR;
-using Study.Lab3.Web.Features.Bookshop.BookshopGenre.DtoModels;
 using Study.Lab3.Logic.Interfaces.Services.Bookshop;
+using BookshopGenreModel = Study.Lab3.Storage.Models.Bookshop.BookshopGenre; 
+using Study.Lab3.Web.Features.Bookshop.BookshopGenre.DtoModels;
 
 namespace Study.Lab3.Web.Features.Bookshop.BookshopGenre.Commands;
 
-public class CreateBookshopGenreCommandHandler : IRequestHandler<CreateBookshopGenreCommand, BookshopGenreDto>
+public sealed class CreateBookshopGenreCommandHandler
+    : IRequestHandler<CreateBookshopGenreCommand, BookshopGenreDto>
 {
-    private readonly IBookshopGenreService _genreService;
+    private readonly IBookshopGenreService _svc;
+    public CreateBookshopGenreCommandHandler(IBookshopGenreService svc) => _svc = svc;
 
-    public CreateBookshopGenreCommandHandler(IBookshopGenreService genreService)
+    public async Task<BookshopGenreDto> Handle(CreateBookshopGenreCommand req, CancellationToken ct)
     {
-        _genreService = genreService;
-    }
+        var entity = new BookshopGenreModel { Name = req.Name ?? string.Empty };
 
-    public Task<BookshopGenreDto> Handle(CreateBookshopGenreCommand request, CancellationToken cancellationToken)
-    {
-        var newGenre = new BookshopGenreDto
-        {
-            Id = new Random().Next(1000, 9999),
-            Name = request.Name
-        };
+        entity = await _svc.CreateAsync(entity, ct);
 
-        return Task.FromResult(newGenre);
+        return new BookshopGenreDto(entity.GenreId, entity.Name);
     }
 }

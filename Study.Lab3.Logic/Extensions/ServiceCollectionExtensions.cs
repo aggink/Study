@@ -52,11 +52,10 @@ public static class ServiceCollectionExtensions
         #endregion
 
         #region Bookshop
-        services.AddSingleton<IBookshopBookService, BookshopBookService>();
-        services.AddSingleton<IBookshopAuthorService, BookshopAuthorService>();
-        services.AddSingleton<IBookshopGenreService, BookshopGenreService>();
+        services.AddScoped<IBookshopGenreService,  BookshopGenreService>();
+        services.AddScoped<IBookshopAuthorService, BookshopAuthorService>();
+        services.AddScoped<IBookshopBookService,   BookshopBookService>();
         #endregion
-
 
         #region Cinema
         services.AddSingleton<ICustomerService, CustomerService>();

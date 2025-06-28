@@ -1,28 +1,29 @@
 using MediatR;
-using Study.Lab3.Web.Features.Bookshop.BookshopBooks.DtoModels;
 using Study.Lab3.Logic.Interfaces.Services.Bookshop;
+using Study.Lab3.Storage.Models.Bookshop;
+using Study.Lab3.Web.Features.Bookshop.BookshopBooks.DtoModels;
 
 namespace Study.Lab3.Web.Features.Bookshop.BookshopBooks.Commands;
 
-public class CreateBookshopBookCommandHandler : IRequestHandler<CreateBookshopBookCommand, BookshopBookDto>
+public sealed class CreateBookshopBookCommandHandler
+    : IRequestHandler<CreateBookshopBookCommand, BookshopBookDto>
 {
-    private readonly IBookshopBookService _bookService;
+    private readonly IBookshopBookService _svc;
+    public CreateBookshopBookCommandHandler(IBookshopBookService svc) => _svc = svc;
 
-    public CreateBookshopBookCommandHandler(IBookshopBookService bookService)
+    public async Task<BookshopBookDto> Handle(CreateBookshopBookCommand req, CancellationToken ct)
     {
-        _bookService = bookService;
-    }
-
-    public Task<BookshopBookDto> Handle(CreateBookshopBookCommand request, CancellationToken cancellationToken)
-    {
-        // Временная заглушка — "создаём" и возвращаем объект
-        var newBook = new BookshopBookDto
+        var entity = new BookshopBook
         {
-            Id = new Random().Next(1000, 9999),
-            Title = request.Title,
-            Pages = request.Pages
+            Title    = req.Title,
+            Pages    = req.Pages,
+            AuthorId = req.AuthorId,
+            GenreId  = req.GenreId
         };
 
-        return Task.FromResult(newBook);
+        entity = await _svc.CreateAsync(entity, ct);
+
+        return new BookshopBookDto(entity.BookId, entity.Title, entity.Pages,
+                                   entity.AuthorId, entity.GenreId);
     }
 }
