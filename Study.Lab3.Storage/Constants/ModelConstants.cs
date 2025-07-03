@@ -2260,4 +2260,27 @@ public static class ModelConstants
     }
 
     #endregion
+
+    #region AsianComics
+
+    public static class AsianComicsConstants
+    {
+        /// <summary>
+        /// Максимальная длина поля "Названия"
+        /// </summary>
+        public const int Title = 255;
+
+        /// <summary>
+        /// Минимальное значение года
+        /// </summary>
+        public const int MinYear = 1800;
+
+        /// <summary>
+        /// Максимальное значение года
+        /// </summary>
+        public const int MaxYear = 2025;
+
+    }
+
+    #endregion
 }

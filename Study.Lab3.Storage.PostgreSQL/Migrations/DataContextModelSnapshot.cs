@@ -17,10 +17,64 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.4")
+                .HasAnnotation("ProductVersion", "9.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.AsianComics.Manga", b =>
+                {
+                    b.Property<Guid>("IsnBook")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("PublicationYear")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.HasKey("IsnBook");
+
+                    b.ToTable("Manga");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.AsianComics.Manhua", b =>
+                {
+                    b.Property<Guid>("IsnBook")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("PublicationYear")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.HasKey("IsnBook");
+
+                    b.ToTable("Manhua");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.AsianComics.Manhva", b =>
+                {
+                    b.Property<Guid>("IsnBook")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("PublicationYear")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.HasKey("IsnBook");
+
+                    b.ToTable("Manhva");
+                });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.BeautySalon.BeautyAppointment", b =>
                 {
