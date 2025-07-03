@@ -34,6 +34,7 @@ using Study.Lab2.Logic.Bonnemort;
 using Study.Lab2.Logic.cocobara;
 using Study.Lab2.Logic.eduardvafin56;
 using Study.Lab2.Logic.fableslots; 
+using Study.Lab2.Logic.mansurgh;   
 
 
 
@@ -104,10 +105,24 @@ public static class Program
                 return new lsokol14lService();
             case ("idb-23-02", 17):
                 return new KattyHttpService();
-            case ("idb-23-03", 10):
-                return new poigkoService();
             case ("idb-23-02", 24):
                 return new CherryyService();
+            case ("idb-23-02", 10):
+                return new PresvyatoyKabachokService();
+            case ("idb-23-02", 18):
+                return new BonnemortService();
+            case ("idb-23-02", 7):
+                return new Eduardvafin56Service();
+            case ("idb-23-02", 22):
+                return new baldfromazzersService();
+            case ("idb-23-02", 14):
+                return new fableslotsService();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
+            case ("idb-23-02", 1):
+                return new mansurghService();
+            case ("idb-23-03", 10):
+                return new poigkoService();
             case ("idb-23-03", 17):
                 return new KirillPoroshinService();
             case ("idb-23-03", 3):
@@ -120,16 +135,12 @@ public static class Program
                 return new jki749Service();
             case ("idb-23-03", 12):
                 return new alkeiviService();
-            case ("idb-23-02", 10):
-                return new PresvyatoyKabachokService();
             case ("idb-23-03", 20):
                 return new mariabyrrrrakService();
             case ("idb-23-03", 15):
                 return new gegemonTVService();
             case ("idb-23-03", 23):
                 return new Pro100futaService();
-            case ("idb-23-02", 12):
-                return new chiriqueOnlineService();
             case ("idb-23-03", 9):
                 return new TucKaWService();
             case ("idb-23-03", 1):
@@ -140,8 +151,6 @@ public static class Program
                 return new neijrrService();
             case ("idb-23-03", 5):
                 return new SuperSalad007Service();
-            case ("idb-23-02", 11):
-                return new ChaspixService();
             case ("idb-23-03", 8):
                 return new yamisakimeiService();
             case ("idb-23-03", 13):
@@ -150,16 +159,6 @@ public static class Program
                 return new IvanZService();
             case ("idb-23-03", 19):
                 return new Crocodile17Service();
-            case ("idb-23-02", 18):
-                return new BonnemortService();
-            case ("idb-23-02", 7):
-                return new Eduardvafin56Service();
-            case ("idb-23-02", 22):
-                return new baldfromazzersService();
-            case ("idb-23-02", 14):
-                return new fableslotsService();
-            case ("idb-23-02", 13):
-                return new cocobaraService();
             default:
                 throw new NotSupportedException();
         }
