@@ -1,31 +1,58 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace Study.Lab3.Storage.Models.University;
 
-public class ScientificWork
+namespace Study.Lab3.Storage.Models.University
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid IsnScientificWork { get; set; }
+    [Table("SCIENTIFIC_WORKS")]
+    public class ScientificWork
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public Guid IsnScientificWork { get; set; }
 
-    public Guid IsnStudent { get; set; }
+        // <summary>
+        /// Студент
+        /// </summary>
+        public Guid IsnStudent { get; set; }
+        [ForeignKey(nameof(IsnStudent))]
+        public Student Student { get; set; }
 
-    public Guid IsnSubject { get; set; }
+        // <summary>
+        /// Предмет
+        /// </summary>
+        public Guid IsnSubject { get; set; }
+        [ForeignKey("IsnSubject")]
+        public Subject Subject { get; set; }
 
-    [Required]
-    public string Title { get; set; }
+        // <summary>
+        /// Название
+        /// </summary>
+        [Required]
+        public string Title { get; set; }
 
-    public string Description { get; set; }
+        // <summary>
+        /// Описание
+        /// </summary>
+        public string? Description { get; set; }
 
-    [Required]
-    public int PageCount { get; set; }
+        // <summary>
+        /// Число страниц
+        /// </summary>
+        [Required]
+        public int PageCount { get; set; }
 
-    [Required]
-    public DateTime PublicationDate { get; set; }
+        // <summary>
+        /// Дата публикации
+        /// </summary>
+        [Required]
+        public DateTime PublicationDate { get; set; }
 
-    public virtual Student Student { get; set; }
-    public virtual Subject Subject { get; set; }
+        // <summary>
+        /// Опубликовано
+        /// </summary>
+        public bool IsPublished { get; set; }
+
+    }
 
 }
