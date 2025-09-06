@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Models.AsianComics;
 using Study.Lab3.Storage.Models.BeautySalon;
+using Study.Lab3.Storage.Models.CarDealership;
 using Study.Lab3.Storage.Models.CarService;
 using Study.Lab3.Storage.Models.Cinema;
 using Study.Lab3.Storage.Models.Fitness;
@@ -7,7 +9,10 @@ using Study.Lab3.Storage.Models.GameStore;
 using Study.Lab3.Storage.Models.HospitalStore;
 using Study.Lab3.Storage.Models.Library;
 using Study.Lab3.Storage.Models.Messenger;
+using Study.Lab3.Storage.Models.Museum;
 using Study.Lab3.Storage.Models.MusicStore;
+using Study.Lab3.Storage.Models.PetShop;
+using Study.Lab3.Storage.Models.Pharmacy;
 using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
@@ -455,7 +460,7 @@ public class DataContext : DbContext
     #endregion
 
     #region Photography
-
+    
     /// <summary>
     /// Клиенты фотостудии
     /// </summary>
@@ -489,6 +494,121 @@ public class DataContext : DbContext
     /// Покупатели музыкального магазина
     /// </summary>
     public virtual DbSet<MusicCustomer> MusicCustomers { get; set; }
+
+    
+    #endregion
+
+    #region CoffeeShop
+
+    /// <summary>
+    /// Кофе
+    /// </summary>
+    public virtual DbSet<Models.CoffeeShop.Coffee> Coffee { get; set; }
+
+    /// <summary>
+    /// Кофейни
+    /// </summary>
+    public virtual DbSet<Models.CoffeeShop.CoffeeShop> CoffeeShops { get; set; }
+
+    /// <summary>
+    /// Бариста
+    /// </summary>
+    public virtual DbSet<Models.CoffeeShop.Barista> Baristas { get; set; }
+
+    #endregion
+
+    #region PetShop
+
+    /// <summary>
+    /// Животные в зоомагазине
+    /// </summary>
+    public virtual DbSet<Pet> Pets { get; set; }
+
+    /// <summary>
+    /// Корма для животных
+    /// </summary>
+    public virtual DbSet<PetFood> PetFoods { get; set; }
+
+    /// <summary>
+    /// Игрушки для животных
+    /// </summary>
+    public virtual DbSet<PetToy> PetToys { get; set; }
+
+    #endregion
+
+    #region Museum
+    
+    /// <summary>
+    /// Экспонаты музея
+    /// </summary>
+    public virtual DbSet<MuseumExhibit> MuseumExhibits { get; set; }
+
+    /// <summary>
+    /// Детальная информация об экспонатах
+    /// </summary>
+    public virtual DbSet<MuseumExhibitDetails> MuseumExhibitDetails { get; set; }
+
+    /// <summary>
+    /// Посетители музея
+    /// </summary>
+    public virtual DbSet<MuseumVisitor> MuseumVisitors { get; set; }
+    
+    #endregion
+    
+    #region Pharmacy
+    
+    /// <summary>
+    /// Медикаменты в аптеке
+    /// </summary>
+    public virtual DbSet<PharmacyMedication> PharmacyMedications { get; set; }
+    
+    /// <summary>
+    /// Клиенты аптеки
+    /// </summary>
+    public virtual DbSet<PharmacyCustomer> PharmacyCustomers { get; set; }
+    
+    /// <summary>
+    /// Рецепты на медикаменты
+    /// </summary>
+    public virtual DbSet<Prescription> Prescriptions { get; set; }
+    
+    #endregion
+    
+    #region CarDealership
+
+    /// <summary>
+    /// Клиенты автосалона
+    /// </summary>
+    public virtual DbSet<CarDealershipCustomer> CarDealershipCustomers { get; set; }
+
+    /// <summary>
+    /// Автомобили
+    /// </summary>
+    public virtual DbSet<Vehicle> Vehicles { get; set; }
+
+    /// <summary>
+    /// Продажи автомобилей
+    /// </summary>
+    public virtual DbSet<CarDealershipSale> CarDealershipSales { get; set; }
+
+    #endregion
+
+    #region AsianComics
+
+    /// <summary>
+    /// манга
+    /// </summary>
+    public virtual DbSet<Manga> Manga { get; set; }
+
+    /// <summary>
+    /// манхва
+    /// </summary>
+    public virtual DbSet<Manhva> Manhva { get; set; }
+
+    /// <summary>
+    /// маньхуа
+    /// </summary>
+    public virtual DbSet<Manhua> Manhua { get; set; }
 
     #endregion
 }
