@@ -1366,11 +1366,20 @@ public static class ModelConstants
         public const double MaxTotalPrice = 999999.99;
     }
 
-    #endregion
+    public static class ScientificWork
+    {
+        public const int MinPageCount = 5;
+        public const int MaxPageCount = 500;
+        public const int TitleMaxLength = 200;
+        public const int DescriptionMaxLength = 1000;
+    }
+}
 
-    #region GameStore
+#endregion
 
-    public static class Game
+#region GameStore
+
+public static class Game
     {
         /// <summary>
         /// Максимальная длина названия игры
@@ -1746,12 +1755,4 @@ public static class ModelConstants
     }
 
 
-    public static class ScientificWork
-    {
-        public const int MinPageCount = 5;
-        public const int MaxPageCount = 500;
-        public const int TitleMaxLength = 200;
-        public const int DescriptionMaxLength = 1000;
-    }
-}
 }
