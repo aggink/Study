@@ -33,7 +33,8 @@ using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Bonnemort;
 using Study.Lab2.Logic.cocobara;
 using Study.Lab2.Logic.eduardvafin56;
-using Study.Lab2.Logic.fableslots; 
+using Study.Lab2.Logic.fableslots;
+using Study.Lab2.Logic.mansurgh; 
 
 
 
@@ -58,7 +59,7 @@ public static class Program
         Console.WriteLine("========================================\n");
         Console.ResetColor();
 
-        using var service = GetRunLabService(GROUP_NAME, PERSON_NUMBER);
+        using var service = GetRunLabService("idb-23-02", 1);
 
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine("Синхронное выполнение (без async/await)\n");
@@ -160,6 +161,8 @@ public static class Program
                 return new fableslotsService();
             case ("idb-23-02", 13):
                 return new cocobaraService();
+            case ("idb-23-02", 1):
+                return new MansurghService();
             default:
                 throw new NotSupportedException();
         }
