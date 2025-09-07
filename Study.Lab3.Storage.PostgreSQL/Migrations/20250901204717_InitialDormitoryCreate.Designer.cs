@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250901204717_InitialDormitoryCreate")]
+    partial class InitialDormitoryCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3090,45 +3093,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("ProjectActivities");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ScientificWork", b =>
-                {
-                    b.Property<Guid>("IsnScientificWork")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("PageCount")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("PublicationDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid?>("StudentIsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("SubjectIsnSubject")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("IsnScientificWork");
-
-                    b.HasIndex("StudentIsnStudent");
-
-                    b.HasIndex("SubjectIsnSubject");
-
-                    b.ToTable("ScientificWorks");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.Property<Guid>("IsnSportclub")
@@ -3309,33 +3273,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnTeacher", "IsnSubject");
 
                     b.ToTable("TeacherSubjects");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.WorkReference", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<Guid>("IsnReference")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnScientificWork")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("ReferenceDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("ReferencedWorkId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IsnScientificWork");
-
-                    b.ToTable("WorkReferences");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Master", b =>
@@ -4032,21 +3969,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ScientificWork", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("ScientificWorks")
-                        .HasForeignKey("StudentIsnStudent");
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany("ScientificWorks")
-                        .HasForeignKey("SubjectIsnSubject");
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
@@ -4143,17 +4065,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.WorkReference", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.ScientificWork", "ScientificWork")
-                        .WithMany()
-                        .HasForeignKey("IsnScientificWork")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ScientificWork");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.ServiceOrder", b =>
@@ -4394,8 +4305,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.Navigation("ProjectActivitiess");
 
-                    b.Navigation("ScientificWorks");
-
                     b.Navigation("Sportclubs");
 
                     b.Navigation("StudentLabs");
@@ -4424,8 +4333,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Profcoms");
 
                     b.Navigation("ProjectActivitiess");
-
-                    b.Navigation("ScientificWorks");
 
                     b.Navigation("Sportclubs");
 
