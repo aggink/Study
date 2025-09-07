@@ -19,6 +19,7 @@ using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.TravelAgency;
 using Study.Lab3.Storage.Models.University;
+using Study.Lab3.Storage.Models.Dormitory;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 
@@ -603,6 +604,25 @@ public class DataContext : DbContext
     /// маньхуа
     /// </summary>
     public virtual DbSet<Manhua> Manhua { get; set; }
+
+    #endregion
+
+    #region Dormitory
+
+    /// <summary>
+    /// Здания общежитий
+    /// </summary>
+    public virtual DbSet<DormitoryBuilding> DormitoryBuildings { get; set; }
+
+    /// <summary>
+    /// Комнаты в общежитиях
+    /// </summary>
+    public virtual DbSet<DormitoryRoom> DormitoryRooms { get; set; }
+
+    /// <summary>
+    /// Жильцы общежитий
+    /// </summary>
+    public virtual DbSet<DormitoryResident> DormitoryResidents { get; set; }
 
     #endregion
 }
