@@ -1,6 +1,8 @@
+using Study.Lab1.Logic.Interfaces.mansurgh.Task1;
+
 namespace Study.Lab1.Logic.mansurgh.Task1;
 
-public class RationalNumber
+public class RationalNumber : IRationalNumber
 {
     public int Numerator { get; private set; }
     public int Denominator { get; private set; }
