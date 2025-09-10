@@ -115,12 +115,12 @@ public class ServerRequestServiceTests
         using var cts = new CancellationTokenSource();
 
         _mockRequestService.Setup(x => x.FetchDataAsync(It.IsAny<string>(), null, cts.Token))
-            .ThrowsAsync(new OperationCanceledException(cts.Token));
+            .ThrowsAsync(new TaskCanceledException("The operation was canceled.", new OperationCanceledException(cts.Token)));
 
         cts.Cancel();
 
         // Act & Assert
-        Assert.ThrowsAsync<OperationCanceledException>(async () =>
+        Assert.ThrowsAsync<TaskCanceledException>(async () =>
             await _serverRequestService.GetCatFactAsync(cts.Token));
     }
 
@@ -134,12 +134,12 @@ public class ServerRequestServiceTests
 
         _mockRequestService.Setup(x => x.FetchDataAsync(
                 It.Is<string>(s => s.Contains($"q={city}")), null, cts.Token))
-            .ThrowsAsync(new OperationCanceledException(cts.Token));
+            .ThrowsAsync(new TaskCanceledException("The operation was canceled.", new OperationCanceledException(cts.Token)));
 
         cts.Cancel();
 
         // Act & Assert
-        Assert.ThrowsAsync<OperationCanceledException>(async () =>
+        Assert.ThrowsAsync<TaskCanceledException>(async () =>
             await _serverRequestService.GetWeatherInfoAsync(city, cts.Token));
     }
 }
