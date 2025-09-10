@@ -59,14 +59,14 @@ namespace Study.Lab3.Logic.Services.University
                 throw new BusinessLogicException("Нельзя удалить научную работу, опубликованную более года назад");
             }
 
-            var hasReferences = await dataContext.WorkReferences
-                .AnyAsync(x => x.IsnScientificWork == scientificWork.IsnScientificWork,
-                    cancellationToken);
+            //var hasReferences = await dataContext.WorkReferences
+             //   .AnyAsync(x => x.IsnScientificWork == scientificWork.IsnScientificWork,
+             //       cancellationToken);
 
-            if (hasReferences)
-            {
-                throw new BusinessLogicException("Нельзя удалить научную работу, на которую есть ссылки в других работах");
-            }
+            //if (hasReferences)
+            //{
+            //    throw new BusinessLogicException("Нельзя удалить научную работу, на которую есть ссылки в других работах");
+            //}
         }
 
     }

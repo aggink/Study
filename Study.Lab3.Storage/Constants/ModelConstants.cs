@@ -1374,7 +1374,6 @@ public static class ModelConstants
         public const double MaxTotalPrice = 999999.99;
     }
 
-}
 
 #endregion
 
