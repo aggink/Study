@@ -2,28 +2,32 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace Study.Lab3.Storage.Models.University
-{
-    [Table("SCIENTIFIC_WORKS")]
-    public class ScientificWork
+namespace Study.Lab3.Storage.Models.University;
+
+
+public class ScientificWork
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public Guid IsnScientificWork { get; set; }
+
 
         // <summary>
         /// Студент
         /// </summary>
+
+        [ForeignKey(nameof(Student))]
         public Guid IsnStudent { get; set; }
-        [ForeignKey(nameof(IsnStudent))]
-        public Student Student { get; set; }
+
+        public virtual Student Student { get; set; }
 
         // <summary>
         /// Предмет
         /// </summary>
+        [ForeignKey(nameof(Subject))]
         public Guid IsnSubject { get; set; }
-        [ForeignKey("IsnSubject")]
-        public Subject Subject { get; set; }
+
+        public virtual Subject Subject { get; set; }
 
         // <summary>
         /// Название
@@ -54,5 +58,3 @@ namespace Study.Lab3.Storage.Models.University
         public bool IsPublished { get; set; }
 
     }
-
-}

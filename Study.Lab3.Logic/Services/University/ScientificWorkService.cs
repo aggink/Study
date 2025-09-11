@@ -37,10 +37,10 @@ namespace Study.Lab3.Logic.Services.University
 
             var existingWork = await dataContext.ScientificWorks
                 .FirstOrDefaultAsync(x =>
-                    x.IsnStudent == scientificWork.IsnStudent &&
-                    x.IsnSubject == scientificWork.IsnSubject &&
-                    x.Title == scientificWork.Title &&
-                    x.IsnScientificWork != scientificWork.IsnScientificWork,
+                   x.IsnStudent == scientificWork.IsnStudent &&
+                   x.IsnSubject == scientificWork.IsnSubject &&
+                   x.Title == scientificWork.Title &&
+                   x.IsnScientificWork != scientificWork.IsnScientificWork,  
                     cancellationToken);
 
             if (existingWork != null)
@@ -59,14 +59,15 @@ namespace Study.Lab3.Logic.Services.University
                 throw new BusinessLogicException("Нельзя удалить научную работу, опубликованную более года назад");
             }
 
-            //var hasReferences = await dataContext.WorkReferences
-             //   .AnyAsync(x => x.IsnScientificWork == scientificWork.IsnScientificWork,
-             //       cancellationToken);
+            var hasReferences = await dataContext.WorkReferences
+                .AnyAsync(x => x.ReferencedWorkId == scientificWork.IsnScientificWork ||
+                   x.SourceWorkId == scientificWork.IsnScientificWork,
+                cancellationToken);
 
-            //if (hasReferences)
-            //{
-            //    throw new BusinessLogicException("Нельзя удалить научную работу, на которую есть ссылки в других работах");
-            //}
+            if (hasReferences)
+            {
+                throw new BusinessLogicException("Нельзя удалить научную работу, на которую есть ссылки в других работах");
+            }
         }
 
     }
