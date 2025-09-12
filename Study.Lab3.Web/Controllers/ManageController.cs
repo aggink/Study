@@ -70,6 +70,9 @@ using Study.Lab3.Web.Features.University.TheAttendanceLog.Queries;
 using Study.Lab3.Web.Features.University.TheProfcom.Commands;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.Queries;
+using Study.Lab3.Web.Features.University.ScientificWork.Commands;
+using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
+using Study.Lab3.Web.Features.University.ScientificWork.Queries;
 using Study.Lab3.Web.Features.University.TheStudentNotes.Commands;
 using Study.Lab3.Web.Features.University.TheStudentNotes.DtoModels;
 using Study.Lab3.Web.Features.University.TheStudentNotes.Queries;
@@ -1624,6 +1627,7 @@ public class ManageController : Controller
 
     #endregion
 
+
     #region Pingpongclub
     /// <summary>
     /// Создание спортивного клуба
@@ -1707,7 +1711,6 @@ public class ManageController : Controller
         return Ok(result);
     }
 
-    /// <summary>
     /// Редактирование посещения
     /// </summary>
     [HttpPost(nameof(UpdateAttendanceLog), Name = nameof(UpdateAttendanceLog))]
@@ -1718,7 +1721,6 @@ public class ManageController : Controller
         return Ok(result);
     }
 
-    /// <summary>
     /// Удаление посещения
     /// </summary>
     [HttpPost(nameof(DeleteAttendanceLog), Name = nameof(DeleteAttendanceLog))]
@@ -1729,7 +1731,6 @@ public class ManageController : Controller
         return Ok();
     }
 
-    /// <summary>
     /// Получение посещения по идентификатору
     /// </summary>
     [HttpGet(nameof(GetAttendanceLogByIsn), Name = nameof(GetAttendanceLogByIsn))]
@@ -1740,7 +1741,6 @@ public class ManageController : Controller
         return Ok(result);
     }
 
-    /// <summary>
     /// Получение списка посещений
     /// </summary>
     [HttpGet(nameof(GetListAttendanceLog), Name = nameof(GetListAttendanceLog))]
@@ -1750,8 +1750,8 @@ public class ManageController : Controller
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
-
     #endregion
+
 
     #region StudentNotes
 
@@ -1776,7 +1776,6 @@ public class ManageController : Controller
         return Ok(result);
     }
 
-    /// <summary>
     /// Обновить существующую заметку
     /// </summary>
     [HttpPost(nameof(UpdateStudentNote), Name = nameof(UpdateStudentNote))]
@@ -1894,4 +1893,91 @@ public class ManageController : Controller
     }
     #endregion
 
+    #region ScientificWork
+
+    /// <summary>
+    /// Создание научной работы
+    /// </summary>
+    [HttpPost(nameof(CreateScientificWork), Name = nameof(CreateScientificWork))]
+    public async Task<ActionResult<Guid>> CreateScientificWork(
+        [FromBody] CreateScientificWorkCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Редактирование научной работы
+    /// </summary>
+    [HttpPost(nameof(UpdateScientificWork), Name = nameof(UpdateScientificWork))]
+    public async Task<ActionResult<Guid>> UpdateScientificWork(
+        [FromBody] UpdateScientificWorkCommand command,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Удаление научной работы
+    /// </summary>
+    [HttpPost(nameof(DeleteScientificWork), Name = nameof(DeleteScientificWork))]
+    public async Task<ActionResult> DeleteScientificWork(
+        [FromQuery] DeleteScientificWorkCommand command,
+        CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    /// <summary>
+    /// Получение научной работы по идентификатору
+    /// </summary>
+    [HttpGet(nameof(GetScientificWorkByIsn), Name = nameof(GetScientificWorkByIsn))]
+    public async Task<ActionResult<ScientificWorkDto>> GetScientificWorkByIsn(
+        [FromQuery] GetScientificWorkByIsnQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение научной работы с детальной информацией
+    /// </summary>
+    [HttpGet(nameof(GetScientificWorkWithDetails), Name = nameof(GetScientificWorkWithDetails))]
+    public async Task<ActionResult<ScientificWorkWithDetailsDto>> GetScientificWorkWithDetails(
+        [FromQuery] GetScientificWorkWithDetailsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка научных работ
+    /// </summary>
+    [HttpGet(nameof(GetListScientificWorks), Name = nameof(GetListScientificWorks))]
+    public async Task<ActionResult<ScientificWorkDto[]>> GetListScientificWorks(
+        [FromQuery] GetListScientificWorksQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Получение списка научных работ с пагинацией
+    /// </summary>
+    [HttpGet(nameof(GetPagedScientificWorks), Name = nameof(GetPagedScientificWorks))]
+    public async Task<ActionResult<PagedResult<ScientificWorkDto>>> GetPagedScientificWorks(
+        [FromQuery] GetPagedScientificWorksQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
+    #endregion
 }

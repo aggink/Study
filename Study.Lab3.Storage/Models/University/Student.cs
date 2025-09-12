@@ -108,6 +108,8 @@ public class Student
     [InverseProperty(nameof(AttendanceLog.Student))]
     public virtual ICollection<AttendanceLog> AttendanceLogs { get; set; }
 
+    [InverseProperty(nameof(ScientificWork.Student))]
+    public virtual ICollection<ScientificWork> ScientificWorks { get; set; }
     /// <summary>
     /// Оценки
     /// </summary>
