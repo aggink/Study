@@ -615,4 +615,6 @@ public class DataContext : DbContext
     //Стажеры
     public virtual DbSet<Intern> Interns { get; set; }
     #endregion
+
+    
 }
