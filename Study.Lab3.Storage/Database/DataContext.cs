@@ -14,6 +14,7 @@ using Study.Lab3.Storage.Models.MusicStore;
 using Study.Lab3.Storage.Models.PetShop;
 using Study.Lab3.Storage.Models.Pharmacy;
 using Study.Lab3.Storage.Models.Photography;
+using Study.Lab3.Storage.Models.PoliceDepartament;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
@@ -607,7 +608,25 @@ public class DataContext : DbContext
 
     #endregion
 
-    #region Dormitory
+
+    #region PoliceDepartament
+    
+    /// <summary>
+    /// Офицеры
+    /// </summary>
+    public virtual DbSet<Officer> Officers { get; set; }
+    /// <summary>
+    /// Работники
+    /// </summary>
+    public virtual DbSet<Employee> Employees { get; set; }
+    /// <summary>
+    /// Стажеры
+    /// </summary>
+    public virtual DbSet<Intern> Interns { get; set; }
+    
+    #endregion
+    
+ #region Dormitory
 
     /// <summary>
     /// Здания общежитий

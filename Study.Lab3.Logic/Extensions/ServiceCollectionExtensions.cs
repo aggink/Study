@@ -40,6 +40,8 @@ using Study.Lab3.Logic.Services.Workshop;
 using CustomerService = Study.Lab3.Logic.Services.Cinema.CustomerService;
 using Study.Lab3.Logic.Interfaces.Services.AsianComics;
 using Study.Lab3.Logic.Services.AsianComics;
+using Study.Lab3.Logic.Services.PoliceDepartament;
+using Study.Lab3.Logic.Interfaces.Services.PoliceDepartament;
 
 
 namespace Study.Lab3.Logic.Extensions;
@@ -196,6 +198,12 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IMangaService, MangaService>();
         services.AddSingleton<IManhvaService, ManhvaService>();
         services.AddSingleton<IManhuaService, ManhuaService>();
+        #endregion
+
+        #region PoliceDepartament
+        services.AddSingleton<IEmployeeService, EmployeeService>();
+        services.AddSingleton<IOfficerService, OfficerService>();
+        services.AddSingleton<IInternService, InternService>();
         #endregion
     }
 }
