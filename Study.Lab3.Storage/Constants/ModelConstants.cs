@@ -2283,4 +2283,12 @@ public static class ModelConstants
     }
 
     #endregion
+
+    #region PoliceDepartament
+    public static class PoliceDepartamentConstants
+    { 
+        //Максимальная длина строки атрибута
+        public const int Title = 255;
+    }
+    #endregion
 }

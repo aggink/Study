@@ -14,6 +14,7 @@ using Study.Lab3.Storage.Models.MusicStore;
 using Study.Lab3.Storage.Models.PetShop;
 using Study.Lab3.Storage.Models.Pharmacy;
 using Study.Lab3.Storage.Models.Photography;
+using Study.Lab3.Storage.Models.PoliceDepartament;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
@@ -604,5 +605,14 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Manhua> Manhua { get; set; }
 
+    #endregion
+
+    #region PoliceDepartament
+    //Офицеры
+    public virtual DbSet<Officer> Officers { get; set; }
+    //Работники
+    public virtual DbSet<Employee> Employees { get; set; }
+    //Стажеры
+    public virtual DbSet<Intern> Interns { get; set; }
     #endregion
 }
