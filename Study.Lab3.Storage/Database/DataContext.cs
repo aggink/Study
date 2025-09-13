@@ -20,6 +20,7 @@ using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.TravelAgency;
 using Study.Lab3.Storage.Models.University;
+using Study.Lab3.Storage.Models.Dormitory;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 
@@ -607,14 +608,40 @@ public class DataContext : DbContext
 
     #endregion
 
-    #region PoliceDepartament
-    //Офицеры
-    public virtual DbSet<Officer> Officers { get; set; }
-    //Работники
-    public virtual DbSet<Employee> Employees { get; set; }
-    //Стажеры
-    public virtual DbSet<Intern> Interns { get; set; }
-    #endregion
 
+    #region PoliceDepartament
     
+    /// <summary>
+    /// Офицеры
+    /// </summary>
+    public virtual DbSet<Officer> Officers { get; set; }
+    /// <summary>
+    /// Работники
+    /// </summary>
+    public virtual DbSet<Employee> Employees { get; set; }
+    /// <summary>
+    /// Стажеры
+    /// </summary>
+    public virtual DbSet<Intern> Interns { get; set; }
+    
+    #endregion
+    
+ #region Dormitory
+
+    /// <summary>
+    /// Здания общежитий
+    /// </summary>
+    public virtual DbSet<DormitoryBuilding> DormitoryBuildings { get; set; }
+
+    /// <summary>
+    /// Комнаты в общежитиях
+    /// </summary>
+    public virtual DbSet<DormitoryRoom> DormitoryRooms { get; set; }
+
+    /// <summary>
+    /// Жильцы общежитий
+    /// </summary>
+    public virtual DbSet<DormitoryResident> DormitoryResidents { get; set; }
+
+    #endregion
 }
