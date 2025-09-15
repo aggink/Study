@@ -174,6 +174,12 @@ public class DataContext : DbContext
     public virtual DbSet<StudentLab> StudentLab { get; set; }
 
     /// <summary>
+    /// Научная работа
+    /// </summary>
+    public DbSet<ScientificWork> ScientificWorks { get; set; }
+
+    public DbSet<WorkReference> WorkReferences { get; set; }
+
     /// Посещение
     /// </summary>
     public virtual DbSet<AttendanceLog> TheAttendanceLog { get; set; }
