@@ -614,15 +614,6 @@ public class DataContext : DbContext
 
     #endregion
 
-<<<<<<< HEAD
-    #region PoliceDepartament
-    //Офицеры
-    public virtual DbSet<Officer> Officers { get; set; }
-    //Работники
-    public virtual DbSet<Employee> Employees { get; set; }
-    //Стажеры
-    public virtual DbSet<Intern> Interns { get; set; }
-=======
     #region Dormitory
 
     /// <summary>
@@ -640,6 +631,14 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<DormitoryResident> DormitoryResidents { get; set; }
 
->>>>>>> 6159d0e073ee152ef957db9bd5b76b2f046d9fd5
+    #endregion
+
+    #region PoliceDepartament
+    //Офицеры
+    public virtual DbSet<Officer> Officers { get; set; }
+    //Работники
+    public virtual DbSet<Employee> Employees { get; set; }
+    //Стажеры
+    public virtual DbSet<Intern> Interns { get; set; }
     #endregion
 }
