@@ -5,7 +5,7 @@
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPD : Migration
+    public partial class AddPoliceDepartament : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
