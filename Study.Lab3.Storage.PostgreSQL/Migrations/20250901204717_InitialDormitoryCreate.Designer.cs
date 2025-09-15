@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Study.Lab3.Storage.Database;
@@ -11,9 +12,11 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250901204717_InitialDormitoryCreate")]
+    partial class InitialDormitoryCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2056,81 +2059,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("PhotographySessions");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.PoliceDepartament.Employee", b =>
-                {
-                    b.Property<Guid>("IsnEmployee")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("SurName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("Work")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.HasKey("IsnEmployee");
-
-                    b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.PoliceDepartament.Intern", b =>
-                {
-                    b.Property<Guid>("IsnIntern")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("SkillLevel")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("SurName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.HasKey("IsnIntern");
-
-                    b.ToTable("Interns");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.PoliceDepartament.Officer", b =>
-                {
-                    b.Property<Guid>("IsnOfficer")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("Rank")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.Property<string>("SurName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
-
-                    b.HasKey("IsnOfficer");
-
-                    b.ToTable("Officers");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.Restaurants.Menu", b =>
                 {
                     b.Property<Guid>("IsnMenu")
@@ -3165,42 +3093,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("ProjectActivities");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ScientificWork", b =>
-                {
-                    b.Property<Guid>("IsnScientificWork")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsPublished")
-                        .HasColumnType("boolean");
-
-                    b.Property<Guid>("IsnStudent")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("IsnSubject")
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("PageCount")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("PublicationDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("IsnScientificWork");
-
-                    b.HasIndex("IsnStudent");
-
-                    b.HasIndex("IsnSubject");
-
-                    b.ToTable("ScientificWorks");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.Property<Guid>("IsnSportclub")
@@ -3381,30 +3273,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnTeacher", "IsnSubject");
 
                     b.ToTable("TeacherSubjects");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.WorkReference", b =>
-                {
-                    b.Property<Guid>("IsnReference")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("ReferenceDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("ReferencedWorkId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("SourceWorkId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("IsnReference");
-
-                    b.HasIndex("ReferencedWorkId");
-
-                    b.HasIndex("SourceWorkId");
-
-                    b.ToTable("WorkReferences");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Master", b =>
@@ -4101,25 +3969,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ScientificWork", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("ScientificWorks")
-                        .HasForeignKey("IsnStudent")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany("ScientificWorks")
-                        .HasForeignKey("IsnSubject")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Student");
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
@@ -4216,25 +4065,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("Teacher");
-                });
-
-            modelBuilder.Entity("Study.Lab3.Storage.Models.University.WorkReference", b =>
-                {
-                    b.HasOne("Study.Lab3.Storage.Models.University.ScientificWork", "ReferencedWork")
-                        .WithMany()
-                        .HasForeignKey("ReferencedWorkId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Study.Lab3.Storage.Models.University.ScientificWork", "SourceWork")
-                        .WithMany()
-                        .HasForeignKey("SourceWorkId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ReferencedWork");
-
-                    b.Navigation("SourceWork");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.ServiceOrder", b =>
@@ -4475,8 +4305,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.Navigation("ProjectActivitiess");
 
-                    b.Navigation("ScientificWorks");
-
                     b.Navigation("Sportclubs");
 
                     b.Navigation("StudentLabs");
@@ -4505,8 +4333,6 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Profcoms");
 
                     b.Navigation("ProjectActivitiess");
-
-                    b.Navigation("ScientificWorks");
 
                     b.Navigation("Sportclubs");
 

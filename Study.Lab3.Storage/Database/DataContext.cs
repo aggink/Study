@@ -20,6 +20,7 @@ using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.TravelAgency;
 using Study.Lab3.Storage.Models.University;
+using Study.Lab3.Storage.Models.Dormitory;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 
@@ -174,6 +175,12 @@ public class DataContext : DbContext
     public virtual DbSet<StudentLab> StudentLab { get; set; }
 
     /// <summary>
+    /// Научная работа
+    /// </summary>
+    public DbSet<ScientificWork> ScientificWorks { get; set; }
+
+    public DbSet<WorkReference> WorkReferences { get; set; }
+
     /// Посещение
     /// </summary>
     public virtual DbSet<AttendanceLog> TheAttendanceLog { get; set; }
@@ -607,6 +614,7 @@ public class DataContext : DbContext
 
     #endregion
 
+<<<<<<< HEAD
     #region PoliceDepartament
     //Офицеры
     public virtual DbSet<Officer> Officers { get; set; }
@@ -614,5 +622,24 @@ public class DataContext : DbContext
     public virtual DbSet<Employee> Employees { get; set; }
     //Стажеры
     public virtual DbSet<Intern> Interns { get; set; }
+=======
+    #region Dormitory
+
+    /// <summary>
+    /// Здания общежитий
+    /// </summary>
+    public virtual DbSet<DormitoryBuilding> DormitoryBuildings { get; set; }
+
+    /// <summary>
+    /// Комнаты в общежитиях
+    /// </summary>
+    public virtual DbSet<DormitoryRoom> DormitoryRooms { get; set; }
+
+    /// <summary>
+    /// Жильцы общежитий
+    /// </summary>
+    public virtual DbSet<DormitoryResident> DormitoryResidents { get; set; }
+
+>>>>>>> 6159d0e073ee152ef957db9bd5b76b2f046d9fd5
     #endregion
 }
