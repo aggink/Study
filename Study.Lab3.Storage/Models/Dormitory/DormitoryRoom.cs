@@ -64,7 +64,7 @@ public class DormitoryRoom
     /// Описание комнаты
     /// </summary>
     [StringLength(500)]
-    public string? Description { get; set; }
+    public string Description { get; set; }
 
     /// <summary>
     /// Дата создания записи

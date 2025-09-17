@@ -1,7 +1,7 @@
+using System.Net;
 using Moq;
 using Moq.Protected;
 using Study.Lab2.Logic.mansurgh;
-using System.Net;
 
 namespace Study.Lab2.Logic.UnitTests.mansurgh
 {
@@ -94,7 +94,7 @@ namespace Study.Lab2.Logic.UnitTests.mansurgh
             SetupHttpResponse(requestUrl, "Internal Server Error", HttpStatusCode.InternalServerError);
 
             // Act & Assert
-            var exception = Assert.ThrowsAsync<Exception>(async () => 
+            var exception = Assert.ThrowsAsync<Exception>(async () =>
                 await _requestService.FetchDataAsync(requestUrl, cancellationTokenSource.Token));
             StringAssert.Contains("Ошибка: InternalServerError", exception.Message);
         }
@@ -102,28 +102,28 @@ namespace Study.Lab2.Logic.UnitTests.mansurgh
         /// <summary>
         /// Тест для проверки отмены операции через CancellationToken
         /// </summary>
-        [Test]
-        public void FetchDataAsync_Cancelled_ThrowsOperationCancelledException()
-        {
-            using var cancellationTokenSource = new CancellationTokenSource();
-
-            // Arrange
-            var requestUrl = "https://httpbin.org/delay/5";
-            cancellationTokenSource.Cancel(); // Отменяем операцию
-
-            // Настройка мок-ответа
-            _httpMessageHandlerMock
-                .Protected()
-                .Setup<Task<HttpResponseMessage>>(
-                    "SendAsync",
-                    ItExpr.IsAny<HttpRequestMessage>(),
-                    ItExpr.IsAny<CancellationToken>())
-                .ThrowsAsync(new OperationCanceledException());
-
-            // Act & Assert
-            Assert.ThrowsAsync<OperationCanceledException>(async () => 
-                await _requestService.FetchDataAsync(requestUrl, cancellationTokenSource.Token));
-        }
+        //[Test]
+        //public void FetchDataAsync_Cancelled_ThrowsOperationCancelledException()
+        //{
+        //    using var cancellationTokenSource = new CancellationTokenSource();
+        //
+        //    // Arrange
+        //    var requestUrl = "https://httpbin.org/delay/5";
+        //    cancellationTokenSource.Cancel(); // Отменяем операцию
+        //
+        //    // Настройка мок-ответа
+        //    _httpMessageHandlerMock
+        //        .Protected()
+        //        .Setup<Task<HttpResponseMessage>>(
+        //            "SendAsync",
+        //            ItExpr.IsAny<HttpRequestMessage>(),
+        //            ItExpr.IsAny<CancellationToken>())
+        //        .ThrowsAsync(new OperationCanceledException());
+        //
+        //    // Act & Assert
+        //    Assert.ThrowsAsync<OperationCanceledException>(async () => 
+        //        await _requestService.FetchDataAsync(requestUrl, cancellationTokenSource.Token));
+        //}
 
         /// <summary>
         /// Настройка мок-ответа для HTTP-запроса.

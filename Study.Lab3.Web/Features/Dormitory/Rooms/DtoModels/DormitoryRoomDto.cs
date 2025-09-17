@@ -50,7 +50,7 @@ public sealed record DormitoryRoomDto
     /// <summary>
     /// Описание комнаты
     /// </summary>
-    public string? Description { get; init; }
+    public string Description { get; init; }
 
     /// <summary>
     /// Дата создания записи

@@ -40,11 +40,11 @@ public sealed record UpdateDormitoryBuildingDto
     /// Имя управляющего
     /// </summary>
     [StringLength(100)]
-    public string? ManagerName { get; init; }
+    public string ManagerName { get; init; }
 
     /// <summary>
     /// Телефон управляющего
     /// </summary>
     [StringLength(20)]
-    public string? ManagerPhone { get; init; }
+    public string ManagerPhone { get; init; }
 }

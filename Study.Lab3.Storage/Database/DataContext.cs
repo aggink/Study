@@ -369,6 +369,28 @@ public class DataContext : DbContext
 
     #endregion
 
+    #region Formula1
+    /// <summary>
+    /// Гонщики
+    /// </summary>
+    public virtual DbSet<Models.Formula1.Driver> Drivers { get; set; }
+
+    /// <summary>
+    /// Команды
+    /// </summary>
+    public virtual DbSet<Models.Formula1.Team> Teams { get; set; }
+
+    /// <summary>
+    /// Гонки
+    /// </summary>
+    public virtual DbSet<Models.Formula1.GrandPrix> GrandPrixes { get; set; }
+
+    /// <summary>
+    /// Связь таблиц гонщики - гран-при
+    /// </summary>
+    public virtual DbSet<Models.Formula1.DriverGrandPrix> RaceResults { get; set; }
+    #endregion
+
     #region Fitness
 
     /// <summary>
@@ -461,7 +483,7 @@ public class DataContext : DbContext
     #endregion
 
     #region Photography
-    
+
     /// <summary>
     /// Клиенты фотостудии
     /// </summary>
@@ -496,7 +518,7 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<MusicCustomer> MusicCustomers { get; set; }
 
-    
+
     #endregion
 
     #region CoffeeShop
@@ -538,7 +560,7 @@ public class DataContext : DbContext
     #endregion
 
     #region Museum
-    
+
     /// <summary>
     /// Экспонаты музея
     /// </summary>
@@ -553,28 +575,28 @@ public class DataContext : DbContext
     /// Посетители музея
     /// </summary>
     public virtual DbSet<MuseumVisitor> MuseumVisitors { get; set; }
-    
+
     #endregion
-    
+
     #region Pharmacy
-    
+
     /// <summary>
     /// Медикаменты в аптеке
     /// </summary>
     public virtual DbSet<PharmacyMedication> PharmacyMedications { get; set; }
-    
+
     /// <summary>
     /// Клиенты аптеки
     /// </summary>
     public virtual DbSet<PharmacyCustomer> PharmacyCustomers { get; set; }
-    
+
     /// <summary>
     /// Рецепты на медикаменты
     /// </summary>
     public virtual DbSet<Prescription> Prescriptions { get; set; }
-    
+
     #endregion
-    
+
     #region CarDealership
 
     /// <summary>

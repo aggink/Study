@@ -31,7 +31,7 @@ public class DormitoryResident
     /// Отчество жильца
     /// </summary>
     [StringLength(50)]
-    public string? MiddleName { get; set; }
+    public string MiddleName { get; set; }
 
     /// <summary>
     /// Номер студенческого билета
@@ -57,14 +57,14 @@ public class DormitoryResident
     /// Номер телефона
     /// </summary>
     [StringLength(20)]
-    public string? PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; }
 
     /// <summary>
     /// Email адрес
     /// </summary>
     [StringLength(100)]
     [EmailAddress]
-    public string? Email { get; set; }
+    public string Email { get; set; }
 
     /// <summary>
     /// Дата заселения
@@ -86,7 +86,7 @@ public class DormitoryResident
     /// Дополнительные заметки
     /// </summary>
     [StringLength(500)]
-    public string? Notes { get; set; }
+    public string Notes { get; set; }
 
     /// <summary>
     /// Дата создания записи

@@ -24,5 +24,5 @@ public sealed record CreateDormitoryRoomDto
     public bool HasPrivateBathroom { get; init; }
 
     [StringLength(500)]
-    public string? Description { get; init; }
+    public string Description { get; init; }
 }

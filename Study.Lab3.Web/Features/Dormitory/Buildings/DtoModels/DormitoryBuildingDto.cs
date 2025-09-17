@@ -35,12 +35,12 @@ public sealed record DormitoryBuildingDto
     /// <summary>
     /// Имя управляющего
     /// </summary>
-    public string? ManagerName { get; init; }
+    public string ManagerName { get; init; }
 
     /// <summary>
     /// Телефон управляющего
     /// </summary>
-    public string? ManagerPhone { get; init; }
+    public string ManagerPhone { get; init; }
 
     /// <summary>
     /// Дата создания записи

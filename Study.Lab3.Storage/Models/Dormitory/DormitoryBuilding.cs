@@ -49,13 +49,13 @@ public class DormitoryBuilding
     /// Имя управляющего
     /// </summary>
     [StringLength(100)]
-    public string? ManagerName { get; set; }
+    public string ManagerName { get; set; }
 
     /// <summary>
     /// Телефон управляющего
     /// </summary>
     [StringLength(20)]
-    public string? ManagerPhone { get; set; }
+    public string ManagerPhone { get; set; }
 
     /// <summary>
     /// Дата создания записи

@@ -1,16 +1,16 @@
+using System.ComponentModel.DataAnnotations;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Study.Lab3.Storage.Database;
 using Study.Lab3.Web.Features.Dormitory.Buildings.DtoModels;
-using System.ComponentModel.DataAnnotations;
 
 namespace Study.Lab3.Web.Features.Dormitory.Buildings.Queries;
 
 /// <summary>
 /// Получение здания общежития по ID
 /// </summary>
-public sealed class GetBuildingByIdQuery : IRequest<DormitoryBuildingDto?>
+public sealed class GetBuildingByIdQuery : IRequest<DormitoryBuildingDto>
 {
     /// <summary>
     /// Идентификатор здания
@@ -20,7 +20,7 @@ public sealed class GetBuildingByIdQuery : IRequest<DormitoryBuildingDto?>
     public int Id { get; init; }
 }
 
-public sealed class GetBuildingByIdQueryHandler : IRequestHandler<GetBuildingByIdQuery, DormitoryBuildingDto?>
+public sealed class GetBuildingByIdQueryHandler : IRequestHandler<GetBuildingByIdQuery, DormitoryBuildingDto>
 {
     private readonly DataContext _dataContext;
 
@@ -29,7 +29,7 @@ public sealed class GetBuildingByIdQueryHandler : IRequestHandler<GetBuildingByI
         _dataContext = dataContext;
     }
 
-    public async Task<DormitoryBuildingDto?> Handle(GetBuildingByIdQuery request, CancellationToken cancellationToken)
+    public async Task<DormitoryBuildingDto> Handle(GetBuildingByIdQuery request, CancellationToken cancellationToken)
     {
         return await _dataContext.DormitoryBuildings
             .AsNoTracking()

@@ -13,7 +13,7 @@ public sealed record CreateDormitoryResidentDto
     public string LastName { get; init; } = string.Empty;
 
     [StringLength(50)]
-    public string? MiddleName { get; init; }
+    public string MiddleName { get; init; }
 
     [Required]
     [StringLength(20)]
@@ -27,11 +27,11 @@ public sealed record CreateDormitoryResidentDto
     public DateTime DateOfBirth { get; init; }
 
     [StringLength(20)]
-    public string? PhoneNumber { get; init; }
+    public string PhoneNumber { get; init; }
 
     [StringLength(100)]
     [EmailAddress]
-    public string? Email { get; init; }
+    public string Email { get; init; }
 
     [Required]
     public DateTime CheckInDate { get; init; }
@@ -39,5 +39,5 @@ public sealed record CreateDormitoryResidentDto
     public DateTime? PlannedCheckOutDate { get; init; }
 
     [StringLength(500)]
-    public string? Notes { get; init; }
+    public string Notes { get; init; }
 }

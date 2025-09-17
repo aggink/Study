@@ -50,6 +50,9 @@ using Study.Lab3.Web.Features.University.Pingpongclub.Queries;
 using Study.Lab3.Web.Features.University.ProjectActivities.Commands;
 using Study.Lab3.Web.Features.University.ProjectActivities.DtoModels;
 using Study.Lab3.Web.Features.University.ProjectActivities.Queries;
+using Study.Lab3.Web.Features.University.ScientificWork.Commands;
+using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
+using Study.Lab3.Web.Features.University.ScientificWork.Queries;
 using Study.Lab3.Web.Features.University.Sportclub.Commands;
 using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
 using Study.Lab3.Web.Features.University.Sportclub.Queries;
@@ -70,9 +73,6 @@ using Study.Lab3.Web.Features.University.TheAttendanceLog.Queries;
 using Study.Lab3.Web.Features.University.TheProfcom.Commands;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.Queries;
-using Study.Lab3.Web.Features.University.ScientificWork.Commands;
-using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
-using Study.Lab3.Web.Features.University.ScientificWork.Queries;
 using Study.Lab3.Web.Features.University.TheStudentNotes.Commands;
 using Study.Lab3.Web.Features.University.TheStudentNotes.DtoModels;
 using Study.Lab3.Web.Features.University.TheStudentNotes.Queries;
@@ -1711,6 +1711,7 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    /// <summary>
     /// Редактирование посещения
     /// </summary>
     [HttpPost(nameof(UpdateAttendanceLog), Name = nameof(UpdateAttendanceLog))]
@@ -1721,6 +1722,7 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    /// <summary>
     /// Удаление посещения
     /// </summary>
     [HttpPost(nameof(DeleteAttendanceLog), Name = nameof(DeleteAttendanceLog))]
@@ -1731,6 +1733,7 @@ public class ManageController : Controller
         return Ok();
     }
 
+    /// <summary>
     /// Получение посещения по идентификатору
     /// </summary>
     [HttpGet(nameof(GetAttendanceLogByIsn), Name = nameof(GetAttendanceLogByIsn))]
@@ -1741,6 +1744,7 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    /// <summary>
     /// Получение списка посещений
     /// </summary>
     [HttpGet(nameof(GetListAttendanceLog), Name = nameof(GetListAttendanceLog))]
@@ -1750,8 +1754,8 @@ public class ManageController : Controller
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
-    #endregion
 
+    #endregion
 
     #region StudentNotes
 
@@ -1776,6 +1780,7 @@ public class ManageController : Controller
         return Ok(result);
     }
 
+    /// <summary>
     /// Обновить существующую заметку
     /// </summary>
     [HttpPost(nameof(UpdateStudentNote), Name = nameof(UpdateStudentNote))]
