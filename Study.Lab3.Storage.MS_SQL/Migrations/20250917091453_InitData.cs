@@ -6,11 +6,31 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Study.Lab3.Storage.MS_SQL.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDatabase : Migration
+    public partial class InitData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Baristas",
+                columns: table => new
+                {
+                    IsnBarista = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Experience = table.Column<int>(type: "int", nullable: false),
+                    Specialization = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Salary = table.Column<double>(type: "float", nullable: true),
+                    HireDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Baristas", x => x.IsnBarista);
+                });
+
             migrationBuilder.CreateTable(
                 name: "BeautyClient",
                 columns: table => new
@@ -55,6 +75,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CarDealershipCustomers",
+                columns: table => new
+                {
+                    IsnCustomer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    PassportNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarDealershipCustomers", x => x.IsnCustomer);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cats",
                 columns: table => new
                 {
@@ -76,6 +115,43 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cats", x => x.IsnCat);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Coffee",
+                columns: table => new
+                {
+                    IsnCoffee = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Size = table.Column<int>(type: "int", nullable: false),
+                    CaffeineContent = table.Column<int>(type: "int", nullable: true),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Coffee", x => x.IsnCoffee);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CoffeeShops",
+                columns: table => new
+                {
+                    IsnCoffeeShop = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    WorkingHours = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Rating = table.Column<double>(type: "float", nullable: true),
+                    OpeningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CoffeeShops", x => x.IsnCoffeeShop);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,6 +191,76 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DormitoryBuildings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    FloorsCount = table.Column<int>(type: "int", nullable: false),
+                    TotalRooms = table.Column<int>(type: "int", nullable: false),
+                    BuildYear = table.Column<int>(type: "int", nullable: false),
+                    ManagerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    ManagerPhone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DormitoryBuildings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DormitoryResidents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    StudentId = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    StudentGroup = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PlannedCheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ActualCheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DormitoryResidents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DormitoryRooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoomNumber = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Floor = table.Column<int>(type: "int", nullable: false),
+                    Area = table.Column<double>(type: "float", nullable: false),
+                    MaxOccupants = table.Column<int>(type: "int", nullable: false),
+                    CurrentOccupants = table.Column<int>(type: "int", nullable: false),
+                    MonthlyRent = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    HasBalcony = table.Column<bool>(type: "bit", nullable: false),
+                    HasPrivateBathroom = table.Column<bool>(type: "bit", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DormitoryRooms", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FitnessEquipments",
                 columns: table => new
                 {
@@ -145,6 +291,21 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Genres", x => x.IsnGenre);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GrandPrixes",
+                columns: table => new
+                {
+                    IsnGrandPrix = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Winner = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Circuit = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Date = table.Column<DateOnly>(type: "date", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GrandPrixes", x => x.IsnGrandPrix);
                 });
 
             migrationBuilder.CreateTable(
@@ -209,6 +370,45 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Labs", x => x.IsnLab);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Manga",
+                columns: table => new
+                {
+                    IsnBook = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    PublicationYear = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Manga", x => x.IsnBook);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Manhua",
+                columns: table => new
+                {
+                    IsnBook = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    PublicationYear = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Manhua", x => x.IsnBook);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Manhva",
+                columns: table => new
+                {
+                    IsnBook = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    PublicationYear = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Manhva", x => x.IsnBook);
                 });
 
             migrationBuilder.CreateTable(
@@ -292,6 +492,114 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MuseumExhibits",
+                columns: table => new
+                {
+                    IsnMuseumExhibit = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    AcquisitionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EstimatedValue = table.Column<double>(type: "float", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MuseumExhibits", x => x.IsnMuseumExhibit);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MuseumVisitors",
+                columns: table => new
+                {
+                    IsnMuseumVisitor = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    VisitDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TicketType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    TicketPrice = table.Column<double>(type: "float", nullable: false),
+                    IsMember = table.Column<bool>(type: "bit", nullable: false),
+                    MembershipNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MuseumVisitors", x => x.IsnMuseumVisitor);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MusicAlbums",
+                columns: table => new
+                {
+                    IsnAlbum = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Genre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ReleaseYear = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MusicAlbums", x => x.IsnAlbum);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MusicArtists",
+                columns: table => new
+                {
+                    IsnArtist = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    BirthYear = table.Column<int>(type: "int", nullable: true),
+                    Genre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ArtistType = table.Column<int>(type: "int", nullable: false),
+                    Biography = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MusicArtists", x => x.IsnArtist);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MusicCustomers",
+                columns: table => new
+                {
+                    IsnCustomer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PreferredGenre = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MusicCustomers", x => x.IsnCustomer);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Owners",
+                columns: table => new
+                {
+                    IsnOwner = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SecondName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Owners", x => x.IsnOwner);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Patients",
                 columns: table => new
                 {
@@ -303,6 +611,163 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Patients", x => x.IsnPatient);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PetFoods",
+                columns: table => new
+                {
+                    IsnPetFood = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Brand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    TargetSpecies = table.Column<int>(type: "int", nullable: false),
+                    WeightInGrams = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Ingredients = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
+                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StockQuantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PetFoods", x => x.IsnPetFood);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pets",
+                columns: table => new
+                {
+                    IsnPet = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Species = table.Column<int>(type: "int", nullable: false),
+                    Breed = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    AgeInMonths = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pets", x => x.IsnPet);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PetToys",
+                columns: table => new
+                {
+                    IsnPetToy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Material = table.Column<int>(type: "int", nullable: false),
+                    Size = table.Column<int>(type: "int", nullable: false),
+                    TargetSpecies = table.Column<int>(type: "int", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    AgeGroup = table.Column<int>(type: "int", nullable: false),
+                    StockQuantity = table.Column<int>(type: "int", nullable: false),
+                    IsSafe = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PetToys", x => x.IsnPetToy);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PharmacyCustomers",
+                columns: table => new
+                {
+                    IsnCustomer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HasInsurance = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PharmacyCustomers", x => x.IsnCustomer);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PharmacyMedications",
+                columns: table => new
+                {
+                    IsnMedication = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Manufacturer = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    QuantityInStock = table.Column<int>(type: "int", nullable: false),
+                    RequiresPrescription = table.Column<bool>(type: "bit", nullable: false),
+                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReceiptDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PharmacyMedications", x => x.IsnMedication);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PhotographyClients",
+                columns: table => new
+                {
+                    IsnPhotographyClient = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PhotographyClients", x => x.IsnPhotographyClient);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PhotographyEquipments",
+                columns: table => new
+                {
+                    IsnPhotographyEquipment = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    Brand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    SerialNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PhotographyEquipments", x => x.IsnPhotographyEquipment);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PhotographySessions",
+                columns: table => new
+                {
+                    IsnPhotographySession = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    SessionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Duration = table.Column<int>(type: "int", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    PhotographerName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    PhotographySessionType = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    PhotoCount = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PhotographySessions", x => x.IsnPhotographySession);
                 });
 
             migrationBuilder.CreateTable(
@@ -353,6 +818,24 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Restaurants", x => x.IsnRestaurant);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceRecords",
+                columns: table => new
+                {
+                    IsnServiceRecord = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CarLicensePlate = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ServiceDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ServiceType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    MechanicName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Cost = table.Column<double>(type: "float", nullable: false),
+                    IsCompleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceRecords", x => x.IsnServiceRecord);
                 });
 
             migrationBuilder.CreateTable(
@@ -441,6 +924,20 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Teams",
+                columns: table => new
+                {
+                    IsnTeam = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    YearOfCreation = table.Column<int>(type: "int", nullable: false),
+                    EngineSupplier = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teams", x => x.IsnTeam);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tours",
                 columns: table => new
                 {
@@ -501,6 +998,26 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TravelCustomers", x => x.IsnCustomer);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vehicles",
+                columns: table => new
+                {
+                    IsnVehicle = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Brand = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    VinNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Mileage = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vehicles", x => x.IsnVehicle);
                 });
 
             migrationBuilder.CreateTable(
@@ -651,6 +1168,89 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         column: x => x.IsnMovie,
                         principalTable: "Movies",
                         principalColumn: "IsnMovie",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MuseumExhibitDetails",
+                columns: table => new
+                {
+                    IsnMuseumExhibitDetails = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnMuseumExhibit = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Origin = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Creator = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CreationYear = table.Column<int>(type: "int", nullable: true),
+                    Material = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Dimensions = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Weight = table.Column<double>(type: "float", nullable: true),
+                    HistoricalPeriod = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Condition = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MuseumExhibitDetails", x => x.IsnMuseumExhibitDetails);
+                    table.ForeignKey(
+                        name: "FK_MuseumExhibitDetails_MuseumExhibits_IsnMuseumExhibit",
+                        column: x => x.IsnMuseumExhibit,
+                        principalTable: "MuseumExhibits",
+                        principalColumn: "IsnMuseumExhibit",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cars",
+                columns: table => new
+                {
+                    IsnCar = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnOwner = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Brand = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    Mileage = table.Column<int>(type: "int", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LicensePlate = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    VinNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cars", x => x.IsnCar);
+                    table.ForeignKey(
+                        name: "FK_Cars_Owners_IsnOwner",
+                        column: x => x.IsnOwner,
+                        principalTable: "Owners",
+                        principalColumn: "IsnOwner",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Prescriptions",
+                columns: table => new
+                {
+                    IsnPrescription = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnCustomer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnMedication = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PrescriptionNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    DoctorName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Dosage = table.Column<int>(type: "int", nullable: false),
+                    Instructions = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsUsed = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Prescriptions", x => x.IsnPrescription);
+                    table.ForeignKey(
+                        name: "FK_Prescriptions_PharmacyCustomers_IsnCustomer",
+                        column: x => x.IsnCustomer,
+                        principalTable: "PharmacyCustomers",
+                        principalColumn: "IsnCustomer",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Prescriptions_PharmacyMedications_IsnMedication",
+                        column: x => x.IsnMedication,
+                        principalTable: "PharmacyMedications",
+                        principalColumn: "IsnMedication",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -976,6 +1576,61 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Drivers",
+                columns: table => new
+                {
+                    IsnDriver = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnTeam = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    CountryOfOrigin = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    GrandPrixIsnGrandPrix = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Drivers", x => x.IsnDriver);
+                    table.ForeignKey(
+                        name: "FK_Drivers_GrandPrixes_GrandPrixIsnGrandPrix",
+                        column: x => x.GrandPrixIsnGrandPrix,
+                        principalTable: "GrandPrixes",
+                        principalColumn: "IsnGrandPrix");
+                    table.ForeignKey(
+                        name: "FK_Drivers_Teams_IsnTeam",
+                        column: x => x.IsnTeam,
+                        principalTable: "Teams",
+                        principalColumn: "IsnTeam",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CarDealershipSales",
+                columns: table => new
+                {
+                    IsnSale = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnCustomer = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnVehicle = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SaleDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Discount = table.Column<double>(type: "float", nullable: false),
+                    FinalPrice = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CarDealershipSales", x => x.IsnSale);
+                    table.ForeignKey(
+                        name: "FK_CarDealershipSales_CarDealershipCustomers_IsnCustomer",
+                        column: x => x.IsnCustomer,
+                        principalTable: "CarDealershipCustomers",
+                        principalColumn: "IsnCustomer",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CarDealershipSales_Vehicles_IsnVehicle",
+                        column: x => x.IsnVehicle,
+                        principalTable: "Vehicles",
+                        principalColumn: "IsnVehicle",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Career",
                 columns: table => new
                 {
@@ -1131,6 +1786,36 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProjectActivities_Subjects_IsnSubject",
+                        column: x => x.IsnSubject,
+                        principalTable: "Subjects",
+                        principalColumn: "IsnSubject",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ScientificWorks",
+                columns: table => new
+                {
+                    IsnScientificWork = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnStudent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnSubject = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PageCount = table.Column<int>(type: "int", nullable: false),
+                    PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsPublished = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ScientificWorks", x => x.IsnScientificWork);
+                    table.ForeignKey(
+                        name: "FK_ScientificWorks_Students_IsnStudent",
+                        column: x => x.IsnStudent,
+                        principalTable: "Students",
+                        principalColumn: "IsnStudent",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ScientificWorks_Subjects_IsnSubject",
                         column: x => x.IsnSubject,
                         principalTable: "Subjects",
                         principalColumn: "IsnSubject",
@@ -1397,6 +2082,60 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RaceResults",
+                columns: table => new
+                {
+                    IsnDriver = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsnGrandPrix = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    StartPosition = table.Column<int>(type: "int", nullable: false),
+                    Position = table.Column<int>(type: "int", nullable: false),
+                    PointsEarned = table.Column<int>(type: "int", nullable: false),
+                    DidNotFinish = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RaceResults", x => new { x.IsnDriver, x.IsnGrandPrix });
+                    table.ForeignKey(
+                        name: "FK_RaceResults_Drivers_IsnGrandPrix",
+                        column: x => x.IsnGrandPrix,
+                        principalTable: "Drivers",
+                        principalColumn: "IsnDriver",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_RaceResults_GrandPrixes_IsnDriver",
+                        column: x => x.IsnDriver,
+                        principalTable: "GrandPrixes",
+                        principalColumn: "IsnGrandPrix",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WorkReferences",
+                columns: table => new
+                {
+                    IsnReference = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReferencedWorkId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SourceWorkId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReferenceDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WorkReferences", x => x.IsnReference);
+                    table.ForeignKey(
+                        name: "FK_WorkReferences_ScientificWorks_ReferencedWorkId",
+                        column: x => x.ReferencedWorkId,
+                        principalTable: "ScientificWorks",
+                        principalColumn: "IsnScientificWork",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_WorkReferences_ScientificWorks_SourceWorkId",
+                        column: x => x.SourceWorkId,
+                        principalTable: "ScientificWorks",
+                        principalColumn: "IsnScientificWork",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
                 {
@@ -1577,6 +2316,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 column: "IsnBeautyService");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CarDealershipSales_IsnCustomer",
+                table: "CarDealershipSales",
+                column: "IsnCustomer");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CarDealershipSales_IsnVehicle",
+                table: "CarDealershipSales",
+                column: "IsnVehicle");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Career_IsnStudent",
                 table: "Career",
                 column: "IsnStudent");
@@ -1585,6 +2334,22 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "IX_Career_IsnSubject",
                 table: "Career",
                 column: "IsnSubject");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cars_IsnOwner",
+                table: "Cars",
+                column: "IsnOwner",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Drivers_GrandPrixIsnGrandPrix",
+                table: "Drivers",
+                column: "GrandPrixIsnGrandPrix");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Drivers_IsnTeam",
+                table: "Drivers",
+                column: "IsnTeam");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ExamRegistrations_IsnExam",
@@ -1668,6 +2433,12 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 column: "IsnGenre");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MuseumExhibitDetails_IsnMuseumExhibit",
+                table: "MuseumExhibitDetails",
+                column: "IsnMuseumExhibit",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_IsnMenuItem",
                 table: "OrderItems",
                 column: "IsnMenuItem");
@@ -1703,6 +2474,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 column: "IsnUser");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Prescriptions_IsnCustomer",
+                table: "Prescriptions",
+                column: "IsnCustomer");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Prescriptions_IsnMedication",
+                table: "Prescriptions",
+                column: "IsnMedication");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Profcoms_IsnStudent",
                 table: "Profcoms",
                 column: "IsnStudent");
@@ -1723,9 +2504,30 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 column: "IsnSubject");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RaceResults_IsnDriver_IsnGrandPrix",
+                table: "RaceResults",
+                columns: new[] { "IsnDriver", "IsnGrandPrix" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RaceResults_IsnGrandPrix",
+                table: "RaceResults",
+                column: "IsnGrandPrix",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RestaurantOrders_IsnRestaurant",
                 table: "RestaurantOrders",
                 column: "IsnRestaurant");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScientificWorks_IsnStudent",
+                table: "ScientificWorks",
+                column: "IsnStudent");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScientificWorks_IsnSubject",
+                table: "ScientificWorks",
+                column: "IsnSubject");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Seats_IsnHall",
@@ -1855,6 +2657,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 unique: true,
                 filter: "[IsnProfilePicture] IS NOT NULL");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkReferences_ReferencedWorkId",
+                table: "WorkReferences",
+                column: "ReferencedWorkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_WorkReferences_SourceWorkId",
+                table: "WorkReferences",
+                column: "SourceWorkId");
+
             migrationBuilder.AddForeignKey(
                 name: "FK_ImageEmbeds_Images_IsnImage",
                 table: "ImageEmbeds",
@@ -1900,10 +2712,34 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "AuthorBooks");
 
             migrationBuilder.DropTable(
+                name: "Baristas");
+
+            migrationBuilder.DropTable(
                 name: "BeautyAppointment");
 
             migrationBuilder.DropTable(
+                name: "CarDealershipSales");
+
+            migrationBuilder.DropTable(
                 name: "Career");
+
+            migrationBuilder.DropTable(
+                name: "Cars");
+
+            migrationBuilder.DropTable(
+                name: "Coffee");
+
+            migrationBuilder.DropTable(
+                name: "CoffeeShops");
+
+            migrationBuilder.DropTable(
+                name: "DormitoryBuildings");
+
+            migrationBuilder.DropTable(
+                name: "DormitoryResidents");
+
+            migrationBuilder.DropTable(
+                name: "DormitoryRooms");
 
             migrationBuilder.DropTable(
                 name: "ExamResults");
@@ -1927,6 +2763,15 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "Kvns");
 
             migrationBuilder.DropTable(
+                name: "Manga");
+
+            migrationBuilder.DropTable(
+                name: "Manhua");
+
+            migrationBuilder.DropTable(
+                name: "Manhva");
+
+            migrationBuilder.DropTable(
                 name: "Materials");
 
             migrationBuilder.DropTable(
@@ -1936,10 +2781,43 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "MovieGenres");
 
             migrationBuilder.DropTable(
+                name: "MuseumExhibitDetails");
+
+            migrationBuilder.DropTable(
+                name: "MuseumVisitors");
+
+            migrationBuilder.DropTable(
+                name: "MusicAlbums");
+
+            migrationBuilder.DropTable(
+                name: "MusicArtists");
+
+            migrationBuilder.DropTable(
+                name: "MusicCustomers");
+
+            migrationBuilder.DropTable(
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
                 name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "PetFoods");
+
+            migrationBuilder.DropTable(
+                name: "Pets");
+
+            migrationBuilder.DropTable(
+                name: "PetToys");
+
+            migrationBuilder.DropTable(
+                name: "PhotographyClients");
+
+            migrationBuilder.DropTable(
+                name: "PhotographyEquipments");
+
+            migrationBuilder.DropTable(
+                name: "PhotographySessions");
 
             migrationBuilder.DropTable(
                 name: "Pingpongclub");
@@ -1948,13 +2826,22 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "Platforms");
 
             migrationBuilder.DropTable(
+                name: "Prescriptions");
+
+            migrationBuilder.DropTable(
                 name: "Profcoms");
 
             migrationBuilder.DropTable(
                 name: "ProjectActivities");
 
             migrationBuilder.DropTable(
+                name: "RaceResults");
+
+            migrationBuilder.DropTable(
                 name: "ServiceOrders");
+
+            migrationBuilder.DropTable(
+                name: "ServiceRecords");
 
             migrationBuilder.DropTable(
                 name: "Sportclub");
@@ -1990,6 +2877,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "TravelCustomers");
 
             migrationBuilder.DropTable(
+                name: "WorkReferences");
+
+            migrationBuilder.DropTable(
                 name: "Cats");
 
             migrationBuilder.DropTable(
@@ -2014,6 +2904,15 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "BeautyService");
 
             migrationBuilder.DropTable(
+                name: "CarDealershipCustomers");
+
+            migrationBuilder.DropTable(
+                name: "Vehicles");
+
+            migrationBuilder.DropTable(
+                name: "Owners");
+
+            migrationBuilder.DropTable(
                 name: "ExamRegistrations");
 
             migrationBuilder.DropTable(
@@ -2026,6 +2925,9 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "Genres");
 
             migrationBuilder.DropTable(
+                name: "MuseumExhibits");
+
+            migrationBuilder.DropTable(
                 name: "MenuItems");
 
             migrationBuilder.DropTable(
@@ -2036,6 +2938,15 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "PharmacyCustomers");
+
+            migrationBuilder.DropTable(
+                name: "PharmacyMedications");
+
+            migrationBuilder.DropTable(
+                name: "Drivers");
 
             migrationBuilder.DropTable(
                 name: "Masters");
@@ -2062,16 +2973,22 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "Sessions");
 
             migrationBuilder.DropTable(
+                name: "ScientificWorks");
+
+            migrationBuilder.DropTable(
                 name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "Exams");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "Menus");
 
             migrationBuilder.DropTable(
-                name: "Menus");
+                name: "GrandPrixes");
+
+            migrationBuilder.DropTable(
+                name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "SweetTypes");
@@ -2083,13 +3000,16 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                 name: "Movies");
 
             migrationBuilder.DropTable(
+                name: "Students");
+
+            migrationBuilder.DropTable(
                 name: "Subjects");
 
             migrationBuilder.DropTable(
-                name: "Groups");
+                name: "Restaurants");
 
             migrationBuilder.DropTable(
-                name: "Restaurants");
+                name: "Groups");
 
             migrationBuilder.DropTable(
                 name: "Images");

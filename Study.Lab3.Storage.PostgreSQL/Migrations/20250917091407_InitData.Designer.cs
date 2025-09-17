@@ -12,15 +12,15 @@ using Study.Lab3.Storage.Database;
 namespace Study.Lab3.Storage.PostgreSQL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250621181407_AddAsianComics")]
-    partial class AddAsianComics
+    [Migration("20250917091407_InitData")]
+    partial class InitData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -761,6 +761,168 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("CoffeeShops");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Dormitory.DormitoryBuilding", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<int>("BuildYear")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("FloorsCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ManagerName")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("ManagerPhone")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("TotalRooms")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DormitoryBuildings");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Dormitory.DormitoryResident", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("ActualCheckOutDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("CheckInDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime?>("PlannedCheckOutDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("StudentGroup")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("StudentId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DormitoryResidents");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Dormitory.DormitoryRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Area")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("CurrentOccupants")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("Floor")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("HasBalcony")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("HasPrivateBathroom")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("MaxOccupants")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("MonthlyRent")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("RoomNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DormitoryRooms");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Fitness.FitnessEquipment", b =>
                 {
                     b.Property<Guid>("IsnEquipment")
@@ -907,6 +1069,117 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasKey("IsnTrainer");
 
                     b.ToTable("Trainers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Driver", b =>
+                {
+                    b.Property<Guid>("IsnDriver")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Age")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CountryOfOrigin")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<Guid?>("GrandPrixIsnGrandPrix")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnTeam")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.HasKey("IsnDriver");
+
+                    b.HasIndex("GrandPrixIsnGrandPrix");
+
+                    b.HasIndex("IsnTeam");
+
+                    b.ToTable("Drivers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.DriverGrandPrix", b =>
+                {
+                    b.Property<Guid>("IsnDriver")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnGrandPrix")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("DidNotFinish")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("PointsEarned")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("StartPosition")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnDriver", "IsnGrandPrix");
+
+                    b.HasIndex("IsnGrandPrix")
+                        .IsUnique();
+
+                    b.HasIndex("IsnDriver", "IsnGrandPrix");
+
+                    b.ToTable("RaceResults");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.GrandPrix", b =>
+                {
+                    b.Property<Guid>("IsnGrandPrix")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Circuit")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Winner")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IsnGrandPrix");
+
+                    b.ToTable("GrandPrixes");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Team", b =>
+                {
+                    b.Property<Guid>("IsnTeam")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("EngineSupplier")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("YearOfCreation")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnTeam");
+
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
@@ -2931,6 +3204,42 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("ProjectActivities");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ScientificWork", b =>
+                {
+                    b.Property<Guid>("IsnScientificWork")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsPublished")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("PageCount")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("PublicationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("IsnScientificWork");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("ScientificWorks");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.Property<Guid>("IsnSportclub")
@@ -3111,6 +3420,30 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.HasIndex("IsnTeacher", "IsnSubject");
 
                     b.ToTable("TeacherSubjects");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.WorkReference", b =>
+                {
+                    b.Property<Guid>("IsnReference")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("ReferenceDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("ReferencedWorkId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("SourceWorkId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("IsnReference");
+
+                    b.HasIndex("ReferencedWorkId");
+
+                    b.HasIndex("SourceWorkId");
+
+                    b.ToTable("WorkReferences");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.Master", b =>
@@ -3334,6 +3667,42 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Seat");
 
                     b.Navigation("Session");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Driver", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Formula1.GrandPrix", "GrandPrix")
+                        .WithMany("Drivers")
+                        .HasForeignKey("GrandPrixIsnGrandPrix");
+
+                    b.HasOne("Study.Lab3.Storage.Models.Formula1.Team", "Team")
+                        .WithMany("Drivers")
+                        .HasForeignKey("IsnTeam")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("GrandPrix");
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.DriverGrandPrix", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.Formula1.GrandPrix", "GrandPrix")
+                        .WithMany("DriverGrandPrixes")
+                        .HasForeignKey("IsnDriver")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.Formula1.Driver", "Driver")
+                        .WithOne("GrandPrixDrivers")
+                        .HasForeignKey("Study.Lab3.Storage.Models.Formula1.DriverGrandPrix", "IsnGrandPrix")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Driver");
+
+                    b.Navigation("GrandPrix");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Game", b =>
@@ -3807,6 +4176,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.ScientificWork", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("ScientificWorks")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("ScientificWorks")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
@@ -3905,6 +4293,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Teacher");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.WorkReference", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.ScientificWork", "ReferencedWork")
+                        .WithMany()
+                        .HasForeignKey("ReferencedWorkId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.ScientificWork", "SourceWork")
+                        .WithMany()
+                        .HasForeignKey("SourceWorkId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ReferencedWork");
+
+                    b.Navigation("SourceWork");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.Workshop.ServiceOrder", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.Workshop.Master", "Master")
@@ -3981,6 +4388,23 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.Cinema.Session", b =>
                 {
                     b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Driver", b =>
+                {
+                    b.Navigation("GrandPrixDrivers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.GrandPrix", b =>
+                {
+                    b.Navigation("DriverGrandPrixes");
+
+                    b.Navigation("Drivers");
+                });
+
+            modelBuilder.Entity("Study.Lab3.Storage.Models.Formula1.Team", b =>
+                {
+                    b.Navigation("Drivers");
                 });
 
             modelBuilder.Entity("Study.Lab3.Storage.Models.GameStore.Developer", b =>
@@ -4143,6 +4567,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.Navigation("ProjectActivitiess");
 
+                    b.Navigation("ScientificWorks");
+
                     b.Navigation("Sportclubs");
 
                     b.Navigation("StudentLabs");
@@ -4171,6 +4597,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Profcoms");
 
                     b.Navigation("ProjectActivitiess");
+
+                    b.Navigation("ScientificWorks");
 
                     b.Navigation("Sportclubs");
 
