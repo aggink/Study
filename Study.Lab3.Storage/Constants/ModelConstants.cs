@@ -1687,11 +1687,7 @@ public static class ModelConstants
         /// <summary>
         /// Минимальная стоимость фотосессии
         /// </summary>
- tasks/idb-23-03/10/add-lab-3
-        public const double WeightMax = 15.0;
-
         public const double MinPrice = 100.0;
- master
 
         /// <summary>
         /// Максимальная стоимость фотосессии
@@ -1946,16 +1942,12 @@ public static class ModelConstants
         public const int WeightMin = 10;
 
         /// <summary>
- tasks/idb-23-03/10/add-lab-3
         /// Максимальная длина описания блюда
         /// </summary>
         public const int Description = 1000;
 
         /// <summary>
-        /// Максимальная длина категории
-
         /// Максимальный вес в граммах
- master
         /// </summary>
         public const int WeightMax = 50000;
 
@@ -1993,16 +1985,12 @@ public static class ModelConstants
         public const int Name = 200;
 
         /// <summary>
- tasks/idb-23-03/10/add-lab-3
         /// Максимальная длина телефона клиента
         /// </summary>
         public const int CustomerPhone = 20;
 
         /// <summary>
-        /// Максимальная длина статуса
-
         /// Максимальная длина цвета
- master
         /// </summary>
         public const int Color = 50;
 
@@ -2032,15 +2020,12 @@ public static class ModelConstants
         public const int StockMax = 1000;
     }
 
- tasks/idb-23-03/10/add-lab-3
-    public static class BeautyClient
 
     #endregion
 
     #region Museum
 
     public static class MuseumExhibit
- master
     {
         public const int Name = 100;
         public const int Description = 500;
@@ -2149,16 +2134,8 @@ public static class ModelConstants
         /// <summary>
         /// Максимальная длина номера рецепта
         /// </summary>
- tasks/idb-23-03/10/add-lab-3
-        public const int MaxPartValue = 100;
-    }
-
-    public static class Master
-    {
-
         public const int NumberMaxLength = 20;
 
- master
         /// <summary>
         /// Максимальная длина имени врача
         /// </summary>
@@ -2293,20 +2270,6 @@ public static class ModelConstants
         public const double MaxFinalPrice = 10000000;
     }
 
- tasks/idb-23-03/10/add-lab-3
-    public static class SweetType
-    {
-        /// <summary>
-        /// Минимальное наименование типа конфеты
-        /// </summary>
-        public const int MinNameLenght = 1;
-
-        /// <summary>
-        /// Максимальное наименование типа конфеты
-        /// </summary>
-        public const int MaxNameLenght = 256;
-    }
-
     public static class Driver
     {
         /// <summary>
@@ -2393,8 +2356,6 @@ public static class ModelConstants
         /// </summary>
         public const int MaxPointsEarned = 25;
     }
-}
 
     #endregion
 }
- master

@@ -16,10 +16,7 @@ using Study.Lab3.Storage.Models.Photography;
 using Study.Lab3.Storage.Models.Restaurants;
 using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
- tasks/idb-23-03/10/add-lab-3
-
 using Study.Lab3.Storage.Models.TravelAgency;
- master
 using Study.Lab3.Storage.Models.University;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
@@ -364,7 +361,6 @@ public class DataContext : DbContext
 
     #endregion
 
- tasks/idb-23-03/10/add-lab-3
     #region Formula1
     /// <summary>
     /// Гонщики
@@ -386,7 +382,6 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Models.Formula1.DriverGrandPrix> RaceResults { get; set; }
     #endregion
-}
 
     #region Fitness
 
@@ -480,7 +475,7 @@ public class DataContext : DbContext
     #endregion
 
     #region Photography
-    
+
     /// <summary>
     /// Клиенты фотостудии
     /// </summary>
@@ -515,7 +510,7 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<MusicCustomer> MusicCustomers { get; set; }
 
-    
+
     #endregion
 
     #region CoffeeShop
@@ -557,7 +552,7 @@ public class DataContext : DbContext
     #endregion
 
     #region Museum
-    
+
     /// <summary>
     /// Экспонаты музея
     /// </summary>
@@ -572,28 +567,28 @@ public class DataContext : DbContext
     /// Посетители музея
     /// </summary>
     public virtual DbSet<MuseumVisitor> MuseumVisitors { get; set; }
-    
+
     #endregion
-    
+
     #region Pharmacy
-    
+
     /// <summary>
     /// Медикаменты в аптеке
     /// </summary>
     public virtual DbSet<PharmacyMedication> PharmacyMedications { get; set; }
-    
+
     /// <summary>
     /// Клиенты аптеки
     /// </summary>
     public virtual DbSet<PharmacyCustomer> PharmacyCustomers { get; set; }
-    
+
     /// <summary>
     /// Рецепты на медикаменты
     /// </summary>
     public virtual DbSet<Prescription> Prescriptions { get; set; }
-    
+
     #endregion
-    
+
     #region CarDealership
 
     /// <summary>
@@ -613,4 +608,3 @@ public class DataContext : DbContext
 
     #endregion
 }
- master

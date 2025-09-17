@@ -1,11 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Study.Lab3.Web.Features.Formula1.Drivers.Commands;
-using Study.Lab3.Web.Features.Formula1.Drivers.DtoModels;
-using Study.Lab3.Web.Features.Formula1.Drivers.Queries;
-using Study.Lab3.Web.Features.Formula1.Teams.Commands;
-using Study.Lab3.Web.Features.Formula1.Teams.DtoModels;
-using Study.Lab3.Web.Features.Formula1.Teams.Queries;
 using Study.Lab3.Web.Features.Library.AuthorBooks.Commands;
 using Study.Lab3.Web.Features.Library.AuthorBooks.DtoModels;
 using Study.Lab3.Web.Features.Library.AuthorBooks.Queries;
@@ -1560,17 +1554,6 @@ public class ManageController : Controller
     }
     #endregion
 
- tasks/idb-23-03/10/add-lab-3
-    #region Formula1
-    /// <summary>
-    /// Создание гонщика
-    /// </summary>
-    /// <param name="command">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Идентификатор гонщика</returns>
-    [HttpPost(nameof(CreateDriver), Name = nameof(CreateDriver))]
-    public async Task<ActionResult<Guid>> CreateDriver(CreateDriverCommand command,
-
     #region ProjectActivitiesActivity
 
     /// <summary>
@@ -1641,6 +1624,7 @@ public class ManageController : Controller
 
     #endregion
 
+
     #region Pingpongclub
     /// <summary>
     /// Создание спортивного клуба
@@ -1648,7 +1632,6 @@ public class ManageController : Controller
     [HttpPost(nameof(CreatePingpongclub), Name = nameof(CreatePingpongclub))]
 
     public async Task<ActionResult<Guid>> CreatePingpongclub([FromBody] CreatePingpongclubCommand command,
- master
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -1656,20 +1639,10 @@ public class ManageController : Controller
     }
 
     /// <summary>
- tasks/idb-23-03/10/add-lab-3
-    /// Редактирование гонщика
-    /// </summary>
-    /// <param name="command">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Идентификатор гонщика</returns>
-    [HttpPost(nameof(UpdateDriver), Name = nameof(UpdateDriver))]
-    public async Task<ActionResult<Guid>> UpdateDriver(UpdateDriverCommand command,
-
     /// Редактирование спортивного клуба
     /// </summary>
     [HttpPost(nameof(UpdatePingpongclub), Name = nameof(UpdatePingpongclub))]
     public async Task<ActionResult<Guid>> UpdatePingpongclub([FromBody] UpdatePingpongclubCommand command,
- master
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -1677,20 +1650,10 @@ public class ManageController : Controller
     }
 
     /// <summary>
-tasks/idb-23-03/10/add-lab-3
-    /// Удаление гонщика
-    /// </summary>
-    /// <param name="command">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Идентификатор гонщика</returns>
-    [HttpPost(nameof(DeleteDriver), Name = nameof(DeleteDriver))]
-    public async Task<ActionResult<Guid>> DeleteDriver(DeleteDriverCommand command,
-
     /// Удаление спортивного клуба
     /// </summary>
     [HttpPost(nameof(DeletePingpongclub), Name = nameof(DeletePingpongclub))]
     public async Task<ActionResult> DeletePingpongclub([FromQuery] DeletePingpongclubCommand command,
- master
         CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
@@ -1698,15 +1661,6 @@ tasks/idb-23-03/10/add-lab-3
     }
 
     /// <summary>
-tasks/idb-23-03/10/add-lab-3
-    /// Получение списка гонщиков
-    /// </summary>
-    /// <param name="query">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Список гонщиков</returns>
-    [HttpGet(nameof(GetListDrivers), Name = nameof(GetListDrivers))]
-    public async Task<ActionResult<DriverItemDto[]>> GetListDrivers([FromQuery] GetListDriversQuery query,
-
     /// Получение соревновательной деятельности по идентификатору
     /// </summary>
     [HttpGet(nameof(GetPingpongclubByIsn), Name = nameof(GetPingpongclubByIsn))]
@@ -1722,7 +1676,6 @@ tasks/idb-23-03/10/add-lab-3
     /// </summary>
     [HttpGet(nameof(GetPingpongclubWithDetails), Name = nameof(GetPingpongclubWithDetails))]
     public async Task<ActionResult<PingpongclubWithDetailsDto>> GetPingpongclubWithDetails([FromQuery] GetPingpongclubWithDetailsQuery query,
- master
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
@@ -1730,35 +1683,15 @@ tasks/idb-23-03/10/add-lab-3
     }
 
     /// <summary>
- tasks/idb-23-03/10/add-lab-3
-    /// Получение данных гонщика
-    /// </summary>
-    /// <param name="query">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Данные гонщика</returns>
-    [HttpGet(nameof(GetDriverByIsn), Name = nameof(GetDriverByIsn))]
-    public async Task<ActionResult<DriverDto>> GetDriverByIsn(GetDriverByIsnQuery query,
-
     /// Получение списка соревновательной деятельности
     /// </summary>
     [HttpGet(nameof(GetListPingpongclub), Name = nameof(GetListPingpongclub))]
     public async Task<ActionResult<PingpongclubDto[]>> GetListPingpongclub([FromQuery] GetListPingpongclubQuery query,
- master
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
-
- tasks/idb-23-03/10/add-lab-3
-    /// <summary>
-    /// Создание команды
-    /// </summary>
-    /// <param name="command">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Идентификатор команды</returns>
-    [HttpPost(nameof(CreateTeam), Name = nameof(CreateTeam))]
-    public async Task<ActionResult<Guid>> CreateTeam(CreateTeamCommand command, CancellationToken cancellationToken)
 
     #endregion
 
@@ -1770,68 +1703,38 @@ tasks/idb-23-03/10/add-lab-3
     [HttpPost(nameof(CreateAttendanceLog), Name = nameof(CreateAttendanceLog))]
     public async Task<ActionResult<Guid>> CreateAttendanceLog([FromBody] CreateAttendanceLogCommand command,
         CancellationToken cancellationToken)
- master
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
- tasks/idb-23-03/10/add-lab-3
-    /// Редактирование данных команды
-    /// </summary>
-    /// <param name="command">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Идентификатор команды</returns>
-    [HttpPost(nameof(UpdateTeam), Name = nameof(UpdateTeam))]
-    public async Task<ActionResult<Guid>> UpdateTeam(UpdateTeamCommand command, CancellationToken cancellationToken)
-
     /// Редактирование посещения
     /// </summary>
     [HttpPost(nameof(UpdateAttendanceLog), Name = nameof(UpdateAttendanceLog))]
     public async Task<ActionResult<Guid>> UpdateAttendanceLog([FromBody] UpdateAttendanceLogCommand command,
         CancellationToken cancellationToken)
- master
     {
         var result = await _mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 
     /// <summary>
- tasks/idb-23-03/10/add-lab-3
-    /// Удаление команды
-    /// </summary>
-    /// <param name="command">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    [HttpPost(nameof(DeleteTeam), Name = nameof(DeleteTeam))]
-    public async Task<ActionResult<Guid>> DeleteTeam(DeleteTeamCommand command, CancellationToken cancellationToken)
-
     /// Удаление посещения
     /// </summary>
     [HttpPost(nameof(DeleteAttendanceLog), Name = nameof(DeleteAttendanceLog))]
     public async Task<ActionResult> DeleteAttendanceLog([FromQuery] DeleteAttendanceLogCommand command,
         CancellationToken cancellationToken)
- master
     {
         await _mediator.Send(command, cancellationToken);
         return Ok();
     }
 
     /// <summary>
- tasks/idb-23-03/10/add-lab-3
-    /// Получение списка команд
-    /// </summary>
-    /// <param name="query">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Список команд</returns>
-    [HttpGet(nameof(GetListTeams), Name = nameof(GetListTeams))]
-    public async Task<ActionResult<TeamItemDto[]>> GetListTeams([FromQuery] GetListTeamsQuery query,
-
     /// Получение посещения по идентификатору
     /// </summary>
     [HttpGet(nameof(GetAttendanceLogByIsn), Name = nameof(GetAttendanceLogByIsn))]
     public async Task<ActionResult<AttendanceLogDto>> GetAttendanceLogByIsn([FromQuery] GetAttendanceLogByIsnQuery query,
- master
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
@@ -1839,30 +1742,17 @@ tasks/idb-23-03/10/add-lab-3
     }
 
     /// <summary>
- tasks/idb-23-03/10/add-lab-3
-    /// Получение данных команды
-    /// </summary>
-    /// <param name="query">Dto запроса</param>
-    /// <param name="cancellationToken">Токен отмены</param>
-    /// <returns>Данные команды</returns>
-    [HttpGet(nameof(GetTeamByIsn), Name = nameof(GetTeamByIsn))]
-    public async Task<ActionResult<TeamDto>> GetTeamByIsn(GetTeamByIsnQuery query,
-
     /// Получение списка посещений
     /// </summary>
     [HttpGet(nameof(GetListAttendanceLog), Name = nameof(GetListAttendanceLog))]
     public async Task<ActionResult<AttendanceLogDto[]>> GetListAttendanceLog([FromQuery] GetListAttendanceLogQuery query,
- master
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
- tasks/idb-23-03/10/add-lab-3
     #endregion
 
-
-    #endregion
 
     #region StudentNotes
 
@@ -2004,6 +1894,4 @@ tasks/idb-23-03/10/add-lab-3
         return Ok(result);
     }
     #endregion
-
- master
 }
