@@ -90,9 +90,9 @@ public class ServerRequestServiceTests
         _mockRequestService
             .Setup(s => s.FetchDataAsync(url, token))
             .Callback(() => cts.Cancel())
-            .ThrowsAsync(new OperationCanceledException(token));
+            .ThrowsAsync(new TaskCanceledException("The operation was canceled.", new OperationCanceledException(token)));
 
-        var exception = Assert.ThrowsAsync<OperationCanceledException>(async () =>
+        var exception = Assert.ThrowsAsync<TaskCanceledException>(async () =>
             await _serverRequestService.CatGetFactsAsync(token));
 
         Assert.That(exception.CancellationToken, Is.EqualTo(token));

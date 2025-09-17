@@ -87,6 +87,9 @@ public class Subject
     [InverseProperty(nameof(AttendanceLog.Subject))]
     public virtual ICollection<AttendanceLog> AttendanceLogs { get; set; }
 
+
+    [InverseProperty(nameof(ScientificWork.Subject))]
+    public virtual ICollection<ScientificWork> ScientificWorks { get; set; }
     /// <summary>
     /// Оценки
     /// </summary>

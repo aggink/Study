@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Study.Lab3.Storage.Models.AsianComics;
 using Study.Lab3.Storage.Models.BeautySalon;
 using Study.Lab3.Storage.Models.CarDealership;
 using Study.Lab3.Storage.Models.CarService;
@@ -18,6 +19,7 @@ using Study.Lab3.Storage.Models.Shelter;
 using Study.Lab3.Storage.Models.Sweets;
 using Study.Lab3.Storage.Models.TravelAgency;
 using Study.Lab3.Storage.Models.University;
+using Study.Lab3.Storage.Models.Dormitory;
 using Customer = Study.Lab3.Storage.Models.Cinema.Customer;
 using ShelterCustomer = Study.Lab3.Storage.Models.Shelter.Customer;
 
@@ -172,6 +174,12 @@ public class DataContext : DbContext
     public virtual DbSet<StudentLab> StudentLab { get; set; }
 
     /// <summary>
+    /// Научная работа
+    /// </summary>
+    public DbSet<ScientificWork> ScientificWorks { get; set; }
+
+    public DbSet<WorkReference> WorkReferences { get; set; }
+
     /// Посещение
     /// </summary>
     public virtual DbSet<AttendanceLog> TheAttendanceLog { get; set; }
@@ -605,6 +613,44 @@ public class DataContext : DbContext
     /// Продажи автомобилей
     /// </summary>
     public virtual DbSet<CarDealershipSale> CarDealershipSales { get; set; }
+
+    #endregion
+
+    #region AsianComics
+
+    /// <summary>
+    /// манга
+    /// </summary>
+    public virtual DbSet<Manga> Manga { get; set; }
+
+    /// <summary>
+    /// манхва
+    /// </summary>
+    public virtual DbSet<Manhva> Manhva { get; set; }
+
+    /// <summary>
+    /// маньхуа
+    /// </summary>
+    public virtual DbSet<Manhua> Manhua { get; set; }
+
+    #endregion
+
+    #region Dormitory
+
+    /// <summary>
+    /// Здания общежитий
+    /// </summary>
+    public virtual DbSet<DormitoryBuilding> DormitoryBuildings { get; set; }
+
+    /// <summary>
+    /// Комнаты в общежитиях
+    /// </summary>
+    public virtual DbSet<DormitoryRoom> DormitoryRooms { get; set; }
+
+    /// <summary>
+    /// Жильцы общежитий
+    /// </summary>
+    public virtual DbSet<DormitoryResident> DormitoryResidents { get; set; }
 
     #endregion
 }
