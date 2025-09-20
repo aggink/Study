@@ -41,7 +41,7 @@ public class ServerRequestServiceTests
         var exception = Assert.Throws<Exception>(() => _serverRequestService.GetRandomPost());
         Assert.That(exception.Message, Is.EqualTo("Post not found"));
     }
-    
+
     [Test]
     public void GetRandomPost_DeserializationError_ReturnsFormattedJsonResponse()
     {
@@ -59,7 +59,7 @@ public class ServerRequestServiceTests
         // Assert
         Assert.That(result, Is.EqualTo("Formatted error: " + invalidJsonResponse));
     }
-    
+
     [Test]
     public void GetCatFact_ErrorResponse_ThrowsException()
     {
@@ -76,7 +76,7 @@ public class ServerRequestServiceTests
         var exception = Assert.Throws<Exception>(() => _serverRequestService.GetCatFact());
         Assert.That(exception.Message, Is.EqualTo("Fact not found"));
     }
-    
+
     [Test]
     public void GetRandomPostAsync_ErrorResponse_ThrowsException()
     {
@@ -91,7 +91,7 @@ public class ServerRequestServiceTests
         var ex = Assert.ThrowsAsync<Exception>(async () => await _serverRequestService.GetRandomPostAsync());
         Assert.That(ex.Message, Is.EqualTo("Async Post error"));
     }
-    
+
     [Test]
     public void GetCatFactAsync_ErrorResponse_ThrowsException()
     {
@@ -113,14 +113,14 @@ public class ServerRequestServiceTests
     {
         // Arrange
         using var cts = new CancellationTokenSource();
-        
+
         _mockRequestService.Setup(x => x.FetchDataAsync(It.IsAny<string>(), null, cts.Token))
-            .ThrowsAsync(new OperationCanceledException(cts.Token));
+            .ThrowsAsync(new TaskCanceledException("The operation was canceled.", new OperationCanceledException(cts.Token)));
 
         cts.Cancel();
 
         // Act & Assert
-        Assert.ThrowsAsync<OperationCanceledException>(async () =>
+        Assert.ThrowsAsync<TaskCanceledException>(async () =>
             await _serverRequestService.GetCatFactAsync(cts.Token));
     }
 
@@ -134,12 +134,12 @@ public class ServerRequestServiceTests
 
         _mockRequestService.Setup(x => x.FetchDataAsync(
                 It.Is<string>(s => s.Contains($"q={city}")), null, cts.Token))
-            .ThrowsAsync(new OperationCanceledException(cts.Token));
+            .ThrowsAsync(new TaskCanceledException("The operation was canceled.", new OperationCanceledException(cts.Token)));
 
         cts.Cancel();
 
         // Act & Assert
-        Assert.ThrowsAsync<OperationCanceledException>(async () =>
+        Assert.ThrowsAsync<TaskCanceledException>(async () =>
             await _serverRequestService.GetWeatherInfoAsync(city, cts.Token));
     }
 }

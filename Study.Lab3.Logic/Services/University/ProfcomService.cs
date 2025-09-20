@@ -34,7 +34,7 @@ public sealed class ProfcomService : IProfcomService
             throw new BusinessLogicException("Нельзя провести мероприятие будущим числом");
         }
 
-        var existingProfcom = await dataContext.TheProfcom
+        var existingProfcom = await dataContext.Profcoms
             .FirstOrDefaultAsync(x =>
                 x.IsnStudent == profcom.IsnStudent &&
                 x.IsnSubject == profcom.IsnSubject &&
@@ -49,7 +49,7 @@ public sealed class ProfcomService : IProfcomService
 
         if (profcom.IsnProfcom != Guid.Empty)
         {
-            var originalProfcom = await dataContext.TheProfcom
+            var originalProfcom = await dataContext.Profcoms
                 .FirstOrDefaultAsync(x => x.IsnProfcom == profcom.IsnProfcom, cancellationToken);
 
             if (originalProfcom != null &&
@@ -71,7 +71,7 @@ public sealed class ProfcomService : IProfcomService
             throw new BusinessLogicException("Нельзя удалить научную встречу, проведенную более месяца назад");
         }
 
-        var hasMeeting = await dataContext.TheProfcom
+        var hasMeeting = await dataContext.Profcoms
             .AnyAsync(x =>
                 x.IsnStudent == profcom.IsnStudent &&
                 x.IsnSubject == profcom.IsnSubject &&

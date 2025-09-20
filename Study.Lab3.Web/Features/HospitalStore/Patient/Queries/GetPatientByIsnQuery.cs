@@ -8,7 +8,7 @@ namespace Study.Lab3.Web.Features.HospitalStore.Patient.Queries;
 /// <summary>
 /// Получение пациента по идентификатору
 /// </summary>
-public sealed class GetPatientByIsnQuery : IRequest<PatientDto?>
+public sealed class GetPatientByIsnQuery : IRequest<PatientDto>
 {
     public Guid IsnPatient { get; }
 
@@ -18,7 +18,7 @@ public sealed class GetPatientByIsnQuery : IRequest<PatientDto?>
     }
 }
 
-public sealed class GetPatientByIsnQueryHandler : IRequestHandler<GetPatientByIsnQuery, PatientDto?>
+public sealed class GetPatientByIsnQueryHandler : IRequestHandler<GetPatientByIsnQuery, PatientDto>
 {
     private readonly DataContext _dataContext;
 
@@ -27,7 +27,7 @@ public sealed class GetPatientByIsnQueryHandler : IRequestHandler<GetPatientByIs
         _dataContext = dataContext;
     }
 
-    public async Task<PatientDto?> Handle(GetPatientByIsnQuery request, CancellationToken cancellationToken)
+    public async Task<PatientDto> Handle(GetPatientByIsnQuery request, CancellationToken cancellationToken)
     {
         return await _dataContext.Patients
             .AsNoTracking()

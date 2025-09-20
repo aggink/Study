@@ -32,7 +32,7 @@ namespace Study.Lab1.Logic.Taipano
             Console.WriteLine($"r1 <= r2: {r1 <= r2}\n");
             Console.WriteLine($"r1 == r2: {r1 == r2}\n");
             Console.WriteLine($"r1 != r2: {r1 != r2}\n");
-            Console.WriteLine($"r3 =  { r3.ToString()}\n");
+            Console.WriteLine($"r3 =  {r3.ToString()}\n");
         }
 
         public void RunTask2()

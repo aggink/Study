@@ -8,7 +8,7 @@ public class Customer
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
-    public Guid IsnCustomer  { get; set; }
+    public Guid IsnCustomer { get; set; }
 
     [Required]
     [MaxLength(ModelConstants.ShelterCustomer.Name)]

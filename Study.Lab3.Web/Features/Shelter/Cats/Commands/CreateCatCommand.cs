@@ -47,7 +47,7 @@ public sealed class CreateCatCommandHandler : IRequestHandler<CreateCatCommand, 
             ArrivalDate = request.Customer.ArrivalDate,
             Age = request.Customer.Age,
             Weight = request.Customer.Weight,
-            IsAvailableForAdoption = true 
+            IsAvailableForAdoption = true
         };
 
         await _dataContext.Cats.AddAsync(cat, cancellationToken);

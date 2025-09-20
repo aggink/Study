@@ -6,7 +6,7 @@ using Study.Lab3.Logic.Interfaces.Services.University;
 using Study.Lab3.Storage.Database;
 using System.ComponentModel.DataAnnotations;
 
-namespace Study.Lab3.Web.Features.University.TheProjectActivities.Commands;
+namespace Study.Lab3.Web.Features.University.ProjectActivities.Commands;
 
 /// <summary>
 /// Удаление проектной деятельности
@@ -36,7 +36,7 @@ public sealed class DeleteProjectActivitiesCommandHandler : IRequestHandler<Dele
 
     public async Task Handle(DeleteProjectActivitiesCommand request, CancellationToken cancellationToken)
     {
-        var projectactivities = await _dataContext.TheProjectActivities
+        var projectactivities = await _dataContext.ProjectActivities
             .Include(x => x.Subject)
             .FirstOrDefaultAsync(x => x.IsnProjectActivities == request.IsnProjectActivities, cancellationToken)
                 ?? throw new BusinessLogicException($"Выступлений с идентификатором \"{request.IsnProjectActivities}\" не существует");
@@ -44,7 +44,7 @@ public sealed class DeleteProjectActivitiesCommandHandler : IRequestHandler<Dele
         await _projectactivitiesService.CanDeleteAndThrowAsync(
             _dataContext, projectactivities, cancellationToken);
 
-        _dataContext.TheProjectActivities.Remove(projectactivities);
+        _dataContext.ProjectActivities.Remove(projectactivities);
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

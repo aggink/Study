@@ -17,12 +17,12 @@ public sealed class ServiceService : IServiceService
         if (string.IsNullOrWhiteSpace(service.Name))
             throw new BusinessLogicException("Название услуги не может быть пустым");
 
-        if (service.Price < ModelConstants.Service.MinPrice || 
+        if (service.Price < ModelConstants.Service.MinPrice ||
             service.Price > ModelConstants.Service.MaxPrice)
             throw new BusinessLogicException(
                 $"Цена услуги должна быть от {ModelConstants.Service.MinPrice} до {ModelConstants.Service.MaxPrice}");
 
-        if (service.Duration < ModelConstants.Service.MinDuration || 
+        if (service.Duration < ModelConstants.Service.MinDuration ||
             service.Duration > ModelConstants.Service.MaxDuration)
             throw new BusinessLogicException(
                 $"Длительность услуги должна быть от {ModelConstants.Service.MinDuration} до {ModelConstants.Service.MaxDuration} минут");

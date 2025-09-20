@@ -23,7 +23,7 @@ public sealed class GetListProfcomQueryHandler : IRequestHandler<GetListProfcomQ
 
     public async Task<ProfcomDto[]> Handle(GetListProfcomQuery request, CancellationToken cancellationToken)
     {
-        return await _dataContext.TheProfcom
+        return await _dataContext.Profcoms
             .AsNoTracking()
             .Select(x => new ProfcomDto
             {
@@ -31,7 +31,7 @@ public sealed class GetListProfcomQueryHandler : IRequestHandler<GetListProfcomQ
                 IsnStudent = x.IsnStudent,
                 IsnSubject = x.IsnSubject,
                 ParticipantsCount = x.ParticipantsCount,
-                ProfcomDate = x.ProfcomDate
+                ProfcomDate = x.ProfcomDate,
             })
             .OrderByDescending(x => x.ProfcomDate)
             .ToArrayAsync(cancellationToken);

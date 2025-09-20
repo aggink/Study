@@ -9,13 +9,13 @@ public sealed record BuyTicketDto
     /// </summary>
     [Required]
     public Guid IsnSession { get; init; }
-    
+
     /// <summary>
     /// Идентификатор места
     /// </summary>
     [Required]
     public Guid IsnSeat { get; init; }
-    
+
     /// <summary>
     /// Идентификатор клиента
     /// </summary>

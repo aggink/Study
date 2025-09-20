@@ -3,5 +3,5 @@
 public interface IRationalNumber
 {
     public int Numerator { get; }
-    public int Denominator { get; } 
+    public int Denominator { get; }
 }

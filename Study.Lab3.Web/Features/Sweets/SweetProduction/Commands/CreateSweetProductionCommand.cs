@@ -37,16 +37,16 @@ public sealed class CreateSweetProductionCommandHandler : IRequestHandler<Create
             c.IsnSweet == request.SweetProduction.IsnSweet, cancellationToken))
             throw new BusinessLogicException($"Запись с индентификатором \"{request.SweetProduction.IsnFactory}\" уже существует");
 
-        var sweetproduction = new Storage.Models.Sweets.SweetProduction
+        var sweetProduction = new Storage.Models.Sweets.SweetProduction
         {
             IsnSweetProduction = Guid.NewGuid(),
             IsnSweetFactory = request.SweetProduction.IsnFactory,
             IsnSweet = request.SweetProduction.IsnSweet
         };
 
-        await _dataContext.SweetProductions.AddAsync(sweetproduction, cancellationToken);
+        await _dataContext.SweetProductions.AddAsync(sweetProduction, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
-        return sweetproduction.IsnSweetProduction;
+        return sweetProduction.IsnSweetProduction;
     }
 }

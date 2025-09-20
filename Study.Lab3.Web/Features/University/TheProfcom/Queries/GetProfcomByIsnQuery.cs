@@ -32,7 +32,7 @@ public sealed class GetProfcomByIsnQueryHandler : IRequestHandler<GetProfcomByIs
 
     public async Task<ProfcomDto> Handle(GetProfcomByIsnQuery request, CancellationToken cancellationToken)
     {
-        var profcom = await _dataContext.TheProfcom
+        var profcom = await _dataContext.Profcoms
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.IsnProfcom == request.IsnProfcom, cancellationToken)
                 ?? throw new BusinessLogicException($"Количества участников с идентификатором \"{request.IsnProfcom}\" не существует");
@@ -43,7 +43,7 @@ public sealed class GetProfcomByIsnQueryHandler : IRequestHandler<GetProfcomByIs
             IsnStudent = profcom.IsnStudent,
             IsnSubject = profcom.IsnSubject,
             ParticipantsCount = profcom.ParticipantsCount,
-            ProfcomDate = profcom.ProfcomDate
+            ProfcomDate = profcom.ProfcomDate,
         };
     }
 }

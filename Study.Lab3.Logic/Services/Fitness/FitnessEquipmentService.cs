@@ -35,7 +35,7 @@ public class FitnessEquipmentService : IFitnessEquipmentService
             throw new BusinessLogicException("Дата последнего обслуживания не может быть в будущем");
 
         // Проверка уникальности серийного номера
-        var existingEquipmentWithSerial = await dataContext.Equipments
+        var existingEquipmentWithSerial = await dataContext.FitnessEquipments
             .FirstOrDefaultAsync(x => x.SerialNumber == equipment.SerialNumber && x.IsnEquipment != equipment.IsnEquipment, cancellationToken);
 
         if (existingEquipmentWithSerial != null)
@@ -47,7 +47,7 @@ public class FitnessEquipmentService : IFitnessEquipmentService
         FitnessEquipment equipment,
         CancellationToken cancellationToken = default)
     {
-        if (!await dataContext.Equipments.AnyAsync(x => x.IsnEquipment == equipment.IsnEquipment, cancellationToken))
+        if (!await dataContext.FitnessEquipments.AnyAsync(x => x.IsnEquipment == equipment.IsnEquipment, cancellationToken))
             throw new BusinessLogicException($"Оборудование с идентификатором \"{equipment.IsnEquipment}\" не существует");
     }
 }
