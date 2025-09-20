@@ -94,6 +94,12 @@ public class Student
     [InverseProperty(nameof(ProjectActivities.Student))]
     public virtual ICollection<ProjectActivities> ProjectActivitiess { get; set; }
 
+    /// <summary>
+    /// Связь с киберспортом
+    /// </summary>
+    [InverseProperty(nameof(CyberSport.Student))]
+    public virtual ICollection<CyberSport> CyberSports { get; set; }
+
     [InverseProperty(nameof(StudentLab.Student))]
     public virtual ICollection<StudentLab> StudentLabs { get; set; }
 
@@ -121,4 +127,5 @@ public class Student
     /// </summary>
     [InverseProperty(nameof(Pingpongclub.Student))]
     public virtual ICollection<Pingpongclub> Pingpongclubs { get; set; }
+
 }

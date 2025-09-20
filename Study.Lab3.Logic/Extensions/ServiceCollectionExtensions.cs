@@ -197,5 +197,11 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IManhvaService, ManhvaService>();
         services.AddSingleton<IManhuaService, ManhuaService>();
         #endregion
+        services.AddSingleton<ILabService, LabService>();
+        services.AddSingleton<IFitnessMemberService, FitnessMemberService>();
+        services.AddSingleton<IFitnessTrainerService, FitnessTrainerService>();
+        services.AddSingleton<IFitnessEquipmentService, FitnessEquipmentService>();
+        services.AddSingleton<IProjectActivitiesService, ProjectActivitiesService>();
+        services.AddSingleton<ICyberSportService, CyberSportService>();
     }
 }

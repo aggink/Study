@@ -101,4 +101,10 @@ public class Subject
     /// </summary>
     [InverseProperty(nameof(Pingpongclub.Subject))]
     public virtual ICollection<Pingpongclub> Pingpongclubs { get; set; }
+
+    /// <summary>
+    /// Связь с киберспортом
+    /// </summary>
+    [InverseProperty(nameof(CyberSport.Subject))]
+    public virtual ICollection<CyberSport> CyberSports { get; set; }
 }

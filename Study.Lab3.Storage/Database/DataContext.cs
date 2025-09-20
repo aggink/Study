@@ -164,6 +164,10 @@ public class DataContext : DbContext
     public virtual DbSet<ProjectActivities> ProjectActivities { get; set; }
 
     /// <summary>
+    /// Киберспорт
+    /// </summary>
+    public virtual DbSet<CyberSport> CyberSport { get; set; }
+
     /// Лабы
     /// </summary>
     public virtual DbSet<Labs> Labs { get; set; }
@@ -188,6 +192,7 @@ public class DataContext : DbContext
     /// Спортивный клуб
     /// </summary>
     public virtual DbSet<Pingpongclub> Pingpongclub { get; set; }
+
 
     #endregion
 
@@ -390,6 +395,7 @@ public class DataContext : DbContext
     /// </summary>
     public virtual DbSet<Models.Formula1.DriverGrandPrix> RaceResults { get; set; }
     #endregion
+
 
     #region Fitness
 
