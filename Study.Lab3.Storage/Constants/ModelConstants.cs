@@ -1277,7 +1277,7 @@ public static class ModelConstants
     {
         public const int MaxTextLength = 500;
     }
-  
+
     public static class ScientificWork
     {
         public const int MinPageCount = 5;
@@ -1375,11 +1375,11 @@ public static class ModelConstants
     }
 
 
-#endregion
+    #endregion
 
-#region GameStore
+    #region GameStore
 
-public static class Game
+    public static class Game
     {
         /// <summary>
         /// Максимальная длина названия игры
@@ -2391,7 +2391,7 @@ public static class Game
     }
 
     #endregion
-}
+
 
     public static class CyberSport
     {

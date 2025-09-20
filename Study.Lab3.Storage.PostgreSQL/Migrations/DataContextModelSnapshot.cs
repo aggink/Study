@@ -2917,6 +2917,32 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.ToTable("Career");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.CyberSport", b =>
+                {
+                    b.Property<Guid>("IsnCyberSport")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CyberSportDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("PointsCount")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IsnCyberSport");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("CyberSport");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
                 {
                     b.Property<Guid>("IsnExam")
@@ -4026,6 +4052,25 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.CyberSport", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("CyberSports")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("CyberSports")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Exam", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
@@ -4550,6 +4595,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
 
                     b.Navigation("Careers");
 
+                    b.Navigation("CyberSports");
+
                     b.Navigation("ExamRegistrations");
 
                     b.Navigation("Grades");
@@ -4578,6 +4625,8 @@ namespace Study.Lab3.Storage.PostgreSQL.Migrations
                     b.Navigation("AttendanceLogs");
 
                     b.Navigation("Careers");
+
+                    b.Navigation("CyberSports");
 
                     b.Navigation("Exams");
 
