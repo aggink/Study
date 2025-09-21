@@ -194,6 +194,11 @@ public class DataContext : DbContext
     public virtual DbSet<Pingpongclub> Pingpongclub { get; set; }
 
 
+    /// <summary>
+    /// Шахматный клуб
+    /// </summary>
+    public virtual DbSet<Chessclub> Chessclub { get; set; }
+
     #endregion
 
     #region Cinema

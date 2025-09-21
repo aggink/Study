@@ -16,19 +16,16 @@ using Study.Lab3.Web.Features.Shelter.Cats.Queries;
 using Study.Lab3.Web.Features.Shelter.Customers.Commands;
 using Study.Lab3.Web.Features.Shelter.Customers.DtoModels;
 using Study.Lab3.Web.Features.Shelter.Customers.Queries;
-using Study.Lab3.Web.Features.Shelter.MiniPigAdoptions.Commands;
-using Study.Lab3.Web.Features.Shelter.MiniPigs.Commands;
-using Study.Lab3.Web.Features.Shelter.MiniPigs.DtoModels;
-using Study.Lab3.Web.Features.Shelter.MiniPigs.Queries;
 using Study.Lab3.Web.Features.University.Announcements.Commands;
 using Study.Lab3.Web.Features.University.Announcements.DtoModels;
 using Study.Lab3.Web.Features.University.Announcements.Queries;
 using Study.Lab3.Web.Features.University.Assignments.Commands;
 using Study.Lab3.Web.Features.University.Assignments.DtoModels;
 using Study.Lab3.Web.Features.University.Assignments.Queries;
-using Study.Lab3.Web.Features.University.CyberSport.Commands;
-using Study.Lab3.Web.Features.University.CyberSport.DtoModels;
-using Study.Lab3.Web.Features.University.CyberSport.Queries;
+using Study.Lab3.Web.Features.University.Chesscllub.Queries;
+using Study.Lab3.Web.Features.University.Chessclub.Commands;
+using Study.Lab3.Web.Features.University.Chessclub.DtoModels;
+using Study.Lab3.Web.Features.University.Chessclub.Queries;
 using Study.Lab3.Web.Features.University.ExamRegistrations.Commands;
 using Study.Lab3.Web.Features.University.ExamRegistrations.DtoModels;
 using Study.Lab3.Web.Features.University.ExamRegistrations.Queries;
@@ -47,15 +44,9 @@ using Study.Lab3.Web.Features.University.Groups.Queries;
 using Study.Lab3.Web.Features.University.Materials.Commands;
 using Study.Lab3.Web.Features.University.Materials.DtoModels;
 using Study.Lab3.Web.Features.University.Materials.Queries;
-using Study.Lab3.Web.Features.University.Pingpongclub.Commands;
-using Study.Lab3.Web.Features.University.Pingpongclub.DtoModels;
-using Study.Lab3.Web.Features.University.Pingpongclub.Queries;
 using Study.Lab3.Web.Features.University.ProjectActivities.Commands;
 using Study.Lab3.Web.Features.University.ProjectActivities.DtoModels;
 using Study.Lab3.Web.Features.University.ProjectActivities.Queries;
-using Study.Lab3.Web.Features.University.ScientificWork.Commands;
-using Study.Lab3.Web.Features.University.ScientificWork.DtoModels;
-using Study.Lab3.Web.Features.University.ScientificWork.Queries;
 using Study.Lab3.Web.Features.University.Sportclub.Commands;
 using Study.Lab3.Web.Features.University.Sportclub.DtoModels;
 using Study.Lab3.Web.Features.University.Sportclub.Queries;
@@ -70,15 +61,9 @@ using Study.Lab3.Web.Features.University.Teachers.Queries;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Commands;
 using Study.Lab3.Web.Features.University.TeacherSubjects.DtoModels;
 using Study.Lab3.Web.Features.University.TeacherSubjects.Queries;
-using Study.Lab3.Web.Features.University.TheAttendanceLog.Commands;
-using Study.Lab3.Web.Features.University.TheAttendanceLog.DtoModels;
-using Study.Lab3.Web.Features.University.TheAttendanceLog.Queries;
 using Study.Lab3.Web.Features.University.TheProfcom.Commands;
 using Study.Lab3.Web.Features.University.TheProfcom.DtoModels;
 using Study.Lab3.Web.Features.University.TheProfcom.Queries;
-using Study.Lab3.Web.Features.University.TheStudentNotes.Commands;
-using Study.Lab3.Web.Features.University.TheStudentNotes.DtoModels;
-using Study.Lab3.Web.Features.University.TheStudentNotes.Queries;
 
 namespace Study.Lab3.Web.Controllers;
 
@@ -1630,14 +1615,13 @@ public class ManageController : Controller
 
     #endregion
 
-    #region CyberSport
-
+    #region Chessclub
     /// <summary>
-    /// Создание киберспорта
+    /// Создание шахматного клуба
     /// </summary>
-    [HttpPost(nameof(CreateCyberSport), Name = nameof(CreateCyberSport))]
+    [HttpPost(nameof(CreateChessclub), Name = nameof(CreateChessclub))]
 
-    public async Task<ActionResult<Guid>> CreateCyberSport([FromBody] CreateCyberSportCommand command,
+    public async Task<ActionResult<Guid>> CreateChessclub([FromBody] CreateChessclubCommand command,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -1645,10 +1629,10 @@ public class ManageController : Controller
     }
 
     /// <summary>
-    /// Редактирование киберспорта
+    /// Редактирование шахматного клуба
     /// </summary>
-    [HttpPost(nameof(UpdateCyberSport), Name = nameof(UpdateCyberSport))]
-    public async Task<ActionResult<Guid>> UpdateCyberSport([FromBody] UpdateCyberSportCommand command,
+    [HttpPost(nameof(UpdateChessclub), Name = nameof(UpdateChessclub))]
+    public async Task<ActionResult<Guid>> UpdateChessclub([FromBody] UpdateChessclubCommand command,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -1656,80 +1640,10 @@ public class ManageController : Controller
     }
 
     /// <summary>
-    /// Удаление киберспорта
+    /// Удаление шахматного клуба
     /// </summary>
-    [HttpPost(nameof(DeleteCyberSport), Name = nameof(DeleteCyberSport))]
-    public async Task<ActionResult> DeleteCyberSport([FromQuery] DeleteCyberSportCommand command,
-        CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Получение игры по идентификатору
-    /// </summary>
-    [HttpGet(nameof(GetCyberSportByIsn), Name = nameof(GetCyberSportByIsn))]
-    public async Task<ActionResult<CyberSportDto>> GetCyberSportByIsn([FromQuery] GetCyberSportByIsnQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение игры с детальной информацией
-    /// </summary>
-    [HttpGet(nameof(GetCyberSportWithDetails), Name = nameof(GetCyberSportWithDetails))]
-    public async Task<ActionResult<CyberSportWithDetailsDto>> GetCyberSportWithDetails([FromQuery] GetCyberSportWithDetailsQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение списка игр
-    /// </summary>
-    [HttpGet(nameof(GetListCyberSport), Name = nameof(GetListCyberSport))]
-    public async Task<ActionResult<CyberSportDto[]>> GetListCyberSport([FromQuery] GetListCyberSportQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-    #endregion
-
-
-    #region Pingpongclub
-    /// <summary>
-    /// Создание спортивного клуба
-    /// </summary>
-    [HttpPost(nameof(CreatePingpongclub), Name = nameof(CreatePingpongclub))]
-
-    public async Task<ActionResult<Guid>> CreatePingpongclub([FromBody] CreatePingpongclubCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Редактирование спортивного клуба
-    /// </summary>
-    [HttpPost(nameof(UpdatePingpongclub), Name = nameof(UpdatePingpongclub))]
-    public async Task<ActionResult<Guid>> UpdatePingpongclub([FromBody] UpdatePingpongclubCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Удаление спортивного клуба
-    /// </summary>
-    [HttpPost(nameof(DeletePingpongclub), Name = nameof(DeletePingpongclub))]
-    public async Task<ActionResult> DeletePingpongclub([FromQuery] DeletePingpongclubCommand command,
+    [HttpPost(nameof(DeleteChessclub), Name = nameof(DeleteChessclub))]
+    public async Task<ActionResult> DeleteChessclub([FromQuery] DeleteChessclubCommand command,
         CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
@@ -1739,8 +1653,8 @@ public class ManageController : Controller
     /// <summary>
     /// Получение соревновательной деятельности по идентификатору
     /// </summary>
-    [HttpGet(nameof(GetPingpongclubByIsn), Name = nameof(GetPingpongclubByIsn))]
-    public async Task<ActionResult<PingpongclubDto>> GetPingpongclubByIsn([FromQuery] GetPingpongclubByIsnQuery query,
+    [HttpGet(nameof(GetChessclubByIsn), Name = nameof(GetChessclubByIsn))]
+    public async Task<ActionResult<ChessclubDto>> GetChessclubByIsn([FromQuery] GetChessclubByIsnQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
@@ -1750,8 +1664,8 @@ public class ManageController : Controller
     /// <summary>
     /// Получение соревновательной деятельности с детальной информацией
     /// </summary>
-    [HttpGet(nameof(GetPingpongclubWithDetails), Name = nameof(GetPingpongclubWithDetails))]
-    public async Task<ActionResult<PingpongclubWithDetailsDto>> GetPingpongclubWithDetails([FromQuery] GetPingpongclubWithDetailsQuery query,
+    [HttpGet(nameof(GetChessclubWithDetails), Name = nameof(GetChessclubWithDetails))]
+    public async Task<ActionResult<ChessclubWithDetailsDto>> GetChessclubWithDetails([FromQuery] GetChessclubWithDetailsQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
@@ -1761,296 +1675,8 @@ public class ManageController : Controller
     /// <summary>
     /// Получение списка соревновательной деятельности
     /// </summary>
-    [HttpGet(nameof(GetListPingpongclub), Name = nameof(GetListPingpongclub))]
-    public async Task<ActionResult<PingpongclubDto[]>> GetListPingpongclub([FromQuery] GetListPingpongclubQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    #endregion
-
-    #region AttendanceLog
-
-    /// <summary>
-    /// Создание посещения
-    /// </summary>
-    [HttpPost(nameof(CreateAttendanceLog), Name = nameof(CreateAttendanceLog))]
-    public async Task<ActionResult<Guid>> CreateAttendanceLog([FromBody] CreateAttendanceLogCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Редактирование посещения
-    /// </summary>
-    [HttpPost(nameof(UpdateAttendanceLog), Name = nameof(UpdateAttendanceLog))]
-    public async Task<ActionResult<Guid>> UpdateAttendanceLog([FromBody] UpdateAttendanceLogCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Удаление посещения
-    /// </summary>
-    [HttpPost(nameof(DeleteAttendanceLog), Name = nameof(DeleteAttendanceLog))]
-    public async Task<ActionResult> DeleteAttendanceLog([FromQuery] DeleteAttendanceLogCommand command,
-        CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Получение посещения по идентификатору
-    /// </summary>
-    [HttpGet(nameof(GetAttendanceLogByIsn), Name = nameof(GetAttendanceLogByIsn))]
-    public async Task<ActionResult<AttendanceLogDto>> GetAttendanceLogByIsn([FromQuery] GetAttendanceLogByIsnQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение списка посещений
-    /// </summary>
-    [HttpGet(nameof(GetListAttendanceLog), Name = nameof(GetListAttendanceLog))]
-    public async Task<ActionResult<AttendanceLogDto[]>> GetListAttendanceLog([FromQuery] GetListAttendanceLogQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    #endregion
-
-    #region StudentNotes
-
-    [HttpGet(nameof(GetListStudentNotes), Name = nameof(GetListStudentNotes))]
-    public async Task<ActionResult<StudentNoteDto[]>> GetListStudentNotes(
-            [FromQuery] GetListStudentNotesQuery query,
-            CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Создать новую заметку
-    /// </summary>
-    [HttpPost(nameof(CreateStudentNote), Name = nameof(CreateStudentNote))]
-    public async Task<ActionResult<Guid>> CreateStudentNote(
-        CreateStudentNoteCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Обновить существующую заметку
-    /// </summary>
-    [HttpPost(nameof(UpdateStudentNote), Name = nameof(UpdateStudentNote))]
-    public async Task<ActionResult<Guid>> UpdateStudentNote(
-        UpdateStudentNoteCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Удалить заметку
-    /// </summary>
-    [HttpPost(nameof(DeleteStudentNote), Name = nameof(DeleteStudentNote))]
-    public async Task<ActionResult> DeleteStudentNote(
-        DeleteStudentNoteCommand command,
-        CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Получить заметку по ID студента (1:1 отношение)
-    /// </summary>
-    [HttpGet(nameof(GetStudentNoteByStudentId), Name = nameof(GetStudentNoteByStudentId))]
-    public async Task<ActionResult<StudentNoteDto>> GetStudentNoteByStudentId(
-        [FromQuery] GetStudentNoteByStudentIdQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return result != null ? Ok(result) : NotFound();
-    }
-
-    #endregion
-
-    #region MiniPigAdoption
-
-    /// <summary>
-    /// Создание усыновления
-    /// </summary>
-    [HttpPost(nameof(CreateMiniPigAdoption), Name = nameof(CreateMiniPigAdoption))]
-    public async Task<ActionResult<Guid>> CreateMiniPigAdoption(CreateMiniPigAdoptionCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Редактирование усыновления
-    /// </summary>
-    [HttpPost(nameof(UpdateMiniPigAdoption), Name = nameof(UpdateMiniPigAdoption))]
-    public async Task<ActionResult<Guid>> UpdateMiniPigAdoption(UpdateMiniPigAdoptionCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Удаление усыновления
-    /// </summary>
-    [HttpPost(nameof(DeleteMiniPigAdoption), Name = nameof(DeleteMiniPigAdoption))]
-    public async Task<ActionResult> DeleteMiniPigAdoption(DeleteMiniPigAdoptionCommand command, CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    #endregion
-
-    #region MiniPig
-    // Получение списка мини пигов
-    [HttpGet(nameof(GetListMiniPigs), Name = nameof(GetListMiniPigs))]
-    public async Task<ActionResult<MiniPigDto[]>> GetListMiniPigs([FromQuery] GetListMiniPigsQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    // Создание мини пига
-    [HttpPost(nameof(CreateMiniPig), Name = nameof(CreateMiniPig))]
-    public async Task<ActionResult<Guid>> CreateMiniPig(CreateMiniPigCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    // Обновление мини пига
-    [HttpPost(nameof(UpdateMiniPig), Name = nameof(UpdateMiniPig))]
-    public async Task<ActionResult<Guid>> UpdateMiniPig(UpdateMiniPigCommand command, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    // Удаление мини пига
-    [HttpPost(nameof(DeleteMiniPig), Name = nameof(DeleteMiniPig))]
-    public async Task<ActionResult> DeleteMiniPig(DeleteMiniPigCommand command, CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Получение мини пига по идентификатору
-    /// </summary>
-    [HttpGet(nameof(GetMiniPigById), Name = nameof(GetMiniPigById))]
-    public async Task<ActionResult<MiniPigDto>> GetMiniPigById([FromQuery] GetMiniPigByIdQuery query, CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        if (result == null)
-            return NotFound();
-        return Ok(result);
-    }
-    #endregion
-
-    #region ScientificWork
-
-    /// <summary>
-    /// Создание научной работы
-    /// </summary>
-    [HttpPost(nameof(CreateScientificWork), Name = nameof(CreateScientificWork))]
-    public async Task<ActionResult<Guid>> CreateScientificWork(
-        [FromBody] CreateScientificWorkCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Редактирование научной работы
-    /// </summary>
-    [HttpPost(nameof(UpdateScientificWork), Name = nameof(UpdateScientificWork))]
-    public async Task<ActionResult<Guid>> UpdateScientificWork(
-        [FromBody] UpdateScientificWorkCommand command,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(command, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Удаление научной работы
-    /// </summary>
-    [HttpPost(nameof(DeleteScientificWork), Name = nameof(DeleteScientificWork))]
-    public async Task<ActionResult> DeleteScientificWork(
-        [FromQuery] DeleteScientificWorkCommand command,
-        CancellationToken cancellationToken)
-    {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
-    }
-
-    /// <summary>
-    /// Получение научной работы по идентификатору
-    /// </summary>
-    [HttpGet(nameof(GetScientificWorkByIsn), Name = nameof(GetScientificWorkByIsn))]
-    public async Task<ActionResult<ScientificWorkDto>> GetScientificWorkByIsn(
-        [FromQuery] GetScientificWorkByIsnQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение научной работы с детальной информацией
-    /// </summary>
-    [HttpGet(nameof(GetScientificWorkWithDetails), Name = nameof(GetScientificWorkWithDetails))]
-    public async Task<ActionResult<ScientificWorkWithDetailsDto>> GetScientificWorkWithDetails(
-        [FromQuery] GetScientificWorkWithDetailsQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение списка научных работ
-    /// </summary>
-    [HttpGet(nameof(GetListScientificWorks), Name = nameof(GetListScientificWorks))]
-    public async Task<ActionResult<ScientificWorkDto[]>> GetListScientificWorks(
-        [FromQuery] GetListScientificWorksQuery query,
-        CancellationToken cancellationToken)
-    {
-        var result = await _mediator.Send(query, cancellationToken);
-        return Ok(result);
-    }
-
-    /// <summary>
-    /// Получение списка научных работ с пагинацией
-    /// </summary>
-    [HttpGet(nameof(GetPagedScientificWorks), Name = nameof(GetPagedScientificWorks))]
-    public async Task<ActionResult<PagedResult<ScientificWorkDto>>> GetPagedScientificWorks(
-        [FromQuery] GetPagedScientificWorksQuery query,
+    [HttpGet(nameof(GetListChessclub), Name = nameof(GetListChessclub))]
+    public async Task<ActionResult<ChessclubDto[]>> GetListChessclub([FromQuery] GetListChesscllubQuery query,
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(query, cancellationToken);
