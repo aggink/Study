@@ -2919,6 +2919,32 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.ToTable("Career");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Chessclub", b =>
+                {
+                    b.Property<Guid>("IsnChessclub")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ChessclubDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("IsnStudent")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IsnSubject")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ParticipantsPip")
+                        .HasColumnType("int");
+
+                    b.HasKey("IsnChessclub");
+
+                    b.HasIndex("IsnStudent");
+
+                    b.HasIndex("IsnSubject");
+
+                    b.ToTable("Chessclub");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.CyberSport", b =>
                 {
                     b.Property<Guid>("IsnCyberSport")
@@ -4054,6 +4080,25 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("Subject");
                 });
 
+            modelBuilder.Entity("Study.Lab3.Storage.Models.University.Chessclub", b =>
+                {
+                    b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
+                        .WithMany("Chessclubs")
+                        .HasForeignKey("IsnStudent")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
+                        .WithMany("Chessclubs")
+                        .HasForeignKey("IsnSubject")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.CyberSport", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
@@ -4242,13 +4287,13 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
             modelBuilder.Entity("Study.Lab3.Storage.Models.University.Sportclub", b =>
                 {
                     b.HasOne("Study.Lab3.Storage.Models.University.Student", "Student")
-                        .WithMany("Sportclubs")
+                        .WithMany()
                         .HasForeignKey("IsnStudent")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Study.Lab3.Storage.Models.University.Subject", "Subject")
-                        .WithMany("Sportclubs")
+                        .WithMany()
                         .HasForeignKey("IsnSubject")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -4597,6 +4642,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.Navigation("Careers");
 
+                    b.Navigation("Chessclubs");
+
                     b.Navigation("CyberSports");
 
                     b.Navigation("ExamRegistrations");
@@ -4615,8 +4662,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
 
                     b.Navigation("ScientificWorks");
 
-                    b.Navigation("Sportclubs");
-
                     b.Navigation("StudentLabs");
                 });
 
@@ -4627,6 +4672,8 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("AttendanceLogs");
 
                     b.Navigation("Careers");
+
+                    b.Navigation("Chessclubs");
 
                     b.Navigation("CyberSports");
 
@@ -4647,8 +4694,6 @@ namespace Study.Lab3.Storage.MS_SQL.Migrations
                     b.Navigation("ProjectActivitiess");
 
                     b.Navigation("ScientificWorks");
-
-                    b.Navigation("Sportclubs");
 
                     b.Navigation("TeacherSubjects");
                 });
