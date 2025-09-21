@@ -32,10 +32,10 @@ public static class MovieExtensions
     {
         var hours = movie.Duration / 60;
         var minutes = movie.Duration % 60;
-        
+
         if (hours > 0)
             return $"{hours}ч {minutes:00}мин";
-        
+
         return $"{minutes} мин";
     }
 

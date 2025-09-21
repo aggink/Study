@@ -8,7 +8,7 @@ namespace Study.Lab3.Web.Features.HospitalStore.Product.Queries;
 /// <summary>
 /// Получение товара по идентификатору
 /// </summary>
-public sealed class GetProductByIsnQuery : IRequest<ProductDto?>
+public sealed class GetProductByIsnQuery : IRequest<ProductDto>
 {
     public Guid IsnProduct { get; }
 
@@ -18,7 +18,7 @@ public sealed class GetProductByIsnQuery : IRequest<ProductDto?>
     }
 }
 
-public sealed class GetProductByIsnQueryHandler : IRequestHandler<GetProductByIsnQuery, ProductDto?>
+public sealed class GetProductByIsnQueryHandler : IRequestHandler<GetProductByIsnQuery, ProductDto>
 {
     private readonly DataContext _dataContext;
 
@@ -27,7 +27,7 @@ public sealed class GetProductByIsnQueryHandler : IRequestHandler<GetProductByIs
         _dataContext = dataContext;
     }
 
-    public async Task<ProductDto?> Handle(GetProductByIsnQuery request, CancellationToken cancellationToken)
+    public async Task<ProductDto> Handle(GetProductByIsnQuery request, CancellationToken cancellationToken)
     {
         return await _dataContext.Products
             .AsNoTracking()

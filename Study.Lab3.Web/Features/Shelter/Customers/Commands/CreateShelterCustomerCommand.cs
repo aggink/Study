@@ -18,7 +18,7 @@ public class CreateShelterCustomerCommand : IRequest<Guid>
     /// Данные клиента
     /// </summary>
     [Required]
-    [FromBody]  
+    [FromBody]
     public CreateShelterCustomerDto ShelterCustomer { get; init; }
 }
 
@@ -50,7 +50,7 @@ public sealed class CreateCustomerCommandHandler : IRequestHandler<CreateShelter
 
         await _dataContext.ShelterCustomers.AddAsync(customer, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
-        
+
         return customer.IsnCustomer;
     }
 }

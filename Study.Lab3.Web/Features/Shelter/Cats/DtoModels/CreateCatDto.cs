@@ -8,7 +8,7 @@ public class CreateCatDto
     [Required]
     [MaxLength(ModelConstants.Cat.Nickname)]
     public string Nickname { get; init; }
-    
+
     public DateTime? BirthDate { get; init; }
 
     [Required]
@@ -39,7 +39,7 @@ public class CreateCatDto
     [Required]
     [Range(ModelConstants.Cat.AgeMin, ModelConstants.Cat.AgeMax)]
     public int Age { get; init; }
-        
+
     [Required]
     [Range(ModelConstants.Cat.WeightMin, ModelConstants.Cat.WeightMax)]
     public int Weight { get; init; }

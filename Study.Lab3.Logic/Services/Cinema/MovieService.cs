@@ -20,19 +20,19 @@ public sealed class MovieService : IMovieService
         {
             throw new BusinessLogicException("Продолжительность фильма должна быть положительным числом");
         }
-    
+
         if (movie.Year <= 0)
         {
             throw new BusinessLogicException("Год выпуска фильма должен быть положительным числом");
         }
-        
+
         if (movie.Year > DateTime.Now.Year)
             throw new BusinessLogicException("Год выпуска не может быть больше текущего года");
 
         // Проверка на дубликат
         if (await dataContext.Movies.AnyAsync(
-            x => x.Title == movie.Title && 
-                 x.Year == movie.Year && 
+            x => x.Title == movie.Title &&
+                 x.Year == movie.Year &&
                  x.IsnMovie != movie.IsnMovie,
             cancellationToken))
         {
@@ -59,7 +59,7 @@ public sealed class MovieService : IMovieService
 
         // Проверка на наличие будущих сеансов
         var hasFutureSessions = await dataContext.Sessions
-            .AnyAsync(x => x.IsnMovie == movie.IsnMovie && 
+            .AnyAsync(x => x.IsnMovie == movie.IsnMovie &&
                           x.StartTime > DateTime.UtcNow,
                       cancellationToken);
 
@@ -87,7 +87,7 @@ public sealed class MovieService : IMovieService
         // Проверяем существование фильма как в базе данных, так и среди добавленных, но не сохранённых фильмов
         bool movieExists = await dataContext.Movies.AnyAsync(x => x.IsnMovie == movieGenre.IsnMovie, cancellationToken)
                            || dataContext.Movies.Local.Any(x => x.IsnMovie == movieGenre.IsnMovie);
-    
+
         if (!movieExists)
             throw new BusinessLogicException(
                 $"Фильм с идентификатором \"{movieGenre.IsnMovie}\" не существует");
@@ -97,7 +97,7 @@ public sealed class MovieService : IMovieService
                 $"Жанр с идентификатором \"{movieGenre.IsnGenre}\" не существует");
 
         if (await dataContext.MovieGenres.AnyAsync(
-                x => x.IsnMovie == movieGenre.IsnMovie && 
+                x => x.IsnMovie == movieGenre.IsnMovie &&
                      x.IsnGenre == movieGenre.IsnGenre,
                 cancellationToken))
         {

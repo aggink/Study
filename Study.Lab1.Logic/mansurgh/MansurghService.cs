@@ -35,7 +35,7 @@ public class MansurghService : IRunService
         Console.WriteLine($"c <= b? {c <= b}");
         Console.WriteLine($"d >= b? {d >= b}");
     }
-    
+
     public void RunTask2()
     {
         Console.WriteLine("Task 2 is not implemented yet.");

@@ -42,13 +42,13 @@ public sealed class CreateProfcomCommandHandler : IRequestHandler<CreateProfcomC
             IsnStudent = request.Profcom.IsnStudent,
             IsnSubject = request.Profcom.IsnSubject,
             ParticipantsCount = request.Profcom.ParticipantsCount,
-            ProfcomDate = request.Profcom.ProfcomDate
+            ProfcomDate = request.Profcom.ProfcomDate,
         };
 
         await _profcomService.CreateOrUpdateProfcomValidateAndThrowAsync(
             _dataContext, profcom, cancellationToken);
 
-        await _dataContext.TheProfcom.AddAsync(profcom, cancellationToken);
+        await _dataContext.Profcoms.AddAsync(profcom, cancellationToken);
         await _dataContext.SaveChangesAsync(cancellationToken);
 
         return profcom.IsnProfcom;

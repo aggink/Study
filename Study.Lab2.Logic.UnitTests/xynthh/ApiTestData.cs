@@ -12,7 +12,7 @@ internal static class ApiTestData
 
     internal const string ApiKeyValueRequestService = "test-key";
 
-    internal const string RequestServiceTestUrl      = "https://example.com/api";
+    internal const string RequestServiceTestUrl = "https://example.com/api";
     internal const string RequestServiceTestResponse = "{\"name\":\"Test\"}";
 
     internal static readonly Dictionary<string, string> RequestServiceTestHeaders = new()
@@ -28,13 +28,13 @@ internal static class ApiTestData
 
     // Базовые URL
     internal const string JsonPlaceholderBaseUrl = "https://jsonplaceholder.typicode.com";
-    internal const string ReqResBaseUrl          = "https://reqres.in/api";
+    internal const string ReqResBaseUrl = "https://reqres.in/api";
 
     // ID для тестов
     internal const int JsonPlaceholderTestUserId = 1;
-    internal const int ReqResTestUserId          = 2;
+    internal const int ReqResTestUserId = 2;
     internal const int JsonPlaceholderTestPostId = 3;
-    internal const int NonExistentUserId         = 999;
+    internal const int NonExistentUserId = 999;
 
     internal static readonly Dictionary<string, string> ReqResHeaders = new()
     {
@@ -43,7 +43,7 @@ internal static class ApiTestData
 
     // JSON ответы
     internal const string JsonPlaceholderUserResponse = "{\"id\":1,\"name\":\"User\"}";
-    internal const string ReqResUserResponseRaw       = "{\"data\":{\"id\":2,\"name\":\"Janet\"}}";
+    internal const string ReqResUserResponseRaw = "{\"data\":{\"id\":2,\"name\":\"Janet\"}}";
     internal const string JsonPlaceholderPostResponse = "{\"id\":1,\"title\":\"Post Title\",\"body\":\"Post body\"}";
 
     // Форматированные JSON ответы
@@ -54,10 +54,10 @@ internal static class ApiTestData
         "{\n  \"id\": 1,\n  \"title\": \"Post Title\",\n  \"body\": \"Post body\"\n}";
 
     // Ошибки
-    internal const string NotFoundErrorResponseJson     = "{\"error\":\"Not found\"}";
+    internal const string NotFoundErrorResponseJson = "{\"error\":\"Not found\"}";
     internal const string UserNotFoundErrorResponseJson = "{\"error\":\"User not found\"}";
-    internal const string NotFoundErrorMessage          = "Not found";
-    internal const string UserNotFoundErrorMessage      = "User not found";
+    internal const string NotFoundErrorMessage = "Not found";
+    internal const string UserNotFoundErrorMessage = "User not found";
 
     // Методы генерации URL
     internal static string GetJsonPlaceholderUserUrl(int userId)

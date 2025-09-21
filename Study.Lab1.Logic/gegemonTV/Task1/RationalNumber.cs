@@ -1,7 +1,7 @@
 ﻿using System;
 using Study.Lab1.Logic.Interfaces.gegemonTV.Task1;
 
-namespace Study.Lab1.Logic.gegemonTV.Task1 
+namespace Study.Lab1.Logic.gegemonTV.Task1
 {
     public class RationalNumber : IRationalNumber
     {
@@ -10,7 +10,7 @@ namespace Study.Lab1.Logic.gegemonTV.Task1
 
         public RationalNumber(long numerator, long denomenator)
         {
-            if (denomenator == 0) 
+            if (denomenator == 0)
                 throw new DivideByZeroException("[ERROR]: Denomenator is equal to 0!");
 
             if (numerator < 0 && denomenator < 0)
@@ -67,7 +67,7 @@ namespace Study.Lab1.Logic.gegemonTV.Task1
             long denominator = a.Denominator * b.Numerator;
             return new RationalNumber(numerator, denominator);
         }
-        
+
 
         public static bool operator ==(RationalNumber a, RationalNumber b)
         {
@@ -110,7 +110,7 @@ namespace Study.Lab1.Logic.gegemonTV.Task1
                 else
                     b %= a;
             }
-            return (long) (a | b);
+            return (long)(a | b);
         }
 
         public override bool Equals(object obj)

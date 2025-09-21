@@ -1,10 +1,12 @@
 using Study.Lab2.Logic.alexmark1612;
 using Study.Lab2.Logic.alkeivi;
 using Study.Lab2.Logic.Assistant;
+using Study.Lab2.Logic.baldfromazzers;
 using Study.Lab2.Logic.brnvika;
 using Study.Lab2.Logic.chaspix;
 using Study.Lab2.Logic.Cherryy;
 using Study.Lab2.Logic.chirique_online;
+using Study.Lab2.Logic.Crocodile17;
 using Study.Lab2.Logic.danaky1;
 using Study.Lab2.Logic.eldarovskiy;
 using Study.Lab2.Logic.freaxd;
@@ -23,13 +25,18 @@ using Study.Lab2.Logic.poigko;
 using Study.Lab2.Logic.PresvyatoyKabachok;
 using Study.Lab2.Logic.Pro100futa;
 using Study.Lab2.Logic.Selestz;
-using Study.Lab2.Logic.SuperSalad007;
 using Study.Lab2.Logic.Taipano;
 using Study.Lab2.Logic.TucKaW;
 using Study.Lab2.Logic.xynthh;
 using Study.Lab2.Logic.yamisakimei;
+using Study.Lab2.Logic.SuperSalad007;
+using Study.Lab2.Logic.Bonnemort;
+using Study.Lab2.Logic.cocobara;
+using Study.Lab2.Logic.eduardvafin56;
+using Study.Lab2.Logic.fableslots;
+using Study.Lab2.Logic.mansurgh; 
 
-namespace Study.Lab2;
+
 
 public static class Program
 {
@@ -52,7 +59,7 @@ public static class Program
         Console.WriteLine("========================================\n");
         Console.ResetColor();
 
-        using var service = GetRunLabService(GROUP_NAME, PERSON_NUMBER);
+        using var service = GetRunLabService("idb-23-02", 1);
 
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.WriteLine("Синхронное выполнение (без async/await)\n");
@@ -142,6 +149,20 @@ public static class Program
                 return new alexmark1612Service();
             case ("idb-23-03", 7):
                 return new IvanZService();
+            case ("idb-23-03", 19):
+                return new Crocodile17Service();
+            case ("idb-23-02", 18):
+                return new BonnemortService();
+            case ("idb-23-02", 7):
+                return new Eduardvafin56Service();
+            case ("idb-23-02", 22):
+                return new baldfromazzersService();
+            case ("idb-23-02", 14):
+                return new fableslotsService();
+            case ("idb-23-02", 13):
+                return new cocobaraService();
+            case ("idb-23-02", 1):
+                return new MansurghService();
             default:
                 throw new NotSupportedException();
         }

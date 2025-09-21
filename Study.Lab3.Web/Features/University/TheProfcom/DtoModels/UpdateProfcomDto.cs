@@ -12,6 +12,16 @@ public sealed record UpdateProfcomDto
     public Guid IsnProfcom { get; init; }
 
     /// <summary>
+    /// Идентификатор студента
+    /// </summary>
+    public Guid IsnStudent { get; init; }
+
+    /// <summary>
+    /// Идентификатор предмета
+    /// </summary>
+    public Guid IsnSubject { get; init; }
+
+    /// <summary>
     /// Значение количества участников
     /// </summary>
     [Required]

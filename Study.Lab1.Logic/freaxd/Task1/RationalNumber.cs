@@ -25,7 +25,7 @@ public class RationalNumber : IRationalNumber
         int gcd = GCD(numerator, denominator);
 
         Numerator = numerator / gcd;
-        Denominator = denominator / gcd;        
+        Denominator = denominator / gcd;
     }
 
     // Метод вычисления наибольшого общего делителя
@@ -55,7 +55,7 @@ public class RationalNumber : IRationalNumber
     public override bool Equals(object obj)
     {
         if (obj is RationalNumber other)
-            return this == other;        
+            return this == other;
 
         return false;
     }
@@ -73,9 +73,9 @@ public class RationalNumber : IRationalNumber
         return new RationalNumber(a.Numerator * b.Denominator + b.Numerator * a.Denominator, a.Denominator * b.Denominator);
     }
 
-    public static RationalNumber operator -(RationalNumber a, RationalNumber b) 
+    public static RationalNumber operator -(RationalNumber a, RationalNumber b)
     {
-        return new RationalNumber(a.Numerator * b.Denominator - b.Numerator * a.Denominator, a.Denominator * b.Denominator);  
+        return new RationalNumber(a.Numerator * b.Denominator - b.Numerator * a.Denominator, a.Denominator * b.Denominator);
     }
 
     public static RationalNumber operator *(RationalNumber a, RationalNumber b)
@@ -107,7 +107,7 @@ public class RationalNumber : IRationalNumber
         return a.Numerator == b.Numerator && a.Denominator == b.Denominator;
     }
 
-    public static bool operator !=(RationalNumber a, RationalNumber b) 
+    public static bool operator !=(RationalNumber a, RationalNumber b)
     {
         return !(a == b);
     }
@@ -131,4 +131,4 @@ public class RationalNumber : IRationalNumber
     {
         return a > b || a == b;
     }
-}   
+}

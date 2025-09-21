@@ -49,7 +49,7 @@ public sealed class UseTicketCommandHandler : IRequestHandler<UseTicketCommand>
 
         // Отметка билета как использованного
         ticket.Status = TicketStatus.Used;
-        
+
         await _dataContext.SaveChangesAsync(cancellationToken);
     }
 }

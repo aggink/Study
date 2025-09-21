@@ -37,7 +37,7 @@ public sealed class UpdateEquipmentCommandHandler : IRequestHandler<UpdateEquipm
 
     public async Task<Guid> Handle(UpdateEquipmentCommand request, CancellationToken cancellationToken)
     {
-        var equipment = await _dataContext.Equipments
+        var equipment = await _dataContext.FitnessEquipments
                             .FirstOrDefaultAsync(x => x.IsnEquipment == request.Equipment.IsnEquipment, cancellationToken)
                         ?? throw new BusinessLogicException($"Оборудование с идентификатором \"{request.Equipment.IsnEquipment}\" не существует");
 

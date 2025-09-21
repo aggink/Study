@@ -3,7 +3,7 @@
     public interface IRationalNumber
     {
         public long Numerator { get; }
-        
+
         public long Denominator { get; }
     }
 }
